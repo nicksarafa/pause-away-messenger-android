@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/sessionStateTxt"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/pauseSessionInactive"/>
+
+        <Button
+            android:id="@+id/startPauseSessionBtn"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/startPauseSessionBtn" />
+
+        <Button
+            android:id="@+id/stopPauseSessionBtn"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/stopPauseSessionBtn"
+            android:enabled="false" />
+
+        <Button
+                android:id="@+id/sendMmsBtn"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="Send MMS Message"
+                />
+
+</LinearLayout>

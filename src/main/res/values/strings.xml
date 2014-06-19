@@ -1,4 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Pause</string>
+
+    <!-- Create Pause Screen -->
+    <string name="startPauseSessionBtn">Start Pause Session</string>
+    <string name="stopPauseSessionBtn">Stop Pause Session</string>
+
+    <string name="pauseSessionActive">Pause Session Active</string>
+    <string name="pauseSessionInactive">No Pause Session Active</string>
+
 </resources>
