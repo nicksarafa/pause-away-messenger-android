@@ -19,6 +19,7 @@ public class PauseConversation implements Serializable {
     private String sender;
     private Boolean sentPause;
     private Boolean sentSecondPause;
+    private String type;
 
     public PauseConversation(String sender) {
         this.sender = sender;
@@ -30,6 +31,7 @@ public class PauseConversation implements Serializable {
 
     public void addMessage(PauseMessage message) {
         messagesReceived.add(message);
+        type = message.getType();
     }
 
     public Long getInitiatedOn() {
@@ -71,6 +73,14 @@ public class PauseConversation implements Serializable {
 
     public void setSentSecondPause(Boolean sentSecondPause) {
         this.sentSecondPause = sentSecondPause;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public String getType() {
+        return type;
     }
 
 

@@ -41,4 +41,6 @@ public class PauseFragmentActivity extends ActionBarActivity{
         super.onPause();
         eventBus.unregister(this);
     }
+
+
 }

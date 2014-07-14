@@ -72,6 +72,7 @@ public class PauseApplication extends Application {
 
         // Delete Pause Session
         // TODO
+        currentPauseSession.deactivateSession();
     }
 
     /**
@@ -92,7 +93,7 @@ public class PauseApplication extends Application {
         parts[0].MimeType = "image/png";
         parts[0].Data = byteArray;
 
-        messageSender.sendMmsMessage("12482526955", parts);
+        //messageSender.sendMmsMessage("12482526955", parts);
     }
 
     public static void sendMMSTestToSelf() {

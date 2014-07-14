@@ -6,6 +6,7 @@ import android.content.IntentFilter;
 import android.os.IBinder;
 import android.util.Log;
 import com.pauselabs.pause.core.Constants;
+import com.pauselabs.pause.listeners.PausePhoneStateListener;
 import com.pauselabs.pause.listeners.PauseSmsListener;
 
 /**
@@ -15,6 +16,7 @@ public class PauseSessionService extends Service{
 
     private static final String TAG = PauseSessionService.class.getSimpleName();
     private PauseSmsListener smsListener = new PauseSmsListener();
+    private PausePhoneStateListener phoneListener = new PausePhoneStateListener();
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
@@ -23,6 +25,11 @@ public class PauseSessionService extends Service{
         filter.addAction(Constants.Message.SMS_RECEIVED_INTENT);
 
         registerReceiver(smsListener, filter);
+
+        IntentFilter phoneStateFilter = new IntentFilter();
+        phoneStateFilter.addAction(Constants.Message.PHONE_STATE_CHANGE_INTENT);
+
+        registerReceiver(phoneListener, phoneStateFilter);
 
 
         return Service.START_NOT_STICKY; // Service will not be restarted if android kills it
@@ -40,6 +47,7 @@ public class PauseSessionService extends Service{
 
         // unregister receiver(s)
         unregisterReceiver(smsListener);
+        unregisterReceiver(phoneListener);
 
     }
 }

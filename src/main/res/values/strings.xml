@@ -2,11 +2,34 @@
 <resources>
     <string name="app_name">Pause</string>
 
+    <!-- Pause Menu -->
+    <string name="settings_menu_title">Settings</string>
+    <string name="other_menu_title">Other</string>
+    <string name="pause_action">Start Pause</string>
+
     <!-- Create Pause Screen -->
     <string name="startPauseSessionBtn">Start Pause Session</string>
     <string name="stopPauseSessionBtn">Stop Pause Session</string>
 
     <string name="pauseSessionActive">Pause Session Active</string>
     <string name="pauseSessionInactive">No Pause Session Active</string>
+
+    <string name="pauseMessageLabel">Message Text</string>
+    <string name="pauseMessageLocation">Location</string>
+    <string name="pauseMessageDuration">Duration</string>
+    <string name="pauseMessageTextHint">Message Text</string>
+    <string name="pauseMessageLocationHint">Location</string>
+    <string name="pauseMessageDurationHint">Duration</string>
+
+    <string name="title_pause">Pause</string>
+    <string name="title_home">Home</string>
+    <string name="navigation_drawer_open">Drawer Open</string>
+    <string name="navigation_drawer_close">Drawer Close</string>
+
+    <!-- Saved Pause messages -->
+    <string name="saved_title">Saves</string>
+
+    <!-- Pause Scoreboard screen -->
+    <string name="scoreboard_title">Summary</string>
 
 </resources>

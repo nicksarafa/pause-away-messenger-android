@@ -36,6 +36,8 @@ android {
         versionCode 2
         versionName "1.0.0-SNAPSHOT"
         testInstrumentationRunner "com.google.android.apps.common.testing.testrunner.GoogleInstrumentationTestRunner"
+        renderscriptTargetApi 19
+        renderscriptSupportMode true
     }
     buildTypes {
         release {

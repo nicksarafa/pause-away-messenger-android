@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical"
+              android:background="#fff"
+              android:padding="6dp">
+
+    <TextView
+            android:id="@+id/savedPauseMessages"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/saved_title"
+            android:textSize="24dp"
+            android:textColor="@android:color/darker_gray"
+            android:layout_marginBottom="8dp"/>
+
+    <GridView
+              android:id="@+id/savedMessageGridView"
+              android:layout_width="fill_parent"
+              android:layout_height="fill_parent"
+              android:columnWidth="80dp"
+              android:numColumns="auto_fit"
+              android:verticalSpacing="10dp"
+              android:horizontalSpacing="10dp"
+              android:stretchMode="columnWidth"
+              android:gravity="center"
+            />
+
+
+</LinearLayout>

@@ -1,35 +1,155 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:id="@+id/createPauseLayout"
               android:orientation="vertical"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent">
+              android:layout_width="fill_parent"
+              android:layout_height="fill_parent">
+
+    <ImageView
+            android:id="@+id/backgroundImage"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:scaleType="centerCrop"/>
+
+    <ImageView
+            android:id="@+id/blurredBackgroundImage"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:scaleType="centerCrop"/>
+
+    <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
 
         <TextView
-            android:id="@+id/sessionStateTxt"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="@string/pauseSessionInactive"/>
-
-        <Button
-            android:id="@+id/startPauseSessionBtn"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/startPauseSessionBtn" />
-
-        <Button
-            android:id="@+id/stopPauseSessionBtn"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/stopPauseSessionBtn"
-            android:enabled="false" />
-
-        <Button
-                android:id="@+id/sendMmsBtn"
+                android:id="@+id/pauseLogo"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:text="Send MMS Message"
-                />
+                android:text="Create a Pause Message"
+                android:gravity="center_horizontal"
+                android:padding="10dp"/>
 
-</LinearLayout>
+        <LinearLayout
+                android:id="@+id/pauseDetailsLayout"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@drawable/gradient_pause_image"
+                android:layout_below="@+id/pauseLogo"
+                android:padding="8dp">
+
+            <RelativeLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content">
+
+                <ImageView
+                        android:id="@+id/messageIcon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_message_text"/>
+
+                <EditText
+                        android:id="@+id/pauseMessageText"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/pauseMessageTextHint"
+                        android:layout_toRightOf="@id/messageIcon"
+                        android:textSize="20dp"/>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content">
+
+                <ImageView
+                        android:id="@+id/locationIcon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_location_place"/>
+
+                <EditText
+                        android:id="@+id/pauseLocationText"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/pauseMessageLocationHint"
+                        android:layout_toRightOf="@id/locationIcon"
+                        android:textSize="20dp"/>
+
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content">
+
+                <ImageView
+                        android:id="@+id/durationIcon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_duration"/>
+
+                <EditText
+                        android:id="@+id/pauseDurationText"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/pauseMessageDurationHint"
+                        android:layout_toRightOf="@id/durationIcon"
+                        android:textSize="20dp"/>
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/backgroundLayout"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+
+        <View
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:background="@android:color/darker_gray"
+                android:layout_above="@+id/bottomButtonBar"/>
+
+        <LinearLayout
+                android:id="@+id/bottomButtonBar"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true">
+
+            <ImageButton
+                    android:id="@+id/addImageBtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="48dp"
+                    android:src="@drawable/ic_camera" />
+
+            <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="48dp"
+                    android:text="begin"
+                    android:background="@null"/>
+
+
+        </LinearLayout>
+
+
+
+
+
+    </RelativeLayout>
+
+
+
+
+
+
+
+
+
+
+</FrameLayout>

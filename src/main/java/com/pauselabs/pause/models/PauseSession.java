@@ -1,5 +1,11 @@
 package com.pauselabs.pause.models;
 
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
+import com.pauselabs.pause.PauseApplication;
+import com.pauselabs.pause.core.Constants;
+import com.pauselabs.pause.core.SavedPauseDataSource;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
@@ -15,6 +21,7 @@ public class PauseSession implements Serializable {
 
     private Long createdOn;
     private Boolean isActive;
+    private SavedPauseDataSource mDatasource;
 
     private ArrayList<PauseConversation> conversations;
 
@@ -22,7 +29,7 @@ public class PauseSession implements Serializable {
         Date date = new Date();
         createdOn = date.getTime();
         conversations = new ArrayList<PauseConversation>();
-
+        mDatasource = new SavedPauseDataSource(PauseApplication.getInstance().getApplicationContext());
         isActive = Boolean.TRUE;
     }
 
@@ -90,6 +97,7 @@ public class PauseSession implements Serializable {
             conversations.add(conversation);
             updated = true;
         }
+
     }
 
     /**
@@ -107,6 +115,19 @@ public class PauseSession implements Serializable {
             }
         }
         return requestedConversation;
+    }
+
+    public PauseBounceBackMessage getActiveBounceBackMessage(){
+        PauseBounceBackMessage mActivePause;
+        mDatasource.open();
+
+        SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(PauseApplication.getInstance().getApplicationContext());
+        long id = mPrefs.getLong(Constants.Pause.ACTIVE_PAUSE_DATABASE_ID_PREFS, 0L);
+        mActivePause = mDatasource.getSavedPauseById(id);
+
+        mDatasource.close();
+
+        return mActivePause;
     }
 
 

@@ -3,12 +3,17 @@ package com.pauselabs.pause.services;
 import android.app.IntentService;
 import android.content.Intent;
 import android.os.Bundle;
+import com.pauselabs.pause.Injector;
 import com.pauselabs.pause.PauseApplication;
 import com.pauselabs.pause.core.Constants;
+import com.pauselabs.pause.events.PauseMessageReceivedEvent;
 import com.pauselabs.pause.models.PauseBounceBackMessage;
 import com.pauselabs.pause.models.PauseConversation;
 import com.pauselabs.pause.models.PauseMessage;
 import com.pauselabs.pause.models.PauseSession;
+import com.squareup.otto.Bus;
+
+import javax.inject.Inject;
 
 /**
  * When a Broadcast Receiver (Listener) receives a new message during a Pause Session it will
@@ -19,10 +24,13 @@ import com.pauselabs.pause.models.PauseSession;
  */
 public class PauseMessageReceivedService extends IntentService {
 
+    @Inject
+    protected Bus mBus;
+
     public PauseMessageReceivedService() {
         super("PauseMessageReceivedService");
 
-        //Injector.inject(this);
+        Injector.inject(this);
     }
 
     @Override
@@ -33,17 +41,12 @@ public class PauseMessageReceivedService extends IntentService {
 
             updatePauseSession(messageReceived);
 
-            // Notify UI that a new message has been received, update scoreboard
-            //bus.post(PauseMessageReceivedEvent.class);
         }
     }
 
     private PauseBounceBackMessage retrieveActivePause() {
-        // TODO build system to retrieve current pause message
-        PauseBounceBackMessage currentPause = new PauseBounceBackMessage();
-        currentPause.setMessage("Sorry can't talk now, I'm wired in.");
-
-        return currentPause;
+        PauseBounceBackMessage activePauseMessage = PauseApplication.getCurrentSession().getActiveBounceBackMessage();
+        return activePauseMessage;
     }
 
     private PauseBounceBackMessage retrieveSecondaryPause() {
@@ -86,7 +89,7 @@ public class PauseMessageReceivedService extends IntentService {
             currentConversation.addMessage(message);
 
             // Send Pause Bounce Back
-            PauseApplication.messageSender.sendSmsMessage(message.getSender(), retrieveActivePause());
+            PauseApplication.messageSender.sendMmsMessage(message.getSender(), retrieveActivePause());
 
             // Update conversation
             currentConversation.setSentPause(true);
@@ -96,6 +99,9 @@ public class PauseMessageReceivedService extends IntentService {
         currentPauseSession.updateConversation(currentConversation);
 
         // Save updated Pause Session data to DB
+
+        // alert UI that Pause Conversation has been updated
+        mBus.post(new PauseMessageReceivedEvent());
 
     }
 }

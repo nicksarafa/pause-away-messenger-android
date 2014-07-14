@@ -30,6 +30,46 @@ public class Constants {
          * Message Parcel Identifier String
          */
         public static final String MESSAGE_PARCEL = "MESSAGE_PARCEL";
+
+        /**
+         * Missed call preference
+         */
+        public static final String MISSED_CALL_PREFERENCE = "MISSED_CALL_PREFERENCE";
+
+        /**
+         * Missed phone call older state
+         */
+        public static final String PREFERENCE_OLDER_PHONE_STATE = "olderPhoneState";
+
+        /**
+         * Last missed call time
+         */
+        public static final String PREFERENCE_LAST_MISSED_CALL_TIME = "lastMissedCallTime";
+
+        /**
+         * Phone State Change Filter
+         */
+        public static final String PHONE_STATE_CHANGE_INTENT = "android.intent.action.PHONE_STATE";
+
+        /**
+         * Phone Number incoming call
+         */
+        public static final String PREFERENCE_LAST_CALL_NUMBER = "PREFERENCE_LAST_CALL_NUMBER";
+
+        /**
+         * Pause Message SMS type
+         */
+        public static final String PAUSE_MESSAGE_SMS_TYPE = "SMS";
+
+        /**
+         * Pause Message MMS type
+         */
+        public static final String PAUSE_MESSAGE_MMS_TYPE = "MMS";
+
+        /**
+         * Pause Message Phone type
+         */
+        public static final String PAUSE_MESSAGE_PHONE_TYPE = "CALL";
     }
 
     public static final class Pause {
@@ -55,6 +95,26 @@ public class Constants {
          * Pause secondary Bounce Back message text
          */
         public static final String SECONDARY_BOUNCE_BACK_MESSAGE_TEXT = "You're receiving this automatic bounce back message courtesy of Pause, the easiest way to put your social life on hold.  www.pauselabs.com";
+
+        /**
+         * Pause Session Active
+         */
+        public static final int PAUSE_SESSION_STATE_ACTIVE = 0;
+
+        /**
+         * Pause Session Stopped
+         */
+        public static final int PAUSE_SESSION_STATE_STOPPED = 1;
+
+        /**
+         * Current Pause Message Parcel
+         */
+        public static final String PAUSE_MESSAGE_PARCEL = "PAUSE_MESSAGE_PARCEL";
+
+        /**
+         * Active Pause Message id saved in database
+         */
+        public static final String ACTIVE_PAUSE_DATABASE_ID_PREFS = "ACTIVE_PAUSE_DATABASE_ID_PREFS";
     }
 
     public static final class Mms {
@@ -64,5 +124,15 @@ public class Constants {
          * MMS byte array stored in intent extra
          */
         public static final String MMS_BYTE_ARRAY_EXTRA = "MMS_BYTE_ARRAY_EXTRA";
+
+        /**
+         * Intent Action MMS Received
+         */
+        public static final String ACTION_MMS_RECEIVED = "android.provider.Telephony.WAP_PUSH_RECEIVED";
+
+        /**
+         * MMS message data type
+         */
+        public static final String MMS_DATA_TYPE = "application/vnd.wap.mms-message";
     }
 }

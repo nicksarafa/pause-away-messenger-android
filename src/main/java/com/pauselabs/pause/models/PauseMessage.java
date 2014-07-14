@@ -3,6 +3,7 @@ package com.pauselabs.pause.models;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.telephony.SmsMessage;
+import com.pauselabs.pause.core.Constants;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -27,6 +28,8 @@ public class PauseMessage implements Serializable, Parcelable {
     private String sender;
     private String text;
     private Long receivedOn;
+    private String type;
+
 
     public PauseMessage(String sender, String text) {
         this.sender = sender;
@@ -38,12 +41,15 @@ public class PauseMessage implements Serializable, Parcelable {
         this.sender = smsMessage.getDisplayOriginatingAddress();
         this.text = smsMessage.getDisplayMessageBody();
         this.receivedOn = smsMessage.getTimestampMillis();
+        this.type = Constants.Message.PAUSE_MESSAGE_SMS_TYPE;
     }
 
     public PauseMessage(Parcel in){
         this.sender = in.readString();
         this.text = in.readString();
         this.receivedOn = in.readLong();
+        this.type = in.readString();
+
     }
 
     public void setSender(String sender) {
@@ -70,6 +76,14 @@ public class PauseMessage implements Serializable, Parcelable {
         return receivedOn;
     }
 
+    public void setType(String type){
+        this.type = type;
+    }
+
+    public String getType() {
+        return type;
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -80,5 +94,7 @@ public class PauseMessage implements Serializable, Parcelable {
         out.writeString(sender);
         out.writeString(text);
         out.writeLong(receivedOn);
+        out.writeString(type);
+
     }
 }
