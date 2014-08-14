@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Pause</string>
+    <string name="app_name">PAÜSE</string>
 
     <!-- Pause Menu -->
     <string name="settings_menu_title">Settings</string>
@@ -17,9 +17,12 @@
     <string name="pauseMessageLabel">Message Text</string>
     <string name="pauseMessageLocation">Location</string>
     <string name="pauseMessageDuration">Duration</string>
-    <string name="pauseMessageTextHint">Message Text</string>
+    <string name="pauseMessageTextHint">Away Message</string>
     <string name="pauseMessageLocationHint">Location</string>
-    <string name="pauseMessageDurationHint">Duration</string>
+    <string name="pauseMessageDurationHint">End Time</string>
+
+    <string name="messageRequired">Add a message before you start a Pause session</string>
+    <string name="cameraMessageRequired">Create an away message before adding a photo to your pause message</string>
 
     <string name="title_pause">Pause</string>
     <string name="title_home">Home</string>
@@ -27,9 +30,17 @@
     <string name="navigation_drawer_close">Drawer Close</string>
 
     <!-- Saved Pause messages -->
-    <string name="saved_title">Saves</string>
+    <string name="saved_title">Past</string>
+    <string name="saved_instructions">All your past pauses will be safely stored here in your private save drawer.  Close drawer to create your first pause! \n Enjoy!</string>
 
     <!-- Pause Scoreboard screen -->
-    <string name="scoreboard_title">Summary</string>
+    <string name="scoreboard_title">0 Response Messages Sent</string>
+    <string name="stop_pause_btn">End</string>
+    <string name="edit_pause_btn">Edit</string>
+    <string name="response_count">Response Messages Sent</string>
+    <string name="no_messages_received">No new messages! If any turn up, we\'ll take care of them. \n Have a nice day!</string>
+
+    <!-- Notification messages -->
+    <string name="pause_session_running">Pause session is running</string>
 
 </resources>

@@ -7,26 +7,76 @@
               android:background="#fff"
               android:padding="6dp">
 
-    <TextView
-            android:id="@+id/savedPauseMessages"
+    <RelativeLayout
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/saved_title"
-            android:textSize="24dp"
-            android:textColor="@android:color/darker_gray"
-            android:layout_marginBottom="8dp"/>
+            android:layout_height="wrap_content">
 
-    <GridView
-              android:id="@+id/savedMessageGridView"
-              android:layout_width="fill_parent"
-              android:layout_height="fill_parent"
-              android:columnWidth="80dp"
-              android:numColumns="auto_fit"
-              android:verticalSpacing="10dp"
-              android:horizontalSpacing="10dp"
-              android:stretchMode="columnWidth"
-              android:gravity="center"
-            />
+        <TextView
+                android:id="@+id/savedPauseMessages"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/saved_title"
+                android:textSize="24dp"
+                android:textColor="@android:color/darker_gray"
+                android:layout_marginBottom="8dp"/>
+
+        <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_pause_icon_recycle_dark"
+                android:layout_alignParentRight="true"
+                />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent">
+
+        <GridView
+                android:id="@+id/savedMessageGridView"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:columnWidth="80dp"
+                android:numColumns="auto_fit"
+                android:verticalSpacing="10dp"
+                android:horizontalSpacing="10dp"
+                android:stretchMode="columnWidth"
+                android:gravity="center"
+                />
+
+        <RelativeLayout
+                android:id="@+id/initialInstructionsContainer"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_centerInParent="true"
+                >
+
+            <ImageView
+                    android:id="@+id/saves_logo"
+                    android:layout_width="fill_parent"
+                    android:layout_height="200dp"
+                    android:src="@drawable/saves_logo"
+                    android:layout_gravity="center"
+                    />
+
+            <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/saves_logo"
+                    android:text="@string/saved_instructions"
+                    android:padding="15dp"
+                    android:gravity="center"
+                    android:textSize="18dp"
+                    android:textColor="@android:color/darker_gray"/>
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+
+
+
 
 
 </LinearLayout>

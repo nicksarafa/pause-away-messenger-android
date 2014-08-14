@@ -17,8 +17,15 @@ public class SavedPauseDataSource {
     // Database fields
     private SQLiteDatabase database;
     private MySQLiteHelper dbHelper;
-    private String[] allColumns = { MySQLiteHelper.COLUMN_ID,
-            MySQLiteHelper.COLUMN_MESSAGE, MySQLiteHelper.COLUMN_CREATED_ON, MySQLiteHelper.COLUMN_PATH_TO_IMAGE };
+    private String[] allColumns = {
+            MySQLiteHelper.COLUMN_ID, // 0
+            MySQLiteHelper.COLUMN_MESSAGE, // 1
+            MySQLiteHelper.COLUMN_CREATED_ON, // 2
+            MySQLiteHelper.COLUMN_PATH_TO_IMAGE, // 3
+            MySQLiteHelper.COLUMN_PATH_TO_ORIGINAL, // 4
+            MySQLiteHelper.COLUMN_LOCATION, // 5
+            MySQLiteHelper.COLUMN_DURATION}; // 6
+
 
     public SavedPauseDataSource(Context context) {
         dbHelper = new MySQLiteHelper(context);
@@ -33,21 +40,14 @@ public class SavedPauseDataSource {
     }
 
     public PauseBounceBackMessage createSavedPause(PauseBounceBackMessage pauseMessage) {
-//        byte[] byteArray;
-//        Bitmap pauseBitmap = pauseMessage.getImage();
-//        if(pauseBitmap != null){
-//            ByteArrayOutputStream stream = new ByteArrayOutputStream();
-//            pauseBitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
-//            byteArray = stream.toByteArray();
-//        }
-//        else{
-//            byteArray = new byte[0];
-//        }
 
         ContentValues values = new ContentValues();
         values.put(MySQLiteHelper.COLUMN_MESSAGE, pauseMessage.getMessage());
         values.put(MySQLiteHelper.COLUMN_CREATED_ON, pauseMessage.getCreatedOn());
         values.put(MySQLiteHelper.COLUMN_PATH_TO_IMAGE, pauseMessage.getPathToImage());
+        values.put(MySQLiteHelper.COLUMN_PATH_TO_ORIGINAL, pauseMessage.getPathToOriginal());
+        values.put(MySQLiteHelper.COLUMN_LOCATION, pauseMessage.getLocation());
+        values.put(MySQLiteHelper.COLUMN_DURATION, pauseMessage.getEndTime());
 
         long insertId = database.insert(MySQLiteHelper.TABLE_SAVED_PAUSES, null,values);
 
@@ -104,16 +104,11 @@ public class SavedPauseDataSource {
         // TODO Update this jankiness
         PauseBounceBackMessage savedPause = new PauseBounceBackMessage(message, message);
         savedPause.setId(cursor.getLong(0));
-//        byte[] image = cursor.getBlob(2);
-//
-//        Bitmap bmp;
-//        BitmapFactory.Options options = new BitmapFactory.Options();
-//        options.inMutable = true;
-//        bmp = BitmapFactory.decodeByteArray(image, 0, image.length, options);
-//
-//        savedPause.setImage(bmp);
         savedPause.setCreatedOn(cursor.getLong(2));
         savedPause.setPathToImage(cursor.getString(3));
+        savedPause.setPathToOriginal(cursor.getString(4));
+        savedPause.setLocation(cursor.getString(5));
+        savedPause.setEndTime(cursor.getLong(6));
         return savedPause;
     }
 

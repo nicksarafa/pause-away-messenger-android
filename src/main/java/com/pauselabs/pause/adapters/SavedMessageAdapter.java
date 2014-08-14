@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -59,11 +60,18 @@ public class SavedMessageAdapter extends BaseAdapter {
 
         PauseBounceBackMessage savedMessage = mItems.get(position);
 
-        final BitmapFactory.Options options = new BitmapFactory.Options();
-        options.inSampleSize = 4; // 1/4th the width/height of original, 1/16th num of pixels
-        Bitmap original = BitmapFactory.decodeFile(savedMessage.getPathToImage(), options);
-        BitmapDrawable drawableBitmap = new BitmapDrawable(mContext.getResources(), original);
-        imageView.setImageDrawable(drawableBitmap);
+        if(savedMessage.getPathToOriginal() != null) {
+            final BitmapFactory.Options options = new BitmapFactory.Options();
+            options.inSampleSize = 8; // 1/4th the width/height of original, 1/16th num of pixels
+            Bitmap original = BitmapFactory.decodeFile(savedMessage.getPathToImage(), options);
+            BitmapDrawable drawableBitmap = new BitmapDrawable(mContext.getResources(), original);
+            imageView.setImageDrawable(drawableBitmap);
+        }
+        else{
+            Drawable placeholder = mContext.getResources().getDrawable(R.drawable.pause_sms_placeholder);
+            imageView.setImageDrawable(placeholder);
+        }
+
         return imageView;
     }
 
@@ -76,4 +84,20 @@ public class SavedMessageAdapter extends BaseAdapter {
     public static class ViewHolder {
         private ImageView imageView;
     }
+
+//    public class ImageGetter extends AsyncTask<File, Void, Bitmap> {
+//        private ImageView iv;
+//        public ImageGetter(ImageView v) {
+//            iv = v;
+//        }
+//        @Override
+//        protected Bitmap doInBackground(File... params) {
+//            return decodeFile(params[0]);
+//        }
+//        @Override
+//        protected void onPostExecute(Bitmap result) {
+//            super.onPostExecute(result);
+//            iv.setImageBitmap(result);
+//        }
+//    }
 }

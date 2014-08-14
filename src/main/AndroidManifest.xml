@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           android:versionCode="1"
-          android:versionName="1.0"
+          android:versionName="1.5"
           package="com.pauselabs">
 
     <uses-sdk android:minSdkVersion="18"
@@ -19,9 +19,12 @@
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-feature android:name="android.hardware.camera" android:required="false" />
 
     <application android:name=".pause.PauseApplication"
-                 android:theme="@style/Theme.AppCompat.Light"
+                 android:theme="@style/Theme.Pause.Dark"
+                 android:icon="@drawable/ic_launcher"
                  android:label="@string/app_name">
 
         <service android:name=".pause.services.PauseSessionService"></service>
@@ -39,7 +42,16 @@
                     android:name="android.support.PARENT_ACTIVITY"
                     android:value=".pause.ui.MainActivity" />
         </activity>
->
+        <activity android:name=".pause.ui.CameraActivity"
+                  android:screenOrientation="portrait"></activity>
+        <activity android:name=".pause.ui.PreviewActivity" android:screenOrientation="portrait"></activity>
+        <activity android:name=".pause.ui.ScoreboardActivity" android:screenOrientation="portrait"></activity>
+        <receiver android:name=".pause.listeners.BatteryLevelReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.ACTION_BATTERY_LOW"/>
+            </intent-filter>
+        </receiver>
+        <meta-data android:name="com.crashlytics.ApiKey" android:value="c5b66f7bae194d35e898f5f0e5ff5fd1ea78a618"/>
 
     </application>
 </manifest>

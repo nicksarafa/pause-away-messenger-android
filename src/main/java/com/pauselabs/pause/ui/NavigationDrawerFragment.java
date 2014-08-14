@@ -9,10 +9,9 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.view.*;
-import android.widget.AdapterView;
-import android.widget.GridView;
-import android.widget.LinearLayout;
-import android.widget.ListView;
+import android.widget.*;
+import butterknife.InjectView;
+import butterknife.Views;
 import com.pauselabs.R;
 import com.pauselabs.pause.Injector;
 import com.pauselabs.pause.adapters.SavedMessageAdapter;
@@ -63,6 +62,9 @@ public class NavigationDrawerFragment extends Fragment implements AdapterView.On
     protected SharedPreferences prefs;
     @Inject protected Bus mBus;
 
+    @InjectView(R.id.initialInstructionsContainer)
+    public RelativeLayout initialInstructionsContainer;
+
 
     public NavigationDrawerFragment() {
     }
@@ -76,6 +78,7 @@ public class NavigationDrawerFragment extends Fragment implements AdapterView.On
         // Read in the flag indicating whether or not the user has demonstrated awareness of the
         // drawer. See PREF_USER_LEARNED_DRAWER for details.
         userLearnedDrawer = prefs.getBoolean(PREF_USER_LEARNED_DRAWER, false);
+//        userLearnedDrawer = prefs.getBoolean(PREF_USER_LEARNED_DRAWER, true);
 
         if (savedInstanceState != null) {
             currentSelectedPosition = savedInstanceState.getInt(STATE_SELECTED_POSITION);
@@ -99,10 +102,19 @@ public class NavigationDrawerFragment extends Fragment implements AdapterView.On
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
+
+
         mDrawerLayoutView = (LinearLayout) inflater.inflate(R.layout.fragment_navigation_drawer, container, false);
+
+        // Inject Butterknife views
+        Views.inject(this, mDrawerLayoutView);
+
         mSavedMessageGridView = (GridView) mDrawerLayoutView.findViewById(R.id.savedMessageGridView);
         SavedMessageAdapter savedMessageAdapter = new SavedMessageAdapter(getActivity());
         savedMessageAdapter.loadContent();
+        if(savedMessageAdapter.getCount() > 0){
+            initialInstructionsContainer.setVisibility(View.GONE);
+        }
         mSavedMessageGridView.setAdapter(savedMessageAdapter);
         mSavedMessageGridView.setOnItemClickListener(this);
 
@@ -136,7 +148,7 @@ public class NavigationDrawerFragment extends Fragment implements AdapterView.On
         drawerToggle = new ActionBarDrawerToggle(
                 getActivity(),                    /* host Activity */
                 NavigationDrawerFragment.this.drawerLayout,                    /* DrawerLayout object */
-                R.drawable.ic_drawer,             /* nav drawer image to replace 'Up' caret */
+                R.drawable.ic_navigation_drawer,             /* nav drawer image to replace 'Up' caret */
                 R.string.navigation_drawer_open,  /* "open drawer" description for accessibility */
                 R.string.navigation_drawer_close  /* "close drawer" description for accessibility */
         ) {
@@ -166,6 +178,9 @@ public class NavigationDrawerFragment extends Fragment implements AdapterView.On
 
                 SavedMessageAdapter savedMessageAdapter = (SavedMessageAdapter) mSavedMessageGridView.getAdapter();
                 savedMessageAdapter.loadContent();
+                if(savedMessageAdapter.getCount() > 0){
+                    initialInstructionsContainer.setVisibility(View.GONE);
+                }
 
                 getActivity().supportInvalidateOptionsMenu(); // calls onPrepareOptionsMenu()
             }
@@ -251,7 +266,7 @@ public class NavigationDrawerFragment extends Fragment implements AdapterView.On
      */
     private void showGlobalContextActionBar() {
         ActionBar actionBar = getActionBar();
-        actionBar.setDisplayShowTitleEnabled(true);
+        actionBar.setDisplayShowTitleEnabled(false);
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
         actionBar.setTitle(R.string.app_name);
     }

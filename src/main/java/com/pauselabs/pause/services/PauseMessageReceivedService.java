@@ -50,8 +50,7 @@ public class PauseMessageReceivedService extends IntentService {
     }
 
     private PauseBounceBackMessage retrieveSecondaryPause() {
-        PauseBounceBackMessage secondaryPause = new PauseBounceBackMessage();
-        secondaryPause.setMessage(Constants.Pause.SECONDARY_BOUNCE_BACK_MESSAGE_TEXT);
+        PauseBounceBackMessage secondaryPause = new PauseBounceBackMessage("Pause message", Constants.Pause.SECONDARY_BOUNCE_BACK_MESSAGE_TEXT);
         return secondaryPause;
     }
 
@@ -75,7 +74,7 @@ public class PauseMessageReceivedService extends IntentService {
             currentConversation.addMessage(message);
 
             // Check if we should send second bounce back AFTER we add the message
-            if(currentConversation.getMessagesReceived().size() == Constants.Pause.SECOND_BOUNCE_BACK_TRIGGER){
+            if(currentConversation.getMessagesReceived().size() == Constants.Pause.SECOND_BOUNCE_BACK_TRIGGER && !currentConversation.getSentSecondPause()){
                 // Send second Pause Bounce Back
                 PauseApplication.messageSender.sendSmsMessage(message.getSender(), retrieveSecondaryPause());
 
@@ -88,8 +87,27 @@ public class PauseMessageReceivedService extends IntentService {
             currentConversation = new PauseConversation(message.getSender());
             currentConversation.addMessage(message);
 
-            // Send Pause Bounce Back
-            PauseApplication.messageSender.sendMmsMessage(message.getSender(), retrieveActivePause());
+            PauseBounceBackMessage currentPauseMessage = retrieveActivePause();
+
+            // Determine whether to send MMS or SMS
+            if(currentPauseMessage.getPathToOriginal() == null || currentPauseMessage.getPathToOriginal().equals("")){
+                // send SMS Bounce back
+                PauseApplication.messageSender.sendSmsMessage(message.getSender(), retrieveActivePause());
+
+                currentPauseSession.incrementResponseCount();
+            }
+            else{
+                // Send MMS Bounce Back
+                PauseApplication.messageSender.sendMmsMessage(message.getSender(), retrieveActivePause());
+                currentPauseSession.incrementResponseCount();
+                // Since KitKat won't allow us to write this MMS to the content provider we'll send the
+                // secondary pause message at the same time, this will be written to the content provider because its
+                // using the SmsManager and this way the conversation makes sense in the users chat history
+                // http://android-developers.blogspot.fr/2013/10/getting-your-sms-apps-ready-for-kitkat.html
+                PauseApplication.messageSender.sendSmsMessage(message.getSender(), retrieveSecondaryPause());
+                currentConversation.setSentSecondPause(true);
+            }
+
 
             // Update conversation
             currentConversation.setSentPause(true);

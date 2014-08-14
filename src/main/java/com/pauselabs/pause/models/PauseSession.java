@@ -22,6 +22,7 @@ public class PauseSession implements Serializable {
     private Long createdOn;
     private Boolean isActive;
     private SavedPauseDataSource mDatasource;
+    private int responseCount;
 
     private ArrayList<PauseConversation> conversations;
 
@@ -31,6 +32,7 @@ public class PauseSession implements Serializable {
         conversations = new ArrayList<PauseConversation>();
         mDatasource = new SavedPauseDataSource(PauseApplication.getInstance().getApplicationContext());
         isActive = Boolean.TRUE;
+        responseCount = 0;
     }
 
 
@@ -59,6 +61,14 @@ public class PauseSession implements Serializable {
     public void addNewConversation(PauseMessage message) {
         PauseConversation conversation = new PauseConversation(message.getSender());
 
+    }
+
+    public void incrementResponseCount() {
+        responseCount++;
+    }
+
+    public int getResponseCount() {
+        return responseCount;
     }
 
     public Boolean isActive(){

@@ -1,5 +1,6 @@
 package com.pauselabs.pause.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.app.Fragment;
@@ -8,6 +9,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
 import android.view.View;
 import butterknife.Views;
+import com.crashlytics.android.Crashlytics;
 import com.pauselabs.R;
 import com.pauselabs.pause.PauseApplication;
 import com.pauselabs.pause.core.Constants;
@@ -26,8 +28,8 @@ public class MainActivity extends PauseFragmentActivity {
 
     private static final int SPLASH = 0;
     private static final int CREATE_PAUSE = 1;
-    private static final int SCOREBOARD = 2;
-    private static final int FRAGMENT_COUNT = SCOREBOARD + 1;
+//    private static final int SCOREBOARD = 2;
+    private static final int FRAGMENT_COUNT = CREATE_PAUSE + 1;
 
     private Fragment[] fragments = new Fragment[FRAGMENT_COUNT];
 
@@ -40,6 +42,7 @@ public class MainActivity extends PauseFragmentActivity {
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Crashlytics.start(this);
 
         setContentView(R.layout.main_activity);
 
@@ -97,7 +100,7 @@ public class MainActivity extends PauseFragmentActivity {
         FragmentManager fm = getSupportFragmentManager();
         fragments[SPLASH] = fm.findFragmentById(R.id.splashFragment);
         fragments[CREATE_PAUSE] = fm.findFragmentById(R.id.createPauseFragment);
-        fragments[SCOREBOARD] = fm.findFragmentById(R.id.scoreboardFragment);
+//        fragments[SCOREBOARD] = fm.findFragmentById(R.id.scoreboardFragment);
 
         FragmentTransaction transaction = fm.beginTransaction();
         for(int i = 0 ; i < fragments.length; i++) {
@@ -107,6 +110,8 @@ public class MainActivity extends PauseFragmentActivity {
 
         // show default screen
         showFragment(CREATE_PAUSE, false);
+
+        getActionBar().setDisplayShowTitleEnabled(false);
     }
 
     private boolean isTablet() {
@@ -140,7 +145,8 @@ public class MainActivity extends PauseFragmentActivity {
     protected void onResume() {
         super.onResume();
         if(PauseApplication.getCurrentSession() != null && PauseApplication.getCurrentSession().isActive()) {
-            showFragment(SCOREBOARD, false);
+            Intent scoreboardIntent = new Intent(this, ScoreboardActivity.class);
+            startActivity(scoreboardIntent);
         }
         else{
             showFragment(CREATE_PAUSE, false);
@@ -168,10 +174,10 @@ public class MainActivity extends PauseFragmentActivity {
                 // start Pause Service
                 PauseApplication.startPauseService();
                 // update Scoreboard Fragment
-                ScoreboardFragment scoreboardFragment = (ScoreboardFragment)fragments[SCOREBOARD];
-                scoreboardFragment.updateScoreboardUI();
+//                ScoreboardFragment scoreboardFragment = (ScoreboardFragment)fragments[SCOREBOARD];
+//                scoreboardFragment.updateScoreboardUI();
                 // display Pause Scoreboard Fragment
-                showFragment(SCOREBOARD, false);
+//                showFragment(SCOREBOARD, false);
                 break;
             case Constants.Pause.PAUSE_SESSION_STATE_STOPPED:
                 // stop Pause Service

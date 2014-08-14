@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
@@ -19,6 +20,10 @@ import com.pauselabs.pause.services.PauseMmsTransportService;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 
 //import com.google.android.mms.pdu.*;
 
@@ -30,29 +35,54 @@ import java.io.File;
 public class PauseMessageSender {
 
     private static final String TAG = PauseMessageSender.class.getSimpleName();
-    private Context context;
+    private Context mContext;
+    private static final int MAX_SMS_LENGTH = 160;
 
     public PauseMessageSender(Context context){
-        this.context = context;
+        this.mContext = context;
 
     }
 
     public void sendSmsMessage(String recipient, PauseBounceBackMessage pauseMessage){
         SmsManager smsManager = SmsManager.getDefault();
-        smsManager.sendTextMessage(recipient, null, pauseMessage.getMessage(), null, null);
 
-        Log.v(TAG, "attempting to send message to: " + recipient + " text: " + pauseMessage.getMessage());
+        StringBuilder builder = new StringBuilder();
+        builder.append(pauseMessage.getMessage());
 
-        // Write sent sms to content sms table so message is displayed in users texting app i.e. google hangout
-//        ContentValues values = new ContentValues();
-//        values.put("address", recipient);
-//        values.put("body", pauseMessage.getMessage());
-//        PauseApplication.getInstance().getContentResolver().insert(Uri.parse("content://sms/sent"), values);
+        if(pauseMessage.getLocation() != null && !pauseMessage.getLocation().equals("")){
+            builder.append(", " + pauseMessage.getLocation());
+        }
+
+        if(pauseMessage.getEndTime() != null && pauseMessage.getEndTime() != 0){
+            SimpleDateFormat df = new SimpleDateFormat("h:mm a");
+
+            Calendar endTime = Calendar.getInstance();
+            endTime.setTimeInMillis(pauseMessage.getEndTime());
+
+            Date endTimeDate = new Date(pauseMessage.getEndTime());
+            builder.append(", until " + df.format(endTimeDate).toString());
+        }
+
+        //builder.append(" via PAUSELabs.com");
+        String message = builder.toString();
+        int length = message.length();
+
+        // the Android divideMessage works by encoding each character as 7 bits, sms texts can only be upto 160 chars.
+        // for some reason if the message contains a character such as an apostrophe it encodes these as 16 bits,
+        // and can cause messages which are less than 160 characters to be divided
+        ArrayList<String> messageParts = smsManager.divideMessage(message);
+
+
+        smsManager.sendMultipartTextMessage(recipient, null, messageParts, null, null);
+
+
+        Log.v(TAG, "attempting to send message to: " + recipient + " text: " + message);
+
     }
 
     public void sendMmsMessage(final String recipient, final PauseBounceBackMessage pauseMessage){
         // Check if we have a network connection for sending MMS
-        ConnectivityManager mConnMgr =  (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        ConnectivityManager mConnMgr =  (ConnectivityManager) mContext.getSystemService(Context.CONNECTIVITY_SERVICE);
         final int result = mConnMgr.startUsingNetworkFeature(ConnectivityManager.TYPE_MOBILE, "enableMMS");
 
         if(result != 0){
@@ -83,7 +113,7 @@ public class PauseMessageSender {
                         return;
                     } else
                     {
-                        startMmsTransportSevice(context, buildMmsMessageBytes(recipient, pauseMessage));
+                        startMmsTransportSevice(context, recipient, buildMmsMessageBytes(recipient, pauseMessage));
                         context.unregisterReceiver(this);
                     }
 
@@ -91,11 +121,11 @@ public class PauseMessageSender {
 
             };
 
-            context.registerReceiver(receiver, filter);
+            mContext.registerReceiver(receiver, filter);
         }
         else{
             // Connection established, proceed with sending of MMS
-            startMmsTransportSevice(context, buildMmsMessageBytes(recipient, pauseMessage));
+            startMmsTransportSevice(mContext, recipient, buildMmsMessageBytes(recipient, pauseMessage));
         }
 
     }
@@ -106,10 +136,65 @@ public class PauseMessageSender {
      * @param context
      * @param bytesToSend
      */
-    public void startMmsTransportSevice(Context context, byte[] bytesToSend) {
+    public void startMmsTransportSevice(Context context, String recipient, byte[] bytesToSend) {
         Intent mmsTransportIntent = new Intent(context, PauseMmsTransportService.class);
         mmsTransportIntent.putExtra(Constants.Mms.MMS_BYTE_ARRAY_EXTRA, bytesToSend);
+        mmsTransportIntent.putExtra(Constants.Message.PAUSE_MESSAGE_RECIPIENT_EXTRA, recipient);
         context.startService(mmsTransportIntent);
+    }
+
+    /**
+     *  This function is responsible for drawing the Active Pause message details onto a bitmap
+     *  The bitmap that this function generates will be the final image to be sent over MMS
+     */
+    public BitmapDrawable generateMessageBitmap(PauseBounceBackMessage pauseBounceBackMessage) {
+        BitmapFactory.Options o = new BitmapFactory.Options();
+        o.inSampleSize = 2;
+        Bitmap workingBitmap = BitmapFactory.decodeFile(pauseBounceBackMessage.getPathToImage(), o);
+
+        Bitmap mutableBitmap = workingBitmap.copy(Bitmap.Config.ARGB_8888, true);
+
+//        Typeface tf = Typeface.create("Helvetica", Typeface.BOLD);
+//
+//        Paint paint = new Paint();
+//        paint.setStyle(Paint.Style.FILL);
+//        paint.setColor(Color.WHITE);
+//        paint.setTypeface(tf);
+//        paint.setTextAlign(Paint.Align.CENTER);
+//        paint.setTextSize(convertToPixels(mContext, 16));
+//
+//        Rect textRect = new Rect();
+//        paint.getTextBounds(pauseBounceBackMessage.getMessage(), 0, pauseBounceBackMessage.getMessage().length(), textRect);
+//
+//        Canvas canvas = new Canvas(mutableBitmap);
+//
+//        //If the text is bigger than the canvas , reduce the font size
+//        if(textRect.width() >= (canvas.getWidth() - 4))     //the padding on either sides is considered as 4, so as to appropriately fit in the text
+//            paint.setTextSize(convertToPixels(mContext, 12));        //Scaling needs to be used for different dpi's
+//
+//        //Calculate the positions
+//        int xPos = (canvas.getWidth() / 2) - 2;     //-2 is for regulating the x position offset
+//
+//        //"- ((paint.descent() + paint.ascent()) / 2)" is the distance from the baseline to the center.
+//        int yPos = (int) ((canvas.getHeight() / 2) - ((paint.descent() + paint.ascent()) / 2)) ;
+//
+//        canvas.drawText(pauseBounceBackMessage.getMessage(), xPos, yPos, paint);
+
+        return new BitmapDrawable(mContext.getResources(), mutableBitmap);
+    }
+
+    /**
+     * Helper function converts device pixels to bitmap pixels
+     * @param context
+     * @param nDP
+     * @return
+     */
+    public static int convertToPixels(Context context, int nDP)
+    {
+        final float conversionScale = context.getResources().getDisplayMetrics().density;
+
+        return (int) ((nDP * conversionScale) + 0.5f) ;
+
     }
 
     /**
@@ -124,16 +209,19 @@ public class PauseMessageSender {
         final PduBody body = new PduBody();
 
         PduPart part = new PduPart();
-        BitmapFactory.Options o = new BitmapFactory.Options();
-        o.inSampleSize = 2;
-        Bitmap b = BitmapFactory.decodeFile(pauseBounceBackMessage.getPathToImage(), o);   // Whatever your bitmap is that you want to send
+//        BitmapFactory.Options o = new BitmapFactory.Options();
+//        o.inSampleSize = 2;
+//        Bitmap b = BitmapFactory.decodeFile(pauseBounceBackMessage.getPathToImage(), o);   // Whatever your bitmap is that you want to send
+
+        Bitmap b = generateMessageBitmap(pauseBounceBackMessage).getBitmap();
+
         ByteArrayOutputStream stream = new ByteArrayOutputStream();
         b.compress(Bitmap.CompressFormat.JPEG, 100, stream);
         byte[] data = stream.toByteArray();
 
         Uri uri = Uri.fromFile(new File(pauseBounceBackMessage.getPathToImage()));
-                //Uri uri = Uri.parse("android.resource://" + context.getPackageName() + "/" + R.drawable.coachella);
-                //byte[] data  = BitmapUtil.createScaledBytes(context, uri, 640, 480, (300 * 1024) - 5000);
+                //Uri uri = Uri.parse("android.resource://" + mContext.getPackageName() + "/" + R.drawable.coachella);
+                //byte[] data  = BitmapUtil.createScaledBytes(mContext, uri, 640, 480, (300 * 1024) - 5000);
 
                 part.setData(data);
         part.setDataUri(uri);
@@ -150,7 +238,7 @@ public class PauseMessageSender {
 
         body.addPart(part);
 
-        String number = ((TelephonyManager)context.getSystemService(Context.TELEPHONY_SERVICE)).getLine1Number();
+        String number = ((TelephonyManager) mContext.getSystemService(Context.TELEPHONY_SERVICE)).getLine1Number();
 
         PduHeaders headers = new PduHeaders();
 
@@ -159,7 +247,7 @@ public class PauseMessageSender {
         sendReq.addTo(new EncodedStringValue(recipient));
         sendReq.setBody(body);
 
-        PduComposer composer = new PduComposer(context, sendReq);
+        PduComposer composer = new PduComposer(mContext, sendReq);
         byte[] bytesToSend = composer.make();
 
         return bytesToSend;

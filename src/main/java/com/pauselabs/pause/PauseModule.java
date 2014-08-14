@@ -2,6 +2,7 @@ package com.pauselabs.pause;
 
 import com.pauselabs.pause.core.PostFromAnyThreadBus;
 import com.pauselabs.pause.services.PauseMessageReceivedService;
+import com.pauselabs.pause.services.PauseSessionService;
 import com.pauselabs.pause.ui.*;
 import com.pauselabs.robolectric.DeckardActivity;
 import com.squareup.otto.Bus;
@@ -28,7 +29,13 @@ import javax.inject.Singleton;
                 SettingsFragment.class,
                 ScoreboardFragment.class,
                 NavigationDrawerFragment.class,
-                PauseMessageReceivedService.class
+                PauseMessageReceivedService.class,
+                PauseSessionService.class,
+                CameraFragment.class,
+                CameraActivity.class,
+                PreviewActivity.class,
+                PreviewFragment.class,
+                ScoreboardActivity.class
         }
 )
 public class PauseModule {

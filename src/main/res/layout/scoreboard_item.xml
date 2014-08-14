@@ -6,32 +6,46 @@
               android:layout_height="match_parent"
               android:padding="6dp">
 
-    <TextView
+    <ImageView
             android:id="@+id/messageType"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="SMS"/>
+            android:src="@drawable/ic_sms_icon"/>
 
-    <TextView
-            android:id="@+id/messageSender"
+    <LinearLayout
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="3"
-            android:text="Mark Cuban"/>
+            android:orientation="vertical">
+
+        <TextView
+                android:id="@+id/messageSender"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Mark Cuban"
+                android:textColor="@android:color/black"/>
+        <TextView
+                android:id="@+id/messageText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Hey hows it going?"
+                android:textColor="@android:color/black"/>
+
+
+    </LinearLayout>
+
+
 
     <TextView
             android:id="@+id/lastMessageReceived"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="2"
+            android:layout_weight="1"
+            android:textColor="@color/pause_dark_grey"
+            android:gravity="right"
             android:text="6:43PM"/>
 
-    <TextView
-            android:id="@+id/messageCount"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="3"/>
+
 
 </LinearLayout>

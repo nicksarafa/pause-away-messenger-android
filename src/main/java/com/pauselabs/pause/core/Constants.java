@@ -70,6 +70,16 @@ public class Constants {
          * Pause Message Phone type
          */
         public static final String PAUSE_MESSAGE_PHONE_TYPE = "CALL";
+
+        /**
+         * Message recipient
+         */
+        public static final String PAUSE_MESSAGE_RECIPIENT_EXTRA = "PAUSE_MESSAGE_RECIPIENT_EXTRA";
+
+        /**
+         * Message Subject
+         */
+        public static final String PAUSE_MESSAGE_SUBJECT = "Pause Message";
     }
 
     public static final class Pause {
@@ -94,7 +104,7 @@ public class Constants {
         /**
          * Pause secondary Bounce Back message text
          */
-        public static final String SECONDARY_BOUNCE_BACK_MESSAGE_TEXT = "You're receiving this automatic bounce back message courtesy of Pause, the easiest way to put your social life on hold.  www.pauselabs.com";
+        public static final String SECONDARY_BOUNCE_BACK_MESSAGE_TEXT = "You are receiving this auto response courtesy of Pause Away Messenger via PAUSELabs.com";
 
         /**
          * Pause Session Active
@@ -115,6 +125,11 @@ public class Constants {
          * Active Pause Message id saved in database
          */
         public static final String ACTIVE_PAUSE_DATABASE_ID_PREFS = "ACTIVE_PAUSE_DATABASE_ID_PREFS";
+
+        /**
+         * Edit Pause message extra
+         */
+        public static final String EDIT_PAUSE_MESSAGE_ID_EXTRA = "EDIT_PAUSE_MESSAGE_ID_EXTRA";
     }
 
     public static final class Mms {
@@ -134,5 +149,16 @@ public class Constants {
          * MMS message data type
          */
         public static final String MMS_DATA_TYPE = "application/vnd.wap.mms-message";
+    }
+
+    public static class Notification {
+        private Notification() {
+        }
+
+
+        public static final int SESSION_NOTIFICATION_ID = 1000; // Why 1000? Why not? :)
+        public static final int LOW_BATTERY_NOTIFICATION_ID = 1001;
+
+        public static final String LOW_BATTERY_MESSAGE = "Low battery, start a Pause?";
     }
 }

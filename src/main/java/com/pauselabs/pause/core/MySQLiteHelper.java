@@ -13,9 +13,11 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
     public static final String TABLE_SAVED_PAUSES = "pauses";
     public static final String COLUMN_ID = "_id";
     public static final String COLUMN_MESSAGE = "message";
-    public static final String COLUMN_IMAGE = "image";
     public static final String COLUMN_CREATED_ON = "created_on";
     public static final String COLUMN_PATH_TO_IMAGE = "path_to_image";
+    public static final String COLUMN_PATH_TO_ORIGINAL = "path_to_original";
+    public static final String COLUMN_LOCATION = "location";
+    public static final String COLUMN_DURATION = "duration";
 
     private static final String DATABASE_NAME = "pauses.db";
     private static final int DATABASE_VERSION = 1;
@@ -26,7 +28,12 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
             + " integer primary key autoincrement, " + COLUMN_MESSAGE
             + " text not null, " + COLUMN_CREATED_ON
             + " text not null, " + COLUMN_PATH_TO_IMAGE
-            + " text not null);";
+            + " text, " + COLUMN_PATH_TO_ORIGINAL
+            + " text, " + COLUMN_LOCATION
+            + " text, " + COLUMN_DURATION
+            + " text);";
+
+    // TODO add duration
 
     public MySQLiteHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);

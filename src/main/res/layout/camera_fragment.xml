@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+    <FrameLayout
+            android:id="@+id/camera_preview"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            />
+
+    <ImageView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:src="@drawable/pause_watermark"
+            android:layout_marginTop="30dp"
+            android:gravity="center_horizontal"/>
+
+    <RelativeLayout
+            android:id="@+id/bottomCameraBar"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="10dp">
+
+        <ImageButton
+            android:id="@+id/backBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="30dp"
+            android:layout_toLeftOf="@+id/button_capture"
+            android:src="@drawable/ic_back"
+            android:layout_centerVertical="true"
+            android:background="@null"/>
+
+
+
+        <ImageButton
+                android:id="@+id/button_capture"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:src="@drawable/ic_capture"
+                android:background="@null"
+                />
+
+        <ImageButton
+                android:id="@+id/existingPictureBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@+id/button_capture"
+                android:layout_marginLeft="30dp"
+                android:src="@drawable/ic_gallery"
+                android:background="@null"/>
+
+
+    </RelativeLayout>
+
+
+
+</RelativeLayout>

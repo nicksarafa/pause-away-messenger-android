@@ -41,4 +41,11 @@
 
     <color name="dark_grey">#1f1f1f</color>
     <color name="navigation_drawer_item_separator">#c2c2c2</color>
+
+    <color name="pause_green_dark">#3dbdb4</color>
+    <color name="pause_green_light">#00cbbf</color>
+
+    <color name="pause_green">#3EBEB5</color>
+    <color name="pause_dark_grey">#7E7E7E</color>
+    <color name="transparent">#330000ff</color>
 </resources>

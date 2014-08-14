@@ -29,12 +29,15 @@ public class PauseBounceBackMessage implements Parcelable, Serializable {
     private Bitmap image;
     private Bitmap blurredImage;
     private String pathToImage;
+    private String pathToOriginal;
     private String pathToThumb;
-    private Long id;
+    private String location;
+    private Long endTime;
+    private Long id = -1L;  // default unset value
 
 
     public PauseBounceBackMessage() {
-
+        this.createdOn = new Date().getTime();
     }
 
     public PauseBounceBackMessage(String title, String message) {
@@ -49,6 +52,9 @@ public class PauseBounceBackMessage implements Parcelable, Serializable {
         createdOn = in.readLong();
         id = in.readLong();
         pathToImage = in.readString();
+        pathToOriginal = in.readString();
+        location = in.readString();
+        endTime = in.readLong();
     }
 
     public String getTitle() {
@@ -107,6 +113,30 @@ public class PauseBounceBackMessage implements Parcelable, Serializable {
         this.pathToThumb = path;
     }
 
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
+    public void setPathToOriginal(String path){
+        this.pathToOriginal = path;
+    }
+
+    public String getPathToOriginal() {
+        return pathToOriginal;
+    }
+
+    public void setEndTime(Long endTime){
+        this.endTime = endTime;
+    }
+
+    public Long getEndTime() {
+        return endTime;
+    }
+
 
     @Override
     public int describeContents() {
@@ -120,6 +150,9 @@ public class PauseBounceBackMessage implements Parcelable, Serializable {
         out.writeLong(createdOn);
         out.writeLong(id);
         out.writeString(pathToImage);
+        out.writeString(pathToOriginal);
+        out.writeString(location);
+        out.writeLong(endTime);
     }
 
 }
