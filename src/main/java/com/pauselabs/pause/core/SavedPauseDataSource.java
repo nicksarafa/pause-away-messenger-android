@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by tyndallm on 6/30/14.
+ * Datasource handles all saving and retrieving of bounce back messages to/from Database
  */
 public class SavedPauseDataSource {
     // Database fields
@@ -25,6 +25,8 @@ public class SavedPauseDataSource {
             MySQLiteHelper.COLUMN_PATH_TO_ORIGINAL, // 4
             MySQLiteHelper.COLUMN_LOCATION, // 5
             MySQLiteHelper.COLUMN_DURATION}; // 6
+
+    private final int MAX_ENTRIES = 12; // Only allow 12 saved messages at a time
 
 
     public SavedPauseDataSource(Context context) {
@@ -54,6 +56,17 @@ public class SavedPauseDataSource {
         Cursor cursor = database.query(MySQLiteHelper.TABLE_SAVED_PAUSES,
                 allColumns, MySQLiteHelper.COLUMN_ID + " = " + insertId, null,
                 null, null, null);
+
+        Cursor countCursor = database.rawQuery("select count(*) from pauses", null);
+        countCursor.moveToFirst();
+        int savedCount = countCursor.getInt(0);
+        countCursor.close();
+
+        if(savedCount >= MAX_ENTRIES) {
+            // remove the oldest saved bounce back
+            deleteOldestSavedPauseMessage();
+        }
+
         cursor.moveToFirst();
         PauseBounceBackMessage savedPause = cursorToPause(cursor);
         cursor.close();
@@ -69,9 +82,17 @@ public class SavedPauseDataSource {
         return savedPause;
     }
 
-    public void deleteComment(PauseBounceBackMessage savedPause) {
+    public void deleteOldestSavedPauseMessage() {
+        Cursor oldestSaveCursor = database.rawQuery("SELECT * from pauses ORDER BY " + MySQLiteHelper.COLUMN_CREATED_ON + " ASC LIMIT 1", null);
+        oldestSaveCursor.moveToFirst();
+        PauseBounceBackMessage oldestPause = cursorToPause(oldestSaveCursor);
+        deleteSavedPauseMessage(oldestPause);
+        oldestSaveCursor.close();
+    }
+
+    public void deleteSavedPauseMessage(PauseBounceBackMessage savedPause) {
         long id = savedPause.getId();
-        System.out.println("Comment deleted with id: " + id);
+        System.out.println("Bounce back deleted with id: " + id);
         database.delete(MySQLiteHelper.TABLE_SAVED_PAUSES, MySQLiteHelper.COLUMN_ID
                 + " = " + id, null);
     }
@@ -86,7 +107,7 @@ public class SavedPauseDataSource {
         List<PauseBounceBackMessage> savesPauseMessages = new ArrayList<PauseBounceBackMessage>();
 
         Cursor cursor = database.query(MySQLiteHelper.TABLE_SAVED_PAUSES,
-                allColumns, null, null, null, null, null);
+                allColumns, null, null, null, null, MySQLiteHelper.COLUMN_CREATED_ON + " DESC"); // Order by shows newest first
 
         cursor.moveToFirst();
         while (!cursor.isAfterLast()) {
@@ -101,7 +122,6 @@ public class SavedPauseDataSource {
 
     private PauseBounceBackMessage cursorToPause(Cursor cursor) {
         String message = cursor.getString(1);
-        // TODO Update this jankiness
         PauseBounceBackMessage savedPause = new PauseBounceBackMessage(message, message);
         savedPause.setId(cursor.getLong(0));
         savedPause.setCreatedOn(cursor.getLong(2));

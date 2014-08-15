@@ -40,7 +40,7 @@
                     android:id="@+id/messageIcon"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/ic_pause_icon_message_light"/>
+                    android:src="@drawable/ic_pencil_light"/>
 
             <TextView
                     android:id="@+id/pauseMessageText"
@@ -51,7 +51,7 @@
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="10dp"
                     android:textColor="@android:color/white"
-                    android:textSize="20dp"/>
+                    android:textSize="24dp"/>
 
         </RelativeLayout>
 
@@ -97,7 +97,7 @@
                     android:id="@+id/pauseDurationText"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/pauseMessageDurationHint"
+                    android:text="@string/pauseMessageDurationIndefinite"
                     android:layout_toRightOf="@id/durationIcon"
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="10dp"

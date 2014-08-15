@@ -45,10 +45,13 @@ public class CreatePauseFragment extends Fragment implements View.OnClickListene
     @Inject protected SharedPreferences mPrefs;
 
     @InjectView(R.id.backgroundImage) ImageView pauseBackgroundImage;
-    @InjectView(R.id.addImageBtn) ImageButton addImageBtn;
+    @InjectView(R.id.messageSelectorBtn) ImageButton messageSelectorBtn;
+    @InjectView(R.id.durationSelectorBtn) ImageButton durationSelectorBtn;
+    @InjectView(R.id.cameraSelectorBtn) ImageButton cameraSelectorBtn;
+    @InjectView(R.id.gallerySelectorBtn) ImageButton gallerySelectorBtn;
     @InjectView(R.id.pauseMessageText) EditText pauseMessageText;
-    @InjectView(R.id.pauseLocationText) EditText pauseMessageLocation;
     @InjectView(R.id.pauseDurationText) TextView pauseDurationField;
+    @InjectView(R.id.durationContainer) RelativeLayout pauseDurationContainer;
     @InjectView(R.id.durationSelectorContainer) LinearLayout pauseDurationSelectorContainer;
     @InjectView(R.id.hourSeekLabel) TextView hourSeekBarLabel;
     @InjectView(R.id.minuteSeekLabel) TextView minuteSeekBarLabel;
@@ -84,9 +87,6 @@ public class CreatePauseFragment extends Fragment implements View.OnClickListene
 
         datasource = new SavedPauseDataSource(getActivity());
         datasource.open();
-
-
-
     }
 
     @Override
@@ -112,7 +112,10 @@ public class CreatePauseFragment extends Fragment implements View.OnClickListene
 
     private void init() {
         // set listeners
-        addImageBtn.setOnClickListener(this);
+        messageSelectorBtn.setOnClickListener(this);
+        durationSelectorBtn.setOnClickListener(this);
+        cameraSelectorBtn.setOnClickListener(this);
+        gallerySelectorBtn.setOnClickListener(this);
         startPauseBtn.setOnClickListener(this);
         pauseDurationField.setOnClickListener(this);
 
@@ -128,7 +131,8 @@ public class CreatePauseFragment extends Fragment implements View.OnClickListene
         pauseMinutesSelectorSeekBar.setOnSeekBarChangeListener(this);
 
         pauseMessageText.setOnFocusChangeListener(this);
-        pauseMessageLocation.setOnFocusChangeListener(this);
+//        pauseMessageText.setFocusableInTouchMode(true);
+//        pauseMessageText.requestFocus();
 
         mCurrentPauseBouncebackMessage = new PauseBounceBackMessage();
 
@@ -292,9 +296,6 @@ public class CreatePauseFragment extends Fragment implements View.OnClickListene
 
         PauseBounceBackMessage bounceBack = new PauseBounceBackMessage(title, message);
 
-        if(!pauseMessageLocation.getText().toString().equals("")){
-            bounceBack.setLocation(pauseMessageLocation.getText().toString());
-        }
 
         if(mSelectedImage != null){
             bounceBack.setImage(mSelectedImage);
@@ -313,9 +314,7 @@ public class CreatePauseFragment extends Fragment implements View.OnClickListene
             mCurrentPauseBouncebackMessage.setTitle(pauseMessageText.getText().toString());
             mCurrentPauseBouncebackMessage.setMessage(pauseMessageText.getText().toString());
         }
-        if(!pauseMessageLocation.getText().toString().equals("")){
-            mCurrentPauseBouncebackMessage.setLocation(pauseMessageLocation.getText().toString());
-        }
+
         if(mPauseEndTimeInMillis != 0L){
             mCurrentPauseBouncebackMessage.setEndTime(mPauseEndTime.getTimeInMillis());
         }
@@ -330,7 +329,21 @@ public class CreatePauseFragment extends Fragment implements View.OnClickListene
     @Override
     public void onClick(View v) {
         switch(v.getId()){
-            case R.id.addImageBtn:
+            case R.id.durationSelectorBtn:
+                if(pauseMessageText.getText().toString().equals("")) {
+                    Toast.makeText(getActivity(), getString(R.string.durationMessageRequired), Toast.LENGTH_SHORT).show();
+                }
+                else{
+                    durationSelectorBtn.requestFocus();
+                    pauseDurationContainer.setVisibility(View.VISIBLE);
+                    InputMethodManager imm = (InputMethodManager)getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+                    imm.hideSoftInputFromWindow(pauseMessageText.getWindowToken(), 0);
+
+                    pauseDurationSelectorContainer.setVisibility(View.VISIBLE);
+                }
+                break;
+
+            case R.id.cameraSelectorBtn:
                 if(pauseMessageText.getText().toString().equals("")){
                     Toast.makeText(getActivity(), getString(R.string.cameraMessageRequired), Toast.LENGTH_SHORT).show();
                 }
@@ -340,6 +353,19 @@ public class CreatePauseFragment extends Fragment implements View.OnClickListene
                     startActivity(cameraIntent);
                 }
                 break;
+
+            case R.id.gallerySelectorBtn:
+                if(pauseMessageText.getText().toString().equals("")){
+                    Toast.makeText(getActivity(), getString(R.string.cameraMessageRequired), Toast.LENGTH_SHORT).show();
+                }
+                else{
+                    Intent i = new Intent(
+                        Intent.ACTION_PICK,
+                        android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                    startActivityForResult(i, RESULT_LOAD_IMAGE);
+                }
+                break;
+
             case R.id.startPauseBtn:
                 dismissDurationSelector();
 
@@ -366,29 +392,29 @@ public class CreatePauseFragment extends Fragment implements View.OnClickListene
 
                 break;
             case R.id.pauseDurationText:
-                InputMethodManager imm = (InputMethodManager)getActivity().getSystemService(
-                        Context.INPUT_METHOD_SERVICE);
-                imm.hideSoftInputFromWindow(pauseMessageText.getWindowToken(), 0);
-                imm.hideSoftInputFromWindow(pauseMessageLocation.getWindowToken(), 0);
-
-                pauseDurationSelectorContainer.setVisibility(View.VISIBLE);
+//                InputMethodManager imm = (InputMethodManager)getActivity().getSystemService(
+//                        Context.INPUT_METHOD_SERVICE);
+//                imm.hideSoftInputFromWindow(pauseMessageText.getWindowToken(), 0);
+//                //imm.hideSoftInputFromWindow(pauseMessageLocation.getWindowToken(), 0);
+//
+//                pauseDurationSelectorContainer.setVisibility(View.VISIBLE);
                 break;
             case R.id.addFiveMinBtn:
                 mPauseEndTime.add(Calendar.MINUTE, 5);
                 pauseMinutesSelectorSeekBar.setProgress(pauseMinutesSelectorSeekBar.getProgress() + 5);
-                minuteSeekBarLabel.setText(pauseMinutesSelectorSeekBar.getProgress() + " MINUTES");
+                minuteSeekBarLabel.setText(pauseMinutesSelectorSeekBar.getProgress() + getString(R.string.durationSelectorMinutesLabel));
                 updateEndTimeView();
                 break;
             case R.id.addFifteenMinBtn:
                 mPauseEndTime.add(Calendar.MINUTE, 15);
                 pauseMinutesSelectorSeekBar.setProgress(pauseMinutesSelectorSeekBar.getProgress() + 15);
-                minuteSeekBarLabel.setText(pauseMinutesSelectorSeekBar.getProgress() + " MINUTES");
+                minuteSeekBarLabel.setText(pauseMinutesSelectorSeekBar.getProgress() + getString(R.string.durationSelectorMinutesLabel));
                 updateEndTimeView();
                 break;
             case R.id.addHourBtn:
                 mPauseEndTime.add(Calendar.MINUTE, 60);
                 pauseHourSelectorSeekBar.setProgress(pauseHourSelectorSeekBar.getProgress() + 1);
-                hourSeekBarLabel.setText(pauseHourSelectorSeekBar.getProgress() + " HOURS");
+                hourSeekBarLabel.setText(pauseHourSelectorSeekBar.getProgress() + getString(R.string.durationSelectorHourLabel));
                 updateEndTimeView();
                 break;
             case R.id.indefiniteBtn:
@@ -408,19 +434,19 @@ public class CreatePauseFragment extends Fragment implements View.OnClickListene
 
         Date endTime = mPauseEndTime.getTime();
         mPauseEndTimeInMillis = mPauseEndTime.getTimeInMillis();
-        pauseDurationField.setText("until " + df.format(endTime).toString());
+        pauseDurationField.setText(getString(R.string.pauseMessageDurationPrefix) + df.format(endTime).toString());
     }
 
     private void setDurationIndefinte() {
         // reset seekbar
         pauseHourSelectorSeekBar.setProgress(0);
-        hourSeekBarLabel.setText(pauseHourSelectorSeekBar.getProgress() + " HOURS");
+        hourSeekBarLabel.setText(pauseHourSelectorSeekBar.getProgress() + getString(R.string.durationSelectorHourLabel));
         pauseMinutesSelectorSeekBar.setProgress(0);
-        minuteSeekBarLabel.setText(pauseMinutesSelectorSeekBar.getProgress() + " MINUTES");
+        minuteSeekBarLabel.setText(pauseMinutesSelectorSeekBar.getProgress() + getString(R.string.durationSelectorMinutesLabel));
         // reset time
         mPauseEndTime.setTime(new Date());
         // update text
-        pauseDurationField.setText("until stopped");
+        pauseDurationField.setText(getString(R.string.pauseMessageDurationIndefinite));
         // set duration indefinite on Pause
         mPauseEndTimeInMillis = 0L;
 
@@ -456,7 +482,7 @@ public class CreatePauseFragment extends Fragment implements View.OnClickListene
                     mPauseEndTime.add(Calendar.HOUR_OF_DAY, seekBar.getProgress() - hours);
                 }
                 hours = seekBar.getProgress();
-                hourSeekBarLabel.setText(hours + " HOURS");
+                hourSeekBarLabel.setText(hours + getString(R.string.durationSelectorHourLabel));
                 break;
             case R.id.minutesSelectorBar:
                 if(minutes >= seekBar.getProgress()){
@@ -466,7 +492,7 @@ public class CreatePauseFragment extends Fragment implements View.OnClickListene
                     mPauseEndTime.add(Calendar.MINUTE, seekBar.getProgress() - minutes);
                 }
                 minutes = seekBar.getProgress();
-                minuteSeekBarLabel.setText(minutes + " MINUTES");
+                minuteSeekBarLabel.setText(minutes + getString(R.string.durationSelectorMinutesLabel));
                 break;
         }
         updateEndTimeView();

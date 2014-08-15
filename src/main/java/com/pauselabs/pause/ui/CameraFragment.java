@@ -1,9 +1,7 @@
 package com.pauselabs.pause.ui;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -16,6 +14,7 @@ import android.provider.MediaStore;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.SurfaceHolder;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
@@ -45,15 +44,19 @@ public class CameraFragment extends Fragment implements View.OnClickListener{
     public static final int MEDIA_TYPE_VIDEO = 2;
     private static int RESULT_LOAD_IMAGE = 1;
 
+    private int mCurrentCameraId = Camera.CameraInfo.CAMERA_FACING_BACK; // default to rear facing camera
+
     @Inject protected Bus mBus;
     @InjectView(R.id.camera_preview) FrameLayout previewLayout;
     @InjectView(R.id.button_capture) ImageButton mCaptureBtn;
-    @InjectView(R.id.existingPictureBtn) ImageButton mExistingPicturBtn;
+    @InjectView(R.id.switchCameraBtn) ImageButton mSwitchCameraBtn;
     @InjectView(R.id.backBtn) ImageButton mBackBtn;
 
     private Camera mCamera;
     private CameraPreview mPreview;
+    private SurfaceHolder mHolder;
     private PauseBounceBackMessage mCurrentPauseBouncebackMessage;
+    private boolean inPreview = false;
 
     @Override
     public View onCreateView(final LayoutInflater inflater, final ViewGroup container,
@@ -72,13 +75,25 @@ public class CameraFragment extends Fragment implements View.OnClickListener{
 
         // Create our Preview view and set it as the content of our activity.
         mPreview = new CameraPreview(getActivity(), mCamera);
+        mHolder = mPreview.getHolder();
         previewLayout.addView(mPreview);
 
-        mCaptureBtn.setOnClickListener(this);
-        mExistingPicturBtn.setOnClickListener(this);
-        mBackBtn.setOnClickListener(this);
+        init();
 
         return view;
+    }
+
+    public void init() {
+        // Only display switch camera button if device supports multiple cameras
+        if(Camera.getNumberOfCameras() == 1){
+            mSwitchCameraBtn.setVisibility(View.INVISIBLE);
+        }
+        else {
+            mSwitchCameraBtn.setOnClickListener(this);
+        }
+
+        mCaptureBtn.setOnClickListener(this);
+        mBackBtn.setOnClickListener(this);
     }
 
     @Override
@@ -94,15 +109,14 @@ public class CameraFragment extends Fragment implements View.OnClickListener{
         mBus.register(this);
 
         if(mCamera != null) {
-            mCamera.startPreview();
+            startPreview();
         }
         else{
-            mCamera = Camera.open();
+            mCamera = Camera.open(mCurrentCameraId);
 
             mPreview = new CameraPreview(getActivity(), mCamera);
             previewLayout.addView(mPreview);
-            mCamera.startPreview();
-
+            startPreview();
         }
     }
 
@@ -127,16 +141,6 @@ public class CameraFragment extends Fragment implements View.OnClickListener{
         Injector.inject(this);
     }
 
-    private boolean checkCameraHardware(Context context) {
-        if (context.getPackageManager().hasSystemFeature(PackageManager.FEATURE_CAMERA)){
-            // this device has a camera
-            return true;
-        } else {
-            // no camera on this device
-            return false;
-        }
-    }
-
     public static Camera getCameraInstance(){
         Camera c = null;
         try {
@@ -147,6 +151,13 @@ public class CameraFragment extends Fragment implements View.OnClickListener{
             Log.e(TAG, e.getMessage().toString());
         }
         return c; // returns null if camera is unavailable
+    }
+
+    private void startPreview() {
+        if(mCamera != null){
+            mCamera.startPreview();
+            inPreview = true;
+        }
     }
 
     private void releaseCamera(){
@@ -168,29 +179,37 @@ public class CameraFragment extends Fragment implements View.OnClickListener{
                     public void onPictureTaken(byte[] data, Camera camera) {
 
                         File pictureFile = getOutputMediaFile(MEDIA_TYPE_IMAGE);
-                        final BitmapFactory.Options options = new BitmapFactory.Options();
-                        options.inSampleSize = 2;
-                        Bitmap tempBitmap = BitmapFactory.decodeByteArray(data, 0, data.length, options);
-                        //Bitmap mutableBitmap = tempBitmap.copy(Bitmap.Config.ARGB_8888, true);
-
-                        Bitmap rotatedBitmap = rotateBitmap(tempBitmap, 90);
-
-                        ByteArrayOutputStream stream = new ByteArrayOutputStream();
-                        rotatedBitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream);
-                        byte[] byteArray = stream.toByteArray();
-
                         if (pictureFile == null) {
                             Log.d(TAG, "Error creating media file, check storage permissions: ");
                             return;
                         }
 
-                        rotatedBitmap.recycle();
+                        final BitmapFactory.Options options = new BitmapFactory.Options();
+                        options.inSampleSize = 2;
+                        Bitmap tempBitmap = BitmapFactory.decodeByteArray(data, 0, data.length, options);
+
+                        Bitmap adjustedBitmap;
+                        ByteArrayOutputStream stream = new ByteArrayOutputStream();
+
+                        if(mCurrentCameraId == Camera.CameraInfo.CAMERA_FACING_BACK) {
+                            adjustedBitmap = rotateBitmap(tempBitmap, 90, false);
+                        }
+                        else{
+                            adjustedBitmap = rotateBitmap(tempBitmap, 90, true);
+                        }
+
+                        adjustedBitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream);
+                        byte[] byteArray = stream.toByteArray();
+
+                        adjustedBitmap.recycle();
 
                         try {
+                            // write byte array to file
                             FileOutputStream fos = new FileOutputStream(pictureFile);
                             fos.write(byteArray);
                             fos.close();
 
+                            // notify gallery that a new picture has been added
                             getActivity().sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, Uri.fromFile(pictureFile)));
 
                             // add file path to active bounce back message
@@ -205,16 +224,41 @@ public class CameraFragment extends Fragment implements View.OnClickListener{
 
                 });
                 break;
-            case R.id.existingPictureBtn:
-                Intent i = new Intent(
-                        Intent.ACTION_PICK,
-                        android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                startActivityForResult(i, RESULT_LOAD_IMAGE);
+            case R.id.switchCameraBtn:
+                switchCamera();
                 break;
             case R.id.backBtn:
                 getActivity().finish();
                 break;
         }
+    }
+
+    /**
+     * This function toggles the front and back facing camera.  In order to change cameras we need to first stop current
+     * preview, release camera, and rebuild preview with the other camera
+     */
+    public void switchCamera() {
+        if(inPreview){
+            mCamera.stopPreview();
+            inPreview = false;
+        }
+
+        mCamera.release();
+
+        //swap the id of the camera to be used
+        if(mCurrentCameraId == Camera.CameraInfo.CAMERA_FACING_BACK){
+            mCurrentCameraId = Camera.CameraInfo.CAMERA_FACING_FRONT;
+        }
+        else {
+            mCurrentCameraId = Camera.CameraInfo.CAMERA_FACING_BACK;
+        }
+
+        mCamera = Camera.open(mCurrentCameraId);
+        mPreview = new CameraPreview(getActivity(), mCamera);
+        // clear previous camera view
+        previewLayout.removeAllViews();
+        previewLayout.addView(mPreview);
+        startPreview();
     }
 
     private void showPreviewScreen() {
@@ -223,9 +267,17 @@ public class CameraFragment extends Fragment implements View.OnClickListener{
         startActivity(previewIntent);
     }
 
-    private static Bitmap rotateBitmap(Bitmap source, float angle) {
-        // Out of memory error on Samsung Galaxy S4
+    private static Bitmap rotateBitmap(Bitmap source, float angle, boolean isFrontCamera) {
         Matrix matrix = new Matrix();
+
+        // Front facing camera image will be mirrored, we need to apply an additional transformation
+        if(isFrontCamera){
+            float[] mirrorY = { -1, 0, 0, 0, 1, 0, 0, 0, 1};
+            Matrix matrixMirrorY = new Matrix();
+            matrixMirrorY.setValues(mirrorY);
+            matrix.postConcat(matrixMirrorY);
+        }
+
         matrix.postRotate(angle);
         Bitmap result = Bitmap.createBitmap(source, 0, 0, source.getWidth(), source.getHeight(), matrix, true);
         // rotating done, original not needed => recycle()

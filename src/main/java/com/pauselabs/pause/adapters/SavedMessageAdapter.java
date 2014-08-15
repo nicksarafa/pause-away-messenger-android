@@ -62,7 +62,7 @@ public class SavedMessageAdapter extends BaseAdapter {
 
         if(savedMessage.getPathToOriginal() != null) {
             final BitmapFactory.Options options = new BitmapFactory.Options();
-            options.inSampleSize = 8; // 1/4th the width/height of original, 1/16th num of pixels
+            options.inSampleSize = 12; // 1/4th the width/height of original, 1/16th num of pixels
             Bitmap original = BitmapFactory.decodeFile(savedMessage.getPathToImage(), options);
             BitmapDrawable drawableBitmap = new BitmapDrawable(mContext.getResources(), original);
             imageView.setImageDrawable(drawableBitmap);

@@ -33,7 +33,7 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
             + " text, " + COLUMN_DURATION
             + " text);";
 
-    // TODO add duration
+    public static final String COUNT_QUERY = "SELECT SUM(LENGTH(" + COLUMN_ID + ")) FROM " + TABLE_SAVED_PAUSES;
 
     public MySQLiteHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);

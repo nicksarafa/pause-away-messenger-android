@@ -17,11 +17,16 @@
     <string name="pauseMessageLabel">Message Text</string>
     <string name="pauseMessageLocation">Location</string>
     <string name="pauseMessageDuration">Duration</string>
-    <string name="pauseMessageTextHint">Away Message</string>
+    <string name="pauseMessageTextHint">What are you up to?</string>
     <string name="pauseMessageLocationHint">Location</string>
-    <string name="pauseMessageDurationHint">End Time</string>
+    <string name="pauseMessageDurationIndefinite">Until stopped</string>
+
+    <string name="pauseMessageDurationPrefix">Until&#160;</string>
+    <string name="durationSelectorMinutesLabel">&#160;MINUTES</string>
+    <string name="durationSelectorHourLabel">&#160;HOURS</string>
 
     <string name="messageRequired">Add a message before you start a Pause session</string>
+    <string name="durationMessageRequired">Create an away message before setting a duration</string>
     <string name="cameraMessageRequired">Create an away message before adding a photo to your pause message</string>
 
     <string name="title_pause">Pause</string>

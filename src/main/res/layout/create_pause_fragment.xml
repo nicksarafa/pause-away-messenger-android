@@ -20,14 +20,11 @@
             android:layout_height="wrap_content"
             android:padding="8dp">
 
-
-
         <LinearLayout
                 android:id="@+id/pauseDetailsLayout"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:background="@drawable/bubble_white_normal"
                 android:padding="8dp">
 
             <RelativeLayout
@@ -47,35 +44,20 @@
                         android:hint="@string/pauseMessageTextHint"
                         android:layout_toRightOf="@id/messageIcon"
                         android:textColor="#555"
-                        android:textSize="20dp"/>
+                        android:textCursorDrawable="@null"
+                        android:layout_marginLeft="2dp"
+                        android:background="@android:color/transparent"
+                        android:textSize="24dp">
+                </EditText>
 
             </RelativeLayout>
 
-            <RelativeLayout
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content">
-
-                <ImageView
-                        android:id="@+id/locationIcon"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/ic_location"/>
-
-                <EditText
-                        android:id="@+id/pauseLocationText"
-                        android:layout_width="fill_parent"
-                        android:layout_height="wrap_content"
-                        android:hint="@string/pauseMessageLocationHint"
-                        android:layout_toRightOf="@id/locationIcon"
-                        android:textColor="#555"
-                        android:textSize="20dp"/>
-
-
-            </RelativeLayout>
 
             <RelativeLayout
                     android:layout_width="fill_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:id="@+id/durationContainer"
+                    android:visibility="gone">
 
                 <ImageView
                         android:id="@+id/durationIcon"
@@ -87,28 +69,18 @@
                         android:id="@+id/pauseDurationText"
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
-                        android:hint="@string/pauseMessageDurationHint"
+                        android:text="@string/pauseMessageDurationIndefinite"
                         android:layout_toRightOf="@id/durationIcon"
+                        android:textColor="#555"
                         android:layout_centerVertical="true"
                         android:layout_marginLeft="10dp"
-                        android:textSize="20dp"/>
+                        android:textSize="24dp"/>
 
             </RelativeLayout>
 
-
-
         </LinearLayout>
 
-        <ImageButton
-                android:id="@+id/addImageBtn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_add_image"
-                android:layout_below="@+id/pauseDetailsLayout"
-                android:background="@null"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="100dp"
-                android:layout_centerInParent="true"/>
+
 
 
     </RelativeLayout>
@@ -120,40 +92,78 @@
 
 
 
-
-
-        <!--<View-->
-                <!--android:layout_width="fill_parent"-->
-                <!--android:layout_height="1dp"-->
-                <!--android:background="@android:color/darker_gray"-->
-                <!--android:layout_above="@+id/bottomButtonBar"/>-->
-
         <RelativeLayout
             android:id="@+id/bottomButtonBar"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            >
+            android:layout_alignParentBottom="true">
 
-            <ImageButton
-                    android:id="@+id/startPauseBtn"
-                    android:layout_width="80dp"
+            <LinearLayout
+                    android:id="@+id/selectorBar"
+                    android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:text="Begin"
-                    android:src="@drawable/ic_begin_button"
-                    android:layout_gravity="center_vertical"
-                    android:background="@null"
-                    android:layout_marginRight="6dp"
-                    android:layout_marginBottom="6dp"
-                    android:layout_alignParentRight="true"/>
+                    android:orientation="horizontal">
+
+                <ImageButton
+                        android:id="@+id/messageSelectorBtn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_pencil_selector"
+                        android:layout_gravity="center_vertical"
+                        android:background="@null"
+                        android:layout_weight="1"/>
+
+                <ImageButton
+                        android:id="@+id/durationSelectorBtn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_timer_selector"
+                        android:layout_gravity="center_vertical"
+                        android:background="@null"
+                        android:layout_weight="1"/>
+
+                <ImageButton
+                        android:id="@+id/cameraSelectorBtn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_camera_selector"
+                        android:layout_gravity="center_vertical"
+                        android:background="@null"
+                        android:layout_weight="1"/>
+
+                <ImageButton
+                        android:id="@+id/gallerySelectorBtn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_gallery_selector"
+                        android:layout_gravity="center_vertical"
+                        android:background="@null"
+                        android:layout_weight="1"/>
+
+                <ImageButton
+                        android:id="@+id/startPauseBtn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_begin_button"
+                        android:layout_gravity="center_vertical"
+                        android:background="@null"
+                        android:layout_weight="1"
+                        />
 
 
+            </LinearLayout>
+
+            <View
+                    android:layout_width="fill_parent"
+                    android:layout_height="1dp"
+                    android:background="@android:color/darker_gray"
+                    android:layout_below="@+id/selectorBar"/>
 
             <LinearLayout
                     android:id="@+id/durationSelectorContainer"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/startPauseBtn"
+                    android:layout_below="@+id/selectorBar"
                     android:orientation="vertical"
                     android:visibility="gone"
                     android:padding="12dp">
@@ -222,7 +232,6 @@
                             android:layout_height="wrap_content"
                             android:text="∞"
                             android:layout_weight="1"/>
-
 
                 </LinearLayout>
 
