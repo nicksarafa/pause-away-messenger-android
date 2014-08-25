@@ -13,10 +13,8 @@ public class ScoreboardActivity extends PauseFragmentActivity{
         super.onCreate(savedInstanceState);
 
         getActionBar().setDisplayHomeAsUpEnabled(false);
-//        getActionBar().setDisplayShowHomeEnabled(false);
         getActionBar().setDisplayShowTitleEnabled(false);
         setContentView(R.layout.scoreboard_activity);
-
 
     }
 
@@ -24,4 +22,5 @@ public class ScoreboardActivity extends PauseFragmentActivity{
     public void onBackPressed() {
         // Override back so that a session must be ended properly before going back to create screen
     }
+
 }

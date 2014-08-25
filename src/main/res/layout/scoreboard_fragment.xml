@@ -29,14 +29,16 @@
                     android:src="@drawable/ic_duration_icon"
                     android:layout_weight="1" />
 
-            <TextView
-                    android:id="@+id/timeRemaining"
+            <com.pauselabs.pause.views.AutoUpdatingTimerView
+                    android:id="@+id/timerView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="0h 36m 33s"
                     android:textColor="@color/pause_dark_grey"
                     android:textSize="36dp"
-                    android:layout_weight="3"/>
+                    android:layout_weight="3">
+
+            </com.pauselabs.pause.views.AutoUpdatingTimerView>
 
         </LinearLayout>
 

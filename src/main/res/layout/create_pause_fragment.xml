@@ -18,6 +18,7 @@
     <RelativeLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
+            android:background="#BFFFFFFF"
             android:padding="8dp">
 
         <LinearLayout
@@ -44,6 +45,7 @@
                         android:hint="@string/pauseMessageTextHint"
                         android:layout_toRightOf="@id/messageIcon"
                         android:textColor="#555"
+                        android:inputType="textCapSentences|textMultiLine"
                         android:textCursorDrawable="@null"
                         android:layout_marginLeft="2dp"
                         android:background="@android:color/transparent"
@@ -73,7 +75,7 @@
                         android:layout_toRightOf="@id/durationIcon"
                         android:textColor="#555"
                         android:layout_centerVertical="true"
-                        android:layout_marginLeft="10dp"
+                        android:layout_marginLeft="2dp"
                         android:textSize="24dp"/>
 
             </RelativeLayout>
@@ -96,6 +98,7 @@
             android:id="@+id/bottomButtonBar"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
+            android:background="#BFFFFFFF"
             android:layout_alignParentBottom="true">
 
             <LinearLayout
@@ -159,84 +162,14 @@
                     android:background="@android:color/darker_gray"
                     android:layout_below="@+id/selectorBar"/>
 
-            <LinearLayout
-                    android:id="@+id/durationSelectorContainer"
+            <com.pauselabs.pause.views.DurationSelectorView
+                    android:id="@+id/durationSelectorView"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/selectorBar"
-                    android:orientation="vertical"
                     android:visibility="gone"
-                    android:padding="12dp">
+                    android:layout_below="@+id/selectorBar">
 
-
-                <TextView
-                        android:id="@+id/hourSeekLabel"
-                        android:layout_width="fill_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center_horizontal"
-                        android:text="0 HOURS"/>
-
-                <SeekBar
-                        android:id="@+id/hourSelectorBar"
-                        android:layout_width="fill_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="10dp"
-                        android:progress="0"
-                        android:max="12"
-                        android:secondaryProgress="0" />
-
-                <TextView
-                        android:id="@+id/minuteSeekLabel"
-                        android:layout_width="fill_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center_horizontal"
-                        android:text="0 MINUTES"/>
-
-                <SeekBar
-                        android:id="@+id/minutesSelectorBar"
-                        android:layout_width="fill_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="10dp"
-                        android:progress="0"
-                        android:max="60"
-                        android:secondaryProgress="0" />
-
-                <LinearLayout
-                        android:layout_width="fill_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
-
-                    <Button
-                            android:id="@+id/addFiveMinBtn"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="+5m"
-                            android:layout_weight="1"/>
-
-                    <Button
-                            android:id="@+id/addFifteenMinBtn"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="+15m"
-                            android:layout_weight="1"/>
-
-                    <Button
-                            android:id="@+id/addHourBtn"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="+1h"
-                            android:layout_weight="1"/>
-                    <Button
-                            android:id="@+id/indefiniteBtn"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="∞"
-                            android:layout_weight="1"/>
-
-                </LinearLayout>
-
-
-            </LinearLayout>
+            </com.pauselabs.pause.views.DurationSelectorView>
 
         </RelativeLayout>
 

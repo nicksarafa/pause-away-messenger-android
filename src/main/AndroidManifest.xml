@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           android:versionCode="1"
-          android:versionName="1.5"
+          android:versionName="1.6"
           package="com.pauselabs">
 
     <uses-sdk android:minSdkVersion="18"
@@ -31,7 +31,7 @@
         <service android:name=".pause.services.PauseMessageReceivedService"></service>
         <service android:name=".pause.services.PauseMmsTransportService"></service>
 
-        <activity android:name=".pause.ui.MainActivity" android:screenOrientation="portrait" android:windowSoftInputMode="adjustResize">
+        <activity android:name=".pause.ui.MainActivity" android:screenOrientation="portrait" android:windowSoftInputMode="adjustResize|stateAlwaysVisible">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
@@ -51,6 +51,7 @@
                 <action android:name="android.intent.action.ACTION_BATTERY_LOW"/>
             </intent-filter>
         </receiver>
+        <receiver android:name=".pause.listeners.NotificationActionListener"/>
         <meta-data android:name="com.crashlytics.ApiKey" android:value="c5b66f7bae194d35e898f5f0e5ff5fd1ea78a618"/>
 
     </application>

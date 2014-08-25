@@ -63,7 +63,7 @@ public class PauseMessageSender {
             builder.append(", until " + df.format(endTimeDate).toString());
         }
 
-        //builder.append(" via PAUSELabs.com");
+        builder.append(" via PAUSELabs.com");
         String message = builder.toString();
         int length = message.length();
 
@@ -153,32 +153,6 @@ public class PauseMessageSender {
         Bitmap workingBitmap = BitmapFactory.decodeFile(pauseBounceBackMessage.getPathToImage(), o);
 
         Bitmap mutableBitmap = workingBitmap.copy(Bitmap.Config.ARGB_8888, true);
-
-//        Typeface tf = Typeface.create("Helvetica", Typeface.BOLD);
-//
-//        Paint paint = new Paint();
-//        paint.setStyle(Paint.Style.FILL);
-//        paint.setColor(Color.WHITE);
-//        paint.setTypeface(tf);
-//        paint.setTextAlign(Paint.Align.CENTER);
-//        paint.setTextSize(convertToPixels(mContext, 16));
-//
-//        Rect textRect = new Rect();
-//        paint.getTextBounds(pauseBounceBackMessage.getMessage(), 0, pauseBounceBackMessage.getMessage().length(), textRect);
-//
-//        Canvas canvas = new Canvas(mutableBitmap);
-//
-//        //If the text is bigger than the canvas , reduce the font size
-//        if(textRect.width() >= (canvas.getWidth() - 4))     //the padding on either sides is considered as 4, so as to appropriately fit in the text
-//            paint.setTextSize(convertToPixels(mContext, 12));        //Scaling needs to be used for different dpi's
-//
-//        //Calculate the positions
-//        int xPos = (canvas.getWidth() / 2) - 2;     //-2 is for regulating the x position offset
-//
-//        //"- ((paint.descent() + paint.ascent()) / 2)" is the distance from the baseline to the center.
-//        int yPos = (int) ((canvas.getHeight() / 2) - ((paint.descent() + paint.ascent()) / 2)) ;
-//
-//        canvas.drawText(pauseBounceBackMessage.getMessage(), xPos, yPos, paint);
 
         return new BitmapDrawable(mContext.getResources(), mutableBitmap);
     }

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="@dimen/saved_image_thumb_size"
+              android:layout_height="@dimen/saved_image_thumb_size">
+
+    <ImageView
+            android:id="@+id/savedThumbnail"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:scaleType="centerCrop"/>
+
+    <TextView
+            android:id="@+id/savedTextThumbnail"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:textColor="#555"
+            android:visibility="gone"/>
+
+</RelativeLayout>

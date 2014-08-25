@@ -6,7 +6,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
 /**
- * Created by tyndallm on 6/30/14.
+ * SQLite helper class
  */
 public class MySQLiteHelper extends SQLiteOpenHelper {
 
@@ -33,7 +33,6 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
             + " text, " + COLUMN_DURATION
             + " text);";
 
-    public static final String COUNT_QUERY = "SELECT SUM(LENGTH(" + COLUMN_ID + ")) FROM " + TABLE_SAVED_PAUSES;
 
     public MySQLiteHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);

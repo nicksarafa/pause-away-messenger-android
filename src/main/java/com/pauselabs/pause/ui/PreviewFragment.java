@@ -151,8 +151,11 @@ public class PreviewFragment extends Fragment implements View.OnClickListener{
             mCurrentPauseBouncebackMessage.setPathToImage(pauseImagePath);
         }
 
-        // save BounceBack to database
-        mCurrentPauseBouncebackMessage =  datasource.createSavedPause(mCurrentPauseBouncebackMessage);
+        // if previously saved, don't resave
+        if(mCurrentPauseBouncebackMessage.getId() == -1) {   // id of -1 is a new unsaved bounce back
+            // save BounceBack to database
+            mCurrentPauseBouncebackMessage =  datasource.createSavedPause(mCurrentPauseBouncebackMessage);
+        }
 
         // set active Pause database ID in sharedPrefs
         mPrefs.edit().putLong(Constants.Pause.ACTIVE_PAUSE_DATABASE_ID_PREFS, mCurrentPauseBouncebackMessage.getId()).commit();

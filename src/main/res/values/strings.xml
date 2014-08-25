@@ -47,5 +47,6 @@
 
     <!-- Notification messages -->
     <string name="pause_session_running">Pause session is running</string>
+    <string name="pause_session_ended">Session has ended</string>
 
 </resources>

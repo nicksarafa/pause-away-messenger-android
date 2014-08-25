@@ -12,13 +12,19 @@ import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 import com.pauselabs.R;
 import com.pauselabs.pause.Injector;
+import com.pauselabs.pause.PauseApplication;
 import com.pauselabs.pause.core.Constants;
+import com.pauselabs.pause.listeners.NotificationActionListener;
 import com.pauselabs.pause.listeners.PausePhoneStateListener;
 import com.pauselabs.pause.listeners.PauseSmsListener;
+import com.pauselabs.pause.models.PauseBounceBackMessage;
+import com.pauselabs.pause.models.PauseSession;
 import com.pauselabs.pause.ui.ScoreboardActivity;
 import com.squareup.otto.Bus;
 
 import javax.inject.Inject;
+import java.util.Date;
+import java.util.Random;
 
 /**
  * Service initiates Pause Listeners
@@ -35,6 +41,11 @@ public class PauseSessionService extends Service{
     private boolean sessionRunning = false;
     private boolean sessionStarted;
 
+    private Date mEndTime;
+    private Date mStartTime;
+    private PauseSession mActiveSession;
+    private PauseBounceBackMessage mActivePauseBounceBack;
+
     private boolean mStophandler = false;
 
     private Handler handler = new Handler();
@@ -42,7 +53,7 @@ public class PauseSessionService extends Service{
         @Override
         public void run() {
             if(!mStophandler) {
-//                updateTimeRemaining();
+                notifyPauseSessionRunning();
                 handler.postDelayed(this, 1000);
             }
         }
@@ -61,6 +72,9 @@ public class PauseSessionService extends Service{
 
     @Override
     public void onDestroy() {
+
+        mStophandler = true;
+        handler.removeCallbacks(runnable);
 
         // Unregister bus, since its not longer needed as the service is shutting down
         eventBus.unregister(this);
@@ -104,11 +118,40 @@ public class PauseSessionService extends Service{
         phoneStateFilter.addAction(Constants.Message.PHONE_STATE_CHANGE_INTENT);
         registerReceiver(phoneListener, phoneStateFilter);
 
-        notifyPauseSessionRunning();
+        // Retrieve Pause end time
+        mActiveSession = PauseApplication.getCurrentSession();
+        mActivePauseBounceBack = mActiveSession.getActiveBounceBackMessage();
+        mEndTime = new Date(mActivePauseBounceBack.getEndTime());
+
+        mStartTime = new Date();
+
+
+        //notifyPauseSessionRunning();
+        runnable.run();
     }
 
     private void notifyPauseSessionRunning() {
-        updateNotification(getString(R.string.pause_session_running));
+        Date currentDate = new Date();
+        if(currentDate.getTime() > mEndTime.getTime()){
+//            // timer has expired
+//            stopPauseSession();
+
+            // display results dialog
+            mStophandler = true;
+
+            updateNotification(PauseApplication.getInstance().getString(R.string.pause_session_ended));
+
+        }
+        else{
+            long diff = mEndTime.getTime() - currentDate.getTime();
+            long seconds = diff / 1000;
+            long minutes = seconds / 60;
+            long hours = minutes / 60;
+            long days = hours / 24;
+            updateNotification(hours % 24 + "h " + minutes % 60 + "m " + seconds % +60 + "s remaining");
+        }
+
+        //updateNotification(getString(R.string.pause_session_running));
     }
 
     private void updateNotification(String message) {
@@ -124,12 +167,27 @@ public class PauseSessionService extends Service{
     private Notification getNotification(String message) {
         final Intent i = new Intent(this, ScoreboardActivity.class);
 
+        // open activity intent
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, i, 0);
+
+        // stop session intent
+        Intent stopPauseIntent = new Intent(this, NotificationActionListener.class);
+        stopPauseIntent.putExtra(Constants.Notification.PAUSE_NOTIFICATION_INTENT, Constants.Notification.STOP_PAUSE_SESSION);
+        PendingIntent stopPausePendingIntent = PendingIntent.getBroadcast(this, new Random().nextInt(), stopPauseIntent, PendingIntent.FLAG_CANCEL_CURRENT);
+
+        // edit session intent
+        Intent editPauseIntent = new Intent(this, NotificationActionListener.class);
+        editPauseIntent.putExtra(Constants.Notification.PAUSE_NOTIFICATION_INTENT, Constants.Notification.EDIT_PAUSE_SESSION);
+        editPauseIntent.putExtra(Constants.Pause.EDIT_PAUSE_MESSAGE_ID_EXTRA, mActivePauseBounceBack.getId());
+        PendingIntent editPausePendingIntent = PendingIntent.getBroadcast(this, new Random().nextInt(), editPauseIntent, PendingIntent.FLAG_CANCEL_CURRENT);
+
 
         return new NotificationCompat.Builder(this)
                 .setContentTitle(getString(R.string.app_name))
                 .setSmallIcon(R.drawable.ic_stat_pause_icon_pause)
                 .setContentText(message)
+                .addAction(R.drawable.ic_stat_notificaiton_end, "End", stopPausePendingIntent)
+                .addAction(R.drawable.ic_stat_notification_pencil, "Edit", editPausePendingIntent)
                 .setAutoCancel(false)
                 .setOnlyAlertOnce(true)
                 .setOngoing(true)
@@ -137,6 +195,7 @@ public class PauseSessionService extends Service{
                 .setContentIntent(pendingIntent)
                 .getNotification();
     }
+
 
     public IBinder onBind(Intent intent) {
         return null;
