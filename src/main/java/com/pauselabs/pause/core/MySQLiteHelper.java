@@ -18,6 +18,7 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
     public static final String COLUMN_PATH_TO_ORIGINAL = "path_to_original";
     public static final String COLUMN_LOCATION = "location";
     public static final String COLUMN_DURATION = "duration";
+    public static final String COLUMN_FAVORITE = "favorite";
 
     private static final String DATABASE_NAME = "pauses.db";
     private static final int DATABASE_VERSION = 1;
@@ -31,7 +32,8 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
             + " text, " + COLUMN_PATH_TO_ORIGINAL
             + " text, " + COLUMN_LOCATION
             + " text, " + COLUMN_DURATION
-            + " text);";
+            + " text, " + COLUMN_FAVORITE
+            + " integer);";
 
 
     public MySQLiteHelper(Context context) {

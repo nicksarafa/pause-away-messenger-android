@@ -24,9 +24,10 @@ public class SavedPauseDataSource {
             MySQLiteHelper.COLUMN_PATH_TO_IMAGE, // 3
             MySQLiteHelper.COLUMN_PATH_TO_ORIGINAL, // 4
             MySQLiteHelper.COLUMN_LOCATION, // 5
-            MySQLiteHelper.COLUMN_DURATION}; // 6
+            MySQLiteHelper.COLUMN_DURATION, // 6
+            MySQLiteHelper.COLUMN_FAVORITE}; // 7
 
-    private final int MAX_ENTRIES = 12; // Only allow 12 saved messages at a time
+    private final int MAX_ENTRIES = 12; // Only allow 11 saved messages at a time
 
 
     public SavedPauseDataSource(Context context) {
@@ -50,6 +51,7 @@ public class SavedPauseDataSource {
         values.put(MySQLiteHelper.COLUMN_PATH_TO_ORIGINAL, pauseMessage.getPathToOriginal());
         values.put(MySQLiteHelper.COLUMN_LOCATION, pauseMessage.getLocation());
         values.put(MySQLiteHelper.COLUMN_DURATION, pauseMessage.getEndTime());
+        values.put(MySQLiteHelper.COLUMN_FAVORITE, (pauseMessage.isFavorite())? 1 : 0);
 
         long insertId = database.insert(MySQLiteHelper.TABLE_SAVED_PAUSES, null,values);
 
@@ -71,6 +73,12 @@ public class SavedPauseDataSource {
         PauseBounceBackMessage savedPause = cursorToPause(cursor);
         cursor.close();
         return savedPause;
+    }
+
+    public void updateSavedPauseFavorite(PauseBounceBackMessage pauseMessage) {
+        ContentValues values = new ContentValues();
+        values.put(MySQLiteHelper.COLUMN_FAVORITE, (pauseMessage.isFavorite())? 1 : 0);
+        database.update(MySQLiteHelper.TABLE_SAVED_PAUSES, values, MySQLiteHelper.COLUMN_ID + " = ?", new String[] {pauseMessage.getId().toString()});
     }
 
     public PauseBounceBackMessage getSavedPauseById(long id) {
@@ -107,7 +115,7 @@ public class SavedPauseDataSource {
         List<PauseBounceBackMessage> savesPauseMessages = new ArrayList<PauseBounceBackMessage>();
 
         Cursor cursor = database.query(MySQLiteHelper.TABLE_SAVED_PAUSES,
-                allColumns, null, null, null, null, MySQLiteHelper.COLUMN_CREATED_ON + " DESC"); // Order by shows newest first
+                allColumns, null, null, null, null, MySQLiteHelper.COLUMN_FAVORITE + " DESC, " + MySQLiteHelper.COLUMN_CREATED_ON + " DESC"); // Order by favorites & newest first
 
         cursor.moveToFirst();
         while (!cursor.isAfterLast()) {
@@ -129,6 +137,7 @@ public class SavedPauseDataSource {
         savedPause.setPathToOriginal(cursor.getString(4));
         savedPause.setLocation(cursor.getString(5));
         savedPause.setEndTime(cursor.getLong(6));
+        savedPause.setFavorite((cursor.getInt(7) == 1)? true : false);
         return savedPause;
     }
 

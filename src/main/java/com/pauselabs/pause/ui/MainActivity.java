@@ -9,7 +9,6 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
 import android.view.View;
 import butterknife.Views;
-import com.crashlytics.android.Crashlytics;
 import com.pauselabs.R;
 import com.pauselabs.pause.PauseApplication;
 import com.pauselabs.pause.core.Constants;
@@ -42,7 +41,7 @@ public class MainActivity extends PauseFragmentActivity {
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Crashlytics.start(this);
+
 
         setContentView(R.layout.main_activity);
 

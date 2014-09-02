@@ -37,6 +37,7 @@
     <!-- Saved Pause messages -->
     <string name="saved_title">Past</string>
     <string name="saved_instructions">All your past pauses will be safely stored here in your private save drawer.  Close drawer to create your first pause! \n Enjoy!</string>
+    <string name="saved_edit_btn">Edit</string>
 
     <!-- Pause Scoreboard screen -->
     <string name="scoreboard_title">0 Response Messages Sent</string>

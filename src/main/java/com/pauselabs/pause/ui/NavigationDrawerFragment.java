@@ -57,6 +57,7 @@ public class NavigationDrawerFragment extends Fragment implements AdapterView.On
     private int currentSelectedPosition = 0;
     private boolean fromSavedInstanceState;
     private boolean userLearnedDrawer;
+    private boolean isEditMode = false;
 
     @Inject
     protected SharedPreferences prefs;
@@ -117,6 +118,10 @@ public class NavigationDrawerFragment extends Fragment implements AdapterView.On
         }
         mSavedMessageGridView.setAdapter(savedMessageAdapter);
         mSavedMessageGridView.setOnItemClickListener(this);
+
+//        Button editButton = new Button(getActivity());
+//        editButton.setText("Edit");
+//        mSavedMessageGridView.addView(editButton);
 
         return mDrawerLayoutView;
     }

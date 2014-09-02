@@ -33,6 +33,7 @@ public class PauseBounceBackMessage implements Parcelable, Serializable {
     private String pathToThumb;
     private String location;
     private Long endTime;
+    private boolean isFavorite = false;
     private Long id = -1L;  // default unset value
 
 
@@ -55,6 +56,7 @@ public class PauseBounceBackMessage implements Parcelable, Serializable {
         pathToOriginal = in.readString();
         location = in.readString();
         endTime = in.readLong();
+        isFavorite = in.readByte() != 0;
     }
 
     public String getTitle() {
@@ -137,6 +139,14 @@ public class PauseBounceBackMessage implements Parcelable, Serializable {
         return endTime;
     }
 
+    public boolean isFavorite() {
+        return isFavorite;
+    }
+
+    public void setFavorite(boolean isFavorite) {
+        this.isFavorite = isFavorite;
+    }
+
 
     @Override
     public int describeContents() {
@@ -153,6 +163,7 @@ public class PauseBounceBackMessage implements Parcelable, Serializable {
         out.writeString(pathToOriginal);
         out.writeString(location);
         out.writeLong(endTime);
+        out.writeByte((byte) (isFavorite ? 1 : 0));
     }
 
 }
