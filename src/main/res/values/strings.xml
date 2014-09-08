@@ -50,4 +50,21 @@
     <string name="pause_session_running">Pause session is running</string>
     <string name="pause_session_ended">Session has ended</string>
 
+    <!-- Analytics Categories -->
+    <string name="ui_action">UI Action</string>
+    <string name="data">Data</string>
+
+    <!-- Analytics Actions -->
+    <string name="save_drawer_opened">Save drawer opened</string>
+    <string name="timer_button_clicked">Timer button clicked</string>
+    <string name="camera_button_clicked">Camera button clicked</string>
+    <string name="gallery_button_clicked">Gallery button clicked</string>
+    <string name="start_pause_button_clicked">Start Pause button clicked</string>
+
+    <!-- Analytics Labels -->
+    <string name="timer_button">timer btn</string>
+    <string name="camera_button">camera btn</string>
+    <string name="gallery_button">gallery btn</string>
+    <string name="start_button">start btn</string>
+
 </resources>

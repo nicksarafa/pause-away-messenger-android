@@ -1,13 +1,11 @@
 package com.pauselabs.pause.adapters;
 
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.drawable.BitmapDrawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.*;
+import com.nostra13.universalimageloader.core.ImageLoader;
 import com.pauselabs.R;
 import com.pauselabs.pause.core.SavedPauseDataSource;
 import com.pauselabs.pause.models.PauseBounceBackMessage;
@@ -28,6 +26,7 @@ public class SavedMessageAdapter extends BaseAdapter implements View.OnClickList
     private Context mContext;
     private SavedPauseDataSource mDatasource;
     private ArrayList<PauseBounceBackMessage> mItems = new ArrayList<PauseBounceBackMessage>();
+    private ImageLoader mImageLoader;
 
     private boolean isEditMode = false;
 
@@ -71,6 +70,10 @@ public class SavedMessageAdapter extends BaseAdapter implements View.OnClickList
         ViewHolder holder;
         int type = getItemViewType(position);
 
+        if(mImageLoader == null){
+            mImageLoader = ImageLoader.getInstance();
+        }
+
         if (convertView == null) {
             holder = new ViewHolder();
             switch (type) {
@@ -90,19 +93,7 @@ public class SavedMessageAdapter extends BaseAdapter implements View.OnClickList
                 case TYPE_BUTTON:
                     convertView = LayoutInflater.from(mContext).inflate(R.layout.saved_item_button, parent, false);
                     final Button savedEditBtn = (Button) convertView.findViewById(R.id.savedEditBtn);
-                    savedEditBtn.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            if(isEditMode) {
-                                savedEditBtn.setBackground(mContext.getResources().getDrawable(R.drawable.btn_edit_saved));
-                                isEditMode = false;
-                            } else {
-                                savedEditBtn.setBackground(mContext.getResources().getDrawable(R.drawable.btn_edit_saved_clicked));
-                                isEditMode = true;
-                            }
-                            notifyDataSetChanged();
-                        }
-                    });
+                    savedEditBtn.setOnClickListener(this);
                     break;
             }
             convertView.setTag(holder);
@@ -114,11 +105,13 @@ public class SavedMessageAdapter extends BaseAdapter implements View.OnClickList
             PauseBounceBackMessage savedMessage = mItems.get(position);
 
             if(savedMessage.getPathToOriginal() != null) {
-                final BitmapFactory.Options options = new BitmapFactory.Options();
-                options.inSampleSize = 12; // 1/4th the width/height of original, 1/16th num of pixels
-                Bitmap original = BitmapFactory.decodeFile(savedMessage.getPathToImage(), options);
-                BitmapDrawable drawableBitmap = new BitmapDrawable(mContext.getResources(), original);
-                holder.imageView.setImageDrawable(drawableBitmap);
+//                final BitmapFactory.Options options = new BitmapFactory.Options();
+//                options.inSampleSize = 12; // 1/4th the width/height of original, 1/16th num of pixels
+//                Bitmap original = BitmapFactory.decodeFile(savedMessage.getPathToImage(), options);
+//                BitmapDrawable drawableBitmap = new BitmapDrawable(mContext.getResources(), original);
+//                holder.imageView.setImageDrawable(drawableBitmap);
+
+                mImageLoader.displayImage("file:///" + savedMessage.getPathToImage(), holder.imageView);
 
                 holder.imageView.setVisibility(View.VISIBLE);
                 holder.textView.setVisibility(View.GONE);
@@ -185,8 +178,14 @@ public class SavedMessageAdapter extends BaseAdapter implements View.OnClickList
         notifyDataSetChanged();
     }
 
-    private void toggleEditMode() {
-        isEditMode = isEditMode ? false : true;
+    private void toggleEditMode(View editButton) {
+        if(isEditMode) {
+            editButton.setBackground(mContext.getResources().getDrawable(R.drawable.btn_edit_saved));
+            isEditMode = false;
+        } else {
+            editButton.setBackground(mContext.getResources().getDrawable(R.drawable.btn_edit_saved_clicked));
+            isEditMode = true;
+        }
         notifyDataSetChanged();
     }
 
@@ -194,6 +193,9 @@ public class SavedMessageAdapter extends BaseAdapter implements View.OnClickList
     public void onClick(View view) {
         int position;
         switch(view.getId()){
+            case R.id.savedEditBtn:
+                toggleEditMode(view);
+                break;
             case R.id.favoriteBtn:
                 position = (Integer) view.getTag();
                 toggleFavorite(position);
@@ -214,19 +216,4 @@ public class SavedMessageAdapter extends BaseAdapter implements View.OnClickList
         private ImageButton deleteBtn;
     }
 
-//    public class ImageGetter extends AsyncTask<File, Void, Bitmap> {
-//        private ImageView iv;
-//        public ImageGetter(ImageView v) {
-//            iv = v;
-//        }
-//        @Override
-//        protected Bitmap doInBackground(File... params) {
-//            return decodeFile(params[0]);
-//        }
-//        @Override
-//        protected void onPostExecute(Bitmap result) {
-//            super.onPostExecute(result);
-//            iv.setImageBitmap(result);
-//        }
-//    }
 }

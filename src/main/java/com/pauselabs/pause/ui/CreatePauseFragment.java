@@ -20,6 +20,8 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.*;
 import butterknife.InjectView;
 import butterknife.Views;
+import com.google.android.gms.analytics.HitBuilders;
+import com.google.android.gms.analytics.Tracker;
 import com.pauselabs.R;
 import com.pauselabs.pause.Injector;
 import com.pauselabs.pause.PauseApplication;
@@ -60,6 +62,7 @@ public class CreatePauseFragment extends Fragment implements View.OnClickListene
     private FrameLayout mCreatePauseLayout;
     private Boolean isExistingPause = false;
     private Long mPauseEndTimeInMillis = 0L;
+    private Tracker mAnalyticsTracker;
 
     private PauseBounceBackMessage mCurrentPauseBouncebackMessage;
 
@@ -74,6 +77,9 @@ public class CreatePauseFragment extends Fragment implements View.OnClickListene
 
         datasource = new SavedPauseDataSource(getActivity());
         datasource.open();
+
+        mAnalyticsTracker =  PauseApplication.getTracker(PauseApplication.TrackerName.GLOBAL_TRACKER);
+        mAnalyticsTracker.setScreenName("CreatePauseScreenView");
     }
 
     @Override
@@ -123,6 +129,8 @@ public class CreatePauseFragment extends Fragment implements View.OnClickListene
         if(editId != null & editId > 0L){
             savedPauseMessageSelected(editId);
         }
+
+        mAnalyticsTracker.send(new HitBuilders.AppViewBuilder().build());
 
     }
 
@@ -298,6 +306,12 @@ public class CreatePauseFragment extends Fragment implements View.OnClickListene
             mCurrentPauseBouncebackMessage.setEndTime(0L); // indefinite
         }
 
+        mAnalyticsTracker.send(new HitBuilders.EventBuilder()
+                .setCategory(getString(R.string.data))
+                .setAction(getString(R.string.start_pause_button_clicked))
+                .setLabel(mCurrentPauseBouncebackMessage.toString())
+                .build());
+
         return mCurrentPauseBouncebackMessage;
     }
 
@@ -319,6 +333,12 @@ public class CreatePauseFragment extends Fragment implements View.OnClickListene
                     Toast.makeText(getActivity(), getString(R.string.durationMessageRequired), Toast.LENGTH_SHORT).show();
                 }
                 else{
+                    mAnalyticsTracker.send(new HitBuilders.EventBuilder()
+                            .setCategory(getString(R.string.ui_action))
+                            .setAction(getString(R.string.timer_button_clicked))
+                            .setLabel(getString(R.string.timer_button))
+                            .build());
+
                     durationSelectorBtn.setImageResource(R.drawable.ic_timer_selector_alt);
                     pauseDurationField.requestFocus();
                     pauseDurationContainer.setVisibility(View.VISIBLE);
@@ -335,6 +355,12 @@ public class CreatePauseFragment extends Fragment implements View.OnClickListene
                     Toast.makeText(getActivity(), getString(R.string.cameraMessageRequired), Toast.LENGTH_SHORT).show();
                 }
                 else{
+                    mAnalyticsTracker.send(new HitBuilders.EventBuilder()
+                            .setCategory(getString(R.string.ui_action))
+                            .setAction(getString(R.string.camera_button_clicked))
+                            .setLabel(getString(R.string.camera_button))
+                            .build());
+
                     Intent cameraIntent = new Intent(getActivity(), CameraActivity.class);
                     cameraIntent.putExtra(Constants.Message.MESSAGE_PARCEL, (android.os.Parcelable) buildBounceBackFromInputFields());
                     startActivity(cameraIntent);
@@ -346,6 +372,12 @@ public class CreatePauseFragment extends Fragment implements View.OnClickListene
                     Toast.makeText(getActivity(), getString(R.string.cameraMessageRequired), Toast.LENGTH_SHORT).show();
                 }
                 else{
+                    mAnalyticsTracker.send(new HitBuilders.EventBuilder()
+                            .setCategory(getString(R.string.ui_action))
+                            .setAction(getString(R.string.gallery_button_clicked))
+                            .setLabel(getString(R.string.gallery_button))
+                            .build());
+
                     Intent i = new Intent(
                         Intent.ACTION_PICK,
                         android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
@@ -360,6 +392,12 @@ public class CreatePauseFragment extends Fragment implements View.OnClickListene
                     Toast.makeText(getActivity(), getString(R.string.messageRequired), Toast.LENGTH_SHORT).show();
                 }
                 else {
+                    mAnalyticsTracker.send(new HitBuilders.EventBuilder()
+                            .setCategory(getString(R.string.ui_action))
+                            .setAction(getString(R.string.start_pause_button_clicked))
+                            .setLabel(getString(R.string.start_button))
+                            .build());
+
                     mCurrentPauseBouncebackMessage = buildBounceBackFromInputFields();
 
                     // if previously saved, don't resave

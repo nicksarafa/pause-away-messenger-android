@@ -11,6 +11,8 @@ import android.view.ViewGroup;
 import android.widget.*;
 import butterknife.InjectView;
 import butterknife.Views;
+import com.google.android.gms.analytics.HitBuilders;
+import com.google.android.gms.analytics.Tracker;
 import com.pauselabs.R;
 import com.pauselabs.pause.Injector;
 import com.pauselabs.pause.PauseApplication;
@@ -58,6 +60,7 @@ public class ScoreboardFragment extends Fragment implements View.OnClickListener
     private SavedPauseDataSource datasource;
     private PauseBounceBackMessage mActivePauseBounceBack;
     private PauseSession mActiveSession;
+    private Tracker mAnalyticsTracker;
 
 
     @Override
@@ -80,6 +83,8 @@ public class ScoreboardFragment extends Fragment implements View.OnClickListener
 
         initScoreboardUI();
 
+        mAnalyticsTracker.send(new HitBuilders.AppViewBuilder().build());
+
         return view;
     }
 
@@ -91,6 +96,9 @@ public class ScoreboardFragment extends Fragment implements View.OnClickListener
         mConversationAdapter = new ConversationAdapter(getActivity());
         datasource = new SavedPauseDataSource(getActivity());
         datasource.open();
+
+        mAnalyticsTracker =  PauseApplication.getTracker(PauseApplication.TrackerName.GLOBAL_TRACKER);
+        mAnalyticsTracker.setScreenName("ScoreboardScreenView");
     }
 
     public void initScoreboardUI() {

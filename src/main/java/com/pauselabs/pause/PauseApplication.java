@@ -8,7 +8,12 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.telephony.TelephonyManager;
 import com.crashlytics.android.Crashlytics;
+import com.google.android.gms.analytics.GoogleAnalytics;
 import com.google.android.gms.analytics.Tracker;
+import com.nostra13.universalimageloader.cache.disc.naming.Md5FileNameGenerator;
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
+import com.nostra13.universalimageloader.core.assist.QueueProcessingType;
 import com.pauselabs.BuildConfig;
 import com.pauselabs.R;
 import com.pauselabs.pause.core.PauseMessageSender;
@@ -24,6 +29,7 @@ public class PauseApplication extends Application {
 
     private static PauseApplication instance;
     private static final String TAG = PauseApplication.class.getSimpleName();
+    public static HashMap<TrackerName, Tracker> mTrackers = new HashMap<TrackerName, Tracker>();
 
     public static PauseMessageSender messageSender;
     private static PauseSession currentPauseSession;
@@ -37,11 +43,8 @@ public class PauseApplication extends Application {
      */
     public enum TrackerName {
         APP_TRACKER, // Tracker used only in this app.
-        GLOBAL_TRACKER, // Tracker used by all the apps from a company. eg: roll-up tracking.
-        ECOMMERCE_TRACKER, // Tracker used by all ecommerce transactions from a company.
+        GLOBAL_TRACKER; // Tracker used by all the apps from a company. eg: roll-up tracking.
     }
-
-    HashMap<TrackerName, Tracker> mTrackers = new HashMap<TrackerName, Tracker>();
 
     public PauseApplication() {
 
@@ -70,8 +73,30 @@ public class PauseApplication extends Application {
         // Perform injection
         Injector.init(getRootModule(), this);
 
+        initImageLoader(getApplicationContext());
+
         messageSender = new PauseMessageSender(instance);
 
+    }
+
+    /**
+     * Initialize Android Universal Image Loader
+     */
+    public static void initImageLoader(Context context) {
+        // This configuration tuning is custom. You can tune every option, you may tune some of them,
+        // or you can create default configuration by
+        //  ImageLoaderConfiguration.createDefault(this);
+        // method.
+        ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(context)
+                .threadPriority(Thread.NORM_PRIORITY - 2)
+                .denyCacheImageMultipleSizesInMemory()
+                .diskCacheFileNameGenerator(new Md5FileNameGenerator())
+                .diskCacheSize(50 * 1024 * 1024) // 50 Mb
+                .tasksProcessingOrder(QueueProcessingType.LIFO)
+                .writeDebugLogs() // Remove for release app
+                .build();
+        // Initialize ImageLoader with configuration.
+        ImageLoader.getInstance().init(config);
     }
 
     /**
@@ -140,14 +165,12 @@ public class PauseApplication extends Application {
         return currentPauseSession;
     }
 
-    synchronized Tracker getTracker(TrackerName trackerId) {
+    public static synchronized Tracker getTracker(TrackerName trackerId) {
         if (!mTrackers.containsKey(trackerId)) {
 
-//            GoogleAnalytics analytics = GoogleAnalytics.getInstance(this);
-//            Tracker t = (trackerId == TrackerName.APP_TRACKER) ? analytics.newTracker(PROPERTY_ID)
-//                    : (trackerId == TrackerName.GLOBAL_TRACKER) ? analytics.newTracker(R.xml.global_tracker)
-//                    : analytics.newTracker(R.xml.ecommerce_tracker);
-//            mTrackers.put(trackerId, t);
+            GoogleAnalytics analytics = GoogleAnalytics.getInstance(getInstance());
+            Tracker t = analytics.newTracker(R.xml.global_tracker);
+            mTrackers.put(trackerId, t);
 
         }
         return mTrackers.get(trackerId);

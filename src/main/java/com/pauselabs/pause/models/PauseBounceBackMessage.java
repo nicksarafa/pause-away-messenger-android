@@ -147,6 +147,38 @@ public class PauseBounceBackMessage implements Parcelable, Serializable {
         this.isFavorite = isFavorite;
     }
 
+    public String toString() {
+        StringBuilder builder = new StringBuilder();
+
+        if(this.message != null && !this.message.isEmpty()){
+            builder.append("Message: " + this.message + " ");
+        } else {
+            builder.append("Message: none ");
+        }
+
+        if(this.endTime == 0L){
+            builder.append("Duration: indefinite ");
+        } else {
+            builder.append("Duration: " + this.endTime + " ");
+        }
+
+        if(this.pathToImage != null && !this.pathToImage.isEmpty()) {
+            builder.append("Image: " + this.pathToImage + " ");
+        } else{
+            builder.append("Image: none ");
+        }
+
+        if(this.id == -1L){
+            builder.append("isSaved: false ");
+        } else {
+            builder.append("isSaved: true ");
+        }
+
+        builder.append("isFavorite: " + String.valueOf(this.isFavorite) + " ");
+
+        return builder.toString();
+    }
+
 
     @Override
     public int describeContents() {
