@@ -32,21 +32,16 @@
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content">
 
-                <ImageView
-                        android:id="@+id/messageIcon"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/ic_pencil"/>
+
 
                 <EditText
                         android:id="@+id/pauseMessageText"
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:hint="@string/pauseMessageTextHint"
-                        android:layout_toRightOf="@id/messageIcon"
                         android:textColor="#555"
                         android:inputType="textCapSentences|textMultiLine"
-                        android:textCursorDrawable="@null"
+                        android:textCursorDrawable="@drawable/cursor"
                         android:layout_marginLeft="2dp"
                         android:background="@android:color/transparent"
                         android:textSize="24dp">
@@ -98,7 +93,7 @@
             android:id="@+id/bottomButtonBar"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:background="#BFFFFFFF"
+            android:background="#CCFFFFFF"
             android:layout_alignParentBottom="true">
 
             <LinearLayout
@@ -147,7 +142,7 @@
                         android:id="@+id/startPauseBtn"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:src="@drawable/ic_begin_button"
+                        android:src="@drawable/btn_start_pause"
                         android:layout_gravity="center_vertical"
                         android:background="@null"
                         android:layout_weight="1"

@@ -5,15 +5,15 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
-import android.graphics.*;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
-import android.graphics.drawable.LayerDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.v4.app.Fragment;
-import android.support.v8.renderscript.RenderScript;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.*;
 import android.view.inputmethod.InputMethodManager;
@@ -36,7 +36,7 @@ import javax.inject.Inject;
 /**
  * Create Pause Screen Fragment, this is the default view of the app
  */
-public class CreatePauseFragment extends Fragment implements View.OnClickListener, View.OnTouchListener, View.OnFocusChangeListener, DurationSelectorView.OnDurationChangedListener {
+public class CreatePauseFragment extends Fragment implements View.OnClickListener, DurationSelectorView.OnDurationChangedListener, View.OnFocusChangeListener, TextWatcher {
 
     private static final String TAG = CreatePauseFragment.class.getSimpleName();
     private static int RESULT_LOAD_IMAGE = 1;
@@ -47,13 +47,13 @@ public class CreatePauseFragment extends Fragment implements View.OnClickListene
     @Inject protected SharedPreferences mPrefs;
 
     @InjectView(R.id.backgroundImage) ImageView pauseBackgroundImage;
+    @InjectView(R.id.backgroundLayout) RelativeLayout pauseContainerLayout;
     @InjectView(R.id.messageSelectorBtn) ImageButton messageSelectorBtn;
     @InjectView(R.id.durationSelectorBtn) ImageButton durationSelectorBtn;
     @InjectView(R.id.cameraSelectorBtn) ImageButton cameraSelectorBtn;
     @InjectView(R.id.gallerySelectorBtn) ImageButton gallerySelectorBtn;
     @InjectView(R.id.pauseMessageText) EditText pauseMessageText;
     @InjectView(R.id.pauseDurationText) TextView pauseDurationField;
-    @InjectView(R.id.durationContainer) RelativeLayout pauseDurationContainer;
     @InjectView(R.id.startPauseBtn) ImageButton startPauseBtn;
     @InjectView(R.id.durationSelectorView) DurationSelectorView mDurationSelectorView;
 
@@ -63,6 +63,7 @@ public class CreatePauseFragment extends Fragment implements View.OnClickListene
     private Boolean isExistingPause = false;
     private Long mPauseEndTimeInMillis = 0L;
     private Tracker mAnalyticsTracker;
+    private InputMethodManager mInputManager;
 
     private PauseBounceBackMessage mCurrentPauseBouncebackMessage;
 
@@ -80,6 +81,8 @@ public class CreatePauseFragment extends Fragment implements View.OnClickListene
 
         mAnalyticsTracker =  PauseApplication.getTracker(PauseApplication.TrackerName.GLOBAL_TRACKER);
         mAnalyticsTracker.setScreenName("CreatePauseScreenView");
+
+        mInputManager = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
     }
 
     @Override
@@ -111,16 +114,11 @@ public class CreatePauseFragment extends Fragment implements View.OnClickListene
         gallerySelectorBtn.setOnClickListener(this);
         startPauseBtn.setOnClickListener(this);
         pauseDurationField.setOnClickListener(this);
-
-//        startPauseBtn.setEnabled(false);
+        pauseMessageText.setOnFocusChangeListener(this);
+        pauseMessageText.addTextChangedListener(this);
+        startPauseBtn.setEnabled(false);
 
         mDurationSelectorView.setOnDurationChangedListener(this);
-
-        pauseBackgroundImage.setOnTouchListener(this);
-
-        pauseMessageText.setOnFocusChangeListener(this);
-//        pauseMessageText.setFocusableInTouchMode(true);
-//        pauseMessageText.requestFocus();
 
         mCurrentPauseBouncebackMessage = new PauseBounceBackMessage();
 
@@ -131,7 +129,6 @@ public class CreatePauseFragment extends Fragment implements View.OnClickListene
         }
 
         mAnalyticsTracker.send(new HitBuilders.AppViewBuilder().build());
-
     }
 
     @Override
@@ -143,14 +140,16 @@ public class CreatePauseFragment extends Fragment implements View.OnClickListene
 
     @Override
     public void onResume() {
-        datasource.open();
         super.onResume();
+        datasource.open();
+        focusPauseMessageTextAndShowKeyboard();
     }
 
     @Override
     public void onPause() {
-        datasource.close();
         super.onPause();
+        datasource.close();
+
     }
 
     @Override
@@ -175,62 +174,6 @@ public class CreatePauseFragment extends Fragment implements View.OnClickListene
             }
         }
 
-    }
-
-
-    public void setBackgroundImage(String pathToImage){
-        isExistingPause = false;
-        final BitmapFactory.Options options = new BitmapFactory.Options();
-        options.inSampleSize = 2;
-        Bitmap original = BitmapFactory.decodeFile(pathToImage, options);
-
-        //define this only once if blurring multiple times
-        RenderScript rs = RenderScript.create(getActivity());
-
-        //this will blur the bitmapOriginal with a radius of 8 and save it in bitmapOriginal
-//        final Allocation input = Allocation.createFromBitmap(rs, blurTemplate); //use this constructor for best performance, because it uses USAGE_SHARED mode which reuses memory
-//        final Allocation output = Allocation.createTyped(rs, input.getType());
-//        final ScriptIntrinsicBlur script = ScriptIntrinsicBlur.create(rs, Element.U8_4(rs));
-//        script.setRadius(2f);
-//        script.setInput(input);
-//        script.forEach(output);
-//        output.copyTo(blurTemplate);
-
-        //Drawable drawable = getResources().getDrawable(R.drawable.gradient_pause_image);
-
-        BitmapDrawable originalDrawable = new BitmapDrawable(getResources(), original);
-
-        mSelectedImage = original;
-        mSelectedImagePath = pathToImage;
-
-        pauseBackgroundImage.setImageDrawable(originalDrawable);
-    }
-
-    public void createPauseImageFromView() {
-        Bitmap bitmap = Bitmap.createBitmap(pauseBackgroundImage.getWidth(), pauseBackgroundImage.getHeight(), Bitmap.Config.ARGB_8888);
-        Canvas c = new Canvas(bitmap);
-
-        Paint textPaint = new Paint();
-        textPaint.setColor(Color.WHITE);
-        textPaint.setTextAlign(Paint.Align.CENTER);
-        textPaint.setTextSize(50);
-
-        int xPos = (c.getWidth() / 2);
-        int yPos = (int) ((c.getHeight() / 2) - ((textPaint.descent() + textPaint.ascent()) / 2)) ;
-
-        final BitmapFactory.Options options = new BitmapFactory.Options();
-        options.inSampleSize = 2;
-        Bitmap original = BitmapFactory.decodeFile(mSelectedImagePath, options);
-        BitmapDrawable originalDrawable = new BitmapDrawable(getResources(), original);
-
-        originalDrawable.draw(c);
-
-        c.drawText(pauseMessageText.getText().toString(), xPos, yPos, textPaint);
-
-        LayerDrawable layerDrawable = new LayerDrawable(
-                new Drawable[]{originalDrawable, new BitmapDrawable(bitmap)});
-
-        pauseBackgroundImage.setImageDrawable(layerDrawable);
     }
 
     @Override
@@ -328,25 +271,23 @@ public class CreatePauseFragment extends Fragment implements View.OnClickListene
     @Override
     public void onClick(View v) {
         switch(v.getId()){
+            case R.id.messageSelectorBtn:
+                if(pauseMessageText.isFocused()) {
+                    unfocusPauseMessageTextAndHideKeyboard();
+                } else {
+                    focusPauseMessageTextAndShowKeyboard();
+                }
+                break;
             case R.id.durationSelectorBtn:
                 if(pauseMessageText.getText().toString().equals("")) {
                     Toast.makeText(getActivity(), getString(R.string.durationMessageRequired), Toast.LENGTH_SHORT).show();
                 }
                 else{
-                    mAnalyticsTracker.send(new HitBuilders.EventBuilder()
-                            .setCategory(getString(R.string.ui_action))
-                            .setAction(getString(R.string.timer_button_clicked))
-                            .setLabel(getString(R.string.timer_button))
-                            .build());
-
-                    durationSelectorBtn.setImageResource(R.drawable.ic_timer_selector_alt);
-                    pauseDurationField.requestFocus();
-                    pauseDurationContainer.setVisibility(View.VISIBLE);
-                    InputMethodManager imm = (InputMethodManager)getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
-                    imm.hideSoftInputFromWindow(pauseMessageText.getWindowToken(), 0);
-                    mDurationSelectorView.displayDurationSelector();
-
-                    //pauseDurationSelectorContainer.setVisibility(View.VISIBLE);
+                    if(mDurationSelectorView.isDisplayed()){
+                        dismissDurationSelector();
+                    } else {
+                        displayDurationSelector();
+                    }
                 }
                 break;
 
@@ -386,8 +327,6 @@ public class CreatePauseFragment extends Fragment implements View.OnClickListene
                 break;
 
             case R.id.startPauseBtn:
-                dismissDurationSelector();
-
                 if(pauseMessageText.getText().toString().equals("")){
                     Toast.makeText(getActivity(), getString(R.string.messageRequired), Toast.LENGTH_SHORT).show();
                 }
@@ -418,16 +357,9 @@ public class CreatePauseFragment extends Fragment implements View.OnClickListene
 
 
                 break;
-            case R.id.pauseDurationText:
-//                InputMethodManager imm = (InputMethodManager)getActivity().getSystemService(
-//                        Context.INPUT_METHOD_SERVICE);
-//                imm.hideSoftInputFromWindow(pauseMessageText.getWindowToken(), 0);
-//                //imm.hideSoftInputFromWindow(pauseMessageLocation.getWindowToken(), 0);
-//
-//                pauseDurationSelectorContainer.setVisibility(View.VISIBLE);
-                break;
             default:
-                dismissDurationSelector();
+                //dismissDurationSelector();
+                break;
         }
     }
 
@@ -437,31 +369,75 @@ public class CreatePauseFragment extends Fragment implements View.OnClickListene
         startActivity(previewIntent);
     }
 
+    public void displayDurationSelector() {
+        mAnalyticsTracker.send(new HitBuilders.EventBuilder()
+                .setCategory(getString(R.string.ui_action))
+                .setAction(getString(R.string.timer_button_clicked))
+                .setLabel(getString(R.string.timer_button))
+                .build());
+        if(pauseMessageText.isFocused()){
+            unfocusPauseMessageTextAndHideKeyboard();
+        }
+        durationSelectorBtn.setImageResource(R.drawable.ic_timer_selector_alt);
+        pauseDurationField.requestFocus();
+        mDurationSelectorView.displayDurationSelector();
+    }
 
 
     public void dismissDurationSelector(){
-        mDurationSelectorView.dismissDurationSelector();
         durationSelectorBtn.setImageResource(R.drawable.ic_timer_selector);
+        mDurationSelectorView.dismissDurationSelector();
+        pauseDurationField.clearFocus();
+        //pauseContainerLayout.requestFocus();
+
     }
 
-    @Override
-    public boolean onTouch(View v, MotionEvent event) {
-        dismissDurationSelector();
-        return true;
-    }
-
-    @Override
-    public void onFocusChange(View v, boolean hasFocus) {
-        messageSelectorBtn.setImageResource(R.drawable.ic_pencil_selector);
-        if(v.getId() == R.id.pauseMessageText && hasFocus){
-            messageSelectorBtn.setImageResource(R.drawable.ic_pencil_selector_alt);
+    public void focusPauseMessageTextAndShowKeyboard() {
+        if(mDurationSelectorView.isDisplayed()){
             dismissDurationSelector();
         }
+        pauseMessageText.requestFocus();
+        mInputManager.showSoftInput(pauseMessageText, InputMethodManager.SHOW_IMPLICIT);
+    }
+
+    public void unfocusPauseMessageTextAndHideKeyboard() {
+        mInputManager.hideSoftInputFromWindow(pauseMessageText.getWindowToken(), 0);
+        pauseMessageText.clearFocus();
+        pauseContainerLayout.requestFocus();
     }
 
     @Override
     public void onDurationChanged() {
         Log.d(TAG, "onDurationChanged");
         updateDurationFieldText();
+    }
+
+    @Override
+    public void onFocusChange(View view, boolean b) {
+        if(view.getId() == R.id.pauseMessageText){
+            if(pauseMessageText.isFocused()) {
+                if(mDurationSelectorView.isDisplayed()){
+                    dismissDurationSelector();
+                }
+                messageSelectorBtn.setImageResource(R.drawable.ic_pencil_selector_alt);
+            } else {
+                messageSelectorBtn.setImageResource(R.drawable.ic_pencil_selector);
+            }
+        }
+    }
+
+    @Override
+    public void beforeTextChanged(CharSequence charSequence, int i, int i2, int i3) {}
+
+    @Override
+    public void onTextChanged(CharSequence charSequence, int i, int i2, int i3) {}
+
+    @Override
+    public void afterTextChanged(Editable editable) {
+        if(!pauseMessageText.getText().toString().equals("")){
+            startPauseBtn.setEnabled(true);
+        } else {
+            startPauseBtn.setEnabled(false);
+        }
     }
 }

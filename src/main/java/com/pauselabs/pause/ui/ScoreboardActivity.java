@@ -21,6 +21,8 @@ public class ScoreboardActivity extends PauseFragmentActivity{
     @Override
     public void onBackPressed() {
         // Override back so that a session must be ended properly before going back to create screen
+        super.onBackPressed();
+        finish();
     }
 
 }

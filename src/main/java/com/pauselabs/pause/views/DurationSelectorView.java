@@ -41,11 +41,8 @@ public class DurationSelectorView extends LinearLayout implements SeekBar.OnSeek
 
     public DurationSelectorView(Context context, AttributeSet attrs) {
         super(context, attrs);
-
         mContext = context;
-
         setOrientation(VERTICAL);
-
         inflate(context, R.layout.duration_selector_view, this);
 
         initViews();
@@ -66,6 +63,7 @@ public class DurationSelectorView extends LinearLayout implements SeekBar.OnSeek
         mAddHourBtn = (Button) findViewById(R.id.addHourBtn);
         mIndefiniteTimeBtn = (Button) findViewById(R.id.indefiniteBtn);
 
+        setOnClickListener(this);
         mAddFiveMinutesBtn.setOnClickListener(this);
         mAddFifteenMinutesBtn.setOnClickListener(this);
         mAddHourBtn.setOnClickListener(this);
@@ -129,6 +127,8 @@ public class DurationSelectorView extends LinearLayout implements SeekBar.OnSeek
                 break;
             case R.id.indefiniteBtn:
                 setDurationToIndefinte();
+                break;
+            default:
                 break;
         }
     }
@@ -211,6 +211,10 @@ public class DurationSelectorView extends LinearLayout implements SeekBar.OnSeek
 
     public void dismissDurationSelector() {
         this.setVisibility(View.GONE);
+    }
+
+    public Boolean isDisplayed() {
+        return this.getVisibility() == View.VISIBLE;
     }
 
     public interface OnDurationChangedListener {
