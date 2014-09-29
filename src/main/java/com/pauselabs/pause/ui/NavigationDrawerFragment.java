@@ -1,5 +1,6 @@
 package com.pauselabs.pause.ui;
 
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
@@ -8,10 +9,19 @@ import android.support.v4.app.Fragment;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
-import android.view.*;
-import android.widget.*;
-import butterknife.InjectView;
-import butterknife.Views;
+import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.AdapterView;
+import android.widget.GridView;
+import android.widget.LinearLayout;
+import android.widget.ListView;
+import android.widget.RelativeLayout;
+
 import com.pauselabs.R;
 import com.pauselabs.pause.Injector;
 import com.pauselabs.pause.adapters.SavedMessageAdapter;
@@ -22,6 +32,9 @@ import com.pauselabs.pause.util.UIUtils;
 import com.squareup.otto.Bus;
 
 import javax.inject.Inject;
+
+import butterknife.InjectView;
+import butterknife.Views;
 
 /**
  * Fragment used for managing interactions for and presentation of a navigation drawer.
@@ -58,6 +71,7 @@ public class NavigationDrawerFragment extends Fragment implements AdapterView.On
     private boolean fromSavedInstanceState;
     private boolean userLearnedDrawer;
     private boolean isEditMode = false;
+    private InputMethodManager mInputManager;
 
     @Inject
     protected SharedPreferences prefs;
@@ -88,6 +102,8 @@ public class NavigationDrawerFragment extends Fragment implements AdapterView.On
 
         // Select either the default item (0) or the last selected item.
         selectItem(currentSelectedPosition);
+
+        mInputManager = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
 
 
     }
@@ -186,6 +202,9 @@ public class NavigationDrawerFragment extends Fragment implements AdapterView.On
                 if(savedMessageAdapter.getCount() > 0){
                     initialInstructionsContainer.setVisibility(View.GONE);
                 }
+
+                // dismiss keyboard if it is displayed
+                mInputManager.hideSoftInputFromWindow(mSavedMessageGridView.getWindowToken(), 0);
 
                 getActivity().supportInvalidateOptionsMenu(); // calls onPrepareOptionsMenu()
             }

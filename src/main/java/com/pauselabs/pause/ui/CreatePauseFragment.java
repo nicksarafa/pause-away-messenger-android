@@ -15,11 +15,20 @@ import android.support.v4.app.Fragment;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
-import android.view.*;
+import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.View;
+import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.*;
-import butterknife.InjectView;
-import butterknife.Views;
+import android.widget.EditText;
+import android.widget.FrameLayout;
+import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
+import android.widget.Toast;
+
 import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
 import com.pauselabs.R;
@@ -32,6 +41,9 @@ import com.pauselabs.pause.views.DurationSelectorView;
 import com.squareup.otto.Bus;
 
 import javax.inject.Inject;
+
+import butterknife.InjectView;
+import butterknife.Views;
 
 /**
  * Create Pause Screen Fragment, this is the default view of the app
@@ -440,4 +452,5 @@ public class CreatePauseFragment extends Fragment implements View.OnClickListene
             startPauseBtn.setEnabled(false);
         }
     }
+
 }

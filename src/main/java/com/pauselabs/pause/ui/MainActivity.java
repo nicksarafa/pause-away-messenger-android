@@ -8,7 +8,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
 import android.view.View;
-import butterknife.Views;
+
 import com.pauselabs.R;
 import com.pauselabs.pause.PauseApplication;
 import com.pauselabs.pause.core.Constants;
@@ -19,6 +19,8 @@ import com.squareup.otto.Bus;
 import com.squareup.otto.Subscribe;
 
 import javax.inject.Inject;
+
+import butterknife.Views;
 
 public class MainActivity extends PauseFragmentActivity {
 
