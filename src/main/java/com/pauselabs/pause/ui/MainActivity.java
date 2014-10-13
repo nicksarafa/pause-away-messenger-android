@@ -100,7 +100,8 @@ public class MainActivity extends PauseFragmentActivity {
     private void initScreen() {
         FragmentManager fm = getSupportFragmentManager();
         fragments[SPLASH] = fm.findFragmentById(R.id.splashFragment);
-        fragments[CREATE_PAUSE] = fm.findFragmentById(R.id.createPauseFragment);
+		/* Interaction fragment to show off user interaction feature */
+        fragments[CREATE_PAUSE] = fm.findFragmentById(R.id.interactionFragment);
 //        fragments[SCOREBOARD] = fm.findFragmentById(R.id.scoreboardFragment);
 
         FragmentTransaction transaction = fm.beginTransaction();
@@ -150,7 +151,7 @@ public class MainActivity extends PauseFragmentActivity {
             startActivity(scoreboardIntent);
         }
         else{
-            showFragment(CREATE_PAUSE, false);
+			showFragment(CREATE_PAUSE, false);
         }
     }
 
