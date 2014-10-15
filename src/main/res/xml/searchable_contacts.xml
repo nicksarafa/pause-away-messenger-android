@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- Define a searchable configuration. See the docs for more information:
+     http://developer.android.com/guide/topics/search/searchable-config.html -->
+
+<searchable xmlns:android="http://schemas.android.com/apk/res/android"
+    android:label="@string/app_name"
+    android:inputType="textPersonName"
+    android:hint="@string/search_hint"/>

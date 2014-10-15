@@ -4,4 +4,7 @@
      https://developer.android.com/design/patterns/navigation-drawer.html -->
     <dimen name="navigation_drawer_width">300dp</dimen>
     <dimen name="saved_image_thumb_size">90dp</dimen>
+    <dimen name="default_padding">6dp</dimen>
+    <dimen name="padding">16dp</dimen>
+    <dimen name="listview_item_padding">16dp</dimen>
 </resources>

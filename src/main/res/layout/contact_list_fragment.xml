@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="6dp"
+        android:text="Checked contacts will not receive auto reply messages"
+        android:gravity="center_horizontal"/>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <!-- Use standard android.R class list id instead of app specific id. This is just useful for
+             consistency. -->
+        <ListView android:id="@id/android:list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            style="@style/ContactListView"/>
+
+        <!-- Use standard android.R class empty id instead of app specific id. This is just useful for
+         consistency. -->
+        <TextView android:id="@id/android:empty"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/no_contacts"
+            android:fontFamily="sans-serif-light"
+            android:textAppearance="?android:attr/textAppearanceLarge"/>
+
+    </FrameLayout>
+
+</LinearLayout>
+

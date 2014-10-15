@@ -1,10 +1,12 @@
 package com.pauselabs.pause.ui;
 
 import android.os.Bundle;
-import android.support.v4.app.NavUtils;
-import android.view.MenuItem;
-import butterknife.Views;
+import android.support.v7.app.ActionBar;
+import android.text.Html;
+
 import com.pauselabs.R;
+
+import butterknife.Views;
 
 
 public class SettingsActivity extends PauseFragmentActivity {
@@ -18,19 +20,13 @@ public class SettingsActivity extends PauseFragmentActivity {
         // View injection with Butterknife
         Views.inject(this);
 
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        //getSupportActionBar().setHomeButtonEnabled(true);
+        ActionBar ab = getSupportActionBar();
+        ab.setDisplayHomeAsUpEnabled(true);
+        ab.setDisplayShowHomeEnabled(false);
+        ab.setDisplayShowTitleEnabled(true);
+        ab.setTitle(Html.fromHtml("<font color=\"black\">Settings</font>"));
+        ab.setDisplayUseLogoEnabled(false);
 
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                NavUtils.navigateUpFromSameTask(this);
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
-        }
-    }
 }

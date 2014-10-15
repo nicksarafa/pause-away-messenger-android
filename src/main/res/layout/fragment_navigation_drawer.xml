@@ -45,6 +45,15 @@
                 android:gravity="center"
                 />
 
+        <ImageButton
+            android:id="@+id/settingsBtn"
+            android:layout_width="90dp"
+            android:layout_height="90dp"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:src="@drawable/btn_settings"
+            android:background="@null"/>
+
         <RelativeLayout
                 android:id="@+id/initialInstructionsContainer"
                 android:layout_width="fill_parent"

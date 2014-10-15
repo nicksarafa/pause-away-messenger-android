@@ -40,12 +40,22 @@
         <activity android:name=".pause.ui.SettingsActivity" android:screenOrientation="portrait">
             <meta-data
                     android:name="android.support.PARENT_ACTIVITY"
-                    android:value=".pause.ui.MainActivity" />
+                    android:value="com.pauselabs.pause.ui.MainActivity" />
         </activity>
         <activity android:name=".pause.ui.CameraActivity"
                   android:screenOrientation="portrait"></activity>
         <activity android:name=".pause.ui.PreviewActivity" android:screenOrientation="portrait"></activity>
         <activity android:name=".pause.ui.ScoreboardActivity" android:screenOrientation="portrait"></activity>
+        <activity android:name=".pause.ui.BlacklistActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light">
+            <intent-filter>
+                <action android:name="android.intent.action.SEARCH" />
+            </intent-filter>
+            <meta-data android:name="android.app.searchable"
+                android:resource="@xml/searchable_contacts"
+                android:value=".pause.ui.BlacklistActivity"/>
+        </activity>
         <receiver android:name=".pause.listeners.BatteryLevelReceiver">
             <intent-filter>
                 <action android:name="android.intent.action.ACTION_BATTERY_LOW"/>

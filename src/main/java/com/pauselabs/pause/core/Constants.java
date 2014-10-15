@@ -167,4 +167,14 @@ public class Constants {
 
         public static final String LOW_BATTERY_MESSAGE = "Low battery, start a Pause?";
     }
+
+    public static class Settings {
+        private Settings() {
+        }
+
+        public static final String NAME = "NAME_KEY";
+        public static final String REPLY_MISSED_CALL = "REPLY_MISSED_CALL_KEY";
+        public static final String REPLY_SMS = "REPLY_SMS_KEY";
+        public static final String USING_BLACKLIST = "USING_BLACKLIST";
+    }
 }
