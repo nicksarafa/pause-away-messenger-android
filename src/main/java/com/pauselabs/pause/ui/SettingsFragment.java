@@ -25,6 +25,9 @@ import com.pauselabs.pause.core.Constants;
 import com.pauselabs.pause.core.SavedPauseDataSource;
 import com.pauselabs.pause.views.SettingsButton;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.inject.Inject;
 
 import butterknife.InjectView;
@@ -62,6 +65,7 @@ public class SettingsFragment extends Fragment implements View.OnClickListener{
     protected SharedPreferences prefs;
 
     private SavedPauseDataSource mDatasource;
+    private Set<String> blacklistContacts;
 
 
     @Override
@@ -147,7 +151,14 @@ public class SettingsFragment extends Fragment implements View.OnClickListener{
         nameBtn.setContent(prefs.getString(Constants.Settings.NAME, "None"));
         missedCallsBtn.setContent(prefs.getString(Constants.Settings.REPLY_MISSED_CALL, "Contacts Only"));
         receivedSmsBtn.setContent(prefs.getString(Constants.Settings.REPLY_SMS, "Contacts Only"));
-        blacklistBtn.setContent(prefs.getString(Constants.Settings.USING_BLACKLIST, "Setup Blacklist"));
+        //blacklistBtn.setContent(prefs.getString(Constants.Settings.USING_BLACKLIST, "Setup Blacklist"));
+
+        blacklistContacts = prefs.getStringSet(Constants.Settings.BLACKLIST, new HashSet<String>());
+        if(blacklistContacts.size() > 0) {
+            blacklistBtn.setContent("Blacklist Active");
+        } else {
+            blacklistBtn.setContent("Setup Blacklist");
+        }
 
     }
 

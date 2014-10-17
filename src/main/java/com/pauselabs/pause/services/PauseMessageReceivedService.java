@@ -1,8 +1,15 @@
 package com.pauselabs.pause.services;
 
 import android.app.IntentService;
+import android.content.ContentResolver;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.database.Cursor;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.BaseColumns;
+import android.provider.ContactsContract;
+
 import com.pauselabs.pause.Injector;
 import com.pauselabs.pause.PauseApplication;
 import com.pauselabs.pause.core.Constants;
@@ -12,6 +19,9 @@ import com.pauselabs.pause.models.PauseConversation;
 import com.pauselabs.pause.models.PauseMessage;
 import com.pauselabs.pause.models.PauseSession;
 import com.squareup.otto.Bus;
+
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.inject.Inject;
 
@@ -26,11 +36,17 @@ public class PauseMessageReceivedService extends IntentService {
 
     @Inject
     protected Bus mBus;
+    @Inject
+    protected SharedPreferences mPrefs;
+
+    private Set<String> blacklistContacts;
 
     public PauseMessageReceivedService() {
         super("PauseMessageReceivedService");
 
         Injector.inject(this);
+
+        blacklistContacts = mPrefs.getStringSet(Constants.Settings.BLACKLIST, new HashSet<String>());
     }
 
     @Override
@@ -76,9 +92,10 @@ public class PauseMessageReceivedService extends IntentService {
             // Check if we should send second bounce back AFTER we add the message
             if(currentConversation.getMessagesReceived().size() == Constants.Pause.SECOND_BOUNCE_BACK_TRIGGER && !currentConversation.getSentSecondPause()){
                 // Send second Pause Bounce Back
-                PauseApplication.messageSender.sendSmsMessage(message.getSender(), retrieveSecondaryPause());
-
-                currentConversation.setSentSecondPause(true);
+                if(!isSenderOnBlacklist(message.getSender())) {
+                    PauseApplication.messageSender.sendSmsMessage(message.getSender(), retrieveSecondaryPause());
+                    currentConversation.setSentSecondPause(true);
+                }
             }
 
         }
@@ -92,20 +109,25 @@ public class PauseMessageReceivedService extends IntentService {
             // Determine whether to send MMS or SMS
             if(currentPauseMessage.getPathToOriginal() == null || currentPauseMessage.getPathToOriginal().equals("")){
                 // send SMS Bounce back
-                PauseApplication.messageSender.sendSmsMessage(message.getSender(), retrieveActivePause());
+                if(!isSenderOnBlacklist(message.getSender())) {
+                    PauseApplication.messageSender.sendSmsMessage(message.getSender(), retrieveActivePause());
+                    currentPauseSession.incrementResponseCount();
+                }
 
-                currentPauseSession.incrementResponseCount();
             }
             else{
                 // Send MMS Bounce Back
-                PauseApplication.messageSender.sendMmsMessage(message.getSender(), retrieveActivePause());
-                currentPauseSession.incrementResponseCount();
-                // Since KitKat won't allow us to write this MMS to the content provider we'll send the
-                // secondary pause message at the same time, this will be written to the content provider because its
-                // using the SmsManager and this way the conversation makes sense in the users chat history
-                // http://android-developers.blogspot.fr/2013/10/getting-your-sms-apps-ready-for-kitkat.html
-                PauseApplication.messageSender.sendSmsMessage(message.getSender(), retrieveSecondaryPause());
-                currentConversation.setSentSecondPause(true);
+                if(!isSenderOnBlacklist(message.getSender())) {
+                    PauseApplication.messageSender.sendMmsMessage(message.getSender(), retrieveActivePause());
+                    currentPauseSession.incrementResponseCount();
+                    // Since KitKat won't allow us to write this MMS to the content provider we'll send the
+                    // secondary pause message at the same time, this will be written to the content provider because its
+                    // using the SmsManager and this way the conversation makes sense in the users chat history
+                    // http://android-developers.blogspot.fr/2013/10/getting-your-sms-apps-ready-for-kitkat.html
+                    PauseApplication.messageSender.sendSmsMessage(message.getSender(), retrieveSecondaryPause());
+                    currentConversation.setSentSecondPause(true);
+                }
+
             }
 
 
@@ -121,5 +143,31 @@ public class PauseMessageReceivedService extends IntentService {
         // alert UI that Pause Conversation has been updated
         mBus.post(new PauseMessageReceivedEvent());
 
+    }
+
+    private Boolean isSenderOnBlacklist(String sender) {
+        Boolean isBlacklisted = false;
+
+        Uri uri = Uri.withAppendedPath(ContactsContract.PhoneLookup.CONTENT_FILTER_URI, Uri.encode(sender));
+
+        ContentResolver contentResolver = getContentResolver();
+        Cursor contactLookup = contentResolver.query(uri, new String[] {BaseColumns._ID}, null, null, null);
+
+        try {
+            if (contactLookup != null && contactLookup.getCount() > 0) {
+                contactLookup.moveToNext();
+
+                String contactId = contactLookup.getString(contactLookup.getColumnIndex(BaseColumns._ID));
+                if(blacklistContacts.contains(contactId)) {
+                    isBlacklisted = true;
+                }
+            }
+        } finally {
+            if (contactLookup != null) {
+                contactLookup.close();
+            }
+        }
+
+        return isBlacklisted;
     }
 }

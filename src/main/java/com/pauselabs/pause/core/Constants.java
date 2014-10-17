@@ -176,5 +176,6 @@ public class Constants {
         public static final String REPLY_MISSED_CALL = "REPLY_MISSED_CALL_KEY";
         public static final String REPLY_SMS = "REPLY_SMS_KEY";
         public static final String USING_BLACKLIST = "USING_BLACKLIST";
+        public static final String BLACKLIST = "BLACKLIST";
     }
 }

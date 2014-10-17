@@ -13,14 +13,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AlphabetIndexer;
 import android.widget.CheckBox;
-import android.widget.CompoundButton;
 import android.widget.SectionIndexer;
 import android.widget.TextView;
 
 import com.pauselabs.R;
+import com.pauselabs.pause.core.Constants;
 import com.pauselabs.pause.core.ContactsQuery;
 
+import java.util.HashSet;
 import java.util.Locale;
+import java.util.Set;
 
 /**
  * This is a subclass of CursorAdapter that supports binding Cursor columns to a view layout.
@@ -28,13 +30,14 @@ import java.util.Locale;
  * query text. An {@link AlphabetIndexer} is used to allow quicker navigation up and down the
  * ListView.
  */
-public class ContactsAdapter extends CursorAdapter implements SectionIndexer, CompoundButton.OnCheckedChangeListener {
+public class ContactsAdapter extends CursorAdapter implements SectionIndexer {
 
     private LayoutInflater mInflater; // Stores the layout inflater
     private AlphabetIndexer mAlphabetIndexer; // Stores the AlphabetIndexer instance
     private TextAppearanceSpan highlightTextSpan; // Stores the highlight text appearance style
     private String mSearchTerm;
     protected SharedPreferences prefs;
+    private Set<String> blacklistContacts;
 
     /**
      * Instantiates a new Contacts Adapter.
@@ -62,6 +65,9 @@ public class ContactsAdapter extends CursorAdapter implements SectionIndexer, Co
         // Defines a span for highlighting the part of a display name that matches the search
         // string
         highlightTextSpan = new TextAppearanceSpan(context, R.style.searchTextHiglight);
+
+        blacklistContacts = prefs.getStringSet(Constants.Settings.BLACKLIST, new HashSet<String>());
+
     }
 
     /**
@@ -97,7 +103,20 @@ public class ContactsAdapter extends CursorAdapter implements SectionIndexer, Co
         final ViewHolder holder = new ViewHolder();
         holder.text1 = (TextView) itemLayout.findViewById(android.R.id.text1);
         holder.checkbox = (CheckBox) itemLayout.findViewById(R.id.checkbox);
-        holder.checkbox.setOnCheckedChangeListener(this);
+        holder.checkbox.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                CheckBox checkbox = (CheckBox) v;
+                String contactId = String.valueOf(v.getTag());
+
+                if(checkbox.isChecked()) {
+                    blacklistContacts.add(contactId);
+                } else {
+                    blacklistContacts.remove(contactId);
+                }
+                prefs.edit().putStringSet(Constants.Settings.BLACKLIST, blacklistContacts).apply();
+            }
+        });
 
         // Stores the resourceHolder instance in itemLayout. This makes resourceHolder
         // available to bindView and other methods that receive a handle to the item view.
@@ -143,8 +162,15 @@ public class ContactsAdapter extends CursorAdapter implements SectionIndexer, Co
             // Binds the SpannableString to the display name View object
             //holder.text1.setText(highlightedName);
             holder.checkbox.setText(highlightedName);
-
         }
+
+        if(blacklistContacts.contains(String.valueOf(contactId))){
+            holder.checkbox.setChecked(true);
+        } else {
+            holder.checkbox.setChecked(false);
+        }
+
+        holder.checkbox.setTag(contactId);
 
     }
 
@@ -205,10 +231,6 @@ public class ContactsAdapter extends CursorAdapter implements SectionIndexer, Co
         this.mSearchTerm = searchTerm;
     }
 
-    @Override
-    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-
-    }
 
     /**
      * A class that defines fields for each resource ID in the list item layout. This allows
