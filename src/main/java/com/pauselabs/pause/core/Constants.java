@@ -178,4 +178,12 @@ public class Constants {
         public static final String USING_BLACKLIST = "USING_BLACKLIST";
         public static final String BLACKLIST = "BLACKLIST";
     }
+
+    public static class Privacy {
+        private Privacy() {}
+
+        public static final String CONTACTS_ONLY = "Contacts Only";
+        public static final String EVERYBODY = "Everybody";
+        public static final String NOBODY = "Nobody";
+    }
 }

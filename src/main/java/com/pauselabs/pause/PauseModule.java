@@ -1,6 +1,7 @@
 package com.pauselabs.pause;
 
 import com.pauselabs.pause.core.PostFromAnyThreadBus;
+import com.pauselabs.pause.models.PauseSession;
 import com.pauselabs.pause.services.PauseMessageReceivedService;
 import com.pauselabs.pause.services.PauseSessionService;
 import com.pauselabs.pause.ui.BlacklistActivity;
@@ -52,7 +53,8 @@ import dagger.Provides;
                 PreviewFragment.class,
                 ScoreboardActivity.class,
                 BlacklistActivity.class,
-                BlacklistFragment.class
+                BlacklistFragment.class,
+                PauseSession.class
         }
 )
 public class PauseModule {

@@ -149,8 +149,8 @@ public class SettingsFragment extends Fragment implements View.OnClickListener{
 
     private void init() {
         nameBtn.setContent(prefs.getString(Constants.Settings.NAME, "None"));
-        missedCallsBtn.setContent(prefs.getString(Constants.Settings.REPLY_MISSED_CALL, "Contacts Only"));
-        receivedSmsBtn.setContent(prefs.getString(Constants.Settings.REPLY_SMS, "Contacts Only"));
+        missedCallsBtn.setContent(prefs.getString(Constants.Settings.REPLY_MISSED_CALL, Constants.Privacy.CONTACTS_ONLY));
+        receivedSmsBtn.setContent(prefs.getString(Constants.Settings.REPLY_SMS, Constants.Privacy.CONTACTS_ONLY));
         //blacklistBtn.setContent(prefs.getString(Constants.Settings.USING_BLACKLIST, "Setup Blacklist"));
 
         blacklistContacts = prefs.getStringSet(Constants.Settings.BLACKLIST, new HashSet<String>());

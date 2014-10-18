@@ -20,9 +20,6 @@ import com.pauselabs.pause.models.PauseMessage;
 import com.pauselabs.pause.models.PauseSession;
 import com.squareup.otto.Bus;
 
-import java.util.HashSet;
-import java.util.Set;
-
 import javax.inject.Inject;
 
 /**
@@ -39,14 +36,13 @@ public class PauseMessageReceivedService extends IntentService {
     @Inject
     protected SharedPreferences mPrefs;
 
-    private Set<String> blacklistContacts;
+    private PauseSession mCurrentPauseSession;
+    private PauseConversation mCurrentConversation;
+    private String mContactId;
 
     public PauseMessageReceivedService() {
         super("PauseMessageReceivedService");
-
         Injector.inject(this);
-
-        blacklistContacts = mPrefs.getStringSet(Constants.Settings.BLACKLIST, new HashSet<String>());
     }
 
     @Override
@@ -54,10 +50,105 @@ public class PauseMessageReceivedService extends IntentService {
         Bundle extras = intent.getExtras();
         if(extras != null) {
             PauseMessage messageReceived = intent.getParcelableExtra(Constants.Message.MESSAGE_PARCEL);
-
             updatePauseSession(messageReceived);
-
         }
+    }
+
+    /**
+     * Since PauseMessageReceivedService is only initiated from a PauseSessionService,
+     * we can assume that our Pause Application will always have a non-null Session at this point.
+     * This function will be used to update the active session by updating or creating a new
+     * Conversation based on the message received.
+     * The creating or modifying of conversations should happen here, not in Session!
+     * @param message
+     */
+    private void updatePauseSession(PauseMessage message) {
+        mCurrentPauseSession = PauseApplication.getCurrentSession();
+
+        // Attempt to retrieve existing conversation
+        mCurrentConversation = mCurrentPauseSession.getConversationBySender(message.getSender());
+        mContactId = lookupSender(message.getSender());
+
+        if(mCurrentConversation != null) {
+            updateExistingConversation(message);
+        }
+        else{
+            createNewConversation(message);
+        }
+
+        // Update Session conversations with updated conversation
+        mCurrentPauseSession.updateConversation(mCurrentConversation);
+
+        // alert UI that Pause Conversation has been updated
+        mBus.post(new PauseMessageReceivedEvent());
+
+    }
+
+
+    private void updateExistingConversation(PauseMessage message) {
+        mCurrentConversation.addMessage(message);
+
+        if(mCurrentPauseSession.shouldSenderReceivedBounceback(mContactId)) {
+            if(mCurrentConversation.getMessagesReceived().size() == Constants.Pause.SECOND_BOUNCE_BACK_TRIGGER && !mCurrentConversation.getSentSecondPause()){
+                // Attempt to send second Pause Bounce Back
+
+                PauseApplication.messageSender.sendSmsMessage(message.getSender(), retrieveSecondaryPause());
+                mCurrentConversation.setSentSecondPause(true);
+            }
+        }
+    }
+
+    private void createNewConversation(PauseMessage message) {
+        mCurrentConversation = new PauseConversation(message.getSender());
+        mCurrentConversation.addMessage(message);
+
+        if(mCurrentPauseSession.shouldSenderReceivedBounceback(mContactId)) {
+            PauseBounceBackMessage currentBouncebackMessage = retrieveActivePause();
+
+            // Determine whether to send SMS or MMS based on currentBouncebackMessage
+            if(currentBouncebackMessage.getPathToOriginal() == null || currentBouncebackMessage.getPathToOriginal().equals("")){
+                PauseApplication.messageSender.sendSmsMessage(message.getSender(), retrieveActivePause());
+                mCurrentPauseSession.incrementResponseCount();
+            } else {
+                PauseApplication.messageSender.sendMmsMessage(message.getSender(), retrieveActivePause());
+                mCurrentPauseSession.incrementResponseCount();
+
+                /**
+                 * Since KitKat won't allow us to write this MMS to the content provider we'll send the
+                 * secondary pause message at the same time, this will be written to the content provider because its
+                 * using the SmsManager and this way the conversation makes sense in the users chat history
+                 * http://android-developers.blogspot.fr/2013/10/getting-your-sms-apps-ready-for-kitkat.html
+                 */
+                PauseApplication.messageSender.sendSmsMessage(message.getSender(), retrieveSecondaryPause());
+                mCurrentConversation.setSentSecondPause(true);
+            }
+
+            mCurrentConversation.setSentPause(true);
+        }
+    }
+
+    private String lookupSender(String sender) {
+        String contactId = "";
+        Uri uri = Uri.withAppendedPath(ContactsContract.PhoneLookup.CONTENT_FILTER_URI, Uri.encode(sender));
+
+        ContentResolver contentResolver = getContentResolver();
+        Cursor contactLookup = contentResolver.query(uri, new String[] {BaseColumns._ID}, null, null, null);
+
+        try {
+            if (contactLookup != null && contactLookup.getCount() > 0) {
+                contactLookup.moveToNext();
+
+                contactId = contactLookup.getString(contactLookup.getColumnIndex(BaseColumns._ID));
+
+            }
+        } finally {
+            if (contactLookup != null) {
+                contactLookup.close();
+            }
+        }
+
+        return contactId;
+
     }
 
     private PauseBounceBackMessage retrieveActivePause() {
@@ -70,104 +161,4 @@ public class PauseMessageReceivedService extends IntentService {
         return secondaryPause;
     }
 
-    /**
-     * Since PauseMessageReceivedService is only initiated from a PauseSessionService,
-     * we can assume that our Pause Application will always have a non-null Session at this point.
-     * This function will be used to update the active session by updating or creating a new
-     * Conversation based on the message received.
-     * @param message
-     */
-    private void updatePauseSession(PauseMessage message) {
-
-        // This class will handle all manipulation of conversations in conversation.
-        // The creating or modifying of conversations should happen here, not in Session!
-
-        PauseSession currentPauseSession = PauseApplication.getCurrentSession();
-        // Attempt to retrieve existing conversation
-        PauseConversation currentConversation = currentPauseSession.getConversationBySender(message.getSender());
-        if(currentConversation != null) {
-            // Update conversation
-            currentConversation.addMessage(message);
-
-            // Check if we should send second bounce back AFTER we add the message
-            if(currentConversation.getMessagesReceived().size() == Constants.Pause.SECOND_BOUNCE_BACK_TRIGGER && !currentConversation.getSentSecondPause()){
-                // Send second Pause Bounce Back
-                if(!isSenderOnBlacklist(message.getSender())) {
-                    PauseApplication.messageSender.sendSmsMessage(message.getSender(), retrieveSecondaryPause());
-                    currentConversation.setSentSecondPause(true);
-                }
-            }
-
-        }
-        else{
-            // Create new conversation
-            currentConversation = new PauseConversation(message.getSender());
-            currentConversation.addMessage(message);
-
-            PauseBounceBackMessage currentPauseMessage = retrieveActivePause();
-
-            // Determine whether to send MMS or SMS
-            if(currentPauseMessage.getPathToOriginal() == null || currentPauseMessage.getPathToOriginal().equals("")){
-                // send SMS Bounce back
-                if(!isSenderOnBlacklist(message.getSender())) {
-                    PauseApplication.messageSender.sendSmsMessage(message.getSender(), retrieveActivePause());
-                    currentPauseSession.incrementResponseCount();
-                }
-
-            }
-            else{
-                // Send MMS Bounce Back
-                if(!isSenderOnBlacklist(message.getSender())) {
-                    PauseApplication.messageSender.sendMmsMessage(message.getSender(), retrieveActivePause());
-                    currentPauseSession.incrementResponseCount();
-                    // Since KitKat won't allow us to write this MMS to the content provider we'll send the
-                    // secondary pause message at the same time, this will be written to the content provider because its
-                    // using the SmsManager and this way the conversation makes sense in the users chat history
-                    // http://android-developers.blogspot.fr/2013/10/getting-your-sms-apps-ready-for-kitkat.html
-                    PauseApplication.messageSender.sendSmsMessage(message.getSender(), retrieveSecondaryPause());
-                    currentConversation.setSentSecondPause(true);
-                }
-
-            }
-
-
-            // Update conversation
-            currentConversation.setSentPause(true);
-        }
-
-        // Update Session conversations with updated conversation
-        currentPauseSession.updateConversation(currentConversation);
-
-        // Save updated Pause Session data to DB
-
-        // alert UI that Pause Conversation has been updated
-        mBus.post(new PauseMessageReceivedEvent());
-
-    }
-
-    private Boolean isSenderOnBlacklist(String sender) {
-        Boolean isBlacklisted = false;
-
-        Uri uri = Uri.withAppendedPath(ContactsContract.PhoneLookup.CONTENT_FILTER_URI, Uri.encode(sender));
-
-        ContentResolver contentResolver = getContentResolver();
-        Cursor contactLookup = contentResolver.query(uri, new String[] {BaseColumns._ID}, null, null, null);
-
-        try {
-            if (contactLookup != null && contactLookup.getCount() > 0) {
-                contactLookup.moveToNext();
-
-                String contactId = contactLookup.getString(contactLookup.getColumnIndex(BaseColumns._ID));
-                if(blacklistContacts.contains(contactId)) {
-                    isBlacklisted = true;
-                }
-            }
-        } finally {
-            if (contactLookup != null) {
-                contactLookup.close();
-            }
-        }
-
-        return isBlacklisted;
-    }
 }

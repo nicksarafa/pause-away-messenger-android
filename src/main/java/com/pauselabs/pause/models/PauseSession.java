@@ -2,6 +2,8 @@ package com.pauselabs.pause.models;
 
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
+
+import com.pauselabs.pause.Injector;
 import com.pauselabs.pause.PauseApplication;
 import com.pauselabs.pause.core.Constants;
 import com.pauselabs.pause.core.SavedPauseDataSource;
@@ -9,15 +11,25 @@ import com.pauselabs.pause.core.SavedPauseDataSource;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
+
+import javax.inject.Inject;
 
 /**
  * Each time a new Pause state is initiated we will generate a pause session.
  * This session will keep track of the conversations taking place, messages received, bounce backs sent, and any information related
- * to the Pause scoreboard, and duration of the Pause session
+ * to the Pause scoreboard, and duration of the Pause session.
+ *
+ * IMPORTANT: All autoresponse settings and blacklist are retrieved at session creation and new
+ * changes will not take effect until a new session is started!
  */
 public class PauseSession implements Serializable {
 
     private static final long serialVersionUID = 1L;
+
+    @Inject
+    protected SharedPreferences mPrefs;
 
     private Long createdOn;
     private Boolean isActive;
@@ -26,41 +38,27 @@ public class PauseSession implements Serializable {
 
     private ArrayList<PauseConversation> conversations;
 
+    private Set<String> mBlacklistContacts;
+    private String smsPrivacySetting;
+    private String callPrivacySetting;
+
     public PauseSession() {
+        Injector.inject(this);
+
         Date date = new Date();
         createdOn = date.getTime();
         conversations = new ArrayList<PauseConversation>();
         mDatasource = new SavedPauseDataSource(PauseApplication.getInstance().getApplicationContext());
         isActive = Boolean.TRUE;
         responseCount = 0;
+
+        mBlacklistContacts = retrieveBlacklistContacts();
+        smsPrivacySetting = mPrefs.getString(Constants.Settings.REPLY_SMS, Constants.Privacy.CONTACTS_ONLY);
+        callPrivacySetting = mPrefs.getString(Constants.Settings.REPLY_MISSED_CALL, Constants.Privacy.CONTACTS_ONLY);
     }
-
-
-
-    public Long getCreatedOn() {
-        return createdOn;
-    }
-
-    public void setCreatedOn(Long createdOn) {
-        this.createdOn = createdOn;
-    }
-
 
     public ArrayList<PauseConversation> getConversations() {
         return conversations;
-    }
-
-    public void setConversations(ArrayList<PauseConversation> conversations) {
-        this.conversations = conversations;
-    }
-
-    public void addNewConversation(PauseConversation conversation) {
-        conversations.add(conversation);
-    }
-
-    public void addNewConversation(PauseMessage message) {
-        PauseConversation conversation = new PauseConversation(message.getSender());
-
     }
 
     public void incrementResponseCount() {
@@ -139,6 +137,40 @@ public class PauseSession implements Serializable {
 
         return mActivePause;
     }
+
+    /**
+     * This function will perform a check against the current user settings & blacklist to determine
+     * whether a sender should receive a bounceback message
+     * @param contactId
+     * @return true if sender is safe to respond to
+     */
+    public Boolean shouldSenderReceivedBounceback(String contactId) {
+        Boolean shouldSendBounceback = true;
+
+        if(mBlacklistContacts.contains(contactId)) {
+            shouldSendBounceback = false;
+        } else {
+            shouldSendBounceback = privacyCheckPassed(contactId);
+        }
+
+        return shouldSendBounceback;
+    }
+
+    private Set<String> retrieveBlacklistContacts() {
+        return mPrefs.getStringSet(Constants.Settings.BLACKLIST, new HashSet<String>());
+    }
+
+    private Boolean privacyCheckPassed(String contactId) {
+        if(smsPrivacySetting.equals(Constants.Privacy.CONTACTS_ONLY)) {
+            return !contactId.isEmpty();
+        } else if(smsPrivacySetting.equals(Constants.Privacy.EVERYBODY)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+
 
 
 }
