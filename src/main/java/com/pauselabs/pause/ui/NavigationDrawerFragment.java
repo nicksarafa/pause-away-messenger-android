@@ -1,7 +1,6 @@
 package com.pauselabs.pause.ui;
 
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
@@ -19,7 +18,6 @@ import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.GridView;
-import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
@@ -81,9 +79,6 @@ public class NavigationDrawerFragment extends Fragment implements AdapterView.On
 
     @InjectView(R.id.initialInstructionsContainer)
     public RelativeLayout initialInstructionsContainer;
-    @InjectView(R.id.settingsBtn)
-    public ImageButton settingsBtn;
-
 
     public NavigationDrawerFragment() {
     }
@@ -136,18 +131,6 @@ public class NavigationDrawerFragment extends Fragment implements AdapterView.On
         }
         mSavedMessageGridView.setAdapter(savedMessageAdapter);
         mSavedMessageGridView.setOnItemClickListener(this);
-        settingsBtn.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                Intent settingsIntent = new Intent(getActivity(), SettingsActivity.class);
-                startActivity(settingsIntent);
-            }
-        });
-
-//        Button editButton = new Button(getActivity());
-//        editButton.setText("Edit");
-//        mSavedMessageGridView.addView(editButton);
 
         return mDrawerLayoutView;
     }

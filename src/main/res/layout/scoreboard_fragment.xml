@@ -26,7 +26,7 @@
             <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/ic_duration_icon"
+                    android:src="@drawable/ic_timer_selector_alt"
                     android:layout_weight="1" />
 
             <com.pauselabs.pause.views.AutoUpdatingTimerView
@@ -97,26 +97,32 @@
                 android:orientation="horizontal">
 
             <Button
-                    android:id="@+id/stopPauseSessionBtn"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:background="@color/pause_green"
-                    android:text="@string/stop_pause_btn"/>
+                android:id="@+id/stopPauseSessionBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:layout_weight="1"
+                android:layout_marginRight="8dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginBottom="16dp"
+                android:radius="10dp"
+                android:background="#BF3D46"
+                android:textColor="#FFFFFF"
+                android:text="@string/stop_pause_btn"/>
 
-            <View
-                    android:layout_width="2dp"
-                    android:layout_height="fill_parent"
-                    android:layout_below="@+id/timerContainer"
-                    android:background="@android:color/white" />
 
             <Button
-                    android:id="@+id/editPauseSessionBtn"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:background="@color/pause_green"
-                    android:text="@string/edit_pause_btn"/>
+                android:id="@+id/editPauseSessionBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:layout_weight="1"
+                android:layout_marginRight="16dp"
+                android:layout_marginBottom="16dp"
+                android:radius="10dp"
+                android:background="#3cbeb5"
+                android:textColor="#FFFFFF"
+                android:text="@string/edit_pause_btn"/>
 
 
         </LinearLayout>

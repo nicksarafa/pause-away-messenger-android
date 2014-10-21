@@ -52,12 +52,12 @@ public class SettingsFragment extends Fragment implements View.OnClickListener{
     SettingsButton rateBtn;
     @InjectView(R.id.contactBtn)
     SettingsButton contactBtn;
-    @InjectView(R.id.supportBtn)
-    SettingsButton supportBtn;
-    @InjectView(R.id.privacyBtn)
-    SettingsButton privacyBtn;
-    @InjectView(R.id.termsBtn)
-    SettingsButton termsBtn;
+//    @InjectView(R.id.supportBtn)
+//    SettingsButton supportBtn;
+//    @InjectView(R.id.privacyBtn)
+//    SettingsButton privacyBtn;
+//    @InjectView(R.id.termsBtn)
+//    SettingsButton termsBtn;
     @InjectView(R.id.versionFooter)
     TextView versionFooter;
 

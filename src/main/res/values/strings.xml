@@ -25,8 +25,8 @@
     <string name="durationSelectorMinutesLabel">&#160;MINUTES</string>
     <string name="durationSelectorHourLabel">&#160;HOURS</string>
 
-    <string name="messageRequired">Add a message before you start a Pause session</string>
-    <string name="durationMessageRequired">Create an away message before setting a duration</string>
+    <string name="messageRequired">Please customize your message ^above^ first!</string>
+    <string name="durationMessageRequired">Please customize your message ^above^ before setting an end time!</string>
     <string name="cameraMessageRequired">Create an away message before adding a photo to your pause message</string>
 
     <string name="title_pause">Pause</string>
@@ -36,7 +36,7 @@
 
     <!-- Saved Pause messages -->
     <string name="saved_title">Past</string>
-    <string name="saved_instructions">All your past pauses will be safely stored here in your private save drawer.  Close drawer to create your first pause! \n Enjoy!</string>
+    <string name="saved_instructions">Past pauses will be stored here, in your save drawer. Close the drawer to create your first pause!</string>
     <string name="saved_edit_btn">Edit</string>
 
     <!-- Pause Scoreboard screen -->
@@ -74,16 +74,16 @@
     <string name="about_section_label">ABOUT</string>
 
     <string name="name_settings_label">Name</string>
-    <string name="reply_to_calls_settings_label">Reply to missed calls</string>
-    <string name="reply_to_SMS_settings_label">Reply to received SMS messages</string>
-    <string name="blacklist_label">Blacklist</string>
-    <string name="rate_us_settings_label">Rate Üs on Google Play</string>
+    <string name="reply_to_calls_settings_label">Reply to incoming calls from…</string>
+    <string name="reply_to_SMS_settings_label">Reply to incoming SMS text messages from…</string>
+    <string name="blacklist_label">Do not respond to…</string>
+    <string name="rate_us_settings_label">Rate Üs on Google Play (Please? Ü)</string>
     <string name="contact_us_label">Contact Us</string>
     <string name="support_label">Support</string>
     <string name="privacy_policy_label">Privacy Policy</string>
-    <string name="terms_label">Terms of use</string>
+    <string name="terms_label">Terms of Use</string>
 
-    <string name="blacklist_description">Checked contacts will not receive auto reply messages</string>
+    <string name="blacklist_description">Pause will not respond to selected contacts</string>
 
     <!-- Used for the AlphabetIndexer in ContactsListFragment to provide quick navigation by
          alphabet using ListView fast scroll. -->

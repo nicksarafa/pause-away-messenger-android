@@ -119,7 +119,7 @@
                         android:layout_gravity="center_vertical"
                         android:background="@null"
                         android:layout_weight="1"
-                        android:visibility="invisible"/>
+                        android:visibility="gone"/>
 
                 <ImageButton
                         android:id="@+id/gallerySelectorBtn"
@@ -129,7 +129,7 @@
                         android:layout_gravity="center_vertical"
                         android:background="@null"
                         android:layout_weight="1"
-                        android:visibility="invisible"/>
+                        android:visibility="gone"/>
 
                 <ImageButton
                         android:id="@+id/startPauseBtn"

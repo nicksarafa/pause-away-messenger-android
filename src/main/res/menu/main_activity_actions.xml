@@ -8,9 +8,9 @@
           <!--android:title="@string/pause_action"-->
           <!--pauselabs:showAsAction="ifRoom" />-->
 
-    <item
-            android:id="@+id/settingsMenuItem"
-            android:title="@string/settings_menu_title" >
-    </item>
+    <item android:id="@+id/action_settings"
+        android:icon="@drawable/ic_action_settings_gear"
+        android:title="@string/settings_menu_title"
+        pauselabs:showAsAction="ifRoom" />
 
 </menu>
