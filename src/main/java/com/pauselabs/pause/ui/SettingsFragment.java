@@ -96,8 +96,6 @@ public class SettingsFragment extends Fragment implements View.OnClickListener{
             e.printStackTrace();
         }
 
-
-
         return view;
     }
 
@@ -246,6 +244,9 @@ public class SettingsFragment extends Fragment implements View.OnClickListener{
         startActivity(Intent.createChooser(emailIntent, "Contact Üs"));
     }
 
+    /**
+     * Clear all saved pause messages
+     */
     private void clearSaved() {
         // make sure session is not currently running
         if(PauseApplication.getCurrentSession() != null && PauseApplication.getCurrentSession().isActive()){

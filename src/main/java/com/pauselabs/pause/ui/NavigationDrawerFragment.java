@@ -108,8 +108,6 @@ public class NavigationDrawerFragment extends Fragment implements AdapterView.On
         selectItem(currentSelectedPosition);
 
         mInputManager = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
-
-
     }
 
     @Override
@@ -154,6 +152,14 @@ public class NavigationDrawerFragment extends Fragment implements AdapterView.On
         return mDrawerLayoutView;
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        if(isDrawerOpen()) {
+            mInputManager.hideSoftInputFromWindow(mSavedMessageGridView.getWindowToken(), 0);
+        }
+    }
+
     public boolean isDrawerOpen() {
         return drawerLayout != null && drawerLayout.isDrawerOpen(fragmentContainerView);
     }
@@ -164,7 +170,7 @@ public class NavigationDrawerFragment extends Fragment implements AdapterView.On
      * @param fragmentId   The android:id of this fragment in its activity's layout.
      * @param drawerLayout The DrawerLayout containing this fragment's UI.
      */
-    public void setUp(int fragmentId, DrawerLayout drawerLayout) {
+    public void setUp(int fragmentId, final DrawerLayout drawerLayout) {
         fragmentContainerView = getActivity().findViewById(fragmentId);
         this.drawerLayout = drawerLayout;
 

@@ -31,30 +31,40 @@
         <service android:name=".pause.services.PauseMessageReceivedService"></service>
         <service android:name=".pause.services.PauseMmsTransportService"></service>
 
-        <activity android:name=".pause.ui.MainActivity" android:screenOrientation="portrait" android:windowSoftInputMode="adjustResize|stateAlwaysVisible">
+        <activity android:name=".pause.ui.MainActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".pause.ui.SettingsActivity" android:screenOrientation="portrait">
-            <meta-data
-                    android:name="android.support.PARENT_ACTIVITY"
-                    android:value="com.pauselabs.pause.ui.MainActivity" />
-        </activity>
         <activity android:name=".pause.ui.CameraActivity"
                   android:screenOrientation="portrait"></activity>
         <activity android:name=".pause.ui.PreviewActivity" android:screenOrientation="portrait"></activity>
         <activity android:name=".pause.ui.ScoreboardActivity" android:screenOrientation="portrait"></activity>
+        <activity android:name=".pause.ui.SettingsActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light"
+            android:parentActivityName=".pause.ui.MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.pauselabs.pause.ui.MainActivity" />
+        </activity>
         <activity android:name=".pause.ui.BlacklistActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat.Light">
+            android:theme="@style/Theme.AppCompat.Light"
+            android:parentActivityName=".pause.ui.SettingsActivity">
             <intent-filter>
                 <action android:name="android.intent.action.SEARCH" />
             </intent-filter>
-            <meta-data android:name="android.app.searchable"
+            <meta-data
+                android:name="android.app.searchable"
                 android:resource="@xml/searchable_contacts"
                 android:value=".pause.ui.BlacklistActivity"/>
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".pause.ui.SettingsActivity" />
         </activity>
         <receiver android:name=".pause.listeners.BatteryLevelReceiver">
             <intent-filter>

@@ -8,9 +8,12 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.*;
-import butterknife.InjectView;
-import butterknife.Views;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.ListView;
+import android.widget.TextView;
+
 import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
 import com.pauselabs.R;
@@ -27,6 +30,9 @@ import com.squareup.otto.Bus;
 import com.squareup.otto.Subscribe;
 
 import javax.inject.Inject;
+
+import butterknife.InjectView;
+import butterknife.Views;
 
 /**
  * This fragment is responsible for displaying the Pause Scoreboard during a Pause Session.
@@ -61,7 +67,7 @@ public class ScoreboardFragment extends Fragment implements View.OnClickListener
     private PauseBounceBackMessage mActivePauseBounceBack;
     private PauseSession mActiveSession;
     private Tracker mAnalyticsTracker;
-
+    private Boolean attemptedToLoadScoreboard = false;
 
     @Override
     public View onCreateView(final LayoutInflater inflater, final ViewGroup container,
@@ -118,6 +124,7 @@ public class ScoreboardFragment extends Fragment implements View.OnClickListener
         mTimerView.startTimer();
 
         updateScoreboardUI();
+        attemptedToLoadScoreboard = true;
     }
 
     public void updateScoreboardUI(){
@@ -129,11 +136,11 @@ public class ScoreboardFragment extends Fragment implements View.OnClickListener
 
             String responseMessagesSent = getString(R.string.response_count);
             mScoreboardResponseCount.setText(mActiveSession.getResponseCount() + " " + responseMessagesSent);
-
-            //mConversationAdapter.notifyDataSetChanged();
         }
         else{
-            initScoreboardUI();
+            if(!attemptedToLoadScoreboard) {
+                initScoreboardUI();
+            }
         }
     }
 
@@ -154,10 +161,8 @@ public class ScoreboardFragment extends Fragment implements View.OnClickListener
         super.onPause();
         mBus.unregister(this);
         datasource.close();
-        //handler.removeCallbacks(runnable);
         mTimerView.stopTimer();
     }
-
 
     @Override
     public void onAttach(final Activity activity) {
@@ -169,7 +174,6 @@ public class ScoreboardFragment extends Fragment implements View.OnClickListener
     public void onClick(View v) {
         switch(v.getId()){
             case R.id.stopPauseSessionBtn:
-                //mBus.post(new PauseSessionChangedEvent(Constants.Pause.PAUSE_SESSION_STATE_STOPPED));
                 stopPauseSession();
 
                 Intent createPauseIntent = new Intent(getActivity(), MainActivity.class);
@@ -190,6 +194,5 @@ public class ScoreboardFragment extends Fragment implements View.OnClickListener
         mConversationAdapter.updateAdapter(mActiveSession.getConversations());
         updateScoreboardUI();
     }
-
 
 }

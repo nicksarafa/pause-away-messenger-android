@@ -32,8 +32,6 @@
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content">
 
-
-
                 <EditText
                         android:id="@+id/pauseMessageText"
                         android:layout_width="fill_parent"
@@ -56,22 +54,15 @@
                     android:id="@+id/durationContainer"
                     android:visibility="gone">
 
-                <ImageView
-                        android:id="@+id/durationIcon"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/ic_timer"/>
-
                 <TextView
                         android:id="@+id/pauseDurationText"
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/pauseMessageDurationIndefinite"
-                        android:layout_toRightOf="@id/durationIcon"
-                        android:textColor="#555"
+                        android:textColor="#999"
                         android:layout_centerVertical="true"
                         android:layout_marginLeft="2dp"
-                        android:textSize="24dp"/>
+                        android:textSize="16dp"/>
 
             </RelativeLayout>
 
@@ -127,7 +118,8 @@
                         android:src="@drawable/ic_camera_selector"
                         android:layout_gravity="center_vertical"
                         android:background="@null"
-                        android:layout_weight="1"/>
+                        android:layout_weight="1"
+                        android:visibility="invisible"/>
 
                 <ImageButton
                         android:id="@+id/gallerySelectorBtn"
@@ -136,7 +128,8 @@
                         android:src="@drawable/ic_gallery_selector"
                         android:layout_gravity="center_vertical"
                         android:background="@null"
-                        android:layout_weight="1"/>
+                        android:layout_weight="1"
+                        android:visibility="invisible"/>
 
                 <ImageButton
                         android:id="@+id/startPauseBtn"

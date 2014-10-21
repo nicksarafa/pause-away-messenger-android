@@ -53,7 +53,6 @@ public class MainActivity extends PauseFragmentActivity {
         // Set up navigation drawer
         title = drawerTitle = getTitle();
 
-
         if(!isTablet()) {
             drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
             drawerToggle = new ActionBarDrawerToggle(

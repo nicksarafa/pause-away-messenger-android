@@ -8,7 +8,7 @@
               android:padding="6dp">
 
     <RelativeLayout
-            android:layout_width="fill_parent"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
         <TextView
@@ -30,13 +30,14 @@
     </RelativeLayout>
 
     <RelativeLayout
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent">
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
 
         <GridView
                 android:id="@+id/savedMessageGridView"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:columnWidth="80dp"
                 android:numColumns="auto_fit"
                 android:verticalSpacing="10dp"
@@ -45,32 +46,23 @@
                 android:gravity="center"
                 />
 
-        <ImageButton
-            android:id="@+id/settingsBtn"
-            android:layout_width="90dp"
-            android:layout_height="90dp"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentBottom="true"
-            android:src="@drawable/btn_settings"
-            android:background="@null"/>
-
         <RelativeLayout
                 android:id="@+id/initialInstructionsContainer"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:layout_centerInParent="true"
                 >
 
             <ImageView
                     android:id="@+id/saves_logo"
-                    android:layout_width="fill_parent"
+                    android:layout_width="match_parent"
                     android:layout_height="200dp"
                     android:src="@drawable/saves_logo"
                     android:layout_gravity="center"
                     />
 
             <TextView
-                    android:layout_width="fill_parent"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/saves_logo"
                     android:text="@string/saved_instructions"
@@ -82,6 +74,13 @@
         </RelativeLayout>
 
     </RelativeLayout>
+
+    <ImageButton
+        android:id="@+id/settingsBtn"
+        android:layout_width="90dp"
+        android:layout_height="90dp"
+        android:src="@drawable/btn_settings"
+        android:background="@null"/>
 
 
 

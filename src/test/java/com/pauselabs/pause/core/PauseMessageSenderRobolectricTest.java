@@ -29,7 +29,7 @@ public class PauseMessageSenderRobolectricTest {
      */
     @Test
     public void testCreate() {
-        PauseMessageSender pauseMessageSender = new PauseMessageSender();
+        PauseMessageSender pauseMessageSender = new PauseMessageSender(Robolectric.getShadowApplication().getApplicationContext());
         assertTrue(pauseMessageSender != null);
     }
 
@@ -45,7 +45,7 @@ public class PauseMessageSenderRobolectricTest {
         pauseBounceMessage.setMessage(PAUSE_TEXT);
 
 
-        PauseMessageSender pauseMessageSender = new PauseMessageSender();
+        PauseMessageSender pauseMessageSender = new PauseMessageSender(Robolectric.getShadowApplication().getApplicationContext());
         pauseMessageSender.sendSmsMessage(phoneNumber, pauseBounceMessage);
 
         ShadowSmsManager shadowSmsManager =  Robolectric.shadowOf(SmsManager.getDefault());

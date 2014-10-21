@@ -19,5 +19,5 @@
         ScoreboardScreenView
     </screenName>
     <!--  The following value should be replaced with correct property id. -->
-    <string name="ga_trackingId">UA-54263188-1</string>
+    <string name="ga_trackingId">UA-55722911-1</string>
 </resources>

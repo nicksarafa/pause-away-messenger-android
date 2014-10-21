@@ -2,7 +2,6 @@ package com.pauselabs.pause.ui;
 
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
-import android.text.Html;
 
 import com.pauselabs.R;
 
@@ -24,7 +23,7 @@ public class SettingsActivity extends PauseFragmentActivity {
         ab.setDisplayHomeAsUpEnabled(true);
         ab.setDisplayShowHomeEnabled(false);
         ab.setDisplayShowTitleEnabled(true);
-        ab.setTitle(Html.fromHtml("<font color=\"black\">Settings</font>"));
+        ab.setTitle("Settings");
         ab.setDisplayUseLogoEnabled(false);
 
     }

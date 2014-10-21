@@ -106,6 +106,8 @@ public class ContactsAdapter extends CursorAdapter implements SectionIndexer {
         holder.checkbox.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                blacklistContacts = prefs.getStringSet(Constants.Settings.BLACKLIST, new HashSet<String>());
+
                 CheckBox checkbox = (CheckBox) v;
                 String contactId = String.valueOf(v.getTag());
 

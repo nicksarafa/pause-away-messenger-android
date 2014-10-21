@@ -16,9 +16,6 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
@@ -67,6 +64,7 @@ public class CreatePauseFragment extends Fragment implements View.OnClickListene
     @InjectView(R.id.gallerySelectorBtn) ImageButton gallerySelectorBtn;
     @InjectView(R.id.pauseMessageText) EditText pauseMessageText;
     @InjectView(R.id.pauseDurationText) TextView pauseDurationField;
+    @InjectView(R.id.durationContainer) RelativeLayout pauseDurationContainer;
     @InjectView(R.id.startPauseBtn) ImageButton startPauseBtn;
     @InjectView(R.id.durationSelectorView) DurationSelectorView mDurationSelectorView;
 
@@ -87,7 +85,6 @@ public class CreatePauseFragment extends Fragment implements View.OnClickListene
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setHasOptionsMenu(true);
 
         datasource = new SavedPauseDataSource(getActivity());
         datasource.open();
@@ -155,6 +152,7 @@ public class CreatePauseFragment extends Fragment implements View.OnClickListene
     public void onResume() {
         super.onResume();
         datasource.open();
+
         focusPauseMessageTextAndShowKeyboard();
     }
 
@@ -187,26 +185,6 @@ public class CreatePauseFragment extends Fragment implements View.OnClickListene
             }
         }
 
-    }
-
-    @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        inflater.inflate(R.menu.main_activity_actions, menu);
-        super.onCreateOptionsMenu(menu, inflater);
-    }
-
-
-    @Override
-    public boolean onOptionsItemSelected(final MenuItem item) {
-
-        switch (item.getItemId()) {
-            case R.id.settingsMenuItem:
-                Intent settingsIntent = new Intent(getActivity(), SettingsActivity.class);
-                startActivity(settingsIntent);
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
-        }
     }
 
 
@@ -392,6 +370,7 @@ public class CreatePauseFragment extends Fragment implements View.OnClickListene
             unfocusPauseMessageTextAndHideKeyboard();
         }
         durationSelectorBtn.setImageResource(R.drawable.ic_timer_selector_alt);
+        pauseDurationContainer.setVisibility(View.VISIBLE);
         pauseDurationField.requestFocus();
         mDurationSelectorView.displayDurationSelector();
     }

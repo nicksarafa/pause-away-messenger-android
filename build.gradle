@@ -61,8 +61,8 @@ android {
             // zipAlign false // this is default for debug
 
             // enable crashlytics where you need
-            buildConfigField "boolean", "USE_CRASHLYTICS", "false"
-            ext.enableCrashlytics = false
+            buildConfigField "boolean", "USE_CRASHLYTICS", "true"
+//            ext.enableCrashlytics = false
         }
         release {
             runProguard false

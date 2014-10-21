@@ -68,6 +68,23 @@
     <string name="start_button">start btn</string>
 
     <!-- Settings -->
+    <string name="me_section_label">ME</string>
+    <string name="privacy_section_label">PRIVACY</string>
+    <string name="feedback_section_label">FEEDBACK</string>
+    <string name="about_section_label">ABOUT</string>
+
+    <string name="name_settings_label">Name</string>
+    <string name="reply_to_calls_settings_label">Reply to missed calls</string>
+    <string name="reply_to_SMS_settings_label">Reply to received SMS messages</string>
+    <string name="blacklist_label">Blacklist</string>
+    <string name="rate_us_settings_label">Rate Üs on Google Play</string>
+    <string name="contact_us_label">Contact Us</string>
+    <string name="support_label">Support</string>
+    <string name="privacy_policy_label">Privacy Policy</string>
+    <string name="terms_label">Terms of use</string>
+
+    <string name="blacklist_description">Checked contacts will not receive auto reply messages</string>
+
     <!-- Used for the AlphabetIndexer in ContactsListFragment to provide quick navigation by
          alphabet using ListView fast scroll. -->
     <string name="alphabet">ABCDEFGHIJKLMNOPQRSTUVWXYZ</string>

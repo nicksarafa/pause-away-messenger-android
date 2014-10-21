@@ -33,6 +33,7 @@ public class PauseApplication extends Application {
 
     public static PauseMessageSender messageSender;
     private static PauseSession currentPauseSession;
+    private static boolean drawerOpen = false;
 
     /**
      * Enum used to identify the tracker that needs to be used for tracking.
@@ -164,6 +165,7 @@ public class PauseApplication extends Application {
     public static PauseSession getCurrentSession() {
         return currentPauseSession;
     }
+
 
     public static synchronized Tracker getTracker(TrackerName trackerId) {
         if (!mTrackers.containsKey(trackerId)) {
