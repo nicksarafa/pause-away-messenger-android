@@ -1,55 +1,43 @@
 package com.pauselabs.pause.ui;
 
 import android.app.Activity;
-import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
-import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.inputmethod.EditorInfo;
-import android.widget.AdapterView;
-import android.widget.BaseAdapter;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import com.pauselabs.R;
-import com.pauselabs.pause.models.Interaction;
-import com.pauselabs.pause.models.Node;
-import com.pauselabs.pause.models.NodeV2;
-import com.pauselabs.pause.models.Option;
-
-import java.util.ArrayList;
+import com.pauselabs.pause.models.StringRandomizer;
 
 import butterknife.InjectView;
 import butterknife.Views;
 
 
-public class InteractionFragment extends Fragment implements ListView.OnItemClickListener {
+public class InteractionFragment extends Fragment { //implements ListView.OnItemClickListener {
 	private static final String TAG = InteractionFragment.class.getSimpleName();
-	private Interaction mInteraction;
-	private NodeV2 curNode;
 
 	private static final String ARG_FILENAME = "ARG_FILENAME";
 
 	private OnFragmentInteractionListener mListener;
 
 	@InjectView(R.id.frag_interaction_tv) TextView mContent;
-	@InjectView(R.id.frag_interaction_lv) ListView mListView;
-	@InjectView(R.id.btn_start_over) Button mStartOver;
-	@InjectView(R.id.btn_opt_1) Button mOption1;
-	@InjectView(R.id.btn_opt_2) Button mOption2;
-	@InjectView(R.id.frag_interaction_et) EditText mUserInput;
+	@InjectView(R.id.btn_new_string) Button mNewString;
 
-	private Adapter mAdapter;
+	//@InjectView(R.id.frag_interaction_lv) ListView mListView;
+	//@InjectView(R.id.btn_opt_1) Button mOption1;
+	//@InjectView(R.id.btn_opt_2) Button mOption2;
+	//@InjectView(R.id.frag_interaction_et) EditText mUserInput;
 
-	private NodeV2.OptionV2 opt1;
-	private NodeV2.OptionV2 opt2;
+	//private Adapter mAdapter;
+
+	//private NodeV2.OptionV2 opt1;
+	//private NodeV2.OptionV2 opt2;
+
+	private StringRandomizer mRandomizer;
 
 	public static InteractionFragment newInstance(String filename) {
 		InteractionFragment fragment = new InteractionFragment();
@@ -58,6 +46,7 @@ public class InteractionFragment extends Fragment implements ListView.OnItemClic
 		fragment.setArguments(args);
 		return fragment;
 	}
+
 	public InteractionFragment() {
 		// Required empty public constructor
 	}
@@ -66,59 +55,34 @@ public class InteractionFragment extends Fragment implements ListView.OnItemClic
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		if (getArguments() != null) {
-			String filename = getArguments().getString(ARG_FILENAME);
-			mInteraction = new Interaction(getActivity(), filename);
+			String filename = getArguments().getString(ARG_FILENAME, "strings.json");
+			mRandomizer = new StringRandomizer(getActivity(), filename);
 		}
 	}
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 							 Bundle savedInstanceState) {
+		if (mRandomizer == null)
+			mRandomizer = new StringRandomizer(getActivity(), "strings.json");
+
 		View view = inflater.inflate(R.layout.fragment_interaction, container, false);
 		Views.inject(this, view);
-		mListView.setOnItemClickListener(this);
 
-		mStartOver.setOnClickListener(new View.OnClickListener() {
+		mNewString.setOnClickListener(new View.OnClickListener() {
+			int count = 0;
+
 			@Override
-			public void onClick(View view) {
-				showNode(mInteraction.getStart());
+			public void onClick(View v) {
+				mContent.setText(mRandomizer.getString());
+				count++;
+				if (count >= 5)
+					mRandomizer.setFile("strings2.json");
 			}
 		});
 
-		mOption1.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View view) {
-				showNode(mInteraction.getNode(opt1.getNext()));
-			}
-		});
+		mContent.setText(mRandomizer.getString());
 
-		mOption2.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View view) {
-				showNode(mInteraction.getNode(opt2.getNext()));
-			}
-		});
-
-		mUserInput.setOnEditorActionListener(new EditText.OnEditorActionListener() {
-			@Override
-			public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-				if (actionId == EditorInfo.IME_ACTION_SEARCH ||
-					actionId == EditorInfo.IME_ACTION_DONE ||
-					event.getAction() == KeyEvent.ACTION_DOWN &&
-					event.getKeyCode() == KeyEvent.KEYCODE_ENTER) {
-					if (!event.isShiftPressed()) {
-						showNode(mInteraction.getNode(curNode.getDefault().getNext()));
-						return true; // consume.
-					}
-				}
-				return false; // pass on to other listeners.
-			}
-		});
-
-		if (mInteraction == null) {
-			mInteraction = new Interaction(getActivity(), "InteractionV2.json");
-		}
-		showNode(mInteraction.getStart());
 		return view;
 	}
 
@@ -155,7 +119,7 @@ public class InteractionFragment extends Fragment implements ListView.OnItemClic
 		public void onFragmentInteraction(Uri uri);
 	}
 
-	private void showNode(NodeV2 node) {
+	/*private void showNode(NodeV2 node) {
 		curNode = node;
 
 
@@ -242,6 +206,6 @@ public class InteractionFragment extends Fragment implements ListView.OnItemClic
 		public int getCount() {
 			return mOptions.size();
 		}
-	}
+	}*/
 
 }

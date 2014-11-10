@@ -11,9 +11,9 @@
         android:layout_height="wrap_content"
         android:textColor="#000"
         android:textSize="20sp"
-        android:text="@string/hello_blank_fragment" />
+        android:text="Hello World" />
 
-    <ListView
+    <!--<ListView
         android:id="@+id/frag_interaction_lv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -37,12 +37,12 @@
         android:id="@+id/btn_opt_2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Option 2"/>
+        android:text="Option 2"/>-->
 
     <Button
-        android:id="@+id/btn_start_over"
+        android:id="@+id/btn_new_string"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="start over"/>
+        android:text="new string"/>
 
 </LinearLayout>
