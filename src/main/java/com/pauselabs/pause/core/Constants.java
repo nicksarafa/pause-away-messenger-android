@@ -80,6 +80,43 @@ public class Constants {
          * Message Subject
          */
         public static final String PAUSE_MESSAGE_SUBJECT = "Pause Message";
+
+        /**
+         * Message sent upon slienced
+         */
+        public static final String PAUSE_MESSAGE_SLIENCE = "I am currently away from my phone at the moment. I will get back to you ASAP.";
+
+        /**
+         * Message sent upon driving
+         */
+        public static final String PAUSE_MESSAGE_DRIVING = "I am currently behind the wheel of a moving vehicle. I will get back to you once I reach my destination.";
+    }
+
+    public static final class Session {
+
+        private Session() {}
+
+        public static final class Creator {
+
+            private Creator() {}
+
+            /**
+             * Pause session created from slience mode
+             */
+            public static final int SILENCE = 0;
+
+            /**
+             * Pause session created from custom message
+             */
+            public static final int CUSTOM = 1;
+
+            /**
+             * Pause session created from driving mode
+             */
+            public static final int DRIVING = 2;
+
+        }
+
     }
 
     public static final class Pause {

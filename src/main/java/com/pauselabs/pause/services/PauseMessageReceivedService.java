@@ -9,6 +9,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.BaseColumns;
 import android.provider.ContactsContract;
+import android.util.Log;
 
 import com.pauselabs.pause.Injector;
 import com.pauselabs.pause.PauseApplication;
@@ -69,12 +70,35 @@ public class PauseMessageReceivedService extends IntentService {
         mCurrentConversation = mCurrentPauseSession.getConversationBySender(message.getSender());
         mContactId = lookupSender(message.getSender());
 
-        if(mCurrentConversation != null) {
+        // If no current conversation exists with sender, create new one, then add message
+        if (mCurrentConversation == null)
+            mCurrentConversation = new PauseConversation(message.getSender());
+        mCurrentConversation.addMessage(message);
+
+        // Check who created the Session to in order to send appropriate message 
+        if(mCurrentPauseSession.shouldSenderReceivedBounceback(mContactId)) {
+            PauseBounceBackMessage bounceBackMessage = null;
+            switch (PauseApplication.getCurrentSession().getCreator()) {
+                case Constants.Session.Creator.SILENCE :
+                    bounceBackMessage = new PauseBounceBackMessage("Away",Constants.Message.PAUSE_MESSAGE_SLIENCE);
+                    break;
+                case Constants.Session.Creator.CUSTOM :
+                    bounceBackMessage = retrieveActivePause();
+                    break;
+                case Constants.Session.Creator.DRIVING :
+                    bounceBackMessage = new PauseBounceBackMessage("Away",Constants.Message.PAUSE_MESSAGE_DRIVING);
+                    break;
+            }
+
+            PauseApplication.messageSender.sendSmsMessage(message.getSender(), bounceBackMessage);
+        }
+
+        /*if(mCurrentConversation != null) {
             updateExistingConversation(message);
         }
         else{
             createNewConversation(message);
-        }
+        }*/
 
         // Update Session conversations with updated conversation
         mCurrentPauseSession.updateConversation(mCurrentConversation);
