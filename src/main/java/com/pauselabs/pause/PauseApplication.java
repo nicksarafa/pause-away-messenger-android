@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.media.AudioManager;
 import android.os.BatteryManager;
 import android.telephony.TelephonyManager;
 import android.util.Log;
@@ -44,6 +45,8 @@ public class PauseApplication extends Application {
 
     private static boolean phoneIsCharging = false;
     private static boolean phoneIsStill= false;
+
+    private static int oldRingerMode;
 
     /**
      * Enum used to identify the tracker that needs to be used for tracking.
@@ -124,23 +127,21 @@ public class PauseApplication extends Application {
     /**
      * Paused state is initiated here
      */
-    public static PauseSession startPauseService(int sessionCreator) {
-        if (currentPauseSession == null || !currentPauseSession.isActive()) {
+    public static void startPauseService(int sessionCreator) {
+        if (!isActiveSession()) {
             Intent pauseIntent = new Intent(instance, PauseSessionService.class);
             instance.startService(pauseIntent);
 
             // Create new Pause Session
             currentPauseSession = new PauseSession(sessionCreator);
         }
-
-        return currentPauseSession;
     }
 
     /**
      * Stop current pause
      */
-    public static void stopPauseService() {
-        if (currentPauseSession != null && currentPauseSession.isActive()) {
+    public static void stopPauseService(int destroyer) {
+        if (isActiveSession() && getCurrentSession().getCreator() == destroyer) {
             Intent pauseIntent = new Intent(instance, PauseSessionService.class);
             instance.stopService(pauseIntent);
 
@@ -188,6 +189,10 @@ public class PauseApplication extends Application {
         return instance;
     }
 
+    public static boolean isActiveSession() {
+        return (currentPauseSession != null && currentPauseSession.isActive());
+    }
+
     public static PauseSession getCurrentSession() {
         return currentPauseSession;
     }
@@ -196,8 +201,8 @@ public class PauseApplication extends Application {
         if (isPhoneCharging() && isPhoneStill() && isSleepTime())
             startPauseService(Constants.Session.Creator.SLEEP);
         else
-        if (PauseApplication.getCurrentSession() != null && PauseApplication.getCurrentSession().getCreator() == Constants.Session.Creator.SLEEP)
-                stopPauseService();
+            if (PauseApplication.getCurrentSession() != null && PauseApplication.getCurrentSession().getCreator() == Constants.Session.Creator.SLEEP)
+                stopPauseService(Constants.Session.Destroyer.SLEEP);
     }
 
     public static boolean isSleepTime() {
@@ -216,6 +221,9 @@ public class PauseApplication extends Application {
 
     public static boolean isPhoneStill() { return phoneIsStill; }
     public static void setPhoneStill(boolean isStill) { phoneIsStill = isStill; }
+
+    public static int getOldRingerMode() { return oldRingerMode; }
+    public static void setOldRingerMode(int mode) { oldRingerMode = mode; }
 
 
     public static synchronized Tracker getTracker(TrackerName trackerId) {

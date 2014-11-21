@@ -193,7 +193,7 @@ public class MainActivity extends PauseFragmentActivity {
                 break;
             case Constants.Pause.PAUSE_SESSION_STATE_STOPPED:
                 // stop Pause Service
-                PauseApplication.stopPauseService();
+                PauseApplication.stopPauseService(Constants.Session.Destroyer.CUSTOM);
                 // display Create Pause Fragment
                 showFragment(CREATE_PAUSE, false);
                 break;

@@ -249,8 +249,8 @@ public class SettingsFragment extends Fragment implements View.OnClickListener{
      */
     private void clearSaved() {
         // make sure session is not currently running
-        if(PauseApplication.getCurrentSession() != null && PauseApplication.getCurrentSession().isActive()){
-            PauseApplication.stopPauseService();
+        if(PauseApplication.isActiveSession()){
+            PauseApplication.stopPauseService(PauseApplication.getCurrentSession().getCreator());
         }
         mDatasource.deleteAllSavedPauseMessages();
     }

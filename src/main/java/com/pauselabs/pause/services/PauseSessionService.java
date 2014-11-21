@@ -6,6 +6,7 @@ import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.media.AudioManager;
 import android.os.Handler;
 import android.os.IBinder;
 import android.support.v4.app.NotificationCompat;
@@ -48,6 +49,8 @@ public class PauseSessionService extends Service{
 
     private boolean mStophandler = false;
 
+    private AudioManager am;
+
     private Handler handler = new Handler();
     private Runnable runnable = new Runnable() {
         @Override
@@ -68,10 +71,14 @@ public class PauseSessionService extends Service{
 
         // Register the bus so we can send notifcations
         eventBus.register(this);
+
+        am = (AudioManager)getSystemService(AUDIO_SERVICE);
     }
 
     @Override
     public void onDestroy() {
+        if (PauseApplication.getOldRingerMode() != AudioManager.RINGER_MODE_SILENT)
+            am.setRingerMode(PauseApplication.getOldRingerMode());
 
         mStophandler = true;
         handler.removeCallbacks(runnable);
@@ -85,13 +92,13 @@ public class PauseSessionService extends Service{
 
         notificationManager.cancel(Constants.Notification.SESSION_NOTIFICATION_ID);
 
-        Log.d(TAG, "Service has been destroyed");
-
         super.onDestroy();
     }
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
+        PauseApplication.setOldRingerMode(am.getRingerMode());
+        am.setRingerMode(AudioManager.RINGER_MODE_SILENT);
 
         if(!sessionStarted) {
 

@@ -116,7 +116,9 @@ public class Constants {
 
         private Session() {}
 
-        public static final class Creator {
+        public static final class Destroyer extends Creator { private Destroyer() {} }
+
+        public static class Creator {
 
             private Creator() {}
 
@@ -126,7 +128,7 @@ public class Constants {
             public static final int CUSTOM = 0;
 
             /**
-             * Pause session created from slience mode
+             * Pause session created from silence mode
              */
             public static final int SILENCE = 1;
 
@@ -136,7 +138,7 @@ public class Constants {
             public static final int DRIVE = 2;
 
             /**
-             * Pause session created from driving mode
+             * Pause session created from sleep mode
              */
             public static final int SLEEP = 3;
 
@@ -246,14 +248,19 @@ public class Constants {
         public static final float MPH_TILL_PAUSE = 25;
 
         /**
-         * Time (in minutes) until the stopped TimerTask times out
+         * Time (in minutes) until the stopped location TimerTask times out
          */
         public static final float LOCATION_STOPPED_TIME_OUT = 2;
 
         /**
          * M/S^2 acceleration in either x, y, or z axis
          */
-        public static final float STILL_CONSTANT = 2f;
+        public static final float STILL_CONSTANT = 0.5f;
+
+        /**
+         * Time (in minutes) until the still accelerometer TimerTask times out
+         */
+        public static final float STILL_ACCELEROMETER_TIME_OUT = 10;
 
         /**
          * Time to activate Sleep Mode.
@@ -263,7 +270,7 @@ public class Constants {
         /**
          * Time to deactivate Sleep Mode.
          */
-        public static final int SLEEP_TIME_STOP = 6;
+        public static final int SLEEP_TIME_STOP = 7;
     }
 
     public static class Privacy {

@@ -22,38 +22,29 @@ public class PLocationListener implements LocationListener {
     private final float TOMPH = 2.23694f;
     private float mph;
 
-    private PauseSession currentSession;
-
     private Timer timer;
 
     @Override
     public void onLocationChanged(Location location) {
         if (location.hasSpeed()) {
-            currentSession = PauseApplication.getCurrentSession();
             mph = location.getSpeed() * TOMPH;
 
-            if (mph >= Constants.Settings.MPH_TILL_PAUSE && (currentSession == null || !currentSession.isActive())) {
+            if (mph >= Constants.Settings.MPH_TILL_PAUSE && !PauseApplication.isActiveSession()) {
+                PauseApplication.startPauseService(Constants.Session.Creator.DRIVE);
 
-                Log.i(TAG,"Moving in a car.");
-
-                currentSession = PauseApplication.startPauseService(Constants.Session.Creator.DRIVE);
-
-                if (timer != null)
+                if (timer != null) {
                     timer.cancel();
-            } else if (mph < Constants.Settings.MPH_TILL_PAUSE && (currentSession != null && currentSession.getCreator() == Constants.Session.Creator.DRIVE && currentSession.isActive())) {
-
-                Log.i(TAG,"No longer moving. Start timer.");
-
+                    timer = null;
+                }
+            } else if (mph < Constants.Settings.MPH_TILL_PAUSE && (PauseApplication.isActiveSession() && PauseApplication.getCurrentSession().getCreator() == Constants.Session.Creator.DRIVE)) {
                 timer = new Timer("SpeedTestTimer");
                 timer.schedule(new TimerTask() {
 
                     @Override
                     public void run() {
                         // No longer in driving mode
-                        if (mph < Constants.Settings.MPH_TILL_PAUSE) {
-                            PauseApplication.stopPauseService();
-                            currentSession = null;
-                        }
+                        if (mph < Constants.Settings.MPH_TILL_PAUSE)
+                            PauseApplication.stopPauseService(Constants.Session.Destroyer.DRIVE);
                     }
 
                 }, (long) (Constants.Settings.LOCATION_STOPPED_TIME_OUT*60*1000));

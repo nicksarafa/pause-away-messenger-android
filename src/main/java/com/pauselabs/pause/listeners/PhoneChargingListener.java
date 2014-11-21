@@ -4,6 +4,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.os.BatteryManager;
+import android.util.Log;
 
 import com.pauselabs.pause.PauseApplication;
 import com.pauselabs.pause.core.Constants;
@@ -15,8 +16,10 @@ public class PhoneChargingListener extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
         int status = intent.getIntExtra(BatteryManager.EXTRA_STATUS, -1);
-        PauseApplication.setPhoneCharging(status == BatteryManager.BATTERY_STATUS_CHARGING || status == BatteryManager.BATTERY_STATUS_FULL);
+        boolean charging = status == BatteryManager.BATTERY_STATUS_CHARGING || status == BatteryManager.BATTERY_STATUS_FULL;
+        PauseApplication.setPhoneCharging(charging);
 
-        PauseApplication.checkForSleepMode();
+        if (!charging)
+            PauseApplication.stopPauseService(Constants.Session.Destroyer.SLEEP);
     }
 }

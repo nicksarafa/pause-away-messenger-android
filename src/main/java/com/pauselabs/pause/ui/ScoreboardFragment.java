@@ -145,7 +145,7 @@ public class ScoreboardFragment extends Fragment implements View.OnClickListener
     }
 
     private void stopPauseSession() {
-        PauseApplication.stopPauseService();
+        PauseApplication.stopPauseService(mActiveSession.getCreator());
     }
 
     @Override

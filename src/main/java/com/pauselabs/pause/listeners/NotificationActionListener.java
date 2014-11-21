@@ -20,7 +20,7 @@ public class NotificationActionListener extends BroadcastReceiver {
             int actionCode = intent.getIntExtra(Constants.Notification.PAUSE_NOTIFICATION_INTENT, 0);
             switch(actionCode) {
                 case Constants.Notification.STOP_PAUSE_SESSION:
-                    PauseApplication.stopPauseService();
+                    PauseApplication.stopPauseService(PauseApplication.getCurrentSession().getCreator());
 
                     Intent createPauseIntent = new Intent(context, MainActivity.class);
                     createPauseIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -28,7 +28,7 @@ public class NotificationActionListener extends BroadcastReceiver {
                     break;
                 case Constants.Notification.EDIT_PAUSE_SESSION:
                     Long currentPauseId = intent.getLongExtra(Constants.Pause.EDIT_PAUSE_MESSAGE_ID_EXTRA, -1L);
-                    PauseApplication.stopPauseService();
+                    PauseApplication.stopPauseService(PauseApplication.getCurrentSession().getCreator());
                     if(currentPauseId >= 0){
                         Intent editPauseIntent = new Intent(context, MainActivity.class);
                         editPauseIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
