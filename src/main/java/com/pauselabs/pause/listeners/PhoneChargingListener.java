@@ -15,8 +15,10 @@ public class PhoneChargingListener extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
         String action = intent.getAction();
-        if (action.equals(Constants.Message.PHONE_POWER_CONNECTED_INTENT) || action.equals(Constants.Message.PHONE_POWER_DISCONNECTED_INTENT)) {
+        if (action.equals(Constants.Message.PHONE_POWER_CONNECTED_INTENT))
             PauseApplication.checkIsPhoneCharging(intent);
-        }
+        else if (action.equals(Constants.Message.PHONE_POWER_DISCONNECTED_INTENT))
+            if (PauseApplication.getCurrentSession() != null && PauseApplication.getCurrentSession().getCreator() == Constants.Session.Creator.SLEEP)
+                PauseApplication.stopPauseService();
     }
 }
