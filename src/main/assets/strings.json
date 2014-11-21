@@ -1,15 +1,53 @@
 [
 	[
-		"Hello,",
-		"Hi,",
-		"Good morning,",
-		"Howdy,",
-		"Hey,"
+		"Hello. ",
+		"Hiya. ",
+		"Good day! ",
+		"Howdy! ",
+		"Hey! ",
+		"Hey there! ",
+		"Yo! ",
+		"Greetings! ",
+		"Aloha. ",
+		"Hiya. ",
+		"G'day. ",
+		"Hola. "
 	],
+
+//I'm Pause
+
+	[
+		"I'm Pause. ",
+		"my name is Pause. ",
+		"They call me Pause. "
+	],
+
+//Need to inject recorded user name at this step
+//User isn't around
+
+	[
+		" is away at the moment.",
+		" isn't near their phone.",
+		" is paused at the moment.",
+		" is away from their phone.",
+		" can't answer your message right now.",
+		" won't be back for a little while.",
+		" is taking a break from their phone.",
+		" can't be bothered right now."
+	],
+
+//Greeting - Probably going to omit for now
+
 	[
 		"how are you?",
 		"what's up?",
 		"how's it going?",
-		"how's it hanging?"
+		"how's it hanging?",
+		"What's cookin good lookin?",
+		"Having a good day?",
+		"What's good?",
+		"How's it going?",
+		"How's your day?",
+		"Nice to see your message."
 	]
 ]
