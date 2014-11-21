@@ -45,6 +45,7 @@ public class PauseBounceBackMessage implements Parcelable, Serializable {
         this.title = title;
         this.message = message;
         this.createdOn = new Date().getTime();
+        this.endTime = 0L;
     }
 
     public PauseBounceBackMessage(Parcel in){

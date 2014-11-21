@@ -77,20 +77,7 @@ public class PauseMessageReceivedService extends IntentService {
 
         // Check who created the Session to in order to send appropriate message 
         if(mCurrentPauseSession.shouldSenderReceivedBounceback(mContactId)) {
-            PauseBounceBackMessage bounceBackMessage = null;
-            switch (PauseApplication.getCurrentSession().getCreator()) {
-                case Constants.Session.Creator.SILENCE :
-                    bounceBackMessage = new PauseBounceBackMessage("Away",Constants.Message.PAUSE_MESSAGE_SLIENCE);
-                    break;
-                case Constants.Session.Creator.CUSTOM :
-                    bounceBackMessage = retrieveActivePause();
-                    break;
-                case Constants.Session.Creator.DRIVING :
-                    bounceBackMessage = new PauseBounceBackMessage("Away",Constants.Message.PAUSE_MESSAGE_DRIVING);
-                    break;
-            }
-
-            PauseApplication.messageSender.sendSmsMessage(message.getSender(), bounceBackMessage);
+            PauseApplication.messageSender.sendSmsMessage(message.getSender(), retrieveActivePause());
         }
 
         /*if(mCurrentConversation != null) {

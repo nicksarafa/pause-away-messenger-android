@@ -60,7 +60,7 @@ public class PauseMmsTransportService extends IntentService {
                     activePauseBitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
                     byte[] byteArray = stream.toByteArray();
 
-                    insert(this, recipients, Constants.Message.PAUSE_MESSAGE_SUBJECT, byteArray);
+                    insert(this, recipients, Constants.Message.SUBJECT, byteArray);
 
                 }
             }

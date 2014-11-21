@@ -29,20 +29,21 @@ public class SilenceListener extends BroadcastReceiver {
                 case AudioManager.RINGER_MODE_SILENT :
                     Log.i(TAG,"Silenced");
 
-                    PauseApplication.startPauseService();
-                    PauseApplication.getCurrentSession().setCreator(Constants.Session.Creator.SILENCE);
+                    PauseApplication.startPauseService(Constants.Session.Creator.SILENCE);
 
                     break;
                 case AudioManager.RINGER_MODE_VIBRATE :
                     Log.i(TAG,"Vibrate");
 
-                    PauseApplication.stopPauseService();
+                    if (PauseApplication.getCurrentSession() != null && PauseApplication.getCurrentSession().getCreator() == Constants.Session.Creator.SILENCE)
+                        PauseApplication.stopPauseService();
 
                     break;
                 case AudioManager.RINGER_MODE_NORMAL :
                     Log.i(TAG,"Ringer");
 
-                    PauseApplication.stopPauseService();
+                    if (PauseApplication.getCurrentSession() != null && PauseApplication.getCurrentSession().getCreator() == Constants.Session.Creator.SILENCE)
+                        PauseApplication.stopPauseService();
 
                     break;
             }

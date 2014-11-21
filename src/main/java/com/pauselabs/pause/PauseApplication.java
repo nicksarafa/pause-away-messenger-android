@@ -6,7 +6,10 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.os.BatteryManager;
 import android.telephony.TelephonyManager;
+import android.util.Log;
+
 import com.crashlytics.android.Crashlytics;
 import com.google.android.gms.analytics.GoogleAnalytics;
 import com.google.android.gms.analytics.Tracker;
@@ -16,13 +19,17 @@ import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.nostra13.universalimageloader.core.assist.QueueProcessingType;
 import com.pauselabs.BuildConfig;
 import com.pauselabs.R;
+import com.pauselabs.pause.core.Constants;
 import com.pauselabs.pause.core.PauseMessageSender;
 import com.pauselabs.pause.models.PauseBounceBackMessage;
 import com.pauselabs.pause.models.PauseMMSPart;
 import com.pauselabs.pause.models.PauseSession;
+import com.pauselabs.pause.services.PauseApplicationService;
 import com.pauselabs.pause.services.PauseSessionService;
 
 import java.io.ByteArrayOutputStream;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 
 public class PauseApplication extends Application {
@@ -34,6 +41,9 @@ public class PauseApplication extends Application {
     public static PauseMessageSender messageSender;
     private static PauseSession currentPauseSession;
     private static boolean drawerOpen = false;
+
+    private static boolean phoneIsCharging;
+    private static boolean phoneIsStill;
 
     /**
      * Enum used to identify the tracker that needs to be used for tracking.
@@ -78,6 +88,8 @@ public class PauseApplication extends Application {
 
         messageSender = new PauseMessageSender(instance);
 
+        startPauseApplicationService();
+
     }
 
     /**
@@ -103,25 +115,39 @@ public class PauseApplication extends Application {
     /**
      * Paused state is initiated here
      */
-    public static void startPauseService() {
-        Intent pauseIntent = new Intent(instance, PauseSessionService.class);
-        instance.startService(pauseIntent);
+    public static void startPauseApplicationService() {
+        Intent pauseApplicationIntent = new Intent(instance, PauseApplicationService.class);
+        instance.startService(pauseApplicationIntent);
+        Log.i(TAG,"Start Pause Application Service");
+    }
 
-        // Create new Pause Session
-        currentPauseSession = new PauseSession();
+    /**
+     * Paused state is initiated here
+     */
+    public static PauseSession startPauseService(int sessionCreator) {
+        if (currentPauseSession == null || !currentPauseSession.isActive()) {
+            Intent pauseIntent = new Intent(instance, PauseSessionService.class);
+            instance.startService(pauseIntent);
 
+            // Create new Pause Session
+            currentPauseSession = new PauseSession(sessionCreator);
+        }
+
+        return currentPauseSession;
     }
 
     /**
      * Stop current pause
      */
     public static void stopPauseService() {
-        Intent pauseIntent = new Intent(instance, PauseSessionService.class);
-        instance.stopService(pauseIntent);
+        if (currentPauseSession != null && currentPauseSession.isActive()) {
+            Intent pauseIntent = new Intent(instance, PauseSessionService.class);
+            instance.stopService(pauseIntent);
 
-        // Delete Pause Session
-        // TODO
-        currentPauseSession.deactivateSession();
+            // Delete Pause Session
+            // TODO
+            currentPauseSession.deactivateSession();
+        }
     }
 
     /**
@@ -165,6 +191,40 @@ public class PauseApplication extends Application {
     public static PauseSession getCurrentSession() {
         return currentPauseSession;
     }
+
+    public static void checkIsPhoneCharging(Intent intent) {
+        int status = intent.getIntExtra(BatteryManager.EXTRA_STATUS, -1);
+        boolean isCharging = status == BatteryManager.BATTERY_STATUS_CHARGING || status == BatteryManager.BATTERY_STATUS_FULL;
+
+        phoneIsCharging = isCharging;
+
+        checkForSleepMode();
+    }
+
+    public static void checkForSleepMode() {
+        if (isPhoneCharging() && isPhoneStill() && isSleepTime())
+            startPauseService(Constants.Session.Creator.SLEEP);
+        else
+        if (PauseApplication.getCurrentSession() != null && PauseApplication.getCurrentSession().getCreator() == Constants.Session.Creator.SLEEP)
+                stopPauseService();
+    }
+
+    public static boolean isSleepTime() {
+        boolean sleepTime = false;
+
+        Calendar now = Calendar.getInstance();
+        int hour = now.get(Calendar.HOUR_OF_DAY);
+        if (hour >= Constants.Settings.SLEEP_TIME_START || hour < Constants.Settings.SLEEP_TIME_STOP)
+            sleepTime = true;
+
+        return sleepTime;
+    }
+
+    public static boolean isPhoneCharging() { return phoneIsCharging; }
+    public static void setPhoneCharging(boolean isCharging) { phoneIsCharging = isCharging; }
+
+    public static boolean isPhoneStill() { return phoneIsStill; }
+    public static void setPhoneStill(boolean isStill) { phoneIsStill = isStill; }
 
 
     public static synchronized Tracker getTracker(TrackerName trackerId) {

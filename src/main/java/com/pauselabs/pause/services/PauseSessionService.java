@@ -100,7 +100,16 @@ public class PauseSessionService extends Service{
             startPauseSession();
             // Run as foreground service: http://stackoverflow.com/a/3856940/5210
             // Another example: https://github.com/commonsguy/cw-android/blob/master/Notifications/FakePlayer/src/com/commonsware/android/fakeplayerfg/PlayerService.java
-            startForeground(Constants.Notification.SESSION_NOTIFICATION_ID, getNotification(getString(R.string.pause_session_running)));
+            String message = "";
+            if (mActiveSession.getCreator() == Constants.Session.Creator.CUSTOM)
+                message = getString(R.string.pause_session_running);
+            else if (mActiveSession.getCreator() == Constants.Session.Creator.SILENCE)
+                message = getString(R.string.pause_session_running_silence);
+            else if (mActiveSession.getCreator() == Constants.Session.Creator.DRIVE)
+                message = getString(R.string.pause_session_running_drive);
+            else if (mActiveSession.getCreator() == Constants.Session.Creator.SLEEP)
+                message = getString(R.string.pause_session_running_sleep);
+            startForeground(Constants.Notification.SESSION_NOTIFICATION_ID, getNotification(message));
         }
 
         return Service.START_NOT_STICKY; // Service will not be restarted if android kills it
@@ -139,7 +148,7 @@ public class PauseSessionService extends Service{
             // display results dialog
             mStophandler = true;
 
-            updateNotification(PauseApplication.getInstance().getString(R.string.pause_session_ended));
+            updateNotification(getString(R.string.pause_session_ended));
 
         }
         else{

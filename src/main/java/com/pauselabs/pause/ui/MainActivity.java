@@ -1,12 +1,17 @@
 package com.pauselabs.pause.ui;
 
 import android.content.Intent;
+import android.content.IntentFilter;
+import android.hardware.Sensor;
+import android.hardware.SensorManager;
+import android.location.LocationManager;
 import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
+import android.util.Log;
 import android.view.View;
 
 import com.pauselabs.R;
@@ -14,6 +19,9 @@ import com.pauselabs.pause.PauseApplication;
 import com.pauselabs.pause.core.Constants;
 import com.pauselabs.pause.events.PauseSessionChangedEvent;
 import com.pauselabs.pause.events.SavedPauseMessageSelectedEvent;
+import com.pauselabs.pause.listeners.LinearAccelerometerListener;
+import com.pauselabs.pause.listeners.PLocationListener;
+import com.pauselabs.pause.listeners.PhoneChargingListener;
 import com.pauselabs.pause.util.UIUtils;
 import com.squareup.otto.Bus;
 import com.squareup.otto.Subscribe;
@@ -23,6 +31,8 @@ import javax.inject.Inject;
 import butterknife.Views;
 
 public class MainActivity extends PauseFragmentActivity {
+
+    private final String TAG = MainActivity.class.getSimpleName();
 
     @Inject
     protected Bus mBus;
@@ -43,7 +53,6 @@ public class MainActivity extends PauseFragmentActivity {
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
 
         setContentView(R.layout.main_activity);
 
@@ -169,10 +178,13 @@ public class MainActivity extends PauseFragmentActivity {
      */
     @Subscribe
     public void onPauseSessionChangedEvent(PauseSessionChangedEvent event) {
+
+        Log.i(TAG,"Pause Session Changed Event");
         switch(event.getSessionState()) {
             case Constants.Pause.PAUSE_SESSION_STATE_ACTIVE:
                 // start Pause Service
-                PauseApplication.startPauseService();
+                PauseApplication.startPauseService(Constants.Session.Creator.CUSTOM);
+                Log.i(TAG,"onPauseSessionChangedEvent");
                 // update Scoreboard Fragment
 //                ScoreboardFragment scoreboardFragment = (ScoreboardFragment)fragments[SCOREBOARD];
 //                scoreboardFragment.updateScoreboardUI();

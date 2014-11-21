@@ -47,7 +47,10 @@
     <string name="no_messages_received">No new messages! If any turn up, we\'ll take care of them. \n Have a nice day!</string>
 
     <!-- Notification messages -->
-    <string name="pause_session_running">Pause session is running</string>
+    <string name="pause_session_running">Paüse session is running</string>
+    <string name="pause_session_running_silence">Paüse session is running via Silence Mode</string>
+    <string name="pause_session_running_drive">Paüse session is running via Drive Mode</string>
+    <string name="pause_session_running_sleep">Paüse session is running via Sleep Mode</string>
     <string name="pause_session_ended">Session has ended</string>
 
     <!-- Analytics Categories -->

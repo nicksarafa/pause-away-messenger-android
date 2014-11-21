@@ -163,7 +163,7 @@ public class PreviewFragment extends Fragment implements View.OnClickListener{
         // start Pause Session
         //mBus.post(new PauseSessionChangedEvent(Constants.Pause.PAUSE_SESSION_STATE_ACTIVE));
 
-        PauseApplication.startPauseService();
+        PauseApplication.startPauseService(Constants.Session.Creator.CUSTOM);
 
         // show scoreboard activity
         Intent scoreboardIntent = new Intent(getActivity(), ScoreboardActivity.class);

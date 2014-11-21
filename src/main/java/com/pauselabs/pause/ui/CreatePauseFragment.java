@@ -362,8 +362,7 @@ public class CreatePauseFragment extends Fragment implements View.OnClickListene
                     // set active Pause database ID in sharedPrefs
                     mPrefs.edit().putLong(Constants.Pause.ACTIVE_PAUSE_DATABASE_ID_PREFS, mCurrentPauseBouncebackMessage.getId()).commit();
 
-                    PauseApplication.startPauseService();
-                    PauseApplication.getCurrentSession().setCreator(Constants.Session.Creator.CUSTOM);
+                    PauseApplication.startPauseService(Constants.Session.Creator.CUSTOM);
 
                     // show scoreboard activity
                     Intent scoreboardIntent = new Intent(getActivity(), ScoreboardActivity.class);

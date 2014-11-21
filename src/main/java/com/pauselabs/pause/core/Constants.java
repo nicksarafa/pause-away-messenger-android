@@ -52,6 +52,21 @@ public class Constants {
         public static final String PHONE_STATE_CHANGE_INTENT = "android.intent.action.PHONE_STATE";
 
         /**
+         * Phone Power Connected Filter
+         */
+        public static final String PHONE_POWER_CONNECTED_INTENT = "android.intent.action.ACTION_POWER_CONNECTED";
+
+        /**
+         * Phone Power Disconnected Filter
+         */
+        public static final String PHONE_POWER_DISCONNECTED_INTENT = "android.intent.action.ACTION_POWER_DISCONNECTED";
+
+        /**
+         * Phone Silence Filer
+         */
+        public static final String PHONE_SILENCE_INTENT = "android.media.RINGER_MODE_CHANGED";
+
+        /**
          * Phone Number incoming call
          */
         public static final String PREFERENCE_LAST_CALL_NUMBER = "PREFERENCE_LAST_CALL_NUMBER";
@@ -59,17 +74,17 @@ public class Constants {
         /**
          * Pause Message SMS type
          */
-        public static final String PAUSE_MESSAGE_SMS_TYPE = "SMS";
+        public static final String SMS_TYPE = "SMS";
 
         /**
          * Pause Message MMS type
          */
-        public static final String PAUSE_MESSAGE_MMS_TYPE = "MMS";
+        public static final String MMS_TYPE = "MMS";
 
         /**
          * Pause Message Phone type
          */
-        public static final String PAUSE_MESSAGE_PHONE_TYPE = "CALL";
+        public static final String PHONE_TYPE = "CALL";
 
         /**
          * Message recipient
@@ -79,17 +94,22 @@ public class Constants {
         /**
          * Message Subject
          */
-        public static final String PAUSE_MESSAGE_SUBJECT = "Pause Message";
+        public static final String SUBJECT = "Pause Message";
 
         /**
          * Message sent upon slienced
          */
-        public static final String PAUSE_MESSAGE_SLIENCE = "I am currently away from my phone at the moment. I will get back to you ASAP.";
+        public static final String SLIENCE = "I'm currently away from my phone at the moment. I'll get back to you ASAP.";
 
         /**
          * Message sent upon driving
          */
-        public static final String PAUSE_MESSAGE_DRIVING = "I am currently behind the wheel of a moving vehicle. I will get back to you once I reach my destination.";
+        public static final String DRIVE = "I'm currently behind the wheel of a moving vehicle. I'll get back to you once I reach my destination.";
+
+        /**
+         * Message sent upon sleeping
+         */
+        public static final String SLEEP = "I'm catching a few Z's at the moment because I'm a normal human being. I'll get back to you when I am cognizant.";
     }
 
     public static final class Session {
@@ -101,19 +121,24 @@ public class Constants {
             private Creator() {}
 
             /**
-             * Pause session created from slience mode
-             */
-            public static final int SILENCE = 0;
-
-            /**
              * Pause session created from custom message
              */
-            public static final int CUSTOM = 1;
+            public static final int CUSTOM = 0;
+
+            /**
+             * Pause session created from slience mode
+             */
+            public static final int SILENCE = 1;
 
             /**
              * Pause session created from driving mode
              */
-            public static final int DRIVING = 2;
+            public static final int DRIVE = 2;
+
+            /**
+             * Pause session created from driving mode
+             */
+            public static final int SLEEP = 3;
 
         }
 
@@ -214,6 +239,31 @@ public class Constants {
         public static final String REPLY_SMS = "REPLY_SMS_KEY";
         public static final String USING_BLACKLIST = "USING_BLACKLIST";
         public static final String BLACKLIST = "BLACKLIST";
+
+        /**
+         * MPH until a Paüse session starts via driving.
+         */
+        public static final float MPH_TILL_PAUSE = 25;
+
+        /**
+         * Time (in minutes) until the stopped TimerTask times out
+         */
+        public static final float LOCATION_STOPPED_TIME_OUT = 2;
+
+        /**
+         * M/S^2 acceleration in either x, y, or z axis
+         */
+        public static final float STILL_CONSTANT = 2f;
+
+        /**
+         * Time to activate Sleep Mode.
+         */
+        public static final int SLEEP_TIME_START = 23;
+
+        /**
+         * Time to deactivate Sleep Mode.
+         */
+        public static final int SLEEP_TIME_STOP = 6;
     }
 
     public static class Privacy {

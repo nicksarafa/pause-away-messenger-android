@@ -43,19 +43,20 @@ public class PauseSession implements Serializable {
     private String smsPrivacySetting;
     private String callPrivacySetting;
 
-    public PauseSession() {
+    public PauseSession(int sessionCreator) {
         Injector.inject(this);
 
         Date date = new Date();
         createdOn = date.getTime();
+        creator = sessionCreator;
         conversations = new ArrayList<PauseConversation>();
         mDatasource = new SavedPauseDataSource(PauseApplication.getInstance().getApplicationContext());
         isActive = Boolean.TRUE;
         responseCount = 0;
 
         mBlacklistContacts = retrieveBlacklistContacts();
-        smsPrivacySetting = mPrefs.getString(Constants.Settings.REPLY_SMS, Constants.Privacy.CONTACTS_ONLY);
-        callPrivacySetting = mPrefs.getString(Constants.Settings.REPLY_MISSED_CALL, Constants.Privacy.CONTACTS_ONLY);
+        smsPrivacySetting = mPrefs.getString(Constants.Settings.REPLY_SMS, Constants.Privacy.EVERYBODY);
+        callPrivacySetting = mPrefs.getString(Constants.Settings.REPLY_MISSED_CALL, Constants.Privacy.EVERYBODY);
     }
 
     public ArrayList<PauseConversation> getConversations() {
@@ -130,16 +131,34 @@ public class PauseSession implements Serializable {
     }
 
     public PauseBounceBackMessage getActiveBounceBackMessage(){
-        PauseBounceBackMessage mActivePause;
-        mDatasource.open();
+        PauseBounceBackMessage bounceBackMessage = null;
 
-        SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(PauseApplication.getInstance().getApplicationContext());
-        long id = mPrefs.getLong(Constants.Pause.ACTIVE_PAUSE_DATABASE_ID_PREFS, 0L);
-        mActivePause = mDatasource.getSavedPauseById(id);
+        switch (PauseApplication.getCurrentSession().getCreator()) {
+            case Constants.Session.Creator.CUSTOM:
+                mDatasource.open();
 
-        mDatasource.close();
+                SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(PauseApplication.getInstance().getApplicationContext());
+                long id = mPrefs.getLong(Constants.Pause.ACTIVE_PAUSE_DATABASE_ID_PREFS, 0L);
+                bounceBackMessage = mDatasource.getSavedPauseById(id);
 
-        return mActivePause;
+                mDatasource.close();
+
+                break;
+            case Constants.Session.Creator.SILENCE:
+                bounceBackMessage = new PauseBounceBackMessage("Away",Constants.Message.SLIENCE);
+
+                break;
+            case Constants.Session.Creator.DRIVE:
+                bounceBackMessage = new PauseBounceBackMessage("Away",Constants.Message.DRIVE);
+
+                break;
+            case Constants.Session.Creator.SLEEP:
+                bounceBackMessage = new PauseBounceBackMessage("Away",Constants.Message.SLEEP);
+
+                break;
+        }
+
+        return bounceBackMessage;
     }
 
     /**

@@ -41,7 +41,7 @@ public class PauseMessage implements Serializable, Parcelable {
         this.sender = smsMessage.getDisplayOriginatingAddress();
         this.text = smsMessage.getDisplayMessageBody();
         this.receivedOn = smsMessage.getTimestampMillis();
-        this.type = Constants.Message.PAUSE_MESSAGE_SMS_TYPE;
+        this.type = Constants.Message.SMS_TYPE;
     }
 
     public PauseMessage(Parcel in){
