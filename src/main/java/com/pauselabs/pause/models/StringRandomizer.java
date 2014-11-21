@@ -11,6 +11,10 @@ import java.util.ArrayList;
 import java.util.Random;
 
 /**
+ * This class will construct a randomized String from a given JSON file.
+ *
+ * NOTE: The JSON file must be in the assets folder
+ *
  * Created by mpollin on 11/7/14.
  */
 public class StringRandomizer {
@@ -18,10 +22,23 @@ public class StringRandomizer {
 	private Random mRandNumGenerator;
 	private ArrayList<ArrayList<String>> mComponents;
 
+	/**
+	 * Construct a StringRandomizer without an initial JSON file
+	 *
+	 * NOTE: without a file this class is useless
+	 *
+	 * @param context
+	 */
 	public StringRandomizer(Context context) {
 		this(context, null);
 	}
 
+	/**
+	 * Construct a StringRandomizer with an initial JSON file
+	 *
+	 * @param context
+	 * @param filename The name of the JSON file
+	 */
 	public StringRandomizer(Context context, String filename) {
 		mContext = context;
 		mRandNumGenerator = new Random();
@@ -36,7 +53,14 @@ public class StringRandomizer {
 		}
 	}
 
+	/**
+	 * @return A randomized String generated from the given JSON file.
+	 * 		Returns null if there is no JSON file.
+	 */
 	public String getString() {
+		if (mComponents.isEmpty())
+			return null;
+
 		StringBuilder sb = new StringBuilder();
 
 		for (int i = 0; i < mComponents.size(); i++) {
@@ -53,6 +77,11 @@ public class StringRandomizer {
 		return sb.toString();
 	}
 
+	/**
+	 * Set the JSON file to be used for generating Strings
+	 *
+	 * @param filename
+	 */
 	public void setFile(String filename) {
 		try {
 			parseFile(filename);
