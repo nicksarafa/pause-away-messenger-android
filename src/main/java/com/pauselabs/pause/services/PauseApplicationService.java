@@ -65,7 +65,6 @@ public class PauseApplicationService extends Service {
         chargingListener = new PhoneChargingListener();
         IntentFilter chargingIntentFilter = new IntentFilter(Intent.ACTION_BATTERY_CHANGED);
         Intent chargingIntent = registerReceiver(chargingListener,chargingIntentFilter);
-        PauseApplication.checkIsPhoneCharging(chargingIntent);
 
         silenceListener = new SilenceListener();
         IntentFilter silenceIntentFilter = new IntentFilter(Constants.Message.PHONE_SILENCE_INTENT);

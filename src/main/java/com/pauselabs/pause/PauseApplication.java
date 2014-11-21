@@ -42,8 +42,8 @@ public class PauseApplication extends Application {
     private static PauseSession currentPauseSession;
     private static boolean drawerOpen = false;
 
-    private static boolean phoneIsCharging;
-    private static boolean phoneIsStill;
+    private static boolean phoneIsCharging = false;
+    private static boolean phoneIsStill= false;
 
     /**
      * Enum used to identify the tracker that needs to be used for tracking.
@@ -190,15 +190,6 @@ public class PauseApplication extends Application {
 
     public static PauseSession getCurrentSession() {
         return currentPauseSession;
-    }
-
-    public static void checkIsPhoneCharging(Intent intent) {
-        int status = intent.getIntExtra(BatteryManager.EXTRA_STATUS, -1);
-        boolean isCharging = status == BatteryManager.BATTERY_STATUS_CHARGING || status == BatteryManager.BATTERY_STATUS_FULL;
-
-        phoneIsCharging = isCharging;
-
-        checkForSleepMode();
     }
 
     public static void checkForSleepMode() {

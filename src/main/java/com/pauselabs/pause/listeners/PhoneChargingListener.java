@@ -14,11 +14,9 @@ import com.pauselabs.pause.core.Constants;
 public class PhoneChargingListener extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
-        String action = intent.getAction();
-        if (action.equals(Constants.Message.PHONE_POWER_CONNECTED_INTENT))
-            PauseApplication.checkIsPhoneCharging(intent);
-        else if (action.equals(Constants.Message.PHONE_POWER_DISCONNECTED_INTENT))
-            if (PauseApplication.getCurrentSession() != null && PauseApplication.getCurrentSession().getCreator() == Constants.Session.Creator.SLEEP)
-                PauseApplication.stopPauseService();
+        int status = intent.getIntExtra(BatteryManager.EXTRA_STATUS, -1);
+        PauseApplication.setPhoneCharging(status == BatteryManager.BATTERY_STATUS_CHARGING || status == BatteryManager.BATTERY_STATUS_FULL);
+
+        PauseApplication.checkForSleepMode();
     }
 }
