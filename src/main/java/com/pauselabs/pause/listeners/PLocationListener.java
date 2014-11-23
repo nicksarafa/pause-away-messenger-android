@@ -30,21 +30,27 @@ public class PLocationListener implements LocationListener {
             mph = location.getSpeed() * TOMPH;
 
             if (mph >= Constants.Settings.MPH_TILL_PAUSE && !PauseApplication.isActiveSession()) {
-                PauseApplication.startPauseService(Constants.Session.Creator.DRIVE);
+                if (PauseApplication.isDriveModeAllowed()) {
+                    PauseApplication.startPauseService(Constants.Session.Creator.DRIVE);
 
-                if (timer != null) {
-                    timer.cancel();
-                    timer = null;
+                    if (timer != null) {
+                        timer.cancel();
+                        timer = null;
+                    }
                 }
-            } else if (mph < Constants.Settings.MPH_TILL_PAUSE && (PauseApplication.isActiveSession() && PauseApplication.getCurrentSession().getCreator() == Constants.Session.Creator.DRIVE)) {
+            } else if (mph < Constants.Settings.MPH_TILL_PAUSE) {
                 timer = new Timer("SpeedTestTimer");
                 timer.schedule(new TimerTask() {
 
                     @Override
                     public void run() {
                         // No longer in driving mode
-                        if (mph < Constants.Settings.MPH_TILL_PAUSE)
-                            PauseApplication.stopPauseService(Constants.Session.Destroyer.DRIVE);
+                        if (mph < Constants.Settings.MPH_TILL_PAUSE) {
+                            PauseApplication.setDriveModeAllowed(true);
+
+                            if ((PauseApplication.isActiveSession() && PauseApplication.getCurrentSession().getCreator() == Constants.Session.Creator.DRIVE))
+                                PauseApplication.stopPauseService(Constants.Session.Destroyer.DRIVE);
+                        }
                     }
 
                 }, (long) (Constants.Settings.LOCATION_STOPPED_TIME_OUT*60*1000));

@@ -31,16 +31,12 @@ public class SilenceListener extends BroadcastReceiver {
 
                     break;
                 case AudioManager.RINGER_MODE_VIBRATE:
-                    PauseApplication.stopPauseService(Constants.Session.Destroyer.SILENCE);
-
-                    break;
                 case AudioManager.RINGER_MODE_NORMAL:
                     PauseApplication.stopPauseService(Constants.Session.Destroyer.SILENCE);
+                    PauseApplication.setOldRingerMode(am.getRingerMode());
 
                     break;
             }
-
-            PauseApplication.setOldRingerMode(am.getRingerMode());
         }
     }
 }

@@ -33,7 +33,7 @@ public class PauseSession implements Serializable {
     protected SharedPreferences mPrefs;
 
     private Long createdOn;
-    private Boolean isActive;
+    private boolean isActive;
     private int creator;
     private SavedPauseDataSource mDatasource;
     private int responseCount;
@@ -72,16 +72,12 @@ public class PauseSession implements Serializable {
         return responseCount;
     }
 
-    public Boolean isActive(){
-        return isActive;
-    }
+    public boolean isActive(){ return isActive; }
+    public void deactivateSession(){ isActive = false; }
 
     public int getCreator() { return creator; }
     public void setCreator(int c) { creator = c; }
 
-    public void deactivateSession(){
-        isActive = Boolean.FALSE;
-    }
 
     public Boolean conversationAlreadyExists(String sender){
         Boolean result = false;

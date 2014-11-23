@@ -225,6 +225,7 @@ public class Constants {
 
         public static final int STOP_PAUSE_SESSION = 1002;
         public static final int EDIT_PAUSE_SESSION = 1003;
+        public static final int NOT_DRIVER_PAUSE_SESSION = 1004;
 
         public static final String PAUSE_NOTIFICATION_INTENT = "PAUSE_NOTIFICATION_INTENT";
         public static final String PAUSE_NOTIFICATION_STOP_SESSION  = "PAUSE_NOTIFICATION_STOP_SESSION";
@@ -255,7 +256,7 @@ public class Constants {
         /**
          * M/S^2 acceleration in either x, y, or z axis
          */
-        public static final float STILL_CONSTANT = 0.5f;
+        public static final float STILL_CONSTANT = 1.5f;
 
         /**
          * Time (in minutes) until the still accelerometer TimerTask times out

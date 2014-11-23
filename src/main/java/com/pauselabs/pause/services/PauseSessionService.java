@@ -197,19 +197,36 @@ public class PauseSessionService extends Service{
         editPauseIntent.putExtra(Constants.Pause.EDIT_PAUSE_MESSAGE_ID_EXTRA, mActivePauseBounceBack.getId());
         PendingIntent editPausePendingIntent = PendingIntent.getBroadcast(this, new Random().nextInt(), editPauseIntent, PendingIntent.FLAG_CANCEL_CURRENT);
 
+        // edit session intent
+        Intent notDriverPauseIntent = new Intent(this, NotificationActionListener.class);
+        notDriverPauseIntent.putExtra(Constants.Notification.PAUSE_NOTIFICATION_INTENT, Constants.Notification.NOT_DRIVER_PAUSE_SESSION);
+        PendingIntent notDriverPausePendingIntent = PendingIntent.getBroadcast(this, new Random().nextInt(), notDriverPauseIntent, PendingIntent.FLAG_CANCEL_CURRENT);
 
-        return new NotificationCompat.Builder(this)
-                .setContentTitle(getString(R.string.app_name))
+        NotificationCompat.Builder notBuilder = new NotificationCompat.Builder(this);
+
+        notBuilder.setContentTitle(getString(R.string.app_name))
                 .setSmallIcon(R.drawable.ic_stat_pause_icon_pause)
                 .setContentText(message)
-                .addAction(R.drawable.ic_stat_notificaiton_end, "End", stopPausePendingIntent)
-                .addAction(R.drawable.ic_stat_notification_pencil, "Edit", editPausePendingIntent)
                 .setAutoCancel(false)
                 .setOnlyAlertOnce(true)
                 .setOngoing(true)
                 .setWhen(System.currentTimeMillis())
                 .setContentIntent(pendingIntent)
-                .getNotification();
+                .setPriority(NotificationCompat.PRIORITY_MAX);
+
+        switch (mActiveSession.getCreator()) {
+            case Constants.Session.Creator.CUSTOM:
+                notBuilder.addAction(R.drawable.ic_stat_notificaiton_end, "End", stopPausePendingIntent);
+                notBuilder.addAction(R.drawable.ic_stat_notification_pencil, "Edit", editPausePendingIntent);
+
+                break;
+            case Constants.Session.Creator.DRIVE:
+                notBuilder.addAction(R.drawable.ic_stat_notificaiton_end,"Not the Driver",notDriverPausePendingIntent);
+
+                break;
+        }
+
+        return notBuilder.build();
     }
 
 

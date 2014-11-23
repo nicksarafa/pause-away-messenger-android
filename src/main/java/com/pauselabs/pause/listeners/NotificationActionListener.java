@@ -36,6 +36,11 @@ public class NotificationActionListener extends BroadcastReceiver {
                         context.startActivity(editPauseIntent);
                     }
                     break;
+                case Constants.Notification.NOT_DRIVER_PAUSE_SESSION:
+                    PauseApplication.stopPauseService(Constants.Session.Destroyer.DRIVE);
+                    PauseApplication.setDriveModeAllowed(false);
+
+                    break;
             }
         }
     }

@@ -6,8 +6,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.media.AudioManager;
-import android.os.BatteryManager;
 import android.telephony.TelephonyManager;
 import android.util.Log;
 
@@ -30,7 +28,6 @@ import com.pauselabs.pause.services.PauseSessionService;
 
 import java.io.ByteArrayOutputStream;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.HashMap;
 
 public class PauseApplication extends Application {
@@ -47,6 +44,8 @@ public class PauseApplication extends Application {
     private static boolean phoneIsStill= false;
 
     private static int oldRingerMode;
+
+    private static boolean driveModeAllowed = true;
 
     /**
      * Enum used to identify the tracker that needs to be used for tracking.
@@ -224,6 +223,9 @@ public class PauseApplication extends Application {
 
     public static int getOldRingerMode() { return oldRingerMode; }
     public static void setOldRingerMode(int mode) { oldRingerMode = mode; }
+
+    public static boolean isDriveModeAllowed() { return driveModeAllowed; }
+    public static void setDriveModeAllowed(boolean isAllowed) { driveModeAllowed = isAllowed; }
 
 
     public static synchronized Tracker getTracker(TrackerName trackerId) {
