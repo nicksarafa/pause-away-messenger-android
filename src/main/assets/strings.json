@@ -10,7 +10,7 @@
 		"Greetings! ",
 		"Aloha. ",
 		"Hiya. ",
-		"G'day. ",
+		"What's cookin, good lookin? ",
 		"Hola. "
 	],
 
@@ -22,18 +22,32 @@
 		"They call me Pause. "
 	],
 
-//Need to inject recorded user name at this step
-//User isn't around
+//Inject name from settings via Java (Noah)
+
+    [
+		"Nick ",
+		"Boss ",
+		"Chief ",
+		"The Big Cheese ",
+		"The Head Honcho ",
+		"My employer "
+	],
 
 	[
-		" is away at the moment.",
-		" isn't near their phone.",
-		" is paused at the moment.",
-		" is away from their phone.",
-		" can't answer your message right now.",
-		" won't be back for a little while.",
-		" is taking a break from their phone.",
-		" can't be bothered right now."
+		"isn't here at the moment. ",
+		"is away from their phone. ",
+		"is paused at the moment. ",
+		"is busy at the moment. ",
+		"can't answer your message right now. ",
+		"doesn't want to be bothered right now. ",
+		"won't be back for a little while. ",
+		"is taking a break from their phone. ",
+		"can't be bothered right now. "
+	],
+
+	[
+	    "Can I take a message? ",
+	    "But I'll let them know you reached out! ",
 	],
 
 //Greeting - Probably going to omit for now
