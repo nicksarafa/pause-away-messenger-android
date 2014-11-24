@@ -22,44 +22,50 @@ public class LinearAccelerometerListener implements SensorEventListener {
 
     @Override
     public void onSensorChanged(SensorEvent event) {
-        boolean terminateSession = true;
-
-        if (PauseApplication.isSleepTime()) {
+        if (event.sensor.getType() == Sensor.TYPE_LINEAR_ACCELERATION) {
+            boolean terminateSession = true;
             float x = Math.abs(event.values[0]), y = Math.abs(event.values[1]), z = Math.abs(event.values[2]);
-            float stillConstant = Constants.Settings.STILL_CONSTANT;
 
-            if (x <= stillConstant && y <= stillConstant && z <= stillConstant) {
-                terminateSession = false;
+            if (PauseApplication.isSleepTime()) {
+                float stillConstant = Constants.Settings.STILL_CONSTANT;
 
-                PauseApplication.setPhoneStill(true);
+                if (x <= stillConstant && y <= stillConstant && z <= stillConstant) {
+                    terminateSession = false;
 
-                if (timer == null) {
-                    timer = new Timer("SpeedTestTimer");
-                    timer.schedule(new TimerTask() {
+                    PauseApplication.setPhoneStill(true);
 
-                        @Override
-                        public void run() {
-                            // Phone is still not moving
-                            // Activate Paüse via Sleep Mode
-                            PauseApplication.checkForSleepMode();
+                    if (timer == null) {
+                        Log.i(TAG, "Phone is still.");
 
-                            timer = null;
-                        }
+                        timer = new Timer("SpeedTestTimer");
+                        timer.schedule(new TimerTask() {
 
-                    }, (long) (Constants.Settings.STILL_ACCELEROMETER_TIME_OUT * 60 * 1000));
-                }
-            } else {
-                PauseApplication.setPhoneStill(false);
+                            @Override
+                            public void run() {
+                                // Phone is still not moving
+                                // Activate Paüse via Sleep Mode
+                                PauseApplication.checkForSleepMode();
 
-                if (timer != null) {
-                    timer.cancel();
-                    timer = null;
+                                timer = null;
+                            }
+
+                        }, (long) (Constants.Settings.STILL_ACCELEROMETER_TIME_OUT * 60 * 1000));
+                    }
+                } else {
+                    PauseApplication.setPhoneStill(false);
+
+                    if (timer != null) {
+                        Log.i(TAG, "Phone is not still.");
+
+                        timer.cancel();
+                        timer = null;
+                    }
                 }
             }
-        }
 
-        if (terminateSession)
-            PauseApplication.stopPauseService(Constants.Session.Destroyer.SLEEP);
+            if (terminateSession)
+                PauseApplication.stopPauseService(Constants.Session.Destroyer.SLEEP);
+        }
     }
 
     @Override

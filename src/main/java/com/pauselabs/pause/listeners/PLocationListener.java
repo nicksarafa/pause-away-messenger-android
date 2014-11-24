@@ -29,31 +29,45 @@ public class PLocationListener implements LocationListener {
         if (location.hasSpeed()) {
             mph = location.getSpeed() * TOMPH;
 
-            if (mph >= Constants.Settings.MPH_TILL_PAUSE && !PauseApplication.isActiveSession()) {
-                if (PauseApplication.isDriveModeAllowed()) {
-                    PauseApplication.startPauseService(Constants.Session.Creator.DRIVE);
+            if (mph >= Constants.Settings.MPH_TILL_PAUSE) {
+                if (timer != null) {
+                    Log.i(TAG,"Driving and timer is running, cancelling.");
 
-                    if (timer != null) {
-                        timer.cancel();
-                        timer = null;
-                    }
+                    timer.cancel();
+                    timer = null;
                 }
-            } else if (mph < Constants.Settings.MPH_TILL_PAUSE) {
+
+                if (PauseApplication.isDriveModeAllowed()) {
+                    Log.i(TAG,"Drive Mode is allowed. Starting Session.");
+
+                    PauseApplication.startPauseService(Constants.Session.Creator.DRIVE);
+                } else
+                    Log.i(TAG,"Drive Mode not allowed.");
+            } else if (mph < Constants.Settings.MPH_TILL_PAUSE && timer == null) {
+                Log.i(TAG,"Not driving, starting timer.");
+
                 timer = new Timer("SpeedTestTimer");
                 timer.schedule(new TimerTask() {
 
                     @Override
                     public void run() {
+                        Log.i(TAG, "Timer executed.");
+
                         // No longer in driving mode
                         if (mph < Constants.Settings.MPH_TILL_PAUSE) {
+                            Log.i(TAG, "Still not driving, enabling Drive Mode.");
+
                             PauseApplication.setDriveModeAllowed(true);
 
-                            if ((PauseApplication.isActiveSession() && PauseApplication.getCurrentSession().getCreator() == Constants.Session.Creator.DRIVE))
+                            if ((PauseApplication.isActiveSession() && PauseApplication.getCurrentSession().getCreator() == Constants.Session.Creator.DRIVE)) {
+                                Log.i(TAG, "Session is still running via Drive Mode. Stopping.");
+
                                 PauseApplication.stopPauseService(Constants.Session.Destroyer.DRIVE);
+                            }
                         }
                     }
 
-                }, (long) (Constants.Settings.LOCATION_STOPPED_TIME_OUT*60*1000));
+                }, (long) (Constants.Settings.LOCATION_STOPPED_TIME_OUT * 60 * 1000));
             }
         }
     }

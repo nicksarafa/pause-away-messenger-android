@@ -209,8 +209,6 @@ public class CreatePauseFragment extends Fragment implements View.OnClickListene
         }
     }
 
-
-
     public void savedPauseMessageSelected(long savedMessageId){
 
         // if there is an existing image, lets recycle the old bitmap before loading a new image

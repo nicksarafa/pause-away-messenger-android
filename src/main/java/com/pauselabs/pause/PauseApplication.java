@@ -118,6 +118,7 @@ public class PauseApplication extends Application {
      * Paused state is initiated here
      */
     public static void startPauseApplicationService() {
+        
         Intent pauseApplicationIntent = new Intent(instance, PauseApplicationService.class);
         instance.startService(pauseApplicationIntent);
         Log.i(TAG,"Start Pause Application Service");
