@@ -256,7 +256,7 @@ public class Constants {
         /**
          * M/S^2 acceleration in either x, y, or z axis
          */
-        public static final float STILL_CONSTANT = 1.5f;
+        public static final float STILL_CONSTANT = 2.5f;
 
         /**
          * Time (in minutes) until the still accelerometer TimerTask times out

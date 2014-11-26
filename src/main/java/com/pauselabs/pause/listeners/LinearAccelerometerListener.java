@@ -45,13 +45,13 @@ public class LinearAccelerometerListener implements SensorEventListener {
                                 // Phone is still not moving
                                 // Activate Paüse via Sleep Mode
                                 PauseApplication.checkForSleepMode();
-
-                                timer = null;
                             }
 
                         }, (long) (Constants.Settings.STILL_ACCELEROMETER_TIME_OUT * 60 * 1000));
                     }
                 } else {
+                    Log.i(TAG,"x: " + x + "\ny: " + y + "\nz: " + z);
+
                     PauseApplication.setPhoneStill(false);
 
                     if (timer != null) {
