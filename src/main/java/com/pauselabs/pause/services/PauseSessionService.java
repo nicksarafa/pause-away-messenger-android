@@ -220,10 +220,6 @@ public class PauseSessionService extends Service{
                 notBuilder.addAction(R.drawable.ic_stat_notification_pencil, "Edit", editPausePendingIntent);
 
                 break;
-            case Constants.Session.Creator.DRIVE:
-                notBuilder.addAction(R.drawable.ic_stat_notificaiton_end,"Not the Driver",notDriverPausePendingIntent);
-
-                break;
         }
 
         return notBuilder.build();

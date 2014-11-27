@@ -52,16 +52,6 @@ public class Constants {
         public static final String PHONE_STATE_CHANGE_INTENT = "android.intent.action.PHONE_STATE";
 
         /**
-         * Phone Power Connected Filter
-         */
-        public static final String PHONE_POWER_CONNECTED_INTENT = "android.intent.action.ACTION_POWER_CONNECTED";
-
-        /**
-         * Phone Power Disconnected Filter
-         */
-        public static final String PHONE_POWER_DISCONNECTED_INTENT = "android.intent.action.ACTION_POWER_DISCONNECTED";
-
-        /**
          * Phone Silence Filer
          */
         public static final String PHONE_SILENCE_INTENT = "android.media.RINGER_MODE_CHANGED";
@@ -242,16 +232,6 @@ public class Constants {
         public static final String REPLY_SMS = "REPLY_SMS_KEY";
         public static final String USING_BLACKLIST = "USING_BLACKLIST";
         public static final String BLACKLIST = "BLACKLIST";
-
-        /**
-         * MPH until a Paüse session starts via driving.
-         */
-        public static final float MPH_TILL_PAUSE = 25;
-
-        /**
-         * Time (in minutes) until the stopped location TimerTask times out
-         */
-        public static final float LOCATION_STOPPED_TIME_OUT = 2;
 
         /**
          * M/S^2 acceleration in either x, y, or z axis
