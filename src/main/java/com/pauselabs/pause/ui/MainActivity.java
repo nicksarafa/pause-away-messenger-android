@@ -1,10 +1,6 @@
 package com.pauselabs.pause.ui;
 
 import android.content.Intent;
-import android.content.IntentFilter;
-import android.hardware.Sensor;
-import android.hardware.SensorManager;
-import android.location.LocationManager;
 import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.app.Fragment;
@@ -19,9 +15,6 @@ import com.pauselabs.pause.PauseApplication;
 import com.pauselabs.pause.core.Constants;
 import com.pauselabs.pause.events.PauseSessionChangedEvent;
 import com.pauselabs.pause.events.SavedPauseMessageSelectedEvent;
-import com.pauselabs.pause.listeners.LinearAccelerometerListener;
-import com.pauselabs.pause.listeners.PLocationListener;
-import com.pauselabs.pause.listeners.PhoneChargingListener;
 import com.pauselabs.pause.util.UIUtils;
 import com.squareup.otto.Bus;
 import com.squareup.otto.Subscribe;

@@ -5,14 +5,11 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.hardware.Sensor;
 import android.hardware.SensorManager;
-import android.location.LocationManager;
 import android.os.IBinder;
 import android.util.Log;
 
 import com.pauselabs.pause.core.Constants;
 import com.pauselabs.pause.listeners.LinearAccelerometerListener;
-import com.pauselabs.pause.listeners.MagneticFieldListener;
-import com.pauselabs.pause.listeners.PLocationListener;
 import com.pauselabs.pause.listeners.PhoneChargingListener;
 import com.pauselabs.pause.listeners.SilenceListener;
 
@@ -23,11 +20,7 @@ public class PauseApplicationService extends Service {
 
     private final String TAG = PauseApplicationService.class.getSimpleName();
 
-    private PLocationListener pLocationListener;
-    private LocationManager locationManager;
-
     private LinearAccelerometerListener accelerometerListener;
-    private MagneticFieldListener magnetronListener;
     private SensorManager sensorManager;
     private Sensor accelerometer;
     private Sensor magnetron;
@@ -45,9 +38,7 @@ public class PauseApplicationService extends Service {
 
     @Override
     public void onDestroy() {
-        locationManager.removeUpdates(pLocationListener);
         sensorManager.unregisterListener(accelerometerListener);
-        sensorManager.unregisterListener(magnetronListener);
         unregisterReceiver(chargingListener);
     }
 
@@ -59,15 +50,7 @@ public class PauseApplicationService extends Service {
 
         accelerometerListener = new LinearAccelerometerListener();
         accelerometer = sensorManager.getDefaultSensor(Sensor.TYPE_LINEAR_ACCELERATION);
-        sensorManager.registerListener(accelerometerListener,accelerometer,SensorManager.SENSOR_DELAY_NORMAL);
-
-//        magnetronListener = new MagneticFieldListener();
-//        magnetron = sensorManager.getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD);
-//        sensorManager.registerListener(magnetronListener,magnetron,SensorManager.SENSOR_DELAY_NORMAL);
-
-        pLocationListener = new PLocationListener();
-        locationManager = (LocationManager)getSystemService(LOCATION_SERVICE);
-        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER,2000,0,pLocationListener);
+        sensorManager.registerListener(accelerometerListener, accelerometer, SensorManager.SENSOR_DELAY_NORMAL);
 
         chargingListener = new PhoneChargingListener();
         IntentFilter chargingIntentFilter = new IntentFilter(Intent.ACTION_BATTERY_CHANGED);
