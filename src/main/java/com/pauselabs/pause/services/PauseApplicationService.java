@@ -23,7 +23,6 @@ public class PauseApplicationService extends Service {
     private LinearAccelerometerListener accelerometerListener;
     private SensorManager sensorManager;
     private Sensor accelerometer;
-    private Sensor magnetron;
 
     private PhoneChargingListener chargingListener;
 
