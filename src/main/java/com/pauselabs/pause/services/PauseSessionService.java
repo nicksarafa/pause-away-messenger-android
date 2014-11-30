@@ -88,6 +88,9 @@ public class PauseSessionService extends Service{
         if (PauseApplication.getOldRingerMode() != AudioManager.RINGER_MODE_SILENT)
             am.setRingerMode(PauseApplication.getOldRingerMode());
 
+        PauseApplication.numSMS = 0;
+        PauseApplication.numCall = 0;
+
         mStophandler = true;
         handler.removeCallbacks(runnable);
 
