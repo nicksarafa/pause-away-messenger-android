@@ -9,6 +9,8 @@ import android.os.Parcelable;
 import android.telephony.PhoneStateListener;
 import android.telephony.TelephonyManager;
 import android.util.Log;
+
+import com.pauselabs.pause.PauseApplication;
 import com.pauselabs.pause.core.Constants;
 import com.pauselabs.pause.models.PauseMessage;
 import com.pauselabs.pause.services.PauseMessageReceivedService;
@@ -74,6 +76,8 @@ public class PausePhoneStateListener extends BroadcastReceiver{
 
                         String savedNumber = sharedPreferences.getString(Constants.Message.PREFERENCE_LAST_CALL_NUMBER, "none");
                         PauseMessage messageReceived = new PauseMessage(savedNumber, "missed phone call");
+
+                        PauseApplication.numCall++;
 
                         // Start PauseMessageReceivedService and include message as extra
                         Intent messageReceivedIntent = new Intent(context, PauseMessageReceivedService.class);

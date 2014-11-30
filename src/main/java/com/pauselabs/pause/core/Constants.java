@@ -215,7 +215,8 @@ public class Constants {
 
         public static final int STOP_PAUSE_SESSION = 1002;
         public static final int EDIT_PAUSE_SESSION = 1003;
-        public static final int NOT_DRIVER_PAUSE_SESSION = 1004;
+        public static final int NOT_SLEEPING = 1004;
+        public static final int NOT_DRIVER = 1005;
 
         public static final String PAUSE_NOTIFICATION_INTENT = "PAUSE_NOTIFICATION_INTENT";
         public static final String PAUSE_NOTIFICATION_STOP_SESSION  = "PAUSE_NOTIFICATION_STOP_SESSION";

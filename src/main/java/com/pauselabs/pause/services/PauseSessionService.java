@@ -6,6 +6,8 @@ import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.media.AudioManager;
 import android.os.Handler;
 import android.os.IBinder;
@@ -57,8 +59,14 @@ public class PauseSessionService extends Service{
         public void run() {
             if(!mStophandler) {
                 notifyPauseSessionRunning();
-                handler.postDelayed(this, 1000);
             }
+
+            if (PauseApplication.shouldUpdateNotification) {
+                updateNotification();
+                PauseApplication.shouldUpdateNotification = false;
+            }
+
+            handler.postDelayed(this, 1000);
         }
     };
 
@@ -107,15 +115,7 @@ public class PauseSessionService extends Service{
             startPauseSession();
             // Run as foreground service: http://stackoverflow.com/a/3856940/5210
             // Another example: https://github.com/commonsguy/cw-android/blob/master/Notifications/FakePlayer/src/com/commonsware/android/fakeplayerfg/PlayerService.java
-            String message = "";
-            if (mActiveSession.getCreator() == Constants.Session.Creator.CUSTOM)
-                message = getString(R.string.pause_session_running);
-            else if (mActiveSession.getCreator() == Constants.Session.Creator.SILENCE)
-                message = getString(R.string.pause_session_running_silence);
-            else if (mActiveSession.getCreator() == Constants.Session.Creator.DRIVE)
-                message = getString(R.string.pause_session_running_drive);
-            else if (mActiveSession.getCreator() == Constants.Session.Creator.SLEEP)
-                message = getString(R.string.pause_session_running_sleep);
+            String message = "No one has contacted you.";
             startForeground(Constants.Notification.SESSION_NOTIFICATION_ID, getNotification(message));
         }
 
@@ -155,7 +155,7 @@ public class PauseSessionService extends Service{
             // display results dialog
             mStophandler = true;
 
-            updateNotification(getString(R.string.pause_session_ended));
+            updateNotification(/*getString(R.string.pause_session_ended)*/);
 
         }
         else{
@@ -164,14 +164,15 @@ public class PauseSessionService extends Service{
             long minutes = seconds / 60;
             long hours = minutes / 60;
             long days = hours / 24;
-            updateNotification(hours % 24 + "h " + minutes % 60 + "m " + seconds % +60 + "s remaining");
+            updateNotification(/*hours % 24 + "h " + minutes % 60 + "m " + seconds % +60 + "s remaining"*/);
         }
 
         //updateNotification(getString(R.string.pause_session_running));
     }
 
-    private void updateNotification(String message) {
-        notificationManager.notify(Constants.Notification.SESSION_NOTIFICATION_ID, getNotification(message));
+    private void updateNotification() {
+        int num = mActiveSession.getConversations().size();
+        notificationManager.notify(Constants.Notification.SESSION_NOTIFICATION_ID, getNotification((num > 0) ? num + ((num == 1) ? " person has" : " people have") + " contacted you." : "No one has contacted you"));
     }
 
     /**
@@ -197,15 +198,28 @@ public class PauseSessionService extends Service{
         editPauseIntent.putExtra(Constants.Pause.EDIT_PAUSE_MESSAGE_ID_EXTRA, mActivePauseBounceBack.getId());
         PendingIntent editPausePendingIntent = PendingIntent.getBroadcast(this, new Random().nextInt(), editPauseIntent, PendingIntent.FLAG_CANCEL_CURRENT);
 
-        // edit session intent
+        // not sleeping intent
+        Intent notSleepingPauseIntent = new Intent(this, NotificationActionListener.class);
+        notSleepingPauseIntent.putExtra(Constants.Notification.PAUSE_NOTIFICATION_INTENT, Constants.Notification.NOT_SLEEPING);
+        PendingIntent notSleepingPausePendingIntent = PendingIntent.getBroadcast(this, new Random().nextInt(), notSleepingPauseIntent, PendingIntent.FLAG_CANCEL_CURRENT);
+
+        // not driver intent
         Intent notDriverPauseIntent = new Intent(this, NotificationActionListener.class);
-        notDriverPauseIntent.putExtra(Constants.Notification.PAUSE_NOTIFICATION_INTENT, Constants.Notification.NOT_DRIVER_PAUSE_SESSION);
+        notDriverPauseIntent.putExtra(Constants.Notification.PAUSE_NOTIFICATION_INTENT, Constants.Notification.NOT_DRIVER);
         PendingIntent notDriverPausePendingIntent = PendingIntent.getBroadcast(this, new Random().nextInt(), notDriverPauseIntent, PendingIntent.FLAG_CANCEL_CURRENT);
 
         NotificationCompat.Builder notBuilder = new NotificationCompat.Builder(this);
 
-        notBuilder.setContentTitle(getString(R.string.app_name))
+        NotificationCompat.BigTextStyle bigStyle = new NotificationCompat.BigTextStyle();
+        String bigText = message + "\n";
+        bigText += "\n" + PauseApplication.numSMS + " missed Texts";
+        bigText += "\n" + PauseApplication.numCall + " missed Calls";
+        bigStyle.bigText(bigText);
+
+        notBuilder
                 .setSmallIcon(R.drawable.ic_stat_pause_icon_pause)
+                .setLargeIcon(BitmapFactory.decodeResource(getResources(),R.drawable.ic_launcher))
+                .setStyle(bigStyle)
                 .setContentText(message)
                 .setAutoCancel(false)
                 .setOnlyAlertOnce(true)
@@ -216,8 +230,28 @@ public class PauseSessionService extends Service{
 
         switch (mActiveSession.getCreator()) {
             case Constants.Session.Creator.CUSTOM:
-                notBuilder.addAction(R.drawable.ic_stat_notificaiton_end, "End", stopPausePendingIntent);
-                notBuilder.addAction(R.drawable.ic_stat_notification_pencil, "Edit", editPausePendingIntent);
+                notBuilder
+                        .setContentTitle(getString(R.string.app_name) + " " + getString(R.string.pause_session_running_custom))
+                        .addAction(R.drawable.ic_stat_notificaiton_end, "End", stopPausePendingIntent)
+                        .addAction(R.drawable.ic_stat_notification_pencil, "Edit", editPausePendingIntent);
+
+                break;
+            case Constants.Session.Creator.SILENCE:
+                notBuilder
+                        .setContentTitle(getString(R.string.app_name) + " " + getString(R.string.pause_session_running_silence))
+                        .addAction(R.drawable.ic_stat_notificaiton_end, "End", stopPausePendingIntent);
+
+                break;
+            case Constants.Session.Creator.SLEEP:
+                notBuilder
+                        .setContentTitle(getString(R.string.app_name) + " " + getString(R.string.pause_session_running_sleep))
+                        .addAction(R.drawable.ic_stat_notificaiton_end, "Not Sleeping", notSleepingPausePendingIntent);
+
+                break;
+            case Constants.Session.Creator.DRIVE:
+                notBuilder
+                        .setContentTitle(getString(R.string.app_name) + " " + getString(R.string.pause_session_running_drive))
+                        .addAction(R.drawable.ic_stat_notificaiton_end, "Not the Driver", notDriverPausePendingIntent);
 
                 break;
         }
@@ -229,6 +263,7 @@ public class PauseSessionService extends Service{
     public IBinder onBind(Intent intent) {
         return null;
     }
+
 
 
 }

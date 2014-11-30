@@ -36,6 +36,8 @@ public class PauseApplication extends Application {
     private static final String TAG = PauseApplication.class.getSimpleName();
     public static HashMap<TrackerName, Tracker> mTrackers = new HashMap<TrackerName, Tracker>();
 
+    public static boolean shouldUpdateNotification = false;
+
     public static PauseMessageSender messageSender;
     private static PauseSession currentPauseSession;
     private static boolean drawerOpen = false;
@@ -46,6 +48,9 @@ public class PauseApplication extends Application {
     private static int oldRingerMode;
 
     private static boolean driveModeAllowed = true;
+
+    public static int numSMS = 0;
+    public static int numCall = 0;
 
     /**
      * Enum used to identify the tracker that needs to be used for tracking.

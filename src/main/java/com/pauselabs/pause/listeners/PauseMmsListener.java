@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.os.Parcelable;
 import android.telephony.SmsMessage;
 import android.util.Log;
+
+import com.pauselabs.pause.PauseApplication;
 import com.pauselabs.pause.core.Constants;
 import com.pauselabs.pause.models.PauseMessage;
 import com.pauselabs.pause.services.PauseMessageReceivedService;
@@ -22,6 +24,8 @@ public class PauseMmsListener extends BroadcastReceiver {
         String type = intent.getType();
 
         if(action.equals(Constants.Mms.ACTION_MMS_RECEIVED) && type.equals(Constants.Mms.MMS_DATA_TYPE)) {
+
+            PauseApplication.numSMS++;
 
             Bundle bundle = intent.getExtras();
 
