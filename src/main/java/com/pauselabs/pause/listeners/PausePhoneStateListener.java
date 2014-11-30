@@ -25,14 +25,10 @@ public class PausePhoneStateListener extends BroadcastReceiver{
     @Override
     public void onReceive(Context context, Intent intent) {
         Log.d(TAG, "receive phone state change.");
-        TelephonyManager telephonyManager = (TelephonyManager) context
-                .getSystemService(Service.TELEPHONY_SERVICE);
-        ReplyPhoneStateListener replyPhoneStateListener = new ReplyPhoneStateListener(
-                context);
-        telephonyManager.listen(replyPhoneStateListener,
-                PhoneStateListener.LISTEN_CALL_STATE);
-        telephonyManager.listen(replyPhoneStateListener,
-                PhoneStateListener.LISTEN_NONE);
+        TelephonyManager telephonyManager = (TelephonyManager) context.getSystemService(Service.TELEPHONY_SERVICE);
+        ReplyPhoneStateListener replyPhoneStateListener = new ReplyPhoneStateListener(context);
+        telephonyManager.listen(replyPhoneStateListener, PhoneStateListener.LISTEN_CALL_STATE);
+        telephonyManager.listen(replyPhoneStateListener, PhoneStateListener.LISTEN_NONE);
 
     }
 
@@ -45,16 +41,10 @@ public class PausePhoneStateListener extends BroadcastReceiver{
 
         @Override
         public void onCallStateChanged(int state, String incomingNumber) {
-            SharedPreferences sharedPreferences = this.context
-                    .getApplicationContext().getSharedPreferences(
-                            Constants.Message.MISSED_CALL_PREFERENCE,
-                            Context.MODE_WORLD_WRITEABLE
-                                    | Context.MODE_WORLD_READABLE);
+            SharedPreferences sharedPreferences = this.context.getApplicationContext().getSharedPreferences(Constants.Message.MISSED_CALL_PREFERENCE, Context.MODE_WORLD_WRITEABLE | Context.MODE_WORLD_READABLE);
 
-            int olderSharedPreference = sharedPreferences.getInt(
-                    Constants.Message.PREFERENCE_OLDER_PHONE_STATE, -1);
-            Log.d(TAG, "Old phone state: "
-                    + olderSharedPreference);
+            int olderSharedPreference = sharedPreferences.getInt(Constants.Message.PREFERENCE_OLDER_PHONE_STATE, -1);
+            Log.d(TAG, "Old phone state: " + olderSharedPreference);
 
             if(!incomingNumber.equals("")) {
                 sharedPreferences.edit().putString(Constants.Message.PREFERENCE_LAST_CALL_NUMBER, incomingNumber).commit();
@@ -67,8 +57,7 @@ public class PausePhoneStateListener extends BroadcastReceiver{
 
             switch (state) {
                 case TelephonyManager.CALL_STATE_IDLE:
-                    if (olderSharedPreference == TelephonyManager.CALL_STATE_OFFHOOK
-                            || olderSharedPreference == TelephonyManager.CALL_STATE_RINGING) {
+                    if (olderSharedPreference == TelephonyManager.CALL_STATE_RINGING) {
 //                        Thread replyThread = new Thread(new ReplyThread(state,
 //                                incomingNumber, context));
 //                        replyThread.start();
