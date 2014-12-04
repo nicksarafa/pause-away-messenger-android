@@ -35,7 +35,7 @@
                 <EditText
                         android:id="@+id/pauseMessageText"
                         android:layout_width="fill_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="fill_parent"
                         android:hint="@string/pauseMessageTextHint"
                         android:textColor="#555"
                         android:inputType="textCapSentences|textMultiLine"
@@ -157,7 +157,7 @@
         </RelativeLayout>
 
 
-    </RelativeLayout
+    </RelativeLayout>
 
 
 
