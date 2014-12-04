@@ -1,0 +1,67 @@
+[
+	[
+		"Hello. ",
+		"Hiya. ",
+		"Good day! ",
+		"Howdy! ",
+		"Hey! ",
+		"Hey there! ",
+		"Yo! ",
+		"Greetings! ",
+		"Aloha. ",
+		"Hiya. ",
+		"What's cookin, good lookin? ",
+		"Hola. "
+	],
+
+//I'm Pause
+
+	[
+		"I'm Pause. ",
+		"my name is Pause. ",
+		"They call me Pause. "
+	],
+
+//Inject name from settings via Java (Noah)
+
+    [
+		"Nick ",
+		"Boss ",
+		"Chief ",
+		"The Big Cheese ",
+		"The Head Honcho ",
+		"My employer "
+	],
+
+	[
+		"isn't here at the moment. ",
+		"is away from their phone. ",
+		"is paused at the moment. ",
+		"is busy at the moment. ",
+		"can't answer your message right now. ",
+		"doesn't want to be bothered right now. ",
+		"won't be back for a little while. ",
+		"is taking a break from their phone. ",
+		"can't be bothered right now. "
+	],
+
+	[
+	    "Can I take a message? ",
+	    "But I'll let them know you reached out! ",
+	],
+
+//Greeting - Probably going to omit for now
+
+	[
+		"how are you?",
+		"what's up?",
+		"how's it going?",
+		"how's it hanging?",
+		"What's cookin good lookin?",
+		"Having a good day?",
+		"What's good?",
+		"How's it going?",
+		"How's your day?",
+		"Nice to see your message."
+	]
+]

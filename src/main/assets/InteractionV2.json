@@ -1,0 +1,128 @@
+{	
+	"content" : [],
+	"nodes" : [
+		{
+			"id" : 1,
+			"type" : "normal",
+			"content" : "Hey I'm Pause! What's your name",
+			"options" : [
+				{
+					"content" : "My name is...",
+					"action" : "",
+					"visible" : true,
+					"default" : true,
+					"next" : 2
+				},
+				{
+					"content" : "Why do you want my name?",
+					"action" : "",
+					"visible" : true,
+					"default" : false,
+					"next" : 3
+				}
+			]
+		},
+		{
+			"id" : 2,
+			"type" : "user_input",
+			"content" : "Please enter your name",
+			"options" : [
+				{
+					"content" : "",
+					"action" : "",
+					"visible" : false,
+					"default" : true,
+					"next" : 5
+				}
+			],
+			"variable" : 1000
+		},
+		{
+			"id" : 3,
+			"type" : "normal",
+			"content" : "We want your name because...",
+			"options" : [
+				{
+					"content" : "Okay! Here's my name",
+					"action" : "",
+					"visible" : true,
+					"default" : true,
+					"next" : 2
+				},
+				{
+					"content" : "No name. Just call me...",
+					"action" : "",
+					"visible" : true,
+					"default" : false,
+					"next" : 4
+				}
+			]
+		},
+		{
+			"id" : 4,
+			"type" : "select_one",
+			"content" : "No name. just call me...",
+			"options" : [
+				{
+					"content" : "",
+					"action" : "",
+					"visible" : false,
+					"default" : true,
+					"next" : 6
+				}
+			],
+			"choices" : ["Boss", "Chief", "Other"],
+			"variable" : 1000
+		},
+		{
+			"id" : 5,
+			"type" : "normal",
+			"content" : "Is this your name?",
+			"options" : [
+				{
+					"content" : "Yup, that's me!",
+					"action" : "",
+					"visible" : true,
+					"default" : true,
+					"next" : 10
+				},
+				{
+					"content" : "That's not my name!",
+					"action" : "",
+					"visible" : true,
+					"default" : false,
+					"next" : 3
+				}
+			],
+			"variable" : 1000
+		},
+		{
+			"id" : 6,
+			"type" : "normal",
+			"content" : "Are you sure you'd like me to call you ",
+			"options" : [
+				{
+					"content" : "Yup, that's me!",
+					"action" : "",
+					"visible" : true,
+					"default" : true,
+					"next" : 10
+				},
+				{
+					"content" : "On second thought...",
+					"action" : "",
+					"visible" : true,
+					"default" : false,
+					"next" : 1
+				}
+			],
+			"variable" : 1000
+		},
+		{
+			"id" : 10,
+			"type" : "end",
+			"content" : "END!!!",
+			"options" : []
+		}
+	]
+}

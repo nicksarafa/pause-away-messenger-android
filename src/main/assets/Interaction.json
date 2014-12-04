@@ -1,0 +1,94 @@
+{
+	"variables" : [
+		
+	],
+	"nodes" : [
+		{
+			"id" : 1,
+			"type" : "normal",
+			"content" : "Hey I'm Pause! What's your name",
+			"options" : [101, 102]
+		},
+		{
+			"id" : 2,
+			"type" : "user_input",
+			"content" : "Please enter your name",
+			"options" : [5]
+		},
+		{
+			"id" : 3,
+			"type" : "normal",
+			"content" : "We want your name because...",
+			"options" : [301, 302]
+		},
+		{
+			"id" : 4,
+			"type" : "select_one",
+			"content" : "No name. just call me...",
+			"options" : [6],
+			"choices" : ["Boss", "Chief", "Other"]
+		},
+		{
+			"id" : 5,
+			"type" : "normal",
+			"content" : "Is this your name?",
+			"options" : [501, 502]
+		},
+		{
+			"id" : 6,
+			"type" : "normal",
+			"content" : "Are you sure you'd like me to call you {chosen user name}",
+			"options" : [501, 601]
+		},
+		{
+			"id" : 10,
+			"type" : "end",
+			"content" : "End!!!!",
+			"options" : []
+		}
+	],
+	"options" : [
+		{
+			"id" : 101,
+			"type" : "normal",
+			"content" : "My name is...",
+			"next_node" : 2
+		},
+		{
+			"id" : 102,
+			"type" : "normal",
+			"content" : "Why do you want my name?",
+			"next_node" : 3
+		},
+		{
+			"id" : 301,
+			"type" : "normal",
+			"content" : "Okay! Here's my name",
+			"next_node" : 2
+		},
+		{
+			"id" : 302,
+			"type" : "normal",
+			"content" : "No name. Just call me...",
+			"next_node" : 4
+		},
+		{
+			"id" : 501,
+			"type" : "normal",
+			"content" : "Yup, that's me!",
+			"next_node" : 10
+		},
+		{
+			"id" : 502,
+			"type" : "normal",
+			"content" : "That's not my name!",
+			"next_node" : 3
+		},
+		{
+			"id" : 601,
+			"type" : "normal",
+			"content" : "On second thought...",
+			"next_node" : 1
+		}
+	]
+}
