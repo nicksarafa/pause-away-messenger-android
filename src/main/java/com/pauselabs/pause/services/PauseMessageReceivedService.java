@@ -82,7 +82,7 @@ public class PauseMessageReceivedService extends IntentService {
             mCurrentPauseSession.incrementResponseCount();
         }
 
-        PauseApplication.shouldUpdateNotification = true;
+        PauseApplication.updateNotifications();
 
         /*if(mCurrentConversation != null) {
             updateExistingConversation(message);

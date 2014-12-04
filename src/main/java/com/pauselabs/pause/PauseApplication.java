@@ -2,10 +2,14 @@ package com.pauselabs.pause;
 
 import android.app.Application;
 import android.app.Instrumentation;
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.support.v4.app.NotificationCompat;
 import android.telephony.TelephonyManager;
 import android.util.Log;
 
@@ -20,15 +24,21 @@ import com.pauselabs.BuildConfig;
 import com.pauselabs.R;
 import com.pauselabs.pause.core.Constants;
 import com.pauselabs.pause.core.PauseMessageSender;
+import com.pauselabs.pause.listeners.NotificationActionListener;
 import com.pauselabs.pause.models.PauseBounceBackMessage;
 import com.pauselabs.pause.models.PauseMMSPart;
 import com.pauselabs.pause.models.PauseSession;
 import com.pauselabs.pause.services.PauseApplicationService;
 import com.pauselabs.pause.services.PauseSessionService;
+import com.pauselabs.pause.ui.ScoreboardActivity;
+import com.squareup.otto.Bus;
 
 import java.io.ByteArrayOutputStream;
 import java.util.Calendar;
 import java.util.HashMap;
+import java.util.Random;
+
+import javax.inject.Inject;
 
 public class PauseApplication extends Application {
 
@@ -36,7 +46,8 @@ public class PauseApplication extends Application {
     private static final String TAG = PauseApplication.class.getSimpleName();
     public static HashMap<TrackerName, Tracker> mTrackers = new HashMap<TrackerName, Tracker>();
 
-    public static boolean shouldUpdateNotification = false;
+    public static NotificationManager notificationManager;
+    @Inject protected Bus eventBus;
 
     public static PauseMessageSender messageSender;
     private static PauseSession currentPauseSession;
@@ -91,6 +102,11 @@ public class PauseApplication extends Application {
         // Perform injection
         Injector.init(getRootModule(), this);
 
+        // Register the bus so we can send notifcations
+//        eventBus.register(this);
+
+        notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+
         initImageLoader(getApplicationContext());
 
         messageSender = new PauseMessageSender(instance);
@@ -139,6 +155,8 @@ public class PauseApplication extends Application {
 
             // Create new Pause Session
             currentPauseSession = new PauseSession(sessionCreator);
+
+            updateNotifications();
         }
     }
 
@@ -153,6 +171,8 @@ public class PauseApplication extends Application {
             // Delete Pause Session
             // TODO
             currentPauseSession.deactivateSession();
+
+            cancelNotifications();
         }
     }
 
@@ -233,6 +253,142 @@ public class PauseApplication extends Application {
     public static boolean isDriveModeAllowed() { return driveModeAllowed; }
     public static void setDriveModeAllowed(boolean isAllowed) { driveModeAllowed = isAllowed; }
 
+    public static void updateNotifications() {
+        updateMainNotification();
+        updateChangeModeNotification();
+    }
+
+    private static void cancelNotifications() {
+        notificationManager.cancel(Constants.Notification.SESSION_NOTIFICATION_ID);
+        notificationManager.cancel(Constants.Notification.CHANGE_MODE_NOTIFICATION_ID);
+    }
+
+    /**
+     * Creates a notification to show in the notification bar
+     *
+     * @return a new {@link android.app.Notification}
+     */
+    private static void updateMainNotification() {
+        int num = getCurrentSession().getConversations().size();
+        String message = (num > 0) ? num + ((num == 1) ? " person has" : " people have") + " contacted you." : "No one has contacted you";
+
+        final Intent i = new Intent(instance, ScoreboardActivity.class);
+
+        // open activity intent
+        PendingIntent pendingIntent = PendingIntent.getActivity(instance, 0, i, 0);
+
+        // stop session intent
+        Intent stopPauseIntent = new Intent(instance, NotificationActionListener.class);
+        stopPauseIntent.putExtra(Constants.Notification.PAUSE_NOTIFICATION_INTENT, Constants.Notification.STOP_PAUSE_SESSION);
+        PendingIntent stopPausePendingIntent = PendingIntent.getBroadcast(instance, new Random().nextInt(), stopPauseIntent, PendingIntent.FLAG_CANCEL_CURRENT);
+
+        // edit session intent
+        Intent editPauseIntent = new Intent(instance, NotificationActionListener.class);
+        editPauseIntent.putExtra(Constants.Notification.PAUSE_NOTIFICATION_INTENT, Constants.Notification.EDIT_PAUSE_SESSION);
+        editPauseIntent.putExtra(Constants.Pause.EDIT_PAUSE_MESSAGE_ID_EXTRA, getCurrentSession().getActiveBounceBackMessage().getId());
+        PendingIntent editPausePendingIntent = PendingIntent.getBroadcast(instance, new Random().nextInt(), editPauseIntent, PendingIntent.FLAG_CANCEL_CURRENT);
+
+        // not sleeping intent
+        Intent notSleepingPauseIntent = new Intent(instance, NotificationActionListener.class);
+        notSleepingPauseIntent.putExtra(Constants.Notification.PAUSE_NOTIFICATION_INTENT, Constants.Notification.NOT_SLEEPING);
+        PendingIntent notSleepingPausePendingIntent = PendingIntent.getBroadcast(instance, new Random().nextInt(), notSleepingPauseIntent, PendingIntent.FLAG_CANCEL_CURRENT);
+
+        // not driver intent
+        Intent notDriverPauseIntent = new Intent(instance, NotificationActionListener.class);
+        notDriverPauseIntent.putExtra(Constants.Notification.PAUSE_NOTIFICATION_INTENT, Constants.Notification.NOT_DRIVER);
+        PendingIntent notDriverPausePendingIntent = PendingIntent.getBroadcast(instance, new Random().nextInt(), notDriverPauseIntent, PendingIntent.FLAG_CANCEL_CURRENT);
+
+        NotificationCompat.Builder notBuilder = new NotificationCompat.Builder(instance);
+
+        NotificationCompat.BigTextStyle bigStyle = new NotificationCompat.BigTextStyle();
+        String bigText = message + "\n";
+        bigText += "\n" + numSMS + " missed Texts";
+        bigText += "\n" + numCall + " missed Calls";
+        bigStyle.bigText(bigText);
+
+        notBuilder
+                .setSmallIcon(R.drawable.ic_stat_pause_icon_pause)
+                .setLargeIcon(BitmapFactory.decodeResource(instance.getResources(), R.drawable.ic_launcher))
+                .setStyle(bigStyle)
+                .setContentText(message)
+                .setAutoCancel(false)
+                .setOnlyAlertOnce(true)
+                .setOngoing(true)
+                .setWhen(System.currentTimeMillis())
+                .setContentIntent(pendingIntent)
+                .setPriority(NotificationCompat.PRIORITY_MAX);
+
+        switch (getCurrentSession().getCreator()) {
+            case Constants.Session.Creator.CUSTOM:
+                notBuilder
+                        .setContentTitle(instance.getString(R.string.app_name) + " " + instance.getString(R.string.pause_session_running_custom))
+                        .addAction(R.drawable.ic_stat_notificaiton_end, "End", stopPausePendingIntent)
+                        .addAction(R.drawable.ic_stat_notification_pencil, "Edit", editPausePendingIntent);
+
+                break;
+            case Constants.Session.Creator.SILENCE:
+                notBuilder
+                        .setContentTitle(instance.getString(R.string.app_name) + " " + instance.getString(R.string.pause_session_running_silence))
+                        .addAction(R.drawable.ic_stat_notificaiton_end, "End", stopPausePendingIntent);
+
+                break;
+            case Constants.Session.Creator.SLEEP:
+                notBuilder
+                        .setContentTitle(instance.getString(R.string.app_name) + " " + instance.getString(R.string.pause_session_running_sleep))
+                        .addAction(R.drawable.ic_stat_notificaiton_end, "Not Sleeping", notSleepingPausePendingIntent);
+
+                break;
+            case Constants.Session.Creator.DRIVE:
+                notBuilder
+                        .setContentTitle(instance.getString(R.string.app_name) + " " + instance.getString(R.string.pause_session_running_drive))
+                        .addAction(R.drawable.ic_stat_notificaiton_end, "Not the Driver", notDriverPausePendingIntent);
+
+                break;
+        }
+
+        notificationManager.notify(Constants.Notification.SESSION_NOTIFICATION_ID,notBuilder.build());
+    }
+
+    private static void updateChangeModeNotification() {
+
+        // silence intent
+        Intent silencePauseIntent = new Intent(instance, NotificationActionListener.class);
+        silencePauseIntent.putExtra(Constants.Notification.PAUSE_NOTIFICATION_INTENT, Constants.Notification.MODE_SILENCE);
+        PendingIntent silencePausePendingIntent = PendingIntent.getBroadcast(instance, new Random().nextInt(), silencePauseIntent, PendingIntent.FLAG_CANCEL_CURRENT);
+
+        // silence intent
+        Intent sleepPauseIntent = new Intent(instance, NotificationActionListener.class);
+        silencePauseIntent.putExtra(Constants.Notification.PAUSE_NOTIFICATION_INTENT, Constants.Notification.MODE_SLEEP);
+        PendingIntent sleepPausePendingIntent = PendingIntent.getBroadcast(instance, new Random().nextInt(), sleepPauseIntent, PendingIntent.FLAG_CANCEL_CURRENT);
+
+        // silence intent
+        Intent drivePauseIntent = new Intent(instance, NotificationActionListener.class);
+        silencePauseIntent.putExtra(Constants.Notification.PAUSE_NOTIFICATION_INTENT, Constants.Notification.MODE_DRIVE);
+        PendingIntent drivePausePendingIntent = PendingIntent.getBroadcast(instance, new Random().nextInt(), drivePauseIntent, PendingIntent.FLAG_CANCEL_CURRENT);
+
+        NotificationCompat.Builder changeModeNotBuilder = new NotificationCompat.Builder(instance);
+
+        changeModeNotBuilder
+                .setSmallIcon(R.drawable.ic_stat_pause_icon_pause)
+                .setLargeIcon(BitmapFactory.decodeResource(instance.getResources(), R.drawable.ic_launcher))
+                .setContentTitle(instance.getString(R.string.app_name))
+                .setContentText(instance.getString(R.string.pause_session_change))
+                .setAutoCancel(false)
+                .setOnlyAlertOnce(true)
+                .setOngoing(true)
+                .setWhen(System.currentTimeMillis())
+                .setContentIntent(PendingIntent.getBroadcast(instance, new Random().nextInt(), new Intent(), PendingIntent.FLAG_CANCEL_CURRENT))
+                .setPriority(NotificationCompat.PRIORITY_MIN);
+
+        if (getCurrentSession().getCreator() != Constants.Session.Creator.SILENCE)
+            changeModeNotBuilder.addAction(R.drawable.ic_stat_notificaiton_end, "Silence", silencePausePendingIntent);
+        if (getCurrentSession().getCreator() != Constants.Session.Creator.SLEEP)
+            changeModeNotBuilder.addAction(R.drawable.ic_stat_notificaiton_end, "Sleep", sleepPausePendingIntent);
+        if (getCurrentSession().getCreator() != Constants.Session.Creator.DRIVE)
+            changeModeNotBuilder.addAction(R.drawable.ic_stat_notificaiton_end, "Drive", drivePausePendingIntent);
+
+        notificationManager.notify(Constants.Notification.CHANGE_MODE_NOTIFICATION_ID,changeModeNotBuilder.build());
+    }
 
     public static synchronized Tracker getTracker(TrackerName trackerId) {
         if (!mTrackers.containsKey(trackerId)) {

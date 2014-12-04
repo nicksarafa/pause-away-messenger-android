@@ -46,6 +46,18 @@ public class NotificationActionListener extends BroadcastReceiver {
                     PauseApplication.stopPauseService(Constants.Session.Creator.DRIVE);
 
                     break;
+                case Constants.Notification.MODE_SILENCE:
+                    PauseApplication.getCurrentSession().setCreator(Constants.Session.Creator.SILENCE);
+
+                    break;
+                case Constants.Notification.MODE_SLEEP:
+                    PauseApplication.getCurrentSession().setCreator(Constants.Session.Creator.SLEEP);
+
+                    break;
+                case Constants.Notification.MODE_DRIVE:
+                    PauseApplication.getCurrentSession().setCreator(Constants.Session.Creator.DRIVE);
+
+                    break;
             }
         }
     }

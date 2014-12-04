@@ -52,11 +52,6 @@ public class Constants {
         public static final String PHONE_STATE_CHANGE_INTENT = "android.intent.action.PHONE_STATE";
 
         /**
-         * Phone Silence Filer
-         */
-        public static final String PHONE_SILENCE_INTENT = "android.media.RINGER_MODE_CHANGED";
-
-        /**
          * Phone Number incoming call
          */
         public static final String PREFERENCE_LAST_CALL_NUMBER = "PREFERENCE_LAST_CALL_NUMBER";
@@ -212,11 +207,16 @@ public class Constants {
 
         public static final int SESSION_NOTIFICATION_ID = 1000; // Why 1000? Why not? :)
         public static final int LOW_BATTERY_NOTIFICATION_ID = 1001;
+        public static final int CHANGE_MODE_NOTIFICATION_ID = 1002;
 
-        public static final int STOP_PAUSE_SESSION = 1002;
-        public static final int EDIT_PAUSE_SESSION = 1003;
-        public static final int NOT_SLEEPING = 1004;
-        public static final int NOT_DRIVER = 1005;
+        public static final int STOP_PAUSE_SESSION = 1010;
+        public static final int EDIT_PAUSE_SESSION = 1011;
+        public static final int NOT_SLEEPING = 1012;
+        public static final int NOT_DRIVER = 1013;
+
+        public static final int MODE_SILENCE = 1014;
+        public static final int MODE_SLEEP = 1015;
+        public static final int MODE_DRIVE = 1016;
 
         public static final String PAUSE_NOTIFICATION_INTENT = "PAUSE_NOTIFICATION_INTENT";
         public static final String PAUSE_NOTIFICATION_STOP_SESSION  = "PAUSE_NOTIFICATION_STOP_SESSION";

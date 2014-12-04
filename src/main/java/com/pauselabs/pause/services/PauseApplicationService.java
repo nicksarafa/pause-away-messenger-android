@@ -5,8 +5,10 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.hardware.Sensor;
 import android.hardware.SensorManager;
+import android.media.AudioManager;
 import android.os.IBinder;
 import android.util.Log;
+import android.view.KeyEvent;
 
 import com.pauselabs.pause.core.Constants;
 import com.pauselabs.pause.listeners.LinearAccelerometerListener;
@@ -39,6 +41,7 @@ public class PauseApplicationService extends Service {
     public void onDestroy() {
         sensorManager.unregisterListener(accelerometerListener);
         unregisterReceiver(chargingListener);
+        unregisterReceiver(silenceListener);
     }
 
     @Override
@@ -56,11 +59,13 @@ public class PauseApplicationService extends Service {
         registerReceiver(chargingListener,chargingIntentFilter);
 
         silenceListener = new SilenceListener();
-        IntentFilter silenceIntentFilter = new IntentFilter(Constants.Message.PHONE_SILENCE_INTENT);
+        IntentFilter silenceIntentFilter = new IntentFilter(AudioManager.RINGER_MODE_CHANGED_ACTION);
         registerReceiver(silenceListener,silenceIntentFilter);
 
         return Service.START_STICKY;
     }
+
+
 
     @Override
     public IBinder onBind(Intent intent) { return null; }

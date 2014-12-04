@@ -52,6 +52,7 @@
     <string name="pause_session_running_drive">Drive Mode</string>
     <string name="pause_session_running_sleep">Sleep Mode</string>
     <string name="pause_session_ended">Session has ended</string>
+    <string name="pause_session_change">Expand to change Session Mode.</string>
 
     <!-- Analytics Categories -->
     <string name="ui_action">UI Action</string>
