@@ -14,21 +14,14 @@
         android:paddingLeft="@dimen/padding"
         android:textSize="@dimen/big_OB_text"
         android:layout_centerHorizontal="true"
-        android:text="@string/meet_onboarding"/>
+        android:text="Hey Boss!"/>
 
-        <ImageView
+    <ImageView
         android:layout_width="125dp"
         android:layout_height="150dp"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"
         android:src="@drawable/on_boarding_face"/>
-
-        <ImageView
-            android:layout_width="fill_parent"
-            android:layout_height="200dp"
-            android:layout_centerVertical="true"
-            android:layout_centerHorizontal="true"
-            android:src="@drawable/on_boarding_letters"/>
 
 
     <Button

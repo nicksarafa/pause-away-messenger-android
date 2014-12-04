@@ -68,17 +68,12 @@
 
         </LinearLayout>
 
-
-
-
     </RelativeLayout>
 
     <RelativeLayout
         android:id="@+id/backgroundLayout"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent">
-
-
 
         <RelativeLayout
             android:id="@+id/bottomButtonBar"
@@ -162,14 +157,7 @@
         </RelativeLayout>
 
 
-    </RelativeLayout>
-
-
-
-
-
-
-
+    </RelativeLayout
 
 
 

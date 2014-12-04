@@ -16,4 +16,11 @@
 
     <!-- Onboarding Dimens -->
     <dimen name="onboarding_text_size">28sp</dimen>
+
+    <!-- On Boarding Final Button Dimens -->
+    <dimen name="on_boaring_btn_height">56dp</dimen>
+
+    <!-- Text Sizes -->
+    <dimen name="on_boarding_text_size">28sp</dimen>
+    <dimen name="big_OB_text">56sp</dimen>
 </resources>
