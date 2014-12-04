@@ -1,35 +1,46 @@
 [
+//Greetings
 	[
 		"Hello. ",
 		"Hiya. ",
 		"Good day! ",
 		"Howdy! ",
 		"Hey! ",
-		"Hey there! ",
+		"Hey, there! ",
 		"Yo! ",
 		"Greetings! ",
 		"Aloha. ",
 		"Hiya. ",
 		"What's cookin, good lookin? ",
-		"Hola. "
+		"Hola. ",
+		"Bonjour. ",
+		"Bon Giorno. ",
+		"Greetings. ",
+		"What's shakin? ",
+		"Whassup? ",
+		"How's it going? ",
+		"How're you doing today? ",
+		"Thanks for calling. ",
+		"Thanks for reaching out. "
+
 	],
 
-//I'm Pause
+//Introduce yourself
 
 	[
 		"I'm Pause. ",
-		"my name is Pause. ",
-		"They call me Pause. "
+		"My name is Pause. ",
+		"They call me Pause. ",
+		"Pleasure meeting you. I'm Pause. ",
 	],
 
-//Inject name from settings via Java (Noah)
+//TODO Inject name from settings via Java (Noah)
 
     [
-		"Nick ",
 		"Boss ",
 		"Chief ",
-		"The Big Cheese ",
-		"The Head Honcho ",
+		"The big cheese ",
+		"The head honcho ",
 		"My employer "
 	],
 
@@ -42,26 +53,15 @@
 		"doesn't want to be bothered right now. ",
 		"won't be back for a little while. ",
 		"is taking a break from their phone. ",
-		"can't be bothered right now. "
+		"can't be bothered right now. ",
+		"will get back to you later. "
 	],
 
 	[
-	    "Can I take a message? ",
-	    "But I'll let them know you reached out! ",
-	],
-
-//Greeting - Probably going to omit for now
-
-	[
-		"how are you?",
-		"what's up?",
-		"how's it going?",
-		"how's it hanging?",
-		"What's cookin good lookin?",
-		"Having a good day?",
-		"What's good?",
-		"How's it going?",
-		"How's your day?",
-		"Nice to see your message."
+	    "Can I take a message?",
+	    "But I'll let them know you reached out!",
+	    "Would you like me to take a message?",
+	    "Leave a message here and I'll let them know you called.",
+	    "I'll let them know you reached out once they've returned.",
 	]
 ]
