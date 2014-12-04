@@ -27,7 +27,7 @@ public class PauseConversation implements Serializable {
     private String contactName;
     private String type;
 
-    private  int numberOfStringFiles = 3;
+    private  int numberOfStringFiles = 7;
     private StringRandomizer stringRandomizer;
 
     public PauseConversation(String sender) {
