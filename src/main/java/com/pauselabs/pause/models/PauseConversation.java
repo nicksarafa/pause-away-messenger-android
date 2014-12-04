@@ -92,7 +92,7 @@ public class PauseConversation implements Serializable {
     }
 
     public String getStringForBounceBackMessage() {
-        int num = (messagesReceived.size() <= numberOfStringFiles) ? messagesReceived.size() : 1;
+        int num = (messagesReceived.size() <= numberOfStringFiles) ? messagesReceived.size() : numberOfStringFiles;
         stringRandomizer.setFile("strings" + num + ".json");
 
         return stringRandomizer.getString();

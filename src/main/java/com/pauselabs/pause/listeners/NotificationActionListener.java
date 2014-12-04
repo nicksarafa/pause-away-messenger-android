@@ -20,7 +20,7 @@ public class NotificationActionListener extends BroadcastReceiver {
             int actionCode = intent.getIntExtra(Constants.Notification.PAUSE_NOTIFICATION_INTENT, 0);
             switch(actionCode) {
                 case Constants.Notification.STOP_PAUSE_SESSION:
-                    PauseApplication.stopPauseService(Constants.Session.Creator.SILENCE);
+                    PauseApplication.stopPauseService(Constants.Session.Destroyer.SILENCE);
 
                     break;
                 /*case Constants.Notification.EDIT_PAUSE_SESSION:
@@ -35,11 +35,11 @@ public class NotificationActionListener extends BroadcastReceiver {
 
                     break;*/
                 case Constants.Notification.NOT_SLEEPING:
-                    PauseApplication.stopPauseService(Constants.Session.Creator.SLEEP);
+                    PauseApplication.stopPauseService(Constants.Session.Destroyer.SLEEP);
 
                     break;
                 case Constants.Notification.NOT_DRIVER:
-                    PauseApplication.stopPauseService(Constants.Session.Creator.DRIVE);
+                    PauseApplication.stopPauseService(Constants.Session.Destroyer.DRIVE);
 
                     break;
                 case Constants.Notification.MODE_SILENCE:
@@ -49,7 +49,7 @@ public class NotificationActionListener extends BroadcastReceiver {
                     break;
                 case Constants.Notification.MODE_SLEEP:
                     PauseApplication.getCurrentSession().setCreator(Constants.Session.Creator.SLEEP);
-//                    PauseApplication.updateNotifications();
+                    PauseApplication.updateNotifications();
 
                     break;
                 case Constants.Notification.MODE_DRIVE:
