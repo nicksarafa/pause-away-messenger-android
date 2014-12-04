@@ -101,7 +101,6 @@ public class MainActivity extends PauseFragmentActivity {
     private void initScreen() {
         FragmentManager fm = getSupportFragmentManager();
         fragments[SPLASH] = fm.findFragmentById(R.id.splashFragment);
-		/* Interaction fragment to show off user interaction feature */
         fragments[CREATE_PAUSE] = fm.findFragmentById(R.id.createPauseFragment);
 //        fragments[SCOREBOARD] = fm.findFragmentById(R.id.scoreboardFragment);
 
