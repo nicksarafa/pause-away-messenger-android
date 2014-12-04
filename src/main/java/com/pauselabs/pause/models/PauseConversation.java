@@ -25,9 +25,10 @@ public class PauseConversation implements Serializable {
     private ArrayList<PauseMessage> messagesReceived;
     private String sender;
     private String contactName;
-    private Boolean sentPause;
-    private Boolean sentSecondPause = false;
     private String type;
+
+    private  int numberOfStringFiles = 2;
+    private StringRandomizer stringRandomizer;
 
     public PauseConversation(String sender) {
         this.sender = sender;
@@ -37,6 +38,8 @@ public class PauseConversation implements Serializable {
 
         Date date = new Date();
         initiatedOn = date.getTime(); // TODO This should be taken from message received
+
+        stringRandomizer = new StringRandomizer(PauseApplication.getInstance(), "strings1.json");
     }
 
     public void addMessage(PauseMessage message) {
@@ -68,22 +71,6 @@ public class PauseConversation implements Serializable {
         this.sender = sender;
     }
 
-    public Boolean getSentPause() {
-        return sentPause;
-    }
-
-    public void setSentPause(Boolean sentPause) {
-        this.sentPause = sentPause;
-    }
-
-    public Boolean getSentSecondPause() {
-        return sentSecondPause;
-    }
-
-    public void setSentSecondPause(Boolean sentSecondPause) {
-        this.sentSecondPause = sentSecondPause;
-    }
-
     public void setType(String type) {
         this.type = type;
     }
@@ -102,6 +89,13 @@ public class PauseConversation implements Serializable {
 
     public PauseMessage getLastMessageReceived() {
         return messagesReceived.get(messagesReceived.size() -1);
+    }
+
+    public String getStringForBounceBackMessage() {
+        int num = (messagesReceived.size() <= numberOfStringFiles) ? messagesReceived.size() : 1;
+        stringRandomizer.setFile("strings" + num + ".json");
+
+        return stringRandomizer.getString();
     }
 
     private static String getContactName(Context context, String phoneNumber) {

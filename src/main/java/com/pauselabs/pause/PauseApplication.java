@@ -283,10 +283,10 @@ public class PauseApplication extends Application {
         PendingIntent stopPausePendingIntent = PendingIntent.getBroadcast(instance, new Random().nextInt(), stopPauseIntent, PendingIntent.FLAG_CANCEL_CURRENT);
 
         // edit session intent
-        Intent editPauseIntent = new Intent(instance, NotificationActionListener.class);
-        editPauseIntent.putExtra(Constants.Notification.PAUSE_NOTIFICATION_INTENT, Constants.Notification.EDIT_PAUSE_SESSION);
-        editPauseIntent.putExtra(Constants.Pause.EDIT_PAUSE_MESSAGE_ID_EXTRA, getCurrentSession().getActiveBounceBackMessage().getId());
-        PendingIntent editPausePendingIntent = PendingIntent.getBroadcast(instance, new Random().nextInt(), editPauseIntent, PendingIntent.FLAG_CANCEL_CURRENT);
+//        Intent editPauseIntent = new Intent(instance, NotificationActionListener.class);
+//        editPauseIntent.putExtra(Constants.Notification.PAUSE_NOTIFICATION_INTENT, Constants.Notification.EDIT_PAUSE_SESSION);
+//        editPauseIntent.putExtra(Constants.Pause.EDIT_PAUSE_MESSAGE_ID_EXTRA, getCurrentSession().getActiveBounceBackMessage().getId());
+//        PendingIntent editPausePendingIntent = PendingIntent.getBroadcast(instance, new Random().nextInt(), editPauseIntent, PendingIntent.FLAG_CANCEL_CURRENT);
 
         // not sleeping intent
         Intent notSleepingPauseIntent = new Intent(instance, NotificationActionListener.class);
@@ -319,13 +319,13 @@ public class PauseApplication extends Application {
                 .setPriority(NotificationCompat.PRIORITY_MAX);
 
         switch (getCurrentSession().getCreator()) {
-            case Constants.Session.Creator.CUSTOM:
+            /*case Constants.Session.Creator.CUSTOM:
                 notBuilder
                         .setContentTitle(instance.getString(R.string.app_name) + " " + instance.getString(R.string.pause_session_running_custom))
                         .addAction(R.drawable.ic_stat_notificaiton_end, "End", stopPausePendingIntent)
                         .addAction(R.drawable.ic_stat_notification_pencil, "Edit", editPausePendingIntent);
 
-                break;
+                break;*/
             case Constants.Session.Creator.SILENCE:
                 notBuilder
                         .setContentTitle(instance.getString(R.string.app_name) + " " + instance.getString(R.string.pause_session_running_silence))
@@ -358,12 +358,12 @@ public class PauseApplication extends Application {
 
         // silence intent
         Intent sleepPauseIntent = new Intent(instance, NotificationActionListener.class);
-        silencePauseIntent.putExtra(Constants.Notification.PAUSE_NOTIFICATION_INTENT, Constants.Notification.MODE_SLEEP);
+        sleepPauseIntent.putExtra(Constants.Notification.PAUSE_NOTIFICATION_INTENT, Constants.Notification.MODE_SLEEP);
         PendingIntent sleepPausePendingIntent = PendingIntent.getBroadcast(instance, new Random().nextInt(), sleepPauseIntent, PendingIntent.FLAG_CANCEL_CURRENT);
 
         // silence intent
         Intent drivePauseIntent = new Intent(instance, NotificationActionListener.class);
-        silencePauseIntent.putExtra(Constants.Notification.PAUSE_NOTIFICATION_INTENT, Constants.Notification.MODE_DRIVE);
+        drivePauseIntent.putExtra(Constants.Notification.PAUSE_NOTIFICATION_INTENT, Constants.Notification.MODE_DRIVE);
         PendingIntent drivePausePendingIntent = PendingIntent.getBroadcast(instance, new Random().nextInt(), drivePauseIntent, PendingIntent.FLAG_CANCEL_CURRENT);
 
         NotificationCompat.Builder changeModeNotBuilder = new NotificationCompat.Builder(instance);

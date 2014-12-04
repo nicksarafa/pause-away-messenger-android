@@ -132,7 +132,7 @@ public class PauseSession implements Serializable {
     public PauseBounceBackMessage getActiveBounceBackMessage(){
         PauseBounceBackMessage bounceBackMessage = null;
 
-        switch (PauseApplication.getCurrentSession().getCreator()) {
+        /*switch (PauseApplication.getCurrentSession().getCreator()) {
             case Constants.Session.Creator.CUSTOM:
                 mDatasource.open();
 
@@ -155,7 +155,7 @@ public class PauseSession implements Serializable {
                 bounceBackMessage = new PauseBounceBackMessage("Away",Constants.Message.SLEEP);
 
                 break;
-        }
+        }*/
 
         return bounceBackMessage;
     }

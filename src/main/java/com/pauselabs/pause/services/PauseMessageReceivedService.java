@@ -77,19 +77,12 @@ public class PauseMessageReceivedService extends IntentService {
 
         // Check who created the Session to in order to send appropriate message
         Log.i("Message Recieved",mCurrentConversation.getMessagesReceived().size() + " messages in conversation");
-        if(mCurrentPauseSession.shouldSenderReceivedBounceback(mContactId) && mCurrentConversation.getMessagesReceived().size() == 1) {
-            PauseApplication.messageSender.sendSmsMessage(message.getSender(), retrieveActivePause());
+        if(mCurrentPauseSession.shouldSenderReceivedBounceback(mContactId)) {
+            PauseApplication.messageSender.sendSmsMessage(message.getSender(), getBounceBackMessage());
             mCurrentPauseSession.incrementResponseCount();
         }
 
         PauseApplication.updateNotifications();
-
-        /*if(mCurrentConversation != null) {
-            updateExistingConversation(message);
-        }
-        else{
-            createNewConversation(message);
-        }*/
 
         // Update Session conversations with updated conversation
         mCurrentPauseSession.updateConversation(mCurrentConversation);
@@ -97,49 +90,6 @@ public class PauseMessageReceivedService extends IntentService {
         // alert UI that Pause Conversation has been updated
         mBus.post(new PauseMessageReceivedEvent());
 
-    }
-
-
-    private void updateExistingConversation(PauseMessage message) {
-        mCurrentConversation.addMessage(message);
-
-        if(mCurrentPauseSession.shouldSenderReceivedBounceback(mContactId)) {
-            if(mCurrentConversation.getMessagesReceived().size() == Constants.Pause.SECOND_BOUNCE_BACK_TRIGGER && !mCurrentConversation.getSentSecondPause()){
-                // Attempt to send second Pause Bounce Back
-
-                PauseApplication.messageSender.sendSmsMessage(message.getSender(), retrieveSecondaryPause());
-                mCurrentConversation.setSentSecondPause(true);
-            }
-        }
-    }
-
-    private void createNewConversation(PauseMessage message) {
-        mCurrentConversation = new PauseConversation(message.getSender());
-        mCurrentConversation.addMessage(message);
-
-        if(mCurrentPauseSession.shouldSenderReceivedBounceback(mContactId)) {
-            PauseBounceBackMessage currentBouncebackMessage = retrieveActivePause();
-
-            // Determine whether to send SMS or MMS based on currentBouncebackMessage
-            if(currentBouncebackMessage.getPathToOriginal() == null || currentBouncebackMessage.getPathToOriginal().equals("")){
-                PauseApplication.messageSender.sendSmsMessage(message.getSender(), retrieveActivePause());
-                mCurrentPauseSession.incrementResponseCount();
-            } else {
-                PauseApplication.messageSender.sendMmsMessage(message.getSender(), retrieveActivePause());
-                mCurrentPauseSession.incrementResponseCount();
-
-                /**
-                 * Since KitKat won't allow us to write this MMS to the content provider we'll send the
-                 * secondary pause message at the same time, this will be written to the content provider because its
-                 * using the SmsManager and this way the conversation makes sense in the users chat history
-                 * http://android-developers.blogspot.fr/2013/10/getting-your-sms-apps-ready-for-kitkat.html
-                 */
-                PauseApplication.messageSender.sendSmsMessage(message.getSender(), retrieveSecondaryPause());
-                mCurrentConversation.setSentSecondPause(true);
-            }
-
-            mCurrentConversation.setSentPause(true);
-        }
     }
 
     private String lookupSender(String sender) {
@@ -166,14 +116,8 @@ public class PauseMessageReceivedService extends IntentService {
 
     }
 
-    private PauseBounceBackMessage retrieveActivePause() {
-        PauseBounceBackMessage activePauseMessage = PauseApplication.getCurrentSession().getActiveBounceBackMessage();
-        return activePauseMessage;
-    }
-
-    private PauseBounceBackMessage retrieveSecondaryPause() {
-        PauseBounceBackMessage secondaryPause = new PauseBounceBackMessage("Pause message", Constants.Pause.SECONDARY_BOUNCE_BACK_MESSAGE_TEXT);
-        return secondaryPause;
+    private PauseBounceBackMessage getBounceBackMessage() {
+        return new PauseBounceBackMessage("Away",mCurrentConversation.getStringForBounceBackMessage());
     }
 
 }

@@ -55,7 +55,7 @@ public class PauseSessionService extends Service{
         @Override
         public void run() {
             if(!mStophandler) {
-                notifyPauseSessionRunning();
+//                notifyPauseSessionRunning();
                 handler.postDelayed(this, 1000);
             }
         }
@@ -121,8 +121,8 @@ public class PauseSessionService extends Service{
 
         // Retrieve Pause end time
         mActiveSession = PauseApplication.getCurrentSession();
-        mActivePauseBounceBack = mActiveSession.getActiveBounceBackMessage();
-        mEndTime = new Date(mActivePauseBounceBack.getEndTime());
+//        mActivePauseBounceBack = mActiveSession.getActiveBounceBackMessage();
+//        mEndTime = new Date(mActivePauseBounceBack.getEndTime());
 
         mStartTime = new Date();
 
@@ -131,7 +131,7 @@ public class PauseSessionService extends Service{
         runnable.run();
     }
 
-    private void notifyPauseSessionRunning() {
+    /*private void notifyPauseSessionRunning() {
         Date currentDate = new Date();
         if(currentDate.getTime() > mEndTime.getTime()){
 //            // timer has expired
@@ -153,7 +153,7 @@ public class PauseSessionService extends Service{
         }
 
         //updateNotification(getString(R.string.pause_session_running));
-    }
+    }*/
 
 
     public IBinder onBind(Intent intent) {

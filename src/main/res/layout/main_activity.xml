@@ -12,19 +12,10 @@
               android:layout_width="match_parent"
               android:layout_height="match_parent" />
 
-    <!--<fragment android:name="com.pauselabs.pause.ui.CreatePauseFragment"
+    <fragment android:name="com.pauselabs.pause.ui.CreatePauseFragment"
               android:id="@+id/createPauseFragment"
               android:layout_width="match_parent"
-              android:layout_height="match_parent" />-->
-    <!--
-    I commented out the above fragment and replaced it with mine
-    to test out the user interaction feature
-     -->
-    <fragment
-        android:name="com.pauselabs.pause.ui.InteractionFragment"
-        android:id="@+id/interactionFragment"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+              android:layout_height="match_parent" />
 
     <!--<fragment android:name="com.pauselabs.pause.ui.ScoreboardFragment"-->
               <!--android:id="@+id/scoreboardFragment"-->

@@ -55,7 +55,7 @@ public class InteractionFragment extends Fragment { //implements ListView.OnItem
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		if (getArguments() != null) {
-			String filename = getArguments().getString(ARG_FILENAME, "strings.json");
+			String filename = getArguments().getString(ARG_FILENAME, "strings1.json");
 			mRandomizer = new StringRandomizer(getActivity(), filename);
 		}
 	}
@@ -64,7 +64,7 @@ public class InteractionFragment extends Fragment { //implements ListView.OnItem
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 							 Bundle savedInstanceState) {
 		if (mRandomizer == null)
-			mRandomizer = new StringRandomizer(getActivity(), "strings.json");
+			mRandomizer = new StringRandomizer(getActivity(), "strings1.json");
 
 		View view = inflater.inflate(R.layout.fragment_interaction, container, false);
 		Views.inject(this, view);
