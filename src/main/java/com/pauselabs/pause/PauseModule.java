@@ -8,8 +8,8 @@ import com.pauselabs.pause.services.PauseSessionService;
 import com.pauselabs.pause.ui.BlacklistActivity;
 import com.pauselabs.pause.ui.BlacklistFragment;
 import com.pauselabs.pause.ui.MainActivity;
+import com.pauselabs.pause.ui.PrivacyActivity;
 import com.pauselabs.pause.ui.SettingsActivity;
-import com.pauselabs.pause.ui.SettingsFragment;
 import com.pauselabs.robolectric.DeckardActivity;
 import com.squareup.otto.Bus;
 
@@ -29,8 +29,8 @@ import dagger.Provides;
                 PauseApplication.class,
                 MainActivity.class,
                 SettingsActivity.class,
+                PrivacyActivity.class,
                 DeckardActivity.class,
-                SettingsFragment.class,
                 PauseMessageReceivedService.class,
                 PauseSessionService.class,
                 BlacklistActivity.class,

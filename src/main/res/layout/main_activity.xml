@@ -1,54 +1,39 @@
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
 
-    <!-- Do View Pager with tabs -->
-    <TabHost
+<!-- Do View Pager with tabs -->
+<TabHost
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical"
+    android:id="@+id/tabhost">
+
+    <!-- Edit TabBar Attributes in the LinearLayout below -->
+    <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:orientation="vertical"
-        android:id="@+id/tabhost">
+        android:orientation="vertical">
 
-        <!-- Edit TabBar Attributes in the LinearLayout below -->
+        <TabWidget
+            android:id="@android:id/tabs"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:tabStripEnabled="false" />
 
-            <TabWidget
-                android:id="@android:id/tabs"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:tabStripEnabled="false"/>
+        <!--Adds transparency to TabBar android:alpha="0" -->
 
-            <!--Adds transparency to TabBar android:alpha="0" -->
+        <FrameLayout
+            android:id="@android:id/tabcontent"
+            android:layout_width="fill_parent"
+            android:layout_height="0dp"/>
 
-            <FrameLayout
-                android:id="@android:id/tabcontent"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent">
-
-                <!-- Calls the three tab views which are in other xml files under layout -->
+            <!-- Calls the three tab views which are in other xml files under layout -->
 
 
 
-                <LinearLayout
-                    android:id="@+id/tab_a"
-                    android:orientation="vertical"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"/>
+            <include layout="@layout/privacy_activity" />
 
-                <LinearLayout
-                    android:id="@+id/tab_b"
-                    android:orientation="vertical"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"/>
+            <!--<include layout="@layout/tab_b" />-->
 
-                <LinearLayout
-                    android:id="@+id/tab_c"
-                    android:orientation="vertical"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"/>
-
-            </FrameLayout>
-    </TabHost>
-
-</LinearLayout>
+            <include layout="@layout/settings_activity" />
+    </LinearLayout>
+</TabHost>

@@ -1,8 +1,11 @@
 package com.pauselabs.pause.ui;
 
 import android.app.Activity;
+import android.app.ActivityGroup;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.TabHost;
 
 import com.pauselabs.R;
@@ -15,7 +18,7 @@ import com.squareup.otto.Subscribe;
 
 import javax.inject.Inject;
 
-public class MainActivity extends Activity {
+public class MainActivity extends ActivityGroup implements TabHost.OnTabChangeListener {
 
     private final String TAG = MainActivity.class.getSimpleName();
 
@@ -31,50 +34,30 @@ public class MainActivity extends Activity {
         setContentView(R.layout.main_activity);
 
         tabhost = (TabHost) findViewById(R.id.tabhost);
-        tabhost.setup();
+        tabhost.setCurrentTab(1);
+//        tabhost.getChildAt(1).setVisibility(View.GONE);
+        tabhost.setOnTabChangedListener(this);
+        tabhost.setup(getLocalActivityManager());
+
 
         TabHost.TabSpec spec_a, spec_b, spec_c;
 
-        spec_a = tabhost.newTabSpec("spec_a");
-        spec_a.setContent(R.id.tab_a);
-        spec_a.setIndicator("tab_a");
+        spec_a = tabhost.newTabSpec("privacy");
+        spec_a.setContent(new Intent(this,PrivacyActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
+        spec_a.setIndicator("Privacy Settings");
         tabhost.addTab(spec_a);
 
-        spec_b = tabhost.newTabSpec("spec_b");
-        spec_b.setContent(R.id.tab_b);
-        spec_b.setIndicator("tab_b");
-        tabhost.addTab(spec_b);
+//        spec_b = tabhost.newTabSpec("spec_b");
+//        spec_b.setContent(new Intent(this,null));
+//        spec_b.setIndicator("tab_b");
+//        tabhost.addTab(spec_b);
 
-        spec_c = tabhost.newTabSpec("spec_c");
-        spec_c.setContent(R.id.tab_c);
-        spec_c.setIndicator("tab_c");
+        spec_c = tabhost.newTabSpec("settings");
+        spec_c.setContent(new Intent(this,SettingsActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
+        spec_c.setIndicator("Settings");
         tabhost.addTab(spec_c);
 
 
-
-        //Kill Tab Divider Lines
-        //tabHost.getTabWidget().setShowDividers(LinearLayout.SHOW_DIVIDER_NONE);
-
-        //Past Tab (First Tab User Sees)
-        //TabHost.TabSpec tabSpec = tabHost.newTabSpec("past");
-        //tabSpec.setContent(R.id.tab_a);
-        //tabSpec.setIndicator("",getResources().getDrawable(R.drawable.past_tab_selector));
-        //tabHost.addTab(tabSpec);
-
-        //Home Tab
-        //tabSpec = tabHost.newTabSpec("home");
-        //tabSpec.setContent(R.id.tab_b);
-        //tabSpec.setIndicator("",getResources().getDrawable(R.drawable.home_tab_selector));
-        //tabHost.addTab(tabSpec);
-
-        //Settings Tab
-        //tabSpec = tabHost.newTabSpec("settings");
-        //tabSpec.setContent(R.id.tab_c);
-        // tabSpec.setIndicator("",getResources().getDrawable(R.drawable.settings_tab_selector));
-        //tabHost.addTab(tabSpec);
-
-        // View injection with Butterknife
-        // Views.inject(this);
     }
 
 
@@ -111,5 +94,8 @@ public class MainActivity extends Activity {
     }
 
 
+    @Override
+    public void onTabChanged(String tabId) {
 
+    }
 }

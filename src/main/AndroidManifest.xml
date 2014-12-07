@@ -37,14 +37,12 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+        <activity android:name=".pause.ui.PrivacyActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light" />
         <activity android:name=".pause.ui.SettingsActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat.Light"
-            android:parentActivityName=".pause.ui.MainActivity">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.pauselabs.pause.ui.MainActivity" />
-        </activity>
+            android:theme="@style/Theme.AppCompat.Light" />
         <activity android:name=".pause.ui.BlacklistActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light"
