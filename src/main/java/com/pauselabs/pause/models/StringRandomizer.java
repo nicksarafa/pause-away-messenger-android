@@ -1,6 +1,9 @@
 package com.pauselabs.pause.models;
 
 import android.content.Context;
+import android.content.SharedPreferences;
+
+import com.pauselabs.pause.core.Constants;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -9,6 +12,10 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+import javax.inject.Inject;
 
 /**
  * This class will construct a randomized String from a given JSON file.
@@ -21,6 +28,9 @@ public class StringRandomizer {
 	private Context mContext;
 	private Random mRandNumGenerator;
 	private ArrayList<ArrayList<String>> mComponents;
+
+    @Inject
+    SharedPreferences prefs;
 
 	/**
 	 * Construct a StringRandomizer without an initial JSON file
@@ -61,14 +71,25 @@ public class StringRandomizer {
 		if (mComponents.isEmpty())
 			return null;
 
+        Pattern namePattern = Pattern.compile("%name");
+        Pattern genderPattern = Pattern.compile("%gender");
+        Matcher m;
+
 		StringBuilder sb = new StringBuilder();
 
 		for (int i = 0; i < mComponents.size(); i++) {
 			ArrayList<String> component = mComponents.get(i);
 
 			int index = mRandNumGenerator.nextInt(component.size());
+            String text = component.get(index);
 
-			sb.append(component.get(index));
+            m = namePattern.matcher(text);
+            m.replaceAll(prefs.getString(Constants.Settings.NAME,""));
+
+            m = genderPattern.matcher(text);
+            m.replaceAll(prefs.getString(Constants.Settings.GENDER,""));
+
+            sb.append(m.toString());
 
 			if (i != mComponents.size())
 				sb.append(' ');

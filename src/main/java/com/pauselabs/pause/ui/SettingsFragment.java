@@ -179,7 +179,7 @@ public class SettingsFragment extends Fragment implements View.OnClickListener{
         alert.setPositiveButton("Save", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int whichButton) {
                 String value = input.getText().toString();
-                prefs.edit().putString(Constants.Settings.NAME, value).apply();
+                prefs.edit().putString(Constants.Settings.NAME, value).putString(Constants.Settings.GENDER,"he").apply();
                 nameBtn.setContent(value);
             }
         });
