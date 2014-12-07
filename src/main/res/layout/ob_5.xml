@@ -18,7 +18,7 @@
         android:gravity="center"
         android:textSize="@dimen/ob_text_medium"
         android:layout_centerHorizontal="true"
-        android:text="See me?!\nUnsilence your device to turn me off\n\nWant to see a demo?"/>
+        android:text="See me?!\nUnsil\n\nWant to see a demo?"/>
 
     <ImageView
         android:layout_width="@dimen/ob_face_width"

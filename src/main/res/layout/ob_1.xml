@@ -23,7 +23,7 @@
         android:src="@drawable/on_boarding_face"/>
 
         <ImageView
-            android:layout_width="@dimen/ob_letters_width"
+            android:layout_width="fill_parent"
             android:layout_height="@dimen/ob_letters_height"
             android:layout_centerVertical="true"
             android:layout_centerHorizontal="true"
