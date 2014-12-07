@@ -5,4 +5,15 @@
         <item>Everybody</item>
         <item>Nobody</item>
     </string-array>
+
+    <!-- String Array for onboarding new user -->
+    <string-array name="on_boarding_text">
+        <item>Meet,</item>
+        <item>Hey, Boss!</item>
+        <item>I\'m your new personal assistant. How do I work?</item>
+        <item>Simply silence your device and I\'ll respond to incoming calls and texts for you. Try it out!</item>
+        <item>Well done! From now on, whenever your phone is silenced, I\'ll let your friends know you\'re away.. Automatically!</item>
+        <item>To exit Pause, simply unsilence your device. Go ahead! Turn me off!</item>
+        <item>Well done! Now, who would you like me to respond to?</item>
+    </string-array>
 </resources>
