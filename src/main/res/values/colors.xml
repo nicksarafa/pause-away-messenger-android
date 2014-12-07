@@ -47,7 +47,7 @@
 
     <color name="pause_green">#3EBEB5</color>
     <color name="pause_dark_grey">#7E7E7E</color>
-    <color name="transparent">#330000ff</color>
+    <color name="transparent">#80FFFFFF</color>
 
     <color name="holo_blue">#FF33B5E5</color>
 </resources>

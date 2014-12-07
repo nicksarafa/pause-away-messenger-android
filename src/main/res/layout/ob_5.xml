@@ -8,6 +8,8 @@
     android:textAlignment="center"
     android:padding="@dimen/padding">
 
+    <!-- //TODO Inject anim pointing to status bar -->
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -16,7 +18,7 @@
         android:gravity="center"
         android:textSize="@dimen/ob_text_medium"
         android:layout_centerHorizontal="true"
-        android:text="I'm your new personal assistant!\n\nHow about I show you what I can do?"/>
+        android:text="See me?!\nUnsilence your device to turn me off\n\nWant to see a demo?"/>
 
     <ImageView
         android:layout_width="@dimen/ob_face_width"
@@ -25,12 +27,31 @@
         android:layout_centerHorizontal="true"
         android:src="@drawable/on_boarding_face"/>
 
+    <!-- UnSilence the device on button press -->
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:orientation="vertical"
+        android:gravity="center">
 
     <Button
-        android:id="@+id/on_boarding_btn_3"
+        android:id="@+id/on_boarding_btn_5"
         android:layout_width="fill_parent"
         android:layout_height="@dimen/ob_btn_height"
         android:layout_alignParentBottom="true"
-        android:text="Sure, why not?"/>
+        android:text="I Get the Gist"/>
+
+        <!-- pointer anim to status bar -->
+
+    <Button
+        android:id="@+id/on_boarding_btn_6"
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/ob_btn_height"
+        android:layout_alignParentBottom="true"
+        android:text="Demo Me"/>
+
+    </LinearLayout>
 
 </RelativeLayout>
