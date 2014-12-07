@@ -11,24 +11,24 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
-        android:paddingLeft="@dimen/padding"
-        android:textSize="@dimen/big_OB_text"
+        android:gravity="center"
+        android:textSize="@dimen/ob_text_large"
         android:layout_centerHorizontal="true"
-        android:text="Hey Boss!"/>
+        android:text="Hey, Boss!"/>
 
     <ImageView
-        android:layout_width="125dp"
-        android:layout_height="150dp"
+        android:layout_width="@dimen/ob_face_width"
+        android:layout_height="@dimen/ob_face_height"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"
         android:src="@drawable/on_boarding_face"/>
 
 
     <Button
-        android:id="@+id/on_boarding_btn_1"
+        android:id="@+id/on_boarding_btn_2"
         android:layout_width="fill_parent"
-        android:layout_height="@dimen/on_boaring_btn_height"
+        android:layout_height="@dimen/ob_btn_height"
         android:layout_alignParentBottom="true"
-        android:text="Hello Pause"/>
+        android:text="What do you do?"/>
 
 </RelativeLayout>

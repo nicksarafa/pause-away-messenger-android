@@ -5,37 +5,33 @@
     android:orientation="vertical"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
+    android:textAlignment="center"
     android:padding="@dimen/padding">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
-        android:paddingLeft="@dimen/padding"
-        android:textSize="@dimen/big_OB_text"
+        android:textAlignment="center"
+        android:gravity="center"
+        android:textSize="@dimen/ob_text_medium"
         android:layout_centerHorizontal="true"
-        android:text="@string/meet_onboarding"/>
+        android:text="I answer your calls and texts while you're away.\n\nSimply silence your phone!"/>
 
-        <ImageView
-        android:layout_width="125dp"
-        android:layout_height="150dp"
+    <ImageView
+        android:layout_width="@dimen/ob_face_width"
+        android:layout_height="@dimen/ob_face_height"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"
         android:src="@drawable/on_boarding_face"/>
 
-        <ImageView
-            android:layout_width="fill_parent"
-            android:layout_height="200dp"
-            android:layout_centerVertical="true"
-            android:layout_centerHorizontal="true"
-            android:src="@drawable/on_boarding_letters"/>
-
+    <!-- Silence Device on Button Push, Initiate Twilio Message Send -->
 
     <Button
-        android:id="@+id/on_boarding_btn_1"
+        android:id="@+id/on_boarding_btn_4"
         android:layout_width="fill_parent"
-        android:layout_height="@dimen/on_boaring_btn_height"
+        android:layout_height="@dimen/ob_btn_height"
         android:layout_alignParentBottom="true"
-        android:text="Hello, Pause"/>
+        android:text="Okay, Silence Me"/>
 
 </RelativeLayout>

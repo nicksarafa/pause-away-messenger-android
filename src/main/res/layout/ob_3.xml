@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:textAlignment="center"
+    android:padding="@dimen/padding">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:textAlignment="center"
+        android:gravity="center"
+        android:textSize="@dimen/ob_text_medium"
+        android:layout_centerHorizontal="true"
+        android:text="I'm your new personal assistant!\n\nLet's begin!"/>
+
+    <ImageView
+        android:layout_width="@dimen/ob_face_width"
+        android:layout_height="@dimen/ob_face_height"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/on_boarding_face"/>
+
+
+    <Button
+        android:id="@+id/on_boarding_btn_3"
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/ob_btn_height"
+        android:layout_alignParentBottom="true"
+        android:text="What do you do?"/>
+
+</RelativeLayout>

@@ -17,13 +17,19 @@
     <dimen name="elevation_high">4dp</dimen>
     <dimen name="add_button_margin">16dp</dimen>
 
-    <!-- Onboarding Dimens -->
-    <dimen name="onboarding_text_size">28sp</dimen>
+    <!-- OB Text Dimens -->
+    <dimen name="ob_text_large">36sp</dimen>
+    <dimen name="ob_text_medium">28sp</dimen>
+    <dimen name="ob_text_small">22sp</dimen>
 
-    <!-- On Boarding Final Button Dimens -->
-    <dimen name="on_boaring_btn_height">56dp</dimen>
+    <!-- OB FAB (Featured Action Button) Dimens -->
+    <dimen name="ob_btn_height">56dp</dimen>
 
-    <!-- Text Sizes -->
-    <dimen name="on_boarding_text_size">28sp</dimen>
-    <dimen name="big_OB_text">56sp</dimen>
+    <!-- OB = on_boarding face and height -->
+    <dimen name="ob_face_width">70dp</dimen>
+    <dimen name="ob_face_height">150dp</dimen>
+    <dimen name="ob_letters_height">200dp</dimen>
+    <dimen name="ob_letters_width">fill_parent</dimen>
+
+
 </resources>
