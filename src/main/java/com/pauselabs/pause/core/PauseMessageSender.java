@@ -63,7 +63,7 @@ public class PauseMessageSender {
             builder.append(", until " + df.format(endTimeDate).toString());
         }
 
-        builder.append(" via PAUSELabs.com");
+        builder.append(" ");
         String message = builder.toString();
         int length = message.length();
 

@@ -1,14 +1,70 @@
 [
-//Greetings Again
+//MESSAGE RECEIEVED - Confirmation of recieving second message.
 	[
-		"Hey"
+		"Gotcha. ",
+		"Noted. ",
+		"Got it. ",
+		"Understood. ",
+		"Okay, great. ",
+		"Great. ",
+		"Lovely. ",
+		"Fantastic. ",
+		"Fabulous. ",
+		"Awesome. ",
+		"Phenomenal. ",
+		"Terrific. ",
+		"Groovy. ",
+		"Super. ",
+		"Peachy. ",
+		"Cool. ",
+		"Excellent. ",
+		"Mhm. ",
+		"Splendid. ",
+		"Brilliant. ",
+		"Superb. ",
+		"Fantabulous. ",
+		"Magnificent. "
 	],
-	[
-		"stop bothering me",
-		"what do you want",
-		"I hope you die",
-		"eat a bag of dicks",
-		"jump off a cliff",
-		"fuck you"
-	]
+//They'll see your messages once they return.
+    [
+        "I will make sure they see your message once they return. ",
+        "I will let them know once they're free. ",
+        "I will make sure they know you reached out. ",
+        "I will personally see to that they see your message. ",
+        "Your message will be waiting once they return. "
+
+    ],
+//Have a great day! - Preliminary Sign off
+    [
+        "Have a great day! ",
+        "Have a lovely day! ",
+        "Enjoy the rest of your day! ",
+        "Thanks again. Have a nice day! ",
+        "Thank you for your time! Have a nice day! ",
+        "Have a nice day! ",
+        "I'm off now! "
+    ],
+//Say bye, Pause
+    [
+        "Chow! ",
+        "Adios! ",
+        "Until soon! ",
+        "See you soon! ",
+        "Goodbye! ",
+        "See ya! ",
+        "Bye! ",
+        "Ta-ta! ",
+        "Tootles! ",
+        "Later Gator! ",
+        "Until next time! ",
+        "Au revoir! ",
+        "Adeiu! ",
+        "Sayonara! ",
+        "So long! ",
+        "Cheerio! ",
+        "Cheers! ",
+        "Later! ",
+        "Hope to hear from you soon! ",
+        "Take it easy! "
+    ]
 ]

@@ -20,18 +20,15 @@
 		"Whassup? ",
 		"How's it going? ",
 		"How're you doing today? ",
-		"Thanks for calling. ",
-		"Thanks for reaching out. "
-
+		"Thanks for reaching out. ",
+		"Nice to see you reached out. "
 	],
-
 //Introduce yourself
-
 	[
 		"I'm Pause. ",
 		"My name is Pause. ",
 		"They call me Pause. ",
-		"Pleasure meeting you. I'm Pause. ",
+		"Pleasure meeting you. I'm Pause. "
 	],
 
 //TODO Inject name from settings via Java (Noah)
@@ -43,7 +40,6 @@
 		"The head honcho ",
 		"My employer "
 	],
-
 	[
 		"isn't here at the moment. ",
 		"is away from their phone. ",
@@ -56,12 +52,11 @@
 		"can't be bothered right now. ",
 		"will get back to you later. "
 	],
-
 	[
 	    "Can I take a message?",
 	    "But I'll let them know you reached out!",
 	    "Would you like me to take a message?",
 	    "Leave a message here and I'll let them know you called.",
-	    "I'll let them know you reached out once they've returned.",
+	    "I'll let them know you reached out once they've returned."
 	]
 ]
