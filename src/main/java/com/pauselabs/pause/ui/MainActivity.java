@@ -1,170 +1,87 @@
 package com.pauselabs.pause.ui;
 
-import android.content.Intent;
+import android.app.Activity;
 import android.os.Bundle;
-import android.support.v4.app.ActionBarDrawerToggle;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
-import android.support.v4.widget.DrawerLayout;
 import android.util.Log;
-import android.view.View;
+import android.widget.TabHost;
 
 import com.pauselabs.R;
 import com.pauselabs.pause.PauseApplication;
 import com.pauselabs.pause.core.Constants;
 import com.pauselabs.pause.events.PauseSessionChangedEvent;
-import com.pauselabs.pause.events.SavedPauseMessageSelectedEvent;
 import com.pauselabs.pause.util.UIUtils;
 import com.squareup.otto.Bus;
 import com.squareup.otto.Subscribe;
 
 import javax.inject.Inject;
 
-import butterknife.Views;
-
-public class MainActivity extends PauseFragmentActivity {
+public class MainActivity extends Activity {
 
     private final String TAG = MainActivity.class.getSimpleName();
 
     @Inject
     protected Bus mBus;
 
-    private static final int SPLASH = 0;
-    private static final int CREATE_PAUSE = 1;
-//    private static final int SCOREBOARD = 2;
-    private static final int FRAGMENT_COUNT = CREATE_PAUSE + 1;
-
-    private Fragment[] fragments = new Fragment[FRAGMENT_COUNT];
-
-    private DrawerLayout drawerLayout;
-    private ActionBarDrawerToggle drawerToggle;
-    private CharSequence drawerTitle;
-    private CharSequence title;
-    private NavigationDrawerFragment navigationDrawerFragment;
+    private TabHost tabhost;
 
     @Override
-    protected void onCreate(final Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.main_activity);
 
+        tabhost = (TabHost) findViewById(R.id.tabhost);
+        tabhost.setup();
+
+        TabHost.TabSpec spec_a, spec_b, spec_c;
+
+        spec_a = tabhost.newTabSpec("spec_a");
+        spec_a.setContent(R.id.tab_a);
+        spec_a.setIndicator("tab_a");
+        tabhost.addTab(spec_a);
+
+        spec_b = tabhost.newTabSpec("spec_b");
+        spec_b.setContent(R.id.tab_b);
+        spec_b.setIndicator("tab_b");
+        tabhost.addTab(spec_b);
+
+        spec_c = tabhost.newTabSpec("spec_c");
+        spec_c.setContent(R.id.tab_c);
+        spec_c.setIndicator("tab_c");
+        tabhost.addTab(spec_c);
+
+
+
+        //Kill Tab Divider Lines
+        //tabHost.getTabWidget().setShowDividers(LinearLayout.SHOW_DIVIDER_NONE);
+
+        //Past Tab (First Tab User Sees)
+        //TabHost.TabSpec tabSpec = tabHost.newTabSpec("past");
+        //tabSpec.setContent(R.id.tab_a);
+        //tabSpec.setIndicator("",getResources().getDrawable(R.drawable.past_tab_selector));
+        //tabHost.addTab(tabSpec);
+
+        //Home Tab
+        //tabSpec = tabHost.newTabSpec("home");
+        //tabSpec.setContent(R.id.tab_b);
+        //tabSpec.setIndicator("",getResources().getDrawable(R.drawable.home_tab_selector));
+        //tabHost.addTab(tabSpec);
+
+        //Settings Tab
+        //tabSpec = tabHost.newTabSpec("settings");
+        //tabSpec.setContent(R.id.tab_c);
+        // tabSpec.setIndicator("",getResources().getDrawable(R.drawable.settings_tab_selector));
+        //tabHost.addTab(tabSpec);
+
         // View injection with Butterknife
-        Views.inject(this);
-
-        // Set up navigation drawer
-        title = drawerTitle = getTitle();
-
-        if(!isTablet()) {
-            drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-            drawerToggle = new ActionBarDrawerToggle(
-                    this,                    /* Host activity */
-                    drawerLayout,           /* DrawerLayout object */
-                    R.drawable.ic_drawer,    /* nav drawer icon to replace 'Up' caret */
-                    R.string.navigation_drawer_open,    /* "open drawer" description */
-                    R.string.navigation_drawer_close) { /* "close drawer" description */
-
-                /** Called when a drawer has settled in a completely closed state. */
-                public void onDrawerClosed(View view) {
-                    getSupportActionBar().setTitle(title);
-                    supportInvalidateOptionsMenu(); // creates call to onPrepareOptionsMenu()
-                }
-
-                /** Called when a drawer has settled in a completely open state. */
-                public void onDrawerOpened(View drawerView) {
-                    getSupportActionBar().setTitle(drawerTitle);
-                    supportInvalidateOptionsMenu(); // creates call to onPrepareOptionsMenu()
-                }
-            };
-
-            // Set the drawer toggle as the DrawerListener
-            drawerLayout.setDrawerListener(drawerToggle);
-
-            navigationDrawerFragment = (NavigationDrawerFragment)
-                    getSupportFragmentManager().findFragmentById(R.id.navigation_drawer);
-
-            // Set up the drawer.
-            navigationDrawerFragment.setUp(
-                    R.id.navigation_drawer,
-                    (DrawerLayout) findViewById(R.id.drawer_layout));
-        }
-
-
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setHomeButtonEnabled(true);
-
-        // init main screen
-        initScreen();
-
+        // Views.inject(this);
     }
 
-    private void initScreen() {
-        FragmentManager fm = getSupportFragmentManager();
-        fragments[SPLASH] = fm.findFragmentById(R.id.splashFragment);
-        fragments[CREATE_PAUSE] = fm.findFragmentById(R.id.createPauseFragment);
-//        fragments[SCOREBOARD] = fm.findFragmentById(R.id.scoreboardFragment);
 
-        FragmentTransaction transaction = fm.beginTransaction();
-        for(int i = 0 ; i < fragments.length; i++) {
-            transaction.hide(fragments[i]);
-        }
-        transaction.commit();
-
-        // show default screen
-        showFragment(CREATE_PAUSE, false);
-
-        getActionBar().setDisplayShowTitleEnabled(false);
-    }
 
     private boolean isTablet() {
         return UIUtils.isTablet(this);
     }
-
-    /**
-     * Responsible for showing a given fragment and hiding all others
-     * @param fragmentIndex
-     * @param addToBackStack
-     */
-    private void showFragment(int fragmentIndex, boolean addToBackStack) {
-        FragmentManager fm = getSupportFragmentManager();
-        FragmentTransaction transaction = fm.beginTransaction();
-        for(int i = 0; i < fragments.length; i++) {
-            if(i == fragmentIndex) {
-                transaction.show(fragments[i]);
-            }
-            else {
-                transaction.hide(fragments[i]);
-            }
-
-        }
-        if(addToBackStack) {
-            transaction.addToBackStack(null);
-        }
-        transaction.commit();
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        if(PauseApplication.getCurrentSession() != null && PauseApplication.getCurrentSession().isActive()) {
-            Intent scoreboardIntent = new Intent(this, ScoreboardActivity.class);
-            startActivity(scoreboardIntent);
-        }
-        else{
-			showFragment(CREATE_PAUSE, false);
-        }
-    }
-
-    /**
-     * Handle all saved message selection to update CreatePauseFragment
-     */
-    @Subscribe
-    public void onSavedPauseSelectedEvent(SavedPauseMessageSelectedEvent event) {
-        CreatePauseFragment createPauseFragment = (CreatePauseFragment) fragments[CREATE_PAUSE];
-        createPauseFragment.savedPauseMessageSelected(event.getSavedMessageId());
-    }
-
-
 
     /**
      * Handle all Pause session start/stop logic here through the event bus
@@ -188,7 +105,7 @@ public class MainActivity extends PauseFragmentActivity {
                 // stop Pause Service
                 PauseApplication.stopPauseService(Constants.Session.Destroyer.CUSTOM);
                 // display Create Pause Fragment
-                showFragment(CREATE_PAUSE, false);
+//                showFragment(CREATE_PAUSE, false);
                 break;
         }
     }

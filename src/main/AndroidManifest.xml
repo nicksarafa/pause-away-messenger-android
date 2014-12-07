@@ -31,17 +31,12 @@
         <service android:name=".pause.services.PauseMmsTransportService" />
 
         <activity android:name=".pause.ui.MainActivity"
-            android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".pause.ui.CameraActivity"
-                  android:screenOrientation="portrait"></activity>
-        <activity android:name=".pause.ui.PreviewActivity" android:screenOrientation="portrait"></activity>
-        <activity android:name=".pause.ui.ScoreboardActivity" android:screenOrientation="portrait"></activity>
         <activity android:name=".pause.ui.SettingsActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light"

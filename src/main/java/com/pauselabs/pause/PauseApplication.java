@@ -2,7 +2,6 @@ package com.pauselabs.pause;
 
 import android.app.Application;
 import android.app.Instrumentation;
-import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
@@ -30,7 +29,7 @@ import com.pauselabs.pause.models.PauseMMSPart;
 import com.pauselabs.pause.models.PauseSession;
 import com.pauselabs.pause.services.PauseApplicationService;
 import com.pauselabs.pause.services.PauseSessionService;
-import com.pauselabs.pause.ui.ScoreboardActivity;
+import com.pauselabs.pause.ui.MainActivity;
 import com.squareup.otto.Bus;
 
 import java.io.ByteArrayOutputStream;
@@ -272,7 +271,7 @@ public class PauseApplication extends Application {
         int num = getCurrentSession().getConversations().size();
         String message = (num > 0) ? num + ((num == 1) ? " person has" : " people have") + " contacted you." : "No one has contacted you";
 
-        final Intent i = new Intent(instance, ScoreboardActivity.class);
+        final Intent i = new Intent(instance, MainActivity.class);
 
         // open activity intent
         PendingIntent pendingIntent = PendingIntent.getActivity(instance, 0, i, 0);

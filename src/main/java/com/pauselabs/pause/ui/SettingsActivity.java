@@ -1,14 +1,14 @@
 package com.pauselabs.pause.ui;
 
+import android.app.Activity;
 import android.os.Bundle;
-import android.support.v7.app.ActionBar;
 
 import com.pauselabs.R;
 
 import butterknife.Views;
 
 
-public class SettingsActivity extends PauseFragmentActivity {
+public class SettingsActivity extends Activity {
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
@@ -19,12 +19,6 @@ public class SettingsActivity extends PauseFragmentActivity {
         // View injection with Butterknife
         Views.inject(this);
 
-        ActionBar ab = getSupportActionBar();
-        ab.setDisplayHomeAsUpEnabled(true);
-        ab.setDisplayShowHomeEnabled(false);
-        ab.setDisplayShowTitleEnabled(true);
-        ab.setTitle("Settings");
-        ab.setDisplayUseLogoEnabled(false);
 
     }
 

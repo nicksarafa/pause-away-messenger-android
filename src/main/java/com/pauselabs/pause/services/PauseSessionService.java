@@ -1,33 +1,21 @@
 package com.pauselabs.pause.services;
 
-import android.app.Notification;
-import android.app.NotificationManager;
-import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.media.AudioManager;
 import android.os.Handler;
 import android.os.IBinder;
-import android.support.v4.app.NotificationCompat;
-import android.util.Log;
-import com.pauselabs.R;
+
 import com.pauselabs.pause.Injector;
 import com.pauselabs.pause.PauseApplication;
 import com.pauselabs.pause.core.Constants;
-import com.pauselabs.pause.listeners.NotificationActionListener;
 import com.pauselabs.pause.listeners.PausePhoneStateListener;
 import com.pauselabs.pause.listeners.PauseSmsListener;
 import com.pauselabs.pause.models.PauseBounceBackMessage;
 import com.pauselabs.pause.models.PauseSession;
-import com.pauselabs.pause.ui.ScoreboardActivity;
-import com.squareup.otto.Bus;
 
-import javax.inject.Inject;
 import java.util.Date;
-import java.util.Random;
 
 /**
  * Service initiates Pause Listeners
