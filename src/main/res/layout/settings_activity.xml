@@ -4,6 +4,8 @@
               android:layout_width="match_parent"
               android:layout_height="match_parent">
 
+    <!--v4*-->
+
     <fragment android:name="com.pauselabs.pause.ui.SettingsFragment"
               android:id="@+id/settingsFragment"
               android:layout_width="match_parent"

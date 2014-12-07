@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
+    <!-- Keeping. Fragments might not work? -->
+
 <fragment xmlns:android="http://schemas.android.com/apk/res/android"
     android:name="com.pauselabs.pause.ui.BlacklistFragment"
     android:id="@+id/contact_list"

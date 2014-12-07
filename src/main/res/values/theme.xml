@@ -8,6 +8,7 @@
         <item name="android:seekBarStyle">@style/SeekBarPauseTheme</item>
     </style>
 
+    <!--//TODO Eliminate App Compact -->
     <style name="Widget.Styled.ActionBar" parent="@style/Widget.AppCompat.ActionBar.Solid">
         <!--<item name="background">@drawable/actionbar_background</item>-->
         <item name="android:background">@null</item>
@@ -30,8 +31,6 @@
         <item name="android:indeterminateDrawable">@drawable/pausetheme_scrubber_progress_horizontal_holo_light</item>
         <item name="android:thumb">@drawable/pausetheme_scrubber_control_selector_holo_light</item>
     </style>
-
-
 
     <style name="ListSeparatorTextView" parent="Widget.TextView.ListSeparator">
         <item name="android:layout_width">match_parent</item>

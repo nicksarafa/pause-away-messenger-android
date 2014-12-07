@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
+    <!-- Already Unused. Good example on how to eliminate-->
+
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 android:id="@+id/previewImage"
                 android:orientation="vertical"

@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
+    <!-- Save Drawer - Eliminate -->
+
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/saveThumbnailContainer"
     android:layout_width="@dimen/saved_image_thumb_size"
