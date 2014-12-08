@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/tab_b"
+    android:id="@+id/home_activity"
     android:orientation="vertical"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
 
     <ImageView
         android:layout_width="@dimen/ob_face_width"
@@ -31,4 +31,4 @@
         android:textSize="@dimen/ob_text_small"
         android:text="Hello, Pause"/>
 
-</LinearLayout>
+</RelativeLayout>
