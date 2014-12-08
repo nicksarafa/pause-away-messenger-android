@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/privacy_activity"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent">
@@ -9,5 +10,12 @@
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:text="Privacy Settings"/>
+
+    <!-- Test Button
+    <Button
+        android:layout_width="fill_parent"
+        android:layout_height="300dp"
+        android:layout_alignParentBottom="true"
+        android:text="Test Button"/> -->
 
 </RelativeLayout>
