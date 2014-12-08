@@ -5,6 +5,9 @@
     android:id="@+id/settings_activity"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent">
+
+    <!-- Custom Scroll View -->
+
     <ScrollView xmlns:custom="http://schemas.android.com/apk/res-auto"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">

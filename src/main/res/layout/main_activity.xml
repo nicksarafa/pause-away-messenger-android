@@ -1,38 +1,37 @@
+<!-- TabHost Setup -->
 
-<!-- Do View Pager with tabs -->
 <TabHost
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:orientation="vertical"
     android:id="@+id/tabhost">
 
-    <!-- Edit TabBar Attributes in the LinearLayout below -->
+    <!-- Control TabBar Attributes with TabWidget -->
+    <!-- Note - Adds transparency to TabBar android:alpha="0" which is how apps have TabHost w/o tabs -->
 
     <TabWidget
         android:id="@android:id/tabs"
         android:layout_width="fill_parent"
-        android:layout_height="100dp"
-        android:tabStripEnabled="false" />
+        android:layout_height="wrap_content"
+        android:tabStripEnabled="false"/>
 
-        <!--Adds transparency to TabBar android:alpha="0" -->
+    <!-- Control Tab Content's Top Padding -->
+
         <FrameLayout
             android:id="@android:id/tabcontent"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:paddingTop="100dp"/>
+            android:paddingTop="50dp"/>
 
-    <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:orientation="vertical">
-            <!-- Calls the three tab views which are in other xml files under layout -->
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:orientation="vertical">
 
+    <!-- Calls the three tab views which are in other xml files under layout -->
 
-            <include layout="@layout/privacy_activity" />
-
-            <!--<include layout="@layout/tab_b" />-->
-
-            <include layout="@layout/settings_activity" />
+                <include layout="@layout/privacy_activity" />
+                <include layout="@layout/tab_b" />
+                <include layout="@layout/settings_activity" />
     </LinearLayout>
 </TabHost>

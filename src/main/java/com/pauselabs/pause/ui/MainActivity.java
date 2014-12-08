@@ -1,11 +1,9 @@
 package com.pauselabs.pause.ui;
 
-import android.app.Activity;
 import android.app.ActivityGroup;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
 import android.widget.TabHost;
 
 import com.pauselabs.R;
@@ -44,20 +42,18 @@ public class MainActivity extends ActivityGroup implements TabHost.OnTabChangeLi
 
         spec_a = tabhost.newTabSpec("privacy");
         spec_a.setContent(new Intent(this,PrivacyActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
-        spec_a.setIndicator("Privacy Settings");
+        spec_a.setIndicator("",getResources().getDrawable(R.drawable.past_tab_selector));
         tabhost.addTab(spec_a);
 
-//        spec_b = tabhost.newTabSpec("spec_b");
-//        spec_b.setContent(new Intent(this,null));
-//        spec_b.setIndicator("tab_b");
-//        tabhost.addTab(spec_b);
+        spec_b = tabhost.newTabSpec("home");
+        spec_b.setContent(new Intent(this,PrivacyActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
+        spec_b.setIndicator("",getResources().getDrawable(R.drawable.home_tab_selector));
+        tabhost.addTab(spec_b);
 
         spec_c = tabhost.newTabSpec("settings");
         spec_c.setContent(new Intent(this,SettingsActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
-        spec_c.setIndicator("Settings");
+        spec_c.setIndicator("",getResources().getDrawable(R.drawable.settings_tab_selector));
         tabhost.addTab(spec_c);
-
-
     }
 
 

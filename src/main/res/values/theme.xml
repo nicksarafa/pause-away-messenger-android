@@ -1,36 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
+    <!-- General Styling and Removes Action Bar -->
+
     <style name="Theme.Pause.Dark" parent="@style/Theme.AppCompat">
         <item name="android:windowBackground">@color/pager_background</item>
         <item name="actionBarStyle">@style/Widget.Styled.ActionBar</item>
         <item name="android:actionBarStyle">@style/Widget.Styled.ActionBar</item>
         <item name="android:editTextBackground">@drawable/pausetheme_edit_text_holo_light</item>
         <item name="android:seekBarStyle">@style/SeekBarPauseTheme</item>
+        <item name="android:windowActionBar">false</item>
+        <item name="android:windowNoTitle">true</item>
     </style>
 
-    <!--//TODO Eliminate App Compact -->
+    <!-- Delays* app from being used in Horizontal Orientation when Screen Rotation is active aka Vertical Only (Keep) -->
+
     <style name="Widget.Styled.ActionBar" parent="@style/Widget.AppCompat.ActionBar.Solid">
-        <!--<item name="background">@drawable/actionbar_background</item>-->
         <item name="android:background">@null</item>
-        <!--<item name="android:background">@drawable/actionbar_background</item>-->
-        <item name="android:titleTextStyle">@style/Theme.Pause.Dark.Styled.ActionBar.TitleTextStyle</item>
         <item name="android:displayOptions">showHome|homeAsUp</item>
         <item name="displayOptions">showHome|homeAsUp</item>
-        <!--<item name="android:icon">@android:color/transparent</item> &lt;!&ndash; This does the magic! &ndash;&gt;-->
         <item name="android:icon">@drawable/ab_icon</item>
     </style>
 
-    <style name="Theme.Pause.Dark.Styled.ActionBar.TitleTextStyle" parent="@android:style/Widget.TextView">
-        <item name="android:textSize">20dp</item>
-        <item name="android:textColor">@android:color/white</item>
-        <item name="android:textStyle">bold</item>
-    </style>
+    <!-- Slider Selector XML -->
 
     <style name="SeekBarPauseTheme" parent="android:Widget.Holo.Light.SeekBar">
         <item name="android:progressDrawable">@drawable/pausetheme_scrubber_progress_horizontal_holo_light</item>
         <item name="android:indeterminateDrawable">@drawable/pausetheme_scrubber_progress_horizontal_holo_light</item>
         <item name="android:thumb">@drawable/pausetheme_scrubber_control_selector_holo_light</item>
     </style>
+
+    <!-- Settings ListView XML -->
 
     <style name="ListSeparatorTextView" parent="Widget.TextView.ListSeparator">
         <item name="android:layout_width">match_parent</item>
@@ -44,6 +44,7 @@
         <item name="android:paddingStart">8dp</item>
     </style>
 
-
+    <!--//TODO Retrieve Custom Dialog Styling For Settings Pop Up Windows-->
+    <!--//TODO Retrieve Code For Keeping App in Orientation Vertical Pernamently-->
 
 </resources>

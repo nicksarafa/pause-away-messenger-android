@@ -4,12 +4,14 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/privacy_activity"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent">
+    android:layout_height="fill_parent"
+    android:layout_above="@+id/tabhost">
 
+    <!-- Text View Below Shows Up in All Views?
     <TextView
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:text="Privacy Settings"/>
+        android:text="Privacy Settings"/> -->
 
     <!-- Test Button
     <Button
