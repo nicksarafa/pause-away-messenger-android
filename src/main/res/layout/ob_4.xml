@@ -5,8 +5,7 @@
     android:orientation="vertical"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:textAlignment="center"
-    android:padding="@dimen/padding">
+    android:textAlignment="center">
 
     <TextView
         android:layout_width="wrap_content"
@@ -27,11 +26,20 @@
 
     <!-- Silence Device on Button Push, Initiate Twilio Message Send -->
 
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1dip"
+        android:background="#7c7c7c"
+        android:layout_alignTop="@+id/on_boarding_btn_1"/>
+
     <Button
-        android:id="@+id/on_boarding_btn_4"
+        android:id="@+id/on_boarding_btn_1"
         android:layout_width="fill_parent"
         android:layout_height="@dimen/ob_btn_height"
         android:layout_alignParentBottom="true"
+        android:layout_marginTop="@dimen/padding"
+        android:background="@color/transparent"
+        android:textColor="@color/pause_green"
         android:text="Okay, Silence Me"/>
 
 </RelativeLayout>

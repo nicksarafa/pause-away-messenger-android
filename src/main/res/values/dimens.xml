@@ -20,7 +20,7 @@
     <!-- OB Text Dimens -->
     <dimen name="ob_text_large">36sp</dimen>
     <dimen name="ob_text_medium">28sp</dimen>
-    <dimen name="ob_text_small">22sp</dimen>
+    <dimen name="ob_text_small">18sp</dimen>
 
     <!-- OB FAB (Featured Action Button) Dimens -->
     <dimen name="ob_btn_height">100dp</dimen>

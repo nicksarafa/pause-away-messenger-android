@@ -4,8 +4,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:padding="@dimen/padding">
+    android:layout_height="fill_parent">
 
     <TextView
         android:layout_width="wrap_content"
@@ -24,11 +23,21 @@
         android:src="@drawable/on_boarding_face"/>
 
 
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1dip"
+        android:background="#7c7c7c"
+        android:layout_alignTop="@+id/on_boarding_btn_1"/>
+
     <Button
-        android:id="@+id/on_boarding_btn_2"
+        android:id="@+id/on_boarding_btn_1"
         android:layout_width="fill_parent"
         android:layout_height="@dimen/ob_btn_height"
         android:layout_alignParentBottom="true"
+        android:layout_marginTop="@dimen/padding"
+        android:background="@color/transparent"
+        android:textColor="@color/pause_green"
+        android:textSize="@dimen/ob_text_small"
         android:text="What do you do?"/>
 
 </RelativeLayout>
