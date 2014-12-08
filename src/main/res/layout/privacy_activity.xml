@@ -3,9 +3,9 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/privacy_activity"
+    android:orientation="vertical"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:layout_above="@+id/tabhost">
+    android:layout_height="fill_parent">
 
     <!-- Text View Below Shows Up in All Views?
     I think they need their own ids as well that are called in the main_activity.xml
@@ -17,10 +17,19 @@
         android:text="Privacy Settings"/> -->
 
     <!--
+
     <Button
+        android:id="@+id/test_button_1"
         android:layout_width="fill_parent"
         android:layout_height="300dp"
         android:layout_alignParentBottom="true"
-        android:text="Test Button"/> -->
+        android:text="Janky Privacy Tab Button"/> -->
+
+    <!-- <ImageView
+        android:layout_width="150dp"
+        android:layout_height="300dp"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/on_boarding_face"/> -->
 
 </RelativeLayout>
