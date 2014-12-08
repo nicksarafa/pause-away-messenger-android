@@ -3,6 +3,7 @@ package com.pauselabs.pause.models;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import com.pauselabs.pause.Injector;
 import com.pauselabs.pause.core.Constants;
 
 import org.json.JSONArray;
@@ -54,6 +55,8 @@ public class StringRandomizer {
 		mRandNumGenerator = new Random();
 		mComponents = new ArrayList<ArrayList<String>>();
 
+        Injector.inject(this);
+
 		try {
 			parseFile(filename);
 		} catch (JSONException e) {
@@ -84,12 +87,12 @@ public class StringRandomizer {
             String text = component.get(index);
 
             m = namePattern.matcher(text);
-            m.replaceAll(prefs.getString(Constants.Settings.NAME,""));
+            text = m.replaceAll(prefs.getString(Constants.Settings.NAME,""));
 
             m = genderPattern.matcher(text);
-            m.replaceAll(prefs.getString(Constants.Settings.GENDER,""));
+            text = m.replaceAll(prefs.getString(Constants.Settings.GENDER,""));
 
-            sb.append(m.toString());
+            sb.append(text);
 
 			if (i != mComponents.size())
 				sb.append(' ');
