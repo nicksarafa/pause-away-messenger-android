@@ -8,6 +8,9 @@
     android:layout_above="@+id/tabhost">
 
     <!-- Text View Below Shows Up in All Views?
+    I think they need their own ids as well that are called in the main_activity.xml
+    Also need to expiriment with Relative Layout vs. Linear Layout in TabHost
+
     <TextView
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"

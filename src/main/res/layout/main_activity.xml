@@ -12,7 +12,7 @@
     <TabWidget
         android:id="@android:id/tabs"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="@dimen/tabs_height"
         android:tabStripEnabled="false"/>
 
     <!-- Control Tab Content's Top Padding -->
@@ -31,7 +31,7 @@
     <!-- Calls the three tab views which are in other xml files under layout -->
 
                 <include layout="@layout/privacy_activity" />
-                <include layout="@layout/tab_b" />
+                <include layout="@layout/home_activity" />
                 <include layout="@layout/settings_activity" />
     </LinearLayout>
 </TabHost>

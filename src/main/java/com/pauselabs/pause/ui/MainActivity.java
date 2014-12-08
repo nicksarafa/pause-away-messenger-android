@@ -33,10 +33,9 @@ public class MainActivity extends ActivityGroup implements TabHost.OnTabChangeLi
 
         tabhost = (TabHost) findViewById(R.id.tabhost);
         tabhost.setCurrentTab(1);
-//        tabhost.getChildAt(1).setVisibility(View.GONE);
+//  WHAT IS THIS 8-----> tabhost.getChildAt(1).setVisibility(View.GONE);
         tabhost.setOnTabChangedListener(this);
         tabhost.setup(getLocalActivityManager());
-
 
         TabHost.TabSpec spec_a, spec_b, spec_c;
 
