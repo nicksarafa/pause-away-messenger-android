@@ -16,7 +16,7 @@
         android:layout_height="fill_parent"
         android:text="Privacy Settings"/> -->
 
-    <!-- Test Button
+    <!--
     <Button
         android:layout_width="fill_parent"
         android:layout_height="300dp"
