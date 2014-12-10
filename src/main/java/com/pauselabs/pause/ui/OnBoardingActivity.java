@@ -10,11 +10,10 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.pauselabs.R;
+import com.pauselabs.pause.Injector;
 import com.pauselabs.pause.core.Constants;
 
 import javax.inject.Inject;
-
-import butterknife.Views;
 
 /**
  * Created by Passa on 12/10/14.
@@ -35,7 +34,10 @@ public class OnBoardingActivity extends Activity implements View.OnClickListener
 
         setContentView(R.layout.ob_name);
 
-        Views.inject(this);
+        Injector.inject(this);
+
+        if (prefs.getString(Constants.Pause.PAUSE_FIRST_LAUNCH_KEY, "").equals(Constants.Pause.PAUSE_FIRST_LAUNCH_TRUE))
+            startActivity(new Intent(this,MainActivity.class));
 
         name = (EditText)findViewById(R.id.ob_name);
 

@@ -10,8 +10,6 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -57,7 +55,7 @@ public class SettingsActivity extends Activity implements View.OnClickListener {
     @InjectView(R.id.versionFooter)
     TextView versionFooter;
 
-//    @Inject -- Not injecting the Shared Pref
+    @Inject
     protected SharedPreferences prefs;
 
     private SavedPauseDataSource mDatasource;
@@ -67,17 +65,13 @@ public class SettingsActivity extends Activity implements View.OnClickListener {
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        Log.i(TAG,"fuck off");
-
         setContentView(R.layout.settings_activity);
 
-        // View injection with Butterknife
         Views.inject(this);
+        Injector.inject(this);
 
         mDatasource = new SavedPauseDataSource(this);
         mDatasource.open();
-
-        prefs = PreferenceManager.getDefaultSharedPreferences(this);
 
         init();
 
@@ -138,7 +132,8 @@ public class SettingsActivity extends Activity implements View.OnClickListener {
     }
 
     private void init() {
-        nameBtn.setContent(prefs.getString(Constants.Settings.NAME, "None"));
+        nameBtn.setContent(
+                prefs.getString(Constants.Settings.NAME, "None"));
         missedCallsBtn.setContent(prefs.getString(Constants.Settings.REPLY_MISSED_CALL, Constants.Privacy.EVERYBODY));
         receivedSmsBtn.setContent(prefs.getString(Constants.Settings.REPLY_SMS, Constants.Privacy.EVERYBODY));
         //blacklistBtn.setContent(prefs.getString(Constants.Settings.USING_BLACKLIST, "Setup Blacklist"));
