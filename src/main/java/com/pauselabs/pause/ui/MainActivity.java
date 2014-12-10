@@ -16,7 +16,7 @@ import com.squareup.otto.Subscribe;
 
 import javax.inject.Inject;
 
-public class MainActivity extends ActivityGroup implements TabHost.OnTabChangeListener {
+public class MainActivity extends ActivityGroup {
 
     private final String TAG = MainActivity.class.getSimpleName();
 
@@ -32,9 +32,6 @@ public class MainActivity extends ActivityGroup implements TabHost.OnTabChangeLi
         setContentView(R.layout.main_activity);
 
         tabhost = (TabHost) findViewById(R.id.tabhost);
-        tabhost.setCurrentTab(1);
-       // tabhost.getChildAt(1).setVisibility(View.GONE);
-        tabhost.setOnTabChangedListener(this);
         tabhost.setup(getLocalActivityManager());
 
         TabHost.TabSpec spec_a, spec_b, spec_c;
@@ -53,6 +50,8 @@ public class MainActivity extends ActivityGroup implements TabHost.OnTabChangeLi
         spec_c.setContent(new Intent(this,SettingsActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
         spec_c.setIndicator("",getResources().getDrawable(R.drawable.settings_tab_selector));
         tabhost.addTab(spec_c);
+
+        tabhost.setCurrentTabByTag("home");
     }
 
 
@@ -86,11 +85,5 @@ public class MainActivity extends ActivityGroup implements TabHost.OnTabChangeLi
 //                showFragment(CREATE_PAUSE, false);
                 break;
         }
-    }
-
-
-    @Override
-    public void onTabChanged(String tabId) {
-
     }
 }

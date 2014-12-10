@@ -8,6 +8,7 @@ import com.pauselabs.pause.services.PauseSessionService;
 import com.pauselabs.pause.ui.BlacklistActivity;
 import com.pauselabs.pause.ui.BlacklistFragment;
 import com.pauselabs.pause.ui.MainActivity;
+import com.pauselabs.pause.ui.OnBoardingActivity;
 import com.pauselabs.pause.ui.PrivacyActivity;
 import com.pauselabs.pause.ui.SettingsActivity;
 import com.pauselabs.robolectric.DeckardActivity;
@@ -36,7 +37,8 @@ import dagger.Provides;
                 BlacklistActivity.class,
                 BlacklistFragment.class,
                 PauseSession.class,
-                StringRandomizer.class
+                StringRandomizer.class,
+                OnBoardingActivity.class
         }
 )
 public class PauseModule {

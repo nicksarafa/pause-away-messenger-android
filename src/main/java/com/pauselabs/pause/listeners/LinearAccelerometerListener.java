@@ -35,7 +35,7 @@ public class LinearAccelerometerListener implements SensorEventListener {
                     PauseApplication.setPhoneStill(true);
 
                     if (timer == null) {
-                        Log.i(TAG, "Phone is still.");
+//                        Log.i(TAG, "Phone is still.");
 
                         timer = new Timer("SpeedTestTimer");
                         timer.schedule(new TimerTask() {
@@ -50,12 +50,12 @@ public class LinearAccelerometerListener implements SensorEventListener {
                         }, (long) (Constants.Settings.STILL_ACCELEROMETER_TIME_OUT * 60 * 1000));
                     }
                 } else {
-                    Log.i(TAG,"x: " + x + "\ny: " + y + "\nz: " + z);
+//                    Log.i(TAG,"x: " + x + "\ny: " + y + "\nz: " + z);
 
                     PauseApplication.setPhoneStill(false);
 
                     if (timer != null) {
-                        Log.i(TAG, "Phone is not still.");
+//                        Log.i(TAG, "Phone is not still.");
 
                         timer.cancel();
                         timer = null;

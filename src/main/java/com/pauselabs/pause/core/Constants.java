@@ -135,6 +135,9 @@ public class Constants {
 
         private Pause() {}
 
+        public static final String PAUSE_FIRST_LAUNCH_KEY = "PAUSE_FIRST_LAUNCH";
+        public static final String PAUSE_FIRST_LAUNCH_TRUE = "PAUSE_FIRST_LAUNCH_TRUE";
+
         /**
          * Pause Bundle Identifier String
          */

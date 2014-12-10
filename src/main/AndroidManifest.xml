@@ -30,13 +30,19 @@
         <service android:name=".pause.services.PauseMessageReceivedService" />
         <service android:name=".pause.services.PauseMmsTransportService" />
 
-        <activity android:name=".pause.ui.MainActivity"
-                  android:windowSoftInputMode="adjustResize"
-                  android:screenOrientation="portrait">
+        <activity android:name=".pause.ui.OnBoardingActivity"
+            android:windowSoftInputMode="adjustResize"
+            android:screenOrientation="portrait">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
+        </activity>
+
+        <activity android:name=".pause.ui.MainActivity"
+                  android:windowSoftInputMode="adjustResize"
+                  android:screenOrientation="portrait">
         </activity>
 
         <activity android:name=".pause.ui.PrivacyActivity"
