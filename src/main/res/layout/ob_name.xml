@@ -11,13 +11,13 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
+        android:textColor="@color/pause_green"
         android:hint="First Name"/>
 
     <View
     android:layout_width="fill_parent"
     android:layout_height="1dip"
-    android:background="#7c7c7c"
-    android:layout_alignTop="@+id/female"/>
+    android:background="#7c7c7c"/>
 
     <Button
         android:id="@+id/ob_save"
