@@ -6,25 +6,35 @@
     android:layout_height="fill_parent"
     android:gravity="center">
 
+    <ImageView
+        android:layout_width="@dimen/ob_face_width"
+        android:layout_height="@dimen/ob_face_height"
+        android:paddingTop="@dimen/padding"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/on_boarding_face"/>
+
+    <ImageView
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/ob_letters_height"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/on_boarding_letters"/>
+
     <EditText
         android:id="@+id/ob_name"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
         android:layout_gravity="center_horizontal"
         android:textColor="@color/pause_green"
-        android:hint="First Name"/>
+        android:gravity="center_horizontal|center_vertical"
+        android:textSize="@dimen/ob_text_medium"
+        android:textColorHint="@color/text_light"
+        android:hint="Enter Your First Name"/>
 
     <View
     android:layout_width="fill_parent"
     android:layout_height="1dip"
     android:background="#7c7c7c"/>
-
-    <Button
-        android:id="@+id/ob_save"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:text="Save &amp; Continue"/>
 
 
     <LinearLayout
@@ -35,6 +45,16 @@
         android:background="@color/transparent"
         android:orientation="horizontal">
 
+        <Button
+            android:id="@+id/ob_save"
+            android:layout_width="fill_parent"
+            android:layout_height="@dimen/ob_btn_height"
+            android:layout_alignParentBottom="true"
+            android:layout_marginTop="@dimen/padding"
+            android:background="@color/transparent"
+            android:textColor="@color/pause_green"
+            android:textSize="@dimen/ob_text_small"
+            android:text="Save &amp; Continue"/>
 
 
         <Button
