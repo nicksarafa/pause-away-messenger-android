@@ -8,6 +8,7 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.provider.ContactsContract;
 import com.pauselabs.pause.PauseApplication;
+import com.pauselabs.pause.core.Constants;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -92,8 +93,30 @@ public class PauseConversation implements Serializable {
     }
 
     public String getStringForBounceBackMessage() {
+        String
+                silence = "Silence",
+                drive = "Drive",
+                sleep = "Sleep",
+                modeName = "";
+
         int num = (messagesReceived.size() <= numberOfStringFiles) ? messagesReceived.size() : numberOfStringFiles;
-        stringRandomizer.setFile("strings" + num + ".json");
+
+        switch (PauseApplication.getCurrentSession().getCreator()) {
+            case Constants.Session.Creator.SILENCE:
+                modeName = silence;
+
+                break;
+            case Constants.Session.Creator.DRIVE:
+                modeName = drive;
+
+                break;
+            case Constants.Session.Creator.SLEEP:
+                modeName = sleep;
+
+                break;
+        }
+
+        stringRandomizer.setFile("strings" + modeName + num + ".json");
 
         return stringRandomizer.getString();
     }

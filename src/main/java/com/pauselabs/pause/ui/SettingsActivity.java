@@ -75,7 +75,6 @@ public class SettingsActivity extends Activity implements View.OnClickListener {
 
         init();
 
-        nameBtn = (SettingsButton)findViewById(R.id.nameBtn);
         nameBtn.setOnClickListener(this);
         missedCallsBtn.setOnClickListener(this);
         receivedSmsBtn.setOnClickListener(this);
@@ -132,8 +131,7 @@ public class SettingsActivity extends Activity implements View.OnClickListener {
     }
 
     private void init() {
-        nameBtn.setContent(
-                prefs.getString(Constants.Settings.NAME, "None"));
+        nameBtn.setContent(prefs.getString(Constants.Settings.NAME, ""));
         missedCallsBtn.setContent(prefs.getString(Constants.Settings.REPLY_MISSED_CALL, Constants.Privacy.EVERYBODY));
         receivedSmsBtn.setContent(prefs.getString(Constants.Settings.REPLY_SMS, Constants.Privacy.EVERYBODY));
         //blacklistBtn.setContent(prefs.getString(Constants.Settings.USING_BLACKLIST, "Setup Blacklist"));
@@ -166,7 +164,7 @@ public class SettingsActivity extends Activity implements View.OnClickListener {
         alert.setPositiveButton("Save", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int whichButton) {
                 String value = input.getText().toString();
-                prefs.edit().putString(Constants.Settings.NAME, value).putString(Constants.Settings.GENDER,"he").apply();
+                prefs.edit().putString(Constants.Settings.NAME, value).apply();
                 nameBtn.setContent(value);
             }
         });
