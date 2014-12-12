@@ -6,6 +6,8 @@
     android:layout_height="fill_parent"
     android:gravity="center">
 
+    <!-- TODO Fix Header Image Later -->
+
 
     <ImageView
         android:layout_width="@dimen/ob_face_width"
@@ -14,11 +16,12 @@
         android:layout_centerHorizontal="true"
         android:src="@drawable/on_boarding_face"/>
 
+    <!-- Letters
     <ImageView
         android:layout_width="fill_parent"
         android:layout_height="@dimen/ob_letters_height"
         android:layout_centerHorizontal="true"
-        android:src="@drawable/on_boarding_letters"/>
+        android:src="@drawable/on_boarding_letters"/> -->
 
     <EditText
         android:id="@+id/ob_name"
