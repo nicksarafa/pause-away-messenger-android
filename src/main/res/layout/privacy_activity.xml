@@ -3,33 +3,26 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/privacy_activity"
-    android:orientation="vertical"
+    android:orientation="horizontal"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent">
-
-    <!-- Text View Below Shows Up in All Views?
-    I think they need their own ids as well that are called in the main_activity.xml
-    Also need to expiriment with Relative Layout vs. Linear Layout in TabHost
-
-    <TextView
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:text="Privacy Settings"/> -->
+    android:layout_height="fill_parent"
+    android:padding="@dimen/padding">
 
     <!--
 
-    <Button
-        android:id="@+id/test_button_1"
+    <FrameLayout
+        android:id="@+id/card_view"
         android:layout_width="fill_parent"
-        android:layout_height="300dp"
-        android:layout_alignParentBottom="true"
-        android:text="Janky Privacy Tab Button"/> -->
+        android:layout_height="100dip">
 
-    <!-- <ImageView
-        android:layout_width="150dp"
-        android:layout_height="300dp"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true"
-        android:src="@drawable/on_boarding_face"/> -->
+        <ImageView
+            android:id="@+id/card_picture"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/padding"
+            android:background="@color/button_background_disabled_start"
+            android:src="@drawable/profile_list_silence_icon"/>
+
+        </FrameLayout> -->
 
 </RelativeLayout>
