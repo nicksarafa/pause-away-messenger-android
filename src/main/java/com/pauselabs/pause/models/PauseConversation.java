@@ -39,7 +39,7 @@ public class PauseConversation implements Serializable {
         Date date = new Date();
         initiatedOn = date.getTime(); // TODO This should be taken from message received
 
-        stringRandomizer = new StringRandomizer(PauseApplication.getInstance(), "strings1.json");
+        stringRandomizer = new StringRandomizer(PauseApplication.getInstance(), "stringsSilenced1.json");
     }
 
     public void addMessage(PauseMessage message) {

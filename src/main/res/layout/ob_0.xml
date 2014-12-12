@@ -6,6 +6,7 @@
     android:layout_height="fill_parent"
     android:gravity="center">
 
+
     <ImageView
         android:layout_width="@dimen/ob_face_width"
         android:layout_height="@dimen/ob_face_height"
