@@ -9,25 +9,25 @@
     <!-- Control TabBar Attributes with TabWidget -->
     <!-- Note - Adds transparency to TabBar android:alpha="0" which is how apps have TabHost w/o tabs -->
 
+    <FrameLayout
+        android:id="@android:id/tabcontent"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:paddingTop="50dp"/>
     <TabWidget
         android:id="@android:id/tabs"
         android:layout_width="fill_parent"
         android:layout_height="@dimen/tabs_height"
-        android:tabStripEnabled="false"/>
+        android:tabStripEnabled="false"
+        android:foreground="@null"
+        android:layout_marginBottom="-6dp"/>
 
     <!-- Control Tab Content's Top Padding -->
-
-        <FrameLayout
-            android:id="@android:id/tabcontent"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:paddingTop="50dp"/>
 
             <LinearLayout
                 android:id="@+id/content"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
-                android:orientation="vertical">
+                android:orientation="vertical"/>
 
-    </LinearLayout>
 </TabHost>

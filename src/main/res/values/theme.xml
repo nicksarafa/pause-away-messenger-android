@@ -8,15 +8,16 @@
         <item name="actionBarStyle">@style/Widget.Styled.ActionBar</item>
         <item name="android:actionBarStyle">@style/Widget.Styled.ActionBar</item>
         <item name="android:editTextBackground">@drawable/pausetheme_edit_text_holo_light</item>
-        <item name="android:seekBarStyle">@style/SeekBarPauseTheme</item>
         <item name="android:windowNoTitle">true</item>
 
-    <!-- Material Theme Custom
-            <item name="colorPrimary"></item>
-        <item name="colorPrimaryDark">@color/light_blue_800</item>
-        <item name="colorAccent">@color/grey_1000</item>-->
+
+        <!-- Material Theme Custom
+                <item name="colorPrimary"></item>
+            <item name="colorPrimaryDark">@color/light_blue_800</item>
+            <item name="colorAccent">@color/grey_1000</item>-->
 
         <item name="android:windowActionBar">false</item>
+
 
     </style>
 
@@ -27,15 +28,18 @@
         <item name="android:displayOptions">showHome|homeAsUp</item>
         <item name="displayOptions">showHome|homeAsUp</item>
         <item name="android:icon">@drawable/ab_icon</item>
+        <item name="android:windowContentOverlay">@null</item>
     </style>
 
-    <!-- Slider Selector XML -->
+    <!-- Scrubber Progress bar Files are suddenly missing -->
+
+    <!-- Slider Selector XML
 
     <style name="SeekBarPauseTheme" parent="android:Widget.Holo.Light.SeekBar">
         <item name="android:progressDrawable">@drawable/pausetheme_scrubber_progress_horizontal_holo_light</item>
         <item name="android:indeterminateDrawable">@drawable/pausetheme_scrubber_progress_horizontal_holo_light</item>
         <item name="android:thumb">@drawable/pausetheme_scrubber_control_selector_holo_light</item>
-    </style>
+    </style> -->
 
     <!-- Settings ListView XML -->
 
