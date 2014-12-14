@@ -18,7 +18,6 @@
 
         <item name="android:windowActionBar">false</item>
 
-
     </style>
 
     <!-- Delays* app from being used in Horizontal Orientation when Screen Rotation is active aka Vertical Only (Keep) -->

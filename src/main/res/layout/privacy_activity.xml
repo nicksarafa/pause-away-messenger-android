@@ -1,28 +1,29 @@
-<?xml version="1.0" encoding="utf-8"?>
 
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/privacy_activity"
-    android:orientation="horizontal"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:padding="@dimen/padding">
-
-    <!--
-
-    <FrameLayout
-        android:id="@+id/card_view"
+   <TabHost
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/tabhost"
         android:layout_width="fill_parent"
-        android:layout_height="100dip">
+        android:layout_height="fill_parent">
 
-        <ImageView
-            android:id="@+id/card_picture"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="@dimen/padding"
-            android:background="@color/button_background_disabled_start"
-            android:src="@drawable/profile_list_silence_icon"/>
+        <FrameLayout
+            android:id="@android:id/tabcontent"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:paddingTop="50dp"/>
 
-        </FrameLayout> -->
+            <TabWidget
+                android:id="@android:id/tabs"
+                android:layout_width="fill_parent"
+                android:layout_height="@dimen/tabs_height"
+                android:tabStripEnabled="false"
+                android:foreground="@null"
+                android:layout_marginBottom="-6dp"/>
 
-</RelativeLayout>
+                <LinearLayout
+                    android:id="@+id/content"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:orientation="vertical"/>
+
+    </TabHost>
+

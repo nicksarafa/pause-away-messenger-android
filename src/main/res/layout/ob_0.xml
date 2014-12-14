@@ -59,11 +59,12 @@
             android:layout_height="@dimen/ob_btn_height"
             android:layout_marginTop="@dimen/padding"
             android:layout_weight="1"
-            android:background="@color/transparent"
-            android:textColor="@color/pause_green"
-            android:text="Male"
-            android:textAlignment="center"
-            />
+            android:background="@color/holo_blue"
+            android:textColor="@color/text_white"
+            android:textSize="@dimen/ob_text_medium"
+            android:text="Male"/>
+
+
 
         <Button
             android:id="@+id/female"
@@ -71,8 +72,9 @@
             android:layout_height="@dimen/ob_btn_height"
             android:layout_marginTop="@dimen/padding"
             android:layout_weight="1"
-            android:background="@color/transparent"
-            android:textColor="@color/pause_green"
+            android:background="@color/female_pink"
+            android:textColor="@color/text_white"
+            android:textSize="@dimen/ob_text_medium"
             android:text="Female"/>
 
     </LinearLayout>

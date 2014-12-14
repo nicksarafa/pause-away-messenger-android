@@ -50,4 +50,6 @@
     <color name="transparent">#80FFFFFF</color>
 
     <color name="holo_blue">#FF33B5E5</color>
+    <color name="female_pink">#FB53E1</color>
+    <color name="text_white">#FFFFFF</color>
 </resources>
