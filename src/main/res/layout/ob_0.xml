@@ -10,12 +10,29 @@
 
    <!-- PNG 9 -->
 
-    <ImageView
-        android:layout_width="@dimen/ob_face_width"
-        android:layout_height="@dimen/ob_face_height"
-        android:paddingTop="@dimen/padding"
-        android:layout_centerHorizontal="true"
-        android:src="@drawable/on_boarding_face"/>
+    <FrameLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+
+        <ImageView
+            android:layout_width="@dimen/ob_face_width"
+            android:layout_height="@dimen/ob_face_height"
+            android:layout_gravity="center_horizontal"
+            android:src="@drawable/on_boarding_face"
+            android:layout_marginTop="@dimen/padding"/>
+
+    <Button
+        android:id="@+id/ob_save"
+        android:layout_width="fill_parent"
+        android:layout_height="200dip"
+        android:maxHeight="200dip"
+        android:layout_marginTop="@dimen/padding"
+        android:textColor="@color/pause_green"
+        android:textSize="@dimen/ob_text_small"
+        android:background="@null"/>
+        </FrameLayout>
+
+
 
     <!-- Letters
     <ImageView
@@ -34,6 +51,12 @@
         android:gravity="center_horizontal|center_vertical"
         android:textSize="@dimen/ob_text_medium"
         android:textColorHint="@color/text_light"
+        android:textIsSelectable="false"
+        android:textCursorDrawable="@drawable/cursor"
+        android:background="@android:color/transparent"
+        android:freezesText="false"
+        android:inputType="textPersonName"
+        android:imeOptions="flagNoEnterAction"
         android:hint="Enter Your First Name"/>
 
     <View
@@ -47,10 +70,8 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:background="@color/transparent"
         android:orientation="horizontal"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="@dimen/padding">
+        android:layout_centerHorizontal="true">
 
 
         <Button
@@ -63,8 +84,6 @@
             android:textColor="@color/text_white"
             android:textSize="@dimen/ob_text_medium"
             android:text="Male"/>
-
-
 
         <Button
             android:id="@+id/female"
@@ -79,9 +98,11 @@
 
     </LinearLayout>
 
+    <!--
+
     <LinearLayout
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:background="@color/transparent"
         android:layout_marginTop="@dimen/padding"
         android:orientation="horizontal">
@@ -94,8 +115,7 @@
             android:background="@color/transparent"
             android:textColor="@color/pause_green"
             android:textSize="@dimen/ob_text_small"
-            android:text="Save &amp; Continue"/>
+            android:text="Save &amp; Continue"/> -->
 
-    </LinearLayout>
 
 </RelativeLayout>

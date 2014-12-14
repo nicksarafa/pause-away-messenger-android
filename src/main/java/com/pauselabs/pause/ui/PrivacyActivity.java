@@ -23,7 +23,7 @@ public class PrivacyActivity extends ActivityGroup {
         tabhost = (TabHost) findViewById(R.id.tabhost);
         tabhost.setup(getLocalActivityManager());
 
-        TabHost.TabSpec spec_a,spec_b,spec_c;
+        TabHost.TabSpec spec_a,spec_b;
 
         spec_a = tabhost.newTabSpec("ice");
         spec_a.setIndicator("",getResources().getDrawable(R.drawable.ice_tab_selector));
