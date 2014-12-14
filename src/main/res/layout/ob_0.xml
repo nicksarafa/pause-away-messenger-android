@@ -15,11 +15,11 @@
         android:layout_height="fill_parent">
 
         <ImageView
-            android:layout_width="@dimen/ob_face_width"
-            android:layout_height="@dimen/ob_face_height"
+            android:layout_width="fill_parent"
+            android:layout_height="100dip"
             android:layout_gravity="center_horizontal"
-            android:src="@drawable/on_boarding_face"
-            android:layout_marginTop="@dimen/padding"/>
+            android:src="@drawable/ob_full_face"
+            android:layout_marginTop="30dip"/>
 
     <Button
         android:id="@+id/ob_save"

@@ -33,6 +33,13 @@
                 custom:label="@string/name_settings_label"
                 custom:content="John"/>
 
+            <com.pauselabs.pause.views.SettingsButton
+                android:id="@+id/genderBtn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                custom:label="@string/gender_settings_label"
+                custom:content="Male"/>
+
             <!-- Privacy -->
 
             <TextView

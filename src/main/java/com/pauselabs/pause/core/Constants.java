@@ -266,4 +266,12 @@ public class Constants {
         public static final String EVERYBODY = "Everybody";
         public static final String NOBODY = "Nobody";
     }
+
+    public static class Gender {
+        private Gender() {}
+
+        public static final String MALE = "Male";
+        public static final String FEMALE = "Female";
+    }
+
 }

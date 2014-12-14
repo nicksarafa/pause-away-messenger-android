@@ -105,5 +105,6 @@
     <string name="no_contacts">No Contacts Found</string>
     <string name="search_hint">Find contacts</string>
     <string name="meet_onboarding">Meet</string>
+    <string name="gender_settings_label">Gender</string>
 
 </resources>

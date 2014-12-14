@@ -46,6 +46,8 @@ public class SettingsActivity extends Activity implements View.OnClickListener {
     SettingsButton rateBtn;
     @InjectView(R.id.contactBtn)
     SettingsButton contactBtn;
+    @InjectView(R.id.genderBtn);
+    SettingsButton genderBtn;
     //    @InjectView(R.id.supportBtn)
 //    SettingsButton supportBtn;
 //    @InjectView(R.id.privacyBtn)
@@ -81,6 +83,7 @@ public class SettingsActivity extends Activity implements View.OnClickListener {
         receivedSmsBtn.setOnClickListener(this);
         rateBtn.setOnClickListener(this);
         contactBtn.setOnClickListener(this);
+        genderBtn.setOnClickListener(this);
         blacklistBtn.setOnClickListener(this);
 
         PackageInfo pInfo = null;
@@ -110,6 +113,8 @@ public class SettingsActivity extends Activity implements View.OnClickListener {
             case R.id.nameBtn:
                 displayNameDialog();
                 break;
+            case R.id.genderBtn:
+                displayNameDialog();
             case R.id.missedCallsBtn:
                 displayMissedCallsDialog();
                 break;
@@ -134,6 +139,7 @@ public class SettingsActivity extends Activity implements View.OnClickListener {
     private void init() {
         nameBtn.setContent(
                 prefs.getString(Constants.Settings.NAME, "None"));
+        genderBtn.setContent(prefs.getString(Constants.Settings.GENDER, Constants.));
         missedCallsBtn.setContent(prefs.getString(Constants.Settings.REPLY_MISSED_CALL, Constants.Privacy.EVERYBODY));
         receivedSmsBtn.setContent(prefs.getString(Constants.Settings.REPLY_SMS, Constants.Privacy.EVERYBODY));
         //blacklistBtn.setContent(prefs.getString(Constants.Settings.USING_BLACKLIST, "Setup Blacklist"));
@@ -178,6 +184,21 @@ public class SettingsActivity extends Activity implements View.OnClickListener {
         });
 
         alert.show();
+    }
+
+    private void displayGenderDialog() {
+        AlertDialog.Builder alert = new AlertDialog.Builder(this);
+
+        alert.setTitle("Change Your Gender");
+        alert.setItems(R.array.gender_settings_options, (dialog, which) -> {
+            String[] options = getResources().getStringArray(R.array.gender_settings_options);
+            prefs.edit().putString(Constants.Settings.GENDER, options[which]).apply();
+            genderBtn.setContent(options[which]);
+        });
+
+        alert.show();
+
+        // Set an Edit
     }
 
     private void displayMissedCallsDialog() {
