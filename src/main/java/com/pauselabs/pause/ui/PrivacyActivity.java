@@ -35,9 +35,7 @@ public class PrivacyActivity extends ActivityGroup {
         spec_b.setContent(new Intent(this,SettingsActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
         tabhost.addTab(spec_b);
 
-
-        tabhost.setCurrentTabByTag("whitelist");
-
+        tabhost.setCurrentTabByTag("ice");
 
     }
 }
