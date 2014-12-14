@@ -30,7 +30,7 @@
     <dimen name="ob_face_height">75dp</dimen>
     <dimen name="ob_letters_height">200dp</dimen>
     <dimen name="ob_letters_width">300dp</dimen>
-    <dimen name="tabs_height">80dip</dimen>
+    <dimen name="tabs_height">50dip</dimen>
 
 
 </resources>

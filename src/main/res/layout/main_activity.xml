@@ -14,13 +14,13 @@
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:paddingTop="50dp"/>
+
     <TabWidget
         android:id="@android:id/tabs"
         android:layout_width="fill_parent"
         android:layout_height="@dimen/tabs_height"
-        android:tabStripEnabled="false"
-        android:foreground="@null"
-        android:layout_marginBottom="-6dp"/>
+        android:background="@color/pager_background"
+        android:tabStripEnabled="false"/>
 
     <!-- Control Tab Content's Top Padding -->
 
@@ -28,6 +28,7 @@
                 android:id="@+id/content"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
-                android:orientation="vertical"/>
+                android:orientation="vertical"
+                android:layout_marginTop="10dip"/>
 
 </TabHost>

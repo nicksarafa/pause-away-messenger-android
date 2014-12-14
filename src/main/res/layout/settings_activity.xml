@@ -33,11 +33,17 @@
                 custom:label="@string/name_settings_label"
                 custom:content="John"/>
 
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:background="#999999"/>
+
             <com.pauselabs.pause.views.SettingsButton
                 android:id="@+id/genderBtn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 custom:label="@string/gender_settings_label"
+                android:background="@null"
                 custom:content="Male"/>
 
             <!-- Privacy -->
@@ -94,7 +100,7 @@
                 android:layout_height="wrap_content"
                 android:background="@null"
                 custom:label="@string/rate_us_settings_label"
-                custom:content=""/>
+                custom:content="Please? Ü"/>
             <View
                 android:layout_width="fill_parent"
                 android:layout_height="1dp"
@@ -107,55 +113,49 @@
                 android:layout_height="wrap_content"
                 android:background="@null"
                 custom:label="@string/contact_us_label"
-                custom:content=""/>
+                custom:content="We Would Love To Hear From You"/>
 
             <!-- About -->
 
-            <!--<TextView-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:text="About"-->
-            <!--style="@style/ListSeparatorTextView"-->
-            <!--android:visibility="invisible"/>-->
+            <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/help_label"
+            style="@style/ListSeparatorTextView"/>
 
-            <!--<com.pauselabs.pause.views.SettingsButton-->
-            <!--android:id="@+id/supportBtn"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:background="@null"-->
-            <!--android:visibility="invisible"-->
-            <!--custom:label="@string/support_label"-->
-            <!--custom:content=""/>-->
+            <com.pauselabs.pause.views.SettingsButton
+            android:id="@+id/supportBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            custom:label="@string/support_label"
+            custom:content="We're Here to Help"/>
 
-            <!--<View-->
-            <!--android:layout_width="fill_parent"-->
-            <!--android:layout_height="1dp"-->
-            <!--android:background="#999999"-->
-            <!--android:visibility="invisible"/>-->
+            <View
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:background="#999999"/>
 
-            <!--<com.pauselabs.pause.views.SettingsButton-->
-            <!--android:id="@+id/privacyBtn"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:background="@null"-->
-            <!--android:visibility="invisible"-->
-            <!--custom:label="@string/privacy_policy_label"-->
-            <!--custom:content=""/>-->
+            <com.pauselabs.pause.views.SettingsButton
+            android:id="@+id/privacyBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            custom:label="@string/privacy_policy_label"
+            custom:content="Why We Protect Your Information"/>
 
             <View
                 android:layout_width="fill_parent"
                 android:layout_height="1dp"
-                android:background="#999999"
-                android:visibility="invisible"/>
+                android:background="#999999"/>
 
-            <!--<com.pauselabs.pause.views.SettingsButton-->
-            <!--android:id="@+id/termsBtn"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:background="@null"-->
-            <!--android:visibility="invisible"-->
-            <!--custom:label="@string/terms_label"-->
-            <!--custom:content=""/>-->
+            <com.pauselabs.pause.views.SettingsButton
+            android:id="@+id/termsBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            custom:label="@string/terms_label"
+            custom:content="Had to Have It"/>
 
             <TextView
                 android:id="@+id/versionFooter"

@@ -9,15 +9,15 @@
             android:id="@android:id/tabcontent"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:paddingTop="50dp"/>
+            android:paddingTop="48dp"/>
 
             <TabWidget
                 android:id="@android:id/tabs"
                 android:layout_width="fill_parent"
                 android:layout_height="@dimen/tabs_height"
+                android:layout_marginTop="10dip"
                 android:tabStripEnabled="false"
-                android:foreground="@null"
-                android:layout_marginBottom="-6dp"/>
+                android:background="@color/pager_background"/>
 
                 <LinearLayout
                     android:id="@+id/content"
