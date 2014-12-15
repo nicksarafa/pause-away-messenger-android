@@ -114,6 +114,10 @@ public class PauseConversation implements Serializable {
                 modeName = sleep;
 
                 break;
+            case Constants.Session.Creator.FLIP:
+                modeName = silence;
+
+                break;
         }
 
         stringRandomizer.setFile("strings" + modeName + num + ".json");

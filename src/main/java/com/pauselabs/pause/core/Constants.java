@@ -80,21 +80,6 @@ public class Constants {
          * Message Subject
          */
         public static final String SUBJECT = "Pause Message";
-
-        /**
-         * Message sent upon slienced
-         */
-        public static final String SLIENCE = "I'm currently away from my phone at the moment. I'll get back to you ASAP.";
-
-        /**
-         * Message sent upon driving
-         */
-        public static final String DRIVE = "I'm currently behind the wheel of a moving vehicle. I'll get back to you once I reach my destination.";
-
-        /**
-         * Message sent upon sleeping
-         */
-        public static final String SLEEP = "I'm catching a few Z's at the moment because I'm a normal human being. I'll get back to you when I am cognizant.";
     }
 
     public static final class Session {
@@ -126,6 +111,11 @@ public class Constants {
              * Pause session created from sleep mode
              */
             public static final int SLEEP = 3;
+
+            /**
+             * Pause session created from flip mode
+             */
+            public static final int FLIP = 4;
 
         }
 
@@ -220,6 +210,7 @@ public class Constants {
         public static final int MODE_SILENCE = 1014;
         public static final int MODE_SLEEP = 1015;
         public static final int MODE_DRIVE = 1016;
+        public static final int MODE_FLIP = 1016;
 
         public static final String PAUSE_NOTIFICATION_INTENT = "PAUSE_NOTIFICATION_INTENT";
         public static final String PAUSE_NOTIFICATION_STOP_SESSION  = "PAUSE_NOTIFICATION_STOP_SESSION";

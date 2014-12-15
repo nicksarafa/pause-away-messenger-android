@@ -6,6 +6,8 @@ import android.content.IntentFilter;
 import android.media.AudioManager;
 import android.os.Handler;
 import android.os.IBinder;
+import android.speech.RecognizerIntent;
+import android.speech.tts.TextToSpeech;
 
 import com.pauselabs.pause.Injector;
 import com.pauselabs.pause.PauseApplication;
@@ -15,7 +17,11 @@ import com.pauselabs.pause.listeners.PauseSmsListener;
 import com.pauselabs.pause.models.PauseBounceBackMessage;
 import com.pauselabs.pause.models.PauseSession;
 
+import org.w3c.dom.Text;
+
 import java.util.Date;
+
+import javax.inject.Inject;
 
 /**
  * Service initiates Pause Listeners
@@ -81,6 +87,10 @@ public class PauseSessionService extends Service{
     public int onStartCommand(Intent intent, int flags, int startId) {
         PauseApplication.setOldRingerMode(am.getRingerMode());
         am.setRingerMode(AudioManager.RINGER_MODE_SILENT);
+
+        PauseApplication.tts.speak("Your phone is now Paused.", TextToSpeech.QUEUE_ADD, null);
+
+//        PauseApplication.sr.startListening(intent);
 
         if(!sessionStarted) {
 

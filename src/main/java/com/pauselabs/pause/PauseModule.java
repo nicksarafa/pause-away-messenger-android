@@ -1,8 +1,10 @@
 package com.pauselabs.pause;
 
 import com.pauselabs.pause.core.PostFromAnyThreadBus;
+import com.pauselabs.pause.listeners.SpeechListener;
 import com.pauselabs.pause.models.PauseSession;
 import com.pauselabs.pause.models.StringRandomizer;
+import com.pauselabs.pause.services.PauseApplicationService;
 import com.pauselabs.pause.services.PauseMessageReceivedService;
 import com.pauselabs.pause.services.PauseSessionService;
 import com.pauselabs.pause.ui.BlacklistActivity;
@@ -32,11 +34,13 @@ import dagger.Provides;
                 PrivacyActivity.class,
                 PauseMessageReceivedService.class,
                 PauseSessionService.class,
+                PauseApplicationService.class,
                 BlacklistActivity.class,
                 BlacklistFragment.class,
                 PauseSession.class,
                 StringRandomizer.class,
-                OnBoardingActivity.class
+                OnBoardingActivity.class,
+                SpeechListener.class
         }
 )
 public class PauseModule {

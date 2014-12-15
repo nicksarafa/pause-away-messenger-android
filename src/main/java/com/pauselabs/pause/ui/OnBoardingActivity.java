@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.speech.tts.TextToSpeech;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -11,7 +12,9 @@ import android.widget.EditText;
 
 import com.pauselabs.R;
 import com.pauselabs.pause.Injector;
+import com.pauselabs.pause.PauseApplication;
 import com.pauselabs.pause.core.Constants;
+import com.pauselabs.pause.listeners.SpeechListener;
 
 import javax.inject.Inject;
 
@@ -32,6 +35,8 @@ public class OnBoardingActivity extends Activity implements View.OnClickListener
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        Log.i("OnBoarding","2");
+
         setContentView(R.layout.ob_0);
 
         Injector.inject(this);
@@ -48,6 +53,17 @@ public class OnBoardingActivity extends Activity implements View.OnClickListener
         male.setOnClickListener(this);
         female.setOnClickListener(this);
         save.setOnClickListener(this);
+
+        while(PauseApplication.tts.isSpeaking()) {}
+        PauseApplication.sr.setRecognitionListener(new SpeechListener() {
+            @Override
+            public void onResults(Bundle results) {
+                super.onResults(results);
+
+                name.setText(lastResult);
+            }
+        });
+        PauseApplication.sr.startListening(SpeechListener.getNewSpeechIntent());
     }
 
     @Override
@@ -70,14 +86,17 @@ public class OnBoardingActivity extends Activity implements View.OnClickListener
 
                 break;
             case R.id.ob_save:
-                if ((male.isSelected() || female.isSelected()) && name.getText().toString() != "") {
+                String nameString = name.getText().toString();
+                if (/*(male.isSelected() || female.isSelected()) &&*/ name.getText().toString() != "") {
                     SharedPreferences.Editor editor = prefs.edit();
                     editor.putString(Constants.Pause.PAUSE_FIRST_LAUNCH_KEY,Constants.Pause.PAUSE_FIRST_LAUNCH_TRUE);
                     editor.putString(Constants.Settings.NAME, name.getText().toString());
                     editor.putString(Constants.Settings.GENDER,gender);
                     editor.apply();
 
-                    startActivity(new Intent(this,MainActivity.class));
+                    PauseApplication.tts.speak("It is a pleasure to be meeting you, " + nameString + "! Lets get started!", TextToSpeech.QUEUE_ADD, null);
+
+                    startActivity(new Intent(this, MainActivity.class));
                 }
 
                 break;

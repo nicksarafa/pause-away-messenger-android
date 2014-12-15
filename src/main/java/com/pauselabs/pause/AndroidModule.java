@@ -7,10 +7,15 @@ import android.content.SharedPreferences;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.media.AudioManager;
 import android.preference.PreferenceManager;
+import android.speech.tts.TextToSpeech;
 import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.view.inputmethod.InputMethodManager;
+
+import java.util.Locale;
+
 import dagger.Module;
 import dagger.Provides;
 
@@ -32,6 +37,9 @@ public class AndroidModule {
     SharedPreferences provideDefaultSharedPreferences(final Context context) {
         return PreferenceManager.getDefaultSharedPreferences(context);
     }
+
+    @Provides
+    AudioManager provideAudioManager() { return (AudioManager)getSystemService(PauseApplication.getInstance(),PauseApplication.AUDIO_SERVICE); }
 
     @Provides
     PackageInfo providePackageInfo(Context context) {

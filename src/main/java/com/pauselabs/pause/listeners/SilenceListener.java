@@ -38,7 +38,7 @@ public class SilenceListener extends BroadcastReceiver {
                 case AudioManager.RINGER_MODE_VIBRATE:
                 case AudioManager.RINGER_MODE_NORMAL:
                     if (PauseApplication.isActiveSession())
-                        PauseApplication.stopPauseService(currentSession.getCreator());
+                        PauseApplication.stopPauseService(Constants.Session.Destroyer.SILENCE);
                     PauseApplication.setOldRingerMode(am.getRingerMode());
 
                     break;

@@ -6,8 +6,16 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.media.AudioManager;
+import android.nfc.Tag;
+import android.os.Bundle;
+import android.speech.RecognitionListener;
+import android.speech.RecognizerIntent;
+import android.speech.SpeechRecognizer;
+import android.speech.tts.TextToSpeech;
 import android.support.v4.app.NotificationCompat;
 import android.telephony.TelephonyManager;
 import android.util.Log;
@@ -24,6 +32,7 @@ import com.pauselabs.R;
 import com.pauselabs.pause.core.Constants;
 import com.pauselabs.pause.core.PauseMessageSender;
 import com.pauselabs.pause.listeners.NotificationActionListener;
+import com.pauselabs.pause.listeners.SpeechListener;
 import com.pauselabs.pause.models.PauseBounceBackMessage;
 import com.pauselabs.pause.models.PauseMMSPart;
 import com.pauselabs.pause.models.PauseSession;
@@ -32,9 +41,13 @@ import com.pauselabs.pause.services.PauseSessionService;
 import com.pauselabs.pause.ui.MainActivity;
 import com.squareup.otto.Bus;
 
+import org.w3c.dom.Text;
+
 import java.io.ByteArrayOutputStream;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Random;
 
 import javax.inject.Inject;
@@ -47,10 +60,16 @@ public class PauseApplication extends Application {
 
     public static NotificationManager notificationManager;
     @Inject protected Bus eventBus;
+    @Inject
+    SharedPreferences prefs;
+
+    public static TextToSpeech tts;
 
     public static PauseMessageSender messageSender;
     private static PauseSession currentPauseSession;
     private static boolean drawerOpen = false;
+
+    public static SpeechRecognizer sr;
 
     private static boolean phoneIsCharging = false;
     private static boolean phoneIsStill= false;
@@ -112,6 +131,23 @@ public class PauseApplication extends Application {
 
         startPauseApplicationService();
 
+        sr = SpeechRecognizer.createSpeechRecognizer(PauseApplication.getInstance());
+
+        tts = new TextToSpeech(PauseApplication.getInstance(),new TextToSpeech.OnInitListener() {
+            @Override
+            public void onInit(int status) {
+                Log.i(TAG,"1");
+                if (status != TextToSpeech.ERROR) {
+                    tts.setLanguage(Locale.getDefault());
+                    tts.setSpeechRate(0.9f);
+                    tts.setPitch(1.45f);
+
+                    // The app has not been opened yet. Play intro voice.
+                    if (!prefs.getString(Constants.Pause.PAUSE_FIRST_LAUNCH_KEY, "").equals(Constants.Pause.PAUSE_FIRST_LAUNCH_TRUE))
+                        tts.speak("Hello! My name is Sara. I am your new personal assistant! What is your name?", TextToSpeech.QUEUE_ADD, null);
+                }
+            }
+        });
     }
 
     /**
@@ -341,6 +377,12 @@ public class PauseApplication extends Application {
                 notBuilder
                         .setContentTitle(instance.getString(R.string.app_name) + " " + instance.getString(R.string.pause_session_running_drive))
                         .addAction(R.drawable.ic_stat_notificaiton_end, "Not the Driver", notDriverPausePendingIntent);
+
+                break;
+            case Constants.Session.Creator.FLIP:
+                notBuilder
+                        .setContentTitle(instance.getString(R.string.app_name) + " " + instance.getString(R.string.pause_session_running_silence))
+                        .addAction(R.drawable.ic_stat_notificaiton_end, "End", stopPausePendingIntent);
 
                 break;
         }
