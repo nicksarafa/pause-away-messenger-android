@@ -31,6 +31,14 @@ public class MainActivity extends ActivityGroup {
 
         setContentView(R.layout.main_activity);
 
+        //Add External Font (Later)
+
+//        TextView myTextView=(TextView)findViewById(R.id.textBox);
+//        Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/mytruetypefont.ttf");
+//        myTextView.setTypeface(typeFace);
+
+        //TabHost Setup
+
         tabhost = (TabHost) findViewById(R.id.tabhost);
         tabhost.setup(getLocalActivityManager());
 
@@ -38,7 +46,7 @@ public class MainActivity extends ActivityGroup {
 
         spec_a = tabhost.newTabSpec("privacy");
         spec_a.setContent(new Intent(this,PrivacyActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
-        spec_a.setIndicator("",getResources().getDrawable(R.drawable.past_tab_selector));
+        spec_a.setIndicator("",getResources().getDrawable(R.drawable.privacy_tab_selector));
         tabhost.addTab(spec_a);
 
         spec_b = tabhost.newTabSpec("home");
@@ -53,8 +61,6 @@ public class MainActivity extends ActivityGroup {
 
         tabhost.setCurrentTabByTag("home");
     }
-
-
 
     private boolean isTablet() {
         return UIUtils.isTablet(this);

@@ -26,4 +26,12 @@
         <item>To exit Pause, simply unsilence your device. Go ahead! Turn me off!</item>
         <item>Well done! Now, who would you like me to respond to?</item>
     </string-array>
+
+    <!-- Ice Contacts Setup -->
+
+    <string-array name="my_ice_contacts">
+        <item>Nick</item>
+        <item>Noah</item>
+        <item>Mom</item>
+    </string-array>
 </resources>

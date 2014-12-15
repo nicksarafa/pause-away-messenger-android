@@ -19,6 +19,7 @@ public class HomeActivity extends Activity {
 
         setContentView(R.layout.home_activity);
 
+
         Views.inject(this);
     }
 }

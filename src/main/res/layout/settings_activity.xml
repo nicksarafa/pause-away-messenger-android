@@ -8,23 +8,25 @@
 
     <!-- Custom Scroll View -->
 
-    <ScrollView xmlns:custom="http://schemas.android.com/apk/res-auto"
+    <ScrollView
+        xmlns:custom="http://schemas.android.com/apk/res-auto"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
 
         <LinearLayout
             android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical"
             android:padding="10dp">
 
             <!-- Me -->
+            <!-- Name
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/me_section_label"
-                style="@style/ListSeparatorTextView"/>
+                style="@style/ListSeparatorTextView"/> -->
 
             <com.pauselabs.pause.views.SettingsButton
                 android:id="@+id/nameBtn"
@@ -32,6 +34,8 @@
                 android:layout_height="wrap_content"
                 custom:label="@string/name_settings_label"
                 custom:content="John"/>
+
+            <!-- Gender -->
 
             <View
                 android:layout_width="fill_parent"
@@ -46,13 +50,13 @@
                 android:background="@null"
                 custom:content="Male"/>
 
-            <!-- Privacy -->
+            <!-- Privacy
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/privacy_section_label"
-                style="@style/ListSeparatorTextView"/>
+                style="@style/ListSeparatorTextView"/> -->
 
             <com.pauselabs.pause.views.SettingsButton
                 android:id="@+id/missedCallsBtn"
@@ -86,13 +90,13 @@
                 custom:label="@string/blacklist_label"
                 custom:content=""/>
 
-            <!-- Feedback -->
+            <!-- Feedback
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/feedback_section_label"
-                style="@style/ListSeparatorTextView"/>
+                style="@style/ListSeparatorTextView"/> -->
 
             <com.pauselabs.pause.views.SettingsButton
                 android:id="@+id/rateBtn"
@@ -117,11 +121,11 @@
 
             <!-- About -->
 
-            <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/help_label"
-            style="@style/ListSeparatorTextView"/>
+            <!--<TextView-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="@string/help_label"-->
+            <!--style="@style/ListSeparatorTextView"/>-->
 
             <com.pauselabs.pause.views.SettingsButton
             android:id="@+id/supportBtn"

@@ -1,24 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ice_activity"
     android:orientation="vertical"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent">
+
+    <ListView
+        android:id="@+id/ice_contacts_list"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+
+
+        </ListView>
 
     <View
         android:layout_width="fill_parent"
         android:layout_height="1dip"
         android:background="#7c7c7c"
-        android:layout_alignTop="@+id/ice_button"/>
+        android:layout_alignTop="@+id/add_ice_button"/>
 
     <Button
-        android:id="@+id/ice_button"
+        android:id="@+id/add_ice_button"
         android:layout_width="fill_parent"
         android:layout_height="@dimen/ob_btn_height"
         android:layout_alignParentBottom="true"
         android:layout_marginTop="@dimen/padding"
-        android:background="@color/transparent"
-        android:textColor="@color/pause_green"
+        android:background="@color/pause_green"
+        android:textColor="@color/text_white"
         android:textSize="@dimen/ob_text_small"
         android:text="Add Ice Contact"/>
 

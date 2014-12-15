@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -14,6 +15,7 @@ import com.pauselabs.R;
  */
 public class SettingsButton extends LinearLayout {
 
+    private ImageButton btnImage;
     private TextView btnLabel;
     private TextView btnContent;
     private String mLabel = "";
