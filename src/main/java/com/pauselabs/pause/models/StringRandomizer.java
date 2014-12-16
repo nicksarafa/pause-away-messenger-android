@@ -2,6 +2,7 @@ package com.pauselabs.pause.models;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.util.Log;
 
 import com.pauselabs.pause.Injector;
 import com.pauselabs.pause.core.Constants;
@@ -78,6 +79,15 @@ public class StringRandomizer {
         Pattern genderPattern = Pattern.compile("%gender");
         Matcher m;
 
+        String genderValue = "", genderKey = prefs.getString(Constants.Settings.GENDER_KEY,"");
+        if (genderKey == Constants.Settings.GENDER_MALE_KEY)
+            genderValue = Constants.Settings.GENDER_MALE_VALUE;
+        else if (genderKey == Constants.Settings.GENDER_FEMALE_KEY)
+            genderValue = Constants.Settings.GENDER_FEMALE_VALUE;
+
+        Log.i("Randomizer","key: " + genderKey);
+        Log.i("Randomizer","value: " + genderValue);
+
 		StringBuilder sb = new StringBuilder();
 
 		for (int i = 0; i < mComponents.size(); i++) {
@@ -87,10 +97,10 @@ public class StringRandomizer {
             String text = component.get(index);
 
             m = namePattern.matcher(text);
-            text = m.replaceAll(prefs.getString(Constants.Settings.NAME,""));
+            text = m.replaceAll(prefs.getString(Constants.Settings.NAME_KEY,""));
 
             m = genderPattern.matcher(text);
-            text = m.replaceAll(prefs.getString(Constants.Settings.GENDER,""));
+            text = m.replaceAll(genderValue);
 
             sb.append(text);
 

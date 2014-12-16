@@ -46,12 +46,14 @@ public class SettingsActivity extends Activity implements View.OnClickListener {
     SettingsButton rateBtn;
     @InjectView(R.id.contactBtn)
     SettingsButton contactBtn;
-    //    @InjectView(R.id.supportBtn)
-//    SettingsButton supportBtn;
+    @InjectView(R.id.genderBtn)
+    SettingsButton genderBtn;
+    @InjectView(R.id.supportBtn)
+    SettingsButton supportBtn;
 //    @InjectView(R.id.privacyBtn)
 //    SettingsButton privacyBtn;
-//    @InjectView(R.id.termsBtn)
-//    SettingsButton termsBtn;
+    @InjectView(R.id.termsBtn)
+    SettingsButton termsBtn;
     @InjectView(R.id.versionFooter)
     TextView versionFooter;
 
@@ -75,12 +77,17 @@ public class SettingsActivity extends Activity implements View.OnClickListener {
 
         init();
 
+        nameBtn = (SettingsButton)findViewById(R.id.nameBtn);
         nameBtn.setOnClickListener(this);
+        genderBtn = (SettingsButton)findViewById(R.id.genderBtn);
+        genderBtn.setOnClickListener(this);
         missedCallsBtn.setOnClickListener(this);
         receivedSmsBtn.setOnClickListener(this);
         rateBtn.setOnClickListener(this);
         contactBtn.setOnClickListener(this);
         blacklistBtn.setOnClickListener(this);
+        supportBtn.setOnClickListener(this);
+        termsBtn.setOnClickListener(this);
 
         PackageInfo pInfo = null;
         try {
@@ -109,6 +116,9 @@ public class SettingsActivity extends Activity implements View.OnClickListener {
             case R.id.nameBtn:
                 displayNameDialog();
                 break;
+            case R.id.genderBtn:
+                displayGenderDialog();
+                break;
             case R.id.missedCallsBtn:
                 displayMissedCallsDialog();
                 break;
@@ -124,6 +134,12 @@ public class SettingsActivity extends Activity implements View.OnClickListener {
             case R.id.blacklistBtn:
                 launchBlacklistActivity();
                 break;
+            case R.id.supportBtn:
+                launchSupportLink();
+                break;
+            case R.id.termsBtn:
+                launchTermsLink();
+                break;
             default:
                 // do nothing
         }
@@ -131,7 +147,10 @@ public class SettingsActivity extends Activity implements View.OnClickListener {
     }
 
     private void init() {
-        nameBtn.setContent(prefs.getString(Constants.Settings.NAME, ""));
+        nameBtn.setContent(prefs.getString(Constants.Settings.NAME_KEY, "None"));
+
+        genderBtn.setContent(prefs.getString(Constants.Settings.GENDER_KEY, "None"));
+
         missedCallsBtn.setContent(prefs.getString(Constants.Settings.REPLY_MISSED_CALL, Constants.Privacy.EVERYBODY));
         receivedSmsBtn.setContent(prefs.getString(Constants.Settings.REPLY_SMS, Constants.Privacy.EVERYBODY));
         //blacklistBtn.setContent(prefs.getString(Constants.Settings.USING_BLACKLIST, "Setup Blacklist"));
@@ -153,7 +172,7 @@ public class SettingsActivity extends Activity implements View.OnClickListener {
 
         // Set an EditText view to get user input
         final EditText input = new EditText(this);
-        String existingName = prefs.getString(Constants.Settings.NAME, "");
+        String existingName = prefs.getString(Constants.Settings.NAME_KEY, "");
         if(!existingName.equals("")){
             input.setText(existingName);
             input.setSelection(input.getText().length());
@@ -164,8 +183,9 @@ public class SettingsActivity extends Activity implements View.OnClickListener {
         alert.setPositiveButton("Save", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int whichButton) {
                 String value = input.getText().toString();
-                prefs.edit().putString(Constants.Settings.NAME, value).apply();
+                prefs.edit().putString(Constants.Settings.NAME_KEY, value).putString(Constants.Settings.GENDER_KEY, value).apply();
                 nameBtn.setContent(value);
+                genderBtn.setContent(value);
             }
         });
 
@@ -176,6 +196,27 @@ public class SettingsActivity extends Activity implements View.OnClickListener {
         });
 
         alert.show();
+    }
+
+    private void displayGenderDialog() {
+        AlertDialog.Builder alert = new AlertDialog.Builder(this);
+
+        alert.setTitle("Change Your Gender");
+        alert.setItems(R.array.gender_settings_options, new DialogInterface.OnClickListener() {
+
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                String[] options = getResources().getStringArray(R.array.gender_settings_options);
+                prefs.edit().putString(Constants.Settings.GENDER_KEY, options[which]).apply();
+                genderBtn.setContent(options[which]);
+
+            }
+
+        });
+
+        alert.show();
+
+        // Set an Edit
     }
 
     private void displayMissedCallsDialog() {
@@ -240,6 +281,17 @@ public class SettingsActivity extends Activity implements View.OnClickListener {
         mDatasource.deleteAllSavedPauseMessages();
     }
 
+    private void launchSupportLink() {
+        Intent termsIntent = new Intent(Intent.ACTION_VIEW,
+                Uri.parse("http://www.woot.com"));
+        startActivity(termsIntent);
+    }
+
+    private void launchTermsLink() {
+        Intent supportIntent = new Intent(Intent.ACTION_VIEW,
+                Uri.parse("http://www.google.com/"));
+        startActivity(supportIntent);
+    }
     private void launchBlacklistActivity() {
         Intent blacklistIntent = new Intent(this, BlacklistActivity.class);
         startActivity(blacklistIntent);

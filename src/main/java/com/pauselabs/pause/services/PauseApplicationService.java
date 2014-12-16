@@ -58,7 +58,7 @@ public class PauseApplicationService extends Service {
     @Override
     public void onDestroy() {
         sensorManager.unregisterListener(accelerometerListener);
-        sensorManager.unregisterListener(flippedListener);
+//        sensorManager.unregisterListener(flippedListener);
         unregisterReceiver(chargingListener);
         unregisterReceiver(silenceListener);
 
@@ -77,9 +77,9 @@ public class PauseApplicationService extends Service {
         sensorManager.registerListener(accelerometerListener, accelerometer, SensorManager.SENSOR_DELAY_NORMAL);
 
 
-        flippedListener = new PhoneFilppedListener();
-        flipped = sensorManager.getDefaultSensor(Sensor.TYPE_PROXIMITY);
-        sensorManager.registerListener(flippedListener, flipped, SensorManager.SENSOR_DELAY_NORMAL);
+//        flippedListener = new PhoneFilppedListener();
+//        flipped = sensorManager.getDefaultSensor(Sensor.TYPE_PROXIMITY);
+//        sensorManager.registerListener(flippedListener, flipped, SensorManager.SENSOR_DELAY_NORMAL);
 
         chargingListener = new PhoneChargingListener();
         IntentFilter chargingIntentFilter = new IntentFilter(Intent.ACTION_BATTERY_CHANGED);

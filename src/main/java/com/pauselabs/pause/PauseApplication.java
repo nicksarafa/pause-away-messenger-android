@@ -136,7 +136,6 @@ public class PauseApplication extends Application {
         tts = new TextToSpeech(PauseApplication.getInstance(),new TextToSpeech.OnInitListener() {
             @Override
             public void onInit(int status) {
-                Log.i(TAG,"1");
                 if (status != TextToSpeech.ERROR) {
                     tts.setLanguage(Locale.getDefault());
                     tts.setSpeechRate(0.9f);

@@ -81,7 +81,7 @@
     <string name="reply_to_calls_settings_label">Reply to incoming calls from…</string>
     <string name="reply_to_SMS_settings_label">Reply to incoming SMS text messages from…</string>
     <string name="blacklist_label">Do not respond to…</string>
-    <string name="rate_us_settings_label">Rate Üs on Google Play (Please? Ü)</string>
+    <string name="rate_us_settings_label">Review PAÜSE</string>
     <string name="contact_us_label">Contact Us</string>
     <string name="support_label">Support</string>
     <string name="privacy_policy_label">Privacy Policy</string>
@@ -105,5 +105,7 @@
     <string name="no_contacts">No Contacts Found</string>
     <string name="search_hint">Find contacts</string>
     <string name="meet_onboarding">Meet</string>
+    <string name="gender_settings_label">Gender</string>
+    <string name="help_label">Help</string>
 
 </resources>

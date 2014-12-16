@@ -222,8 +222,12 @@ public class Constants {
         private Settings() {
         }
 
-        public static final String NAME = "NAME_KEY";
-        public static final String GENDER = "GENDER_KEY";
+        public static final String NAME_KEY = "NAME_KEY";
+        public static final String GENDER_KEY = "GENDER_KEY";
+        public static final String GENDER_MALE_KEY = "Male";
+        public static final String GENDER_MALE_VALUE = "he";
+        public static final String GENDER_FEMALE_KEY = "Female";
+        public static final String GENDER_FEMALE_VALUE = "she";
         public static final String REPLY_MISSED_CALL = "REPLY_MISSED_CALL_KEY";
         public static final String REPLY_SMS = "REPLY_SMS_KEY";
         public static final String USING_BLACKLIST = "USING_BLACKLIST";
@@ -257,4 +261,12 @@ public class Constants {
         public static final String EVERYBODY = "Everybody";
         public static final String NOBODY = "Nobody";
     }
+
+    public static class Gender {
+        private Gender() {}
+
+        public static final String MALE = "Male";
+        public static final String FEMALE = "Female";
+    }
+
 }

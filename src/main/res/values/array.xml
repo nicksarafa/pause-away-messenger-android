@@ -6,6 +6,16 @@
         <item>Nobody</item>
     </string-array>
 
+    <string-array name="gender_settings_options">
+        <item>Male</item>
+        <item>Female</item>
+    </string-array>
+
+    <string-array name="volume_settings_options">
+        <item>Silence</item>
+        <item>Vibrate</item>
+    </string-array>
+
     <!-- String Array for onboarding new user -->
     <string-array name="on_boarding_text">
         <item>Meet,</item>
@@ -15,5 +25,13 @@
         <item>Well done! From now on, whenever your phone is silenced, I\'ll let your friends know you\'re away.. Automatically!</item>
         <item>To exit Pause, simply unsilence your device. Go ahead! Turn me off!</item>
         <item>Well done! Now, who would you like me to respond to?</item>
+    </string-array>
+
+    <!-- Ice Contacts Setup -->
+
+    <string-array name="my_ice_contacts">
+        <item>Nick</item>
+        <item>Noah</item>
+        <item>Mom</item>
     </string-array>
 </resources>

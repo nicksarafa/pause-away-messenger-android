@@ -23,14 +23,14 @@
     <dimen name="ob_text_small">20sp</dimen>
 
     <!-- OB FAB (Featured Action Button) Dimens -->
-    <dimen name="ob_btn_height">100dp</dimen>
+    <dimen name="ob_btn_height">60dp</dimen>
 
     <!-- OB = on_boarding face and height -->
     <dimen name="ob_face_width">70dp</dimen>
-    <dimen name="ob_face_height">150dp</dimen>
+    <dimen name="ob_face_height">75dp</dimen>
     <dimen name="ob_letters_height">200dp</dimen>
     <dimen name="ob_letters_width">300dp</dimen>
-    <dimen name="tabs_height">80dip</dimen>
+    <dimen name="tabs_height">50dip</dimen>
 
 
 </resources>
