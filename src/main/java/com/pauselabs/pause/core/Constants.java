@@ -222,6 +222,8 @@ public class Constants {
         private Settings() {
         }
 
+        public static final String PAUSE_ON_VIBRATE_KEY =  "PAUSE_ON_VIBRATE_KEY";
+
         public static final String NAME_KEY = "NAME_KEY";
         public static final String GENDER_KEY = "GENDER_KEY";
         public static final String GENDER_MALE_KEY = "Male";

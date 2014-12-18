@@ -1,6 +1,7 @@
 package com.pauselabs.pause;
 
 import com.pauselabs.pause.core.PostFromAnyThreadBus;
+import com.pauselabs.pause.listeners.SilenceListener;
 import com.pauselabs.pause.listeners.SpeechListener;
 import com.pauselabs.pause.models.ComponentRandomizer;
 import com.pauselabs.pause.models.PauseSession;
@@ -42,7 +43,8 @@ import dagger.Provides;
                 StringRandomizer.class,
                 ComponentRandomizer.class,
                 OnBoardingActivity.class,
-                SpeechListener.class
+                SpeechListener.class,
+                SilenceListener.class
         }
 )
 public class PauseModule {
