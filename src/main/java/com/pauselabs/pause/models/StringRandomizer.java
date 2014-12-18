@@ -2,13 +2,13 @@ package com.pauselabs.pause.models;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.util.Log;
 
 import com.pauselabs.pause.Injector;
 import com.pauselabs.pause.core.Constants;
 
 import org.json.JSONArray;
 import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -27,12 +27,13 @@ import javax.inject.Inject;
  * Created by mpollin on 11/7/14.
  */
 public class StringRandomizer {
-	private Context mContext;
-	private Random mRandNumGenerator;
-	private ArrayList<ArrayList<String>> mComponents;
 
     @Inject
     SharedPreferences prefs;
+
+    protected Context mContext;
+    protected Random randNumGenerator;
+    private ArrayList<ArrayList<String>> components;
 
 	/**
 	 * Construct a StringRandomizer without an initial JSON file
@@ -48,23 +49,23 @@ public class StringRandomizer {
 	/**
 	 * Construct a StringRandomizer with an initial JSON file
 	 *
-	 * @param context
+	 * @param c
 	 * @param filename The name of the JSON file
 	 */
-	public StringRandomizer(Context context, String filename) {
-		mContext = context;
-		mRandNumGenerator = new Random();
-		mComponents = new ArrayList<ArrayList<String>>();
+	public StringRandomizer(Context c, String filename) {
+        mContext = c;
+        randNumGenerator = new Random();
+        components = new ArrayList<ArrayList<String>>();
 
         Injector.inject(this);
 
-		try {
-			parseFile(filename);
-		} catch (JSONException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+        try {
+            parseFile(filename);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 	}
 
 	/**
@@ -72,28 +73,25 @@ public class StringRandomizer {
 	 * 		Returns null if there is no JSON file.
 	 */
 	public String getString() {
-		if (mComponents.isEmpty())
+		if (components.isEmpty())
 			return null;
 
         Pattern namePattern = Pattern.compile("%name");
         Pattern genderPattern = Pattern.compile("%gender");
         Matcher m;
 
-        String genderValue = "", genderKey = prefs.getString(Constants.Settings.GENDER_KEY,"");
+        String genderValue = "", genderKey = prefs.getString(Constants.Settings.GENDER_KEY, "");
         if (genderKey == Constants.Settings.GENDER_MALE_KEY)
             genderValue = Constants.Settings.GENDER_MALE_VALUE;
         else if (genderKey == Constants.Settings.GENDER_FEMALE_KEY)
             genderValue = Constants.Settings.GENDER_FEMALE_VALUE;
 
-        Log.i("Randomizer","key: " + genderKey);
-        Log.i("Randomizer","value: " + genderValue);
-
 		StringBuilder sb = new StringBuilder();
 
-		for (int i = 0; i < mComponents.size(); i++) {
-			ArrayList<String> component = mComponents.get(i);
+		for (int i = 0; i < components.size(); i++) {
+			ArrayList<String> component = components.get(i);
 
-			int index = mRandNumGenerator.nextInt(component.size());
+			int index = randNumGenerator.nextInt(component.size());
             String text = component.get(index);
 
             m = namePattern.matcher(text);
@@ -104,53 +102,53 @@ public class StringRandomizer {
 
             sb.append(text);
 
-			if (i != mComponents.size())
+			if (i != components.size())
 				sb.append(' ');
 		}
 
 		return sb.toString();
 	}
 
-	/**
-	 * Set the JSON file to be used for generating Strings
-	 *
-	 * @param filename
-	 */
-	public void setFile(String filename) {
-		try {
-			parseFile(filename);
-		} catch (JSONException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
+    /**
+     * Set the JSON file to be used for generating Strings
+     *
+     * @param filename
+     */
+    public void setFile(String filename) {
+        try {
+            parseFile(filename);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
-	private void parseFile(String filename) throws JSONException, IOException {
-		mComponents.clear();
-		if (filename == null)
-			return;
+    protected void parseFile(String filename) throws JSONException, IOException {
+        components.clear();
+        if (filename == null)
+            return;
 
-		InputStream is = mContext.getAssets().open(filename);
-		int size = is.available();
+        InputStream is = mContext.getAssets().open(filename);
+        int size = is.available();
 
-		byte[] buffer = new byte[size];
+        byte[] buffer = new byte[size];
 
-		is.read(buffer);
+        is.read(buffer);
 
-		is.close();
+        is.close();
 
-		JSONArray in = new JSONArray(new String(buffer, "UTF-8"));
-		for (int i = 0; i < in.length(); i++)
-			parseComponent(in.getJSONArray(i));
+        JSONArray in = new JSONArray(new String(buffer, "UTF-8"));
+        for (int i = 0; i < in.length(); i++)
+            parseComponent(in.getJSONArray(i));
 
-	}
+    }
 
-	private void parseComponent(JSONArray strings) throws JSONException {
-		ArrayList<String> component = new ArrayList<String>();
-		for (int i = 0; i < strings.length(); i++)
-			component.add(strings.getString(i));
+    public void parseComponent(JSONArray strings) throws JSONException {
+        ArrayList<String> component = new ArrayList<String>();
+        for (int i = 0; i < strings.length(); i++)
+            component.add(strings.getString(i));
 
-		mComponents.add(component);
-	}
+        this.components.add(component);
+    }
 }
