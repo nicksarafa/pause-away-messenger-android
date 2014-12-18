@@ -9,11 +9,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.media.AudioManager;
-import android.nfc.Tag;
-import android.os.Bundle;
-import android.speech.RecognitionListener;
-import android.speech.RecognizerIntent;
 import android.speech.SpeechRecognizer;
 import android.speech.tts.TextToSpeech;
 import android.support.v4.app.NotificationCompat;
@@ -32,7 +27,6 @@ import com.pauselabs.R;
 import com.pauselabs.pause.core.Constants;
 import com.pauselabs.pause.core.PauseMessageSender;
 import com.pauselabs.pause.listeners.NotificationActionListener;
-import com.pauselabs.pause.listeners.SpeechListener;
 import com.pauselabs.pause.models.PauseBounceBackMessage;
 import com.pauselabs.pause.models.PauseMMSPart;
 import com.pauselabs.pause.models.PauseSession;
@@ -41,10 +35,7 @@ import com.pauselabs.pause.services.PauseSessionService;
 import com.pauselabs.pause.ui.MainActivity;
 import com.squareup.otto.Bus;
 
-import org.w3c.dom.Text;
-
 import java.io.ByteArrayOutputStream;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Locale;
@@ -143,7 +134,7 @@ public class PauseApplication extends Application {
 
                     // The app has not been opened yet. Play intro voice.
                     if (!prefs.getString(Constants.Pause.PAUSE_FIRST_LAUNCH_KEY, "").equals(Constants.Pause.PAUSE_FIRST_LAUNCH_TRUE))
-                        tts.speak("Hello! My name is Sara. I am your new personal assistant! What is your name?", TextToSpeech.QUEUE_ADD, null);
+                        tts.speak("Hello. I am your new personal assistant. What's your name?", TextToSpeech.QUEUE_ADD, null);
                 }
             }
         });
@@ -289,12 +280,12 @@ public class PauseApplication extends Application {
 
     public static void updateNotifications() {
         updateMainNotification();
-        updateChangeModeNotification();
+//        updateChangeModeNotification();
     }
 
     private static void cancelNotifications() {
         notificationManager.cancel(Constants.Notification.SESSION_NOTIFICATION_ID);
-        notificationManager.cancel(Constants.Notification.CHANGE_MODE_NOTIFICATION_ID);
+//        notificationManager.cancel(Constants.Notification.CHANGE_MODE_NOTIFICATION_ID);
     }
 
     /**
@@ -315,12 +306,6 @@ public class PauseApplication extends Application {
         Intent stopPauseIntent = new Intent(instance, NotificationActionListener.class);
         stopPauseIntent.putExtra(Constants.Notification.PAUSE_NOTIFICATION_INTENT, Constants.Notification.STOP_PAUSE_SESSION);
         PendingIntent stopPausePendingIntent = PendingIntent.getBroadcast(instance, new Random().nextInt(), stopPauseIntent, PendingIntent.FLAG_CANCEL_CURRENT);
-
-        // edit session intent
-//        Intent editPauseIntent = new Intent(instance, NotificationActionListener.class);
-//        editPauseIntent.putExtra(Constants.Notification.PAUSE_NOTIFICATION_INTENT, Constants.Notification.EDIT_PAUSE_SESSION);
-//        editPauseIntent.putExtra(Constants.Pause.EDIT_PAUSE_MESSAGE_ID_EXTRA, getCurrentSession().getActiveBounceBackMessage().getId());
-//        PendingIntent editPausePendingIntent = PendingIntent.getBroadcast(instance, new Random().nextInt(), editPauseIntent, PendingIntent.FLAG_CANCEL_CURRENT);
 
         // not sleeping intent
         Intent notSleepingPauseIntent = new Intent(instance, NotificationActionListener.class);
@@ -353,13 +338,6 @@ public class PauseApplication extends Application {
                 .setPriority(NotificationCompat.PRIORITY_MAX);
 
         switch (getCurrentSession().getCreator()) {
-            /*case Constants.Session.Creator.CUSTOM:
-                notBuilder
-                        .setContentTitle(instance.getString(R.string.app_name) + " " + instance.getString(R.string.pause_session_running_custom))
-                        .addAction(R.drawable.ic_stat_notificaiton_end, "End", stopPausePendingIntent)
-                        .addAction(R.drawable.ic_stat_notification_pencil, "Edit", editPausePendingIntent);
-
-                break;*/
             case Constants.Session.Creator.SILENCE:
                 notBuilder
                         .setContentTitle(instance.getString(R.string.app_name) + " " + instance.getString(R.string.pause_session_running_silence))

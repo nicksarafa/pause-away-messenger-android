@@ -52,4 +52,6 @@
     <color name="holo_blue">#FF33B5E5</color>
     <color name="female_pink">#FB53E1</color>
     <color name="text_white">#FFFFFF</color>
+    <color name="gender_green">#53FB6D</color>
+    <color name="test_blue">#FF0000</color>
 </resources>

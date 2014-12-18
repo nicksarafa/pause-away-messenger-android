@@ -1,0 +1,32 @@
+[
+    {
+        pauseMsg:"Hello, %name.",
+        buttons:
+            [
+                {
+                    btnText:"Hello, %appname",
+                    actionId:0
+                }
+            ]
+    },
+    {
+        pauseMsg:"What can I do for you today?",
+        buttons:
+            [
+                {
+                    btnText:"Change Name",
+                    actionId:1
+                },
+                {
+                    btnText:"Change Gender",
+                    actionId:2
+                },
+
+            ]
+    },
+    {
+        pauseMsg:"What can I do for you today?",
+        btnText:"Change My Name",
+        actionId:1
+    }
+]

@@ -73,6 +73,7 @@
             android:background="@color/holo_blue"
             android:textColor="@color/text_white"
             android:textSize="@dimen/ob_text_medium"
+            android:onClick="onClick"
             android:text="Male"/>
 
         <Button
@@ -84,6 +85,7 @@
             android:background="@color/female_pink"
             android:textColor="@color/text_white"
             android:textSize="@dimen/ob_text_medium"
+            android:onClick="onClick"
             android:text="Female"/>
 
     </LinearLayout>

@@ -44,10 +44,10 @@ public class MainActivity extends ActivityGroup {
 
         TabHost.TabSpec spec_a, spec_b, spec_c;
 
-        spec_a = tabhost.newTabSpec("privacy");
-        spec_a.setContent(new Intent(this,PrivacyActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
-        spec_a.setIndicator("",getResources().getDrawable(R.drawable.privacy_tab_selector));
-        tabhost.addTab(spec_a);
+//        spec_a = tabhost.newTabSpec("privacy");
+//        spec_a.setContent(new Intent(this,PrivacyActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
+//        spec_a.setIndicator("",getResources().getDrawable(R.drawable.privacy_tab_selector));
+//        tabhost.addTab(spec_a);
 
         spec_b = tabhost.newTabSpec("home");
         spec_b.setContent(new Intent(this,HomeActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));

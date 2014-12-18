@@ -233,6 +233,14 @@ public class Constants {
         public static final String USING_BLACKLIST = "USING_BLACKLIST";
         public static final String BLACKLIST = "BLACKLIST";
 
+        /** jasonActionIds
+         *
+         */
+
+        public static final int ACTION_CYCLE = 0;
+        public static final int ACTION_CHANGE_NAME = 1;
+        public static final int ACTION_CHANGE_GENDER = 2;
+
         /**
          * M/S^2 acceleration in either x, y, or z axis
          */
