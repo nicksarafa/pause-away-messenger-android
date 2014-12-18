@@ -32,10 +32,10 @@ public class SilenceListener extends BroadcastReceiver {
             AudioManager am = (AudioManager)context.getSystemService(Context.AUDIO_SERVICE);
             switch (am.getRingerMode()) {
                 case AudioManager.RINGER_MODE_SILENT:
+                case AudioManager.RINGER_MODE_VIBRATE:
                     PauseApplication.startPauseService(Constants.Session.Creator.SILENCE);
 
                     break;
-                case AudioManager.RINGER_MODE_VIBRATE:
                 case AudioManager.RINGER_MODE_NORMAL:
                     if (PauseApplication.isActiveSession())
                         PauseApplication.stopPauseService(Constants.Session.Destroyer.SILENCE);
