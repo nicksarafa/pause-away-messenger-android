@@ -70,6 +70,7 @@ public class PauseSessionService extends Service{
         if (PauseApplication.getOldRingerMode() != AudioManager.RINGER_MODE_SILENT)
             am.setRingerMode(PauseApplication.getOldRingerMode());
 
+
         PauseApplication.tts.speak("Pause off.", TextToSpeech.QUEUE_ADD, null);
 
         PauseApplication.numSMS = 0;

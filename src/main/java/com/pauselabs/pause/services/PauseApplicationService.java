@@ -88,6 +88,7 @@ public class PauseApplicationService extends Service {
         silenceListener = new SilenceListener();
         IntentFilter silenceIntentFilter = new IntentFilter(AudioManager.RINGER_MODE_CHANGED_ACTION);
         registerReceiver(silenceListener,silenceIntentFilter);
+        Injector.inject(silenceListener);
 
         return Service.START_STICKY;
     }
