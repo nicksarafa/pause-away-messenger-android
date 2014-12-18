@@ -41,7 +41,7 @@ public class OnBoardingActivity extends Activity implements View.OnClickListener
         Injector.inject(this);
 
         if (prefs.getString(Constants.Pause.PAUSE_FIRST_LAUNCH_KEY, "").equals(Constants.Pause.PAUSE_FIRST_LAUNCH_TRUE))
-            startActivity(new Intent(this, MainActivity.class));
+            startApp();
 
         name = (EditText) findViewById(R.id.ob_name);
 
@@ -50,6 +50,10 @@ public class OnBoardingActivity extends Activity implements View.OnClickListener
 
         male.setOnClickListener(this);
         female.setOnClickListener(this);
+    }
+
+    private void startApp() {
+        startActivity(new Intent(this, HomeActivity.class));
     }
 
     @Override
@@ -98,7 +102,7 @@ public class OnBoardingActivity extends Activity implements View.OnClickListener
             editor.putString(Constants.Settings.GENDER_KEY, gender);
             editor.apply();
 
-            startActivity(new Intent(this,MainActivity.class));
+            startApp();
         } else {
             Toast.makeText(this,"Please enter your name first!",Toast.LENGTH_LONG).show();
         }

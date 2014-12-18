@@ -23,10 +23,5 @@
                 },
 
             ]
-    },
-    {
-        pauseMsg:"What can I do for you today?",
-        btnText:"Change My Name",
-        actionId:1
     }
 ]
