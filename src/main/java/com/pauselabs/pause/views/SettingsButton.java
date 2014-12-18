@@ -39,8 +39,7 @@ public class SettingsButton extends LinearLayout {
         int defaultPadding = (int) getResources().getDimension(R.dimen.default_padding);
         setPadding(defaultPadding, defaultPadding, defaultPadding, defaultPadding);
 
-        LayoutInflater inflater = (LayoutInflater) context
-                .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         inflater.inflate(R.layout.setting_button_view, this, true);
 
         btnLabel = (TextView) findViewById(R.id.label);

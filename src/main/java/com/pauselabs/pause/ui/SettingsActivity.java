@@ -114,10 +114,10 @@ public class SettingsActivity extends Activity implements View.OnClickListener {
     public void onClick(View view) {
         switch(view.getId()){
             case R.id.nameBtn:
-                displayNameDialog();
+                PauseApplication.displayNameDialog(this);
                 break;
             case R.id.genderBtn:
-                displayGenderDialog();
+                PauseApplication.displayGenderDialog(this);
                 break;
             case R.id.missedCallsBtn:
                 displayMissedCallsDialog();
@@ -162,61 +162,6 @@ public class SettingsActivity extends Activity implements View.OnClickListener {
             blacklistBtn.setContent("Setup Blacklist");
         }
 
-    }
-
-    private void displayNameDialog() {
-        AlertDialog.Builder alert = new AlertDialog.Builder(this);
-
-        alert.setTitle("Enter your name");
-        alert.setMessage("Bounce back messages will include this");
-
-        // Set an EditText view to get user input
-        final EditText input = new EditText(this);
-        String existingName = prefs.getString(Constants.Settings.NAME_KEY, "");
-        if(!existingName.equals("")){
-            input.setText(existingName);
-            input.setSelection(input.getText().length());
-        }
-
-        alert.setView(input);
-
-        alert.setPositiveButton("Save", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int whichButton) {
-                String value = input.getText().toString();
-                prefs.edit().putString(Constants.Settings.NAME_KEY, value).putString(Constants.Settings.GENDER_KEY, value).apply();
-                nameBtn.setContent(value);
-                genderBtn.setContent(value);
-            }
-        });
-
-        alert.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int whichButton) {
-                // Canceled.
-            }
-        });
-
-        alert.show();
-    }
-
-    private void displayGenderDialog() {
-        AlertDialog.Builder alert = new AlertDialog.Builder(this);
-
-        alert.setTitle("Change Your Gender");
-        alert.setItems(R.array.gender_settings_options, new DialogInterface.OnClickListener() {
-
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                String[] options = getResources().getStringArray(R.array.gender_settings_options);
-                prefs.edit().putString(Constants.Settings.GENDER_KEY, options[which]).apply();
-                genderBtn.setContent(options[which]);
-
-            }
-
-        });
-
-        alert.show();
-
-        // Set an Edit
     }
 
     private void displayMissedCallsDialog() {

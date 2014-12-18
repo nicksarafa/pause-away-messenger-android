@@ -237,9 +237,9 @@ public class Constants {
          *
          */
 
-        public static final int ACTION_CYCLE = 0;
-        public static final int ACTION_CHANGE_NAME = 1;
-        public static final int ACTION_CHANGE_GENDER = 2;
+        public static final int ACTION_CYCLE = 5000;
+        public static final int ACTION_CHANGE_NAME = 5001;
+        public static final int ACTION_CHANGE_GENDER = 5002;
 
         /**
          * M/S^2 acceleration in either x, y, or z axis

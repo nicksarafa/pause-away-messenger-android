@@ -8,31 +8,28 @@
     android:layout_height="fill_parent">
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:id="@+id/home_pause_message"
+        android:layout_width="fill_parent"
+        android:layout_height="150dip"
+        android:layout_centerVertical="true"/>
 
-    <ImageView
-        android:layout_width="@dimen/ob_face_width"
-        android:layout_height="@dimen/ob_face_height"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true"
-        android:src="@drawable/on_boarding_face"/>
+    <!--<ImageView-->
+        <!--android:layout_width="@dimen/ob_face_width"-->
+        <!--android:layout_height="@dimen/ob_face_height"-->
+        <!--android:layout_centerVertical="true"-->
+        <!--android:layout_centerHorizontal="true"-->
+        <!--android:src="@drawable/on_boarding_face"/>-->
 
-    <View
+    <!--<View
         android:layout_width="fill_parent"
         android:layout_height="1dip"
-        android:background="#7c7c7c"
-        android:layout_alignTop="@+id/home_activity_button"/>
+        android:background="#7c7c7c"/>-->
 
-    <Button
-        android:id="@+id/home_activity_button"
+    <LinearLayout
+        android:id="@+id/home_button_layout"
         android:layout_width="fill_parent"
-        android:layout_height="@dimen/ob_btn_height"
-        android:layout_alignParentBottom="true"
-        android:layout_marginTop="@dimen/padding"
-        android:background="@color/transparent"
-        android:textColor="@color/pause_green"
-        android:textSize="@dimen/ob_text_small"
-        android:text=""/>
+        android:layout_height="150dip"
+        android:orientation="vertical"
+        android:layout_alignParentBottom="true"/>
 
 </RelativeLayout>

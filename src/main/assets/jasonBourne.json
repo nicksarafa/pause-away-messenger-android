@@ -1,25 +1,15 @@
 [
     {
-        pauseMsg:"Hello, %name.",
-        buttons:
-            [
-                {
-                    btnText:"Hello, %appname",
-                    actionId:0
-                }
-            ]
-    },
-    {
-        pauseMsg:"What can I do for you today?",
+        pauseMsg:"Would you like to change your information?",
         buttons:
             [
                 {
                     btnText:"Change Name",
-                    actionId:1
+                    actionId:5001
                 },
                 {
                     btnText:"Change Gender",
-                    actionId:2
+                    actionId:5002
                 },
 
             ]

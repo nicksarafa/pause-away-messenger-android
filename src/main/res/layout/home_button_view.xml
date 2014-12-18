@@ -1,13 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<merge xmlns:android="http://schemas.android.com/apk/res/android">
-
     <Button
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/home_button"
         android:layout_width="fill_parent"
         android:layout_height="@dimen/ob_btn_height"
-        android:layout_alignParentBottom="true"
         android:background="@color/holo_blue"
         android:textColor="@color/text_white"
         android:textSize="@dimen/ob_text_small"
-        android:text="P3N15"/>
-
-</merge>
+        android:text="test"/>

@@ -1,19 +1,23 @@
 package com.pauselabs.pause;
 
+import android.app.AlertDialog;
 import android.app.Application;
 import android.app.Instrumentation;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.preference.PreferenceManager;
 import android.speech.SpeechRecognizer;
 import android.speech.tts.TextToSpeech;
 import android.support.v4.app.NotificationCompat;
 import android.telephony.TelephonyManager;
 import android.util.Log;
+import android.widget.EditText;
 
 import com.crashlytics.android.Crashlytics;
 import com.google.android.gms.analytics.GoogleAnalytics;
@@ -51,8 +55,8 @@ public class PauseApplication extends Application {
 
     public static NotificationManager notificationManager;
     @Inject protected Bus eventBus;
-    @Inject
-    SharedPreferences prefs;
+
+    static SharedPreferences prefs;
 
     public static TextToSpeech tts;
 
@@ -102,14 +106,16 @@ public class PauseApplication extends Application {
     public void onCreate() {
         super.onCreate();
 
+        // Perform injection
+        Injector.init(getRootModule(), this);
+
+        instance = this;
+
         if ( BuildConfig.USE_CRASHLYTICS ) {
             Crashlytics.start(this);
         }
 
-        instance = this;
-
-        // Perform injection
-        Injector.init(getRootModule(), this);
+        prefs = PreferenceManager.getDefaultSharedPreferences(this);
 
         // Register the bus so we can send notifcations
 //        eventBus.register(this);
@@ -286,6 +292,55 @@ public class PauseApplication extends Application {
     private static void cancelNotifications() {
         notificationManager.cancel(Constants.Notification.SESSION_NOTIFICATION_ID);
 //        notificationManager.cancel(Constants.Notification.CHANGE_MODE_NOTIFICATION_ID);
+    }
+
+
+
+    public static void displayNameDialog(Context c) {
+        AlertDialog.Builder alert = new AlertDialog.Builder(c);
+
+        alert.setTitle("Enter your name");
+        alert.setMessage("Bounce back messages will include this");
+
+        // Set an EditText view to get user input
+        final EditText input = new EditText(c);
+        String existingName = prefs.getString(Constants.Settings.NAME_KEY, "");
+        if(!existingName.equals("")){
+            input.setText(existingName);
+            input.setSelection(input.getText().length());
+        }
+
+        alert.setView(input);
+
+        alert.setPositiveButton("Save", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int whichButton) {
+                String value = input.getText().toString();
+                prefs.edit().putString(Constants.Settings.NAME_KEY, value).apply();
+            }
+        });
+
+        alert.setNegativeButton("Cancel", null);
+
+        alert.show();
+    }
+
+    public static void displayGenderDialog(Context c) {
+        AlertDialog.Builder alert = new AlertDialog.Builder(c);
+
+        alert.setTitle("Change Your Gender");
+        alert.setItems(R.array.gender_settings_options, new DialogInterface.OnClickListener() {
+
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                String[] options = instance.getResources().getStringArray(R.array.gender_settings_options);
+                prefs.edit().putString(Constants.Settings.GENDER_KEY, options[which]).apply();
+            }
+
+        });
+
+        alert.show();
+
+        // Set an Edit
     }
 
     /**
