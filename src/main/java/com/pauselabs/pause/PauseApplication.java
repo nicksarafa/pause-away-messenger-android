@@ -396,7 +396,10 @@ public class PauseApplication extends Application {
             case Constants.Session.Creator.SILENCE:
                 notBuilder
                         .setContentTitle(instance.getString(R.string.app_name) + " " + instance.getString(R.string.pause_session_running_silence))
-                        .addAction(R.drawable.ic_stat_notificaiton_end, "End", stopPausePendingIntent);
+                        .addAction(R.drawable.ic_stat_notificaiton_end, "End", stopPausePendingIntent)
+                        .addAction(R.drawable.ic_icon_steering_wheel, "Drive", stopPausePendingIntent)
+                        .addAction(R.drawable.ic_action_sleep, "Sleep", stopPausePendingIntent);
+
 
                 break;
             case Constants.Session.Creator.SLEEP:

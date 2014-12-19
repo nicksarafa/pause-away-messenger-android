@@ -44,7 +44,8 @@
 
         <activity android:name=".pause.ui.MainActivity"
                   android:windowSoftInputMode="adjustResize"
-                  android:screenOrientation="portrait">
+                  android:screenOrientation="portrait"
+                  android:theme="@style/NoActionBar">
         </activity>
 
         <activity android:name=".pause.ui.PrivacyActivity"
@@ -57,7 +58,7 @@
 
         <activity android:name=".pause.ui.HomeActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat.Light" />
+            android:theme="@style/Theme.AppCompat.Light"/>
 
         <activity android:name=".pause.ui.BlacklistActivity"
             android:screenOrientation="portrait"
@@ -78,11 +79,11 @@
                 android:value=".pause.ui.SettingsActivity" />
         </activity>
 
-        <receiver android:name=".pause.listeners.BatteryLevelReceiver">
-            <intent-filter>
-                <action android:name="android.intent.action.ACTION_BATTERY_LOW"/>
-            </intent-filter>
-        </receiver>
+        <!--<receiver android:name=".pause.listeners.BatteryLevelReceiver">-->
+            <!--<intent-filter>-->
+                <!--<action android:name="android.intent.action.ACTION_BATTERY_LOW"/>-->
+            <!--</intent-filter>-->
+        <!--</receiver>-->
 
         <!-- Crashalytics and Google Analytics Setup -->
 

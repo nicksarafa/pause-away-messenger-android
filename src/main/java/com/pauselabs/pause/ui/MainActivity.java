@@ -3,16 +3,11 @@ package com.pauselabs.pause.ui;
 import android.app.ActivityGroup;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.TabHost;
 
 import com.pauselabs.R;
-import com.pauselabs.pause.PauseApplication;
-import com.pauselabs.pause.core.Constants;
-import com.pauselabs.pause.events.PauseSessionChangedEvent;
 import com.pauselabs.pause.util.UIUtils;
 import com.squareup.otto.Bus;
-import com.squareup.otto.Subscribe;
 
 import javax.inject.Inject;
 
@@ -69,27 +64,27 @@ public class MainActivity extends ActivityGroup {
     /**
      * Handle all Pause session start/stop logic here through the event bus
      */
-    @Subscribe
-    public void onPauseSessionChangedEvent(PauseSessionChangedEvent event) {
-
-        Log.i(TAG,"Pause Session Changed Event");
-        switch(event.getSessionState()) {
-            case Constants.Pause.PAUSE_SESSION_STATE_ACTIVE:
-                // start Pause Service
-                PauseApplication.startPauseService(Constants.Session.Creator.CUSTOM);
-                Log.i(TAG,"onPauseSessionChangedEvent");
-                // update Scoreboard Fragment
-//                ScoreboardFragment scoreboardFragment = (ScoreboardFragment)fragments[SCOREBOARD];
-//                scoreboardFragment.updateScoreboardUI();
-                // display Pause Scoreboard Fragment
-//                showFragment(SCOREBOARD, false);
-                break;
-            case Constants.Pause.PAUSE_SESSION_STATE_STOPPED:
-                // stop Pause Service
-                PauseApplication.stopPauseService(Constants.Session.Destroyer.CUSTOM);
-                // display Create Pause Fragment
-//                showFragment(CREATE_PAUSE, false);
-                break;
-        }
-    }
+//    @Subscribe
+//    public void onPauseSessionChangedEvent(PauseSessionChangedEvent event) {
+//
+//        Log.i(TAG,"Pause Session Changed Event");
+//        switch(event.getSessionState()) {
+//            case Constants.Pause.PAUSE_SESSION_STATE_ACTIVE:
+//                // start Pause Service
+//                PauseApplication.startPauseService(Constants.Session.Creator.CUSTOM);
+//                Log.i(TAG,"onPauseSessionChangedEvent");
+//                // update Scoreboard Fragment
+////                ScoreboardFragment scoreboardFragment = (ScoreboardFragment)fragments[SCOREBOARD];
+////                scoreboardFragment.updateScoreboardUI();
+//                // display Pause Scoreboard Fragment
+////                showFragment(SCOREBOARD, false);
+//                break;
+//            case Constants.Pause.PAUSE_SESSION_STATE_STOPPED:
+//                // stop Pause Service
+//                PauseApplication.stopPauseService(Constants.Session.Destroyer.CUSTOM);
+//                // display Create Pause Fragment
+////                showFragment(CREATE_PAUSE, false);
+//                break;
+//        }
+//    }
 }
