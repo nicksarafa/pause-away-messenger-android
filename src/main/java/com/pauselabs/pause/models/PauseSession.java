@@ -1,7 +1,6 @@
 package com.pauselabs.pause.models;
 
 import android.content.SharedPreferences;
-import android.preference.PreferenceManager;
 import android.util.Log;
 
 import com.pauselabs.pause.Injector;
@@ -82,7 +81,7 @@ public class PauseSession implements Serializable {
     public Boolean conversationAlreadyExists(String sender){
         Boolean result = false;
         for(PauseConversation conversation: conversations){
-            if(conversation.getSender().equals(sender)){
+            if(conversation.getContact().equals(sender)){
                 result = true;
                 break;
             }
@@ -96,7 +95,7 @@ public class PauseSession implements Serializable {
 
         for(int i = 0; i < conversations.size(); i++) {
             PauseConversation currentConversation = conversations.get(i);
-            if(currentConversation.getSender().equals(conversation.getSender())){
+            if(currentConversation.getContact().equals(conversation.getContact())){
                 Log.i("PauseSession","Conversation exists, updating...");
                 // update arraylist content
                 conversations.set(i, conversation);
@@ -121,7 +120,7 @@ public class PauseSession implements Serializable {
     public PauseConversation getConversationBySender(String sender){
         PauseConversation requestedConversation = null;
         for(PauseConversation conversation: conversations){
-            if(conversation.getSender().equals(sender)){
+            if(conversation.getContact().equals(sender)){
                 requestedConversation = conversation;
                 break;
             }

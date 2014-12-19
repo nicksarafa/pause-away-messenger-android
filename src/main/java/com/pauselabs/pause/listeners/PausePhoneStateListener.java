@@ -64,7 +64,7 @@ public class PausePhoneStateListener extends BroadcastReceiver{
                         // Create Message object
 
                         String savedNumber = sharedPreferences.getString(Constants.Message.PREFERENCE_LAST_CALL_NUMBER, "none");
-                        PauseMessage messageReceived = new PauseMessage(savedNumber, "missed phone call");
+                        PauseMessage messageReceived = new PauseMessage(savedNumber, "0", "missed phone call");
 
                         PauseApplication.numCall++;
 

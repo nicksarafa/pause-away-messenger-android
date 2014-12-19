@@ -6,6 +6,7 @@ import android.content.IntentFilter;
 import android.media.AudioManager;
 import android.os.Handler;
 import android.os.IBinder;
+import android.provider.Telephony;
 import android.speech.RecognizerIntent;
 import android.speech.tts.TextToSpeech;
 
@@ -112,7 +113,7 @@ public class PauseSessionService extends Service{
 
         // start SMS receiver
         IntentFilter filter = new IntentFilter();
-        filter.addAction(Constants.Message.SMS_RECEIVED_INTENT);
+        filter.addAction(Telephony.Sms.Intents.SMS_RECEIVED_ACTION);
         registerReceiver(smsListener, filter);
 
         // start Phone Call receiver

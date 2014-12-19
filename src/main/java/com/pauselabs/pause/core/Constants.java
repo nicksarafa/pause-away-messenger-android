@@ -12,11 +12,6 @@ public class Constants {
         private Message() {}
 
         /**
-         * SMS Intent
-         */
-        public static final String SMS_RECEIVED_INTENT = "android.provider.Telephony.SMS_RECEIVED";
-
-        /**
          * SMS PDU (Protocol Data Unit) intent extra
          */
         public static final String PDUS_EXTRA = "pdus";

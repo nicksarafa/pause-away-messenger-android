@@ -67,18 +67,20 @@ public class PauseMessageReceivedService extends IntentService {
         mCurrentPauseSession = PauseApplication.getCurrentSession();
 
         // Attempt to retrieve existing conversation
-        mCurrentConversation = mCurrentPauseSession.getConversationBySender(message.getSender());
-        mContactId = lookupSender(message.getSender());
+        mCurrentConversation = mCurrentPauseSession.getConversationBySender(message.getFrom());
+        mContactId = lookupSender(message.getFrom());
 
         // If no current conversation exists with sender, create new one, then add message
         if (mCurrentConversation == null)
-            mCurrentConversation = new PauseConversation(message.getSender());
-        mCurrentConversation.addMessage(message);
+            mCurrentConversation = new PauseConversation(message.getFrom());
+        mCurrentConversation.addMessageFromContact(message);
 
         // Check who created the Session to in order to send appropriate message
         Log.i("Message Recieved",mCurrentConversation.getMessagesReceived().size() + " messages in conversation");
-        if(mCurrentPauseSession.shouldSenderReceivedBounceback(mContactId)) {
-            PauseApplication.messageSender.sendSmsMessage(message.getSender(), getBounceBackMessage());
+        if(mCurrentPauseSession.shouldSenderReceivedBounceback(mContactId) && mCurrentConversation.getMessagesSentFromUser().size() == 0 ) {
+            PauseBounceBackMessage bounceBackMessage = getBounceBackMessage();
+            PauseApplication.messageSender.sendSmsMessage(message.getFrom(), bounceBackMessage);
+            mCurrentConversation.addMessageFromPause(bounceBackMessage);
             mCurrentPauseSession.incrementResponseCount();
         }
 

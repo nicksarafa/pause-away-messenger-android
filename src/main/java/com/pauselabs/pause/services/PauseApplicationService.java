@@ -6,6 +6,7 @@ import android.content.IntentFilter;
 import android.hardware.Sensor;
 import android.hardware.SensorManager;
 import android.media.AudioManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.speech.RecognitionListener;
@@ -23,6 +24,7 @@ import com.pauselabs.pause.listeners.LinearAccelerometerListener;
 import com.pauselabs.pause.listeners.PhoneChargingListener;
 import com.pauselabs.pause.listeners.PhoneFilppedListener;
 import com.pauselabs.pause.listeners.SilenceListener;
+import com.pauselabs.pause.listeners.SmsSentListener;
 import com.pauselabs.pause.listeners.SpeechListener;
 
 import org.w3c.dom.Text;
@@ -47,6 +49,7 @@ public class PauseApplicationService extends Service {
     private PhoneFilppedListener flippedListener;
     private PhoneChargingListener chargingListener;
     private SilenceListener silenceListener;
+    private SmsSentListener observer;
 
     @Override
     public void onCreate() {
@@ -89,6 +92,9 @@ public class PauseApplicationService extends Service {
         IntentFilter silenceIntentFilter = new IntentFilter(AudioManager.RINGER_MODE_CHANGED_ACTION);
         registerReceiver(silenceListener,silenceIntentFilter);
         Injector.inject(silenceListener);
+
+        observer = new SmsSentListener(null);
+        getContentResolver().registerContentObserver(Uri.parse("content://sms"), true, observer);
 
         return Service.START_STICKY;
     }

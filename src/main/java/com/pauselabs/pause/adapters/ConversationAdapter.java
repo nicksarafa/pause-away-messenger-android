@@ -69,7 +69,7 @@ public class ConversationAdapter extends BaseAdapter {
             holder.senderView.setText(conversation.getContactName());
         }
         else{
-            holder.senderView.setText(conversation.getSender());
+            holder.senderView.setText(conversation.getContact());
         }
 
         if(conversation.getLastMessageReceived() != null){

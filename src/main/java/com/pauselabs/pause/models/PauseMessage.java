@@ -25,39 +25,43 @@ public class PauseMessage implements Serializable, Parcelable {
     };
 
     private static final long serialVersionUID = 1L;
-    private String sender;
+    private String from;
+    private String to;
     private String text;
     private Long receivedOn;
     private String type;
 
 
-    public PauseMessage(String sender, String text) {
-        this.sender = sender;
+    public PauseMessage(String from, String to, String text) {
+        this.from = from;
+        this.to = to;
         this.text = text;
         receivedOn = new Date().getTime();
     }
 
     public PauseMessage(SmsMessage smsMessage){
-        this.sender = smsMessage.getDisplayOriginatingAddress();
+        this.from = smsMessage.getDisplayOriginatingAddress();
+        this.to = "0";
         this.text = smsMessage.getDisplayMessageBody();
         this.receivedOn = smsMessage.getTimestampMillis();
         this.type = Constants.Message.SMS_TYPE;
     }
 
     public PauseMessage(Parcel in){
-        this.sender = in.readString();
+        this.from = in.readString();
+        this.to = "0";
         this.text = in.readString();
         this.receivedOn = in.readLong();
         this.type = in.readString();
 
     }
 
-    public void setSender(String sender) {
-        this.sender = sender;
+    public void setFrom(String from) {
+        this.from = from;
     }
 
-    public String getSender() {
-        return sender;
+    public String getFrom() {
+        return from;
     }
 
     public void setText(String text) {
@@ -91,7 +95,7 @@ public class PauseMessage implements Serializable, Parcelable {
 
     @Override
     public void writeToParcel(Parcel out, int i) {
-        out.writeString(sender);
+        out.writeString(from);
         out.writeString(text);
         out.writeLong(receivedOn);
         out.writeString(type);

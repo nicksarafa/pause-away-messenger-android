@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Parcelable;
+import android.provider.Telephony;
 import android.telephony.SmsMessage;
 import android.util.Log;
 
@@ -21,8 +22,7 @@ public class PauseSmsListener extends BroadcastReceiver{
     private static final String TAG = PauseSmsListener.class.getSimpleName();
 
     public void onReceive(Context context, Intent intent) {
-        if(intent.getAction().equals(Constants.Message.SMS_RECEIVED_INTENT)) {
-
+        if(intent.getAction().equals(Telephony.Sms.Intents.SMS_RECEIVED_ACTION)) {
             PauseApplication.numSMS++;
 
             Bundle bundle = intent.getExtras();

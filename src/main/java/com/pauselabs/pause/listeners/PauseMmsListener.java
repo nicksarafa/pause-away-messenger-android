@@ -52,7 +52,7 @@ public class PauseMmsListener extends BroadcastReceiver {
                 }
 
                 // Create Message object
-                PauseMessage messageReceived = new PauseMessage(incomingNumber, "");
+                PauseMessage messageReceived = new PauseMessage(incomingNumber,"0", "");
 
                 // TODO Test this!
 

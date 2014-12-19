@@ -29,7 +29,7 @@ public class PauseMessageRobolectricTest {
 
         PauseMessage message = new PauseMessage(sender, text);
 
-        Assert.assertEquals(message.getSender(), sender);
+        Assert.assertEquals(message.getFrom(), sender);
         Assert.assertEquals(message.getText(), text);
     }
 

@@ -13,6 +13,7 @@ import com.pauselabs.pause.core.Constants;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.regex.Pattern;
 
 /**
  * Conversations are initiated by an incoming message from someone.  Pause bounce back messages
@@ -24,18 +25,23 @@ public class PauseConversation implements Serializable {
     private static final long serialVersionUID = 1L;
     private Long initiatedOn;
     private ArrayList<PauseMessage> messagesReceived;
-    private String sender;
+    private ArrayList<PauseMessage> messagesSentFromUser;
+    private ArrayList<PauseBounceBackMessage> messagesSentFromPause;
+    private String contact;
     private String contactName;
-    private String type;
 
     private  int numberOfStringFiles = 7;
     private StringRandomizer stringRandomizer;
 
-    public PauseConversation(String sender) {
-        this.sender = sender;
+    public PauseConversation(String contact) {
+        this.contact = contact;
+
         messagesReceived = new ArrayList<PauseMessage>();
+        messagesSentFromUser = new ArrayList<PauseMessage>();
+        messagesSentFromPause = new ArrayList<PauseBounceBackMessage>();
+
         // attempt to lookup contact name
-        this.contactName = getContactName(PauseApplication.getInstance(), sender);
+        this.contactName = getContactName(PauseApplication.getInstance(), contact);
 
         Date date = new Date();
         initiatedOn = date.getTime(); // TODO This should be taken from message received
@@ -43,9 +49,14 @@ public class PauseConversation implements Serializable {
         stringRandomizer = new StringRandomizer(PauseApplication.getInstance(), "stringsSilence1.json");
     }
 
-    public void addMessage(PauseMessage message) {
+    public void addMessageFromContact(PauseMessage message) {
         messagesReceived.add(message);
-        type = message.getType();
+    }
+    public void addMessageFromUser(PauseMessage message) {
+        messagesSentFromUser.add(message);
+    }
+    public void addMessageFromPause(PauseBounceBackMessage message) {
+        messagesSentFromPause.add(message);
     }
 
     public Long getInitiatedOn() {
@@ -60,24 +71,16 @@ public class PauseConversation implements Serializable {
         return messagesReceived;
     }
 
-    public void setMessagesReceived(ArrayList<PauseMessage> messagesReceived) {
-        this.messagesReceived = messagesReceived;
+    public ArrayList<PauseMessage> getMessagesSentFromUser() { return messagesSentFromUser; }
+
+    public ArrayList<PauseBounceBackMessage> getMessagesSentFromPause() { return messagesSentFromPause; }
+
+    public String getContact() {
+        return contact;
     }
 
-    public String getSender() {
-        return sender;
-    }
-
-    public void setSender(String sender) {
-        this.sender = sender;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
-
-    public String getType() {
-        return type;
+    public void setContact(String contact) {
+        this.contact = contact;
     }
 
     public String getContactName() {
@@ -121,8 +124,12 @@ public class PauseConversation implements Serializable {
         }
 
         stringRandomizer.setFile("strings" + modeName + num + ".json");
+        String messageText = stringRandomizer.getString();
 
-        return stringRandomizer.getString();
+        Pattern contactNamePattern = Pattern.compile("%contact");
+        messageText = contactNamePattern.matcher(messageText).replaceAll(contactName);
+
+        return messageText;
     }
 
     private static String getContactName(Context context, String phoneNumber) {
