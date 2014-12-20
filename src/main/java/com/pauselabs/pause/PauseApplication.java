@@ -372,6 +372,16 @@ public class PauseApplication extends Application {
         notDriverPauseIntent.putExtra(Constants.Notification.PAUSE_NOTIFICATION_INTENT, Constants.Notification.NOT_DRIVER);
         PendingIntent notDriverPausePendingIntent = PendingIntent.getBroadcast(instance, new Random().nextInt(), notDriverPauseIntent, PendingIntent.FLAG_CANCEL_CURRENT);
 
+        // silence intent
+        Intent sleepPauseIntent = new Intent(instance, NotificationActionListener.class);
+        sleepPauseIntent.putExtra(Constants.Notification.PAUSE_NOTIFICATION_INTENT, Constants.Notification.MODE_SLEEP);
+        PendingIntent sleepPausePendingIntent = PendingIntent.getBroadcast(instance, new Random().nextInt(), sleepPauseIntent, PendingIntent.FLAG_CANCEL_CURRENT);
+
+        // silence intent
+        Intent drivePauseIntent = new Intent(instance, NotificationActionListener.class);
+        drivePauseIntent.putExtra(Constants.Notification.PAUSE_NOTIFICATION_INTENT, Constants.Notification.MODE_DRIVE);
+        PendingIntent drivePausePendingIntent = PendingIntent.getBroadcast(instance, new Random().nextInt(), drivePauseIntent, PendingIntent.FLAG_CANCEL_CURRENT);
+
         NotificationCompat.Builder notBuilder = new NotificationCompat.Builder(instance);
 
         NotificationCompat.BigTextStyle bigStyle = new NotificationCompat.BigTextStyle();
@@ -397,8 +407,8 @@ public class PauseApplication extends Application {
                 notBuilder
                         .setContentTitle(instance.getString(R.string.app_name) + " " + instance.getString(R.string.pause_session_running_silence))
                         .addAction(R.drawable.ic_stat_notificaiton_end, "End", stopPausePendingIntent)
-                        .addAction(R.drawable.ic_sms_icon, "Drive", stopPausePendingIntent)
-                        .addAction(R.drawable.ic_action_sleep, "Sleep", stopPausePendingIntent);
+                        .addAction(R.drawable.ic_icon_steering_wheel, "Drive", drivePausePendingIntent)
+                        .addAction(R.drawable.ic_action_sleep, "Sleep", sleepPausePendingIntent);
 
 
                 break;
