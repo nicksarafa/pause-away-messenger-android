@@ -28,29 +28,45 @@
                 {
                     btnText:"I don't get it",
                     actionId:5006
-                },
+                }
             ]
     },
     {
-        pauseMsg:"Well done! When you see my face up in the status bar, you can rest assured that I'll be answering all your incoming calls and text messages.",
+        pauseMsg:"Would you like me to respond to Phone Calls, Text Messages or Both?",
         buttons:
             [
                 {
-                    btnText:"Lol",
-                    actionId:5007
+                    btnText:"Both Texts and Phone Calls",
+                    actionId:5010
                 },
 
                 {
-                    btnText:"Sure",
-                    actionId:5008
+                    btnText:"Phone Calls Only",
+                    actionId:5011
                 },
 
                 {
-                    btnText:"That is correct",
-                    actionId:5009
-
-                },
+                    btnText:"Text Messages Only",
+                    actionId:5012
+                }
             ]
-    }
+    },
+    {
+        pauseMsg:"Would you like to set up your Emergency contacts? These are a list of people who may reach you even while you're paused.",
+        buttons:
+            [
+
+                {
+                    btnText:"Setup Emergency Contacts",
+                    actionId:5013
+                },
+
+                {
+                    btnText:"No thanks. I'm good.",
+                    actionId:5014
+
+                }
+            ]
+    },
 
 ]

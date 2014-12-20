@@ -3,6 +3,7 @@ package com.pauselabs.pause.ui;
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -84,6 +85,8 @@ public class HomeActivity extends Activity implements View.OnClickListener {
             nextBtn.getButton().setId(Constants.Settings.ACTION_CYCLE);
             nextBtn.getButton().setText("Next");
             nextBtn.getButton().setOnClickListener(this);
+
+            Log.i(TAG, "Next Button Created");
 
             layout.addView(nextBtn);
 
