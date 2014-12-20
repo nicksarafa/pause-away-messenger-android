@@ -90,6 +90,34 @@
                 custom:label="@string/blacklist_label"
                 custom:content=""/>
 
+            <!-- Volume Settings Key -->
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:background="#999999"/>
+
+            <com.pauselabs.pause.views.SettingsButton
+                android:id="@+id/volumeBtn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                custom:label="@string/vibrate_label"
+                custom:content="Yes"/>
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:background="#999999"/>
+
+            <com.pauselabs.pause.views.SettingsButton
+                android:id="@+id/voiceBtn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                custom:label="@string/voice_label"
+                custom:content="Yes"/>
+
             <!-- Feedback
 
             <TextView

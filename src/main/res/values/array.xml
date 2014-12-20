@@ -12,8 +12,13 @@
     </string-array>
 
     <string-array name="volume_settings_options">
-        <item>Silence</item>
-        <item>Vibrate</item>
+        <item>Yes</item>
+        <item>No</item>
+    </string-array>
+
+    <string-array name="voice_settings_options">
+        <item>Yes</item>
+        <item>No</item>
     </string-array>
 
     <!-- String Array for onboarding new user -->
@@ -29,9 +34,4 @@
 
     <!-- Ice Contacts Setup -->
 
-    <string-array name="my_ice_contacts">
-        <item>Nick</item>
-        <item>Noah</item>
-        <item>Mom</item>
-    </string-array>
 </resources>

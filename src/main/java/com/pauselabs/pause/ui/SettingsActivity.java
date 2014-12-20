@@ -47,6 +47,10 @@ public class SettingsActivity extends Activity implements View.OnClickListener {
     SettingsButton contactBtn;
     @InjectView(R.id.genderBtn)
     SettingsButton genderBtn;
+    @InjectView(R.id.volumeBtn)
+    SettingsButton volumeBtn;
+    @InjectView(R.id.voiceBtn)
+    SettingsButton voiceBtn;
     @InjectView(R.id.supportBtn)
     SettingsButton supportBtn;
 //    @InjectView(R.id.privacyBtn)
@@ -139,6 +143,11 @@ public class SettingsActivity extends Activity implements View.OnClickListener {
             case R.id.termsBtn:
                 launchTermsLink();
                 break;
+            case R.id.volumeBtn:
+                displayVibrateDialog();
+                break;
+            case R.id.voiceBtn:
+                displayVoiceDialog();
             default:
                 // do nothing
         }
@@ -195,6 +204,36 @@ public class SettingsActivity extends Activity implements View.OnClickListener {
         });
 
         alert.show();
+    }
+
+    private void displayVibrateDialog() {
+        AlertDialog.Builder alert = new AlertDialog.Builder(this);
+
+        alert.setTitle("Activate Pause on Vibrate");
+        alert.setItems(R.array.volume_settings_options, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                String[] options = getResources().getStringArray(R.array.volume_settings_options);
+                prefs.edit().putBoolean(Constants.Settings.PAUSE_ON_VIBRATE_KEY, (options[which].equals("Yes"))).apply();
+                volumeBtn.setContent(options[which]);
+            }
+        });
+
+    }
+
+    private void displayVoiceDialog() {
+        AlertDialog.Builder alert = new AlertDialog.Builder(this);
+
+        alert.setTitle("Disable Pause On/Off Voice");
+        alert.setItems(R.array.voice_settings_options, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                String[] options = getResources().getStringArray(R.array.voice_settings_options);
+                prefs.edit().putBoolean(Constants.Settings.PAUSE_VOICE_ON_KEY, (options[which].equals("Yes"))).apply();
+                voiceBtn.setContent(options[which]);
+            }
+
+        });
     }
 
     private void launchPlayMarketRate() {
