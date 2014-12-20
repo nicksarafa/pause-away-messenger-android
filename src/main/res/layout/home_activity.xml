@@ -23,18 +23,6 @@
         <!--android:padding="@dimen/padding"-->
         <!--android:src="@drawable/on_boarding_face"/>-->
 
-    <!--<ImageView-->
-        <!--android:layout_width="@dimen/ob_face_width"-->
-        <!--android:layout_height="@dimen/ob_face_height"-->
-        <!--android:layout_centerVertical="true"-->
-        <!--android:layout_centerHorizontal="true"-->
-        <!--android:src="@drawable/on_boarding_face"/>-->
-
-    <!--<View
-        android:layout_width="fill_parent"
-        android:layout_height="1dip"
-        android:background="#7c7c7c"/>-->
-
     <LinearLayout
         android:id="@+id/home_button_layout"
         android:layout_width="fill_parent"

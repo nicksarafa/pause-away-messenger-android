@@ -68,5 +68,23 @@
                 }
             ]
     },
+    {
+            pauseMsg:"Would you like to set up your Blacklist? These are the contacts who you would not like me to respond to.",
+            buttons:
+                [
+
+                    {
+                        btnText:"Set Black List",
+                        actionId:5015
+                    },
+
+                    {
+                        btnText:"Not right now.",
+                        actionId:5016
+
+                    }
+                ]
+        },
+
 
 ]

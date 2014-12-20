@@ -15,6 +15,7 @@ import com.pauselabs.pause.PauseApplication;
 import com.pauselabs.pause.core.Constants;
 import com.pauselabs.pause.models.ComponentRandomizer;
 import com.pauselabs.pause.views.HomeButton;
+import com.pauselabs.pause.views.HomeButtonSeparator;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -53,6 +54,7 @@ public class HomeActivity extends Activity implements View.OnClickListener {
 
         LayoutInflater inflater = (LayoutInflater) this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         inflater.inflate(R.layout.home_button_view, (ViewGroup) findViewById(R.id.home_activity), false);
+        inflater.inflate(R.layout.home_button_separator, (ViewGroup) findViewById(R.id.home_activity), false);
 
         cr = new ComponentRandomizer(this,"jasonBourne.json");
 
@@ -78,8 +80,14 @@ public class HomeActivity extends Activity implements View.OnClickListener {
                 newBtn.getButton().setText(btnObject.getString("btnText"));
                 newBtn.getButton().setOnClickListener(this);
 
+                HomeButtonSeparator separator = new HomeButtonSeparator(this);
+
+                layout.addView(separator);
                 layout.addView(newBtn);
             }
+
+            HomeButtonSeparator separator = new HomeButtonSeparator(this);
+            layout.addView(separator);
 
             HomeButton nextBtn = new HomeButton(this);
             nextBtn.getButton().setId(Constants.Settings.ACTION_CYCLE);
