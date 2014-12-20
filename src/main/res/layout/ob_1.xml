@@ -6,15 +6,6 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical"
-        android:gravity="center"
-        android:textSize="@dimen/ob_text_large"
-        android:layout_centerHorizontal="true"
-        android:text="@string/meet_onboarding"/>
-
         <ImageView
         android:layout_width="@dimen/ob_face_width"
         android:layout_height="@dimen/ob_face_height"
@@ -22,12 +13,7 @@
         android:layout_centerHorizontal="true"
         android:src="@drawable/on_boarding_face"/>
 
-        <ImageView
-            android:layout_width="fill_parent"
-            android:layout_height="@dimen/ob_letters_height"
-            android:layout_centerVertical="true"
-            android:layout_centerHorizontal="true"
-            android:src="@drawable/on_boarding_letters"/>
+
 
     <!-- Line Above Button = View below -->
 

@@ -19,6 +19,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
+
 import butterknife.Views;
 
 /**
@@ -34,6 +36,8 @@ public class HomeActivity extends Activity implements View.OnClickListener {
     ComponentRandomizer cr;
 
     TextView pauseMessage;
+
+    int count = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,14 +55,17 @@ public class HomeActivity extends Activity implements View.OnClickListener {
 
         cr = new ComponentRandomizer(this,"jasonBourne.json");
 
-        updateView();
+        updateView(count);
     }
 
-    private void updateView() {
-        JSONObject object = object = cr.getComponent();
+    private void updateView(int num) {
+
+        layout.removeAllViews();
+
+        ArrayList<JSONObject> objects = cr.getComponents();
         try {
-            String pauseMsg = object.getString("pauseMsg");
-            JSONArray btnArray = object.getJSONArray("buttons");
+            String pauseMsg = objects.get(num).getString("pauseMsg");
+            JSONArray btnArray = objects.get(num).getJSONArray("buttons");
 
             pauseMessage.setText(pauseMsg);
 
@@ -73,6 +80,14 @@ public class HomeActivity extends Activity implements View.OnClickListener {
                 layout.addView(newBtn);
             }
 
+            HomeButton nextBtn = new HomeButton(this);
+            nextBtn.getButton().setId(Constants.Settings.ACTION_CYCLE);
+            nextBtn.getButton().setText("Next");
+            nextBtn.getButton().setOnClickListener(this);
+
+            layout.addView(nextBtn);
+
+
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -82,7 +97,7 @@ public class HomeActivity extends Activity implements View.OnClickListener {
     public void onClick(View v) {
         switch (v.getId()) {
             case Constants.Settings.ACTION_CYCLE:
-                updateView();
+                updateView(count++);
 
                 break;
             case Constants.Settings.ACTION_CHANGE_NAME:

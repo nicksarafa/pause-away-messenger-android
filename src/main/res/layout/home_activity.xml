@@ -17,6 +17,13 @@
         android:padding="@dimen/padding"/>
 
     <!--<ImageView-->
+        <!--android:layout_alignParentTop="@+id/home_pause_message"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="100dip"-->
+        <!--android:padding="@dimen/padding"-->
+        <!--android:src="@drawable/on_boarding_face"/>-->
+
+    <!--<ImageView-->
         <!--android:layout_width="@dimen/ob_face_width"-->
         <!--android:layout_height="@dimen/ob_face_height"-->
         <!--android:layout_centerVertical="true"-->

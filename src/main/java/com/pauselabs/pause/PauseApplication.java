@@ -422,7 +422,6 @@ public class PauseApplication extends Application {
                 notBuilder
                         .setContentTitle(instance.getString(R.string.app_name) + " " + instance.getString(R.string.pause_session_running_drive))
                         .addAction(R.drawable.ic_stat_notificaiton_end, "Not the Driver", notDriverPausePendingIntent);
-
                 break;
             case Constants.Session.Creator.FLIP:
                 notBuilder

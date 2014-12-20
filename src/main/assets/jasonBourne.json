@@ -1,25 +1,56 @@
 [
     {
-        pauseMsg:"Would you like to change your information?",
+        pauseMsg:"Hello %contact. Thanks for giving me a shot! Let's me show you how I work. Start by silencing your phone.",
         buttons:
             [
                 {
-                    btnText:"Change Name",
-                    actionId:5001
-                },
-                {
-                    btnText:"Change Gender",
-                    actionId:5002
-                },
-                {
-                    btnText:"Change Gender",
-                    actionId:5002
-                },
-                {
-                    btnText:"Change Gender",
-                    actionId:5002
+                    btnText:"Silence my phone for me",
+                    actionId:5004
+
                 },
 
+                {
+                    btnText:"Silence my phone",
+                    actionId:5004
+                }
+
+            ]
+    },
+    {
+        pauseMsg:"Well done! When you see my face up in the status bar, you can rest assured that I'll be answering all your incoming calls and text messages.",
+        buttons:
+            [
+                {
+                    btnText:"Makes sense",
+                    actionId:5005
+                },
+
+                {
+                    btnText:"I don't get it",
+                    actionId:5006
+                },
+            ]
+    },
+    {
+        pauseMsg:"Well done! When you see my face up in the status bar, you can rest assured that I'll be answering all your incoming calls and text messages.",
+        buttons:
+            [
+                {
+                    btnText:"Lol",
+                    actionId:5007
+                },
+
+                {
+                    btnText:"Sure",
+                    actionId:5008
+                },
+
+                {
+                    btnText:"That is correct",
+                    actionId:5009
+
+                },
             ]
     }
+
 ]
