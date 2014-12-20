@@ -2,11 +2,13 @@ package com.pauselabs.pause.ui;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -39,6 +41,8 @@ public class HomeActivity extends Activity implements View.OnClickListener {
 
     TextView pauseMessage;
 
+    ImageView displaySettingsBtn;
+
     int count = 0;
 
     @Override
@@ -56,10 +60,14 @@ public class HomeActivity extends Activity implements View.OnClickListener {
         inflater.inflate(R.layout.home_button_view, (ViewGroup) findViewById(R.id.home_activity), false);
         inflater.inflate(R.layout.home_button_separator, (ViewGroup) findViewById(R.id.home_activity), false);
 
+        displaySettingsBtn = (ImageView) findViewById(R.id.displaySettingsBtn);
+        displaySettingsBtn.setOnClickListener(this);
+
         cr = new ComponentRandomizer(this,"jasonBourne.json");
 
         updateView(count);
     }
+
 
     private void updateView(int num) {
 
@@ -107,6 +115,10 @@ public class HomeActivity extends Activity implements View.OnClickListener {
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
+            case R.id.displaySettingsBtn:
+                startActivity(new Intent(this, SettingsActivity.class));
+
+                break;
             case Constants.Settings.ACTION_CYCLE:
                 updateView(count++);
 

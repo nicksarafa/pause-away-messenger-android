@@ -10,6 +10,7 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
@@ -91,6 +92,8 @@ public class SettingsActivity extends Activity implements View.OnClickListener {
         blacklistBtn.setOnClickListener(this);
         supportBtn.setOnClickListener(this);
         termsBtn.setOnClickListener(this);
+        volumeBtn.setOnClickListener(this);
+        voiceBtn.setOnClickListener(this);
 
         PackageInfo pInfo = null;
         try {
@@ -144,9 +147,11 @@ public class SettingsActivity extends Activity implements View.OnClickListener {
                 launchTermsLink();
                 break;
             case R.id.volumeBtn:
+                Log.i(TAG,"volume");
                 displayVibrateDialog();
                 break;
             case R.id.voiceBtn:
+                Log.i(TAG,"voice");
                 displayVoiceDialog();
             default:
                 // do nothing
@@ -219,6 +224,8 @@ public class SettingsActivity extends Activity implements View.OnClickListener {
             }
         });
 
+        alert.show();
+
     }
 
     private void displayVoiceDialog() {
@@ -234,6 +241,8 @@ public class SettingsActivity extends Activity implements View.OnClickListener {
             }
 
         });
+
+        alert.show();
     }
 
     private void launchPlayMarketRate() {

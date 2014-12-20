@@ -7,7 +7,14 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent">
 
-    
+
+    <ImageView
+        android:id="@+id/displaySettingsBtn"
+        android:layout_width="50dip"
+        android:layout_height="50dip"
+        android:src="@drawable/settings_tab_selector"/>
+
+
 
     <TextView
         android:id="@+id/home_pause_message"
