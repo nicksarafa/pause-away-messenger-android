@@ -1,59 +1,110 @@
 package com.pauselabs.pause.listeners;
 
-import android.content.BroadcastReceiver;
-import android.content.Context;
-import android.content.Intent;
-import android.os.Bundle;
-import android.os.Parcelable;
+import android.database.ContentObserver;
+import android.database.Cursor;
+import android.net.Uri;
+import android.nfc.Tag;
+import android.os.Handler;
 import android.provider.Telephony;
-import android.telephony.SmsMessage;
 import android.util.Log;
 
+import com.pauselabs.pause.Injector;
 import com.pauselabs.pause.PauseApplication;
 import com.pauselabs.pause.core.Constants;
+import com.pauselabs.pause.models.PauseConversation;
 import com.pauselabs.pause.models.PauseMessage;
-import com.pauselabs.pause.services.PauseMessageReceivedService;
 
 /**
- * This receiver listens for incoming SMS messages and triggers the MessageReceivedService
+ * Created by Passa on 12/18/14.
  */
-public class PauseSmsListener extends BroadcastReceiver{
+public class PauseSmsListener extends ContentObserver {
 
-    private static final String TAG = PauseSmsListener.class.getSimpleName();
+    private final String TAG = PauseSmsListener.class.getSimpleName();
 
-    public void onReceive(Context context, Intent intent) {
-        if(intent.getAction().equals(Telephony.Sms.Intents.SMS_RECEIVED_ACTION)) {
-            PauseApplication.numSMS++;
+    private int previousCount;
 
-            Bundle bundle = intent.getExtras();
-            SmsMessage[] msgs = null;
-            String msg_from;
+    /**
+     * Creates a content observer.
+     *
+     * @param handler The handler to run {@link #onChange} on, or null if none.
+     */
+    public PauseSmsListener(Handler handler) {
+        super(handler);
 
-            if (bundle != null) {
-                // Retrieve the SMS message received
-                try {
-                    Object[] pdus = (Object[]) bundle.get(Constants.Message.PDUS_EXTRA);
-                    msgs = new SmsMessage[pdus.length];
-                    for (int i = 0; i < msgs.length; i++) {
-                        msgs[i] = SmsMessage.createFromPdu((byte[]) pdus[i]);
-                        msg_from = msgs[i].getOriginatingAddress();
-                        String msgBody = msgs[i].getMessageBody();
+        Injector.inject(this);
 
-                        Log.v(TAG, "message received from : " + msg_from + " text: " + msgBody);
+        previousCount = getNewSmsCursor().getCount();
+    }
 
-                        // Create Message object
-                        PauseMessage messageReceived = new PauseMessage(msgs[i]);
+    public void onChange(boolean selfChange){
+        Cursor cursor = getNewSmsCursor();
+        int newCount = cursor.getCount();
 
-                        // Start PauseMessageReceivedService and include message as extra
-                        Intent messageReceivedIntent = new Intent(context, PauseMessageReceivedService.class);
-                        messageReceivedIntent.putExtra(Constants.Message.MESSAGE_PARCEL, (Parcelable) messageReceived);
-                        context.startService(messageReceivedIntent);
+        if (newCount > previousCount) {
+            if (cursor.moveToFirst()) {
+                PauseMessage newMessage;
+
+                String protocol = cursor.getString(cursor.getColumnIndex("protocol"));
+                int type = cursor.getInt(cursor.getColumnIndex("type"));
+                int dateColumn = cursor.getColumnIndex("date");
+                int bodyColumn = cursor.getColumnIndex("body");
+                int addressColumn = cursor.getColumnIndex("address");
+
+                String from, to, contact = "";
+                String message = cursor.getString(bodyColumn);
+                Long date = cursor.getLong(dateColumn);
+
+                if (protocol != null)
+                    return;
+
+                if (type == Telephony.Sms.MESSAGE_TYPE_SENT) {
+                    from = "0";
+                    to = cursor.getString(addressColumn);
+                    contact = to;
+
+                    PauseConversation activeConversation = PauseApplication.getCurrentSession().getConversationByContactNumber(contact);
+
+                    if (activeConversation.getLastMessage().getType() == Constants.Message.Type.SMS_PAUSE_OUTGOING && activeConversation.getLastMessage().getId() == newCount) {
+                        Log.i(TAG,"Pause sent message");
+
+
+                    } else {
+                        Log.i(TAG,"User sent message");
+
+                        newMessage = new PauseMessage(from, to, message, date, Constants.Message.Type.SMS_OUTGOING);
+                        activeConversation.addMessage(newMessage);
                     }
-                } catch (Exception e) {
-                    Log.d("Error retrieving sms message", e.getMessage());
+                } else if (type == Telephony.Sms.MESSAGE_TYPE_INBOX) {
+                    Log.i(TAG, "Message received");
+
+                    from = cursor.getString(addressColumn);
+                    to = "0";
+
+                    newMessage = new PauseMessage(from, to, message, date, Constants.Message.Type.SMS_INCOMING);
+                    PauseApplication.handleMessageReceived(newMessage);
                 }
+
             }
         }
 
+        previousCount = newCount;
+        cursor.close();
+    }
+
+    /**
+     * Since PauseMessageReceivedService is only initiated from a PauseSessionService,
+     * we can assume that our Pause Application will always have a non-null Session at this point.
+     * This function will be used to update the active session by updating or creating a new
+     * Conversation based on the message received.
+     * The creating or modifying of conversations should happen here, not in Session!
+     * @param message
+     */
+    private void updatePauseSession(PauseMessage message) {
+
+
+    }
+
+    public static Cursor getNewSmsCursor() {
+        return PauseApplication.getInstance().getContentResolver().query(Uri.parse("content://sms"), null, null, null, null);
     }
 }

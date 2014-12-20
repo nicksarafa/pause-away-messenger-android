@@ -52,21 +52,6 @@ public class Constants {
         public static final String PREFERENCE_LAST_CALL_NUMBER = "PREFERENCE_LAST_CALL_NUMBER";
 
         /**
-         * Pause Message SMS type
-         */
-        public static final String SMS_TYPE = "SMS";
-
-        /**
-         * Pause Message MMS type
-         */
-        public static final String MMS_TYPE = "MMS";
-
-        /**
-         * Pause Message Phone type
-         */
-        public static final String PHONE_TYPE = "CALL";
-
-        /**
          * Message recipient
          */
         public static final String PAUSE_MESSAGE_RECIPIENT_EXTRA = "PAUSE_MESSAGE_RECIPIENT_EXTRA";
@@ -75,6 +60,20 @@ public class Constants {
          * Message Subject
          */
         public static final String SUBJECT = "Pause Message";
+
+        /**
+         * Pause Message type
+         */
+        public static final class Type {
+
+            public static final int SMS_INCOMING = 0;
+            public static final int SMS_OUTGOING = 1;
+            public static final int SMS_PAUSE_OUTGOING = 2;
+            public static final int PHONE_INCOMING = 3;
+            public static final int PHONE_OUTGOING = 4;
+
+        }
+
     }
 
     public static final class Session {
@@ -167,25 +166,6 @@ public class Constants {
          * Edit Pause message extra
          */
         public static final String EDIT_PAUSE_MESSAGE_ID_EXTRA = "EDIT_PAUSE_MESSAGE_ID_EXTRA";
-    }
-
-    public static final class Mms {
-        private Mms() {}
-
-        /**
-         * MMS byte array stored in intent extra
-         */
-        public static final String MMS_BYTE_ARRAY_EXTRA = "MMS_BYTE_ARRAY_EXTRA";
-
-        /**
-         * Intent Action MMS Received
-         */
-        public static final String ACTION_MMS_RECEIVED = "android.provider.Telephony.WAP_PUSH_RECEIVED";
-
-        /**
-         * MMS message data type
-         */
-        public static final String MMS_DATA_TYPE = "application/vnd.wap.mms-message";
     }
 
     public static class Notification {

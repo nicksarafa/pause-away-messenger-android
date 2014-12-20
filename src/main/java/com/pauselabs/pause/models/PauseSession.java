@@ -6,7 +6,6 @@ import android.util.Log;
 import com.pauselabs.pause.Injector;
 import com.pauselabs.pause.PauseApplication;
 import com.pauselabs.pause.core.Constants;
-import com.pauselabs.pause.core.SavedPauseDataSource;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -34,7 +33,6 @@ public class PauseSession implements Serializable {
     private Long createdOn;
     private boolean isActive;
     private int creator;
-    private SavedPauseDataSource mDatasource;
     private int responseCount;
 
     private ArrayList<PauseConversation> conversations;
@@ -50,7 +48,6 @@ public class PauseSession implements Serializable {
         createdOn = date.getTime();
         creator = sessionCreator;
         conversations = new ArrayList<PauseConversation>();
-        mDatasource = new SavedPauseDataSource(PauseApplication.getInstance().getApplicationContext());
         isActive = Boolean.TRUE;
         responseCount = 0;
 
@@ -104,59 +101,26 @@ public class PauseSession implements Serializable {
         }
 
         if(!updated) {
-            Log.i("PauseSession","No conversation exists, adding new one.");
+            Log.i("PauseSession", "No conversation exists, adding new one.");
             conversations.add(conversation);
-            updated = true;
         }
-
     }
 
     /**
      * This function will attempt to retrieve a conversation given a sender.  If no conversation is
      * found it will return a null conversation
-     * @param sender
+     * @param contact
      * @return
      */
-    public PauseConversation getConversationBySender(String sender){
+    public PauseConversation getConversationByContactNumber(String contact){
         PauseConversation requestedConversation = null;
         for(PauseConversation conversation: conversations){
-            if(conversation.getContact().equals(sender)){
+            if(conversation.getContact().equals(contact)){
                 requestedConversation = conversation;
                 break;
             }
         }
         return requestedConversation;
-    }
-
-    public PauseBounceBackMessage getActiveBounceBackMessage(){
-        PauseBounceBackMessage bounceBackMessage = null;
-
-        /*switch (PauseApplication.getCurrentSession().getCreator()) {
-            case Constants.Session.Creator.CUSTOM:
-                mDatasource.open();
-
-                SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(PauseApplication.getInstance().getApplicationContext());
-                long id = mPrefs.getLong(Constants.Pause.ACTIVE_PAUSE_DATABASE_ID_PREFS, 0L);
-                bounceBackMessage = mDatasource.getSavedPauseById(id);
-
-                mDatasource.close();
-
-                break;
-            case Constants.Session.Creator.SILENCE:
-                bounceBackMessage = new PauseBounceBackMessage("Away",Constants.Message.SLIENCE);
-
-                break;
-            case Constants.Session.Creator.DRIVE:
-                bounceBackMessage = new PauseBounceBackMessage("Away",Constants.Message.DRIVE);
-
-                break;
-            case Constants.Session.Creator.SLEEP:
-                bounceBackMessage = new PauseBounceBackMessage("Away",Constants.Message.SLEEP);
-
-                break;
-        }*/
-
-        return bounceBackMessage;
     }
 
     /**
@@ -166,7 +130,7 @@ public class PauseSession implements Serializable {
      * @return true if sender is safe to respond to
      */
     public Boolean shouldSenderReceivedBounceback(String contactId) {
-        Boolean shouldSendBounceback = true;
+        Boolean shouldSendBounceback;
 
         if(mBlacklistContacts.contains(contactId)) {
             shouldSendBounceback = false;

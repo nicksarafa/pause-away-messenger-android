@@ -17,7 +17,6 @@ import com.pauselabs.R;
 import com.pauselabs.pause.Injector;
 import com.pauselabs.pause.PauseApplication;
 import com.pauselabs.pause.core.Constants;
-import com.pauselabs.pause.core.SavedPauseDataSource;
 import com.pauselabs.pause.views.SettingsButton;
 
 import java.util.HashSet;
@@ -59,7 +58,6 @@ public class SettingsActivity extends Activity implements View.OnClickListener {
     @Inject
     protected SharedPreferences prefs;
 
-    private SavedPauseDataSource mDatasource;
     private Set<String> blacklistContacts;
 
     @Override
@@ -70,9 +68,6 @@ public class SettingsActivity extends Activity implements View.OnClickListener {
 
         Views.inject(this);
         Injector.inject(this);
-
-        mDatasource = new SavedPauseDataSource(this);
-        mDatasource.open();
 
         init();
 
@@ -100,12 +95,10 @@ public class SettingsActivity extends Activity implements View.OnClickListener {
     @Override
     public void onResume() {
         super.onResume();
-        mDatasource.open();
     }
 
     @Override
     public void onPause() {
-        mDatasource.close();
         super.onPause();
     }
 
@@ -212,17 +205,6 @@ public class SettingsActivity extends Activity implements View.OnClickListener {
         emailIntent.putExtra(android.content.Intent.EXTRA_EMAIL, new String[] {"feedback@pauselabs.com"});
         emailIntent.setType("message/rfc822");
         startActivity(Intent.createChooser(emailIntent, "Contact Üs"));
-    }
-
-    /**
-     * Clear all saved pause messages
-     */
-    private void clearSaved() {
-        // make sure session is not currently running
-        if(PauseApplication.isActiveSession()){
-            PauseApplication.stopPauseService(PauseApplication.getCurrentSession().getCreator());
-        }
-        mDatasource.deleteAllSavedPauseMessages();
     }
 
     private void launchSupportLink() {

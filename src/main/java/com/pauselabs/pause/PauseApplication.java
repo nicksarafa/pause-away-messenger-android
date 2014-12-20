@@ -5,13 +5,18 @@ import android.app.Application;
 import android.app.Instrumentation;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
+import android.content.ContentResolver;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.preference.PreferenceManager;
+import android.provider.BaseColumns;
+import android.provider.ContactsContract;
 import android.speech.SpeechRecognizer;
 import android.speech.tts.TextToSpeech;
 import android.support.v4.app.NotificationCompat;
@@ -30,9 +35,10 @@ import com.pauselabs.BuildConfig;
 import com.pauselabs.R;
 import com.pauselabs.pause.core.Constants;
 import com.pauselabs.pause.core.PauseMessageSender;
+import com.pauselabs.pause.events.PauseMessageReceivedEvent;
 import com.pauselabs.pause.listeners.NotificationActionListener;
-import com.pauselabs.pause.models.PauseBounceBackMessage;
-import com.pauselabs.pause.models.PauseMMSPart;
+import com.pauselabs.pause.models.PauseConversation;
+import com.pauselabs.pause.models.PauseMessage;
 import com.pauselabs.pause.models.PauseSession;
 import com.pauselabs.pause.services.PauseApplicationService;
 import com.pauselabs.pause.services.PauseSessionService;
@@ -41,6 +47,7 @@ import com.squareup.otto.Bus;
 
 import java.io.ByteArrayOutputStream;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Random;
@@ -62,7 +69,6 @@ public class PauseApplication extends Application {
 
     public static PauseMessageSender messageSender;
     private static PauseSession currentPauseSession;
-    private static boolean drawerOpen = false;
 
     public static SpeechRecognizer sr;
 
@@ -205,36 +211,6 @@ public class PauseApplication extends Application {
 
             cancelNotifications();
         }
-    }
-
-    /**
-     * Send a test MMS message
-     * @return
-     */
-    public static void sendMMSTestMessage() {
-        Bitmap b = BitmapFactory.decodeResource(getInstance().getResources(),
-                R.drawable.icon);   // Whatever your bitmap is that you want to send
-        ByteArrayOutputStream stream = new ByteArrayOutputStream();
-        b.compress(Bitmap.CompressFormat.PNG, 100, stream);
-        byte[] byteArray = stream.toByteArray();
-
-        PauseMMSPart[] parts = new PauseMMSPart[1];
-
-        parts[0] = new PauseMMSPart();
-        parts[0].Name = "Image";
-        parts[0].MimeType = "image/png";
-        parts[0].Data = byteArray;
-
-        //messageSender.sendMmsMessage("12482526955", parts);
-    }
-
-    public static void sendMMSTestToSelf() {
-        PauseBounceBackMessage currentPause = new PauseBounceBackMessage();
-        currentPause.setMessage("Sorry can't talk now, I'm wired in.");
-
-        String usersPhone = ((TelephonyManager) getInstance().getSystemService(Context.TELEPHONY_SERVICE)).getLine1Number();
-
-        messageSender.sendMmsMessage(usersPhone, currentPause);
     }
 
     private Object getRootModule() {
@@ -486,4 +462,72 @@ public class PauseApplication extends Application {
         }
         return mTrackers.get(trackerId);
     }
+
+    public static void handleMessageReceived(PauseMessage receivedMessage) {
+        currentPauseSession = PauseApplication.getCurrentSession();
+
+        // Attempt to retrieve existing conversation
+        PauseConversation conversation = currentPauseSession.getConversationByContactNumber(receivedMessage.getFrom());
+        String contactId = lookupContact(receivedMessage.getFrom());
+
+        // If no current conversation exists with sender, create new one, then add message
+        if (conversation == null)
+            conversation = new PauseConversation(receivedMessage.getFrom());
+        conversation.addMessage(receivedMessage);
+
+//        Log.i("Message Recieved", conversation.getMessagesReceived().size() + " messages received");
+//        Log.i("Message Recieved", conversation.getMessagesSentFromUser().size() + " messages sent from user");
+//        Log.i("Message Recieved", conversation.getMessagesSentFromPause().size() + " messages sent from Pause");
+
+        // Check who created the Session to in order to send appropriate message
+        if(currentPauseSession.shouldSenderReceivedBounceback(contactId) && conversation.getMessagesSentFromUser().size() == 0 ) {
+            PauseMessage bounceBackMessage = getMessageToBounceBack(receivedMessage.getFrom(), conversation);
+            PauseApplication.messageSender.sendSmsMessage(receivedMessage.getFrom(), bounceBackMessage);
+            conversation.addMessage(bounceBackMessage);
+            currentPauseSession.incrementResponseCount();
+        }
+
+        PauseApplication.updateNotifications();
+
+        // Update Session conversations with updated conversation
+        currentPauseSession.updateConversation(conversation);
+
+        // alert UI that Pause Conversation has been updated
+//        eventBus.post(new PauseMessageReceivedEvent());
+    }
+
+    public static String lookupContact(String contactNumber) {
+        String contactId = "";
+        Uri uri = Uri.withAppendedPath(ContactsContract.PhoneLookup.CONTENT_FILTER_URI, Uri.encode(contactNumber));
+
+        ContentResolver contentResolver = PauseApplication.getInstance().getContentResolver();
+        Cursor contactLookup = contentResolver.query(uri, new String[] {BaseColumns._ID}, null, null, null);
+
+        try {
+            if (contactLookup != null && contactLookup.getCount() > 0) {
+                contactLookup.moveToNext();
+
+                contactId = contactLookup.getString(contactLookup.getColumnIndex(BaseColumns._ID));
+
+            }
+        } finally {
+            if (contactLookup != null) {
+                contactLookup.close();
+            }
+        }
+
+        return contactId;
+
+    }
+
+    public static PauseMessage getMessageToBounceBack(String to, PauseConversation conversation) {
+        return new PauseMessage(
+                "0",
+                to,
+                conversation.getStringForBounceBackMessage(),
+                new Date().getTime(),
+                Constants.Message.Type.SMS_PAUSE_OUTGOING
+        );
+    }
+
 }

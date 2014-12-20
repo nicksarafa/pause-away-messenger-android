@@ -7,32 +7,15 @@ import android.hardware.Sensor;
 import android.hardware.SensorManager;
 import android.media.AudioManager;
 import android.net.Uri;
-import android.os.Bundle;
 import android.os.IBinder;
-import android.speech.RecognitionListener;
-import android.speech.RecognizerIntent;
-import android.speech.SpeechRecognizer;
-import android.speech.tts.TextToSpeech;
 import android.util.Log;
-import android.view.KeyEvent;
 
-import com.pauselabs.R;
 import com.pauselabs.pause.Injector;
 import com.pauselabs.pause.PauseApplication;
-import com.pauselabs.pause.core.Constants;
 import com.pauselabs.pause.listeners.LinearAccelerometerListener;
 import com.pauselabs.pause.listeners.PhoneChargingListener;
 import com.pauselabs.pause.listeners.PhoneFilppedListener;
 import com.pauselabs.pause.listeners.SilenceListener;
-import com.pauselabs.pause.listeners.SmsSentListener;
-import com.pauselabs.pause.listeners.SpeechListener;
-
-import org.w3c.dom.Text;
-
-import java.util.ArrayList;
-import java.util.Locale;
-
-import javax.inject.Inject;
 
 /**
  * Created by Passa on 11/20/14.
@@ -49,7 +32,6 @@ public class PauseApplicationService extends Service {
     private PhoneFilppedListener flippedListener;
     private PhoneChargingListener chargingListener;
     private SilenceListener silenceListener;
-    private SmsSentListener observer;
 
     @Override
     public void onCreate() {
@@ -92,9 +74,6 @@ public class PauseApplicationService extends Service {
         IntentFilter silenceIntentFilter = new IntentFilter(AudioManager.RINGER_MODE_CHANGED_ACTION);
         registerReceiver(silenceListener,silenceIntentFilter);
         Injector.inject(silenceListener);
-
-        observer = new SmsSentListener(null);
-        getContentResolver().registerContentObserver(Uri.parse("content://sms"), true, observer);
 
         return Service.START_STICKY;
     }

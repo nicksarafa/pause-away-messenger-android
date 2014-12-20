@@ -24,24 +24,20 @@ public class PauseConversation implements Serializable {
 
     private static final long serialVersionUID = 1L;
     private Long initiatedOn;
-    private ArrayList<PauseMessage> messagesReceived;
-    private ArrayList<PauseMessage> messagesSentFromUser;
-    private ArrayList<PauseBounceBackMessage> messagesSentFromPause;
-    private String contact;
+    private ArrayList<PauseMessage> messages;
+    private String contactNumber;
     private String contactName;
 
     private  int numberOfStringFiles = 7;
     private StringRandomizer stringRandomizer;
 
-    public PauseConversation(String contact) {
-        this.contact = contact;
+    public PauseConversation(String contactNumber) {
+        this.contactNumber = contactNumber;
 
-        messagesReceived = new ArrayList<PauseMessage>();
-        messagesSentFromUser = new ArrayList<PauseMessage>();
-        messagesSentFromPause = new ArrayList<PauseBounceBackMessage>();
+        messages = new ArrayList<PauseMessage>();
 
         // attempt to lookup contact name
-        this.contactName = getContactName(PauseApplication.getInstance(), contact);
+        this.contactName = getContactName(PauseApplication.getInstance(), contactNumber);
 
         Date date = new Date();
         initiatedOn = date.getTime(); // TODO This should be taken from message received
@@ -49,14 +45,8 @@ public class PauseConversation implements Serializable {
         stringRandomizer = new StringRandomizer(PauseApplication.getInstance(), "stringsSilence1.json");
     }
 
-    public void addMessageFromContact(PauseMessage message) {
-        messagesReceived.add(message);
-    }
-    public void addMessageFromUser(PauseMessage message) {
-        messagesSentFromUser.add(message);
-    }
-    public void addMessageFromPause(PauseBounceBackMessage message) {
-        messagesSentFromPause.add(message);
+    public void addMessage(PauseMessage message) {
+        messages.add(message);
     }
 
     public Long getInitiatedOn() {
@@ -67,20 +57,46 @@ public class PauseConversation implements Serializable {
         this.initiatedOn = initiatedOn;
     }
 
+    public ArrayList<PauseMessage> getMessages() {
+        return messages;
+    }
+
     public ArrayList<PauseMessage> getMessagesReceived() {
+        ArrayList<PauseMessage> messagesReceived = new ArrayList<PauseMessage>();
+
+        for (int i = 0; i < messages.size(); i++)
+            if (messages.get(i).getType() == Constants.Message.Type.SMS_INCOMING)
+                messagesReceived.add(messages.get(i));
+
         return messagesReceived;
     }
 
-    public ArrayList<PauseMessage> getMessagesSentFromUser() { return messagesSentFromUser; }
+    public ArrayList<PauseMessage> getMessagesSentFromUser() {
+        ArrayList<PauseMessage> messagesFromUser = new ArrayList<PauseMessage>();
 
-    public ArrayList<PauseBounceBackMessage> getMessagesSentFromPause() { return messagesSentFromPause; }
+        for (int i = 0; i < messages.size(); i++)
+            if (messages.get(i).getType() == Constants.Message.Type.SMS_OUTGOING)
+                messagesFromUser.add(messages.get(i));
 
-    public String getContact() {
-        return contact;
+        return messagesFromUser;
     }
 
-    public void setContact(String contact) {
-        this.contact = contact;
+    public ArrayList<PauseMessage> getMessagesSentFromPause() {
+        ArrayList<PauseMessage> messagesFromUser = new ArrayList<PauseMessage>();
+
+        for (int i = 0; i < messages.size(); i++)
+            if (messages.get(i).getType() == Constants.Message.Type.SMS_PAUSE_OUTGOING)
+                messagesFromUser.add(messages.get(i));
+
+        return messagesFromUser;
+    }
+
+    public String getContact() {
+        return contactNumber;
+    }
+
+    public void setContact(String contactNumber) {
+        this.contactNumber = contactNumber;
     }
 
     public String getContactName() {
@@ -91,8 +107,13 @@ public class PauseConversation implements Serializable {
         this.contactName = name;
     }
 
+    public PauseMessage getLastMessage() {
+        return messages.get(messages.size() - 1);
+    }
+
     public PauseMessage getLastMessageReceived() {
-        return messagesReceived.get(messagesReceived.size() -1);
+        ArrayList<PauseMessage> messagesReceived = getMessagesReceived();
+        return messagesReceived.get(messagesReceived.size() - 1);
     }
 
     public String getStringForBounceBackMessage() {
@@ -102,6 +123,8 @@ public class PauseConversation implements Serializable {
                 sleep = "Sleep",
                 modeName = "";
 
+
+        ArrayList<PauseMessage> messagesReceived = getMessagesReceived();
         int num = (messagesReceived.size() <= numberOfStringFiles) ? messagesReceived.size() : numberOfStringFiles;
 
         switch (PauseApplication.getCurrentSession().getCreator()) {
