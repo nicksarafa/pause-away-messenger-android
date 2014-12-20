@@ -13,7 +13,8 @@ import android.util.Log;
 import com.pauselabs.pause.PauseApplication;
 import com.pauselabs.pause.core.Constants;
 import com.pauselabs.pause.models.PauseMessage;
-import com.pauselabs.pause.services.PauseMessageReceivedService;
+
+import java.util.Date;
 
 /**
  * The PausePhoneStateListener is responsible for listening to changes in the Phone State and sending a Pause message on a missed phone call
@@ -64,14 +65,9 @@ public class PausePhoneStateListener extends BroadcastReceiver{
                         // Create Message object
 
                         String savedNumber = sharedPreferences.getString(Constants.Message.PREFERENCE_LAST_CALL_NUMBER, "none");
-                        PauseMessage messageReceived = new PauseMessage(savedNumber, "0", "missed phone call");
+                        PauseMessage messageReceived = new PauseMessage(savedNumber, "0", "missed phone call", new Date().getTime(), Constants.Message.Type.PHONE_INCOMING);
 
                         PauseApplication.numCall++;
-
-                        // Start PauseMessageReceivedService and include message as extra
-                        Intent messageReceivedIntent = new Intent(context, PauseMessageReceivedService.class);
-                        messageReceivedIntent.putExtra(Constants.Message.MESSAGE_PARCEL, (Parcelable) messageReceived);
-                        context.startService(messageReceivedIntent);
                     }
                     break;
                 case TelephonyManager.CALL_STATE_OFFHOOK:

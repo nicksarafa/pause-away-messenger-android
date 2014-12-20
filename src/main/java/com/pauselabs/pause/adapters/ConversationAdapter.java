@@ -73,7 +73,7 @@ public class ConversationAdapter extends BaseAdapter {
         }
 
         if(conversation.getLastMessageReceived() != null){
-            holder.messageView.setText(conversation.getLastMessageReceived().getText());
+            holder.messageView.setText(conversation.getLastMessageReceived().getMessage());
         }
 
         ArrayList<PauseMessage> messages = conversation.getMessagesReceived();
@@ -81,7 +81,7 @@ public class ConversationAdapter extends BaseAdapter {
         PauseMessage lastMessagReceived = messages.get(messages.size() -1);
 
         SimpleDateFormat df = new SimpleDateFormat("h:mm a");
-        Date d = new Date(lastMessagReceived.getReceivedOn());
+        Date d = new Date(lastMessagReceived.getDate());
 
         holder.receivedView.setText(df.format(d).toString());
         String convoSize = Integer.toString(messages.size());

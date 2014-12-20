@@ -1,7 +1,7 @@
 package com.pauselabs.pause.core;
 
 import android.telephony.SmsManager;
-import com.pauselabs.pause.models.PauseBounceBackMessage;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.robolectric.Robolectric;

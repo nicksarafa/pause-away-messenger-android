@@ -1,9 +1,8 @@
 package com.pauselabs.pause.models;
 
-import android.os.Parcel;
-import android.os.Parcelable;
 import android.telephony.SmsMessage;
 import com.pauselabs.pause.core.Constants;
+import com.pauselabs.pause.listeners.PauseSmsListener;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -11,49 +10,32 @@ import java.util.Date;
 /**
  * Messages represent incoming messages from SMS, MMS, and third party messengers
  */
-public class PauseMessage implements Serializable, Parcelable {
-
-    public static final Parcelable.Creator<PauseMessage> CREATOR
-            = new Parcelable.Creator<PauseMessage>() {
-        public PauseMessage createFromParcel(Parcel in) {
-            return new PauseMessage(in);
-        }
-
-        public PauseMessage[] newArray(int size) {
-            return new PauseMessage[size];
-        }
-    };
+public class PauseMessage implements Serializable {
 
     private static final long serialVersionUID = 1L;
+
+    // if to or from are equal to '0' it means the user
+    private int id;
     private String from;
     private String to;
-    private String text;
-    private Long receivedOn;
-    private String type;
+    private String message;
+    private Long date;
+    private int type;
 
+    public PauseMessage(String from, String to, String messasge, Long dateInMillis, int type) {
+        id = PauseSmsListener.getNewSmsCursor().getCount();
+        if (type == Constants.Message.Type.SMS_PAUSE_OUTGOING)
+            id++;
 
-    public PauseMessage(String from, String to, String text) {
         this.from = from;
         this.to = to;
-        this.text = text;
-        receivedOn = new Date().getTime();
+        this.message = messasge;
+        this.date = dateInMillis;
+        this.type = type;
     }
 
-    public PauseMessage(SmsMessage smsMessage){
-        this.from = smsMessage.getDisplayOriginatingAddress();
-        this.to = "0";
-        this.text = smsMessage.getDisplayMessageBody();
-        this.receivedOn = smsMessage.getTimestampMillis();
-        this.type = Constants.Message.SMS_TYPE;
-    }
-
-    public PauseMessage(Parcel in){
-        this.from = in.readString();
-        this.to = "0";
-        this.text = in.readString();
-        this.receivedOn = in.readLong();
-        this.type = in.readString();
-
+    public int getId() {
+        return id;
     }
 
     public void setFrom(String from) {
@@ -64,41 +46,28 @@ public class PauseMessage implements Serializable, Parcelable {
         return from;
     }
 
-    public void setText(String text) {
-        this.text = text;
+    public void setMessage(String message) {
+        this.message = message;
     }
 
-    public String getText() {
-        return text;
+    public String getMessage() {
+        return message;
     }
 
-    public void setReceivedOn(Long time) {
-        this.receivedOn = time;
+    public void setDate(Long date) {
+        this.date = date;
     }
 
-    public Long getReceivedOn() {
-        return receivedOn;
+    public Long getDate() {
+        return date;
     }
 
-    public void setType(String type){
+    public void setType(int type){
         this.type = type;
     }
 
-    public String getType() {
+    public int getType() {
         return type;
     }
 
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    @Override
-    public void writeToParcel(Parcel out, int i) {
-        out.writeString(from);
-        out.writeString(text);
-        out.writeLong(receivedOn);
-        out.writeString(type);
-
-    }
 }

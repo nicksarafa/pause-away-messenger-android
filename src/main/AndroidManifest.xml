@@ -29,7 +29,6 @@
         <service android:name=".pause.services.PauseSessionService" />
         <service android:name=".pause.services.PauseApplicationService" />
         <service android:name=".pause.services.PauseMessageReceivedService" />
-        <service android:name=".pause.services.PauseMmsTransportService" />
 
         <activity android:name=".pause.ui.OnBoardingActivity"
             android:windowSoftInputMode="adjustResize"
