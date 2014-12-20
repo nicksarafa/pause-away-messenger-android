@@ -76,7 +76,9 @@ public class PauseMessageReceivedService extends IntentService {
         mCurrentConversation.addMessageFromContact(message);
 
         // Check who created the Session to in order to send appropriate message
-        Log.i("Message Recieved",mCurrentConversation.getMessagesReceived().size() + " messages in conversation");
+        Log.i("Message Recieved",mCurrentConversation.getMessagesReceived().size() + " messages received");
+        Log.i("Message Recieved",mCurrentConversation.getMessagesSentFromPause().size() + " messages sent from Pause");
+        Log.i("Message Recieved",mCurrentConversation.getMessagesSentFromUser().size() + " messages sent from user");
         if(mCurrentPauseSession.shouldSenderReceivedBounceback(mContactId) && mCurrentConversation.getMessagesSentFromUser().size() == 0 ) {
             PauseBounceBackMessage bounceBackMessage = getBounceBackMessage();
             PauseApplication.messageSender.sendSmsMessage(message.getFrom(), bounceBackMessage);

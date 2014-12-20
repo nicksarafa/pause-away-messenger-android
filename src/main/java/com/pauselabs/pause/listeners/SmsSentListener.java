@@ -5,9 +5,9 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.Handler;
 import android.provider.Telephony;
-import android.util.Log;
 
 import com.pauselabs.pause.PauseApplication;
+import com.pauselabs.pause.models.PauseConversation;
 import com.pauselabs.pause.models.PauseMessage;
 
 import java.util.Date;
@@ -48,6 +48,9 @@ public class SmsSentListener extends ContentObserver {
             String message = cursor.getString(bodyColumn);
 
             PauseMessage userMessage = new PauseMessage(from,to,message);
+
+            PauseConversation conversation = PauseApplication.getCurrentSession().getConversationBySender(to);
+            conversation.addMessageFromUser(userMessage);
         }
     }
 }
