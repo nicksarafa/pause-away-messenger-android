@@ -195,7 +195,7 @@ public class HomeActivity extends Activity implements View.OnClickListener {
                 PauseApplication.displayNameDialog(this, settingsLayout);
 
                 break;
-            case Constants.Settings.ACTION_CHANGE_GENDER:
+            case Constants.Settings.ACTION_CHANGE_GENDER:s
                 PauseApplication.displayGenderDialog(this, settingsLayout);
 
                 break;
