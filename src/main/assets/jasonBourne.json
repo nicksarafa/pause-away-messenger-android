@@ -28,8 +28,17 @@
                 {
                     btnText:"I don't get it",
                     actionId:5006
+                },
+                {
+                    btnText:"Both Texts and Phone Calls",
+                    actionId:5010
+                },
+
+                {
+                    btnText:"Phone Calls Only",
+                    actionId:5011
                 }
-            ]
+    ]
     },
     {
         pauseMsg:"Would you like me to respond to Phone Calls, Text Messages or Both?",
