@@ -31,6 +31,7 @@
     <dimen name="ob_letters_height">200dp</dimen>
     <dimen name="ob_letters_width">300dp</dimen>
     <dimen name="tabs_height">50dip</dimen>
+    <dimen name="card_label_padding">20dp</dimen>
 
 
 </resources>

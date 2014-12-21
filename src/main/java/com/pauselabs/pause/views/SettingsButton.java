@@ -4,8 +4,8 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
-import android.widget.ImageButton;
-import android.widget.LinearLayout;
+import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.pauselabs.R;
@@ -13,11 +13,12 @@ import com.pauselabs.R;
 /**
  * Created by tyndallm on 9/29/14.
  */
-public class SettingsButton extends LinearLayout {
+public class SettingsButton extends RelativeLayout {
 
-    private ImageButton btnImage;
     private TextView btnLabel;
     private TextView btnContent;
+    private ImageView btnIcon;
+    private ImageView btnThumbnail;
     private String mLabel = "";
     private String mContent = "";
 
@@ -31,11 +32,12 @@ public class SettingsButton extends LinearLayout {
         try {
             mLabel = a.getString(R.styleable.SettingsButton_label);
             mContent = a.getString(R.styleable.SettingsButton_content);
+//            mIcon = a.getResources(R.styleable.SettingsButton_icon);
+//            mThumbnail = a.getResources(R.styleable.SearchView);
         } finally {
             a.recycle();
         }
 
-        setOrientation(LinearLayout.VERTICAL);
         int defaultPadding = (int) getResources().getDimension(R.dimen.default_padding);
         setPadding(defaultPadding, defaultPadding, defaultPadding, defaultPadding);
 
@@ -44,6 +46,8 @@ public class SettingsButton extends LinearLayout {
 
         btnLabel = (TextView) findViewById(R.id.label);
         btnContent = (TextView) findViewById(R.id.content);
+        btnIcon = (ImageView) findViewById(R.id.icon);
+        btnThumbnail = (ImageView) findViewById(R.id.thumbnail);
         btnLabel.setText(mLabel);
         btnContent.setText(mContent);
     }
@@ -59,4 +63,5 @@ public class SettingsButton extends LinearLayout {
         invalidate();
         requestLayout();
     }
+
 }
