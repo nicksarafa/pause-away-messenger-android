@@ -110,7 +110,7 @@ public class OnBoardingActivity extends Activity implements View.OnClickListener
 
             startApp();
         } else {
-            PauseApplication.sendToast("Please enter your name first!");
+            PauseApplication.sendToast("Please Enter Your Name First!");
         }
     }
 }
