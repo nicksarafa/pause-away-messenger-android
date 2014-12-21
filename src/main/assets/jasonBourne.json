@@ -37,7 +37,7 @@
             ]
         },
         {
-            pauseMsg:"You're a natural! If you'd like to change any settings like set up your Emergency Contacts, Choose Who I respond to, or do a ton of other stuff then simply pop open the Settings Drawer, below.",
+            pauseMsg:"Nice! When your phone is not silenced, I don't answer calls and texts!\n",
             buttons:[
                 {
                    btnText:"Awesome",

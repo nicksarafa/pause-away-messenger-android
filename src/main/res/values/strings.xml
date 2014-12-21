@@ -109,5 +109,6 @@
     <string name="help_label">Help</string>
     <string name="vibrate_label">Pause On Vibrate</string>
     <string name="voice_label">Pause Voice Feedback</string>
+    <string name="settings_drawer_label">Settings</string>
 
 </resources>
