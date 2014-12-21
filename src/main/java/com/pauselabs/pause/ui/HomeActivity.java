@@ -7,7 +7,11 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
+import android.view.animation.AnimationSet;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.pauselabs.R;
@@ -35,7 +39,8 @@ public class HomeActivity extends Activity implements View.OnClickListener {
 
     public SettingsLayout settingsLayout;
 
-    LinearLayout layout;
+    RelativeLayout contentLayout;
+    LinearLayout buttonLayout;
 
     ComponentRandomizer cr;
 
@@ -44,6 +49,11 @@ public class HomeActivity extends Activity implements View.OnClickListener {
     //ImageView displaySettingsBtn;
 
     int count = 0;
+
+    Animation in = new AlphaAnimation(0.0f, 1.0f);
+    Animation out = new AlphaAnimation(1.0f, 0.0f);
+    AnimationSet as = new AnimationSet(true);
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,22 +67,42 @@ public class HomeActivity extends Activity implements View.OnClickListener {
         inflater.inflate(R.layout.home_button_view, (ViewGroup) findViewById(R.id.home_activity), false);
         inflater.inflate(R.layout.home_button_separator, (ViewGroup) findViewById(R.id.home_activity), false);
 
-        layout = (LinearLayout)findViewById(R.id.home_button_layout);
+        contentLayout = (RelativeLayout)findViewById(R.id.home_activity);
+        buttonLayout = (LinearLayout)findViewById(R.id.home_button_layout);
         pauseMessage = (TextView)findViewById(R.id.home_pause_message);
 
         settingsLayout = new SettingsLayout(this);
 
         cr = new ComponentRandomizer(this,"jasonBourne.json");
 
+//        as.addAnimation(out);
+//        in.setStartOffset(1000);
+//        as.addAnimation(in);
+
+        in.setDuration(1000);
+        out.setDuration(1000);
+        out.setAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {
+
+            }
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
+                updateView(++count);
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+
+            }
+        });
+
         updateView(count);
     }
 
-
-
-
     private void updateView(int num) {
-
-        layout.removeAllViews();
+        buttonLayout.removeAllViews();
 
         ArrayList<JSONObject> objects = cr.getComponents();
         try {
@@ -91,29 +121,21 @@ public class HomeActivity extends Activity implements View.OnClickListener {
 
                 HomeButtonSeparator separator = new HomeButtonSeparator(this);
 
-                layout.addView(separator);
-                layout.addView(newBtn);
+                buttonLayout.addView(separator);
+                buttonLayout.addView(newBtn);
             }
 
             HomeButtonSeparator separator = new HomeButtonSeparator(this);
-            layout.addView(separator);
+            buttonLayout.addView(separator);
 
             HomeButton nextBtn = new HomeButton(this);
             nextBtn.getButton().setId(Constants.Settings.ACTION_CYCLE);
             nextBtn.getButton().setText("Next");
             nextBtn.getButton().setOnClickListener(this);
 
-            Log.i(TAG, "Next Button Created");
+            buttonLayout.addView(nextBtn);
 
-            layout.addView(nextBtn);
-
-//            HomeButton displaySettingsBtn = new HomeButton(this);
-//            displaySettingsBtn.getButton().setText("Settings");
-//            displaySettingsBtn.getButton().setOnClickListener(this);
-//            Log.i(TAG, "Settings Button Created");
-//
-//            layout.addView(displaySettingsBtn);
-            
+            contentLayout.startAnimation(in);
 
         } catch (JSONException e) {
             e.printStackTrace();
@@ -122,13 +144,13 @@ public class HomeActivity extends Activity implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
+
         switch (v.getId()) {
 //            case R.id.displaySettingsBtn:
 //                startActivity(new Intent(this, SettingsActivity.class));
-//
 //                break;
             case Constants.Settings.ACTION_CYCLE:
-                updateView(count++);
+                contentLayout.startAnimation(out);
 
                 break;
             case Constants.Settings.ACTION_CHANGE_NAME:
