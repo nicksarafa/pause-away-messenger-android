@@ -5,9 +5,8 @@
             buttons:[
                 {
                     btnText:"No problem. What do you do?",
-                    actionId:8001
-                },
-
+                    actionId:5000
+                }
             ]
         },
         {
@@ -15,7 +14,7 @@
             buttons:[
                 {
                    btnText:"Meh. How does it work?",
-                   actionId:8002
+                   actionId:5000
                 }
             ]
         },
@@ -24,7 +23,7 @@
             buttons:[
                 {
                    btnText:"I'm lazy. Silence the phone for me.",
-                   actionId:8003
+                   actionId:5001
                 }
             ]
         },
@@ -33,7 +32,7 @@
             buttons:[
                 {
                    btnText:"My thumb hurts. Unsilence my phone for me.",
-                   actionId:8004
+                   actionId:5002
                 }
             ]
         },
@@ -42,16 +41,24 @@
             buttons:[
                 {
                    btnText:"Awesome",
-                   actionId:8005
+                   actionId:5003
                 },
                 {
                    btnText:"Lovely",
-                   actionId:8005
+                   actionId:5003
                 }
             ]
-        },
+        }
     ],
     normalJason: [
-
+        {
+            pauseMsg:"Hello, %name! Thank you for the opportunity!",
+            buttons:[
+                {
+                    btnText:"No problem. What do you do?",
+                    actionId:5000
+                }
+            ]
+        }
     ]
 }

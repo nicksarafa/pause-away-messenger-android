@@ -4,7 +4,7 @@ import com.pauselabs.pause.core.PostFromAnyThreadBus;
 import com.pauselabs.pause.listeners.PauseSmsListener;
 import com.pauselabs.pause.listeners.SilenceListener;
 import com.pauselabs.pause.listeners.SpeechListener;
-import com.pauselabs.pause.models.ComponentRandomizer;
+import com.pauselabs.pause.models.JsonReader;
 import com.pauselabs.pause.models.PauseSession;
 import com.pauselabs.pause.models.StringRandomizer;
 import com.pauselabs.pause.services.PauseApplicationService;
@@ -42,7 +42,7 @@ import dagger.Provides;
                 BlacklistFragment.class,
                 PauseSession.class,
                 StringRandomizer.class,
-                ComponentRandomizer.class,
+                JsonReader.class,
                 OnBoardingActivity.class,
                 SpeechListener.class,
                 SilenceListener.class,

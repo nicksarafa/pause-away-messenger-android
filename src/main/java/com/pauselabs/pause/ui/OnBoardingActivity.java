@@ -42,6 +42,12 @@ public class OnBoardingActivity extends Activity implements View.OnClickListener
 
         if (prefs.getBoolean(Constants.Pause.PAUSE_ALREADY_LAUNCHED_KEY, false))
             startApp();
+        else {
+            SharedPreferences.Editor editor = prefs.edit();
+            editor.putBoolean(Constants.Pause.ONBOARDING_FINISHED_KEY, false);
+            editor.putInt(Constants.Pause.ONBOARDING_NUMBER_KEY, 0);
+            editor.apply();
+        }
 
         name = (EditText) findViewById(R.id.ob_name);
 

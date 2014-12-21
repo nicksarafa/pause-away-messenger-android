@@ -119,7 +119,20 @@ public class Constants {
 
         private Pause() {}
 
+        /**
+         * System Preferences key for first launch (boolean)
+         */
         public static final String PAUSE_ALREADY_LAUNCHED_KEY = "PAUSE_FIRST_LAUNCH";
+
+        /**
+         * System Preferences key for onboarding finished (boolean)
+         */
+        public static final String ONBOARDING_FINISHED_KEY = "ONBOARDING_FINISHED";
+
+        /**
+         * System Preferences key for onboarding number (boolean)
+         */
+        public static final String ONBOARDING_NUMBER_KEY = "ONBOARDING_NUMBER";
 
         /**
          * Pause Bundle Identifier String
@@ -215,8 +228,11 @@ public class Constants {
          */
 
         public static final int ACTION_CYCLE = 5000;
-        public static final int ACTION_CHANGE_NAME = 5001;
-        public static final int ACTION_CHANGE_GENDER = 5002;
+        public static final int ACTION_ONBOARDING_SILENCE = 5001;
+        public static final int ACTION_ONBOARDING_UNSILENCE = 5002;
+        public static final int ACTION_ONBOARDING_FINISH = 5003;
+        public static final int ACTION_CHANGE_NAME = 5004;
+        public static final int ACTION_CHANGE_GENDER = 5005;
 
         /**
          * M/S^2 acceleration in either x, y, or z axis

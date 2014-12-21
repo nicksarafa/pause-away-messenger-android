@@ -5,7 +5,6 @@ import android.content.SharedPreferences;
 
 import com.pauselabs.pause.Injector;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -19,19 +18,18 @@ import javax.inject.Inject;
 /**
  * Created by Passa on 12/17/14.
  */
-public class ComponentRandomizer {
+public class JsonReader {
 
     @Inject
     SharedPreferences prefs;
 
     protected Context context;
     protected Random randNumGenerator;
-    protected ArrayList<JSONObject> components;
+    protected JSONObject object;
 
-    public ComponentRandomizer(Context c, String filename) {
+    public JsonReader(Context c, String filename) {
         context = c;
         randNumGenerator = new Random();
-        components = new ArrayList<JSONObject>();
 
         Injector.inject(this);
 
@@ -44,19 +42,8 @@ public class ComponentRandomizer {
         }
     }
 
-    public JSONObject getComponent() {
-        if (components.isEmpty())
-            return null;
-
-        int index = randNumGenerator.nextInt(components.size());
-
-        return components.get(index);
-    }
-    public ArrayList<JSONObject> getComponents() {
-        if (components.isEmpty())
-            return null;
-
-        return components;
+    public JSONObject getObject() {
+        return object;
     }
 
     /**
@@ -75,7 +62,6 @@ public class ComponentRandomizer {
     }
 
     protected void parseFile(String filename) throws JSONException, IOException {
-        components.clear();
         if (filename == null)
             return;
 
@@ -88,9 +74,6 @@ public class ComponentRandomizer {
 
         is.close();
 
-        JSONArray in = new JSONArray(new String(buffer, "UTF-8"));
-        for (int i = 0; i < in.length(); i++)
-            components.add(in.getJSONObject(i));
-
+        object = new JSONObject(new String(buffer, "UTF-8"));
     }
 }

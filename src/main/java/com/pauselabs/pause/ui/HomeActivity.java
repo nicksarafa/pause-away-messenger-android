@@ -3,8 +3,8 @@ package com.pauselabs.pause.ui;
 import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.media.AudioManager;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,7 +15,7 @@ import com.pauselabs.R;
 import com.pauselabs.pause.Injector;
 import com.pauselabs.pause.PauseApplication;
 import com.pauselabs.pause.core.Constants;
-import com.pauselabs.pause.models.ComponentRandomizer;
+import com.pauselabs.pause.models.JsonReader;
 import com.pauselabs.pause.views.HomeButton;
 import com.pauselabs.pause.views.HomeButtonSeparator;
 
@@ -23,7 +23,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -45,13 +44,18 @@ public class HomeActivity extends Activity implements View.OnClickListener {
 
     @Inject
     SharedPreferences prefs;
+    @Inject
+    AudioManager am;
+    int lastRingerMode;
 
-    ComponentRandomizer cr;
+    JsonReader jr;
 
     TextView pauseMessage;
 
     //ImageView displaySettingsBtn;
 
+    JSONObject mainObject;
+    JSONArray components;
     int count = 0;
 
     @Override
@@ -72,22 +76,30 @@ public class HomeActivity extends Activity implements View.OnClickListener {
 
         settingsLayout = new SettingsLayout(this);
 
-        cr = new ComponentRandomizer(this,"jasonBourne.json");
+        jr = new JsonReader(this,"jasonBourne.json");
+        mainObject = jr.getObject();
 
-        updateView(count);
+        updateView();
     }
 
 
 
 
-    private void updateView(int num) {
-
+    private void updateView() {
         layout.removeAllViews();
 
-        ArrayList<JSONObject> objects = cr.getComponents();
         try {
-            String pauseMsg = objects.get(num).getString("pauseMsg");
-            JSONArray btnArray = objects.get(num).getJSONArray("buttons");
+            if (prefs.getBoolean(Constants.Pause.ONBOARDING_FINISHED_KEY,false)) {
+                components = mainObject.getJSONArray("normalJason");
+            } else {
+                components = mainObject.getJSONArray("onBoardingProcess");
+                count = prefs.getInt(Constants.Pause.ONBOARDING_NUMBER_KEY, 0);
+            }
+
+            JSONObject component = (JSONObject)components.get(count);
+
+            String pauseMsg = component.getString("pauseMsg");
+            JSONArray btnArray = component.getJSONArray("buttons");
 
             Pattern contactPattern = Pattern.compile("%name");
             Matcher matcher = contactPattern.matcher(pauseMsg);
@@ -108,26 +120,17 @@ public class HomeActivity extends Activity implements View.OnClickListener {
                 layout.addView(newBtn);
             }
 
-            HomeButtonSeparator separator = new HomeButtonSeparator(this);
-            layout.addView(separator);
+            if (prefs.getBoolean(Constants.Pause.ONBOARDING_FINISHED_KEY,false)) {
+                HomeButtonSeparator separator = new HomeButtonSeparator(this);
+                layout.addView(separator);
 
-            HomeButton nextBtn = new HomeButton(this);
-            nextBtn.getButton().setId(Constants.Settings.ACTION_CYCLE);
-            nextBtn.getButton().setText("Next");
-            nextBtn.getButton().setOnClickListener(this);
+                HomeButton nextBtn = new HomeButton(this);
+                nextBtn.getButton().setId(Constants.Settings.ACTION_CYCLE);
+                nextBtn.getButton().setText("Next");
+                nextBtn.getButton().setOnClickListener(this);
 
-            Log.i(TAG, "Next Button Created");
-
-            layout.addView(nextBtn);
-
-//            HomeButton displaySettingsBtn = new HomeButton(this);
-//            displaySettingsBtn.getButton().setText("Settings");
-//            displaySettingsBtn.getButton().setOnClickListener(this);
-//            Log.i(TAG, "Settings Button Created");
-//
-//            layout.addView(displaySettingsBtn);
-            
-
+                layout.addView(nextBtn);
+            }
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -136,12 +139,28 @@ public class HomeActivity extends Activity implements View.OnClickListener {
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-//            case R.id.displaySettingsBtn:
-//                startActivity(new Intent(this, SettingsActivity.class));
-//
-//                break;
             case Constants.Settings.ACTION_CYCLE:
-                updateView(count++);
+                cycle();
+
+                break;
+            case Constants.Settings.ACTION_ONBOARDING_SILENCE:
+                lastRingerMode = am.getRingerMode();
+                am.setRingerMode(AudioManager.RINGER_MODE_SILENT);
+
+                cycle();
+
+                break;
+            case Constants.Settings.ACTION_ONBOARDING_UNSILENCE:
+                am.setRingerMode(lastRingerMode);
+
+                cycle();
+
+                break;
+            case Constants.Settings.ACTION_ONBOARDING_FINISH:
+                count = 0;
+                prefs.edit().putBoolean(Constants.Pause.ONBOARDING_FINISHED_KEY, true).apply();
+
+                updateView();
 
                 break;
             case Constants.Settings.ACTION_CHANGE_NAME:
@@ -153,5 +172,14 @@ public class HomeActivity extends Activity implements View.OnClickListener {
 
                 break;
         }
+    }
+
+    private void cycle() {
+        if (!prefs.getBoolean(Constants.Pause.ONBOARDING_FINISHED_KEY,false))
+            prefs.edit().putInt(Constants.Pause.ONBOARDING_NUMBER_KEY, count + 1).apply();
+
+        count = (count < components.length() - 1) ? ++count : 0;
+
+        updateView();
     }
 }
