@@ -8,7 +8,11 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
+import android.view.animation.AnimationSet;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.pauselabs.R;
@@ -40,7 +44,8 @@ public class HomeActivity extends Activity implements View.OnClickListener {
 
     public SettingsLayout settingsLayout;
 
-    LinearLayout layout;
+    RelativeLayout contentLayout;
+    LinearLayout buttonLayout;
 
     @Inject
     SharedPreferences prefs;
@@ -58,6 +63,11 @@ public class HomeActivity extends Activity implements View.OnClickListener {
     JSONArray components;
     int count = 0;
 
+    Animation in = new AlphaAnimation(0.0f, 1.0f);
+    Animation out = new AlphaAnimation(1.0f, 0.0f);
+    AnimationSet as = new AnimationSet(true);
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -71,7 +81,8 @@ public class HomeActivity extends Activity implements View.OnClickListener {
         inflater.inflate(R.layout.home_button_view, (ViewGroup) findViewById(R.id.home_activity), false);
         inflater.inflate(R.layout.home_button_separator, (ViewGroup) findViewById(R.id.home_activity), false);
 
-        layout = (LinearLayout)findViewById(R.id.home_button_layout);
+        contentLayout = (RelativeLayout)findViewById(R.id.home_activity);
+        buttonLayout = (LinearLayout)findViewById(R.id.home_button_layout);
         pauseMessage = (TextView)findViewById(R.id.home_pause_message);
 
         settingsLayout = new SettingsLayout(this);
@@ -79,14 +90,30 @@ public class HomeActivity extends Activity implements View.OnClickListener {
         jr = new JsonReader(this,"jasonBourne.json");
         mainObject = jr.getObject();
 
+        in.setDuration(1000);
+        out.setDuration(1000);
+        out.setAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {
+
+            }
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
+                updateView();
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+
+            }
+        });
+
         updateView();
     }
 
-
-
-
     private void updateView() {
-        layout.removeAllViews();
+        buttonLayout.removeAllViews();
 
         try {
             if (prefs.getBoolean(Constants.Pause.ONBOARDING_FINISHED_KEY,false)) {
@@ -116,21 +143,23 @@ public class HomeActivity extends Activity implements View.OnClickListener {
 
                 HomeButtonSeparator separator = new HomeButtonSeparator(this);
 
-                layout.addView(separator);
-                layout.addView(newBtn);
+                buttonLayout.addView(separator);
+                buttonLayout.addView(newBtn);
             }
 
             if (prefs.getBoolean(Constants.Pause.ONBOARDING_FINISHED_KEY,false)) {
                 HomeButtonSeparator separator = new HomeButtonSeparator(this);
-                layout.addView(separator);
+                buttonLayout.addView(separator);
 
                 HomeButton nextBtn = new HomeButton(this);
                 nextBtn.getButton().setId(Constants.Settings.ACTION_CYCLE);
                 nextBtn.getButton().setText("Next");
                 nextBtn.getButton().setOnClickListener(this);
 
-                layout.addView(nextBtn);
+                buttonLayout.addView(nextBtn);
             }
+
+            contentLayout.startAnimation(in);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -138,6 +167,7 @@ public class HomeActivity extends Activity implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
+
         switch (v.getId()) {
             case Constants.Settings.ACTION_CYCLE:
                 cycle();
@@ -180,6 +210,6 @@ public class HomeActivity extends Activity implements View.OnClickListener {
 
         count = (count < components.length() - 1) ? ++count : 0;
 
-        updateView();
+        contentLayout.startAnimation(out);
     }
 }
