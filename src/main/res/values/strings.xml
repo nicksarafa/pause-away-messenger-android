@@ -107,5 +107,7 @@
     <string name="meet_onboarding">Meet</string>
     <string name="gender_settings_label">Gender</string>
     <string name="help_label">Help</string>
+    <string name="vibrate_label">Activate Pause On Vibrate</string>
+    <string name="voice_label">Activate Voice On Pause</string>
 
 </resources>

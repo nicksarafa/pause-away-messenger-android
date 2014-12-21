@@ -50,7 +50,7 @@ public class MainActivity extends ActivityGroup {
         tabhost.addTab(spec_b);
 
         spec_c = tabhost.newTabSpec("settings");
-        spec_c.setContent(new Intent(this,SettingsActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
+        spec_c.setContent(new Intent(this, SettingsLayout.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
         spec_c.setIndicator("",getResources().getDrawable(R.drawable.settings_tab_selector));
         tabhost.addTab(spec_c);
 

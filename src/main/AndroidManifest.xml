@@ -22,7 +22,7 @@
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
 
     <application android:name=".pause.PauseApplication"
-                 android:theme="@style/Theme.Pause.Dark"
+                 android:theme="@style/Theme.AppCompat.Light.NoActionBar"
                  android:icon="@drawable/ic_launcher"
                  android:label="@string/app_name">
 
@@ -44,25 +44,25 @@
         <activity android:name=".pause.ui.MainActivity"
                   android:windowSoftInputMode="adjustResize"
                   android:screenOrientation="portrait"
-                  android:theme="@style/NoActionBar">
+                  android:theme="@style/Theme.AppCompat.Light.NoActionBar">
         </activity>
 
         <activity android:name=".pause.ui.PrivacyActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light" />
 
-        <activity android:name=".pause.ui.SettingsActivity"
+        <activity android:name=".pause.ui.SettingsLayout"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light" />
 
         <activity android:name=".pause.ui.HomeActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat.Light"/>
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
 
         <activity android:name=".pause.ui.BlacklistActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light"
-            android:parentActivityName=".pause.ui.SettingsActivity">
+            android:parentActivityName=".pause.ui.SettingsLayout">
 
             <intent-filter>
                 <action android:name="android.intent.action.SEARCH" />
@@ -75,7 +75,7 @@
 
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".pause.ui.SettingsActivity" />
+                android:value=".pause.ui.SettingsLayout" />
         </activity>
 
         <!--<receiver android:name=".pause.listeners.BatteryLevelReceiver">-->

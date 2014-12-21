@@ -22,9 +22,10 @@
         <item name="android:scrollbarStyle">outsideInset</item>
     </style>
 
-    <style name="NoActionBar">
+    <style name="Theme.AppCompat.Light.NoActionBar" parent="@style/Theme.AppCompat.Light">
         <item name="android:windowActionBar">false</item>
         <item name="android:windowNoTitle">true</item>
+        <item name="android:windowActionBarOverlay">true</item>
     </style>
 
 </resources>

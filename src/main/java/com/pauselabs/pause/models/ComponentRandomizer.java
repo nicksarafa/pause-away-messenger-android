@@ -52,6 +52,12 @@ public class ComponentRandomizer {
 
         return components.get(index);
     }
+    public ArrayList<JSONObject> getComponents() {
+        if (components.isEmpty())
+            return null;
+
+        return components;
+    }
 
     /**
      * Set the JSON file to be used for generating Strings

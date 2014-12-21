@@ -3,7 +3,6 @@ package com.pauselabs.pause.views;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.widget.Button;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
 import com.pauselabs.R;

@@ -1,16 +1,15 @@
 package com.pauselabs.pause.ui;
 
-import android.app.Activity;
-import android.app.AlertDialog;
 import android.content.ActivityNotFoundException;
-import android.content.DialogInterface;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.net.Uri;
-import android.os.Bundle;
+import android.util.AttributeSet;
 import android.view.View;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.pauselabs.R;
@@ -28,26 +27,30 @@ import butterknife.InjectView;
 import butterknife.Views;
 
 
-public class SettingsActivity extends Activity implements View.OnClickListener {
+public class SettingsLayout extends RelativeLayout implements View.OnClickListener {
 
-    private static final String TAG = SettingsActivity.class.getSimpleName();
+    private static final String TAG = SettingsLayout.class.getSimpleName();
 
     @InjectView(R.id.nameBtn)
-    SettingsButton nameBtn;
+    public SettingsButton nameBtn;
     @InjectView(R.id.missedCallsBtn)
-    SettingsButton missedCallsBtn;
+    public SettingsButton missedCallsBtn;
     @InjectView(R.id.receivedSMSBtn)
-    SettingsButton receivedSmsBtn;
+    public SettingsButton receivedSmsBtn;
     @InjectView(R.id.blacklistBtn)
-    SettingsButton blacklistBtn;
+    public SettingsButton blacklistBtn;
     @InjectView(R.id.rateBtn)
-    SettingsButton rateBtn;
+    public SettingsButton rateBtn;
     @InjectView(R.id.contactBtn)
-    SettingsButton contactBtn;
+    public SettingsButton contactBtn;
     @InjectView(R.id.genderBtn)
-    SettingsButton genderBtn;
+    public SettingsButton genderBtn;
+    @InjectView(R.id.volumeBtn)
+    public SettingsButton volumeBtn;
+    @InjectView(R.id.voiceBtn)
+    public SettingsButton voiceBtn;
     @InjectView(R.id.supportBtn)
-    SettingsButton supportBtn;
+    public SettingsButton supportBtn;
 //    @InjectView(R.id.privacyBtn)
 //    SettingsButton privacyBtn;
     @InjectView(R.id.termsBtn)
@@ -60,20 +63,36 @@ public class SettingsActivity extends Activity implements View.OnClickListener {
 
     private Set<String> blacklistContacts;
 
-    @Override
-    protected void onCreate(final Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    private Context context;
 
-        setContentView(R.layout.settings_activity);
+    public SettingsLayout(Context context) {
+        super(context);
+
+        this.context = context;
+    }
+
+    public SettingsLayout(Context context, AttributeSet attrs) {
+        super(context, attrs);
+
+        this.context = context;
+    }
+
+    public SettingsLayout(Context context, AttributeSet attrs, int defStyle) {
+        super(context, attrs, defStyle);
+
+        this.context = context;
+    }
+
+    @Override
+    protected void onFinishInflate() {
+        super.onFinishInflate();
 
         Views.inject(this);
         Injector.inject(this);
 
         init();
 
-        nameBtn = (SettingsButton)findViewById(R.id.nameBtn);
         nameBtn.setOnClickListener(this);
-        genderBtn = (SettingsButton)findViewById(R.id.genderBtn);
         genderBtn.setOnClickListener(this);
         missedCallsBtn.setOnClickListener(this);
         receivedSmsBtn.setOnClickListener(this);
@@ -82,41 +101,37 @@ public class SettingsActivity extends Activity implements View.OnClickListener {
         blacklistBtn.setOnClickListener(this);
         supportBtn.setOnClickListener(this);
         termsBtn.setOnClickListener(this);
+        volumeBtn.setOnClickListener(this);
+        voiceBtn.setOnClickListener(this);
 
         PackageInfo pInfo = null;
         try {
-            pInfo = getPackageManager().getPackageInfo(getPackageName(), 0);
+            pInfo = context.getPackageManager().getPackageInfo(context.getPackageName(), 0);
             versionFooter.setText("Version 1.0." + pInfo.versionCode + " © 2014 Pause Labs, LLC");
         } catch (PackageManager.NameNotFoundException e) {
             e.printStackTrace();
         }
     }
 
-    @Override
-    public void onResume() {
-        super.onResume();
-    }
-
-    @Override
-    public void onPause() {
-        super.onPause();
-    }
-
-    @Override
     public void onClick(View view) {
         switch(view.getId()){
             case R.id.nameBtn:
-                PauseApplication.displayNameDialog(this);
+                PauseApplication.displayNameDialog(context, this);
                 break;
             case R.id.genderBtn:
-                PauseApplication.displayGenderDialog(this);
+                PauseApplication.displayGenderDialog(context, this);
                 break;
             case R.id.missedCallsBtn:
-                displayMissedCallsDialog();
+                PauseApplication.displayMissedCallsDialog(context, this);
                 break;
             case R.id.receivedSMSBtn:
-                displaySMSReplyDialog();
+                PauseApplication.displaySMSReplyDialog(context, this);
                 break;
+            case R.id.volumeBtn:
+                PauseApplication.displayVibrateDialog(context, this);
+                break;
+            case R.id.voiceBtn:
+                PauseApplication.displayVoiceDialog(context, this);
             case R.id.rateBtn:
                 launchPlayMarketRate();
                 break;
@@ -156,47 +171,13 @@ public class SettingsActivity extends Activity implements View.OnClickListener {
 
     }
 
-    private void displayMissedCallsDialog() {
-        AlertDialog.Builder alert = new AlertDialog.Builder(this);
-
-        alert.setTitle("Reply to missed calls");
-        alert.setItems(R.array.reply_setting_options, new DialogInterface.OnClickListener() {
-
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                String[] options = getResources().getStringArray(R.array.reply_setting_options);
-                prefs.edit().putString(Constants.Settings.REPLY_MISSED_CALL, options[which]).apply();
-                missedCallsBtn.setContent(options[which]);
-            }
-        });
-
-        alert.show();
-    }
-
-    private void displaySMSReplyDialog() {
-        AlertDialog.Builder alert = new AlertDialog.Builder(this);
-
-        alert.setTitle("Reply to SMS messages");
-        alert.setItems(R.array.reply_setting_options, new DialogInterface.OnClickListener() {
-
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                String[] options = getResources().getStringArray(R.array.reply_setting_options);
-                prefs.edit().putString(Constants.Settings.REPLY_SMS, options[which]).apply();
-                receivedSmsBtn.setContent(options[which]);
-            }
-        });
-
-        alert.show();
-    }
-
     private void launchPlayMarketRate() {
-        Uri uri = Uri.parse("market://details?id=" + getPackageName());
+        Uri uri = Uri.parse("market://details?id=" + context.getPackageName());
         Intent goToMarket = new Intent(Intent.ACTION_VIEW, uri);
         try {
-            startActivity(goToMarket);
+            context.startActivity(goToMarket);
         } catch (ActivityNotFoundException e) {
-            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("http://play.google.com/store/apps/details?id=" + getPackageName())));
+            context.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("http://play.google.com/store/apps/details?id=" + context.getPackageName())));
         }
     }
 
@@ -204,23 +185,23 @@ public class SettingsActivity extends Activity implements View.OnClickListener {
         Intent emailIntent = new Intent(android.content.Intent.ACTION_SEND);
         emailIntent.putExtra(android.content.Intent.EXTRA_EMAIL, new String[] {"feedback@pauselabs.com"});
         emailIntent.setType("message/rfc822");
-        startActivity(Intent.createChooser(emailIntent, "Contact Üs"));
+        context.startActivity(Intent.createChooser(emailIntent, "Contact Üs"));
     }
 
     private void launchSupportLink() {
         Intent termsIntent = new Intent(Intent.ACTION_VIEW,
                 Uri.parse("http://www.woot.com"));
-        startActivity(termsIntent);
+        context.startActivity(termsIntent);
     }
 
     private void launchTermsLink() {
         Intent supportIntent = new Intent(Intent.ACTION_VIEW,
                 Uri.parse("http://www.google.com/"));
-        startActivity(supportIntent);
+        context.startActivity(supportIntent);
     }
     private void launchBlacklistActivity() {
-        Intent blacklistIntent = new Intent(this, BlacklistActivity.class);
-        startActivity(blacklistIntent);
+        Intent blacklistIntent = new Intent(context, BlacklistActivity.class);
+        context.startActivity(blacklistIntent);
     }
 
 }

@@ -1,17 +1,90 @@
 [
     {
-        pauseMsg:"Would you like to change your information?",
+        pauseMsg:"Hello %contact. Thanks for giving me a shot! Let's me show you how I work. Start by silencing your phone.",
         buttons:
             [
                 {
-                    btnText:"Change Name",
-                    actionId:5001
-                },
-                {
-                    btnText:"Change Gender",
-                    actionId:5002
+                    btnText:"Silence my phone for me",
+                    actionId:5004
+
                 },
 
+                {
+                    btnText:"Silence my phone",
+                    actionId:5004
+                }
+
             ]
-    }
+    },
+    {
+        pauseMsg:"Well done! When you see my face up in the status bar, you can rest assured that I'll be answering all your incoming calls and text messages.",
+        buttons:
+            [
+                {
+                    btnText:"Makes sense",
+                    actionId:5005
+                },
+
+                {
+                    btnText:"I don't get it",
+                    actionId:5006
+                }
+            ]
+    },
+    {
+        pauseMsg:"Would you like me to respond to Phone Calls, Text Messages or Both?",
+        buttons:
+            [
+                {
+                    btnText:"Both Texts and Phone Calls",
+                    actionId:5010
+                },
+
+                {
+                    btnText:"Phone Calls Only",
+                    actionId:5011
+                },
+
+                {
+                    btnText:"Text Messages Only",
+                    actionId:5012
+                }
+            ]
+    },
+    {
+        pauseMsg:"Would you like to set up your Emergency contacts? These are a list of people who may reach you even while you're paused.",
+        buttons:
+            [
+
+                {
+                    btnText:"Setup Emergency Contacts",
+                    actionId:5013
+                },
+
+                {
+                    btnText:"No thanks. I'm good.",
+                    actionId:5014
+
+                }
+            ]
+    },
+    {
+            pauseMsg:"Would you like to set up your Blacklist? These are the contacts who you would not like me to respond to.",
+            buttons:
+                [
+
+                    {
+                        btnText:"Set Black List",
+                        actionId:5015
+                    },
+
+                    {
+                        btnText:"Not right now.",
+                        actionId:5016
+
+                    }
+                ]
+        },
+
+
 ]
