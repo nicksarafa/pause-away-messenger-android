@@ -91,16 +91,12 @@ public class PauseConversation implements Serializable {
         return messagesFromUser;
     }
 
-    public String getContact() {
+    public String getContactNumber() {
         return contactNumber;
     }
 
-    public void setContact(String contactNumber) {
-        this.contactNumber = contactNumber;
-    }
-
     public String getContactName() {
-        return contactName;
+        return (contactName != null) ? contactName : getContactNumber();
     }
 
     public void setContactName(String name) {
@@ -156,17 +152,15 @@ public class PauseConversation implements Serializable {
         ContentResolver cr = context.getContentResolver();
         Uri uri = Uri.withAppendedPath(ContactsContract.PhoneLookup.CONTENT_FILTER_URI, Uri.encode(phoneNumber));
         Cursor cursor = cr.query(uri, new String[]{ContactsContract.PhoneLookup.DISPLAY_NAME}, null, null, null);
-        if (cursor == null) {
-            return null;
-        }
-        String contactName = null;
-        if(cursor.moveToFirst()) {
-            contactName = cursor.getString(cursor.getColumnIndex(ContactsContract.PhoneLookup.DISPLAY_NAME));
-        }
 
-        if(cursor != null && !cursor.isClosed()) {
-            cursor.close();
-        }
+        if (cursor == null)
+            return null;
+
+        String contactName = null;
+        if(cursor.moveToFirst())
+            contactName = cursor.getString(cursor.getColumnIndex(ContactsContract.PhoneLookup.DISPLAY_NAME));
+
+        cursor.close();
 
         return contactName;
     }

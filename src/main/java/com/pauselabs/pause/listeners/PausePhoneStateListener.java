@@ -45,16 +45,14 @@ public class PausePhoneStateListener extends BroadcastReceiver{
             SharedPreferences sharedPreferences = this.context.getApplicationContext().getSharedPreferences(Constants.Message.MISSED_CALL_PREFERENCE, Context.MODE_WORLD_WRITEABLE | Context.MODE_WORLD_READABLE);
 
             int olderSharedPreference = sharedPreferences.getInt(Constants.Message.PREFERENCE_OLDER_PHONE_STATE, -1);
-            Log.d(TAG, "Old phone state: " + olderSharedPreference);
 
             if(!incomingNumber.equals("")) {
-                sharedPreferences.edit().putString(Constants.Message.PREFERENCE_LAST_CALL_NUMBER, incomingNumber).commit();
+                sharedPreferences.edit().putString(Constants.Message.PREFERENCE_LAST_CALL_NUMBER, incomingNumber).apply();
             }
 
             SharedPreferences.Editor editor = sharedPreferences.edit();
             editor.putInt(Constants.Message.PREFERENCE_OLDER_PHONE_STATE, state);
-            editor.commit();
-            Log.d(TAG, "Write phone state: " + state);
+            editor.apply();
 
             switch (state) {
                 case TelephonyManager.CALL_STATE_IDLE:
@@ -66,8 +64,10 @@ public class PausePhoneStateListener extends BroadcastReceiver{
 
                         String savedNumber = sharedPreferences.getString(Constants.Message.PREFERENCE_LAST_CALL_NUMBER, "none");
                         PauseMessage messageReceived = new PauseMessage(savedNumber, "0", "missed phone call", new Date().getTime(), Constants.Message.Type.PHONE_INCOMING);
+                        PauseApplication.handleMessageReceived(messageReceived);
 
                         PauseApplication.numCall++;
+                        PauseApplication.updateNotifications();
                     }
                     break;
                 case TelephonyManager.CALL_STATE_OFFHOOK:

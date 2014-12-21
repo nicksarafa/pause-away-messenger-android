@@ -69,5 +69,15 @@ public class PauseMessage implements Serializable {
     public int getType() {
         return type;
     }
+    public String getTypeString() {
+        String string = "";
+
+        if (type == Constants.Message.Type.SMS_INCOMING || type == Constants.Message.Type.SMS_OUTGOING || type == Constants.Message.Type.SMS_PAUSE_OUTGOING)
+            string = "message";
+        else if (type == Constants.Message.Type.PHONE_INCOMING || type == Constants.Message.Type.PHONE_OUTGOING)
+            string = "call";
+
+        return string;
+    }
 
 }

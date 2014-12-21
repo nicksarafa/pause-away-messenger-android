@@ -10,10 +10,10 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import com.pauselabs.R;
 import com.pauselabs.pause.Injector;
+import com.pauselabs.pause.PauseApplication;
 import com.pauselabs.pause.core.Constants;
 
 import javax.inject.Inject;
@@ -104,7 +104,7 @@ public class OnBoardingActivity extends Activity implements View.OnClickListener
 
             startApp();
         } else {
-            Toast.makeText(this,"Please enter your name first!",Toast.LENGTH_LONG).show();
+            PauseApplication.sendToast("Please enter your name first!");
         }
     }
 }

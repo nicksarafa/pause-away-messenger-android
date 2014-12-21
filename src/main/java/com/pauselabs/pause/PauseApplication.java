@@ -13,6 +13,9 @@ import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
+import android.os.AsyncTask;
+import android.os.Handler;
+import android.os.Message;
 import android.preference.PreferenceManager;
 import android.provider.BaseColumns;
 import android.provider.ContactsContract;
@@ -20,7 +23,12 @@ import android.speech.SpeechRecognizer;
 import android.speech.tts.TextToSpeech;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
+import android.view.Gravity;
+import android.view.View;
 import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.crashlytics.android.Crashlytics;
 import com.google.android.gms.analytics.GoogleAnalytics;
@@ -115,10 +123,10 @@ public class PauseApplication extends Application {
         instance = this;
 
         if ( BuildConfig.USE_CRASHLYTICS ) {
-            Crashlytics.start(this);
+            Crashlytics.start(instance);
         }
 
-        prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        prefs = PreferenceManager.getDefaultSharedPreferences(instance);
 
         // Register the bus so we can send notifcations
 //        eventBus.register(this);
@@ -131,9 +139,9 @@ public class PauseApplication extends Application {
 
         startPauseApplicationService();
 
-        sr = SpeechRecognizer.createSpeechRecognizer(PauseApplication.getInstance());
+        sr = SpeechRecognizer.createSpeechRecognizer(instance);
 
-        tts = new TextToSpeech(PauseApplication.getInstance(),new TextToSpeech.OnInitListener() {
+        tts = new TextToSpeech(instance,new TextToSpeech.OnInitListener() {
             @Override
             public void onInit(int status) {
                 if (status != TextToSpeech.ERROR) {
@@ -230,7 +238,7 @@ public class PauseApplication extends Application {
         if (isPhoneCharging() && isPhoneStill() && isSleepTime())
             startPauseService(Constants.Session.Creator.SLEEP);
         else
-            if (PauseApplication.getCurrentSession() != null && PauseApplication.getCurrentSession().getCreator() == Constants.Session.Creator.SLEEP)
+            if (getCurrentSession() != null && getCurrentSession().getCreator() == Constants.Session.Creator.SLEEP)
                 stopPauseService(Constants.Session.Destroyer.SLEEP);
     }
 
@@ -530,7 +538,7 @@ public class PauseApplication extends Application {
     }
 
     public static void handleMessageReceived(PauseMessage receivedMessage) {
-        currentPauseSession = PauseApplication.getCurrentSession();
+        currentPauseSession = getCurrentSession();
 
         // Attempt to retrieve existing conversation
         PauseConversation conversation = currentPauseSession.getConversationByContactNumber(receivedMessage.getFrom());
@@ -541,19 +549,18 @@ public class PauseApplication extends Application {
             conversation = new PauseConversation(receivedMessage.getFrom());
         conversation.addMessage(receivedMessage);
 
-//        Log.i("Message Recieved", conversation.getMessagesReceived().size() + " messages received");
-//        Log.i("Message Recieved", conversation.getMessagesSentFromUser().size() + " messages sent from user");
-//        Log.i("Message Recieved", conversation.getMessagesSentFromPause().size() + " messages sent from Pause");
-
         // Check who created the Session to in order to send appropriate message
         if(currentPauseSession.shouldSenderReceivedBounceback(contactId) && conversation.getMessagesSentFromUser().size() == 0 ) {
             PauseMessage bounceBackMessage = getMessageToBounceBack(receivedMessage.getFrom(), conversation);
-            PauseApplication.messageSender.sendSmsMessage(receivedMessage.getFrom(), bounceBackMessage);
-            conversation.addMessage(bounceBackMessage);
-            currentPauseSession.incrementResponseCount();
-        }
 
-        PauseApplication.updateNotifications();
+            messageSender.sendSmsMessage(receivedMessage.getFrom(), bounceBackMessage);
+            conversation.addMessage(bounceBackMessage);
+
+            currentPauseSession.incrementResponseCount();
+        } else
+            sendToast("Ignored " + receivedMessage.getTypeString() + " from " + conversation.getContactName());
+
+        updateNotifications();
 
         // Update Session conversations with updated conversation
         currentPauseSession.updateConversation(conversation);
@@ -566,7 +573,7 @@ public class PauseApplication extends Application {
         String contactId = "";
         Uri uri = Uri.withAppendedPath(ContactsContract.PhoneLookup.CONTENT_FILTER_URI, Uri.encode(contactNumber));
 
-        ContentResolver contentResolver = PauseApplication.getInstance().getContentResolver();
+        ContentResolver contentResolver = instance.getContentResolver();
         Cursor contactLookup = contentResolver.query(uri, new String[] {BaseColumns._ID}, null, null, null);
 
         try {
@@ -594,6 +601,22 @@ public class PauseApplication extends Application {
                 new Date().getTime(),
                 Constants.Message.Type.SMS_PAUSE_OUTGOING
         );
+    }
+
+    private static Handler toastHandler = new Handler() {
+        public void handleMessage(Message msg) {
+            String message = (String)msg.obj;
+
+            Toast toast = Toast.makeText(instance, message, Toast.LENGTH_LONG);
+            ((TextView)((LinearLayout)toast.getView()).getChildAt(0)).setGravity(Gravity.CENTER_HORIZONTAL);
+            toast.show();
+        }
+    };
+
+    public static void sendToast(final String textToSend) {
+        Message msg = new Message();
+        msg.obj = textToSend;
+        toastHandler.sendMessage(msg);
     }
 
     public static void speak(String textToSpeak) {

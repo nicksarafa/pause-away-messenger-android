@@ -50,7 +50,7 @@ public class PauseSmsListener extends ContentObserver {
                 int bodyColumn = cursor.getColumnIndex("body");
                 int addressColumn = cursor.getColumnIndex("address");
 
-                String from, to, contact = "";
+                String from, to, number = "";
                 String message = cursor.getString(bodyColumn);
                 Long date = cursor.getLong(dateColumn);
 
@@ -60,22 +60,27 @@ public class PauseSmsListener extends ContentObserver {
                 if (type == Telephony.Sms.MESSAGE_TYPE_SENT) {
                     from = "0";
                     to = cursor.getString(addressColumn);
-                    contact = to;
+                    number = to;
 
-                    PauseConversation activeConversation = PauseApplication.getCurrentSession().getConversationByContactNumber(contact);
+                    PauseConversation activeConversation = PauseApplication.getCurrentSession().getConversationByContactNumber(number);
 
                     if (activeConversation.getLastMessage().getType() == Constants.Message.Type.SMS_PAUSE_OUTGOING && activeConversation.getLastMessage().getId() == newCount) {
                         Log.i(TAG,"Pause sent message");
 
-
+                        PauseApplication.sendToast("Replied to message from " + activeConversation.getContactName() + " Ü");
                     } else {
                         Log.i(TAG,"User sent message");
+
+                        if (activeConversation.getMessagesSentFromUser().size() == 0)
+                            PauseApplication.sendToast("I will no longer reply to " + activeConversation.getContactName() + " until your next Paüse.");
 
                         newMessage = new PauseMessage(from, to, message, date, Constants.Message.Type.SMS_OUTGOING);
                         activeConversation.addMessage(newMessage);
                     }
                 } else if (type == Telephony.Sms.MESSAGE_TYPE_INBOX) {
                     Log.i(TAG, "Message received");
+
+                    PauseApplication.numSMS++;
 
                     from = cursor.getString(addressColumn);
                     to = "0";
@@ -85,6 +90,8 @@ public class PauseSmsListener extends ContentObserver {
                 }
 
             }
+
+            PauseApplication.updateNotifications();
         }
 
         previousCount = newCount;

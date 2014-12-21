@@ -45,7 +45,15 @@ public class PauseSessionService extends Service{
     public void onDestroy() {
         am.setRingerMode(PauseApplication.getOldRingerMode());
 
+        int responseCount = PauseApplication.getCurrentSession().getResponseCount();
+
         PauseApplication.speak("Pause off.");
+        PauseApplication.sendToast("PAÜSE OFF Ü");
+        PauseApplication.sendToast(
+                PauseApplication.numCall + " missed calls \n" +
+                PauseApplication.numSMS + " missed texts \n\n" +
+                "I sent " + responseCount + " message" + ((responseCount == 1) ? "" : "s") + " for you."
+        );
 
         PauseApplication.numSMS = 0;
         PauseApplication.numCall = 0;
@@ -63,6 +71,7 @@ public class PauseSessionService extends Service{
         am.setRingerMode(AudioManager.RINGER_MODE_SILENT);
 
         PauseApplication.speak("Pause on.");
+        PauseApplication.sendToast("PAÜSE ON Ü");
 
 //        PauseApplication.sr.startListening(intent);
 

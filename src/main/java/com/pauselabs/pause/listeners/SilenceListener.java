@@ -1,24 +1,13 @@
 package com.pauselabs.pause.listeners;
 
-import android.app.Activity;
-import android.app.AlertDialog;
-import android.app.NotificationManager;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.media.AudioManager;
-import android.nfc.Tag;
-import android.support.v4.app.NotificationCompat;
 import android.util.Log;
-import android.view.KeyEvent;
-import android.widget.Toast;
-
 import com.pauselabs.pause.PauseApplication;
 import com.pauselabs.pause.core.Constants;
-import com.pauselabs.pause.models.PauseSession;
 
 import javax.inject.Inject;
 
