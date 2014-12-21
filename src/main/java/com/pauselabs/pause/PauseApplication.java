@@ -368,7 +368,7 @@ public class PauseApplication extends Application {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 String[] options = instance.getResources().getStringArray(R.array.volume_settings_options);
-                prefs.edit().putBoolean(Constants.Settings.PAUSE_ON_VIBRATE_KEY, (options[which].equals("Yes"))).apply();
+                prefs.edit().putBoolean(Constants.Settings.PAUSE_ON_VIBRATE_KEY, (options[which].equals("On"))).apply();
                 sa.volumeBtn.setContent(options[which]);
             }
         });
@@ -385,7 +385,7 @@ public class PauseApplication extends Application {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 String[] options = instance.getResources().getStringArray(R.array.voice_settings_options);
-                prefs.edit().putBoolean(Constants.Settings.PAUSE_VOICE_ON_KEY, (options[which].equals("Yes"))).apply();
+                prefs.edit().putBoolean(Constants.Settings.PAUSE_VOICE_ON_KEY, (options[which].equals("On"))).apply();
                 sa.voiceBtn.setContent(options[which]);
             }
 
