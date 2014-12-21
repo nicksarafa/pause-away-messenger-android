@@ -12,8 +12,8 @@
     </string-array>
 
     <string-array name="volume_settings_options">
-        <item>On</item>
-        <item>Off</item>
+        <item>Yes</item>
+        <item>No</item>
     </string-array>
 
     <string-array name="voice_settings_options">

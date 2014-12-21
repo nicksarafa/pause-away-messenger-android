@@ -210,7 +210,7 @@ public class Constants {
         }
 
         public static final String PAUSE_ON_VIBRATE_KEY =  "PAUSE_ON_VIBRATE_KEY";
-        public static final String PAUSE_VOICE_ON_KEY = "PAUSE_VOICE_ON_KEY";
+        public static final String PAUSE_VOICE_FEEDBACK_KEY = "PAUSE_VOICE_ON_KEY";
 
         public static final String NAME_KEY = "NAME_KEY";
         public static final String GENDER_KEY = "GENDER_KEY";

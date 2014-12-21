@@ -3,6 +3,7 @@ package com.pauselabs.pause.services;
 import android.app.Service;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.SharedPreferences;
 import android.media.AudioManager;
 import android.net.Uri;
 import android.os.Handler;
@@ -19,6 +20,8 @@ import com.pauselabs.pause.models.PauseSession;
 
 import java.util.Date;
 
+import javax.inject.Inject;
+
 /**
  * Service initiates Pause Listeners
  */
@@ -29,7 +32,10 @@ public class PauseSessionService extends Service{
     private PauseSmsListener observer;
     private PausePhoneStateListener phoneListener;
 
-    private AudioManager am;
+    @Inject
+    AudioManager am;
+    @Inject
+    SharedPreferences prefs;
 
 
     @Override
@@ -37,8 +43,6 @@ public class PauseSessionService extends Service{
         super.onCreate();
 
         Injector.inject(this);
-
-        am = (AudioManager)getSystemService(AUDIO_SERVICE);
     }
 
     @Override
@@ -67,8 +71,10 @@ public class PauseSessionService extends Service{
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        PauseApplication.setOldRingerMode(am.getRingerMode());
-        am.setRingerMode(AudioManager.RINGER_MODE_SILENT);
+        if (prefs.getBoolean(Constants.Settings.PAUSE_ON_VIBRATE_KEY,false))
+            am.setRingerMode(AudioManager.RINGER_MODE_VIBRATE);
+        else
+            am.setRingerMode(AudioManager.RINGER_MODE_SILENT);
 
         PauseApplication.speak("Pause on.");
         PauseApplication.sendToast("PAÜSE ON Ü");

@@ -161,8 +161,8 @@ public class SettingsLayout extends RelativeLayout implements View.OnClickListen
 
         missedCallsBtn.setContent(prefs.getString(Constants.Settings.REPLY_MISSED_CALL, Constants.Privacy.EVERYBODY));
         receivedSmsBtn.setContent(prefs.getString(Constants.Settings.REPLY_SMS, Constants.Privacy.EVERYBODY));
-        //blacklistBtn.setContent(prefs.getString(Constants.Settings.USING_BLACKLIST, "Setup Blacklist"));
 
+        blacklistBtn.setContent(prefs.getString(Constants.Settings.USING_BLACKLIST, "Setup Blacklist"));
         blacklistContacts = prefs.getStringSet(Constants.Settings.BLACKLIST, new HashSet<String>());
         if(blacklistContacts.size() > 0) {
             blacklistBtn.setContent("Blacklist Active");
@@ -170,6 +170,8 @@ public class SettingsLayout extends RelativeLayout implements View.OnClickListen
             blacklistBtn.setContent("Setup Blacklist");
         }
 
+        volumeBtn.setContent((prefs.getBoolean(Constants.Settings.PAUSE_ON_VIBRATE_KEY, false)) ? "Yes" : "No");
+        voiceBtn.setContent((prefs.getBoolean(Constants.Settings.PAUSE_VOICE_FEEDBACK_KEY, true)) ? "On" : "Off");
     }
 
     private void launchPlayMarketRate() {

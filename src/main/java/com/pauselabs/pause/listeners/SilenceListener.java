@@ -19,11 +19,11 @@ public class SilenceListener extends BroadcastReceiver {
     private static final String TAG = SilenceListener.class.getSimpleName();
 
     @Inject SharedPreferences prefs;
+    @Inject AudioManager am;
 
     @Override
     public void onReceive(Context context, Intent intent) {
         if (intent.getAction().equals(AudioManager.RINGER_MODE_CHANGED_ACTION)) {
-            AudioManager am = (AudioManager)context.getSystemService(Context.AUDIO_SERVICE);
 
             if (am.getRingerMode() == AudioManager.RINGER_MODE_SILENT || (am.getRingerMode() == AudioManager.RINGER_MODE_VIBRATE && prefs.getBoolean(Constants.Settings.PAUSE_ON_VIBRATE_KEY,false))) {
                 PauseApplication.startPauseService(Constants.Session.Creator.SILENCE);
