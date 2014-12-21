@@ -259,8 +259,8 @@ public class Constants {
         private Privacy() {}
 
         public static final String CONTACTS_ONLY = "Contacts Only";
-        public static final String EVERYBODY = "Everybody";
-        public static final String NOBODY = "Nobody";
+        public static final String EVERYBODY = "true";
+        public static final String NOBODY = "false";
     }
 
     public static class Gender {

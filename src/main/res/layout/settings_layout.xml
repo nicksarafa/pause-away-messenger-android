@@ -50,7 +50,7 @@
 
             <!-- Name -->
 
-            <com.pauselabs.pause.views.SettingsButton
+            <com.pauselabs.pause.views.SettingsDialougeButton
                 android:id="@+id/nameBtn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -59,7 +59,7 @@
 
             <!-- Gender -->
 
-            <com.pauselabs.pause.views.SettingsButton
+            <com.pauselabs.pause.views.SettingsDialougeButton
                 android:id="@+id/genderBtn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -69,7 +69,7 @@
 
             <!-- Missed Calls -->
 
-            <com.pauselabs.pause.views.SettingsButton
+            <com.pauselabs.pause.views.SettingsDialougeButton
                 android:id="@+id/missedCallsBtn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -78,7 +78,7 @@
 
             <!-- Replied Text Messages -->
 
-            <com.pauselabs.pause.views.SettingsButton
+            <com.pauselabs.pause.views.SettingsDialougeButton
                 android:id="@+id/receivedSMSBtn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -87,7 +87,7 @@
 
             <!-- BlackList -->
 
-            <com.pauselabs.pause.views.SettingsButton
+            <com.pauselabs.pause.views.SettingsDialougeButton
                 android:id="@+id/blacklistBtn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -97,7 +97,7 @@
 
             <!-- Volume Settings Key -->
 
-            <com.pauselabs.pause.views.SettingsButton
+            <com.pauselabs.pause.views.SettingsDialougeButton
                 android:id="@+id/volumeBtn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -107,7 +107,7 @@
 
             <!-- Voice Toggle -->
 
-            <com.pauselabs.pause.views.SettingsButton
+            <com.pauselabs.pause.views.SettingsDialougeButton
                 android:id="@+id/voiceBtn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
