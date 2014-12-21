@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
+import android.media.AudioManager;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -25,6 +26,8 @@ public class OnBoardingActivity extends Activity implements View.OnClickListener
 
     @Inject
     SharedPreferences prefs;
+    @Inject
+    AudioManager am;
 
     EditText name;
     Button male, female;
@@ -47,6 +50,8 @@ public class OnBoardingActivity extends Activity implements View.OnClickListener
             editor.putBoolean(Constants.Pause.ONBOARDING_FINISHED_KEY, false);
             editor.putInt(Constants.Pause.ONBOARDING_NUMBER_KEY, 0);
             editor.apply();
+
+            am.setRingerMode(AudioManager.RINGER_MODE_VIBRATE);
         }
 
         name = (EditText) findViewById(R.id.ob_name);
