@@ -14,7 +14,7 @@ import com.pauselabs.pause.ui.BlacklistFragment;
 import com.pauselabs.pause.ui.MainActivity;
 import com.pauselabs.pause.ui.OnBoardingActivity;
 import com.pauselabs.pause.ui.PrivacyActivity;
-import com.pauselabs.pause.ui.SettingsActivity;
+import com.pauselabs.pause.ui.SettingsLayout;
 import com.squareup.otto.Bus;
 
 import javax.inject.Singleton;
@@ -32,7 +32,7 @@ import dagger.Provides;
         injects = {
                 PauseApplication.class,
                 MainActivity.class,
-                SettingsActivity.class,
+                SettingsLayout.class,
                 PrivacyActivity.class,
                 PauseMessageReceivedService.class,
                 PauseSessionService.class,

@@ -2,7 +2,6 @@ package com.pauselabs.pause.ui;
 
 import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -34,6 +33,8 @@ public class HomeActivity extends Activity implements View.OnClickListener {
 
     public static final String TAG = HomeActivity.class.getSimpleName();
 
+    public SettingsLayout settingsLayout;
+
     LinearLayout layout;
 
     ComponentRandomizer cr;
@@ -50,17 +51,16 @@ public class HomeActivity extends Activity implements View.OnClickListener {
 
         setContentView(R.layout.home_activity);
 
-        layout = (LinearLayout)findViewById(R.id.home_button_layout);
-        pauseMessage = (TextView)findViewById(R.id.home_pause_message);
-
         Views.inject(this);
 
         LayoutInflater inflater = (LayoutInflater) this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         inflater.inflate(R.layout.home_button_view, (ViewGroup) findViewById(R.id.home_activity), false);
         inflater.inflate(R.layout.home_button_separator, (ViewGroup) findViewById(R.id.home_activity), false);
 
-      //  displaySettingsBtn = (ImageView) findViewById(R.id.displaySettingsBtn);
-        //displaySettingsBtn.setOnClickListener(this);
+        layout = (LinearLayout)findViewById(R.id.home_button_layout);
+        pauseMessage = (TextView)findViewById(R.id.home_pause_message);
+
+        settingsLayout = new SettingsLayout(this);
 
         cr = new ComponentRandomizer(this,"jasonBourne.json");
 
@@ -132,11 +132,11 @@ public class HomeActivity extends Activity implements View.OnClickListener {
 
                 break;
             case Constants.Settings.ACTION_CHANGE_NAME:
-                PauseApplication.displayNameDialog(this);
+                PauseApplication.displayNameDialog(this, settingsLayout);
 
                 break;
             case Constants.Settings.ACTION_CHANGE_GENDER:
-                PauseApplication.displayGenderDialog(this);
+                PauseApplication.displayGenderDialog(this, settingsLayout);
 
                 break;
         }

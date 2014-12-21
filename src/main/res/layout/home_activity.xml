@@ -6,8 +6,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="bottom"
-        sothree:panelHeight="68dp"
-        sothree:shadowHeight="4dp">
+        sothree:panelHeight="@dimen/ob_btn_height"
+        sothree:shadowHeight="2dp">
 
         <RelativeLayout
             android:id="@+id/home_activity"
@@ -43,8 +43,6 @@
 
         </RelativeLayout>
 
-
-        <include layout="@layout/settings_activity"
-            android:gravity="center|top"/>
+        <include layout="@layout/settings_layout"/>
 
     </com.sothree.slidinguppanel.SlidingUpPanelLayout>

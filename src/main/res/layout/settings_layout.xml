@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<RelativeLayout
+<com.pauselabs.pause.ui.SettingsLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/settings_activity"
     android:layout_width="fill_parent"
@@ -196,12 +196,12 @@
                 android:background="#999999"/>
 
             <com.pauselabs.pause.views.SettingsButton
-            android:id="@+id/termsBtn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@null"
-            custom:label="@string/terms_label"
-            custom:content="Had to Have It"/>
+                android:id="@+id/termsBtn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                custom:label="@string/terms_label"
+                custom:content="Had to Have It"/>
 
             <TextView
                 android:id="@+id/versionFooter"
@@ -215,4 +215,4 @@
     </ScrollView>
 
     </LinearLayout>
-</RelativeLayout>
+</com.pauselabs.pause.ui.SettingsLayout>
