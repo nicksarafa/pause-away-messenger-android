@@ -39,21 +39,21 @@ public class SettingsLayout extends RelativeLayout implements View.OnClickListen
     public SettingsButton receivedSmsBtn;
     @InjectView(R.id.blacklistBtn)
     public SettingsButton blacklistBtn;
-    @InjectView(R.id.rateBtn)
-    public SettingsButton rateBtn;
-    @InjectView(R.id.contactBtn)
-    public SettingsButton contactBtn;
+//    @InjectView(R.id.rateBtn)
+//    public SettingsButton rateBtn;
+//    @InjectView(R.id.contactBtn)
+//    public SettingsButton contactBtn;
     @InjectView(R.id.genderBtn)
     public SettingsButton genderBtn;
     @InjectView(R.id.volumeBtn)
     public SettingsButton volumeBtn;
     @InjectView(R.id.voiceBtn)
     public SettingsButton voiceBtn;
-    @InjectView(R.id.supportBtn)
+//    @InjectView(R.id.supportBtn)
     public SettingsButton supportBtn;
 //    @InjectView(R.id.privacyBtn)
 //    SettingsButton privacyBtn;
-    @InjectView(R.id.termsBtn)
+//    @InjectView(R.id.termsBtn)
     SettingsButton termsBtn;
     @InjectView(R.id.versionFooter)
     TextView versionFooter;
@@ -96,11 +96,11 @@ public class SettingsLayout extends RelativeLayout implements View.OnClickListen
         genderBtn.setOnClickListener(this);
         missedCallsBtn.setOnClickListener(this);
         receivedSmsBtn.setOnClickListener(this);
-        rateBtn.setOnClickListener(this);
-        contactBtn.setOnClickListener(this);
+//        rateBtn.setOnClickListener(this);
+//        contactBtn.setOnClickListener(this);
         blacklistBtn.setOnClickListener(this);
-        supportBtn.setOnClickListener(this);
-        termsBtn.setOnClickListener(this);
+//        supportBtn.setOnClickListener(this);
+//        termsBtn.setOnClickListener(this);
         volumeBtn.setOnClickListener(this);
         voiceBtn.setOnClickListener(this);
 
@@ -133,21 +133,21 @@ public class SettingsLayout extends RelativeLayout implements View.OnClickListen
             case R.id.voiceBtn:
                 PauseApplication.displayVoiceDialog(context, this);
                 break;
-            case R.id.rateBtn:
-                launchPlayMarketRate();
-                break;
-            case R.id.contactBtn:
-                sendFeedbackEmail();
-                break;
             case R.id.blacklistBtn:
                 launchBlacklistActivity();
                 break;
-            case R.id.supportBtn:
-                launchSupportLink();
-                break;
-            case R.id.termsBtn:
-                launchTermsLink();
-                break;
+//            case R.id.supportBtn:
+//                launchSupportLink();
+//                break;
+//            case R.id.termsBtn:
+//                launchTermsLink();
+//                break;
+//            case R.id.rateBtn:
+//                launchPlayMarketRate();
+//                break;
+//            case R.id.contactBtn:
+//                sendFeedbackEmail();
+//                break;
             default:
                 // do nothing
         }
