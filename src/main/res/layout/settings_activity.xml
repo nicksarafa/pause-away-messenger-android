@@ -6,6 +6,20 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent">
 
+    <!-- Settings Page Title -->
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="@dimen/ob_btn_height"
+            android:gravity="center|top"
+            android:text="Settings"
+            android:textSize="16sp"/>
+
     <!-- Custom Scroll View -->
 
     <ScrollView
@@ -199,4 +213,6 @@
         </LinearLayout>
 
     </ScrollView>
+
+    </LinearLayout>
 </RelativeLayout>

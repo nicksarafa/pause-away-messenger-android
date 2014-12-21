@@ -107,12 +107,12 @@ public class HomeActivity extends Activity implements View.OnClickListener {
 
             layout.addView(nextBtn);
 
-            HomeButton displaySettingsBtn = new HomeButton(this);
-            //displaySettingsBtn.getButton().setId(R.id.displaySettingsBtn);
-            displaySettingsBtn.getButton().setText("Settings");
-            Log.i(TAG, "Settings Button Created");
-
-            layout.addView(displaySettingsBtn);
+//            HomeButton displaySettingsBtn = new HomeButton(this);
+//            displaySettingsBtn.getButton().setText("Settings");
+//            displaySettingsBtn.getButton().setOnClickListener(this);
+//            Log.i(TAG, "Settings Button Created");
+//
+//            layout.addView(displaySettingsBtn);
             
 
         } catch (JSONException e) {
