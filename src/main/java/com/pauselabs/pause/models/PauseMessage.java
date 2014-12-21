@@ -38,6 +38,14 @@ public class PauseMessage implements Serializable {
         return id;
     }
 
+    public String getTo() {
+        return to;
+    }
+
+    public void setTo(String to) {
+        this.to = to;
+    }
+
     public void setFrom(String from) {
         this.from = from;
     }
@@ -79,5 +87,4 @@ public class PauseMessage implements Serializable {
 
         return string;
     }
-
 }

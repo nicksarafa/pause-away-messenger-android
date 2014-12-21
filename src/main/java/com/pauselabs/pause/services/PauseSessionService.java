@@ -6,19 +6,13 @@ import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.media.AudioManager;
 import android.net.Uri;
-import android.os.Handler;
 import android.os.IBinder;
-import android.speech.tts.TextToSpeech;
 
 import com.pauselabs.pause.Injector;
 import com.pauselabs.pause.PauseApplication;
 import com.pauselabs.pause.core.Constants;
-import com.pauselabs.pause.listeners.PausePhoneStateListener;
+import com.pauselabs.pause.listeners.PauseCallListener;
 import com.pauselabs.pause.listeners.PauseSmsListener;
-import com.pauselabs.pause.models.PauseMessage;
-import com.pauselabs.pause.models.PauseSession;
-
-import java.util.Date;
 
 import javax.inject.Inject;
 
@@ -30,7 +24,7 @@ public class PauseSessionService extends Service{
     private static final String TAG = PauseSessionService.class.getSimpleName();
 
     private PauseSmsListener observer;
-    private PausePhoneStateListener phoneListener;
+    private PauseCallListener callListener;
 
     @Inject
     AudioManager am;
@@ -64,7 +58,7 @@ public class PauseSessionService extends Service{
 
         getContentResolver().unregisterContentObserver(observer);
 
-        unregisterReceiver(phoneListener);
+        unregisterReceiver(callListener);
 
         super.onDestroy();
     }
@@ -86,10 +80,11 @@ public class PauseSessionService extends Service{
         getContentResolver().registerContentObserver(Uri.parse("content://sms"), true, observer);
 
         // start Phone Call listener
-        phoneListener = new PausePhoneStateListener();
+        callListener = new PauseCallListener();
         IntentFilter phoneStateFilter = new IntentFilter();
         phoneStateFilter.addAction(Constants.Message.PHONE_STATE_CHANGE_INTENT);
-        registerReceiver(phoneListener, phoneStateFilter);
+        phoneStateFilter.addAction(Constants.Message.NEW_OUTGOING_CALL_INTENT);
+        registerReceiver(callListener, phoneStateFilter);
 
         return Service.START_NOT_STICKY; // Service will not be restarted if android kills it
     }

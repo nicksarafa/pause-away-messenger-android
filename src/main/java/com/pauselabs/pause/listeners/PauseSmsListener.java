@@ -64,18 +64,15 @@ public class PauseSmsListener extends ContentObserver {
 
                     PauseConversation activeConversation = PauseApplication.getCurrentSession().getConversationByContactNumber(number);
 
-                    if (activeConversation.getLastMessage().getType() == Constants.Message.Type.SMS_PAUSE_OUTGOING && activeConversation.getLastMessage().getId() == newCount) {
+                    if (activeConversation.getMessages().size() > 0 && activeConversation.getLastMessage().getType() == Constants.Message.Type.SMS_PAUSE_OUTGOING && activeConversation.getLastMessage().getId() == newCount) {
                         Log.i(TAG,"Pause sent message");
 
                         PauseApplication.sendToast("Replied to message from " + activeConversation.getContactName() + " Ü");
                     } else {
                         Log.i(TAG,"User sent message");
 
-                        if (activeConversation.getMessagesSentFromUser().size() == 0)
-                            PauseApplication.sendToast("I will no longer reply to " + activeConversation.getContactName() + " until your next Paüse.");
-
                         newMessage = new PauseMessage(from, to, message, date, Constants.Message.Type.SMS_OUTGOING);
-                        activeConversation.addMessage(newMessage);
+                        PauseApplication.handleMessageSent(newMessage);
                     }
                 } else if (type == Telephony.Sms.MESSAGE_TYPE_INBOX) {
                     Log.i(TAG, "Message received");

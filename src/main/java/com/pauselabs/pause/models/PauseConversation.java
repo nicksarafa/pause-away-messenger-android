@@ -65,7 +65,7 @@ public class PauseConversation implements Serializable {
         ArrayList<PauseMessage> messagesReceived = new ArrayList<PauseMessage>();
 
         for (int i = 0; i < messages.size(); i++)
-            if (messages.get(i).getType() == Constants.Message.Type.SMS_INCOMING)
+            if (messages.get(i).getType() == Constants.Message.Type.SMS_INCOMING || messages.get(i).getType() == Constants.Message.Type.PHONE_INCOMING)
                 messagesReceived.add(messages.get(i));
 
         return messagesReceived;

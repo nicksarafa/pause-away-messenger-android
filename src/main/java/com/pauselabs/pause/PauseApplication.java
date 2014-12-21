@@ -540,33 +540,31 @@ public class PauseApplication extends Application {
     public static void handleMessageReceived(PauseMessage receivedMessage) {
         currentPauseSession = getCurrentSession();
 
-        // Attempt to retrieve existing conversation
         PauseConversation conversation = currentPauseSession.getConversationByContactNumber(receivedMessage.getFrom());
-        String contactId = lookupContact(receivedMessage.getFrom());
-
-        // If no current conversation exists with sender, create new one, then add message
-        if (conversation == null)
-            conversation = new PauseConversation(receivedMessage.getFrom());
         conversation.addMessage(receivedMessage);
+
+        String contactId = lookupContact(receivedMessage.getFrom());
 
         // Check who created the Session to in order to send appropriate message
         if(currentPauseSession.shouldSenderReceivedBounceback(contactId) && conversation.getMessagesSentFromUser().size() == 0 ) {
             PauseMessage bounceBackMessage = getMessageToBounceBack(receivedMessage.getFrom(), conversation);
-
-            messageSender.sendSmsMessage(receivedMessage.getFrom(), bounceBackMessage);
             conversation.addMessage(bounceBackMessage);
+            messageSender.sendSmsMessage(bounceBackMessage.getTo(), bounceBackMessage);
 
             currentPauseSession.incrementResponseCount();
         } else
             sendToast("Ignored " + receivedMessage.getTypeString() + " from " + conversation.getContactName());
 
         updateNotifications();
+    }
 
-        // Update Session conversations with updated conversation
-        currentPauseSession.updateConversation(conversation);
+    public static void handleMessageSent(PauseMessage sentMessage) {
+        currentPauseSession = getCurrentSession();
 
-        // alert UI that Pause Conversation has been updated
-//        eventBus.post(new PauseMessageReceivedEvent());
+        PauseConversation conversation = currentPauseSession.getConversationByContactNumber(sentMessage.getTo());
+        conversation.addMessage(sentMessage);
+
+        PauseApplication.sendToast("I will no longer reply to " + conversation.getContactName() + " until your next Paüse.");
     }
 
     public static String lookupContact(String contactNumber) {

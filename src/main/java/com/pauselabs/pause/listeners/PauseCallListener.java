@@ -12,6 +12,7 @@ import android.util.Log;
 
 import com.pauselabs.pause.PauseApplication;
 import com.pauselabs.pause.core.Constants;
+import com.pauselabs.pause.models.PauseConversation;
 import com.pauselabs.pause.models.PauseMessage;
 
 import java.util.Date;
@@ -19,18 +20,23 @@ import java.util.Date;
 /**
  * The PausePhoneStateListener is responsible for listening to changes in the Phone State and sending a Pause message on a missed phone call
  */
-public class PausePhoneStateListener extends BroadcastReceiver{
+public class PauseCallListener extends BroadcastReceiver{
 
-    private static final String TAG = PausePhoneStateListener.class.getSimpleName();
+    private static final String TAG = PauseCallListener.class.getSimpleName();
 
     @Override
     public void onReceive(Context context, Intent intent) {
-        Log.d(TAG, "receive phone state change.");
-        TelephonyManager telephonyManager = (TelephonyManager) context.getSystemService(Service.TELEPHONY_SERVICE);
-        ReplyPhoneStateListener replyPhoneStateListener = new ReplyPhoneStateListener(context);
-        telephonyManager.listen(replyPhoneStateListener, PhoneStateListener.LISTEN_CALL_STATE);
-        telephonyManager.listen(replyPhoneStateListener, PhoneStateListener.LISTEN_NONE);
+        if (intent.getAction().equals(Constants.Message.NEW_OUTGOING_CALL_INTENT)) {
+            String number = intent.getStringExtra(Intent.EXTRA_PHONE_NUMBER);
 
+            PauseMessage newMessage = new PauseMessage("0", number, "outgoing call", new Date().getTime(), Constants.Message.Type.PHONE_OUTGOING);
+            PauseApplication.handleMessageSent(newMessage);
+        } else if (intent.getAction().equals(Constants.Message.PHONE_STATE_CHANGE_INTENT)) {
+            TelephonyManager telephonyManager = (TelephonyManager) context.getSystemService(Service.TELEPHONY_SERVICE);
+            ReplyPhoneStateListener replyPhoneStateListener = new ReplyPhoneStateListener(context);
+            telephonyManager.listen(replyPhoneStateListener, PhoneStateListener.LISTEN_CALL_STATE);
+            telephonyManager.listen(replyPhoneStateListener, PhoneStateListener.LISTEN_NONE);
+        }
     }
 
     class ReplyPhoneStateListener extends PhoneStateListener {
@@ -57,11 +63,6 @@ public class PausePhoneStateListener extends BroadcastReceiver{
             switch (state) {
                 case TelephonyManager.CALL_STATE_IDLE:
                     if (olderSharedPreference == TelephonyManager.CALL_STATE_RINGING) {
-//                        Thread replyThread = new Thread(new ReplyThread(state,
-//                                incomingNumber, context));
-//                        replyThread.start();
-                        // Create Message object
-
                         String savedNumber = sharedPreferences.getString(Constants.Message.PREFERENCE_LAST_CALL_NUMBER, "none");
                         PauseMessage messageReceived = new PauseMessage(savedNumber, "0", "missed phone call", new Date().getTime(), Constants.Message.Type.PHONE_INCOMING);
                         PauseApplication.handleMessageReceived(messageReceived);

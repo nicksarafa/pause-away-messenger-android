@@ -4,6 +4,7 @@ import android.content.SharedPreferences;
 import android.util.Log;
 
 import com.pauselabs.pause.Injector;
+import com.pauselabs.pause.PauseApplication;
 import com.pauselabs.pause.core.Constants;
 
 import java.io.Serializable;
@@ -73,38 +74,6 @@ public class PauseSession implements Serializable {
     public int getCreator() { return creator; }
     public void setCreator(int c) { creator = c; }
 
-
-    public Boolean conversationAlreadyExists(String sender){
-        Boolean result = false;
-        for(PauseConversation conversation: conversations){
-            if(conversation.getContactNumber().equals(sender)){
-                result = true;
-                break;
-            }
-        }
-        return result;
-    }
-
-
-    public void updateConversation(PauseConversation conversation){
-        Boolean updated = false;
-
-        for(int i = 0; i < conversations.size(); i++) {
-            PauseConversation currentConversation = conversations.get(i);
-            if(currentConversation.getContactNumber().equals(conversation.getContactNumber())){
-                Log.i("PauseSession","Conversation exists, updating...");
-                // update arraylist content
-                conversations.set(i, conversation);
-                updated = true;
-            }
-        }
-
-        if(!updated) {
-            Log.i("PauseSession", "No conversation exists, adding new one.");
-            conversations.add(conversation);
-        }
-    }
-
     /**
      * This function will attempt to retrieve a conversation given a sender.  If no conversation is
      * found it will return a null conversation
@@ -119,6 +88,12 @@ public class PauseSession implements Serializable {
                 break;
             }
         }
+
+        if (requestedConversation == null) {
+            requestedConversation = new PauseConversation(contact);
+            PauseApplication.getCurrentSession().getConversations().add(requestedConversation);
+        }
+
         return requestedConversation;
     }
 

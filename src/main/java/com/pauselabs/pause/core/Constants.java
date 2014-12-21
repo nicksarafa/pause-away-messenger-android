@@ -47,6 +47,11 @@ public class Constants {
         public static final String PHONE_STATE_CHANGE_INTENT = "android.intent.action.PHONE_STATE";
 
         /**
+         * New Outgoin Call Intent
+         */
+        public static final String NEW_OUTGOING_CALL_INTENT = "android.intent.action.NEW_OUTGOING_CALL";
+
+        /**
          * Phone Number incoming call
          */
         public static final String PREFERENCE_LAST_CALL_NUMBER = "PREFERENCE_LAST_CALL_NUMBER";
