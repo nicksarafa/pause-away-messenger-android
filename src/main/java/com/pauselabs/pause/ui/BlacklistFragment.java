@@ -36,14 +36,12 @@ import butterknife.Views;
 /**
  * Created by tyndallm on 10/12/14.
  */
-public class BlacklistFragment extends ListFragment implements
-        AdapterView.OnItemClickListener, LoaderManager.LoaderCallbacks<Cursor>, SearchView.OnQueryTextListener {
+public class BlacklistFragment extends ListFragment implements AdapterView.OnItemClickListener, LoaderManager.LoaderCallbacks<Cursor>, SearchView.OnQueryTextListener {
 
     private static final String TAG = BlacklistFragment.class.getSimpleName();
 
     // Bundle key for saving previously selected search result item
-    private static final String STATE_PREVIOUSLY_SELECTED_KEY =
-            "com.example.android.contactslist.ui.SELECTED_ITEM";
+    private static final String STATE_PREVIOUSLY_SELECTED_KEY = "com.example.android.contactslist.ui.SELECTED_ITEM";
 
     private OnContactsInteractionListener mOnContactSelectedListener;
 

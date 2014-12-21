@@ -11,6 +11,7 @@ import com.pauselabs.pause.services.PauseApplicationService;
 import com.pauselabs.pause.services.PauseSessionService;
 import com.pauselabs.pause.ui.BlacklistActivity;
 import com.pauselabs.pause.ui.BlacklistFragment;
+import com.pauselabs.pause.ui.HomeActivity;
 import com.pauselabs.pause.ui.MainActivity;
 import com.pauselabs.pause.ui.OnBoardingActivity;
 import com.pauselabs.pause.ui.PrivacyActivity;
@@ -32,6 +33,7 @@ import dagger.Provides;
         injects = {
                 PauseApplication.class,
                 MainActivity.class,
+                HomeActivity.class,
                 SettingsLayout.class,
                 PrivacyActivity.class,
                 PauseSessionService.class,

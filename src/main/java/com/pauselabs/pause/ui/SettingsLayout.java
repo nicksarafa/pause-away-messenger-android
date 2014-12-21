@@ -132,6 +132,7 @@ public class SettingsLayout extends RelativeLayout implements View.OnClickListen
                 break;
             case R.id.voiceBtn:
                 PauseApplication.displayVoiceDialog(context, this);
+                break;
             case R.id.rateBtn:
                 launchPlayMarketRate();
                 break;

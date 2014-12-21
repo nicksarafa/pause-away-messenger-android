@@ -72,10 +72,11 @@ public class StringRandomizer {
 	 * @return A randomized String generated from the given JSON file.
 	 * 		Returns null if there is no JSON file.
 	 */
-	public String getString() {
+	public String getString(String contactName) {
 		if (components.isEmpty())
 			return null;
 
+        Pattern contactPattern = Pattern.compile("%contact");
         Pattern namePattern = Pattern.compile("%name");
         Pattern genderPattern = Pattern.compile("%gender");
         Matcher m;
@@ -93,6 +94,9 @@ public class StringRandomizer {
 
 			int index = randNumGenerator.nextInt(component.size());
             String text = component.get(index);
+
+            m = contactPattern.matcher(text);
+            text = m.replaceAll(contactName);
 
             m = namePattern.matcher(text);
             text = m.replaceAll(prefs.getString(Constants.Settings.NAME_KEY,""));

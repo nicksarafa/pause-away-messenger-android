@@ -43,11 +43,9 @@ public class PauseSessionService extends Service{
 
     @Override
     public void onDestroy() {
-        if (PauseApplication.getOldRingerMode() != AudioManager.RINGER_MODE_SILENT)
-            am.setRingerMode(PauseApplication.getOldRingerMode());
+        am.setRingerMode(PauseApplication.getOldRingerMode());
 
-
-        PauseApplication.tts.speak("Pause off.", TextToSpeech.QUEUE_ADD, null);
+        PauseApplication.speak("Pause off.");
 
         PauseApplication.numSMS = 0;
         PauseApplication.numCall = 0;
@@ -64,7 +62,7 @@ public class PauseSessionService extends Service{
         PauseApplication.setOldRingerMode(am.getRingerMode());
         am.setRingerMode(AudioManager.RINGER_MODE_SILENT);
 
-        PauseApplication.tts.speak("Pause on.", TextToSpeech.QUEUE_ADD, null);
+        PauseApplication.speak("Pause on.");
 
 //        PauseApplication.sr.startListening(intent);
 

@@ -2,6 +2,7 @@ package com.pauselabs.pause.ui;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -11,6 +12,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.pauselabs.R;
+import com.pauselabs.pause.Injector;
 import com.pauselabs.pause.PauseApplication;
 import com.pauselabs.pause.core.Constants;
 import com.pauselabs.pause.models.ComponentRandomizer;
@@ -22,6 +24,10 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+import javax.inject.Inject;
 
 import butterknife.Views;
 
@@ -37,6 +43,9 @@ public class HomeActivity extends Activity implements View.OnClickListener {
 
     LinearLayout layout;
 
+    @Inject
+    SharedPreferences prefs;
+
     ComponentRandomizer cr;
 
     TextView pauseMessage;
@@ -51,6 +60,7 @@ public class HomeActivity extends Activity implements View.OnClickListener {
 
         setContentView(R.layout.home_activity);
 
+        Injector.inject(this);
         Views.inject(this);
 
         LayoutInflater inflater = (LayoutInflater) this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -79,7 +89,10 @@ public class HomeActivity extends Activity implements View.OnClickListener {
             String pauseMsg = objects.get(num).getString("pauseMsg");
             JSONArray btnArray = objects.get(num).getJSONArray("buttons");
 
-            pauseMessage.setText(pauseMsg);
+            Pattern contactPattern = Pattern.compile("%name");
+            Matcher matcher = contactPattern.matcher(pauseMsg);
+
+            pauseMessage.setText(matcher.replaceAll(prefs.getString(Constants.Settings.NAME_KEY,"")));
 
             for (int i = 0; i < btnArray.length(); i++) {
                 JSONObject btnObject = btnArray.getJSONObject(i);

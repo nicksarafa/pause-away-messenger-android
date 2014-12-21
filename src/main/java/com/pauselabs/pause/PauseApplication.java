@@ -11,7 +11,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
-import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.preference.PreferenceManager;
@@ -20,7 +19,6 @@ import android.provider.ContactsContract;
 import android.speech.SpeechRecognizer;
 import android.speech.tts.TextToSpeech;
 import android.support.v4.app.NotificationCompat;
-import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.widget.EditText;
 
@@ -35,7 +33,6 @@ import com.pauselabs.BuildConfig;
 import com.pauselabs.R;
 import com.pauselabs.pause.core.Constants;
 import com.pauselabs.pause.core.PauseMessageSender;
-import com.pauselabs.pause.events.PauseMessageReceivedEvent;
 import com.pauselabs.pause.listeners.NotificationActionListener;
 import com.pauselabs.pause.models.PauseConversation;
 import com.pauselabs.pause.models.PauseMessage;
@@ -46,7 +43,6 @@ import com.pauselabs.pause.ui.MainActivity;
 import com.pauselabs.pause.ui.SettingsLayout;
 import com.squareup.otto.Bus;
 
-import java.io.ByteArrayOutputStream;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
@@ -146,8 +142,8 @@ public class PauseApplication extends Application {
                     tts.setPitch(1.45f);
 
                     // The app has not been opened yet. Play intro voice.
-                    if (!prefs.getString(Constants.Pause.PAUSE_FIRST_LAUNCH_KEY, "").equals(Constants.Pause.PAUSE_FIRST_LAUNCH_TRUE))
-                        tts.speak("Hello. I am your new personal assistant. What's your name?", TextToSpeech.QUEUE_ADD, null);
+                    if (!prefs.getBoolean(Constants.Pause.PAUSE_ALREADY_LAUNCHED_KEY, false))
+                        speak("Hello. I am your new personal assistant. What's your name?");
                 }
             }
         });
@@ -376,7 +372,7 @@ public class PauseApplication extends Application {
     public static void displayVoiceDialog(Context c, final SettingsLayout sa) {
         AlertDialog.Builder alert = new AlertDialog.Builder(c);
 
-        alert.setTitle("Disable Pause On/Off Voice");
+        alert.setTitle("Pause On/Off Voice");
         alert.setItems(R.array.voice_settings_options, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
@@ -598,6 +594,12 @@ public class PauseApplication extends Application {
                 new Date().getTime(),
                 Constants.Message.Type.SMS_PAUSE_OUTGOING
         );
+    }
+
+    public static void speak(String textToSpeak) {
+        if (prefs.getBoolean(Constants.Settings.PAUSE_VOICE_ON_KEY,true)) {
+            tts.speak(textToSpeak, TextToSpeech.QUEUE_ADD, null);
+        }
     }
 
 }

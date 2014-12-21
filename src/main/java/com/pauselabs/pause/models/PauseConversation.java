@@ -147,10 +147,7 @@ public class PauseConversation implements Serializable {
         }
 
         stringRandomizer.setFile("strings" + modeName + num + ".json");
-        String messageText = stringRandomizer.getString();
-
-        Pattern contactNamePattern = Pattern.compile("%contact");
-        messageText = contactNamePattern.matcher(messageText).replaceAll(contactName);
+        String messageText = stringRandomizer.getString(contactName);
 
         return messageText;
     }

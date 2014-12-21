@@ -40,7 +40,7 @@ public class OnBoardingActivity extends Activity implements View.OnClickListener
 
         Injector.inject(this);
 
-        if (prefs.getString(Constants.Pause.PAUSE_FIRST_LAUNCH_KEY, "").equals(Constants.Pause.PAUSE_FIRST_LAUNCH_TRUE))
+        if (prefs.getBoolean(Constants.Pause.PAUSE_ALREADY_LAUNCHED_KEY, false))
             startApp();
 
         name = (EditText) findViewById(R.id.ob_name);
@@ -97,7 +97,7 @@ public class OnBoardingActivity extends Activity implements View.OnClickListener
             }
 
             SharedPreferences.Editor editor = prefs.edit();
-            editor.putString(Constants.Pause.PAUSE_FIRST_LAUNCH_KEY,Constants.Pause.PAUSE_FIRST_LAUNCH_TRUE);
+            editor.putBoolean(Constants.Pause.PAUSE_ALREADY_LAUNCHED_KEY, true);
             editor.putString(Constants.Settings.NAME_KEY, name.getText().toString());
             editor.putString(Constants.Settings.GENDER_KEY, gender);
             editor.apply();
