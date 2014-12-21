@@ -51,7 +51,8 @@ public class OnBoardingActivity extends Activity implements View.OnClickListener
             editor.putInt(Constants.Pause.ONBOARDING_NUMBER_KEY, 0);
             editor.apply();
 
-            am.setRingerMode(AudioManager.RINGER_MODE_VIBRATE);
+            am.setRingerMode(AudioManager.RINGER_MODE_NORMAL);
+            am.setStreamVolume(AudioManager.STREAM_MUSIC,am.getStreamMaxVolume(AudioManager.STREAM_MUSIC),AudioManager.FLAG_ALLOW_RINGER_MODES);
         }
 
         name = (EditText) findViewById(R.id.ob_name);

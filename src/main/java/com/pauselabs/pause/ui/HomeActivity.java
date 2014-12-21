@@ -51,7 +51,6 @@ public class HomeActivity extends Activity implements View.OnClickListener {
     SharedPreferences prefs;
     @Inject
     AudioManager am;
-    int lastRingerMode;
 
     JsonReader jr;
 
@@ -174,14 +173,13 @@ public class HomeActivity extends Activity implements View.OnClickListener {
 
                 break;
             case Constants.Settings.ACTION_ONBOARDING_SILENCE:
-                lastRingerMode = am.getRingerMode();
                 am.setRingerMode(AudioManager.RINGER_MODE_SILENT);
 
                 cycle();
 
                 break;
             case Constants.Settings.ACTION_ONBOARDING_UNSILENCE:
-                am.setRingerMode(lastRingerMode);
+                am.setRingerMode(PauseApplication.getOldRingerMode());
 
                 cycle();
 
