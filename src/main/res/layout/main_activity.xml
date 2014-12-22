@@ -31,9 +31,4 @@
                     android:orientation="vertical"
                     android:layout_marginTop="10dip"/>
 
-    <TextView
-        android:layout_width="@dimen/card_label_padding"
-        android:layout_height="@dimen/card_label_padding"
-        android:text="why?"/>
-
 </TabHost>

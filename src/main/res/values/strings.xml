@@ -102,7 +102,7 @@
     <string name="menu_search">Search</string>
     <string name="menu_add_contact">Add Contact</string>
     <string name="no_contacts">No Contacts Found</string>
-    <string name="search_hint">Find contacts</string>
+    <string name="search_hint"></string>
     <string name="meet_onboarding">Meet</string>
     <string name="gender_settings_label">Gender</string>
     <string name="help_label">Help</string>

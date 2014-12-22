@@ -47,10 +47,6 @@
                   android:theme="@style/Theme.AppCompat.Light.NoActionBar">
         </activity>
 
-        <activity android:name=".pause.ui.PrivacyActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat.Light" />
-
         <activity android:name=".pause.ui.SettingsLayout"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light" />
@@ -77,12 +73,6 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".pause.ui.SettingsLayout" />
         </activity>
-
-        <!--<receiver android:name=".pause.listeners.BatteryLevelReceiver">-->
-            <!--<intent-filter>-->
-                <!--<action android:name="android.intent.action.ACTION_BATTERY_LOW"/>-->
-            <!--</intent-filter>-->
-        <!--</receiver>-->
 
         <!-- Crashalytics and Google Analytics Setup -->
 

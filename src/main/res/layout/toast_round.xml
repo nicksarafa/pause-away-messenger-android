@@ -9,7 +9,7 @@
     android:background="#DAAA"
     >
 
-    <ImageView android:src="@drawable/pause_sms_placeholder"
+    <ImageView android:src="@drawable/ob_full_face"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginRight="8dp"

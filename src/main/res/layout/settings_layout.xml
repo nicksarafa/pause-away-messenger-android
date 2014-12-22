@@ -24,7 +24,7 @@
                 android:scaleType="centerCrop"
                 android:layout_centerVertical="true"
                 android:layout_centerHorizontal="true"
-                android:src="@drawable/settings_tab_selector"/>
+                android:src="@drawable/ic_action_settings_gear"/>
 
                 <!--<TextView-->
                     <!--android:layout_width="fill_parent"-->
