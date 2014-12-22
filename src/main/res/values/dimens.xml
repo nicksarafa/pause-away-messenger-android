@@ -1,29 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <!--
-     Per the design guidelines, navigation drawers should be between 240dp and 320dp:
-     https://developer.android.com/design/patterns/navigation-drawer.html
-    -->
-    <dimen name="navigation_drawer_width">300dp</dimen>
-    <dimen name="saved_image_thumb_size">90dp</dimen>
+    <!-- Universal Padding -->
+
     <dimen name="default_padding">6dp</dimen>
     <dimen name="padding">16dp</dimen>
-    <dimen name="listview_item_padding">16dp</dimen>
 
-    <!-- Fake Floating Action Button (FAB) for backwards compatibility -->
-    <dimen name="round_button_diameter">56dp</dimen>
-    <dimen name="elevation_low">1dp</dimen>
-    <dimen name="elevation_high">4dp</dimen>
-    <dimen name="add_button_margin">16dp</dimen>
+    <!-- Universal ListView Padding -->
+
+    <dimen name="listview_item_padding">16dp</dimen>
 
     <!-- OB Text Dimens -->
     <dimen name="ob_text_large">36sp</dimen>
     <dimen name="ob_text_medium">28sp</dimen>
     <dimen name="ob_text_small">22sp</dimen>
-
-    <!-- OB FAB (Featured Action Button) Dimens -->
-    <dimen name="ob_btn_height">80dip</dimen>
 
     <!-- OB = on_boarding face and height -->
     <dimen name="ob_face_width">70dp</dimen>
@@ -33,5 +23,12 @@
     <dimen name="tabs_height">50dip</dimen>
     <dimen name="card_label_padding">20dp</dimen>
 
+    <!-- Fake Floating Action Button (FAB) for backwards compatibility (Might Use Later) -->
+    <dimen name="ob_btn_height">80dip</dimen>
+    <dimen name="round_button_diameter">56dp</dimen>
+    <dimen name="elevation_low">1dp</dimen>
+    <dimen name="elevation_high">4dp</dimen>
+    <dimen name="add_button_margin">16dp</dimen>
+    <dimen name="settings_thumbnail_size">60dip</dimen>
 
 </resources>

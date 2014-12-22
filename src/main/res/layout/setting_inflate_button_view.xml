@@ -8,8 +8,8 @@
     <ImageView
         android:id="@+id/thumbnail"
         android:src="@drawable/thumbnail"
-        android:layout_height="@dimen/saved_image_thumb_size"
-        android:layout_width="@dimen/saved_image_thumb_size"
+        android:layout_height="@dimen/settings_thumbnail_size"
+        android:layout_width="@dimen/settings_thumbnail_size"
         android:scaleType="centerCrop"/>
 
         <TextView
