@@ -157,7 +157,9 @@ public class SettingsLayout extends RelativeLayout implements View.OnClickListen
     private void init() {
         nameBtn.setContent(prefs.getString(Constants.Settings.NAME_KEY, "None"));
 
+
         genderBtn.setContent(prefs.getString(Constants.Settings.GENDER_KEY, "None"));
+
 
         missedCallsBtn.setContent(prefs.getString(Constants.Settings.REPLY_MISSED_CALL, Constants.Privacy.EVERYBODY));
         receivedSmsBtn.setContent(prefs.getString(Constants.Settings.REPLY_SMS, Constants.Privacy.EVERYBODY));

@@ -23,15 +23,15 @@
                 android:layout_height="40dp"
                 android:scaleType="centerCrop"
                 android:layout_centerVertical="true"
-                android:layout_marginLeft="@dimen/padding"
+                android:layout_centerHorizontal="true"
                 android:src="@drawable/settings_tab_selector"/>
 
-                <TextView
-                    android:layout_width="fill_parent"
-                    android:layout_height="@dimen/ob_btn_height"
-                    android:gravity="center"
-                    android:text="@string/settings_drawer_label"
-                    android:textSize="20sp"/>
+                <!--<TextView-->
+                    <!--android:layout_width="fill_parent"-->
+                    <!--android:layout_height="@dimen/ob_btn_height"-->
+                    <!--android:gravity="center"-->
+                    <!--android:text="@string/settings_drawer_label"-->
+                    <!--android:textSize="20sp"/>-->
 
         </RelativeLayout>
 

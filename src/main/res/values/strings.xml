@@ -34,19 +34,14 @@
     <string name="navigation_drawer_open">Drawer Open</string>
     <string name="navigation_drawer_close">Drawer Close</string>
 
-    <!-- Saved Pause messages -->
-    <string name="saved_title">Past</string>
-    <string name="saved_instructions">Past pauses will be stored here, in your save drawer. Close the drawer to create your first pause!</string>
-    <string name="saved_edit_btn">Edit</string>
-
-    <!-- Pause Scoreboard screen -->
+    <!-- Pause Scoreboard Screen -->
     <string name="scoreboard_title">0 Response Messages Sent</string>
     <string name="stop_pause_btn">End</string>
     <string name="edit_pause_btn">Edit</string>
     <string name="response_count">Response Messages Sent</string>
     <string name="no_messages_received">No new messages! If any turn up, we\'ll take care of them. \n Have a nice day!</string>
 
-    <!-- Notification messages -->
+    <!-- Notification Messages -->
     <string name="pause_session_running_custom">Custom Mode</string>
     <string name="pause_session_running_silence">Silence Mode</string>
     <string name="pause_session_running_drive">Drive Mode</string>
@@ -65,22 +60,25 @@
     <string name="gallery_button_clicked">Gallery button clicked</string>
     <string name="start_pause_button_clicked">Start Pause button clicked</string>
 
-    <!-- Analytics Labels -->
+    <!-- Crash Analytics Labels -->
     <string name="timer_button">timer btn</string>
     <string name="camera_button">camera btn</string>
     <string name="gallery_button">gallery btn</string>
     <string name="start_button">start btn</string>
 
-    <!-- Settings -->
+    <!-- Settings Labels -->
     <string name="me_section_label">ME</string>
     <string name="privacy_section_label">PRIVACY</string>
     <string name="feedback_section_label">FEEDBACK</string>
     <string name="about_section_label">ABOUT</string>
 
+    <!-- Settings Strings -->
     <string name="name_settings_label">Name</string>
-    <string name="reply_to_calls_settings_label">Reply to incoming calls from…</string>
+    <string name="reply_to_calls_settings_label">Reply to Calls</string>
     <string name="reply_to_SMS_settings_label">Reply to incoming SMS text messages from…</string>
     <string name="blacklist_label">Do not respond to…</string>
+    <string name="vibrate_label">Pause On Vibrate</string>
+    <string name="voice_label">Voice Feedback</string>
     <string name="rate_us_settings_label">Review PAÜSE</string>
     <string name="contact_us_label">Contact Us</string>
     <string name="support_label">Support</string>
@@ -99,6 +97,7 @@
          which other field was matched. This string is displayed in the secondary display text in
          ContactsListFragment when a search query match occurs that is not the display name.
          -->
+
     <string name="search_match_other">Matches Other Field</string>
     <string name="menu_search">Search</string>
     <string name="menu_add_contact">Add Contact</string>
@@ -107,8 +106,7 @@
     <string name="meet_onboarding">Meet</string>
     <string name="gender_settings_label">Gender</string>
     <string name="help_label">Help</string>
-    <string name="vibrate_label">Pause On Vibrate</string>
-    <string name="voice_label">Pause Voice Feedback</string>
+
     <string name="settings_drawer_label">Settings</string>
 
 </resources>

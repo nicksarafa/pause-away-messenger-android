@@ -46,7 +46,4 @@
         <item name="android:paddingStart">6dp</item>
     </style>
 
-    <!--//TODO Retrieve Custom Dialog Styling For Settings Pop Up Windows-->
-    <!--//TODO Retrieve Code For Keeping App in Orientation Vertical Pernamently-->
-
 </resources>

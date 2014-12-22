@@ -38,8 +38,8 @@ public class SettingsDialougeButton extends RelativeLayout {
             a.recycle();
         }
 
-        int defaultPadding = (int) getResources().getDimension(R.dimen.default_padding);
-        setPadding(defaultPadding, defaultPadding, defaultPadding, defaultPadding);
+       int defaultPadding = (int) getResources().getDimension(R.dimen.default_padding);
+       setPadding(defaultPadding, defaultPadding, defaultPadding, defaultPadding);
 
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         inflater.inflate(R.layout.setting_dialogue_button_view, this, true);

@@ -32,14 +32,6 @@
                     android:textAlignment="center"
                     android:padding="@dimen/padding"/>
 
-                    <!--<ImageView-->
-                    <!--android:layout_alignParentTop="@+id/home_pause_message"-->
-                    <!--android:layout_width="fill_parent"-->
-                    <!--android:layout_height="100dip"-->
-                    <!--android:layout_centerVertical="true"-->
-                    <!--android:src="@drawable/on_boarding_face"-->
-                        <!--/>-->
-
         <LinearLayout
             android:id="@+id/home_button_layout"
             android:layout_width="fill_parent"

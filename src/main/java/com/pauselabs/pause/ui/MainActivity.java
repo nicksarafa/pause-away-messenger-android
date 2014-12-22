@@ -1,7 +1,6 @@
 package com.pauselabs.pause.ui;
 
 import android.app.ActivityGroup;
-import android.content.Intent;
 import android.os.Bundle;
 import android.widget.TabHost;
 
@@ -32,29 +31,6 @@ public class MainActivity extends ActivityGroup {
 //        Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/mytruetypefont.ttf");
 //        myTextView.setTypeface(typeFace);
 
-        //TabHost Setup
-
-        tabhost = (TabHost) findViewById(R.id.tabhost);
-        tabhost.setup(getLocalActivityManager());
-
-        TabHost.TabSpec spec_a, spec_b, spec_c;
-
-//        spec_a = tabhost.newTabSpec("privacy");
-//        spec_a.setContent(new Intent(this,PrivacyActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
-//        spec_a.setIndicator("",getResources().getDrawable(R.drawable.privacy_tab_selector));
-//        tabhost.addTab(spec_a);
-
-        spec_b = tabhost.newTabSpec("home");
-        spec_b.setContent(new Intent(this,HomeActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
-        spec_b.setIndicator("",getResources().getDrawable(R.drawable.home_tab_selector));
-        tabhost.addTab(spec_b);
-
-        spec_c = tabhost.newTabSpec("settings");
-        spec_c.setContent(new Intent(this, SettingsLayout.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
-        spec_c.setIndicator("",getResources().getDrawable(R.drawable.settings_tab_selector));
-        tabhost.addTab(spec_c);
-
-        tabhost.setCurrentTabByTag("home");
     }
 
     private boolean isTablet() {

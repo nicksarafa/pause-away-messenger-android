@@ -39,7 +39,7 @@ public class OnBoardingActivity extends Activity implements View.OnClickListener
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.ob_0);
+        setContentView(R.layout.ob_name_gender);
 
         Injector.inject(this);
 
