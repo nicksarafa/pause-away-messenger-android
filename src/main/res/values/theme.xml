@@ -22,16 +22,6 @@
         <item name="android:windowContentOverlay">@null</item>
     </style>
 
-    <!-- Scrubber Progress bar Files are suddenly missing -->
-
-    <!-- Slider Selector XML
-
-    <style name="SeekBarPauseTheme" parent="android:Widget.Holo.Light.SeekBar">
-        <item name="android:progressDrawable">@drawable/pausetheme_scrubber_progress_horizontal_holo_light</item>
-        <item name="android:indeterminateDrawable">@drawable/pausetheme_scrubber_progress_horizontal_holo_light</item>
-        <item name="android:thumb">@drawable/pausetheme_scrubber_control_selector_holo_light</item>
-    </style> -->
-
     <!-- Settings ListView XML -->
 
     <style name="ListSeparatorTextView" parent="Widget.TextView.ListSeparator">
@@ -45,8 +35,5 @@
         <item name="android:gravity">center_vertical</item>
         <item name="android:paddingStart">6dp</item>
     </style>
-
-    <!--//TODO Retrieve Custom Dialog Styling For Settings Pop Up Windows-->
-    <!--//TODO Retrieve Code For Keeping App in Orientation Vertical Pernamently-->
 
 </resources>

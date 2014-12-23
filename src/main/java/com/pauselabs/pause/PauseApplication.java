@@ -13,7 +13,6 @@ import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
-import android.os.AsyncTask;
 import android.os.Handler;
 import android.os.Message;
 import android.preference.PreferenceManager;
@@ -24,10 +23,8 @@ import android.speech.tts.TextToSpeech;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 import android.view.Gravity;
-import android.view.View;
 import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.crashlytics.android.Crashlytics;
@@ -457,9 +454,9 @@ public class PauseApplication extends Application {
             case Constants.Session.Creator.SILENCE:
                 notBuilder
                         .setContentTitle(instance.getString(R.string.app_name) + " " + instance.getString(R.string.pause_session_running_silence))
-                        .addAction(R.drawable.ic_stat_notificaiton_end, "End", stopPausePendingIntent)
-                        .addAction(R.drawable.ic_icon_steering_wheel, "Drive", drivePausePendingIntent)
-                        .addAction(R.drawable.ic_action_sleep, "Sleep", sleepPausePendingIntent);
+                        .addAction(R.drawable.ic_stat_notificaiton_end, "End", stopPausePendingIntent);
+//                        .addAction(R.drawable.ic_icon_steering_wheel, "Drive", drivePausePendingIntent)
+//                        .addAction(R.drawable.ic_action_sleep, "Sleep", sleepPausePendingIntent);
 
 
                 break;
@@ -606,7 +603,8 @@ public class PauseApplication extends Application {
             String message = (String)msg.obj;
 
             Toast toast = Toast.makeText(instance, message, Toast.LENGTH_LONG);
-            ((TextView)((LinearLayout)toast.getView()).getChildAt(0)).setGravity(Gravity.CENTER_HORIZONTAL);
+            ((LinearLayout) toast.getView()).getChildAt(0);
+            toast.setGravity(Gravity.CENTER_VERTICAL, 0, 0);
             toast.show();
         }
     };

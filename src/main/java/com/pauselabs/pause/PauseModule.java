@@ -14,7 +14,6 @@ import com.pauselabs.pause.ui.BlacklistFragment;
 import com.pauselabs.pause.ui.HomeActivity;
 import com.pauselabs.pause.ui.MainActivity;
 import com.pauselabs.pause.ui.OnBoardingActivity;
-import com.pauselabs.pause.ui.PrivacyActivity;
 import com.pauselabs.pause.ui.SettingsLayout;
 import com.squareup.otto.Bus;
 
@@ -35,7 +34,6 @@ import dagger.Provides;
                 MainActivity.class,
                 HomeActivity.class,
                 SettingsLayout.class,
-                PrivacyActivity.class,
                 PauseSessionService.class,
                 PauseApplicationService.class,
                 BlacklistActivity.class,

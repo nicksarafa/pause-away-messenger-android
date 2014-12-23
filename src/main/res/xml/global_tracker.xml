@@ -9,9 +9,6 @@
     <screenName name="com.pauselabs.pause.ui.CreatePauseFragment">
         CreatePauseScreenView
     </screenName>
-    <screenName name="com.pauselabs.pause.ui.CameraFragment">
-        CameraScreenView
-    </screenName>
     <screenName name="com.pauselabs.pause.ui.SettingsFragment">
         SettingsScreenView
     </screenName>

@@ -16,7 +16,7 @@ import com.pauselabs.R;
 import com.pauselabs.pause.Injector;
 import com.pauselabs.pause.PauseApplication;
 import com.pauselabs.pause.core.Constants;
-import com.pauselabs.pause.views.SettingsButton;
+import com.pauselabs.pause.views.SettingsDialougeButton;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -32,29 +32,29 @@ public class SettingsLayout extends RelativeLayout implements View.OnClickListen
     private static final String TAG = SettingsLayout.class.getSimpleName();
 
     @InjectView(R.id.nameBtn)
-    public SettingsButton nameBtn;
+    public SettingsDialougeButton nameBtn;
     @InjectView(R.id.missedCallsBtn)
-    public SettingsButton missedCallsBtn;
+    public SettingsDialougeButton missedCallsBtn;
     @InjectView(R.id.receivedSMSBtn)
-    public SettingsButton receivedSmsBtn;
+    public SettingsDialougeButton receivedSmsBtn;
     @InjectView(R.id.blacklistBtn)
-    public SettingsButton blacklistBtn;
+    public SettingsDialougeButton blacklistBtn;
 //    @InjectView(R.id.rateBtn)
 //    public SettingsButton rateBtn;
 //    @InjectView(R.id.contactBtn)
 //    public SettingsButton contactBtn;
     @InjectView(R.id.genderBtn)
-    public SettingsButton genderBtn;
+    public SettingsDialougeButton genderBtn;
     @InjectView(R.id.volumeBtn)
-    public SettingsButton volumeBtn;
+    public SettingsDialougeButton volumeBtn;
     @InjectView(R.id.voiceBtn)
-    public SettingsButton voiceBtn;
+    public SettingsDialougeButton voiceBtn;
 //    @InjectView(R.id.supportBtn)
-    public SettingsButton supportBtn;
+    public SettingsDialougeButton supportBtn;
 //    @InjectView(R.id.privacyBtn)
 //    SettingsButton privacyBtn;
 //    @InjectView(R.id.termsBtn)
-    SettingsButton termsBtn;
+    SettingsDialougeButton termsBtn;
     @InjectView(R.id.versionFooter)
     TextView versionFooter;
 
@@ -157,7 +157,9 @@ public class SettingsLayout extends RelativeLayout implements View.OnClickListen
     private void init() {
         nameBtn.setContent(prefs.getString(Constants.Settings.NAME_KEY, "None"));
 
+
         genderBtn.setContent(prefs.getString(Constants.Settings.GENDER_KEY, "None"));
+
 
         missedCallsBtn.setContent(prefs.getString(Constants.Settings.REPLY_MISSED_CALL, Constants.Privacy.EVERYBODY));
         receivedSmsBtn.setContent(prefs.getString(Constants.Settings.REPLY_SMS, Constants.Privacy.EVERYBODY));
