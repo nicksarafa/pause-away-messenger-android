@@ -8,5 +8,4 @@
         android:textColor="@color/pause_green"
         android:textSize="@dimen/ob_text_small"
         android:alpha="0.7"
-        android:paddingTop="2dp"
-        android:text="test"/>
+        android:paddingTop="2dp"/>

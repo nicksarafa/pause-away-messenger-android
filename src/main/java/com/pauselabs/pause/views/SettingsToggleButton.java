@@ -21,6 +21,7 @@ public class SettingsToggleButton extends RelativeLayout {
     private ImageView btnThumbnail;
     private String mLabel = "";
     private String mContent = "";
+    private Boolean mToggle;
 
     public SettingsToggleButton(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -32,6 +33,8 @@ public class SettingsToggleButton extends RelativeLayout {
         try {
             mLabel = a.getString(R.styleable.SettingsDialougeButton_label);
             mContent = a.getString(R.styleable.SettingsDialougeButton_content);
+//            mToggle = a.getBoolean(R.id.male);
+
 //            mIcon = a.getResources(R.styleable.SettingsButton_icon);
 //            mThumbnail = a.getResources(R.styleable.SearchView);
         } finally {

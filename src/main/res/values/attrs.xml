@@ -3,5 +3,6 @@
     <declare-styleable name="SettingsDialougeButton">
         <attr name="label" format="string" />
         <attr name="content" format="string" />
+        <!--<arrt name="toggle" format="Boolean" />-->
     </declare-styleable>
 </resources>

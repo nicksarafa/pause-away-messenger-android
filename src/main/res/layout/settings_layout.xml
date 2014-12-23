@@ -78,7 +78,7 @@
 
             <!-- Replied Text Messages -->
 
-            <com.pauselabs.pause.views.SettingsDialougeButton
+            <com.pauselabs.pause.views.SettingsToggleButton
                 android:id="@+id/receivedSMSBtn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

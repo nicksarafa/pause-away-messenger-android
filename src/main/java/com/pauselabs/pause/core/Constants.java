@@ -266,8 +266,8 @@ public class Constants {
     public static class Gender {
         private Gender() {}
 
-        public static final String MALE = "Male";
-        public static final String FEMALE = "Female";
+        public static final Boolean MALE = Boolean.TRUE;
+        public static final Boolean FEMALE = Boolean.FALSE;
     }
 
 }
