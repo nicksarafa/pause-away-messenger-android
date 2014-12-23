@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.view.animation.AnimationSet;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -55,8 +56,6 @@ public class HomeActivity extends Activity implements View.OnClickListener {
     JsonReader jr;
 
     TextView pauseMessage;
-
-    //ImageView displaySettingsBtn;
 
     JSONObject mainObject;
     JSONArray components;
@@ -107,6 +106,9 @@ public class HomeActivity extends Activity implements View.OnClickListener {
 
             }
         });
+
+        InputMethodManager inputMethodManager = (InputMethodManager)  getSystemService(Activity.INPUT_METHOD_SERVICE);
+        inputMethodManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
 
         updateView();
     }
@@ -192,11 +194,11 @@ public class HomeActivity extends Activity implements View.OnClickListener {
 
                 break;
             case Constants.Settings.ACTION_CHANGE_NAME:
-                PauseApplication.displayNameDialog(this, settingsLayout);
+                PauseApplication.displayNameDialog(this, settingsLayout.nameBtn);
 
                 break;
             case Constants.Settings.ACTION_CHANGE_GENDER:
-                PauseApplication.displayGenderDialog(this, settingsLayout);
+                PauseApplication.displayGenderDialog(this, settingsLayout.genderBtn);
 
                 break;
         }

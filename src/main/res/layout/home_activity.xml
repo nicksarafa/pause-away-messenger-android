@@ -1,46 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-    <com.sothree.slidinguppanel.SlidingUpPanelLayout
-        xmlns:sothree="http://schemas.android.com/apk/res-auto"
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/sliding_layout"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="bottom"
-        sothree:panelHeight="@dimen/ob_btn_height"
-        sothree:shadowHeight="2dp">
+<com.sothree.slidinguppanel.SlidingUpPanelLayout
+    xmlns:sothree="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/sliding_setting_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="bottom"
+    sothree:panelHeight="@dimen/ob_btn_height"
+    sothree:shadowHeight="2dp">
 
-        <RelativeLayout
-            android:id="@+id/home_activity"
-            android:orientation="vertical"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:gravity="center">
 
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_centerHorizontal="true"
-                android:src="@drawable/background_face"/>
+    <include layout="@layout/home_custom"/>
 
-                <TextView
-                    android:id="@+id/home_pause_message"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:textIsSelectable="false"
-                    android:textSize="@dimen/ob_text_medium"
-                    android:textAlignment="center"
-                    android:padding="@dimen/padding"/>
+    <include layout="@layout/settings_layout"/>
 
-        <LinearLayout
-            android:id="@+id/home_button_layout"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_alignParentBottom="true"/>
-
-        </RelativeLayout>
-
-            <include layout="@layout/settings_layout"/>
-
-    </com.sothree.slidinguppanel.SlidingUpPanelLayout>
+</com.sothree.slidinguppanel.SlidingUpPanelLayout>

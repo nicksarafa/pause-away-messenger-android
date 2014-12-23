@@ -29,7 +29,6 @@
 
         <service android:name=".pause.services.PauseSessionService" />
         <service android:name=".pause.services.PauseApplicationService" />
-        <service android:name=".pause.services.PauseMessageReceivedService" />
 
         <activity android:name=".pause.ui.OnBoardingActivity"
             android:windowSoftInputMode="adjustResize"
@@ -43,23 +42,18 @@
         </activity>
 
         <activity android:name=".pause.ui.MainActivity"
-                  android:windowSoftInputMode="adjustResize"
                   android:screenOrientation="portrait"
                   android:theme="@style/Theme.AppCompat.Light.NoActionBar">
         </activity>
 
-        <activity android:name=".pause.ui.SettingsLayout"
-            android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat.Light" />
-
         <activity android:name=".pause.ui.HomeActivity"
+            android:windowSoftInputMode="stateHidden"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
 
         <activity android:name=".pause.ui.BlacklistActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat.Light"
-            android:parentActivityName=".pause.ui.SettingsLayout">
+            android:theme="@style/Theme.AppCompat.Light">
 
             <intent-filter>
                 <action android:name="android.intent.action.SEARCH" />
@@ -69,10 +63,6 @@
                 android:name="android.app.searchable"
                 android:resource="@xml/searchable_contacts"
                 android:value=".pause.ui.BlacklistActivity"/>
-
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".pause.ui.SettingsLayout" />
         </activity>
 
         <!-- Crashalytics and Google Analytics Setup -->

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<com.pauselabs.pause.ui.CustomPauseLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/settings_activity"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+
+    <!-- Settings Page Title -->
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <!-- Settings Pull Up Menu Title -->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/ob_btn_height">
+
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:scaleType="centerCrop"
+                android:layout_centerVertical="true"
+                android:layout_centerHorizontal="true"
+                android:src="@drawable/ic_timer_selector_alt"/>
+
+            <!--<TextView-->
+            <!--android:layout_width="fill_parent"-->
+            <!--android:layout_height="@dimen/ob_btn_height"-->
+            <!--android:gravity="center"-->
+            <!--android:text="@string/settings_drawer_label"-->
+            <!--android:textSize="20sp"/>-->
+
+        </RelativeLayout>
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1dip"
+            android:background="#7c7c7c"/>
+
+        <RelativeLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:gravity="center">
+
+            <EditText
+                android:id="@+id/custom_text"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/pause_green"
+                android:gravity="top"
+                android:textSize="@dimen/ob_text_medium"
+                android:textColorHint="@color/text_light"
+                android:hint="Enter your custom text"/>
+
+            <Button
+                android:id="@+id/custom_pause_button"
+                android:layout_width="0px"
+                android:layout_height="@dimen/ob_btn_height"
+                android:layout_marginTop="@dimen/padding"
+                android:background="@color/holo_blue"
+                android:textColor="@color/text_white"
+                android:textSize="@dimen/ob_text_medium"
+                android:text="Start Paüse"/>
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</com.pauselabs.pause.ui.CustomPauseLayout>

@@ -23,8 +23,10 @@ import android.speech.tts.TextToSpeech;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.crashlytics.android.Crashlytics;
@@ -44,6 +46,7 @@ import com.pauselabs.pause.models.PauseMessage;
 import com.pauselabs.pause.models.PauseSession;
 import com.pauselabs.pause.services.PauseApplicationService;
 import com.pauselabs.pause.services.PauseSessionService;
+import com.pauselabs.pause.ui.HomeActivity;
 import com.pauselabs.pause.ui.MainActivity;
 import com.pauselabs.pause.ui.SettingsLayout;
 import com.pauselabs.pause.views.SettingsButton;
@@ -383,7 +386,7 @@ public class PauseApplication extends Application {
         int num = getCurrentSession().getConversations().size();
         String message = (num > 0) ? num + ((num == 1) ? " person has" : " people have") + " contacted you." : "No one has contacted you";
 
-        final Intent i = new Intent(instance, MainActivity.class);
+        final Intent i = new Intent(instance, HomeActivity.class);
 
         // open activity intent
         PendingIntent pendingIntent = PendingIntent.getActivity(instance, 0, i, 0);
@@ -586,8 +589,7 @@ public class PauseApplication extends Application {
             String message = (String)msg.obj;
 
             Toast toast = Toast.makeText(instance, message, Toast.LENGTH_LONG);
-            ((LinearLayout) toast.getView()).getChildAt(0);
-            toast.setGravity(Gravity.CENTER_VERTICAL, 0, 0);
+            ((TextView)((LinearLayout)toast.getView()).getChildAt(0)).setGravity(Gravity.CENTER_HORIZONTAL);
             toast.show();
         }
     };

@@ -42,7 +42,7 @@ public class SettingsButton extends RelativeLayout {
        setPadding(defaultPadding, defaultPadding, defaultPadding, defaultPadding);
 
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        inflater.inflate(R.layout.setting_button_view, this, true);
+        inflater.inflate(R.layout.settings_button_view, this, true);
 
         btnLabel = (TextView) findViewById(R.id.label);
         btnContent = (TextView) findViewById(R.id.content);
