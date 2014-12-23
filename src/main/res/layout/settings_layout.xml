@@ -120,7 +120,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text=""
+                android:text="@string/feedback_section_label"
                 style="@style/ListSeparatorTextView"/>
 
             <!-- Rate Us URI -->
