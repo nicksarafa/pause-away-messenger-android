@@ -16,7 +16,7 @@ import com.pauselabs.R;
 import com.pauselabs.pause.Injector;
 import com.pauselabs.pause.PauseApplication;
 import com.pauselabs.pause.core.Constants;
-import com.pauselabs.pause.views.SettingsDialougeButton;
+import com.pauselabs.pause.views.SettingsButton;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -32,29 +32,29 @@ public class SettingsLayout extends RelativeLayout implements View.OnClickListen
     private static final String TAG = SettingsLayout.class.getSimpleName();
 
     @InjectView(R.id.nameBtn)
-    public SettingsDialougeButton nameBtn;
+    public SettingsButton nameBtn;
     @InjectView(R.id.missedCallsBtn)
-    public SettingsDialougeButton missedCallsBtn;
+    public SettingsButton missedCallsBtn;
     @InjectView(R.id.receivedSMSBtn)
-    public SettingsDialougeButton receivedSmsBtn;
+    public SettingsButton receivedSmsBtn;
     @InjectView(R.id.blacklistBtn)
-    public SettingsDialougeButton blacklistBtn;
-//    @InjectView(R.id.rateBtn)
-//    public SettingsButton rateBtn;
-//    @InjectView(R.id.contactBtn)
-//    public SettingsButton contactBtn;
+    public SettingsButton blacklistBtn;
+    @InjectView(R.id.rateBtn)
+    public SettingsButton rateBtn;
+    @InjectView(R.id.contactBtn)
+    public SettingsButton contactBtn;
     @InjectView(R.id.genderBtn)
-    public SettingsDialougeButton genderBtn;
+    public SettingsButton genderBtn;
     @InjectView(R.id.volumeBtn)
-    public SettingsDialougeButton volumeBtn;
+    public SettingsButton volumeBtn;
     @InjectView(R.id.voiceBtn)
-    public SettingsDialougeButton voiceBtn;
-//    @InjectView(R.id.supportBtn)
-    public SettingsDialougeButton supportBtn;
-//    @InjectView(R.id.privacyBtn)
-//    SettingsButton privacyBtn;
-//    @InjectView(R.id.termsBtn)
-    SettingsDialougeButton termsBtn;
+    public SettingsButton voiceBtn;
+    @InjectView(R.id.supportBtn)
+    public SettingsButton supportBtn;
+    @InjectView(R.id.privacyBtn)
+    SettingsButton privacyBtn;
+    @InjectView(R.id.termsBtn)
+    SettingsButton termsBtn;
     @InjectView(R.id.versionFooter)
     TextView versionFooter;
 
@@ -96,11 +96,11 @@ public class SettingsLayout extends RelativeLayout implements View.OnClickListen
         genderBtn.setOnClickListener(this);
         missedCallsBtn.setOnClickListener(this);
         receivedSmsBtn.setOnClickListener(this);
-//        rateBtn.setOnClickListener(this);
-//        contactBtn.setOnClickListener(this);
+        rateBtn.setOnClickListener(this);
+        contactBtn.setOnClickListener(this);
         blacklistBtn.setOnClickListener(this);
-//        supportBtn.setOnClickListener(this);
-//        termsBtn.setOnClickListener(this);
+        supportBtn.setOnClickListener(this);
+        termsBtn.setOnClickListener(this);
         volumeBtn.setOnClickListener(this);
         voiceBtn.setOnClickListener(this);
 
@@ -116,38 +116,38 @@ public class SettingsLayout extends RelativeLayout implements View.OnClickListen
     public void onClick(View view) {
         switch(view.getId()){
             case R.id.nameBtn:
-                PauseApplication.displayNameDialog(context, this);
+                PauseApplication.displayNameDialog(context, nameBtn);
                 break;
             case R.id.genderBtn:
-                PauseApplication.displayGenderDialog(context, this);
+                PauseApplication.displayGenderDialog(context, genderBtn);
                 break;
             case R.id.missedCallsBtn:
-                PauseApplication.displayMissedCallsDialog(context, this);
+                PauseApplication.displayMissedCallsDialog(context, missedCallsBtn);
                 break;
             case R.id.receivedSMSBtn:
-                PauseApplication.displaySMSReplyDialog(context, this);
+                PauseApplication.displaySMSReplyDialog(context, receivedSmsBtn);
                 break;
             case R.id.volumeBtn:
-                PauseApplication.displayVibrateDialog(context, this);
+                PauseApplication.displayVibrateDialog(context, volumeBtn);
                 break;
             case R.id.voiceBtn:
-                PauseApplication.displayVoiceDialog(context, this);
+                PauseApplication.displayVoiceDialog(context, voiceBtn);
                 break;
             case R.id.blacklistBtn:
                 launchBlacklistActivity();
                 break;
-//            case R.id.supportBtn:
-//                launchSupportLink();
-//                break;
-//            case R.id.termsBtn:
-//                launchTermsLink();
-//                break;
-//            case R.id.rateBtn:
-//                launchPlayMarketRate();
-//                break;
-//            case R.id.contactBtn:
-//                sendFeedbackEmail();
-//                break;
+            case R.id.supportBtn:
+                launchSupportLink();
+                break;
+            case R.id.termsBtn:
+                launchTermsLink();
+                break;
+            case R.id.rateBtn:
+                launchPlayMarketRate();
+                break;
+            case R.id.contactBtn:
+                sendFeedbackEmail();
+                break;
             default:
                 // do nothing
         }

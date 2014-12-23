@@ -46,6 +46,7 @@ import com.pauselabs.pause.services.PauseApplicationService;
 import com.pauselabs.pause.services.PauseSessionService;
 import com.pauselabs.pause.ui.MainActivity;
 import com.pauselabs.pause.ui.SettingsLayout;
+import com.pauselabs.pause.views.SettingsButton;
 import com.squareup.otto.Bus;
 
 import java.util.Calendar;
@@ -274,7 +275,7 @@ public class PauseApplication extends Application {
 
 
 
-    public static void displayNameDialog(Context c, final SettingsLayout sa) {
+    public static void displayNameDialog(Context c, final SettingsButton nameBtn) {
         AlertDialog.Builder alert = new AlertDialog.Builder(c);
 
         alert.setTitle("Enter your name");
@@ -294,7 +295,7 @@ public class PauseApplication extends Application {
             public void onClick(DialogInterface dialog, int whichButton) {
                 String value = input.getText().toString();
                 prefs.edit().putString(Constants.Settings.NAME_KEY, value).apply();
-                sa.nameBtn.setContent(value);
+                nameBtn.setContent(value);
             }
         });
 
@@ -303,27 +304,19 @@ public class PauseApplication extends Application {
         alert.show();
     }
 
-    public static void displayGenderDialog(Context c, final SettingsLayout sa) {
-        AlertDialog.Builder alert = new AlertDialog.Builder(c);
+    public static void displayGenderDialog(Context c, SettingsButton genderBtn) {
+        boolean isMale = prefs.getBoolean(Constants.Settings.GENDER_KEY,false);
 
-        alert.setTitle("Change Your Gender");
-        alert.setItems(R.array.gender_settings_options, new DialogInterface.OnClickListener() {
-
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                String[] options = instance.getResources().getStringArray(R.array.gender_settings_options);
-                prefs.edit().putString(Constants.Settings.GENDER_KEY, options[which]).apply();
-                sa.genderBtn.setContent(options[which]);
-            }
-
-        });
-
-        alert.show();
-
-        // Set an Edit
+        if (isMale) {
+            prefs.edit().putBoolean(Constants.Settings.GENDER_KEY, !isMale).apply();
+            genderBtn.setContent("Female");
+        } else {
+            prefs.edit().putBoolean(Constants.Settings.GENDER_KEY, !isMale).apply();
+            genderBtn.setContent("Male");
+        }
     }
 
-    public static void displayMissedCallsDialog(Context c, final SettingsLayout sa) {
+    public static void displayMissedCallsDialog(Context c, final SettingsButton missedCallsBtn) {
         AlertDialog.Builder alert = new AlertDialog.Builder(c);
 
         alert.setTitle("Reply to missed calls");
@@ -333,14 +326,14 @@ public class PauseApplication extends Application {
             public void onClick(DialogInterface dialog, int which) {
                 String[] options = instance.getResources().getStringArray(R.array.reply_setting_options);
                 prefs.edit().putString(Constants.Settings.REPLY_MISSED_CALL, options[which]).apply();
-                sa.missedCallsBtn.setContent(options[which]);
+                missedCallsBtn.setContent(options[which]);
             }
         });
 
         alert.show();
     }
 
-    public static void displaySMSReplyDialog(Context c, final SettingsLayout sa) {
+    public static void displaySMSReplyDialog(Context c, final SettingsButton receivedSmsBtn) {
         AlertDialog.Builder alert = new AlertDialog.Builder(c);
 
         alert.setTitle("Reply to SMS messages");
@@ -350,45 +343,35 @@ public class PauseApplication extends Application {
             public void onClick(DialogInterface dialog, int which) {
                 String[] options = instance.getResources().getStringArray(R.array.reply_setting_options);
                 prefs.edit().putString(Constants.Settings.REPLY_SMS, options[which]).apply();
-                sa.receivedSmsBtn.setContent(options[which]);
+                receivedSmsBtn.setContent(options[which]);
             }
         });
 
         alert.show();
     }
 
-    public static void displayVibrateDialog(Context c, final SettingsLayout sa) {
-        AlertDialog.Builder alert = new AlertDialog.Builder(c);
+    public static void displayVibrateDialog(Context c, SettingsButton volumeBtn) {
+        boolean pauseOnVibrate = prefs.getBoolean(Constants.Settings.PAUSE_ON_VIBRATE_KEY,false);
 
-        alert.setTitle("Activate Pause on Vibrate");
-        alert.setItems(R.array.volume_settings_options, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                String[] options = instance.getResources().getStringArray(R.array.volume_settings_options);
-                prefs.edit().putBoolean(Constants.Settings.PAUSE_ON_VIBRATE_KEY, (options[which].equals("Yes"))).apply();
-                sa.volumeBtn.setContent(options[which]);
-            }
-        });
-
-        alert.show();
-
+        if (pauseOnVibrate) {
+            prefs.edit().putBoolean(Constants.Settings.PAUSE_ON_VIBRATE_KEY, !pauseOnVibrate).apply();
+            volumeBtn.setContent("No");
+        } else {
+            prefs.edit().putBoolean(Constants.Settings.PAUSE_ON_VIBRATE_KEY, !pauseOnVibrate).apply();
+            volumeBtn.setContent("Yes");
+        }
     }
 
-    public static void displayVoiceDialog(Context c, final SettingsLayout sa) {
-        AlertDialog.Builder alert = new AlertDialog.Builder(c);
+    public static void displayVoiceDialog(Context c, SettingsButton voiceBtn) {
+        boolean pauseVoiceFeedback = prefs.getBoolean(Constants.Settings.PAUSE_VOICE_FEEDBACK_KEY,false);
 
-        alert.setTitle("Pause On/Off Voice");
-        alert.setItems(R.array.voice_settings_options, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                String[] options = instance.getResources().getStringArray(R.array.voice_settings_options);
-                prefs.edit().putBoolean(Constants.Settings.PAUSE_VOICE_FEEDBACK_KEY, (options[which].equals("On"))).apply();
-                sa.voiceBtn.setContent(options[which]);
-            }
-
-        });
-
-        alert.show();
+        if (pauseVoiceFeedback) {
+            prefs.edit().putBoolean(Constants.Settings.PAUSE_VOICE_FEEDBACK_KEY, !pauseVoiceFeedback).apply();
+            voiceBtn.setContent("Off");
+        } else {
+            prefs.edit().putBoolean(Constants.Settings.PAUSE_VOICE_FEEDBACK_KEY, !pauseVoiceFeedback).apply();
+            voiceBtn.setContent("On");
+        }
     }
 
     /**

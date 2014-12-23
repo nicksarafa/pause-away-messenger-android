@@ -50,7 +50,7 @@
 
             <!-- Name -->
 
-            <com.pauselabs.pause.views.SettingsDialougeButton
+            <com.pauselabs.pause.views.SettingsButton
                 android:id="@+id/nameBtn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -59,7 +59,7 @@
 
             <!-- Gender -->
 
-            <com.pauselabs.pause.views.SettingsDialougeButton
+            <com.pauselabs.pause.views.SettingsButton
                 android:id="@+id/genderBtn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -69,7 +69,7 @@
 
             <!-- Missed Calls -->
 
-            <com.pauselabs.pause.views.SettingsDialougeButton
+            <com.pauselabs.pause.views.SettingsButton
                 android:id="@+id/missedCallsBtn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -78,7 +78,7 @@
 
             <!-- Replied Text Messages -->
 
-            <com.pauselabs.pause.views.SettingsDialougeButton
+            <com.pauselabs.pause.views.SettingsButton
                 android:id="@+id/receivedSMSBtn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -87,7 +87,7 @@
 
             <!-- BlackList -->
 
-            <com.pauselabs.pause.views.SettingsDialougeButton
+            <com.pauselabs.pause.views.SettingsButton
                 android:id="@+id/blacklistBtn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -97,7 +97,7 @@
 
             <!-- Volume Settings Key -->
 
-            <com.pauselabs.pause.views.SettingsDialougeButton
+            <com.pauselabs.pause.views.SettingsButton
                 android:id="@+id/volumeBtn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -107,7 +107,7 @@
 
             <!-- Voice Toggle -->
 
-            <com.pauselabs.pause.views.SettingsDialougeButton
+            <com.pauselabs.pause.views.SettingsButton
                 android:id="@+id/voiceBtn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -115,15 +115,15 @@
                 custom:label="@string/voice_label"
                 custom:content="Yes"/>
 
-            <!-- Email URI
+            <!-- Email URI -->
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/feedback_section_label"
-                style="@style/ListSeparatorTextView"/> -->
+                android:text=""
+                style="@style/ListSeparatorTextView"/>
 
-            <!-- Rate Us URI
+            <!-- Rate Us URI -->
 
             <com.pauselabs.pause.views.SettingsButton
                 android:id="@+id/rateBtn"
@@ -131,27 +131,28 @@
                 android:layout_height="wrap_content"
                 android:background="@null"
                 custom:label="@string/rate_us_settings_label"
-                custom:content="Please? Ü"/> -->
+                custom:content="Please? Ü"/>
 
 
-            <!-- Contact Us Email Dialog
+            <!-- Contact Us Email Dialog -->
+
             <com.pauselabs.pause.views.SettingsButton
                 android:id="@+id/contactBtn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@null"
                 custom:label="@string/contact_us_label"
-                custom:content="We Would Love To Hear From You"/> -->
+                custom:content="We Would Love To Hear From You"/>
 
-            <!-- Help
+            <!-- Help -->
 
             <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/help_label"
-            style="@style/ListSeparatorTextView"/> -->
+            style="@style/ListSeparatorTextView"/>
 
-            <!-- Support URI
+            <!-- Support URI -->
 
             <com.pauselabs.pause.views.SettingsButton
             android:id="@+id/supportBtn"
@@ -159,9 +160,9 @@
             android:layout_height="wrap_content"
             android:background="@null"
             custom:label="@string/support_label"
-            custom:content="We're Here to Help"/> -->
+            custom:content="We're Here to Help"/>
 
-            <!-- Privacy Policy URI
+            <!-- Privacy Policy URI -->
 
             <com.pauselabs.pause.views.SettingsButton
             android:id="@+id/privacyBtn"
@@ -169,9 +170,9 @@
             android:layout_height="wrap_content"
             android:background="@null"
             custom:label="@string/privacy_policy_label"
-            custom:content="Why We Protect Your Information"/> -->
+            custom:content="Why We Protect Your Information"/>
 
-            <!-- Terms URI
+            <!-- Terms URI -->
 
             <com.pauselabs.pause.views.SettingsButton
                 android:id="@+id/termsBtn"
@@ -179,7 +180,7 @@
                 android:layout_height="wrap_content"
                 android:background="@null"
                 custom:label="@string/terms_label"
-                custom:content="Had to Have It"/> -->
+                custom:content="Had to Have It"/>
 
             <!-- Footer - Change to Cool Made in Detroit ImageView -->
 

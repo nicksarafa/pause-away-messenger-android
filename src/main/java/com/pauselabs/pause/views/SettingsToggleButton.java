@@ -27,12 +27,12 @@ public class SettingsToggleButton extends RelativeLayout {
         super(context, attrs);
         TypedArray a = context.getTheme().obtainStyledAttributes(
                 attrs,
-                R.styleable.SettingsDialougeButton,
+                R.styleable.SettingsButton,
                 0, 0);
 
         try {
-            mLabel = a.getString(R.styleable.SettingsDialougeButton_label);
-            mContent = a.getString(R.styleable.SettingsDialougeButton_content);
+            mLabel = a.getString(R.styleable.SettingsButton_label);
+            mContent = a.getString(R.styleable.SettingsButton_content);
 //            mToggle = a.getBoolean(R.id.male);
 
 //            mIcon = a.getResources(R.styleable.SettingsButton_icon);
@@ -45,7 +45,7 @@ public class SettingsToggleButton extends RelativeLayout {
         setPadding(defaultPadding, defaultPadding, defaultPadding, defaultPadding);
 
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        inflater.inflate(R.layout.setting_dialogue_button_view, this, true);
+        inflater.inflate(R.layout.setting_button_view, this, true);
 
         btnLabel = (TextView) findViewById(R.id.label);
         btnContent = (TextView) findViewById(R.id.content);
