@@ -113,7 +113,7 @@
                 android:layout_height="wrap_content"
                 android:background="@null"
                 custom:label="@string/voice_label"
-                custom:content="Yes"/>
+                custom:content="On"/>
 
             <!-- Email URI -->
 

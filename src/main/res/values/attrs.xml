@@ -3,6 +3,5 @@
     <declare-styleable name="SettingsButton">
         <attr name="label" format="string" />
         <attr name="content" format="string" />
-        <!--<arrt name="toggle" format="Boolean" />-->
     </declare-styleable>
 </resources>
