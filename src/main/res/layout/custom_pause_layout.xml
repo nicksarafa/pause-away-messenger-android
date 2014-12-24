@@ -40,31 +40,39 @@
             android:layout_height="1dip"
             android:background="#7c7c7c"/>
 
-        <RelativeLayout
-            xmlns:android="http://schemas.android.com/apk/res/android"
-            android:orientation="vertical"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content">
-
-            <EditText
-                android:id="@+id/custom_text"
+            <RelativeLayout
+                xmlns:android="http://schemas.android.com/apk/res/android"
+                android:orientation="vertical"
                 android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:textColor="@color/pause_green"
-                android:gravity="top"
-                android:textSize="@dimen/ob_text_medium"
-                android:textColorHint="@color/text_light"
-                android:hint="Enter your custom text"/>
+                android:layout_height="wrap_content">
 
-            <Button
-                android:id="@+id/female"
-                android:layout_width="0px"
-                android:layout_height="@dimen/ob_btn_height"
-                android:background="@color/holo_blue"
-                android:textColor="@color/text_white"
-                android:textSize="@dimen/ob_text_medium"
-                android:layout_alignParentBottom="true"
-                android:text="Start Paüse"/>
+                <EditText
+                    android:id="@+id/custom_text"
+                    android:layout_width="fill_parent"
+                    android:layout_height="match_parent"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="center_horizontal"
+                    android:textColor="@color/pause_green"
+                    android:gravity="center_horizontal|center_vertical"
+                    android:textSize="@dimen/ob_text_medium"
+                    android:textColorHint="@color/text_light"
+                    android:textIsSelectable="false"
+                    android:textCursorDrawable="@drawable/cursor"
+                    android:background="@android:color/transparent"
+                    android:freezesText="false"
+                    android:inputType="textPersonName"
+                    android:imeOptions="flagNoEnterAction"
+                    android:hint="Enter Your First Name"/>
+
+                    <Button
+                        android:id="@+id/begin"
+                        android:layout_width="fill_parent"
+                        android:layout_height="@dimen/ob_btn_height"
+                        android:background="@color/holo_blue"
+                        android:textColor="@color/text_white"
+                        android:textSize="@dimen/ob_text_medium"
+                        android:layout_alignParentBottom="true"
+                        android:text="Start Paüse"/>
 
         </RelativeLayout>
 

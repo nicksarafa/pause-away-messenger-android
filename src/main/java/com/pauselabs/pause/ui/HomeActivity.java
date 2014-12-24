@@ -28,8 +28,10 @@ import com.pauselabs.pause.PauseApplication;
 import com.pauselabs.pause.core.Constants;
 import com.pauselabs.pause.models.JsonReader;
 import com.pauselabs.pause.models.PauseConversation;
+import com.pauselabs.pause.util.UIUtils;
 import com.pauselabs.pause.views.HomeButton;
 import com.pauselabs.pause.views.HomeButtonSeparator;
+import com.squareup.otto.Bus;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -56,6 +58,8 @@ public class HomeActivity extends Activity implements View.OnClickListener {
     RelativeLayout contentLayout;
     LinearLayout buttonLayout;
 
+    @Inject
+    Bus mBus;
     @Inject
     SharedPreferences prefs;
     @Inject
@@ -252,5 +256,9 @@ public class HomeActivity extends Activity implements View.OnClickListener {
         count = (count < components.length() - 1) ? ++count : 0;
 
         contentLayout.startAnimation(out);
+    }
+
+    private boolean isTablet() {
+        return UIUtils.isTablet(this);
     }
 }
