@@ -1,13 +1,19 @@
 package com.pauselabs.pause.ui;
 
 import android.app.Activity;
+import android.content.ContentResolver;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.database.Cursor;
 import android.media.AudioManager;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.ContactsContract;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewStub;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.view.animation.AnimationSet;
@@ -21,6 +27,7 @@ import com.pauselabs.pause.Injector;
 import com.pauselabs.pause.PauseApplication;
 import com.pauselabs.pause.core.Constants;
 import com.pauselabs.pause.models.JsonReader;
+import com.pauselabs.pause.models.PauseConversation;
 import com.pauselabs.pause.views.HomeButton;
 import com.pauselabs.pause.views.HomeButtonSeparator;
 
@@ -28,6 +35,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -75,13 +83,21 @@ public class HomeActivity extends Activity implements View.OnClickListener {
         Injector.inject(this);
         Views.inject(this);
 
-        LayoutInflater inflater = (LayoutInflater) this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        inflater.inflate(R.layout.home_button_view, (ViewGroup) findViewById(R.id.home_activity), false);
-        inflater.inflate(R.layout.home_button_separator, (ViewGroup) findViewById(R.id.home_activity), false);
 
-        contentLayout = (RelativeLayout)findViewById(R.id.home_activity);
-        buttonLayout = (LinearLayout)findViewById(R.id.home_button_layout);
-        pauseMessage = (TextView)findViewById(R.id.home_pause_message);
+        ViewStub stub = (ViewStub) findViewById(R.id.home_view);
+        if (PauseApplication.isActiveSession()) {
+            stub.setLayoutResource(R.layout.summary_view);
+        } else {
+            stub.setLayoutResource(R.layout.home_normal);
+            contentLayout = (RelativeLayout) stub.inflate();
+
+            LayoutInflater inflater = (LayoutInflater) this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            inflater.inflate(R.layout.home_button_view, (ViewGroup) findViewById(R.id.home_normal), false);
+            inflater.inflate(R.layout.home_button_separator, (ViewGroup) findViewById(R.id.home_normal), false);
+
+            buttonLayout = (LinearLayout) findViewById(R.id.home_button_layout);
+            pauseMessage = (TextView) findViewById(R.id.home_pause_message);
+        }
 
         settingsLayout = new SettingsLayout(this);
 
@@ -107,13 +123,38 @@ public class HomeActivity extends Activity implements View.OnClickListener {
             }
         });
 
-        InputMethodManager inputMethodManager = (InputMethodManager)  getSystemService(Activity.INPUT_METHOD_SERVICE);
-        inputMethodManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
-
         updateView();
     }
 
     private void updateView() {
+        if (PauseApplication.isActiveSession()) {
+            updateSummary();
+        } else {
+            updateNormal();
+        }
+    }
+
+    private void updateSummary() {
+        ArrayList<PauseConversation> conversations = PauseApplication.getCurrentSession().getConversations();
+        for (PauseConversation convo : conversations) {
+            Log.i(TAG, convo.getContactName());
+
+            ContentResolver cr = getContentResolver();
+            Uri uri = Uri.withAppendedPath(ContactsContract.PhoneLookup.CONTENT_FILTER_URI, Uri.encode(convo.getContactNumber()));
+            Cursor cursor = cr.query(uri, new String[]{ContactsContract.PhoneLookup.DISPLAY_NAME}, null, null, null);
+            if(cursor.moveToFirst()) {
+                String id = cursor.getString(cursor.getColumnIndex(ContactsContract.PhoneLookup.DISPLAY_NAME));
+                Log.i(TAG, id);
+            }
+
+            cursor.close();
+        }
+
+
+
+    }
+
+    private void updateNormal() {
         buttonLayout.removeAllViews();
 
         try {

@@ -44,8 +44,7 @@
             xmlns:android="http://schemas.android.com/apk/res/android"
             android:orientation="vertical"
             android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:gravity="center">
+            android:layout_height="wrap_content">
 
             <EditText
                 android:id="@+id/custom_text"
@@ -58,13 +57,13 @@
                 android:hint="Enter your custom text"/>
 
             <Button
-                android:id="@+id/custom_pause_button"
+                android:id="@+id/female"
                 android:layout_width="0px"
                 android:layout_height="@dimen/ob_btn_height"
-                android:layout_marginTop="@dimen/padding"
                 android:background="@color/holo_blue"
                 android:textColor="@color/text_white"
                 android:textSize="@dimen/ob_text_medium"
+                android:layout_alignParentBottom="true"
                 android:text="Start Paüse"/>
 
         </RelativeLayout>
