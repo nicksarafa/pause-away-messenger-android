@@ -4,9 +4,12 @@ package com.pauselabs.pause.models;
 
 import android.content.ContentResolver;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.net.Uri;
 import android.provider.ContactsContract;
+
+import com.pauselabs.pause.Injector;
 import com.pauselabs.pause.PauseApplication;
 import com.pauselabs.pause.core.Constants;
 
@@ -15,12 +18,17 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.regex.Pattern;
 
+import javax.inject.Inject;
+
 /**
  * Conversations are initiated by an incoming message from someone.  Pause bounce back messages
  * are triggered based on Conversation conditions.  Conversations will keep track of messages received
  * until the end of a the current Pause session in which all data will be discarded.
  */
 public class PauseConversation implements Serializable {
+
+    @Inject
+    SharedPreferences prefs;
 
     private static final long serialVersionUID = 1L;
     private Long initiatedOn;
@@ -33,6 +41,8 @@ public class PauseConversation implements Serializable {
     private StringRandomizer stringRandomizer;
 
     public PauseConversation(String contactNumber) {
+        Injector.inject(this);
+
         this.contactNumber = contactNumber;
 
         messages = new ArrayList<PauseMessage>();
@@ -114,37 +124,40 @@ public class PauseConversation implements Serializable {
     }
 
     public String getStringForBounceBackMessage() {
-        String
-                silence = "Silence",
-                drive = "Drive",
-                sleep = "Sleep",
-                modeName = "";
+        String messageText = prefs.getString(Constants.Pause.CUSTOM_PAUSE_MESSAGE_KEY,"");
+        if (messageText.equals("") || (!messageText.equals("") && getMessagesSentFromPause().size() == 1)) {
+            String
+                    silence = "Silence",
+                    drive = "Drive",
+                    sleep = "Sleep",
+                    modeName = "";
 
 
-        ArrayList<PauseMessage> messagesReceived = getMessagesReceived();
-        int num = (messagesReceived.size() <= numberOfStringFiles) ? messagesReceived.size() : numberOfStringFiles;
+            ArrayList<PauseMessage> messagesReceived = getMessagesReceived();
+            int num = (messagesReceived.size() <= numberOfStringFiles) ? messagesReceived.size() : numberOfStringFiles;
 
-        switch (PauseApplication.getCurrentSession().getCreator()) {
-            case Constants.Session.Creator.SILENCE:
-                modeName = silence;
+            switch (PauseApplication.getCurrentSession().getCreator()) {
+                case Constants.Session.Creator.SILENCE:
+                    modeName = silence;
 
-                break;
-            case Constants.Session.Creator.DRIVE:
-                modeName = drive;
+                    break;
+                case Constants.Session.Creator.DRIVE:
+                    modeName = drive;
 
-                break;
-            case Constants.Session.Creator.SLEEP:
-                modeName = sleep;
+                    break;
+                case Constants.Session.Creator.SLEEP:
+                    modeName = sleep;
 
-                break;
-            case Constants.Session.Creator.FLIP:
-                modeName = silence;
+                    break;
+                case Constants.Session.Creator.FLIP:
+                    modeName = silence;
 
-                break;
+                    break;
+            }
+
+            stringRandomizer.setFile("strings" + modeName + num + ".json");
+            messageText = stringRandomizer.getString(contactName);
         }
-
-        stringRandomizer.setFile("strings" + modeName + num + ".json");
-        String messageText = stringRandomizer.getString(contactName);
 
         return messageText;
     }

@@ -51,7 +51,8 @@ public class PauseSessionService extends Service{
         PauseApplication.sendToast("PAÜSE OFF Ü");
         PauseApplication.sendToast(
                 PauseApplication.numCall + " missed calls \n" +
-                PauseApplication.numSMS + " missed texts \n\n" +
+                PauseApplication.numSMS + " missed texts \n" +
+                "\n" +
                 "I sent " + responseCount + " message" + ((responseCount == 1) ? "" : "s") + " for you."
         );
 

@@ -160,16 +160,18 @@ public class HomeActivity extends Activity implements View.OnClickListener {
     }
 
     private void updateSummary() {
-        summaryContentLayout.removeAllViews();
-
         ArrayList<PauseConversation> conversations = PauseApplication.getCurrentSession().getConversationsInTimeOrder();
-        for (PauseConversation convo : conversations) {
-            SummaryButton newSummaryBtn = new SummaryButton(this);
-            newSummaryBtn.setName(convo.getContactName());
-            newSummaryBtn.setOnClickListener(this);
-            newSummaryBtn.setConversation(convo);
+        if (conversations.size() != 0   ) {
+            summaryContentLayout.removeAllViews();
 
-            summaryContentLayout.addView(newSummaryBtn);
+            for (PauseConversation convo : conversations) {
+                SummaryButton newSummaryBtn = new SummaryButton(this);
+                newSummaryBtn.setName(convo.getContactName());
+                newSummaryBtn.setOnClickListener(this);
+                newSummaryBtn.setConversation(convo);
+
+                summaryContentLayout.addView(newSummaryBtn);
+            }
         }
     }
 

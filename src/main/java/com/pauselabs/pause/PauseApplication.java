@@ -585,12 +585,14 @@ public class PauseApplication extends Application {
     }
 
     public static void updateUI() {
-        homeActivity.runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                PauseApplication.homeActivity.updateView();
-            }
-        });
+        if (homeActivity != null) {
+            homeActivity.runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    PauseApplication.homeActivity.updateView();
+                }
+            });
+        }
     }
 
     private static Handler toastHandler = new Handler() {

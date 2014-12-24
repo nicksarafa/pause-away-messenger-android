@@ -5,12 +5,14 @@ import com.pauselabs.pause.listeners.PauseSmsListener;
 import com.pauselabs.pause.listeners.SilenceListener;
 import com.pauselabs.pause.listeners.SpeechListener;
 import com.pauselabs.pause.models.JsonReader;
+import com.pauselabs.pause.models.PauseConversation;
 import com.pauselabs.pause.models.PauseSession;
 import com.pauselabs.pause.models.StringRandomizer;
 import com.pauselabs.pause.services.PauseApplicationService;
 import com.pauselabs.pause.services.PauseSessionService;
 import com.pauselabs.pause.ui.BlacklistActivity;
 import com.pauselabs.pause.ui.BlacklistFragment;
+import com.pauselabs.pause.ui.CustomPauseLayout;
 import com.pauselabs.pause.ui.HomeActivity;
 import com.pauselabs.pause.ui.OnBoardingActivity;
 import com.pauselabs.pause.ui.SettingsLayout;
@@ -42,7 +44,9 @@ import dagger.Provides;
                 OnBoardingActivity.class,
                 SpeechListener.class,
                 SilenceListener.class,
-                PauseSmsListener.class
+                PauseSmsListener.class,
+                CustomPauseLayout.class,
+                PauseConversation.class
         }
 )
 public class PauseModule {
