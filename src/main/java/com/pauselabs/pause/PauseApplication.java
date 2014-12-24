@@ -23,7 +23,6 @@ import android.speech.tts.TextToSpeech;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 import android.view.Gravity;
-import android.view.View;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -47,8 +46,6 @@ import com.pauselabs.pause.models.PauseSession;
 import com.pauselabs.pause.services.PauseApplicationService;
 import com.pauselabs.pause.services.PauseSessionService;
 import com.pauselabs.pause.ui.HomeActivity;
-import com.pauselabs.pause.ui.MainActivity;
-import com.pauselabs.pause.ui.SettingsLayout;
 import com.pauselabs.pause.views.SettingsButton;
 import com.squareup.otto.Bus;
 
@@ -603,6 +600,7 @@ public class PauseApplication extends Application {
             Toast toast = Toast.makeText(instance, message, Toast.LENGTH_LONG);
             ((TextView)((LinearLayout)toast.getView()).getChildAt(0)).setGravity(Gravity.CENTER_HORIZONTAL);
             toast.show();
+
         }
     };
 
@@ -610,6 +608,7 @@ public class PauseApplication extends Application {
         Message msg = new Message();
         msg.obj = textToSend;
         toastHandler.sendMessage(msg);
+
     }
 
     public static void speak(String textToSpeak) {

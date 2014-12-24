@@ -21,9 +21,12 @@ import com.pauselabs.pause.PauseApplication;
 import com.pauselabs.pause.core.Constants;
 import com.pauselabs.pause.models.JsonReader;
 import com.pauselabs.pause.models.PauseConversation;
+import com.pauselabs.pause.util.UIUtils;
 import com.pauselabs.pause.views.HomeButton;
 import com.pauselabs.pause.views.HomeButtonSeparator;
 import com.pauselabs.pause.views.SummaryButton;
+import com.sothree.slidinguppanel.SlidingUpPanelLayout;
+import com.squareup.otto.Bus;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -55,6 +58,8 @@ public class HomeActivity extends Activity implements View.OnClickListener {
     LinearLayout summaryContentLayout;
 
     @Inject
+    Bus mBus;
+    @Inject
     SharedPreferences prefs;
     @Inject
     AudioManager am;
@@ -77,6 +82,19 @@ public class HomeActivity extends Activity implements View.OnClickListener {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.home_activity);
+
+        //Set Slide Down (Custom Message) Attributes
+        SlidingUpPanelLayout slidingDownPanelLayout = (SlidingUpPanelLayout)
+                findViewById(R.id.sliding_custom_layout);
+
+        slidingDownPanelLayout.getAnchorPoint();
+
+        //Set Slide Up (Settings) Attributes
+
+        SlidingUpPanelLayout slidingUpPanelLayout = (SlidingUpPanelLayout)
+                findViewById(R.id.sliding_setting_layout);
+
+        slidingUpPanelLayout.getAnchorPoint();
 
         Injector.inject(this);
         Views.inject(this);
@@ -111,7 +129,7 @@ public class HomeActivity extends Activity implements View.OnClickListener {
 
         LayoutInflater inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
         summaryContentLayout = (LinearLayout) inflater.inflate(R.layout.summary_view, null);
-        homeContentLayout = (RelativeLayout) inflater.inflate(R.layout.home_normal, null);
+        homeContentLayout = (RelativeLayout) inflater.inflate(R.layout.home_middle_layout, null);
 
         updateView();
     }
@@ -124,8 +142,8 @@ public class HomeActivity extends Activity implements View.OnClickListener {
             mainContent.addView(homeContentLayout);
 
             LayoutInflater inflater = (LayoutInflater) this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            inflater.inflate(R.layout.home_button_view, (ViewGroup) findViewById(R.id.home_normal), false);
-            inflater.inflate(R.layout.home_button_separator, (ViewGroup) findViewById(R.id.home_normal), false);
+            inflater.inflate(R.layout.home_button_view, (ViewGroup) findViewById(R.id.home_middle_layout), false);
+            inflater.inflate(R.layout.home_button_separator, (ViewGroup) findViewById(R.id.home_middle_layout), false);
 
             buttonLayout = (LinearLayout) findViewById(R.id.home_button_layout);
             pauseMessage = (TextView) findViewById(R.id.home_pause_message);
@@ -256,5 +274,9 @@ public class HomeActivity extends Activity implements View.OnClickListener {
         count = (count < components.length() - 1) ? ++count : 0;
 
         homeContentLayout.startAnimation(out);
+    }
+
+    private boolean isTablet() {
+        return UIUtils.isTablet(this);
     }
 }

@@ -41,11 +41,6 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".pause.ui.MainActivity"
-                  android:screenOrientation="portrait"
-                  android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        </activity>
-
         <activity android:name=".pause.ui.HomeActivity"
             android:windowSoftInputMode="stateHidden"
             android:screenOrientation="portrait"

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<com.pauselabs.pause.ui.CustomPauseLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/sliding_custom_layout"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+
+    <!-- Custom Message Pull Down Title Icon -->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/ob_btn_height"
+        android:layout_alignParentBottom="true"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:scaleType="centerCrop"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/ic_timer_selector_alt"/>
+
+    </RelativeLayout>
+
+    <!-- Enter Message Screen -->
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:orientation="vertical">
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1dip"
+                android:background="#7c7c7c"/>
+
+                <RelativeLayout
+                    xmlns:android="http://schemas.android.com/apk/res/android"
+                    android:orientation="vertical"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content">
+
+                    <EditText
+                        android:id="@+id/custom_text"
+                        android:layout_width="fill_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center_horizontal"
+                        android:textColor="@color/pause_green"
+                        android:gravity="center_horizontal|center_vertical"
+                        android:textSize="@dimen/ob_text_medium"
+                        android:textColorHint="@color/text_light"
+                        android:textIsSelectable="false"
+                        android:textCursorDrawable="@drawable/cursor"
+                        android:background="@android:color/transparent"
+                        android:freezesText="false"
+                        android:inputType="textPersonName"
+                        android:imeOptions="flagNoEnterAction"
+                        android:padding="@dimen/padding"
+                        android:hint="What's cookin, good lookin?"/>
+
+                        <!--<Button-->
+                            <!--android:id="@+id/begin"-->
+                            <!--android:layout_width="fill_parent"-->
+                            <!--android:layout_height="@dimen/ob_btn_height"-->
+                            <!--android:background="@color/holo_blue"-->
+                            <!--android:textColor="@color/text_white"-->
+                            <!--android:textSize="@dimen/ob_text_medium"-->
+                            <!--android:layout_alignParentBottom="true"-->
+                            <!--android:text="Begin"/>-->
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+</com.pauselabs.pause.ui.CustomPauseLayout>

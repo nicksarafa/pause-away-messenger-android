@@ -5,8 +5,10 @@
     android:id="@+id/sliding_custom_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="bottom"
+    android:gravity="top"
+    sothree:fadeColor="@android:color/transparent"
     sothree:panelHeight="@dimen/ob_btn_height"
+    sothree:anchorPoint="0.3"
     sothree:shadowHeight="2dp">
 
     <LinearLayout
@@ -15,6 +17,6 @@
         android:layout_height="fill_parent"
         android:orientation="vertical" />
 
-    <include layout="@layout/custom_pause_layout"/>
+    <include layout="@layout/home_top_layout"/>
 
 </com.sothree.slidinguppanel.SlidingUpPanelLayout>
