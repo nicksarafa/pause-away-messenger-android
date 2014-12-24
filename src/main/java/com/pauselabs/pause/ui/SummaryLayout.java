@@ -85,7 +85,7 @@ public class SummaryLayout extends LinearLayout implements View.OnClickListener 
                 PauseConversation conversation = btn.getConversation();
                 for (PauseMessage message : conversation.getMessages()) {
 
-                    RelativeLayout.LayoutParams params1 = new RelativeLayout.LayoutParams(LayoutParams.MATCH_PARENT, 100);
+                    LinearLayout.LayoutParams params1 = new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT, 100);
 
                     View view = new View(context);
                     view.setBackgroundColor(Color.BLACK);
@@ -113,14 +113,13 @@ public class SummaryLayout extends LinearLayout implements View.OnClickListener 
     private void collapse(final LinearLayout ll) {
         int finalHeight = ll.getHeight();
 
-        ValueAnimator mAnimator = slideAnimator(ll, finalHeight, 0);
+        ValueAnimator mAnimator = slideAnimator(ll, finalHeight, ll.getHeight());
         mAnimator.start();
     }
 
     private ValueAnimator slideAnimator(final LinearLayout ll, int start, int end) {
         ValueAnimator animator = ValueAnimator.ofInt(start, end);
         animator.setDuration(1000);
-        animator.setRepeatCount(ValueAnimator.INFINITE);
         animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public void onAnimationUpdate(ValueAnimator valueAnimator) {
@@ -129,6 +128,8 @@ public class SummaryLayout extends LinearLayout implements View.OnClickListener 
                 ViewGroup.LayoutParams layoutParams = ll.getLayoutParams();
                 layoutParams.height = value;
                 ll.setLayoutParams(layoutParams);
+
+                Log.i(TAG,"in animation");
             }
         });
         return animator;

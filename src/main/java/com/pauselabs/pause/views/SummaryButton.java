@@ -11,8 +11,6 @@ import android.widget.TextView;
 import com.pauselabs.R;
 import com.pauselabs.pause.models.PauseConversation;
 
-import org.w3c.dom.Text;
-
 /**
  * Created by Passa on 12/23/14.
  */
@@ -35,9 +33,8 @@ public class SummaryButton extends RelativeLayout {
         super(context);
 
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        inflater.inflate(R.layout.conversation_button_view, this, true);
-
-        nameLabel = (TextView) findViewById(R.id.name_label);
+        inflater.inflate(R.layout.summary_card_view_conversation_button, this, true);
+        nameLabel = (TextView) findViewById(R.id.messageSender);
         convoHolderView = (LinearLayout) findViewById(R.id.convo_holder_view);
     }
 
