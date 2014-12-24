@@ -5,12 +5,10 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
-import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
 
 import com.pauselabs.R;
 import com.pauselabs.pause.Injector;
@@ -55,8 +53,9 @@ public class SettingsLayout extends RelativeLayout implements View.OnClickListen
     SettingsButton privacyBtn;
     @InjectView(R.id.termsBtn)
     SettingsButton termsBtn;
-    @InjectView(R.id.versionFooter)
-    TextView versionFooter;
+
+//    @InjectView(R.id.versionFooter)
+//    TextView versionFooter;
 
     @Inject
     protected SharedPreferences prefs;
@@ -105,12 +104,12 @@ public class SettingsLayout extends RelativeLayout implements View.OnClickListen
         voiceBtn.setOnClickListener(this);
 
         PackageInfo pInfo = null;
-        try {
-            pInfo = context.getPackageManager().getPackageInfo(context.getPackageName(), 0);
-            versionFooter.setText("Version 1.0." + pInfo.versionCode + " © 2014 Pause Labs, LLC");
-        } catch (PackageManager.NameNotFoundException e) {
-            e.printStackTrace();
-        }
+//        try {
+//            pInfo = context.getPackageManager().getPackageInfo(context.getPackageName(), 0);
+//            versionFooter.setText("Version 1.0." + pInfo.versionCode + " © 2014 Pause Labs, LLC");
+//        } catch (PackageManager.NameNotFoundException e) {
+//            e.printStackTrace();
+//        }
     }
 
     public void onClick(View view) {

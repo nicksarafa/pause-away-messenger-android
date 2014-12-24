@@ -10,8 +10,8 @@
     sothree:shadowHeight="2dp">
 
 
-    <include layout="@layout/home_custom"/>
+    <include layout="@layout/home_top_bar"/>
 
-    <include layout="@layout/settings_layout"/>
+    <include layout="@layout/home_bottom_layout"/>
 
 </com.sothree.slidinguppanel.SlidingUpPanelLayout>

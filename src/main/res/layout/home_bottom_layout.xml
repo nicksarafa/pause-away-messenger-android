@@ -190,10 +190,11 @@
                 <!-- Footer - Change to Cool Made in Detroit ImageView -->
 
                 <TextView
-                    android:id="@+id/versionFooter"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Version 1.0.xx.x © 2014 Pause Labs, LLC"
+                    android:textAlignment="center"
+
+                    android:text="\u00A0Born in Detroit\n\n&#9825; \n"
                     android:gravity="center_horizontal" />
 
             </LinearLayout>

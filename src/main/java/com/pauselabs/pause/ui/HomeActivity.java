@@ -17,7 +17,6 @@ import android.view.ViewStub;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.view.animation.AnimationSet;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -31,6 +30,7 @@ import com.pauselabs.pause.models.PauseConversation;
 import com.pauselabs.pause.util.UIUtils;
 import com.pauselabs.pause.views.HomeButton;
 import com.pauselabs.pause.views.HomeButtonSeparator;
+import com.sothree.slidinguppanel.SlidingUpPanelLayout;
 import com.squareup.otto.Bus;
 
 import org.json.JSONArray;
@@ -84,6 +84,14 @@ public class HomeActivity extends Activity implements View.OnClickListener {
 
         setContentView(R.layout.home_activity);
 
+        SlidingUpPanelLayout slidingDownPanelLayout = (SlidingUpPanelLayout)
+                findViewById(R.id.sliding_custom_layout);
+
+        //Setting the achor point to the middle of the screen
+//        slidingUpPanelLayout.setEnableDragViewTouchEvents(false);
+        slidingDownPanelLayout.getAnchorPoint();
+
+
         Injector.inject(this);
         Views.inject(this);
 
@@ -92,7 +100,7 @@ public class HomeActivity extends Activity implements View.OnClickListener {
         if (PauseApplication.isActiveSession()) {
             stub.setLayoutResource(R.layout.summary_view);
         } else {
-            stub.setLayoutResource(R.layout.home_normal);
+            stub.setLayoutResource(R.layout.home_middle_layout);
             contentLayout = (RelativeLayout) stub.inflate();
 
             LayoutInflater inflater = (LayoutInflater) this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -129,6 +137,8 @@ public class HomeActivity extends Activity implements View.OnClickListener {
 
         updateView();
     }
+
+
 
     private void updateView() {
         if (PauseApplication.isActiveSession()) {
