@@ -4,4 +4,7 @@
         <attr name="label" format="string" />
         <attr name="content" format="string" />
     </declare-styleable>
+    <declare-styleable name="SummaryButton">
+        <attr name="name" format="string" />
+    </declare-styleable>
 </resources>

@@ -68,7 +68,9 @@ public class PauseCallListener extends BroadcastReceiver{
                         PauseApplication.handleMessageReceived(messageReceived);
 
                         PauseApplication.numCall++;
+
                         PauseApplication.updateNotifications();
+                        PauseApplication.updateUI();
                     }
                     break;
                 case TelephonyManager.CALL_STATE_OFFHOOK:

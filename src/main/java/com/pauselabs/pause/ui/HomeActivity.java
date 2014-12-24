@@ -1,23 +1,16 @@
 package com.pauselabs.pause.ui;
 
 import android.app.Activity;
-import android.content.ContentResolver;
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.database.Cursor;
 import android.media.AudioManager;
-import android.net.Uri;
 import android.os.Bundle;
-import android.provider.ContactsContract;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.ViewStub;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.view.animation.AnimationSet;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -30,6 +23,7 @@ import com.pauselabs.pause.models.JsonReader;
 import com.pauselabs.pause.models.PauseConversation;
 import com.pauselabs.pause.views.HomeButton;
 import com.pauselabs.pause.views.HomeButtonSeparator;
+import com.pauselabs.pause.views.SummaryButton;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -53,8 +47,12 @@ public class HomeActivity extends Activity implements View.OnClickListener {
 
     public SettingsLayout settingsLayout;
 
-    RelativeLayout contentLayout;
+    LinearLayout mainContent;
+
+    RelativeLayout homeContentLayout;
     LinearLayout buttonLayout;
+
+    LinearLayout summaryContentLayout;
 
     @Inject
     SharedPreferences prefs;
@@ -83,21 +81,7 @@ public class HomeActivity extends Activity implements View.OnClickListener {
         Injector.inject(this);
         Views.inject(this);
 
-
-        ViewStub stub = (ViewStub) findViewById(R.id.home_view);
-        if (PauseApplication.isActiveSession()) {
-            stub.setLayoutResource(R.layout.summary_view);
-        } else {
-            stub.setLayoutResource(R.layout.home_normal);
-            contentLayout = (RelativeLayout) stub.inflate();
-
-            LayoutInflater inflater = (LayoutInflater) this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            inflater.inflate(R.layout.home_button_view, (ViewGroup) findViewById(R.id.home_normal), false);
-            inflater.inflate(R.layout.home_button_separator, (ViewGroup) findViewById(R.id.home_normal), false);
-
-            buttonLayout = (LinearLayout) findViewById(R.id.home_button_layout);
-            pauseMessage = (TextView) findViewById(R.id.home_pause_message);
-        }
+        PauseApplication.homeActivity = this;
 
         settingsLayout = new SettingsLayout(this);
 
@@ -123,10 +107,33 @@ public class HomeActivity extends Activity implements View.OnClickListener {
             }
         });
 
+        mainContent = (LinearLayout) findViewById(R.id.home_view);
+
+        LayoutInflater inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
+        summaryContentLayout = (LinearLayout) inflater.inflate(R.layout.summary_view, null);
+        homeContentLayout = (RelativeLayout) inflater.inflate(R.layout.home_normal, null);
+
         updateView();
     }
 
-    private void updateView() {
+    private void inflateView() {
+        mainContent.removeAllViews();
+        if (PauseApplication.isActiveSession()) {
+            mainContent.addView(summaryContentLayout);
+        } else {
+            mainContent.addView(homeContentLayout);
+
+            LayoutInflater inflater = (LayoutInflater) this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            inflater.inflate(R.layout.home_button_view, (ViewGroup) findViewById(R.id.home_normal), false);
+            inflater.inflate(R.layout.home_button_separator, (ViewGroup) findViewById(R.id.home_normal), false);
+
+            buttonLayout = (LinearLayout) findViewById(R.id.home_button_layout);
+            pauseMessage = (TextView) findViewById(R.id.home_pause_message);
+        }
+    }
+
+    public void updateView() {
+        inflateView();
         if (PauseApplication.isActiveSession()) {
             updateSummary();
         } else {
@@ -135,23 +142,17 @@ public class HomeActivity extends Activity implements View.OnClickListener {
     }
 
     private void updateSummary() {
-        ArrayList<PauseConversation> conversations = PauseApplication.getCurrentSession().getConversations();
+        summaryContentLayout.removeAllViews();
+
+        ArrayList<PauseConversation> conversations = PauseApplication.getCurrentSession().getConversationsInTimeOrder();
         for (PauseConversation convo : conversations) {
-            Log.i(TAG, convo.getContactName());
+            SummaryButton newSummaryBtn = new SummaryButton(this);
+            newSummaryBtn.setName(convo.getContactName());
+            newSummaryBtn.setOnClickListener(this);
+            newSummaryBtn.setConversation(convo);
 
-            ContentResolver cr = getContentResolver();
-            Uri uri = Uri.withAppendedPath(ContactsContract.PhoneLookup.CONTENT_FILTER_URI, Uri.encode(convo.getContactNumber()));
-            Cursor cursor = cr.query(uri, new String[]{ContactsContract.PhoneLookup.DISPLAY_NAME}, null, null, null);
-            if(cursor.moveToFirst()) {
-                String id = cursor.getString(cursor.getColumnIndex(ContactsContract.PhoneLookup.DISPLAY_NAME));
-                Log.i(TAG, id);
-            }
-
-            cursor.close();
+            summaryContentLayout.addView(newSummaryBtn);
         }
-
-
-
     }
 
     private void updateNormal() {
@@ -201,7 +202,7 @@ public class HomeActivity extends Activity implements View.OnClickListener {
                 buttonLayout.addView(nextBtn);
             }
 
-            contentLayout.startAnimation(in);
+            homeContentLayout.startAnimation(in);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -209,39 +210,42 @@ public class HomeActivity extends Activity implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
+        if (v instanceof SummaryButton) {
 
-        switch (v.getId()) {
-            case Constants.Settings.ACTION_CYCLE:
-                cycle();
+        } else {
+            switch (v.getId()) {
+                case Constants.Settings.ACTION_CYCLE:
+                    cycle();
 
-                break;
-            case Constants.Settings.ACTION_ONBOARDING_SILENCE:
-                am.setRingerMode(AudioManager.RINGER_MODE_SILENT);
+                    break;
+                case Constants.Settings.ACTION_ONBOARDING_SILENCE:
+                    am.setRingerMode(AudioManager.RINGER_MODE_SILENT);
 
-                cycle();
+                    cycle();
 
-                break;
-            case Constants.Settings.ACTION_ONBOARDING_UNSILENCE:
-                am.setRingerMode(PauseApplication.getOldRingerMode());
+                    break;
+                case Constants.Settings.ACTION_ONBOARDING_UNSILENCE:
+                    am.setRingerMode(PauseApplication.getOldRingerMode());
 
-                cycle();
+                    cycle();
 
-                break;
-            case Constants.Settings.ACTION_ONBOARDING_FINISH:
-                count = 0;
-                prefs.edit().putBoolean(Constants.Pause.ONBOARDING_FINISHED_KEY, true).apply();
+                    break;
+                case Constants.Settings.ACTION_ONBOARDING_FINISH:
+                    count = 0;
+                    prefs.edit().putBoolean(Constants.Pause.ONBOARDING_FINISHED_KEY, true).apply();
 
-                updateView();
+                    updateView();
 
-                break;
-            case Constants.Settings.ACTION_CHANGE_NAME:
-                PauseApplication.displayNameDialog(this, settingsLayout.nameBtn);
+                    break;
+                case Constants.Settings.ACTION_CHANGE_NAME:
+                    PauseApplication.displayNameDialog(this, settingsLayout.nameBtn);
 
-                break;
-            case Constants.Settings.ACTION_CHANGE_GENDER:
-                PauseApplication.displayGenderDialog(this, settingsLayout.genderBtn);
+                    break;
+                case Constants.Settings.ACTION_CHANGE_GENDER:
+                    PauseApplication.displayGenderDialog(this, settingsLayout.genderBtn);
 
-                break;
+                    break;
+            }
         }
     }
 
@@ -251,6 +255,6 @@ public class HomeActivity extends Activity implements View.OnClickListener {
 
         count = (count < components.length() - 1) ? ++count : 0;
 
-        contentLayout.startAnimation(out);
+        homeContentLayout.startAnimation(out);
     }
 }

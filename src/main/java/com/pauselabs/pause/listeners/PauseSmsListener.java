@@ -23,6 +23,8 @@ public class PauseSmsListener extends ContentObserver {
 
     private int previousCount;
 
+    private Handler handler;
+
     /**
      * Creates a content observer.
      *
@@ -30,6 +32,8 @@ public class PauseSmsListener extends ContentObserver {
      */
     public PauseSmsListener(Handler handler) {
         super(handler);
+
+        this.handler = handler;
 
         Injector.inject(this);
 
@@ -89,6 +93,7 @@ public class PauseSmsListener extends ContentObserver {
             }
 
             PauseApplication.updateNotifications();
+            PauseApplication.updateUI();
         }
 
         previousCount = newCount;

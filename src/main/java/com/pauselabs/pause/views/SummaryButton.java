@@ -1,20 +1,23 @@
 package com.pauselabs.pause.views;
 
 import android.content.Context;
-import android.content.res.TypedArray;
 import android.media.Image;
-import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.pauselabs.R;
+import com.pauselabs.pause.models.PauseConversation;
+
+import org.w3c.dom.Text;
 
 /**
  * Created by Passa on 12/23/14.
  */
 public class SummaryButton extends RelativeLayout {
+
+    private RelativeLayout layout;
 
     private ImageView icon;
     private TextView nameLabel;
@@ -22,19 +25,18 @@ public class SummaryButton extends RelativeLayout {
     private Image image;
     private String name;
 
+    private PauseConversation conversation;
+
     public SummaryButton(Context context) {
         super(context);
 
-        int defaultPadding = (int) getResources().getDimension(R.dimen.default_padding);
-        setPadding(defaultPadding, defaultPadding, defaultPadding, defaultPadding);
-
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        inflater.inflate(R.layout.settings_button_view, this, true);
+        inflater.inflate(R.layout.conversation_button_view, this, true);
 
-
+        nameLabel = (TextView) findViewById(R.id.name_label);
     }
 
-    public void setNameLabel(String name) {
+    public void setName(String name) {
         this.name = name;
         nameLabel.setText(name);
     }
@@ -42,6 +44,14 @@ public class SummaryButton extends RelativeLayout {
     public void setIcon(Image image) {
         this.image = image;
 
+    }
+
+    public void setConversation(PauseConversation convo) {
+        conversation = convo;
+    }
+
+    public PauseConversation getConversation() {
+        return conversation;
     }
 
 }

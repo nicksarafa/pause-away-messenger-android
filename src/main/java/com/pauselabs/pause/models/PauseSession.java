@@ -9,6 +9,8 @@ import com.pauselabs.pause.core.Constants;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -57,6 +59,18 @@ public class PauseSession implements Serializable {
     }
 
     public ArrayList<PauseConversation> getConversations() {
+        return conversations;
+    }
+
+    public ArrayList<PauseConversation> getConversationsInTimeOrder() {
+        Collections.sort(conversations, new Comparator<PauseConversation>() {
+            @Override
+            public int compare(PauseConversation msg1, PauseConversation msg2) {
+                return msg1.getLastMessage().getDate().compareTo(msg2.getLastMessage().getDate());
+            }
+        });
+        Collections.reverse(conversations);
+
         return conversations;
     }
 

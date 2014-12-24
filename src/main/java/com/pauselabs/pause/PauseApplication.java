@@ -63,6 +63,8 @@ import javax.inject.Inject;
 public class PauseApplication extends Application {
 
     private static PauseApplication instance;
+    public static HomeActivity homeActivity;
+
     private static final String TAG = PauseApplication.class.getSimpleName();
     public static HashMap<TrackerName, Tracker> mTrackers = new HashMap<TrackerName, Tracker>();
 
@@ -547,7 +549,8 @@ public class PauseApplication extends Application {
         PauseConversation conversation = currentPauseSession.getConversationByContactNumber(sentMessage.getTo());
         conversation.addMessage(sentMessage);
 
-        PauseApplication.sendToast("I will no longer reply to " + conversation.getContactName() + " until your next Paüse.");
+        if (conversation.getMessagesSentFromUser().size() == 1)
+            PauseApplication.sendToast("I will no longer reply to " + conversation.getContactName() + " until your next Paüse.");
     }
 
     public static String lookupContact(String contactNumber) {
@@ -582,6 +585,15 @@ public class PauseApplication extends Application {
                 new Date().getTime(),
                 Constants.Message.Type.SMS_PAUSE_OUTGOING
         );
+    }
+
+    public static void updateUI() {
+        homeActivity.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                PauseApplication.homeActivity.updateView();
+            }
+        });
     }
 
     private static Handler toastHandler = new Handler() {
