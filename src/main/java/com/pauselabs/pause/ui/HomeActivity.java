@@ -128,7 +128,7 @@ public class HomeActivity extends Activity implements View.OnClickListener {
         mainContent = (LinearLayout) findViewById(R.id.home_view);
 
         LayoutInflater inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
-        summaryContentLayout = (LinearLayout) inflater.inflate(R.layout.summary_view, null);
+        summaryContentLayout = (LinearLayout) inflater.inflate(R.layout.summary_layout, null);
         homeContentLayout = (RelativeLayout) inflater.inflate(R.layout.home_middle_layout, null);
 
         updateView();
