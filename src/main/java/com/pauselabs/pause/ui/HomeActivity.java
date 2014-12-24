@@ -84,13 +84,18 @@ public class HomeActivity extends Activity implements View.OnClickListener {
 
         setContentView(R.layout.home_activity);
 
+        //Set Slide Down (Custom Message) Attributes
         SlidingUpPanelLayout slidingDownPanelLayout = (SlidingUpPanelLayout)
                 findViewById(R.id.sliding_custom_layout);
 
-        //Setting the achor point to the middle of the screen
-//        slidingUpPanelLayout.setEnableDragViewTouchEvents(false);
         slidingDownPanelLayout.getAnchorPoint();
 
+        //Set Slide Up (Settings) Attributes
+
+        SlidingUpPanelLayout slidingUpPanelLayout = (SlidingUpPanelLayout)
+                findViewById(R.id.sliding_setting_layout);
+
+        slidingUpPanelLayout.getAnchorPoint();
 
         Injector.inject(this);
         Views.inject(this);
