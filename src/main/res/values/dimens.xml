@@ -13,7 +13,7 @@
     <!-- OB Text Dimens -->
     <dimen name="ob_text_large">36sp</dimen>
     <dimen name="ob_text_medium">28sp</dimen>
-    <dimen name="ob_text_small">22sp</dimen>
+    <dimen name="ob_text_small">20sp</dimen>
 
     <!-- OB = on_boarding face and height -->
     <dimen name="ob_face_width">70dp</dimen>
@@ -30,5 +30,6 @@
     <dimen name="elevation_high">4dp</dimen>
     <dimen name="add_button_margin">16dp</dimen>
     <dimen name="settings_thumbnail_size">60dip</dimen>
+    <dimen name="message_margin">100dip</dimen>
 
 </resources>

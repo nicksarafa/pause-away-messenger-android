@@ -29,9 +29,9 @@ public class SummaryButton extends RelativeLayout {
         super(context);
 
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        inflater.inflate(R.layout.summary_card_view, this, true);
+        inflater.inflate(R.layout.summary_card_view_recieved, this, true);
 
-        nameLabel = (TextView) findViewById(R.id.name_label);
+        nameLabel = (TextView) findViewById(R.id.messageSender);
     }
 
     public void setName(String name) {
