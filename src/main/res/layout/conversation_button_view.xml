@@ -22,4 +22,6 @@
         android:textSize="18sp"
         android:text="Name"/>
 
+    <include layout="@layout/conversation_holder_view"/>
+
 </merge>

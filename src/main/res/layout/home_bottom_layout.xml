@@ -114,6 +114,17 @@
                         custom:label="@string/voice_label"
                         custom:content="On"/>
 
+
+                    <!-- Toasts Toggle -->
+
+                    <com.pauselabs.pause.views.SettingsButton
+                        android:id="@+id/toastsBtn"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@null"
+                        custom:label="@string/toasts_label"
+                        custom:content="On"/>
+
                     <!-- Email URI -->
 
                     <TextView

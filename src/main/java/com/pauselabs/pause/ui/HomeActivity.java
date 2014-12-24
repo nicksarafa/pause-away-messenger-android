@@ -49,13 +49,12 @@ public class HomeActivity extends Activity implements View.OnClickListener {
     public static final String TAG = HomeActivity.class.getSimpleName();
 
     public SettingsLayout settingsLayout;
+    public SummaryLayout summaryLayout;
 
     LinearLayout mainContent;
 
     RelativeLayout homeContentLayout;
     LinearLayout buttonLayout;
-
-    LinearLayout summaryContentLayout;
 
     @Inject
     Bus mBus;
@@ -128,8 +127,8 @@ public class HomeActivity extends Activity implements View.OnClickListener {
         mainContent = (LinearLayout) findViewById(R.id.home_view);
 
         LayoutInflater inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
-        summaryContentLayout = (LinearLayout) inflater.inflate(R.layout.summary_view, null);
         homeContentLayout = (RelativeLayout) inflater.inflate(R.layout.home_middle_layout, null);
+        summaryLayout = (SummaryLayout) inflater.inflate(R.layout.summary_view, null);
 
         updateView();
     }
@@ -137,7 +136,8 @@ public class HomeActivity extends Activity implements View.OnClickListener {
     private void inflateView() {
         mainContent.removeAllViews();
         if (PauseApplication.isActiveSession()) {
-            mainContent.addView(summaryContentLayout);
+
+            mainContent.addView(summaryLayout);
         } else {
             mainContent.addView(homeContentLayout);
 
@@ -160,19 +160,7 @@ public class HomeActivity extends Activity implements View.OnClickListener {
     }
 
     private void updateSummary() {
-        ArrayList<PauseConversation> conversations = PauseApplication.getCurrentSession().getConversationsInTimeOrder();
-        if (conversations.size() != 0   ) {
-            summaryContentLayout.removeAllViews();
-
-            for (PauseConversation convo : conversations) {
-                SummaryButton newSummaryBtn = new SummaryButton(this);
-                newSummaryBtn.setName(convo.getContactName());
-                newSummaryBtn.setOnClickListener(this);
-                newSummaryBtn.setConversation(convo);
-
-                summaryContentLayout.addView(newSummaryBtn);
-            }
-        }
+        summaryLayout.updateSummaryUI();
     }
 
     private void updateNormal() {

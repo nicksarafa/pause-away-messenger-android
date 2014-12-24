@@ -79,6 +79,7 @@
     <string name="blacklist_label">Do not respond to…</string>
     <string name="vibrate_label">Pause On Vibrate</string>
     <string name="voice_label">Voice Feedback</string>
+    <string name="toasts_label">Toasts On</string>
     <string name="rate_us_settings_label">Review PAÜSE</string>
     <string name="contact_us_label">Contact Us</string>
     <string name="support_label">Support</string>

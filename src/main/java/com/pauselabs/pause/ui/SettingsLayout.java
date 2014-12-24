@@ -47,6 +47,8 @@ public class SettingsLayout extends RelativeLayout implements View.OnClickListen
     public SettingsButton volumeBtn;
     @InjectView(R.id.voiceBtn)
     public SettingsButton voiceBtn;
+    @InjectView(R.id.toastsBtn)
+    public SettingsButton toastBtn;
     @InjectView(R.id.supportBtn)
     public SettingsButton supportBtn;
     @InjectView(R.id.privacyBtn)
@@ -102,6 +104,7 @@ public class SettingsLayout extends RelativeLayout implements View.OnClickListen
         termsBtn.setOnClickListener(this);
         volumeBtn.setOnClickListener(this);
         voiceBtn.setOnClickListener(this);
+        toastBtn.setOnClickListener(this);
 
         PackageInfo pInfo = null;
 //        try {
@@ -131,6 +134,9 @@ public class SettingsLayout extends RelativeLayout implements View.OnClickListen
                 break;
             case R.id.voiceBtn:
                 PauseApplication.displayVoiceDialog(context, voiceBtn);
+                break;
+            case R.id.toastsBtn:
+                PauseApplication.displayToastsDialog(context, toastBtn);
                 break;
             case R.id.blacklistBtn:
                 launchBlacklistActivity();
@@ -169,6 +175,7 @@ public class SettingsLayout extends RelativeLayout implements View.OnClickListen
 
         volumeBtn.setContent((prefs.getBoolean(Constants.Settings.PAUSE_ON_VIBRATE_KEY, false)) ? "Yes" : "No");
         voiceBtn.setContent((prefs.getBoolean(Constants.Settings.PAUSE_VOICE_FEEDBACK_KEY, true)) ? "On" : "Off");
+        toastBtn.setContent((prefs.getBoolean(Constants.Settings.PAUSE_TOASTS_ON_KEY, true)) ? "On" : "Off");
     }
 
     private void launchPlayMarketRate() {

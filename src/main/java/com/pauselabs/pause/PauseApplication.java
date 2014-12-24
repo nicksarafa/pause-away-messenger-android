@@ -376,6 +376,18 @@ public class PauseApplication extends Application {
         }
     }
 
+    public static void displayToastsDialog(Context c, SettingsButton toastsBtn) {
+        boolean pauseToastsOn= prefs.getBoolean(Constants.Settings.PAUSE_TOASTS_ON_KEY,true);
+
+        if (pauseToastsOn) {
+            prefs.edit().putBoolean(Constants.Settings.PAUSE_TOASTS_ON_KEY, !pauseToastsOn).apply();
+            toastsBtn.setContent("Off");
+        } else {
+            prefs.edit().putBoolean(Constants.Settings.PAUSE_TOASTS_ON_KEY, !pauseToastsOn).apply();
+            toastsBtn.setContent("On");
+        }
+    }
+
     /**
      * Creates a notification to show in the notification bar
      *
@@ -607,10 +619,11 @@ public class PauseApplication extends Application {
     };
 
     public static void sendToast(final String textToSend) {
-        Message msg = new Message();
-        msg.obj = textToSend;
-        toastHandler.sendMessage(msg);
-
+        if (prefs.getBoolean(Constants.Settings.PAUSE_TOASTS_ON_KEY,true)) {
+            Message msg = new Message();
+            msg.obj = textToSend;
+            toastHandler.sendMessage(msg);
+        }
     }
 
     public static void speak(String textToSpeak) {
