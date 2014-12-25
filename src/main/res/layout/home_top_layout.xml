@@ -56,7 +56,7 @@
                 android:freezesText="false"
                 android:inputType="textPersonName"
                 android:imeOptions="flagNoEnterAction"
-                android:padding="@dimen/padding"
+                android:layout_margin="@dimen/padding"
                 android:hint="What's cookin, good lookin?"/>
 
             <Button

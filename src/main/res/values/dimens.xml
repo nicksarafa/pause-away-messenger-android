@@ -12,8 +12,8 @@
 
     <!-- OB Text Dimens -->
     <dimen name="ob_text_large">36sp</dimen>
-    <dimen name="ob_text_medium">28sp</dimen>
-    <dimen name="ob_text_small">20sp</dimen>
+    <dimen name="ob_text_medium">20sp</dimen>
+    <dimen name="ob_text_small">16sp</dimen>
 
     <!-- OB = on_boarding face and height -->
     <dimen name="ob_face_width">70dp</dimen>
