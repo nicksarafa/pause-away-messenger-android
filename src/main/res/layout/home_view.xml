@@ -16,6 +16,10 @@
         android:layout_height="fill_parent"
         android:orientation="vertical" />
 
-    <include layout="@layout/settings_view"/>
+    <LinearLayout
+        android:id="@+id/settings_holder"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical"/>
 
 </com.sothree.slidinguppanel.SlidingUpPanelLayout>

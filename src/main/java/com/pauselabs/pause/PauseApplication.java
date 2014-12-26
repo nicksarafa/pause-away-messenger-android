@@ -277,14 +277,14 @@ public class PauseApplication extends Application {
 
 
 
-    public static void displayNameDialog(Context c, final SettingsButton nameBtn) {
-        AlertDialog.Builder alert = new AlertDialog.Builder(c);
+    public static void displayNameDialog(final SettingsButton nameBtn) {
+        AlertDialog.Builder alert = new AlertDialog.Builder(homeActivity);
 
         alert.setTitle("Enter your name");
         alert.setMessage("Bounce back messages will include this");
 
         // Set an EditText view to get user input
-        final EditText input = new EditText(c);
+        final EditText input = new EditText(homeActivity);
         String existingName = prefs.getString(Constants.Settings.NAME_KEY, "");
         if(!existingName.equals("")){
             input.setText(existingName);
@@ -306,20 +306,20 @@ public class PauseApplication extends Application {
         alert.show();
     }
 
-    public static void displayGenderDialog(Context c, SettingsButton genderBtn) {
-        boolean isMale = prefs.getBoolean(Constants.Settings.GENDER_KEY,false);
+    public static void displayGenderDialog(SettingsButton genderBtn) {
+        boolean isMale = prefs.getBoolean(Constants.Settings.IS_MALE, false);
 
         if (isMale) {
-            prefs.edit().putBoolean(Constants.Settings.GENDER_KEY, !isMale).apply();
+            prefs.edit().putBoolean(Constants.Settings.IS_MALE, !isMale).apply();
             genderBtn.setContent("Female");
         } else {
-            prefs.edit().putBoolean(Constants.Settings.GENDER_KEY, !isMale).apply();
+            prefs.edit().putBoolean(Constants.Settings.IS_MALE, !isMale).apply();
             genderBtn.setContent("Male");
         }
     }
 
-    public static void displayMissedCallsDialog(Context c, final SettingsButton missedCallsBtn) {
-        AlertDialog.Builder alert = new AlertDialog.Builder(c);
+    public static void displayMissedCallsDialog(final SettingsButton missedCallsBtn) {
+        AlertDialog.Builder alert = new AlertDialog.Builder(homeActivity);
 
         alert.setTitle("Reply to missed calls");
         alert.setItems(R.array.reply_setting_options, new DialogInterface.OnClickListener() {
@@ -335,8 +335,8 @@ public class PauseApplication extends Application {
         alert.show();
     }
 
-    public static void displaySMSReplyDialog(Context c, final SettingsButton receivedSmsBtn) {
-        AlertDialog.Builder alert = new AlertDialog.Builder(c);
+    public static void displaySMSReplyDialog(final SettingsButton receivedSmsBtn) {
+        AlertDialog.Builder alert = new AlertDialog.Builder(homeActivity);
 
         alert.setTitle("Reply to SMS messages");
         alert.setItems(R.array.reply_setting_options, new DialogInterface.OnClickListener() {
@@ -352,7 +352,7 @@ public class PauseApplication extends Application {
         alert.show();
     }
 
-    public static void displayVibrateDialog(Context c, SettingsButton volumeBtn) {
+    public static void displayVibrateDialog(SettingsButton volumeBtn) {
         boolean pauseOnVibrate = prefs.getBoolean(Constants.Settings.PAUSE_ON_VIBRATE_KEY,false);
 
         if (pauseOnVibrate) {
@@ -364,7 +364,7 @@ public class PauseApplication extends Application {
         }
     }
 
-    public static void displayVoiceDialog(Context c, SettingsButton voiceBtn) {
+    public static void displayVoiceDialog(SettingsButton voiceBtn) {
         boolean pauseVoiceFeedback = prefs.getBoolean(Constants.Settings.PAUSE_VOICE_FEEDBACK_KEY,false);
 
         if (pauseVoiceFeedback) {
@@ -376,7 +376,7 @@ public class PauseApplication extends Application {
         }
     }
 
-    public static void displayToastsDialog(Context c, SettingsButton toastsBtn) {
+    public static void displayToastsDialog(SettingsButton toastsBtn) {
         boolean pauseToastsOn= prefs.getBoolean(Constants.Settings.PAUSE_TOASTS_ON_KEY,true);
 
         if (pauseToastsOn) {

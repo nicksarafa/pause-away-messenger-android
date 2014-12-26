@@ -224,10 +224,8 @@ public class Constants {
         public static final String PAUSE_TOASTS_ON_KEY = "PAUSE_TOASTS_ON_KEY";
 
         public static final String NAME_KEY = "NAME_KEY";
-        public static final String GENDER_KEY = "GENDER_KEY";
-        public static final String GENDER_MALE_KEY = "Male";
+        public static final String IS_MALE = "IS_MALE";
         public static final String GENDER_MALE_VALUE = "he";
-        public static final String GENDER_FEMALE_KEY = "Female";
         public static final String GENDER_FEMALE_VALUE = "she";
         public static final String REPLY_MISSED_CALL = "REPLY_MISSED_CALL_KEY";
         public static final String REPLY_SMS = "REPLY_SMS_KEY";

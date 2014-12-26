@@ -33,7 +33,7 @@ public class OnBoardingActivity extends Activity implements View.OnClickListener
     Button male, female;
     Drawable colorChanger;
 
-    String gender;
+    boolean isMale;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,7 +80,7 @@ public class OnBoardingActivity extends Activity implements View.OnClickListener
 
             switch (v.getId()) {
                 case R.id.male:
-                    gender = Constants.Settings.GENDER_MALE_KEY;
+                    isMale = true;
 
                     if (male == null) {
                         male = (Button) findViewById(v.getId());
@@ -94,7 +94,7 @@ public class OnBoardingActivity extends Activity implements View.OnClickListener
                     break;
 
                 case R.id.female:
-                    gender = Constants.Settings.GENDER_FEMALE_KEY;
+                    isMale = false;
 
                     if (female == null) {
                         female = (Button) findViewById(v.getId());
@@ -111,7 +111,7 @@ public class OnBoardingActivity extends Activity implements View.OnClickListener
             SharedPreferences.Editor editor = prefs.edit();
             editor.putBoolean(Constants.Pause.PAUSE_ALREADY_LAUNCHED_KEY, true);
             editor.putString(Constants.Settings.NAME_KEY, name.getText().toString());
-            editor.putString(Constants.Settings.GENDER_KEY, gender);
+            editor.putBoolean(Constants.Settings.IS_MALE, isMale);
             editor.apply();
 
             startApp();

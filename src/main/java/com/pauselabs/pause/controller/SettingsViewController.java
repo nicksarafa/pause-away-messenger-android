@@ -39,7 +39,7 @@ public class SettingsViewController implements View.OnClickListener {
         settingsView = (SettingsView) inflater.inflate(R.layout.settings_view, null);
 
         settingsView.nameBtn.setContent(prefs.getString(Constants.Settings.NAME_KEY, "None"));
-        settingsView.genderBtn.setContent(prefs.getString(Constants.Settings.GENDER_KEY, "None"));
+        settingsView.genderBtn.setContent((prefs.getBoolean(Constants.Settings.IS_MALE, false)) ? "Male" : "Female");
         settingsView.missedCallsBtn.setContent(prefs.getString(Constants.Settings.REPLY_MISSED_CALL, Constants.Privacy.EVERYBODY));
         settingsView.receivedSmsBtn.setContent(prefs.getString(Constants.Settings.REPLY_SMS, Constants.Privacy.EVERYBODY));
 
@@ -73,25 +73,25 @@ public class SettingsViewController implements View.OnClickListener {
     public void onClick(View view) {
         switch(view.getId()){
             case R.id.nameBtn:
-                PauseApplication.displayNameDialog(settingsView.getContext(), settingsView.nameBtn);
+                PauseApplication.displayNameDialog(settingsView.nameBtn);
                 break;
             case R.id.genderBtn:
-                PauseApplication.displayGenderDialog(settingsView.getContext(), settingsView.genderBtn);
+                PauseApplication.displayGenderDialog(settingsView.genderBtn);
                 break;
             case R.id.missedCallsBtn:
-                PauseApplication.displayMissedCallsDialog(settingsView.getContext(), settingsView.missedCallsBtn);
+                PauseApplication.displayMissedCallsDialog(settingsView.missedCallsBtn);
                 break;
             case R.id.receivedSMSBtn:
-                PauseApplication.displaySMSReplyDialog(settingsView.getContext(), settingsView.receivedSmsBtn);
+                PauseApplication.displaySMSReplyDialog(settingsView.receivedSmsBtn);
                 break;
             case R.id.volumeBtn:
-                PauseApplication.displayVibrateDialog(settingsView.getContext(), settingsView.volumeBtn);
+                PauseApplication.displayVibrateDialog(settingsView.volumeBtn);
                 break;
             case R.id.voiceBtn:
-                PauseApplication.displayVoiceDialog(settingsView.getContext(), settingsView.voiceBtn);
+                PauseApplication.displayVoiceDialog(settingsView.voiceBtn);
                 break;
             case R.id.toastsBtn:
-                PauseApplication.displayToastsDialog(settingsView.getContext(), settingsView.toastBtn);
+                PauseApplication.displayToastsDialog(settingsView.toastBtn);
                 break;
             case R.id.blacklistBtn:
                 launchBlacklistActivity();
@@ -112,8 +112,6 @@ public class SettingsViewController implements View.OnClickListener {
                 // do nothing
         }
     }
-
-
 
     private void launchPlayMarketRate() {
         Uri uri = Uri.parse("market://details?id=" + settingsView.getContext().getPackageName());

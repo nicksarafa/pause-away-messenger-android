@@ -30,6 +30,7 @@ public class HomeActivity extends Activity {
 
     SlidingUpPanelLayout homeView;
     LinearLayout homeContent;
+    LinearLayout settingsHolder;
 
     @Inject
     LayoutInflater inflater;
@@ -50,6 +51,8 @@ public class HomeActivity extends Activity {
         PauseApplication.homeActivity = this;
 
         homeContent = (LinearLayout) homeView.findViewById(R.id.home_content);
+        settingsHolder = (LinearLayout) homeView.findViewById(R.id.settings_holder);
+        settingsHolder.addView(settingsViewController.settingsView);
 
         updateView();
     }

@@ -79,10 +79,11 @@ public class StringRandomizer {
         Pattern genderPattern = Pattern.compile("%gender");
         Matcher m;
 
-        String genderValue = "", genderKey = prefs.getString(Constants.Settings.GENDER_KEY, "");
-        if (genderKey == Constants.Settings.GENDER_MALE_KEY)
+        boolean isMale = prefs.getBoolean(Constants.Settings.IS_MALE, true);
+        String genderValue;
+        if (isMale)
             genderValue = Constants.Settings.GENDER_MALE_VALUE;
-        else if (genderKey == Constants.Settings.GENDER_FEMALE_KEY)
+        else
             genderValue = Constants.Settings.GENDER_FEMALE_VALUE;
 
 		StringBuilder sb = new StringBuilder();

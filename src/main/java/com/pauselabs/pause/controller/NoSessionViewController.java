@@ -166,11 +166,11 @@ public class NoSessionViewController implements View.OnClickListener {
 
                 break;
             case Constants.Settings.ACTION_CHANGE_NAME:
-                PauseApplication.displayNameDialog(noSessionView.getContext(), HomeActivity.settingsViewController.settingsView.nameBtn);
+                PauseApplication.displayNameDialog(HomeActivity.settingsViewController.settingsView.nameBtn);
 
                 break;
             case Constants.Settings.ACTION_CHANGE_GENDER:
-                PauseApplication.displayGenderDialog(noSessionView.getContext(), HomeActivity.settingsViewController.settingsView.genderBtn);
+                PauseApplication.displayGenderDialog(HomeActivity.settingsViewController.settingsView.genderBtn);
 
                 break;
         }
