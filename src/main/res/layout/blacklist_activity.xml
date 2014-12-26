@@ -3,7 +3,7 @@
     <!-- Keeping. Fragments might not work? -->
 
 <fragment xmlns:android="http://schemas.android.com/apk/res/android"
-    android:name="com.pauselabs.pause.ui.BlacklistFragment"
+    android:name="com.pauselabs.pause.activity.BlacklistFragment"
     android:id="@+id/contact_list"
     android:layout_height="match_parent"
     android:layout_width="match_parent"/>

@@ -1,4 +1,4 @@
-package com.pauselabs.pause.ui;
+package com.pauselabs.pause.activity;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -15,7 +15,7 @@ import android.widget.EditText;
 import com.pauselabs.R;
 import com.pauselabs.pause.Injector;
 import com.pauselabs.pause.PauseApplication;
-import com.pauselabs.pause.core.Constants;
+import com.pauselabs.pause.model.Constants;
 
 import javax.inject.Inject;
 

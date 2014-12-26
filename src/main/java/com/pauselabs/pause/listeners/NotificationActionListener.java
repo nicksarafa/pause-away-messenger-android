@@ -5,7 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
 import com.pauselabs.pause.PauseApplication;
-import com.pauselabs.pause.core.Constants;
+import com.pauselabs.pause.model.Constants;
 
 /**
  * Created by tyndallm on 8/24/14.

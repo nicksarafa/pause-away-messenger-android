@@ -5,9 +5,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.media.AudioManager;
-import android.util.Log;
+
 import com.pauselabs.pause.PauseApplication;
-import com.pauselabs.pause.core.Constants;
+import com.pauselabs.pause.model.Constants;
 
 import javax.inject.Inject;
 

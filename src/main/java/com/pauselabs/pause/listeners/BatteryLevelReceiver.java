@@ -6,7 +6,7 @@
 //import android.content.Intent;
 //
 //import com.pauselabs.pause.PauseApplication;
-//import com.pauselabs.pause.core.Constants;
+//import com.pauselabs.pause.model.Constants;
 //import com.pauselabs.pause.models.PauseSession;
 //
 ///**

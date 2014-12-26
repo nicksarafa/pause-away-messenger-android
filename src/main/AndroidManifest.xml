@@ -30,7 +30,7 @@
         <service android:name=".pause.services.PauseSessionService" />
         <service android:name=".pause.services.PauseApplicationService" />
 
-        <activity android:name=".pause.ui.OnBoardingActivity"
+        <activity android:name=".pause.activity.OnBoardingActivity"
             android:windowSoftInputMode="adjustResize"
             android:screenOrientation="portrait"
             android:noHistory="true">
@@ -41,12 +41,12 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".pause.ui.HomeActivity"
+        <activity android:name=".pause.activity.HomeActivity"
             android:windowSoftInputMode="stateHidden"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
 
-        <activity android:name=".pause.ui.BlacklistActivity"
+        <activity android:name=".pause.activity.BlacklistActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light">
 

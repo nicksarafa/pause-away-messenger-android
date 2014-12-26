@@ -4,7 +4,7 @@ import android.content.Context;
 import android.telephony.SmsManager;
 import android.util.Log;
 
-import com.pauselabs.pause.models.PauseMessage;
+import com.pauselabs.pause.model.PauseMessage;
 
 import java.util.ArrayList;
 

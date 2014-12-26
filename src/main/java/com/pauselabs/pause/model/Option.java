@@ -1,4 +1,4 @@
-package com.pauselabs.pause.models;
+package com.pauselabs.pause.model;
 
 import org.json.JSONException;
 import org.json.JSONObject;

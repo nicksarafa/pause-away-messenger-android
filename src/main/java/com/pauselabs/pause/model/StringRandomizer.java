@@ -1,14 +1,12 @@
-package com.pauselabs.pause.models;
+package com.pauselabs.pause.model;
 
 import android.content.Context;
 import android.content.SharedPreferences;
 
 import com.pauselabs.pause.Injector;
-import com.pauselabs.pause.core.Constants;
 
 import org.json.JSONArray;
 import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.io.IOException;
 import java.io.InputStream;

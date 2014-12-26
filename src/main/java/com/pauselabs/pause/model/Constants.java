@@ -1,4 +1,4 @@
-package com.pauselabs.pause.core;
+package com.pauselabs.pause.model;
 
 /**
  * Pause constants

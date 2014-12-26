@@ -1,4 +1,4 @@
-package com.pauselabs.pause.views;
+package com.pauselabs.pause.view;
 
 import android.content.Context;
 import android.content.res.TypedArray;

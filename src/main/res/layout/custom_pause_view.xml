@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<com.pauselabs.pause.ui.CustomPauseLayout
+<com.pauselabs.pause.view.CustomPauseView
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/sliding_custom_layout"
     android:layout_width="fill_parent"
@@ -72,4 +72,4 @@
 
     </LinearLayout>
 
-</com.pauselabs.pause.ui.CustomPauseLayout>
+</com.pauselabs.pause.view.CustomPauseView>

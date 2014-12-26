@@ -1,4 +1,4 @@
-package com.pauselabs.pause.ui;
+package com.pauselabs.pause.view;
 
 import android.content.Context;
 import android.util.AttributeSet;
@@ -17,15 +17,11 @@ import butterknife.Views;
 public class SummaryView extends LinearLayout {
 
     @InjectView(R.id.summary_card_list_view)
-    ListView listView;
+    public ListView listView;
     @InjectView(R.id.summary_no_messages)
-    TextView noMessages;
+    public TextView noMessages;
 
     private final String TAG = SummaryView.class.getSimpleName();
-
-    public SummaryView(Context context) {
-        super(context);
-    }
 
     public SummaryView(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -33,6 +29,11 @@ public class SummaryView extends LinearLayout {
 
     public SummaryView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
+    }
+
+    public SummaryView(Context context) {
+        super(context);
+
     }
 
     @Override

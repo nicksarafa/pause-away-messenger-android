@@ -3,10 +3,9 @@ package com.pauselabs.pause.listeners;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
-import android.util.Log;
 
 import com.pauselabs.pause.PauseApplication;
-import com.pauselabs.pause.core.Constants;
+import com.pauselabs.pause.model.Constants;
 
 import java.util.Timer;
 import java.util.TimerTask;

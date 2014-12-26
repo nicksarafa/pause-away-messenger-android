@@ -1,11 +1,9 @@
-package com.pauselabs.pause.models;
+package com.pauselabs.pause.model;
 
 import android.content.SharedPreferences;
-import android.util.Log;
 
 import com.pauselabs.pause.Injector;
 import com.pauselabs.pause.PauseApplication;
-import com.pauselabs.pause.core.Constants;
 
 import java.io.Serializable;
 import java.util.ArrayList;

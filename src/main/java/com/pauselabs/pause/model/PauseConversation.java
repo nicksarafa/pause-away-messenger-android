@@ -1,4 +1,4 @@
-package com.pauselabs.pause.models;
+package com.pauselabs.pause.model;
 
 
 
@@ -11,12 +11,10 @@ import android.provider.ContactsContract;
 
 import com.pauselabs.pause.Injector;
 import com.pauselabs.pause.PauseApplication;
-import com.pauselabs.pause.core.Constants;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.regex.Pattern;
 
 import javax.inject.Inject;
 

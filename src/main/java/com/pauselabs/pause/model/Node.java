@@ -1,11 +1,10 @@
-package com.pauselabs.pause.models;
+package com.pauselabs.pause.model;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.jar.JarException;
 
 /**
  * First attempt at a creating a Node.

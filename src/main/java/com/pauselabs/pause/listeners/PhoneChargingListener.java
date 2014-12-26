@@ -4,10 +4,9 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.os.BatteryManager;
-import android.util.Log;
 
 import com.pauselabs.pause.PauseApplication;
-import com.pauselabs.pause.core.Constants;
+import com.pauselabs.pause.model.Constants;
 
 /**
  * Created by Passa on 11/20/14.

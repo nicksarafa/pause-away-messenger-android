@@ -3,16 +3,15 @@ package com.pauselabs.pause.listeners;
 import android.database.ContentObserver;
 import android.database.Cursor;
 import android.net.Uri;
-import android.nfc.Tag;
 import android.os.Handler;
 import android.provider.Telephony;
 import android.util.Log;
 
 import com.pauselabs.pause.Injector;
 import com.pauselabs.pause.PauseApplication;
-import com.pauselabs.pause.core.Constants;
-import com.pauselabs.pause.models.PauseConversation;
-import com.pauselabs.pause.models.PauseMessage;
+import com.pauselabs.pause.model.Constants;
+import com.pauselabs.pause.model.PauseConversation;
+import com.pauselabs.pause.model.PauseMessage;
 
 /**
  * Created by Passa on 12/18/14.

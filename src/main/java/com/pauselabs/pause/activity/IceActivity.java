@@ -1,4 +1,4 @@
-package com.pauselabs.pause.ui;
+package com.pauselabs.pause.activity;
 
 import android.app.Activity;
 import android.os.Bundle;

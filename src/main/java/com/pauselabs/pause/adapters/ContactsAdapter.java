@@ -12,19 +12,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AlphabetIndexer;
-import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.SectionIndexer;
 import android.widget.TextView;
 
 import com.pauselabs.R;
-import com.pauselabs.pause.PauseApplication;
-import com.pauselabs.pause.core.Constants;
+import com.pauselabs.pause.model.Constants;
 import com.pauselabs.pause.core.ContactsQuery;
-import com.pauselabs.pause.models.PauseConversation;
-import com.pauselabs.pause.models.SummaryCard;
 
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Locale;
 import java.util.Set;

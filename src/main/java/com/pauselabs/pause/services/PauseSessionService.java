@@ -10,7 +10,7 @@ import android.os.IBinder;
 
 import com.pauselabs.pause.Injector;
 import com.pauselabs.pause.PauseApplication;
-import com.pauselabs.pause.core.Constants;
+import com.pauselabs.pause.model.Constants;
 import com.pauselabs.pause.listeners.PauseCallListener;
 import com.pauselabs.pause.listeners.PauseSmsListener;
 

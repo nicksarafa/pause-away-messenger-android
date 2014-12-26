@@ -2,21 +2,20 @@
 <com.sothree.slidinguppanel.SlidingUpPanelLayout
     xmlns:sothree="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/sliding_custom_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="top"
-    sothree:fadeColor="@android:color/transparent"
+    android:orientation="vertical"
+    android:gravity="bottom"
     sothree:panelHeight="@dimen/ob_btn_height"
-    sothree:anchorPoint="0.3"
     sothree:shadowHeight="2dp">
 
+
     <LinearLayout
-        android:id="@+id/home_view"
+        android:id="@+id/home_content"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:orientation="vertical" />
 
-    <include layout="@layout/home_top_layout"/>
+    <include layout="@layout/settings_view"/>
 
 </com.sothree.slidinguppanel.SlidingUpPanelLayout>

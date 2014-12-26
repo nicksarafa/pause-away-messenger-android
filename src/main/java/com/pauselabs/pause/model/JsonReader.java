@@ -1,4 +1,4 @@
-package com.pauselabs.pause.models;
+package com.pauselabs.pause.model;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -10,7 +10,6 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.ArrayList;
 import java.util.Random;
 
 import javax.inject.Inject;

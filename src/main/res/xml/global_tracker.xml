@@ -6,13 +6,13 @@
     <bool name="ga_autoActivityTracking">true</bool>
 
     <!-- The screen names that will appear in reports -->
-    <screenName name="com.pauselabs.pause.ui.CreatePauseFragment">
+    <screenName name="com.pauselabs.pause.activity.CreatePauseFragment">
         CreatePauseScreenView
     </screenName>
-    <screenName name="com.pauselabs.pause.ui.SettingsFragment">
+    <screenName name="com.pauselabs.pause.activity.SettingsFragment">
         SettingsScreenView
     </screenName>
-    <screenName name="com.pauselabs.pause.ui.ScoreboardFragment">
+    <screenName name="com.pauselabs.pause.activity.ScoreboardFragment">
         ScoreboardScreenView
     </screenName>
     <!--  The following value should be replaced with correct property id. -->

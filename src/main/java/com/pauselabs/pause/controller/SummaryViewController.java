@@ -1,9 +1,8 @@
-package com.pauselabs.pause.ui;
+package com.pauselabs.pause.controller;
 
 import android.content.Context;
 import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -11,14 +10,14 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
-import android.widget.ListView;
 
 import com.pauselabs.R;
 import com.pauselabs.pause.Injector;
 import com.pauselabs.pause.PauseApplication;
-import com.pauselabs.pause.models.PauseConversation;
-import com.pauselabs.pause.models.PauseMessage;
-import com.pauselabs.pause.models.SummaryCard;
+import com.pauselabs.pause.view.SummaryView;
+import com.pauselabs.pause.model.PauseConversation;
+import com.pauselabs.pause.model.PauseMessage;
+import com.pauselabs.pause.view.SummaryCard;
 
 import java.util.ArrayList;
 
@@ -29,9 +28,9 @@ import javax.inject.Inject;
  */
 public class SummaryViewController implements AdapterView.OnItemClickListener, RecyclerView.OnItemTouchListener {
 
-    SummaryView summaryView;
+    public SummaryView summaryView;
 
-    ArrayAdapter<SummaryCard> summaryCardArrayAdapter;
+    private ArrayAdapter<SummaryCard> summaryCardArrayAdapter;
 
     @Inject LayoutInflater inflater;
 
@@ -45,7 +44,7 @@ public class SummaryViewController implements AdapterView.OnItemClickListener, R
         summaryView.listView.setAdapter(summaryCardArrayAdapter);
     }
 
-    public void updateSummaryUI() {
+    public void updateUI() {
         ArrayList<PauseConversation> conversations = PauseApplication.getCurrentSession().getConversationsInTimeOrder();
         if (conversations.size() > 0)
             summaryView.noMessages.setVisibility(View.INVISIBLE);
@@ -54,7 +53,7 @@ public class SummaryViewController implements AdapterView.OnItemClickListener, R
 
         summaryCardArrayAdapter.clear();
         for (PauseConversation convo : conversations) {
-            SummaryCard newCard = new SummaryCard(summaryView.getContext());
+            SummaryCard newCard = (SummaryCard) inflater.inflate(R.layout.summary_card_view_conversation, null);
             newCard.setConversation(convo);
 
             summaryCardArrayAdapter.add(newCard);

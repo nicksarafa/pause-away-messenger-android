@@ -1,11 +1,8 @@
-package com.pauselabs.pause.models;
+package com.pauselabs.pause.model;
 
-import android.telephony.SmsMessage;
-import com.pauselabs.pause.core.Constants;
 import com.pauselabs.pause.listeners.PauseSmsListener;
 
 import java.io.Serializable;
-import java.util.Date;
 
 /**
  * Messages represent incoming messages from SMS, MMS, and third party messengers

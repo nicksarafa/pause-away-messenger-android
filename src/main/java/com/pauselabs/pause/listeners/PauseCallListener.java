@@ -5,15 +5,12 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.os.Parcelable;
 import android.telephony.PhoneStateListener;
 import android.telephony.TelephonyManager;
-import android.util.Log;
 
 import com.pauselabs.pause.PauseApplication;
-import com.pauselabs.pause.core.Constants;
-import com.pauselabs.pause.models.PauseConversation;
-import com.pauselabs.pause.models.PauseMessage;
+import com.pauselabs.pause.model.Constants;
+import com.pauselabs.pause.model.PauseMessage;
 
 import java.util.Date;
 

@@ -1,9 +1,8 @@
-package com.pauselabs.pause.ui;
+package com.pauselabs.pause.view;
 
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RelativeLayout;
@@ -11,7 +10,7 @@ import android.widget.TextView;
 
 import com.pauselabs.R;
 import com.pauselabs.pause.Injector;
-import com.pauselabs.pause.core.Constants;
+import com.pauselabs.pause.model.Constants;
 
 import javax.inject.Inject;
 
@@ -21,11 +20,9 @@ import butterknife.Views;
 /**
  * Created by Passa on 12/23/14.
  */
-public class CustomPauseLayout extends RelativeLayout implements View.OnClickListener {
+public class CustomPauseView extends RelativeLayout implements View.OnClickListener {
 
-    private final String TAG = CustomPauseLayout.class.getSimpleName();
-
-    private Context context;
+    private final String TAG = CustomPauseView.class.getSimpleName();
 
     @Inject
     SharedPreferences prefs;
@@ -35,22 +32,16 @@ public class CustomPauseLayout extends RelativeLayout implements View.OnClickLis
     @InjectView(R.id.begin)
     Button beginBtn;
 
-    public CustomPauseLayout(Context context) {
+    public CustomPauseView(Context context) {
         super(context);
-
-        this.context = context;
     }
 
-    public CustomPauseLayout(Context context, AttributeSet attrs) {
+    public CustomPauseView(Context context, AttributeSet attrs) {
         super(context, attrs);
-
-        this.context = context;
     }
 
-    public CustomPauseLayout(Context context, AttributeSet attrs, int defStyle) {
+    public CustomPauseView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
-
-        this.context = context;
     }
 
 
