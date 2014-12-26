@@ -14,28 +14,34 @@ import com.pauselabs.pause.model.PauseConversation;
 
 import javax.inject.Inject;
 
+import butterknife.InjectView;
+import butterknife.Views;
+
 /**
  * Created by Passa on 12/25/14.
  */
-public class SummaryCard extends RelativeLayout {
+public class SummaryConversationCard extends RelativeLayout {
 
-    private TextView senderName;
-    private TextView messageText;
+    @InjectView(R.id.summaryMessageSender)
+    TextView senderName;
+    @InjectView(R.id.summaryMessageText)
+    TextView messageText;
+    @InjectView(R.id.convo_holder_view)
+    public LinearLayout convoHolderView;
 
     PauseConversation conversation;
 
     private boolean showingConvo = false;
-    public LinearLayout convoHolderView;
 
-    public SummaryCard(Context context) {
+    public SummaryConversationCard(Context context) {
         super(context);
     }
 
-    public SummaryCard(Context context, AttributeSet attrs) {
+    public SummaryConversationCard(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
 
-    public SummaryCard(Context context, AttributeSet attrs, int defStyle) {
+    public SummaryConversationCard(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
     }
 
@@ -44,10 +50,7 @@ public class SummaryCard extends RelativeLayout {
         super.onFinishInflate();
 
         Injector.inject(this);
-
-        senderName = (TextView) findViewById(R.id.summaryMessageSender);
-        messageText = (TextView) findViewById(R.id.summaryMessageText);
-        convoHolderView = (LinearLayout) findViewById(R.id.convo_holder_view);
+        Views.inject(this);
     }
 
     public void setConversation(PauseConversation conversation) {

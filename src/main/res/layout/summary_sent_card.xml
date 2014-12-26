@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+    <!-- Mirror of summary_received_card -->
+
+<com.pauselabs.pause.view.SummarySentCard
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="@dimen/padding">
+
+    <LinearLayout
+        android:layout_width="20dp"
+        android:layout_height="match_parent"/>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1">
+
+        <ImageView
+            android:id="@+id/respondReceipt"
+            android:layout_width="10dp"
+            android:layout_height="10dp"
+            android:layout_marginTop="15dp"
+            android:contentDescription="Read Reciept"
+            android:src="@drawable/summary_circle"/>
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="4"
+            android:layout_marginLeft="@dimen/listview_item_padding">
+
+            <TextView
+                android:id="@+id/messageText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Hey hows it going?"
+                android:textColor="@android:color/black"/>
+
+        </RelativeLayout>
+
+        <ImageView
+            android:id="@+id/messageType"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/summary_circle"/>
+
+    </LinearLayout>
+
+</com.pauselabs.pause.view.SummarySentCard>

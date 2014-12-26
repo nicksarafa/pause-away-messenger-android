@@ -11,7 +11,7 @@ import com.pauselabs.pause.model.PauseConversation;
 import com.pauselabs.pause.model.PauseSession;
 import com.pauselabs.pause.model.StringRandomizer;
 import com.pauselabs.pause.view.NoSessionView;
-import com.pauselabs.pause.view.SummaryCard;
+import com.pauselabs.pause.view.SummaryConversationCard;
 import com.pauselabs.pause.services.PauseApplicationService;
 import com.pauselabs.pause.services.PauseSessionService;
 import com.pauselabs.pause.activity.BlacklistActivity;
@@ -20,6 +20,8 @@ import com.pauselabs.pause.view.CustomPauseView;
 import com.pauselabs.pause.activity.HomeActivity;
 import com.pauselabs.pause.activity.OnBoardingActivity;
 import com.pauselabs.pause.view.SettingsView;
+import com.pauselabs.pause.view.SummaryReceivedCard;
+import com.pauselabs.pause.view.SummarySentCard;
 import com.pauselabs.pause.view.SummaryView;
 import com.pauselabs.pause.controller.SummaryViewController;
 import com.squareup.otto.Bus;
@@ -49,7 +51,9 @@ import dagger.Provides;
 
                 SummaryViewController.class,
                 SummaryView.class,
-                SummaryCard.class,
+                SummaryConversationCard.class,
+                SummarySentCard.class,
+                SummaryReceivedCard.class,
 
                 CustomPauseView.class,
 
@@ -67,7 +71,6 @@ import dagger.Provides;
                 StringRandomizer.class,
                 JsonReader.class,
                 PauseConversation.class
-
         }
 )
 public class PauseModule {

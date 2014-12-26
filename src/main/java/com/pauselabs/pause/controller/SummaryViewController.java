@@ -14,10 +14,13 @@ import android.widget.LinearLayout;
 import com.pauselabs.R;
 import com.pauselabs.pause.Injector;
 import com.pauselabs.pause.PauseApplication;
+import com.pauselabs.pause.model.Constants;
+import com.pauselabs.pause.view.SummaryReceivedCard;
+import com.pauselabs.pause.view.SummarySentCard;
 import com.pauselabs.pause.view.SummaryView;
 import com.pauselabs.pause.model.PauseConversation;
 import com.pauselabs.pause.model.PauseMessage;
-import com.pauselabs.pause.view.SummaryCard;
+import com.pauselabs.pause.view.SummaryConversationCard;
 
 import java.util.ArrayList;
 
@@ -30,7 +33,7 @@ public class SummaryViewController implements AdapterView.OnItemClickListener, R
 
     public SummaryView summaryView;
 
-    private ArrayAdapter<SummaryCard> summaryCardArrayAdapter;
+    private ArrayAdapter<SummaryConversationCard> summaryCardArrayAdapter;
 
     @Inject LayoutInflater inflater;
 
@@ -39,7 +42,7 @@ public class SummaryViewController implements AdapterView.OnItemClickListener, R
 
         summaryView = (SummaryView) inflater.inflate(R.layout.summary_view, null);
 
-        summaryCardArrayAdapter = new SummaryCardAdapter(summaryView.getContext(), R.layout.summary_card_view_conversation);
+        summaryCardArrayAdapter = new SummaryCardAdapter(summaryView.getContext(), R.layout.summary_conversation_card);
         summaryView.listView.setOnItemClickListener(this);
         summaryView.listView.setAdapter(summaryCardArrayAdapter);
     }
@@ -53,7 +56,7 @@ public class SummaryViewController implements AdapterView.OnItemClickListener, R
 
         summaryCardArrayAdapter.clear();
         for (PauseConversation convo : conversations) {
-            SummaryCard newCard = (SummaryCard) inflater.inflate(R.layout.summary_card_view_conversation, null);
+            SummaryConversationCard newCard = (SummaryConversationCard) inflater.inflate(R.layout.summary_conversation_card, null);
             newCard.setConversation(convo);
 
             summaryCardArrayAdapter.add(newCard);
@@ -62,27 +65,59 @@ public class SummaryViewController implements AdapterView.OnItemClickListener, R
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        SummaryCard summaryCard = (SummaryCard) view;
+        SummaryConversationCard summaryConversationCard = (SummaryConversationCard) view;
 
-        if (summaryCard.isShowingConvo()) {
-            summaryCard.convoHolderView.removeAllViews();
+        if (summaryConversationCard.isShowingConvo()) {
+            summaryConversationCard.convoHolderView.removeAllViews();
 
-            summaryCard.setShowingConvo(false);
+            summaryConversationCard.setShowingConvo(false);
         } else {
-            PauseConversation conversation = summaryCard.getConversation();
+            PauseConversation conversation = summaryConversationCard.getConversation();
             for (PauseMessage message : conversation.getMessages()) {
+                View messageCard = null;
+                if (message.getType() == Constants.Message.Type.SMS_INCOMING || message.getType() == Constants.Message.Type.PHONE_INCOMING) {
+                    SummaryReceivedCard receivedMessageCard = (SummaryReceivedCard) inflater.inflate(R.layout.summary_received_card, null);
+                    receivedMessageCard.setMessageText(message.getMessage());
+
+                    messageCard = receivedMessageCard;
+                } else if (message.getType() == Constants.Message.Type.SMS_PAUSE_OUTGOING || message.getType() == Constants.Message.Type.SMS_OUTGOING || message.getType() == Constants.Message.Type.PHONE_OUTGOING){
+                    SummarySentCard sentMessageCard = (SummarySentCard) inflater.inflate(R.layout.summary_sent_card, null);
+                    sentMessageCard.setMessageText(message.getMessage());
+
+                    messageCard = sentMessageCard;
+                }
+                switch (message.getType()) {
+                    case Constants.Message.Type.SMS_INCOMING:
+
+
+                        break;
+                    case Constants.Message.Type.SMS_OUTGOING:
+
+
+                        break;
+                    case Constants.Message.Type.SMS_PAUSE_OUTGOING:
+
+
+                        break;
+                    case Constants.Message.Type.PHONE_INCOMING:
+
+
+                        break;
+                    case Constants.Message.Type.PHONE_OUTGOING:
+
+
+                        break;
+                }
 
                 LinearLayout.LayoutParams params1 = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 200);
                 params1.bottomMargin = 10;
 
-                View newView = new View(summaryCard.getContext());
-                newView.setBackgroundColor(Color.BLACK);
-                newView.setLayoutParams(params1);
+                messageCard.setLayoutParams(params1);
 
-                summaryCard.convoHolderView.addView(newView);
+                summaryConversationCard.convoHolderView.addView(messageCard);
             }
 
-            summaryCard.setShowingConvo(true);
+            summaryConversationCard.setShowingConvo(true);
         }
 
     }
@@ -100,7 +135,7 @@ public class SummaryViewController implements AdapterView.OnItemClickListener, R
     /**
      * Created by Passa on 12/25/14.
      */
-    public static class SummaryCardAdapter extends ArrayAdapter<SummaryCard> {
+    public static class SummaryCardAdapter extends ArrayAdapter<SummaryConversationCard> {
 
         public SummaryCardAdapter(Context context, int resource) {
             super(context, resource);
@@ -108,10 +143,10 @@ public class SummaryViewController implements AdapterView.OnItemClickListener, R
 
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
-            SummaryCard summaryCard = getItem(position);
-            summaryCard.updateMessageText();
+            SummaryConversationCard summaryConversationCard = getItem(position);
+            summaryConversationCard.updateMessageText();
 
-            return summaryCard;
+            return summaryConversationCard;
         }
 
     }
