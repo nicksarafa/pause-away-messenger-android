@@ -20,7 +20,6 @@ import com.pauselabs.pause.Injector;
 import com.pauselabs.pause.PauseApplication;
 import com.pauselabs.pause.core.Constants;
 import com.pauselabs.pause.models.JsonReader;
-import com.pauselabs.pause.models.PauseConversation;
 import com.pauselabs.pause.util.UIUtils;
 import com.pauselabs.pause.views.HomeButton;
 import com.pauselabs.pause.views.HomeButtonSeparator;
@@ -32,7 +31,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -49,7 +47,7 @@ public class HomeActivity extends Activity implements View.OnClickListener {
     public static final String TAG = HomeActivity.class.getSimpleName();
 
     public SettingsLayout settingsLayout;
-    public SummaryLayout summaryLayout;
+    public SummaryViewController summaryViewController;
 
     LinearLayout mainContent;
 
@@ -128,7 +126,8 @@ public class HomeActivity extends Activity implements View.OnClickListener {
 
         LayoutInflater inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
         homeContentLayout = (RelativeLayout) inflater.inflate(R.layout.home_middle_layout, null);
-        summaryLayout = (SummaryLayout) inflater.inflate(R.layout.summary_layout, null);
+
+        summaryViewController = new SummaryViewController();
 
         updateView();
     }
@@ -137,7 +136,7 @@ public class HomeActivity extends Activity implements View.OnClickListener {
         mainContent.removeAllViews();
         if (PauseApplication.isActiveSession()) {
 
-            mainContent.addView(summaryLayout);
+            mainContent.addView(summaryViewController.summaryView);
         } else {
             mainContent.addView(homeContentLayout);
 
@@ -160,7 +159,7 @@ public class HomeActivity extends Activity implements View.OnClickListener {
     }
 
     private void updateSummary() {
-        summaryLayout.updateSummaryUI();
+        summaryViewController.updateSummaryUI();
     }
 
     private void updateNormal() {

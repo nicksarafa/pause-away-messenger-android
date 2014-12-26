@@ -8,6 +8,7 @@ import com.pauselabs.pause.models.JsonReader;
 import com.pauselabs.pause.models.PauseConversation;
 import com.pauselabs.pause.models.PauseSession;
 import com.pauselabs.pause.models.StringRandomizer;
+import com.pauselabs.pause.models.SummaryCard;
 import com.pauselabs.pause.services.PauseApplicationService;
 import com.pauselabs.pause.services.PauseSessionService;
 import com.pauselabs.pause.ui.BlacklistActivity;
@@ -16,6 +17,8 @@ import com.pauselabs.pause.ui.CustomPauseLayout;
 import com.pauselabs.pause.ui.HomeActivity;
 import com.pauselabs.pause.ui.OnBoardingActivity;
 import com.pauselabs.pause.ui.SettingsLayout;
+import com.pauselabs.pause.ui.SummaryView;
+import com.pauselabs.pause.ui.SummaryViewController;
 import com.squareup.otto.Bus;
 
 import javax.inject.Singleton;
@@ -46,7 +49,10 @@ import dagger.Provides;
                 SilenceListener.class,
                 PauseSmsListener.class,
                 CustomPauseLayout.class,
-                PauseConversation.class
+                PauseConversation.class,
+                SummaryViewController.class,
+                SummaryView.class,
+                SummaryCard.class
         }
 )
 public class PauseModule {

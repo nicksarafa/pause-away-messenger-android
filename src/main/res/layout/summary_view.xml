@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.pauselabs.pause.ui.SummaryLayout
+<com.pauselabs.pause.ui.SummaryView
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/home_summary"
     android:orientation="vertical"
@@ -10,7 +10,15 @@
         android:layout_width="fill_parent"
         android:layout_height="fill_parent">
 
+        <ListView
+            android:id="@+id/summary_card_list_view"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:listSelector="@android:color/transparent"
+            android:cacheColorHint="@android:color/transparent"/>
+
         <TextView
+            android:id="@+id/summary_no_messages"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
@@ -22,4 +30,4 @@
 
     </RelativeLayout>
 
-</com.pauselabs.pause.ui.SummaryLayout>
+</com.pauselabs.pause.ui.SummaryView>

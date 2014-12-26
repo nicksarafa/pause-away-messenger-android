@@ -33,7 +33,7 @@ public class SummaryButton extends RelativeLayout {
         super(context);
 
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        inflater.inflate(R.layout.summary_card_view_conversation_button, this, true);
+        inflater.inflate(R.layout.summary_card_view_conversation, this, true);
         nameLabel = (TextView) findViewById(R.id.messageSender);
         convoHolderView = (LinearLayout) findViewById(R.id.convo_holder_view);
     }

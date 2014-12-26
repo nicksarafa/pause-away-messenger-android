@@ -12,6 +12,7 @@ import android.preference.PreferenceManager;
 import android.speech.tts.TextToSpeech;
 import android.telephony.TelephonyManager;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.inputmethod.InputMethodManager;
 
 import java.util.Locale;
@@ -39,7 +40,7 @@ public class AndroidModule {
     }
 
     @Provides
-    AudioManager provideAudioManager() { return (AudioManager)getSystemService(PauseApplication.getInstance(),PauseApplication.AUDIO_SERVICE); }
+    AudioManager provideAudioManager() { return (AudioManager) PauseApplication.getInstance().getSystemService(PauseApplication.AUDIO_SERVICE); }
 
     @Provides
     PackageInfo providePackageInfo(Context context) {
@@ -51,13 +52,13 @@ public class AndroidModule {
     }
 
     @Provides
-    TelephonyManager provideTelephonyManager(Context context) {
-        return getSystemService(context, Context.TELEPHONY_SERVICE);
+    LayoutInflater provideInflator() {
+        return (LayoutInflater) PauseApplication.getInstance().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
-    @SuppressWarnings("unchecked")
-    public <T> T getSystemService(Context context, String serviceConstant) {
-        return (T) context.getSystemService(serviceConstant);
+    @Provides
+    TelephonyManager provideTelephonyManager(Context context) {
+        return (TelephonyManager) PauseApplication.getInstance().getSystemService(Context.TELEPHONY_SERVICE);
     }
 
     @Provides
