@@ -1,6 +1,7 @@
 package com.pauselabs.pause.activity;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.widget.LinearLayout;
@@ -34,6 +35,11 @@ public class HomeActivity extends Activity {
 
     @Inject
     LayoutInflater inflater;
+
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

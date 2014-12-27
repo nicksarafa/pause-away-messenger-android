@@ -65,7 +65,6 @@ public class SummaryConversationCard extends RelativeLayout {
     }
 
     public void updateMessageText() {
-        Log.i("SummaryCard",conversation.getLastMessageReceived().toString());
         if (messageText != null)
         messageText.setText(conversation.getLastMessageReceived().getMessage());
     }

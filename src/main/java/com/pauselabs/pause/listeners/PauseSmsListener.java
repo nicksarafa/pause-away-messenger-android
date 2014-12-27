@@ -43,6 +43,8 @@ public class PauseSmsListener extends ContentObserver {
         Cursor cursor = getNewSmsCursor();
         int newCount = cursor.getCount();
 
+        Log.i(TAG,"count: " + newCount);
+
         if (newCount > previousCount) {
             if (cursor.moveToFirst()) {
                 PauseMessage newMessage;
@@ -93,9 +95,10 @@ public class PauseSmsListener extends ContentObserver {
 
             PauseApplication.updateNotifications();
             PauseApplication.updateUI();
+
+            previousCount = newCount;
         }
 
-        previousCount = newCount;
         cursor.close();
     }
 

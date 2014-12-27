@@ -3,6 +3,7 @@ package com.pauselabs.pause;
 import android.app.AlertDialog;
 import android.app.Application;
 import android.app.Instrumentation;
+import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.ContentResolver;
@@ -117,44 +118,46 @@ public class PauseApplication extends Application {
     public void onCreate() {
         super.onCreate();
 
-        // Perform injection
-        Injector.init(getRootModule(), this);
+            if (instance == null) {
+                // Perform injection
+                Injector.init(getRootModule(), this);
 
-        instance = this;
+                instance = this;
 
-        if ( BuildConfig.USE_CRASHLYTICS ) {
-            Crashlytics.start(instance);
-        }
-
-        prefs = PreferenceManager.getDefaultSharedPreferences(instance);
-
-        // Register the bus so we can send notifcations
-//        eventBus.register(this);
-
-        notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
-
-        initImageLoader(getApplicationContext());
-
-        messageSender = new PauseMessageSender(instance);
-
-        startPauseApplicationService();
-
-        sr = SpeechRecognizer.createSpeechRecognizer(instance);
-
-        tts = new TextToSpeech(instance,new TextToSpeech.OnInitListener() {
-            @Override
-            public void onInit(int status) {
-                if (status != TextToSpeech.ERROR) {
-                    tts.setLanguage(Locale.getDefault());
-                    tts.setSpeechRate(0.9f);
-                    tts.setPitch(1.45f);
-
-                    // The app has not been opened yet. Play intro voice.
-                    if (!prefs.getBoolean(Constants.Pause.PAUSE_ALREADY_LAUNCHED_KEY, false))
-                        speak("Hello. I am your new personal assistant. What's your name?");
+                if ( BuildConfig.USE_CRASHLYTICS ) {
+                    Crashlytics.start(instance);
                 }
+
+                prefs = PreferenceManager.getDefaultSharedPreferences(instance);
+
+                // Register the bus so we can send notifcations
+                //        eventBus.register(this);
+
+                notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+
+                initImageLoader(getApplicationContext());
+
+                messageSender = new PauseMessageSender(instance);
+
+                startPauseApplicationService();
+
+                sr = SpeechRecognizer.createSpeechRecognizer(instance);
+
+                tts = new TextToSpeech(instance,new TextToSpeech.OnInitListener() {
+                    @Override
+                    public void onInit(int status) {
+                        if (status != TextToSpeech.ERROR) {
+                            tts.setLanguage(Locale.getDefault());
+                            tts.setSpeechRate(0.9f);
+                            tts.setPitch(1.45f);
+
+                            // The app has not been opened yet. Play intro voice.
+                            if (!prefs.getBoolean(Constants.Pause.PAUSE_ALREADY_LAUNCHED_KEY, false))
+                                speak("Hello. I am your new personal assistant. What's your name?");
+                        }
+                    }
+                });
             }
-        });
     }
 
     /**
@@ -197,8 +200,6 @@ public class PauseApplication extends Application {
 
             // Create new Pause Session
             currentPauseSession = new PauseSession(sessionCreator);
-
-            updateNotifications();
         }
     }
 
@@ -213,8 +214,6 @@ public class PauseApplication extends Application {
             // Delete Pause Session
             // TODO
             currentPauseSession.deactivateSession();
-
-            cancelNotifications();
         }
     }
 
@@ -264,18 +263,6 @@ public class PauseApplication extends Application {
 
     public static boolean isDriveModeAllowed() { return driveModeAllowed; }
     public static void setDriveModeAllowed(boolean isAllowed) { driveModeAllowed = isAllowed; }
-
-    public static void updateNotifications() {
-        updateMainNotification();
-//        updateChangeModeNotification();
-    }
-
-    private static void cancelNotifications() {
-        notificationManager.cancel(Constants.Notification.SESSION_NOTIFICATION_ID);
-//        notificationManager.cancel(Constants.Notification.CHANGE_MODE_NOTIFICATION_ID);
-    }
-
-
 
     public static void displayNameDialog(final SettingsButton nameBtn) {
         AlertDialog.Builder alert = new AlertDialog.Builder(homeActivity);
@@ -393,14 +380,24 @@ public class PauseApplication extends Application {
      *
      * @return a new {@link android.app.Notification}
      */
-    private static void updateMainNotification() {
+    public static void updateNotifications() {
+        notificationManager.notify(Constants.Notification.SESSION_NOTIFICATION_ID, updateMainNotification());
+//        updateChangeModeNotification();
+    }
+//
+//    private static void cancelNotifications() {
+//        notificationManager.cancel(Constants.Notification.SESSION_NOTIFICATION_ID);
+//        notificationManager.cancel(Constants.Notification.CHANGE_MODE_NOTIFICATION_ID);
+//    }
+
+    public static Notification updateMainNotification() {
         int num = getCurrentSession().getConversations().size();
         String message = (num > 0) ? num + ((num == 1) ? " person has" : " people have") + " contacted you." : "No one has contacted you";
 
         final Intent i = new Intent(instance, HomeActivity.class);
 
         // open activity intent
-        PendingIntent pendingIntent = PendingIntent.getActivity(instance, 0, i, 0);
+        PendingIntent pendingIntent = PendingIntent.getActivity(instance, 0, i, PendingIntent.FLAG_UPDATE_CURRENT);
 
         // stop session intent
         Intent stopPauseIntent = new Intent(instance, NotificationActionListener.class);
@@ -476,7 +473,7 @@ public class PauseApplication extends Application {
                 break;
         }
 
-        notificationManager.notify(Constants.Notification.SESSION_NOTIFICATION_ID,notBuilder.build());
+        return notBuilder.build();
     }
 
     private static void updateChangeModeNotification() {

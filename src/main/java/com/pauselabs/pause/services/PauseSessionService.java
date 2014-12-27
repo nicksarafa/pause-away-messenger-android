@@ -1,5 +1,6 @@
 package com.pauselabs.pause.services;
 
+import android.app.Notification;
 import android.app.Service;
 import android.content.Intent;
 import android.content.IntentFilter;
@@ -7,6 +8,7 @@ import android.content.SharedPreferences;
 import android.media.AudioManager;
 import android.net.Uri;
 import android.os.IBinder;
+import android.util.Log;
 
 import com.pauselabs.pause.Injector;
 import com.pauselabs.pause.PauseApplication;
@@ -41,7 +43,10 @@ public class PauseSessionService extends Service{
 
     @Override
     public void onDestroy() {
+        super.onDestroy();
+
         am.setRingerMode(PauseApplication.getOldRingerMode());
+        Log.i(TAG,"Destroyed");
 
         PauseApplication.updateUI();
 
@@ -68,10 +73,13 @@ public class PauseSessionService extends Service{
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
+        super.onStartCommand(intent,flags,startId);
+
         if (prefs.getBoolean(Constants.Settings.PAUSE_ON_VIBRATE_KEY,false))
             am.setRingerMode(AudioManager.RINGER_MODE_VIBRATE);
         else
             am.setRingerMode(AudioManager.RINGER_MODE_SILENT);
+        Log.i(TAG,"Started");
 
         PauseApplication.updateUI();
 
@@ -91,7 +99,10 @@ public class PauseSessionService extends Service{
         phoneStateFilter.addAction(Constants.Message.NEW_OUTGOING_CALL_INTENT);
         registerReceiver(callListener, phoneStateFilter);
 
-        return Service.START_NOT_STICKY; // Service will not be restarted if android kills it
+        Notification not = PauseApplication.updateMainNotification();
+        startForeground(Constants.Notification.SESSION_NOTIFICATION_ID, not);
+
+        return Service.START_STICKY; // Service will not be restarted if android kills it
     }
 
 
