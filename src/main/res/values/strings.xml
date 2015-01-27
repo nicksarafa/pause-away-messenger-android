@@ -109,8 +109,9 @@
     <string name="help_label">Help</string>
 
     <string name="settings_drawer_label">Settings</string>
-    <string name="title_section1">History</string>
-    <string name="title_section2">Home</string>
-    <string name="title_section3">Settings</string>
+    <string name="title_section1">Custom</string>
+    <string name="title_section2">Emoji</string>
+    <string name="title_section3">Recent</string>
+    <string name="title_section4">Settings</string>
 
 </resources>

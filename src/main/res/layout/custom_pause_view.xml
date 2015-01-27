@@ -6,23 +6,6 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent">
 
-    <!-- Custom Message Pull Down Title Icon -->
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/ob_btn_height"
-        android:layout_alignParentBottom="true"
-        android:orientation="vertical">
-
-        <ImageView
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:scaleType="centerCrop"
-            android:layout_centerVertical="true"
-            android:layout_centerHorizontal="true"
-            android:src="@drawable/ic_timer_selector_alt"/>
-
-    </RelativeLayout>
-
     <!-- Enter Message Screen -->
 
     <LinearLayout
@@ -57,16 +40,22 @@
                 android:inputType="textPersonName"
                 android:imeOptions="flagNoEnterAction"
                 android:layout_margin="@dimen/padding"
+                android:paddingLeft="@dimen/activity_horizontal_margin"
+                android:paddingRight="@dimen/activity_horizontal_margin"
                 android:hint="What's cookin, good lookin?"/>
 
-            <Button
-                android:id="@+id/begin"
-                android:layout_width="fill_parent"
-                android:layout_height="@dimen/ob_btn_height"
-                android:background="@color/holo_blue"
-                android:textColor="@color/text_white"
-                android:textSize="@dimen/ob_text_medium"
-                android:text="Begin"/>
+
+            <!-- Begin Button -->
+
+                <Button
+                    android:id="@+id/begin"
+                    android:layout_width="fill_parent"
+                    android:layout_height="@dimen/ob_btn_height"
+                    android:background="@color/holo_blue"
+                    android:textColor="@color/text_white"
+                    android:textSize="@dimen/ob_text_medium"
+                    android:layout_alignParentBottom="true"
+                    android:text="Begin"/>
 
         </RelativeLayout>
 

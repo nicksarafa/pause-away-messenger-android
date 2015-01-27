@@ -1,5 +1,6 @@
 package com.pauselabs.pause.controller;
 
+import android.app.Activity;
 import android.content.SharedPreferences;
 import android.media.AudioManager;
 import android.view.LayoutInflater;
@@ -13,7 +14,7 @@ import android.widget.TextView;
 import com.pauselabs.R;
 import com.pauselabs.pause.Injector;
 import com.pauselabs.pause.PauseApplication;
-import com.pauselabs.pause.activity.HomeActivity;
+import com.pauselabs.pause.activity.MainActivity;
 import com.pauselabs.pause.model.Constants;
 import com.pauselabs.pause.model.JsonReader;
 import com.pauselabs.pause.view.HomeButton;
@@ -166,11 +167,11 @@ public class NoSessionViewController implements View.OnClickListener {
 
                 break;
             case Constants.Settings.ACTION_CHANGE_NAME:
-                PauseApplication.displayNameDialog(HomeActivity.settingsViewController.settingsView.nameBtn);
+                PauseApplication.displayNameDialog(MainActivity.settingsViewController.settingsView.nameBtn);
 
                 break;
             case Constants.Settings.ACTION_CHANGE_GENDER:
-                PauseApplication.displayGenderDialog(HomeActivity.settingsViewController.settingsView.genderBtn);
+                PauseApplication.displayGenderDialog(MainActivity.settingsViewController.settingsView.genderBtn);
 
                 break;
         }

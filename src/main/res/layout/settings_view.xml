@@ -7,25 +7,6 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent">
 
-    <!-- Settings Pull Up Menu Title -->
-    <RelativeLayout
-        android:id="@+id/sliding_bottom_title"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/ob_btn_height"
-        android:layout_alignParentTop="true"
-        android:layout_above="@+id/sliding_bottom_title"
-        android:orientation="vertical">
-
-        <ImageView
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:scaleType="centerCrop"
-            android:layout_centerVertical="true"
-            android:layout_centerHorizontal="true"
-            android:src="@drawable/ic_action_settings_gear"/>
-
-    </RelativeLayout>
-
     <!-- Custom Scroll View -->
 
     <LinearLayout

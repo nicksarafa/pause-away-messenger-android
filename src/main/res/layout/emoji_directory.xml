@@ -6,9 +6,10 @@
     android:layout_width="fill_parent">
 
     <GridView
-        android:id="@+id/asciiDirectoryGrid"
+        android:id="@+id/emojiDirectory"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
+        android:background="@drawable/card_background"
         android:numColumns="3"
         android:verticalSpacing="10dp"
         android:horizontalSpacing="10dp"

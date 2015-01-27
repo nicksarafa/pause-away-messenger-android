@@ -38,15 +38,15 @@ import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.nostra13.universalimageloader.core.assist.QueueProcessingType;
 import com.pauselabs.BuildConfig;
 import com.pauselabs.R;
-import com.pauselabs.pause.model.Constants;
+import com.pauselabs.pause.activity.MainActivity;
 import com.pauselabs.pause.core.PauseMessageSender;
 import com.pauselabs.pause.listeners.NotificationActionListener;
+import com.pauselabs.pause.model.Constants;
 import com.pauselabs.pause.model.PauseConversation;
 import com.pauselabs.pause.model.PauseMessage;
 import com.pauselabs.pause.model.PauseSession;
 import com.pauselabs.pause.services.PauseApplicationService;
 import com.pauselabs.pause.services.PauseSessionService;
-import com.pauselabs.pause.activity.HomeActivity;
 import com.pauselabs.pause.view.SettingsButton;
 import com.squareup.otto.Bus;
 
@@ -61,7 +61,7 @@ import javax.inject.Inject;
 public class PauseApplication extends Application {
 
     private static PauseApplication instance;
-    public static HomeActivity homeActivity;
+    public static MainActivity mainActivity;
 
     private static final String TAG = PauseApplication.class.getSimpleName();
     public static HashMap<TrackerName, Tracker> mTrackers = new HashMap<TrackerName, Tracker>();
@@ -265,13 +265,13 @@ public class PauseApplication extends Application {
     public static void setDriveModeAllowed(boolean isAllowed) { driveModeAllowed = isAllowed; }
 
     public static void displayNameDialog(final SettingsButton nameBtn) {
-        AlertDialog.Builder alert = new AlertDialog.Builder(homeActivity);
+        AlertDialog.Builder alert = new AlertDialog.Builder(mainActivity);
 
         alert.setTitle("Enter your name");
         alert.setMessage("Bounce back messages will include this");
 
         // Set an EditText view to get user input
-        final EditText input = new EditText(homeActivity);
+        final EditText input = new EditText(mainActivity);
         String existingName = prefs.getString(Constants.Settings.NAME_KEY, "");
         if(!existingName.equals("")){
             input.setText(existingName);
@@ -306,7 +306,7 @@ public class PauseApplication extends Application {
     }
 
     public static void displayMissedCallsDialog(final SettingsButton missedCallsBtn) {
-        AlertDialog.Builder alert = new AlertDialog.Builder(homeActivity);
+        AlertDialog.Builder alert = new AlertDialog.Builder(mainActivity);
 
         alert.setTitle("Reply to missed calls");
         alert.setItems(R.array.reply_setting_options, new DialogInterface.OnClickListener() {
@@ -323,7 +323,7 @@ public class PauseApplication extends Application {
     }
 
     public static void displaySMSReplyDialog(final SettingsButton receivedSmsBtn) {
-        AlertDialog.Builder alert = new AlertDialog.Builder(homeActivity);
+        AlertDialog.Builder alert = new AlertDialog.Builder(mainActivity);
 
         alert.setTitle("Reply to SMS messages");
         alert.setItems(R.array.reply_setting_options, new DialogInterface.OnClickListener() {
@@ -394,7 +394,7 @@ public class PauseApplication extends Application {
         int num = getCurrentSession().getConversations().size();
         String message = (num > 0) ? num + ((num == 1) ? " person has" : " people have") + " contacted you." : "No one has contacted you";
 
-        final Intent i = new Intent(instance, HomeActivity.class);
+        final Intent i = new Intent(instance, MainActivity.class);
 
         // open activity intent
         PendingIntent pendingIntent = PendingIntent.getActivity(instance, 0, i, PendingIntent.FLAG_UPDATE_CURRENT);
@@ -594,11 +594,11 @@ public class PauseApplication extends Application {
     }
 
     public static void updateUI() {
-        if (homeActivity != null) {
-            homeActivity.runOnUiThread(new Runnable() {
+        if (mainActivity != null) {
+            mainActivity.runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
-                    PauseApplication.homeActivity.updateView();
+                    PauseApplication.mainActivity.updateView();
                 }
             });
         }

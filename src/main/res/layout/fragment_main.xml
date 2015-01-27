@@ -10,7 +10,7 @@
     tools:context="com.example.demo.MainActivity$PlaceholderFragment" >
 
     <include layout="@layout/custom_pause_view"/>
-    <include layout="@layout/home_view"/>
+    <include layout="@layout/main_view"/>
 
 
 

@@ -15,11 +15,21 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.pauselabs.R;
+import com.pauselabs.pause.Injector;
+import com.pauselabs.pause.PauseApplication;
+import com.pauselabs.pause.controller.NoSessionViewController;
+import com.pauselabs.pause.controller.SettingsViewController;
+import com.pauselabs.pause.controller.SummaryViewController;
+import com.pauselabs.pause.util.UIUtils;
 import com.pauselabs.pause.view.TabBarView;
 
 import java.util.Locale;
 
+import javax.inject.Inject;
+
 public class MainActivity extends Activity {
+
+    public static final String TAG = MainActivity.class.getSimpleName();
 
     private TabBarView tabBarView;
     /**
@@ -36,13 +46,29 @@ public class MainActivity extends Activity {
      */
     ViewPager mViewPager;
 
+    public static NoSessionViewController noSessionViewController;
+    public static SummaryViewController summaryViewController;
+    public static SettingsViewController settingsViewController;
+
+    @Inject
+    LayoutInflater inflator;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.home_view);
+        setContentView(R.layout.main_view);
 
-        LayoutInflater inflator =
-                (LayoutInflater) this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        Injector.inject(this);
+
+        noSessionViewController = new NoSessionViewController();
+        summaryViewController = new SummaryViewController();
+        settingsViewController = new SettingsViewController();
+
+        PauseApplication.mainActivity = this;
+
+        updateView();
+
+        LayoutInflater inflator = (LayoutInflater) this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
         View v = inflator.inflate(R.layout.custom_ab, null);
         tabBarView = (TabBarView) v.findViewById(R.id.tab_bar);
@@ -58,6 +84,10 @@ public class MainActivity extends Activity {
         mViewPager.setAdapter(mSectionsPagerAdapter);
 
         tabBarView.setViewPager(mViewPager);
+    }
+
+    private boolean isTablet() {
+        return UIUtils.isTablet(this);
     }
 
     @Override
@@ -86,9 +116,11 @@ public class MainActivity extends Activity {
      */
     public class SectionsPagerAdapter extends FragmentPagerAdapter implements TabBarView.IconTabProvider {
 
-        private int[] tab_icons = {R.drawable.ic_action_search,
+        private int[] tab_icons = {
+                R.drawable.ic_sms_icon,
+                R.drawable.ic_action_wake,
                 R.drawable.ic_launcher,
-                R.drawable.ic_action_settings_gear,
+                R.drawable.ic_action_settings_gear
         };
 
 
@@ -106,7 +138,6 @@ public class MainActivity extends Activity {
 
         @Override
         public int getCount() {
-            // Show 3 total pages.
             return tab_icons.length;
         }
 
@@ -125,6 +156,8 @@ public class MainActivity extends Activity {
                     return getString(R.string.title_section2).toUpperCase(l);
                 case 2:
                     return getString(R.string.title_section3).toUpperCase(l);
+                case 3:
+                    return getString(R.string.title_section4).toUpperCase();
             }
             return null;
         }
@@ -164,17 +197,31 @@ public class MainActivity extends Activity {
 
                     break;
                 case 2:
-                    rootView = inflater.inflate(R.layout.home_view, container, false);
+                    rootView = inflater.inflate(R.layout.emoji_directory, container, false);
 
                     break;
                 case 3:
-                    rootView = inflater.inflate(R.layout.settings_view, container, false);
+                    rootView = inflater.inflate(R.layout.main_view, container, false);
 
                     break;
+                case 4:
+                    rootView = inflater.inflate(R.layout.settings_view, container, false);
             }
 
             return rootView;
         }
     }
 
+    public void updateView() {
+        if (PauseApplication.isActiveSession()) {
+            summaryViewController.updateUI();
+        } else {
+            noSessionViewController.updateUI();
+        }
+    }
 }
+
+
+
+
+
