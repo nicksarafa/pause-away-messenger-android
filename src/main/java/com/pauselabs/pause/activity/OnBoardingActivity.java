@@ -65,7 +65,7 @@ public class OnBoardingActivity extends Activity implements View.OnClickListener
     }
 
     private void startApp() {
-        startActivity(new Intent(this, HomeActivity.class));
+        startActivity(new Intent(this, MainActivity.class));
     }
 
     @Override

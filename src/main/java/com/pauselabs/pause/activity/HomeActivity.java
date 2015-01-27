@@ -3,17 +3,17 @@ package com.pauselabs.pause.activity;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.widget.LinearLayout;
 
-import com.pauselabs.R;
 import com.pauselabs.pause.Injector;
 import com.pauselabs.pause.PauseApplication;
 import com.pauselabs.pause.controller.NoSessionViewController;
 import com.pauselabs.pause.controller.SettingsViewController;
 import com.pauselabs.pause.controller.SummaryViewController;
 import com.pauselabs.pause.util.UIUtils;
-import com.sothree.slidinguppanel.SlidingUpPanelLayout;
+import com.pauselabs.pause.view.TabBarView;
 
 import javax.inject.Inject;
 
@@ -28,8 +28,10 @@ public class HomeActivity extends Activity {
     public static NoSessionViewController noSessionViewController;
     public static SummaryViewController summaryViewController;
     public static SettingsViewController settingsViewController;
+    private TabBarView tabBarView;
 
-    SlidingUpPanelLayout homeView;
+   // SectionsPagerAdapter mSectionsPagerAdapter;
+    ViewPager viewPager;
     LinearLayout homeContent;
     LinearLayout settingsHolder;
 
@@ -51,13 +53,8 @@ public class HomeActivity extends Activity {
         summaryViewController = new SummaryViewController();
         settingsViewController = new SettingsViewController();
 
-        homeView = (SlidingUpPanelLayout) inflater.inflate(R.layout.home_view, null);
-        setContentView(homeView);
-
         PauseApplication.homeActivity = this;
 
-        homeContent = (LinearLayout) homeView.findViewById(R.id.home_content);
-        settingsHolder = (LinearLayout) homeView.findViewById(R.id.settings_holder);
         settingsHolder.addView(settingsViewController.settingsView);
 
         updateView();
