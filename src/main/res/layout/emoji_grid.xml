@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="fill_parent"
+    android:layout_width="fill_parent"
+    android:orientation="vertical">
+
+    <GridView
+        android:id="@+id/saveGrid"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:numColumns="3"
+        android:verticalSpacing="30dp"
+        android:horizontalSpacing="30dp"
+        android:layout_margin="@dimen/activity_horizontal_margin"
+        android:scrollbarStyle="outsideOverlay"
+        android:verticalScrollbarPosition="right"
+        android:scrollbars="vertical"
+        android:textAlignment="center">
+    </GridView>
+
+    <Button
+        android:id="@+id/add_ice_button"
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/ob_btn_height"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="@dimen/padding"
+        android:background="@color/pause_green"
+        android:textColor="@color/text_white"
+        android:textSize="@dimen/ob_text_medium"
+        android:text="See More"/>
+
+</RelativeLayout>
+
+
