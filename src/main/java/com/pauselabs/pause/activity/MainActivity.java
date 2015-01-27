@@ -4,10 +4,11 @@ import android.app.ActionBar;
 import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
-import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v13.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -17,7 +18,8 @@ import android.view.ViewGroup;
 import com.pauselabs.R;
 import com.pauselabs.pause.Injector;
 import com.pauselabs.pause.PauseApplication;
-import com.pauselabs.pause.controller.NoSessionViewController;
+import com.pauselabs.pause.controller.CustomPauseViewController;
+import com.pauselabs.pause.controller.EmojiDirectoryViewController;
 import com.pauselabs.pause.controller.SettingsViewController;
 import com.pauselabs.pause.controller.SummaryViewController;
 import com.pauselabs.pause.util.UIUtils;
@@ -27,28 +29,24 @@ import java.util.Locale;
 
 import javax.inject.Inject;
 
+import static android.app.ActionBar.DISPLAY_SHOW_CUSTOM;
+
 public class MainActivity extends Activity {
 
     public static final String TAG = MainActivity.class.getSimpleName();
 
     private TabBarView tabBarView;
-    /**
-     * The {@link android.support.v4.view.PagerAdapter} that will provide
-     * fragments for each of the sections. We use a {@link android.support.v13.app.FragmentPagerAdapter}
-     * derivative, which will keep every loaded fragment in memory. If this
-     * becomes too memory intensive, it may be best to switch to a
-     * {@link android.support.v13.app.FragmentStatePagerAdapter}.
-     */
-    SectionsPagerAdapter mSectionsPagerAdapter;
 
     /**
      * The {@link android.support.v4.view.ViewPager} that will host the section contents.
      */
-    ViewPager mViewPager;
+    public ViewPager mViewPager;
+    public int pageIndex;
 
-    public static NoSessionViewController noSessionViewController;
-    public static SummaryViewController summaryViewController;
+    public static CustomPauseViewController customPauseViewController;
+    public static EmojiDirectoryViewController emojiDirectoryViewController;
     public static SettingsViewController settingsViewController;
+    public static SummaryViewController summaryViewController;
 
     @Inject
     LayoutInflater inflator;
@@ -58,32 +56,58 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_view);
 
-        Injector.inject(this);
-
-        noSessionViewController = new NoSessionViewController();
-        summaryViewController = new SummaryViewController();
-        settingsViewController = new SettingsViewController();
-
         PauseApplication.mainActivity = this;
 
-        updateView();
+        Injector.inject(this);
 
-        LayoutInflater inflator = (LayoutInflater) this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        customPauseViewController = new CustomPauseViewController();
+        emojiDirectoryViewController = new EmojiDirectoryViewController();
+        settingsViewController = new SettingsViewController();
+        summaryViewController = new SummaryViewController();
 
-        View v = inflator.inflate(R.layout.custom_ab, null);
-        tabBarView = (TabBarView) v.findViewById(R.id.tab_bar);
+        tabBarView = (TabBarView) inflator.inflate(R.layout.custom_ab, null);
 
-        getActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
-        getActionBar().setCustomView(v);
-        // Create the adapter that will return a fragment for each of the three
-        // primary sections of the activity.
-        mSectionsPagerAdapter = new SectionsPagerAdapter(getFragmentManager());
+        getActionBar().setDisplayOptions(DISPLAY_SHOW_CUSTOM);
+        getActionBar().setCustomView(tabBarView);
 
         // Set up the ViewPager with the sections adapter.
         mViewPager = (ViewPager) findViewById(R.id.pager);
-        mViewPager.setAdapter(mSectionsPagerAdapter);
+        mViewPager.setAdapter(new SectionsPagerAdapter(getFragmentManager()));
 
         tabBarView.setViewPager(mViewPager);
+        tabBarView.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+                pageIndex = position;
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                pageIndex = position;
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        int intentIndex = getIntent().getIntExtra("SET_EDIT_ITEM", -1);
+        if (intentIndex != -1) {
+            Intent it = new Intent(Intent.ACTION_CLOSE_SYSTEM_DIALOGS);
+            sendBroadcast(it);
+
+            mViewPager.setCurrentItem(intentIndex);
+        } else
+        if (PauseApplication.isActiveSession())
+            mViewPager.setCurrentItem(3);
+        else
+            mViewPager.setCurrentItem(pageIndex);
     }
 
     private boolean isTablet() {
@@ -110,6 +134,19 @@ public class MainActivity extends Activity {
         return super.onOptionsItemSelected(item);
     }
 
+    public void updateView() {
+        summaryViewController.updateUI();
+
+        if(PauseApplication.isActiveSession()) {
+            mViewPager.setCurrentItem(3,true);
+        }
+    }
+
+
+    /******************************************************/
+    /**                   Fragment BS                     */
+    /******************************************************/
+
     /**
      * A {@link android.support.v13.app.FragmentPagerAdapter} that returns a fragment corresponding to
      * one of the sections/tabs/pages.
@@ -119,8 +156,8 @@ public class MainActivity extends Activity {
         private int[] tab_icons = {
                 R.drawable.ic_sms_icon,
                 R.drawable.ic_action_wake,
-                R.drawable.ic_launcher,
-                R.drawable.ic_action_settings_gear
+                R.drawable.ic_action_settings_gear,
+                R.drawable.ic_action_search
         };
 
 
@@ -157,7 +194,7 @@ public class MainActivity extends Activity {
                 case 2:
                     return getString(R.string.title_section3).toUpperCase(l);
                 case 3:
-                    return getString(R.string.title_section4).toUpperCase();
+                    return getString(R.string.title_section4).toUpperCase(l);
             }
             return null;
         }
@@ -181,6 +218,7 @@ public class MainActivity extends Activity {
             Bundle args = new Bundle();
             args.putInt(ARG_SECTION_NUMBER, sectionNumber);
             fragment.setArguments(args);
+
             return fragment;
         }
 
@@ -193,30 +231,24 @@ public class MainActivity extends Activity {
 
             switch (getArguments().getInt(ARG_SECTION_NUMBER)) {
                 case 1:
-                    rootView = inflater.inflate(R.layout.custom_pause_view, container, false);
+                    rootView = customPauseViewController.customPauseView;
 
                     break;
                 case 2:
-                    rootView = inflater.inflate(R.layout.emoji_directory, container, false);
+                    rootView = emojiDirectoryViewController.emojiDirectoryView;
 
                     break;
                 case 3:
-                    rootView = inflater.inflate(R.layout.main_view, container, false);
+                    rootView = settingsViewController.settingsView;
 
                     break;
                 case 4:
-                    rootView = inflater.inflate(R.layout.settings_view, container, false);
+                    rootView = summaryViewController.summaryView;
+
+                    break;
             }
 
             return rootView;
-        }
-    }
-
-    public void updateView() {
-        if (PauseApplication.isActiveSession()) {
-            summaryViewController.updateUI();
-        } else {
-            noSessionViewController.updateUI();
         }
     }
 }

@@ -264,117 +264,6 @@ public class PauseApplication extends Application {
     public static boolean isDriveModeAllowed() { return driveModeAllowed; }
     public static void setDriveModeAllowed(boolean isAllowed) { driveModeAllowed = isAllowed; }
 
-    public static void displayNameDialog(final SettingsButton nameBtn) {
-        AlertDialog.Builder alert = new AlertDialog.Builder(mainActivity);
-
-        alert.setTitle("Enter your name");
-        alert.setMessage("Bounce back messages will include this");
-
-        // Set an EditText view to get user input
-        final EditText input = new EditText(mainActivity);
-        String existingName = prefs.getString(Constants.Settings.NAME_KEY, "");
-        if(!existingName.equals("")){
-            input.setText(existingName);
-            input.setSelection(input.getText().length());
-        }
-
-        alert.setView(input);
-
-        alert.setPositiveButton("Save", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int whichButton) {
-                String value = input.getText().toString();
-                prefs.edit().putString(Constants.Settings.NAME_KEY, value).apply();
-                nameBtn.setContent(value);
-            }
-        });
-
-        alert.setNegativeButton("Cancel", null);
-
-        alert.show();
-    }
-
-    public static void displayGenderDialog(SettingsButton genderBtn) {
-        boolean isMale = prefs.getBoolean(Constants.Settings.IS_MALE, false);
-
-        if (isMale) {
-            prefs.edit().putBoolean(Constants.Settings.IS_MALE, !isMale).apply();
-            genderBtn.setContent("Female");
-        } else {
-            prefs.edit().putBoolean(Constants.Settings.IS_MALE, !isMale).apply();
-            genderBtn.setContent("Male");
-        }
-    }
-
-    public static void displayMissedCallsDialog(final SettingsButton missedCallsBtn) {
-        AlertDialog.Builder alert = new AlertDialog.Builder(mainActivity);
-
-        alert.setTitle("Reply to missed calls");
-        alert.setItems(R.array.reply_setting_options, new DialogInterface.OnClickListener() {
-
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                String[] options = instance.getResources().getStringArray(R.array.reply_setting_options);
-                prefs.edit().putString(Constants.Settings.REPLY_MISSED_CALL, options[which]).apply();
-                missedCallsBtn.setContent(options[which]);
-            }
-        });
-
-        alert.show();
-    }
-
-    public static void displaySMSReplyDialog(final SettingsButton receivedSmsBtn) {
-        AlertDialog.Builder alert = new AlertDialog.Builder(mainActivity);
-
-        alert.setTitle("Reply to SMS messages");
-        alert.setItems(R.array.reply_setting_options, new DialogInterface.OnClickListener() {
-
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                String[] options = instance.getResources().getStringArray(R.array.reply_setting_options);
-                prefs.edit().putString(Constants.Settings.REPLY_SMS, options[which]).apply();
-                receivedSmsBtn.setContent(options[which]);
-            }
-        });
-
-        alert.show();
-    }
-
-    public static void displayVibrateDialog(SettingsButton volumeBtn) {
-        boolean pauseOnVibrate = prefs.getBoolean(Constants.Settings.PAUSE_ON_VIBRATE_KEY,false);
-
-        if (pauseOnVibrate) {
-            prefs.edit().putBoolean(Constants.Settings.PAUSE_ON_VIBRATE_KEY, !pauseOnVibrate).apply();
-            volumeBtn.setContent("No");
-        } else {
-            prefs.edit().putBoolean(Constants.Settings.PAUSE_ON_VIBRATE_KEY, !pauseOnVibrate).apply();
-            volumeBtn.setContent("Yes");
-        }
-    }
-
-    public static void displayVoiceDialog(SettingsButton voiceBtn) {
-        boolean pauseVoiceFeedback = prefs.getBoolean(Constants.Settings.PAUSE_VOICE_FEEDBACK_KEY,false);
-
-        if (pauseVoiceFeedback) {
-            prefs.edit().putBoolean(Constants.Settings.PAUSE_VOICE_FEEDBACK_KEY, !pauseVoiceFeedback).apply();
-            voiceBtn.setContent("Off");
-        } else {
-            prefs.edit().putBoolean(Constants.Settings.PAUSE_VOICE_FEEDBACK_KEY, !pauseVoiceFeedback).apply();
-            voiceBtn.setContent("On");
-        }
-    }
-
-    public static void displayToastsDialog(SettingsButton toastsBtn) {
-        boolean pauseToastsOn= prefs.getBoolean(Constants.Settings.PAUSE_TOASTS_ON_KEY,true);
-
-        if (pauseToastsOn) {
-            prefs.edit().putBoolean(Constants.Settings.PAUSE_TOASTS_ON_KEY, !pauseToastsOn).apply();
-            toastsBtn.setContent("Off");
-        } else {
-            prefs.edit().putBoolean(Constants.Settings.PAUSE_TOASTS_ON_KEY, !pauseToastsOn).apply();
-            toastsBtn.setContent("On");
-        }
-    }
-
     /**
      * Creates a notification to show in the notification bar
      *
@@ -399,6 +288,11 @@ public class PauseApplication extends Application {
         // open activity intent
         PendingIntent pendingIntent = PendingIntent.getActivity(instance, 0, i, PendingIntent.FLAG_UPDATE_CURRENT);
 
+        // edit session intent
+        Intent editPauseIntent = new Intent(instance, NotificationActionListener.class);
+        editPauseIntent.putExtra(Constants.Notification.PAUSE_NOTIFICATION_INTENT, Constants.Notification.EDIT_PAUSE_SESSION);
+        PendingIntent editPausePendingIntent = PendingIntent.getBroadcast(instance, new Random().nextInt(), editPauseIntent, PendingIntent.FLAG_CANCEL_CURRENT);
+
         // stop session intent
         Intent stopPauseIntent = new Intent(instance, NotificationActionListener.class);
         stopPauseIntent.putExtra(Constants.Notification.PAUSE_NOTIFICATION_INTENT, Constants.Notification.STOP_PAUSE_SESSION);
@@ -414,12 +308,17 @@ public class PauseApplication extends Application {
         notDriverPauseIntent.putExtra(Constants.Notification.PAUSE_NOTIFICATION_INTENT, Constants.Notification.NOT_DRIVER);
         PendingIntent notDriverPausePendingIntent = PendingIntent.getBroadcast(instance, new Random().nextInt(), notDriverPauseIntent, PendingIntent.FLAG_CANCEL_CURRENT);
 
-        // silence intent
+        // cusomt intent
+        Intent customPauseIntent = new Intent(instance, NotificationActionListener.class);
+        customPauseIntent.putExtra(Constants.Notification.PAUSE_NOTIFICATION_INTENT, Constants.Notification.MODE_CUSTOM);
+        PendingIntent customPausePendingIntent = PendingIntent.getBroadcast(instance, new Random().nextInt(), customPauseIntent, PendingIntent.FLAG_CANCEL_CURRENT);
+
+        // sleep intent
         Intent sleepPauseIntent = new Intent(instance, NotificationActionListener.class);
         sleepPauseIntent.putExtra(Constants.Notification.PAUSE_NOTIFICATION_INTENT, Constants.Notification.MODE_SLEEP);
         PendingIntent sleepPausePendingIntent = PendingIntent.getBroadcast(instance, new Random().nextInt(), sleepPauseIntent, PendingIntent.FLAG_CANCEL_CURRENT);
 
-        // silence intent
+        // drive intent
         Intent drivePauseIntent = new Intent(instance, NotificationActionListener.class);
         drivePauseIntent.putExtra(Constants.Notification.PAUSE_NOTIFICATION_INTENT, Constants.Notification.MODE_DRIVE);
         PendingIntent drivePausePendingIntent = PendingIntent.getBroadcast(instance, new Random().nextInt(), drivePauseIntent, PendingIntent.FLAG_CANCEL_CURRENT);
@@ -445,6 +344,15 @@ public class PauseApplication extends Application {
                 .setPriority(NotificationCompat.PRIORITY_MAX);
 
         switch (getCurrentSession().getCreator()) {
+            case Constants.Session.Creator.CUSTOM:
+                notBuilder
+                        .setContentTitle(instance.getString(R.string.app_name) + " " + instance.getString(R.string.pause_session_running_custom))
+                        .addAction(R.drawable.ic_stat_notificaiton_end, "End", stopPausePendingIntent)
+                        .addAction(R.drawable.ic_stat_notificaiton_end, "Edit", editPausePendingIntent);
+//                        .addAction(R.drawable.ic_action_sleep, "Sleep", sleepPausePendingIntent);
+
+
+                break;
             case Constants.Session.Creator.SILENCE:
                 notBuilder
                         .setContentTitle(instance.getString(R.string.app_name) + " " + instance.getString(R.string.pause_session_running_silence))

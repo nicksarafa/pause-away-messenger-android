@@ -20,7 +20,7 @@ import butterknife.Views;
 /**
  * Created by Passa on 12/23/14.
  */
-public class CustomPauseView extends RelativeLayout implements View.OnClickListener {
+public class CustomPauseView extends RelativeLayout {
 
     private final String TAG = CustomPauseView.class.getSimpleName();
 
@@ -28,9 +28,9 @@ public class CustomPauseView extends RelativeLayout implements View.OnClickListe
     SharedPreferences prefs;
 
     @InjectView(R.id.custom_text)
-    TextView customTxtView;
+    public TextView customTxtView;
     @InjectView(R.id.begin)
-    Button beginBtn;
+    public Button beginBtn;
 
     public CustomPauseView(Context context) {
         super(context);
@@ -44,24 +44,11 @@ public class CustomPauseView extends RelativeLayout implements View.OnClickListe
         super(context, attrs, defStyle);
     }
 
-
     @Override
     protected void onFinishInflate() {
         super.onFinishInflate();
 
         Views.inject(this);
         Injector.inject(this);
-
-        String customMessage = prefs.getString(Constants.Pause.CUSTOM_PAUSE_MESSAGE_KEY, "");
-        customTxtView.setText(customMessage);
-
-        beginBtn.setOnClickListener(this);
-    }
-
-    @Override
-    public void onClick(View v) {
-        if (v.getId() == R.id.begin && !customTxtView.getText().equals("")) {
-            prefs.edit().putString(Constants.Pause.CUSTOM_PAUSE_MESSAGE_KEY, customTxtView.getText().toString()).apply();
-        }
     }
 }

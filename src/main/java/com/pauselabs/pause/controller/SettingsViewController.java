@@ -1,17 +1,21 @@
 package com.pauselabs.pause.controller;
 
+import android.app.AlertDialog;
 import android.content.ActivityNotFoundException;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.EditText;
 
 import com.pauselabs.R;
 import com.pauselabs.pause.Injector;
 import com.pauselabs.pause.PauseApplication;
 import com.pauselabs.pause.activity.BlacklistActivity;
 import com.pauselabs.pause.model.Constants;
+import com.pauselabs.pause.view.SettingsButton;
 import com.pauselabs.pause.view.SettingsView;
 
 import java.util.HashSet;
@@ -73,25 +77,25 @@ public class SettingsViewController implements View.OnClickListener {
     public void onClick(View view) {
         switch(view.getId()){
             case R.id.nameBtn:
-                PauseApplication.displayNameDialog(settingsView.nameBtn);
+                displayNameDialog();
                 break;
             case R.id.genderBtn:
-                PauseApplication.displayGenderDialog(settingsView.genderBtn);
+                displayGenderDialog();
                 break;
             case R.id.missedCallsBtn:
-                PauseApplication.displayMissedCallsDialog(settingsView.missedCallsBtn);
+                displayMissedCallsDialog();
                 break;
             case R.id.receivedSMSBtn:
-                PauseApplication.displaySMSReplyDialog(settingsView.receivedSmsBtn);
+                displaySMSReplyDialog();
                 break;
             case R.id.volumeBtn:
-                PauseApplication.displayVibrateDialog(settingsView.volumeBtn);
+                displayVibrateDialog();
                 break;
             case R.id.voiceBtn:
-                PauseApplication.displayVoiceDialog(settingsView.voiceBtn);
+                displayVoiceDialog();
                 break;
             case R.id.toastsBtn:
-                PauseApplication.displayToastsDialog(settingsView.toastBtn);
+                displayToastsDialog();
                 break;
             case R.id.blacklistBtn:
                 launchBlacklistActivity();
@@ -110,6 +114,117 @@ public class SettingsViewController implements View.OnClickListener {
                 break;
             default:
                 // do nothing
+        }
+    }
+
+    public void displayNameDialog() {
+        AlertDialog.Builder alert = new AlertDialog.Builder(PauseApplication.mainActivity);
+
+        alert.setTitle("Enter your name");
+        alert.setMessage("Bounce back messages will include this");
+
+        // Set an EditText view to get user input
+        final EditText input = new EditText(PauseApplication.mainActivity);
+        String existingName = prefs.getString(Constants.Settings.NAME_KEY, "");
+        if(!existingName.equals("")){
+            input.setText(existingName);
+            input.setSelection(input.getText().length());
+        }
+
+        alert.setView(input);
+
+        alert.setPositiveButton("Save", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int whichButton) {
+                String value = input.getText().toString();
+                prefs.edit().putString(Constants.Settings.NAME_KEY, value).apply();
+                settingsView.nameBtn.setContent(value);
+            }
+        });
+
+        alert.setNegativeButton("Cancel", null);
+
+        alert.show();
+    }
+
+    public void displayGenderDialog() {
+        boolean isMale = prefs.getBoolean(Constants.Settings.IS_MALE, false);
+
+        if (isMale) {
+            prefs.edit().putBoolean(Constants.Settings.IS_MALE, !isMale).apply();
+            settingsView.genderBtn.setContent("Female");
+        } else {
+            prefs.edit().putBoolean(Constants.Settings.IS_MALE, !isMale).apply();
+            settingsView.genderBtn.setContent("Male");
+        }
+    }
+
+    public void displayMissedCallsDialog() {
+        AlertDialog.Builder alert = new AlertDialog.Builder(PauseApplication.mainActivity);
+
+        alert.setTitle("Reply to missed calls");
+        alert.setItems(R.array.reply_setting_options, new DialogInterface.OnClickListener() {
+
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                String[] options = PauseApplication.mainActivity.getResources().getStringArray(R.array.reply_setting_options);
+                prefs.edit().putString(Constants.Settings.REPLY_MISSED_CALL, options[which]).apply();
+                settingsView.missedCallsBtn.setContent(options[which]);
+            }
+        });
+
+        alert.show();
+    }
+
+    public void displaySMSReplyDialog() {
+        AlertDialog.Builder alert = new AlertDialog.Builder(PauseApplication.mainActivity);
+
+        alert.setTitle("Reply to SMS messages");
+        alert.setItems(R.array.reply_setting_options, new DialogInterface.OnClickListener() {
+
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                String[] options = PauseApplication.mainActivity.getResources().getStringArray(R.array.reply_setting_options);
+                prefs.edit().putString(Constants.Settings.REPLY_SMS, options[which]).apply();
+                settingsView.receivedSmsBtn.setContent(options[which]);
+            }
+        });
+
+        alert.show();
+    }
+
+    public void displayVibrateDialog() {
+        boolean pauseOnVibrate = prefs.getBoolean(Constants.Settings.PAUSE_ON_VIBRATE_KEY,false);
+
+        if (pauseOnVibrate) {
+            prefs.edit().putBoolean(Constants.Settings.PAUSE_ON_VIBRATE_KEY, !pauseOnVibrate).apply();
+            settingsView.volumeBtn.setContent("No");
+        } else {
+            prefs.edit().putBoolean(Constants.Settings.PAUSE_ON_VIBRATE_KEY, !pauseOnVibrate).apply();
+            settingsView.volumeBtn.setContent("Yes");
+        }
+    }
+
+    public void displayVoiceDialog() {
+        boolean pauseVoiceFeedback = prefs.getBoolean(Constants.Settings.PAUSE_VOICE_FEEDBACK_KEY,false);
+
+        if (pauseVoiceFeedback) {
+            prefs.edit().putBoolean(Constants.Settings.PAUSE_VOICE_FEEDBACK_KEY, !pauseVoiceFeedback).apply();
+            settingsView.voiceBtn.setContent("Off");
+        } else {
+            prefs.edit().putBoolean(Constants.Settings.PAUSE_VOICE_FEEDBACK_KEY, !pauseVoiceFeedback).apply();
+            settingsView.voiceBtn.setContent("On");
+        }
+    }
+
+    public void displayToastsDialog() {
+        boolean pauseToastsOn= prefs.getBoolean(Constants.Settings.PAUSE_TOASTS_ON_KEY,true);
+
+        if (pauseToastsOn) {
+            prefs.edit().putBoolean(Constants.Settings.PAUSE_TOASTS_ON_KEY, !pauseToastsOn).apply();
+            settingsView.toastBtn.setContent("Off");
+        } else {
+            prefs.edit().putBoolean(Constants.Settings.PAUSE_TOASTS_ON_KEY, !pauseToastsOn).apply();
+            settingsView.toastBtn.setContent("On");
         }
     }
 

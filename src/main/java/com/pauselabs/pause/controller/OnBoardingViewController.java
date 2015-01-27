@@ -1,6 +1,5 @@
 package com.pauselabs.pause.controller;
 
-import android.app.Activity;
 import android.content.SharedPreferences;
 import android.media.AudioManager;
 import android.view.LayoutInflater;
@@ -33,7 +32,7 @@ import javax.inject.Inject;
 /**
  * Created by Passa on 12/26/14.
  */
-public class NoSessionViewController implements View.OnClickListener {
+public class OnBoardingViewController implements View.OnClickListener {
 
     public NoSessionView noSessionView;
 
@@ -56,7 +55,7 @@ public class NoSessionViewController implements View.OnClickListener {
     Animation out = new AlphaAnimation(1.0f, 0.0f);
     AnimationSet as = new AnimationSet(true);
 
-    public NoSessionViewController() {
+    public OnBoardingViewController() {
         Injector.inject(this);
 
         noSessionView = (NoSessionView) inflater.inflate(R.layout.no_session_view, null);
@@ -106,7 +105,7 @@ public class NoSessionViewController implements View.OnClickListener {
             Pattern contactPattern = Pattern.compile("%name");
             Matcher matcher = contactPattern.matcher(pauseMsg);
 
-            pauseMessage.setText(matcher.replaceAll(prefs.getString(Constants.Settings.NAME_KEY,"")));
+            pauseMessage.setText(matcher.replaceAll(prefs.getString(Constants.Settings.NAME_KEY, "")));
 
             for (int i = 0; i < btnArray.length(); i++) {
                 JSONObject btnObject = btnArray.getJSONObject(i);
@@ -166,14 +165,14 @@ public class NoSessionViewController implements View.OnClickListener {
                 updateUI();
 
                 break;
-            case Constants.Settings.ACTION_CHANGE_NAME:
-                PauseApplication.displayNameDialog(MainActivity.settingsViewController.settingsView.nameBtn);
-
-                break;
-            case Constants.Settings.ACTION_CHANGE_GENDER:
-                PauseApplication.displayGenderDialog(MainActivity.settingsViewController.settingsView.genderBtn);
-
-                break;
+//            case Constants.Settings.ACTION_CHANGE_NAME:
+//                PauseApplication.displayNameDialog(MainActivity.settingsViewController.settingsView.nameBtn);
+//
+//                break;
+//            case Constants.Settings.ACTION_CHANGE_GENDER:
+//                PauseApplication.displayGenderDialog(MainActivity.settingsViewController.settingsView.genderBtn);
+//
+//                break;
         }
     }
 

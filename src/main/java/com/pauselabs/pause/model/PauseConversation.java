@@ -122,8 +122,10 @@ public class PauseConversation implements Serializable {
     }
 
     public String getStringForBounceBackMessage() {
-        String messageText = prefs.getString(Constants.Pause.CUSTOM_PAUSE_MESSAGE_KEY,"");
-        if (messageText.equals("") || (!messageText.equals("") && getMessagesSentFromPause().size() == 1)) {
+        String messageText;
+        if(PauseApplication.getCurrentSession().getCreator() == Constants.Session.Creator.CUSTOM) {
+            messageText = prefs.getString(Constants.Pause.CUSTOM_PAUSE_MESSAGE_KEY,"");
+        } else {
             String
                     silence = "Silence",
                     drive = "Drive",
@@ -152,6 +154,7 @@ public class PauseConversation implements Serializable {
 
                     break;
             }
+
 
             stringRandomizer.setFile("strings" + modeName + num + ".json");
             messageText = stringRandomizer.getString(contactName);

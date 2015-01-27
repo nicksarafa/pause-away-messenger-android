@@ -204,10 +204,11 @@ public class Constants {
         public static final int NOT_SLEEPING = 1012;
         public static final int NOT_DRIVER = 1013;
 
-        public static final int MODE_SILENCE = 1014;
-        public static final int MODE_SLEEP = 1015;
-        public static final int MODE_DRIVE = 1016;
-        public static final int MODE_FLIP = 1016;
+        public static final int MODE_CUSTOM = 1014;
+        public static final int MODE_SILENCE = 1015;
+        public static final int MODE_SLEEP = 1016;
+        public static final int MODE_DRIVE = 1017;
+        public static final int MODE_FLIP = 1018;
 
         public static final String PAUSE_NOTIFICATION_INTENT = "PAUSE_NOTIFICATION_INTENT";
         public static final String PAUSE_NOTIFICATION_STOP_SESSION  = "PAUSE_NOTIFICATION_STOP_SESSION";

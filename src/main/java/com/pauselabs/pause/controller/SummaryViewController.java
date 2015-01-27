@@ -3,6 +3,7 @@ package com.pauselabs.pause.controller;
 import android.content.Context;
 import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -48,18 +49,22 @@ public class SummaryViewController implements AdapterView.OnItemClickListener, R
     }
 
     public void updateUI() {
-        ArrayList<PauseConversation> conversations = PauseApplication.getCurrentSession().getConversationsInTimeOrder();
-        if (conversations.size() > 0)
-            summaryView.noMessages.setVisibility(View.INVISIBLE);
-        else
-            summaryView.noMessages.setVisibility(View.VISIBLE);
-
         summaryCardArrayAdapter.clear();
-        for (PauseConversation convo : conversations) {
-            SummaryConversationCard newCard = (SummaryConversationCard) inflater.inflate(R.layout.summary_conversation_card, null);
-            newCard.setConversation(convo);
+        summaryView.noMessages.setVisibility(View.VISIBLE);
 
-            summaryCardArrayAdapter.add(newCard);
+        if (PauseApplication.isActiveSession()) {
+            ArrayList<PauseConversation> conversations = PauseApplication.getCurrentSession().getConversationsInTimeOrder();
+            if (conversations != null) {
+                if (conversations.size() > 0)
+                    summaryView.noMessages.setVisibility(View.INVISIBLE);
+
+                for (PauseConversation convo : conversations) {
+                    SummaryConversationCard newCard = (SummaryConversationCard) inflater.inflate(R.layout.summary_conversation_card, null);
+                    newCard.setConversation(convo);
+
+                    summaryCardArrayAdapter.add(newCard);
+                }
+            }
         }
     }
 
