@@ -49,16 +49,5 @@
                 }
             ]
         }
-    ],
-    normalJason: [
-        {
-            pauseMsg:"Hello, %name! Thank you for the opportunity!",
-            buttons:[
-                {
-                    btnText:"No problem. What do you do?",
-                    actionId:5000
-                }
-            ]
-        }
     ]
 }

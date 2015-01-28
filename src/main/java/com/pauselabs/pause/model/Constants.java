@@ -241,8 +241,6 @@ public class Constants {
         public static final int ACTION_ONBOARDING_SILENCE = 5001;
         public static final int ACTION_ONBOARDING_UNSILENCE = 5002;
         public static final int ACTION_ONBOARDING_FINISH = 5003;
-        public static final int ACTION_CHANGE_NAME = 5004;
-        public static final int ACTION_CHANGE_GENDER = 5005;
 
         /**
          * M/S^2 acceleration in either x, y, or z axis

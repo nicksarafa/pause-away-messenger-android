@@ -6,9 +6,10 @@ import com.pauselabs.pause.activity.MainActivity;
 import com.pauselabs.pause.activity.OnBoardingActivity;
 import com.pauselabs.pause.controllers.messages.CustomPauseViewController;
 import com.pauselabs.pause.controllers.messages.EmojiDirectoryViewController;
-import com.pauselabs.pause.controllers.OnBoardingViewController;
 import com.pauselabs.pause.controllers.SettingsViewController;
 import com.pauselabs.pause.controllers.SummaryViewController;
+import com.pauselabs.pause.controllers.onboarding.GenderViewController;
+import com.pauselabs.pause.controllers.onboarding.InteractiveViewController;
 import com.pauselabs.pause.core.PostFromAnyThreadBus;
 import com.pauselabs.pause.listeners.PauseSmsListener;
 import com.pauselabs.pause.listeners.SilenceListener;
@@ -20,9 +21,10 @@ import com.pauselabs.pause.model.StringRandomizer;
 import com.pauselabs.pause.services.PauseApplicationService;
 import com.pauselabs.pause.services.PauseSessionService;
 import com.pauselabs.pause.view.EmojiSquareView;
+import com.pauselabs.pause.view.GenderView;
+import com.pauselabs.pause.view.InteractiveView;
 import com.pauselabs.pause.view.tabs.CustomPauseView;
 import com.pauselabs.pause.view.tabs.EmojiDirectoryView;
-import com.pauselabs.pause.view.NoSessionView;
 import com.pauselabs.pause.view.tabs.SettingsView;
 import com.pauselabs.pause.view.SummaryConversationCard;
 import com.pauselabs.pause.view.SummaryReceivedCard;
@@ -50,8 +52,10 @@ import dagger.Provides;
                 BlacklistActivity.class,
                 BlacklistFragment.class,
 
-                OnBoardingViewController.class,
-                NoSessionView.class,
+                GenderViewController.class,
+                GenderView.class,
+                InteractiveViewController.class,
+                InteractiveView.class,
 
                 SummaryViewController.class,
                 SummaryView.class,
