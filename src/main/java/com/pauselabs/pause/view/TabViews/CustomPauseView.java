@@ -1,16 +1,14 @@
-package com.pauselabs.pause.view;
+package com.pauselabs.pause.view.TabViews;
 
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.util.AttributeSet;
-import android.view.View;
 import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.pauselabs.R;
 import com.pauselabs.pause.Injector;
-import com.pauselabs.pause.model.Constants;
 
 import javax.inject.Inject;
 

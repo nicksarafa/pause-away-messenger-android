@@ -6,8 +6,7 @@ import android.view.View;
 
 import com.pauselabs.R;
 import com.pauselabs.pause.Injector;
-import com.pauselabs.pause.view.EmojiDirectoryView;
-import com.pauselabs.pause.view.SettingsView;
+import com.pauselabs.pause.view.TabViews.EmojiDirectoryView;
 
 import javax.inject.Inject;
 

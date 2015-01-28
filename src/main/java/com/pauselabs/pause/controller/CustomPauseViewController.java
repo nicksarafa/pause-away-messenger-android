@@ -1,7 +1,6 @@
 package com.pauselabs.pause.controller;
 
 import android.content.SharedPreferences;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 
@@ -9,7 +8,7 @@ import com.pauselabs.R;
 import com.pauselabs.pause.Injector;
 import com.pauselabs.pause.PauseApplication;
 import com.pauselabs.pause.model.Constants;
-import com.pauselabs.pause.view.CustomPauseView;
+import com.pauselabs.pause.view.TabViews.CustomPauseView;
 
 import javax.inject.Inject;
 

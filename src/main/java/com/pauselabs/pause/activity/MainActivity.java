@@ -1,6 +1,5 @@
 package com.pauselabs.pause.activity;
 
-import android.app.ActionBar;
 import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
@@ -8,7 +7,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v13.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -23,6 +21,7 @@ import com.pauselabs.pause.controller.EmojiDirectoryViewController;
 import com.pauselabs.pause.controller.SettingsViewController;
 import com.pauselabs.pause.controller.SummaryViewController;
 import com.pauselabs.pause.util.UIUtils;
+import com.pauselabs.pause.view.MainActivityView;
 import com.pauselabs.pause.view.TabBarView;
 
 import java.util.Locale;
@@ -35,12 +34,8 @@ public class MainActivity extends Activity {
 
     public static final String TAG = MainActivity.class.getSimpleName();
 
+    private MainActivityView mainActivityView;
     private TabBarView tabBarView;
-
-    /**
-     * The {@link android.support.v4.view.ViewPager} that will host the section contents.
-     */
-    public ViewPager mViewPager;
     public int pageIndex;
 
     public static CustomPauseViewController customPauseViewController;
@@ -54,28 +49,14 @@ public class MainActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.main_view);
-
-        PauseApplication.mainActivity = this;
 
         Injector.inject(this);
 
-        customPauseViewController = new CustomPauseViewController();
-        emojiDirectoryViewController = new EmojiDirectoryViewController();
-        settingsViewController = new SettingsViewController();
-        summaryViewController = new SummaryViewController();
+        PauseApplication.mainActivity = this;
 
-        tabBarView = (TabBarView) inflator.inflate(R.layout.custom_ab, null);
-
-        getActionBar().setDisplayOptions(DISPLAY_SHOW_CUSTOM);
-        getActionBar().setCustomView(tabBarView);
-
-        // Set up the ViewPager with the sections adapter.
-        mViewPager = (ViewPager) findViewById(R.id.pager);
-        mViewPager.setAdapter(new SectionsPagerAdapter(getFragmentManager()));
-
-        tabBarView.setViewPager(mViewPager);
-        tabBarView.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+        mainActivityView = (MainActivityView) inflator.inflate(R.layout.main_activity_view,null);
+        mainActivityView.viewPager.setAdapter(new SectionsPagerAdapter(getFragmentManager()));
+        mainActivityView.viewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
                 pageIndex = position;
@@ -91,6 +72,19 @@ public class MainActivity extends Activity {
 
             }
         });
+
+        tabBarView = new TabBarView(this);
+        tabBarView.setViewPager(mainActivityView.viewPager);
+
+        getActionBar().setDisplayOptions(DISPLAY_SHOW_CUSTOM);
+        getActionBar().setCustomView(tabBarView);
+
+        customPauseViewController = new CustomPauseViewController();
+        emojiDirectoryViewController = new EmojiDirectoryViewController();
+        settingsViewController = new SettingsViewController();
+        summaryViewController = new SummaryViewController();
+
+        setContentView(mainActivityView);
     }
 
     @Override
@@ -102,12 +96,12 @@ public class MainActivity extends Activity {
             Intent it = new Intent(Intent.ACTION_CLOSE_SYSTEM_DIALOGS);
             sendBroadcast(it);
 
-            mViewPager.setCurrentItem(intentIndex);
+            mainActivityView.viewPager.setCurrentItem(intentIndex);
         } else
         if (PauseApplication.isActiveSession())
-            mViewPager.setCurrentItem(3);
+            mainActivityView.viewPager.setCurrentItem(3);
         else
-            mViewPager.setCurrentItem(pageIndex);
+            mainActivityView.viewPager.setCurrentItem(pageIndex);
     }
 
     private boolean isTablet() {
@@ -138,7 +132,7 @@ public class MainActivity extends Activity {
         summaryViewController.updateUI();
 
         if(PauseApplication.isActiveSession()) {
-            mViewPager.setCurrentItem(3,true);
+            mainActivityView.viewPager.setCurrentItem(3,true);
         }
     }
 

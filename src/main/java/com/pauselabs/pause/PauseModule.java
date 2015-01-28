@@ -19,14 +19,14 @@ import com.pauselabs.pause.model.PauseSession;
 import com.pauselabs.pause.model.StringRandomizer;
 import com.pauselabs.pause.services.PauseApplicationService;
 import com.pauselabs.pause.services.PauseSessionService;
-import com.pauselabs.pause.view.CustomPauseView;
-import com.pauselabs.pause.view.EmojiDirectoryView;
+import com.pauselabs.pause.view.TabViews.CustomPauseView;
+import com.pauselabs.pause.view.TabViews.EmojiDirectoryView;
 import com.pauselabs.pause.view.NoSessionView;
-import com.pauselabs.pause.view.SettingsView;
+import com.pauselabs.pause.view.TabViews.SettingsView;
 import com.pauselabs.pause.view.SummaryConversationCard;
 import com.pauselabs.pause.view.SummaryReceivedCard;
 import com.pauselabs.pause.view.SummarySentCard;
-import com.pauselabs.pause.view.SummaryView;
+import com.pauselabs.pause.view.TabViews.SummaryView;
 import com.squareup.otto.Bus;
 
 import javax.inject.Singleton;

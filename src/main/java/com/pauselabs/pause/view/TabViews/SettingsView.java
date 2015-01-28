@@ -1,27 +1,12 @@
-package com.pauselabs.pause.view;
+package com.pauselabs.pause.view.TabViews;
 
-import android.content.ActivityNotFoundException;
 import android.content.Context;
-import android.content.Intent;
-import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
-import android.net.Uri;
 import android.util.AttributeSet;
-import android.view.View;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 
 import com.pauselabs.R;
-import com.pauselabs.pause.Injector;
-import com.pauselabs.pause.PauseApplication;
-import com.pauselabs.pause.activity.BlacklistActivity;
-import com.pauselabs.pause.model.Constants;
-import com.sothree.slidinguppanel.SlidingUpPanelLayout;
-
-import java.util.HashSet;
-import java.util.Set;
-
-import javax.inject.Inject;
+import com.pauselabs.pause.view.SettingsButton;
 
 import butterknife.InjectView;
 import butterknife.Views;

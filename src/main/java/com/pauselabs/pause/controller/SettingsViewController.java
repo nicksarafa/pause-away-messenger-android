@@ -15,8 +15,7 @@ import com.pauselabs.pause.Injector;
 import com.pauselabs.pause.PauseApplication;
 import com.pauselabs.pause.activity.BlacklistActivity;
 import com.pauselabs.pause.model.Constants;
-import com.pauselabs.pause.view.SettingsButton;
-import com.pauselabs.pause.view.SettingsView;
+import com.pauselabs.pause.view.TabViews.SettingsView;
 
 import java.util.HashSet;
 import java.util.Set;
