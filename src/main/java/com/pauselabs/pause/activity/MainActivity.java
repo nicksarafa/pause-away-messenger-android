@@ -16,13 +16,12 @@ import android.view.ViewGroup;
 import com.pauselabs.R;
 import com.pauselabs.pause.Injector;
 import com.pauselabs.pause.PauseApplication;
-import com.pauselabs.pause.controller.CustomPauseViewController;
-import com.pauselabs.pause.controller.EmojiDirectoryViewController;
-import com.pauselabs.pause.controller.SettingsViewController;
-import com.pauselabs.pause.controller.SummaryViewController;
+import com.pauselabs.pause.controllers.messages.EmojiDirectoryViewController;
+import com.pauselabs.pause.controllers.SettingsViewController;
+import com.pauselabs.pause.controllers.SummaryViewController;
 import com.pauselabs.pause.util.UIUtils;
 import com.pauselabs.pause.view.MainActivityView;
-import com.pauselabs.pause.view.TabBarView;
+import com.pauselabs.pause.view.tabs.actionbar.TabBarView;
 
 import java.util.Locale;
 
@@ -33,6 +32,10 @@ import static android.app.ActionBar.DISPLAY_SHOW_CUSTOM;
 public class MainActivity extends Activity {
 
     public static final String TAG = MainActivity.class.getSimpleName();
+
+    public static final int EMOJI_TAB = 0;
+    public static final int SETTINGS_TAB = 1;
+    public static final int SUMMARY_TAB = 2;
 
     private MainActivityView mainActivityView;
     private TabBarView tabBarView;
@@ -175,12 +178,12 @@ public class MainActivity extends Activity {
         public CharSequence getPageTitle(int position) {
             Locale l = Locale.getDefault();
             switch (position) {
-                case 0:
-                    return getString(R.string.title_section1).toUpperCase(l);
-                case 1:
-                    return getString(R.string.title_section2).toUpperCase(l);
-                case 2:
-                    return getString(R.string.title_section3).toUpperCase(l);
+                case EMOJI_TAB:
+                    return getString(R.string.emoji_section_title).toUpperCase(l);
+                case SETTINGS_TAB:
+                    return getString(R.string.settings_section_title).toUpperCase(l);
+                case SUMMARY_TAB:
+                    return getString(R.string.summary_section_title).toUpperCase(l);
             }
             return null;
         }
@@ -216,15 +219,15 @@ public class MainActivity extends Activity {
             View rootView = null;
 
             switch (getArguments().getInt(ARG_SECTION_NUMBER)) {
-                case 0:
+                case EMOJI_TAB:
                     rootView = emojiDirectoryViewController.emojiDirectoryView;
 
                     break;
-                case 1:
+                case SETTINGS_TAB:
                     rootView = settingsViewController.settingsView;
 
                     break;
-                case 2:
+                case SUMMARY_TAB:
                     rootView = summaryViewController.summaryView;
 
                     break;

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<com.pauselabs.pause.view.TabViews.EmojiDirectoryView
+<com.pauselabs.pause.view.tabs.EmojiDirectoryView
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/emojiDirectory"
     android:layout_height="fill_parent"
@@ -22,5 +22,5 @@
 
     <!-- Custom Pause View injected in Java -->
 
-</com.pauselabs.pause.view.TabViews.EmojiDirectoryView>
+</com.pauselabs.pause.view.tabs.EmojiDirectoryView>
 

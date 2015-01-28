@@ -1,4 +1,4 @@
-package com.pauselabs.pause.controller;
+package com.pauselabs.pause.controllers;
 
 import android.content.SharedPreferences;
 import android.media.AudioManager;
@@ -13,7 +13,6 @@ import android.widget.TextView;
 import com.pauselabs.R;
 import com.pauselabs.pause.Injector;
 import com.pauselabs.pause.PauseApplication;
-import com.pauselabs.pause.activity.MainActivity;
 import com.pauselabs.pause.model.Constants;
 import com.pauselabs.pause.model.JsonReader;
 import com.pauselabs.pause.view.HomeButton;

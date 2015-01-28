@@ -1,4 +1,4 @@
-package com.pauselabs.pause.controller;
+package com.pauselabs.pause.controllers.messages;
 
 import android.content.SharedPreferences;
 import android.view.LayoutInflater;
@@ -8,7 +8,7 @@ import com.pauselabs.R;
 import com.pauselabs.pause.Injector;
 import com.pauselabs.pause.PauseApplication;
 import com.pauselabs.pause.model.Constants;
-import com.pauselabs.pause.view.TabViews.CustomPauseView;
+import com.pauselabs.pause.view.tabs.CustomPauseView;
 
 import javax.inject.Inject;
 

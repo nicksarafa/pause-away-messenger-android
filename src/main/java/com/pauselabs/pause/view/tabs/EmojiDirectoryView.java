@@ -1,8 +1,7 @@
-package com.pauselabs.pause.view.TabViews;
+package com.pauselabs.pause.view.tabs;
 
 import android.content.Context;
 import android.util.AttributeSet;
-import android.widget.RelativeLayout;
 
 import com.sothree.slidinguppanel.SlidingUpPanelLayout;
 

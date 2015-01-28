@@ -1,4 +1,4 @@
-package com.pauselabs.pause.view;
+package com.pauselabs.pause.view.tabs.actionbar;
 
 import android.annotation.SuppressLint;
 import android.content.Context;

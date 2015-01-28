@@ -1,4 +1,4 @@
-package com.pauselabs.pause.view;
+package com.pauselabs.pause.view.tabs.actionbar;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;

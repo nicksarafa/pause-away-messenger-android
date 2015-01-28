@@ -1,4 +1,4 @@
-package com.pauselabs.pause.controller;
+package com.pauselabs.pause.controllers;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -16,7 +16,7 @@ import com.pauselabs.pause.PauseApplication;
 import com.pauselabs.pause.model.Constants;
 import com.pauselabs.pause.view.SummaryReceivedCard;
 import com.pauselabs.pause.view.SummarySentCard;
-import com.pauselabs.pause.view.TabViews.SummaryView;
+import com.pauselabs.pause.view.tabs.SummaryView;
 import com.pauselabs.pause.model.PauseConversation;
 import com.pauselabs.pause.model.PauseMessage;
 import com.pauselabs.pause.view.SummaryConversationCard;

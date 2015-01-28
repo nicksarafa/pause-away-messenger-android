@@ -1,4 +1,4 @@
-package com.pauselabs.pause.view.TabViews;
+package com.pauselabs.pause.view.tabs;
 
 import android.content.Context;
 import android.content.pm.PackageInfo;

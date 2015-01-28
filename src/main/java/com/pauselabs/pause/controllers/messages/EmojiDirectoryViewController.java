@@ -1,4 +1,4 @@
-package com.pauselabs.pause.controller;
+package com.pauselabs.pause.controllers.messages;
 
 import android.content.SharedPreferences;
 import android.view.LayoutInflater;
@@ -6,7 +6,8 @@ import android.view.View;
 
 import com.pauselabs.R;
 import com.pauselabs.pause.Injector;
-import com.pauselabs.pause.view.TabViews.EmojiDirectoryView;
+import com.pauselabs.pause.controllers.messages.CustomPauseViewController;
+import com.pauselabs.pause.view.tabs.EmojiDirectoryView;
 
 import javax.inject.Inject;
 

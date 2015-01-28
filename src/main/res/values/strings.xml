@@ -108,8 +108,8 @@
     <string name="gender_settings_label">Gender</string>
     <string name="help_label">Help</string>
 
-    <string name="title_section1">Emoji</string>
-    <string name="title_section2">Settings</string>
-    <string name="title_section3">Messages</string>
+    <string name="emoji_section_title">Emoji</string>
+    <string name="settings_section_title">Settings</string>
+    <string name="summary_section_title">Summary</string>
 
 </resources>

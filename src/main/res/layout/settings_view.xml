@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<com.pauselabs.pause.view.TabViews.SettingsView
+<com.pauselabs.pause.view.tabs.SettingsView
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/settings_view"
     android:orientation="vertical"
@@ -189,4 +189,4 @@
 
     </LinearLayout>
 
-</com.pauselabs.pause.view.TabViews.SettingsView>
+</com.pauselabs.pause.view.tabs.SettingsView>

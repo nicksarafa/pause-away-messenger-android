@@ -1,4 +1,4 @@
-package com.pauselabs.pause.controller;
+package com.pauselabs.pause.controllers;
 
 import android.app.AlertDialog;
 import android.content.ActivityNotFoundException;
@@ -15,7 +15,7 @@ import com.pauselabs.pause.Injector;
 import com.pauselabs.pause.PauseApplication;
 import com.pauselabs.pause.activity.BlacklistActivity;
 import com.pauselabs.pause.model.Constants;
-import com.pauselabs.pause.view.TabViews.SettingsView;
+import com.pauselabs.pause.view.tabs.SettingsView;
 
 import java.util.HashSet;
 import java.util.Set;
