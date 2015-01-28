@@ -38,7 +38,6 @@ public class MainActivity extends Activity {
     private TabBarView tabBarView;
     public int pageIndex;
 
-    public static CustomPauseViewController customPauseViewController;
     public static EmojiDirectoryViewController emojiDirectoryViewController;
     public static SettingsViewController settingsViewController;
     public static SummaryViewController summaryViewController;
@@ -79,7 +78,6 @@ public class MainActivity extends Activity {
         getActionBar().setDisplayOptions(DISPLAY_SHOW_CUSTOM);
         getActionBar().setCustomView(tabBarView);
 
-        customPauseViewController = new CustomPauseViewController();
         emojiDirectoryViewController = new EmojiDirectoryViewController();
         settingsViewController = new SettingsViewController();
         summaryViewController = new SummaryViewController();
@@ -148,10 +146,9 @@ public class MainActivity extends Activity {
     public class SectionsPagerAdapter extends FragmentPagerAdapter implements TabBarView.IconTabProvider {
 
         private int[] tab_icons = {
-                R.drawable.ic_sms_icon,
                 R.drawable.ic_action_wake,
                 R.drawable.ic_action_settings_gear,
-                R.drawable.ic_action_search
+                R.drawable.ic_sms_icon
         };
 
 
@@ -161,10 +158,7 @@ public class MainActivity extends Activity {
 
         @Override
         public Fragment getItem(int position) {
-            // getItem is called to instantiate the fragment for the given page.
-            // Return a PlaceholderFragment (defined as a static inner class
-            // below).
-            return PlaceholderFragment.newInstance(position + 1);
+            return PlaceholderFragment.newInstance(position);
         }
 
         @Override
@@ -187,8 +181,6 @@ public class MainActivity extends Activity {
                     return getString(R.string.title_section2).toUpperCase(l);
                 case 2:
                     return getString(R.string.title_section3).toUpperCase(l);
-                case 3:
-                    return getString(R.string.title_section4).toUpperCase(l);
             }
             return null;
         }
@@ -224,19 +216,15 @@ public class MainActivity extends Activity {
             View rootView = null;
 
             switch (getArguments().getInt(ARG_SECTION_NUMBER)) {
-                case 1:
-                    rootView = customPauseViewController.customPauseView;
-
-                    break;
-                case 2:
+                case 0:
                     rootView = emojiDirectoryViewController.emojiDirectoryView;
 
                     break;
-                case 3:
+                case 1:
                     rootView = settingsViewController.settingsView;
 
                     break;
-                case 4:
+                case 2:
                     rootView = summaryViewController.summaryView;
 
                     break;

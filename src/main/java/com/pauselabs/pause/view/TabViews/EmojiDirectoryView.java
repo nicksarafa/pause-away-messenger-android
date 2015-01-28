@@ -4,12 +4,14 @@ import android.content.Context;
 import android.util.AttributeSet;
 import android.widget.RelativeLayout;
 
+import com.sothree.slidinguppanel.SlidingUpPanelLayout;
+
 import butterknife.Views;
 
 /**
  * Created by Passa on 1/27/15.
  */
-public class EmojiDirectoryView extends RelativeLayout {
+public class EmojiDirectoryView extends SlidingUpPanelLayout {
 
     public EmojiDirectoryView(Context context, AttributeSet attrs) {
         super(context, attrs);

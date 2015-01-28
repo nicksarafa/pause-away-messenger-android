@@ -17,7 +17,7 @@ import javax.inject.Inject;
  */
 public class CustomPauseViewController implements View.OnClickListener {
 
-    public static CustomPauseView customPauseView;
+    public CustomPauseView customPauseView;
 
     @Inject
     protected SharedPreferences prefs;

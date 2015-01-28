@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<com.pauselabs.pause.view.TabViews.EmojiDirectoryView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/asciiDirectory"
+<com.pauselabs.pause.view.TabViews.EmojiDirectoryView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/emojiDirectory"
     android:layout_height="fill_parent"
-    android:layout_width="fill_parent">
+    android:layout_width="fill_parent"
+    android:gravity="bottom">
 
     <GridView
-        android:id="@+id/emojiDirectory"
+        android:id="@+id/emojiDirectoryGrid"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:background="@drawable/card_background"
@@ -16,8 +18,9 @@
         android:scrollbarStyle="outsideOverlay"
         android:verticalScrollbarPosition="right"
         android:scrollbars="vertical"
-        android:textAlignment="center">
-    </GridView>
+        android:textAlignment="center"/>
+
+    <!-- Custom Pause View injected in Java -->
 
 </com.pauselabs.pause.view.TabViews.EmojiDirectoryView>
 

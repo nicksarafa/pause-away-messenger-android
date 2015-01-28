@@ -108,9 +108,8 @@
     <string name="gender_settings_label">Gender</string>
     <string name="help_label">Help</string>
 
-    <string name="title_section1">Custom</string>
-    <string name="title_section2">Emoji</string>
-    <string name="title_section3">Settings</string>
-    <string name="title_section4">Current Session</string>
+    <string name="title_section1">Emoji</string>
+    <string name="title_section2">Settings</string>
+    <string name="title_section3">Messages</string>
 
 </resources>

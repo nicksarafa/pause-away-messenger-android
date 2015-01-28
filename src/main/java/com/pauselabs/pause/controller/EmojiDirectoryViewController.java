@@ -17,6 +17,8 @@ public class EmojiDirectoryViewController implements View.OnClickListener {
 
     public EmojiDirectoryView emojiDirectoryView;
 
+    public static CustomPauseViewController customPauseViewController;
+
     @Inject
     protected SharedPreferences prefs;
     @Inject
@@ -25,7 +27,10 @@ public class EmojiDirectoryViewController implements View.OnClickListener {
     public EmojiDirectoryViewController() {
         Injector.inject(this);
 
+        customPauseViewController = new CustomPauseViewController();
+
         emojiDirectoryView = (EmojiDirectoryView) inflater.inflate(R.layout.emoji_directory, null);
+        emojiDirectoryView.addView(customPauseViewController.customPauseView);
     }
 
     @Override
