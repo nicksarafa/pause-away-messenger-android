@@ -19,6 +19,7 @@ import com.pauselabs.pause.model.PauseSession;
 import com.pauselabs.pause.model.StringRandomizer;
 import com.pauselabs.pause.services.PauseApplicationService;
 import com.pauselabs.pause.services.PauseSessionService;
+import com.pauselabs.pause.view.EmojiSquareView;
 import com.pauselabs.pause.view.tabs.CustomPauseView;
 import com.pauselabs.pause.view.tabs.EmojiDirectoryView;
 import com.pauselabs.pause.view.NoSessionView;
@@ -63,6 +64,7 @@ import dagger.Provides;
 
                 EmojiDirectoryViewController.class,
                 EmojiDirectoryView.class,
+                EmojiSquareView.class,
 
                 SettingsViewController.class,
                 SettingsView.class,

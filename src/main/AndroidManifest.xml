@@ -33,7 +33,7 @@
         <activity android:name=".pause.activity.OnBoardingActivity"
             android:windowSoftInputMode="adjustResize"
             android:screenOrientation="portrait"
-            android:noHistory="false">
+            android:noHistory="true">
 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>

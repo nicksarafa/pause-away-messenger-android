@@ -42,8 +42,8 @@ public class SummaryViewController implements AdapterView.OnItemClickListener, R
         summaryView = (SummaryView) inflater.inflate(R.layout.summary_view, null);
 
         summaryCardArrayAdapter = new SummaryCardAdapter(summaryView.getContext(), R.layout.summary_conversation_card);
-        summaryView.listView.setOnItemClickListener(this);
         summaryView.listView.setAdapter(summaryCardArrayAdapter);
+        summaryView.listView.setOnItemClickListener(this);
     }
 
     public void updateUI() {

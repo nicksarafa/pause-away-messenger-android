@@ -2,15 +2,21 @@ package com.pauselabs.pause.view.tabs;
 
 import android.content.Context;
 import android.util.AttributeSet;
+import android.widget.GridView;
 
+import com.pauselabs.R;
 import com.sothree.slidinguppanel.SlidingUpPanelLayout;
 
+import butterknife.InjectView;
 import butterknife.Views;
 
 /**
  * Created by Passa on 1/27/15.
  */
 public class EmojiDirectoryView extends SlidingUpPanelLayout {
+
+    @InjectView(R.id.emojiDirectoryGrid)
+    public GridView emojiGrid;
 
     public EmojiDirectoryView(Context context, AttributeSet attrs) {
         super(context, attrs);

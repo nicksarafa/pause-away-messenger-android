@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.pauselabs.pause.view.EmojiSquareView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/holo_blue">
+
+    <TextView
+        android:id="@+id/emojiText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:paddingTop="15dp"
+        android:paddingBottom="15dp"
+        android:layout_gravity="bottom"
+        android:textColor="@android:color/white"
+        android:text="Hi"
+        android:background="#55000000"/>
+
+    <ImageView
+        android:id="@+id/emoji"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"/>
+
+</com.pauselabs.pause.view.EmojiSquareView>
