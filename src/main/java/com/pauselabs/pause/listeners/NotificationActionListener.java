@@ -26,7 +26,7 @@ public class NotificationActionListener extends BroadcastReceiver {
                 case Constants.Notification.EDIT_PAUSE_SESSION:
                     Intent i = new Intent(PauseApplication.getInstance(), MainActivity.class);
                     i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                    i.putExtra("SET_EDIT_ITEM",0);
+                    i.putExtra("SET_EDIT_ITEM",MainActivity.EMOJI_TAB);
                     PauseApplication.getInstance().startActivity(i);
 
                     break;

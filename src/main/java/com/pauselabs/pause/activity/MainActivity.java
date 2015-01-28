@@ -100,7 +100,7 @@ public class MainActivity extends Activity {
             mainActivityView.viewPager.setCurrentItem(intentIndex);
         } else
         if (PauseApplication.isActiveSession())
-            mainActivityView.viewPager.setCurrentItem(3);
+            mainActivityView.viewPager.setCurrentItem(EMOJI_TAB);
         else
             mainActivityView.viewPager.setCurrentItem(pageIndex);
     }
