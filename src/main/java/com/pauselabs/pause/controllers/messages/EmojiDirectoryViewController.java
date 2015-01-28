@@ -2,9 +2,11 @@ package com.pauselabs.pause.controllers.messages;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -21,7 +23,7 @@ import javax.inject.Inject;
 /**
  * Created by Passa on 1/26/15.
  */
-public class EmojiDirectoryViewController implements View.OnClickListener {
+public class EmojiDirectoryViewController implements AdapterView.OnItemClickListener {
 
     public EmojiDirectoryView emojiDirectoryView;
 
@@ -44,11 +46,12 @@ public class EmojiDirectoryViewController implements View.OnClickListener {
 
         emojiDirectoryArrayAdapter = new EmojiAdapter(emojiDirectoryView.getContext(),R.layout.emoji_square_view);
         emojiDirectoryView.emojiGrid.setAdapter(emojiDirectoryArrayAdapter);
+        emojiDirectoryView.emojiGrid.setOnItemClickListener(this);
     }
 
     @Override
-    public void onClick(View v) {
-
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        Log.i("Grid", ((EmojiSquareView)view).emojiText.getText().toString());
     }
 
     private class EmojiAdapter extends ArrayAdapter<EmojiSquareView> {
