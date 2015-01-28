@@ -16,6 +16,7 @@ import android.view.ViewGroup;
 import com.pauselabs.R;
 import com.pauselabs.pause.Injector;
 import com.pauselabs.pause.PauseApplication;
+import com.pauselabs.pause.controllers.IceViewController;
 import com.pauselabs.pause.controllers.messages.EmojiDirectoryViewController;
 import com.pauselabs.pause.controllers.SettingsViewController;
 import com.pauselabs.pause.controllers.SummaryViewController;
@@ -36,6 +37,7 @@ public class MainActivity extends Activity {
     public static final int EMOJI_TAB = 0;
     public static final int SETTINGS_TAB = 1;
     public static final int SUMMARY_TAB = 2;
+    public static final int ICE_TAB = 3;
 
     private MainActivityView mainActivityView;
     private TabBarView tabBarView;
@@ -44,6 +46,7 @@ public class MainActivity extends Activity {
     public static EmojiDirectoryViewController emojiDirectoryViewController;
     public static SettingsViewController settingsViewController;
     public static SummaryViewController summaryViewController;
+    public static IceViewController iceViewController;
 
     @Inject
     LayoutInflater inflator;
@@ -84,6 +87,7 @@ public class MainActivity extends Activity {
         emojiDirectoryViewController = new EmojiDirectoryViewController();
         settingsViewController = new SettingsViewController();
         summaryViewController = new SummaryViewController();
+        iceViewController = new IceViewController();
 
         setContentView(mainActivityView);
     }
@@ -133,7 +137,7 @@ public class MainActivity extends Activity {
         summaryViewController.updateUI();
 
         if(PauseApplication.isActiveSession()) {
-            mainActivityView.viewPager.setCurrentItem(3,true);
+            mainActivityView.viewPager.setCurrentItem(3, true);
         }
     }
 
@@ -151,7 +155,8 @@ public class MainActivity extends Activity {
         private int[] tab_icons = {
                 R.drawable.ic_action_wake,
                 R.drawable.ic_action_settings_gear,
-                R.drawable.ic_sms_icon
+                R.drawable.ic_sms_icon,
+                R.drawable.ic_action_sleep
         };
 
 
@@ -184,6 +189,9 @@ public class MainActivity extends Activity {
                     return getString(R.string.settings_section_title).toUpperCase(l);
                 case SUMMARY_TAB:
                     return getString(R.string.summary_section_title).toUpperCase(l);
+                case ICE_TAB:
+                    return getString(R.string.ice_section_title).toUpperCase(l);
+
             }
             return null;
         }
@@ -229,6 +237,10 @@ public class MainActivity extends Activity {
                     break;
                 case SUMMARY_TAB:
                     rootView = summaryViewController.summaryView;
+
+                    break;
+                case ICE_TAB:
+                    rootView = iceViewController.iceView;
 
                     break;
             }

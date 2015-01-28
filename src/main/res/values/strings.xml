@@ -111,5 +111,6 @@
     <string name="emoji_section_title">Emoji</string>
     <string name="settings_section_title">Settings</string>
     <string name="summary_section_title">Summary</string>
+    <string name="ice_section_title">ICE</string>
 
 </resources>
