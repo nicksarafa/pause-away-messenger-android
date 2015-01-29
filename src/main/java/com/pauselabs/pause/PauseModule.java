@@ -4,6 +4,7 @@ import com.pauselabs.pause.activity.BlacklistActivity;
 import com.pauselabs.pause.activity.BlacklistFragment;
 import com.pauselabs.pause.activity.MainActivity;
 import com.pauselabs.pause.activity.OnBoardingActivity;
+import com.pauselabs.pause.controllers.IceViewController;
 import com.pauselabs.pause.controllers.messages.CustomPauseViewController;
 import com.pauselabs.pause.controllers.messages.EmojiDirectoryViewController;
 import com.pauselabs.pause.controllers.SettingsViewController;
@@ -25,6 +26,11 @@ import com.pauselabs.pause.view.GenderView;
 import com.pauselabs.pause.view.InteractiveView;
 import com.pauselabs.pause.view.tabs.CustomPauseView;
 import com.pauselabs.pause.view.tabs.EmojiDirectoryView;
+<<<<<<< HEAD
+=======
+import com.pauselabs.pause.view.NoSessionView;
+import com.pauselabs.pause.view.tabs.IceView;
+>>>>>>> PrivacyIce
 import com.pauselabs.pause.view.tabs.SettingsView;
 import com.pauselabs.pause.view.SummaryConversationCard;
 import com.pauselabs.pause.view.SummaryReceivedCard;
@@ -57,11 +63,8 @@ import dagger.Provides;
                 InteractiveViewController.class,
                 InteractiveView.class,
 
-                SummaryViewController.class,
-                SummaryView.class,
-                SummaryConversationCard.class,
-                SummarySentCard.class,
-                SummaryReceivedCard.class,
+                EmojiDirectoryViewController.class,
+                EmojiDirectoryView.class,
 
                 CustomPauseViewController.class,
                 CustomPauseView.class,
@@ -72,6 +75,15 @@ import dagger.Provides;
 
                 SettingsViewController.class,
                 SettingsView.class,
+
+                SummaryViewController.class,
+                SummaryView.class,
+                SummaryConversationCard.class,
+                SummarySentCard.class,
+                SummaryReceivedCard.class,
+
+                IceViewController.class,
+                IceView.class,
 
                 PauseApplicationService.class,
                 PauseSessionService.class,
