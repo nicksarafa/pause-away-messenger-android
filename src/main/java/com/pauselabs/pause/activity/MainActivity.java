@@ -36,8 +36,8 @@ public class MainActivity extends Activity {
 
     public static final int EMOJI_TAB = 0;
     public static final int SETTINGS_TAB = 1;
-    public static final int SUMMARY_TAB = 2;
-    public static final int ICE_TAB = 3;
+    public static final int ICE_TAB = 2;
+    public static final int SUMMARY_TAB = 3;
 
     private MainActivityView mainActivityView;
     private TabBarView tabBarView;
@@ -155,8 +155,8 @@ public class MainActivity extends Activity {
         private int[] tab_icons = {
                 R.drawable.ic_action_wake,
                 R.drawable.ic_action_settings_gear,
-                R.drawable.ic_sms_icon,
-                R.drawable.ic_action_sleep
+                R.drawable.ic_action_sleep,
+                R.drawable.ic_sms_icon
         };
 
 
@@ -187,11 +187,10 @@ public class MainActivity extends Activity {
                     return getString(R.string.emoji_section_title).toUpperCase(l);
                 case SETTINGS_TAB:
                     return getString(R.string.settings_section_title).toUpperCase(l);
-                case SUMMARY_TAB:
-                    return getString(R.string.summary_section_title).toUpperCase(l);
                 case ICE_TAB:
                     return getString(R.string.ice_section_title).toUpperCase(l);
-
+                case SUMMARY_TAB:
+                    return getString(R.string.summary_section_title).toUpperCase(l);
             }
             return null;
         }
@@ -235,12 +234,13 @@ public class MainActivity extends Activity {
                     rootView = settingsViewController.settingsView;
 
                     break;
-                case SUMMARY_TAB:
-                    rootView = summaryViewController.summaryView;
-
-                    break;
                 case ICE_TAB:
                     rootView = iceViewController.iceView;
+
+                    break;
+
+                case SUMMARY_TAB:
+                    rootView = summaryViewController.summaryView;
 
                     break;
             }

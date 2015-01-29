@@ -16,10 +16,10 @@
 
         <ImageView
             android:layout_width="fill_parent"
-            android:layout_height="100dip"
+            android:layout_height="100dp"
             android:layout_gravity="center_horizontal"
             android:src="@drawable/ob_full_face"
-            android:layout_marginTop="30dip"/>
+            android:layout_marginTop="20dp"/>
 
     </FrameLayout>
 
@@ -31,7 +31,7 @@
         android:layout_gravity="center_horizontal"
         android:textColor="@color/pause_green"
         android:gravity="center_horizontal|center_vertical"
-        android:textSize="@dimen/ob_text_medium"
+        android:textSize="@dimen/text_medium"
         android:textColorHint="@color/text_light"
         android:textIsSelectable="false"
         android:textCursorDrawable="@drawable/cursor"
@@ -58,25 +58,25 @@
 
         <Button
             android:id="@+id/male"
-            android:layout_width="0px"
+            android:layout_width="0dp"
             android:layout_height="@dimen/ob_btn_height"
             android:layout_marginTop="@dimen/padding"
             android:layout_weight="1"
             android:background="@color/holo_blue"
             android:textColor="@color/text_white"
-            android:textSize="@dimen/ob_text_medium"
-            android:text="Male"/>
+            android:textSize="@dimen/text_medium"
+            android:text="@string/ob_male_btn"/>
 
         <Button
             android:id="@+id/female"
-            android:layout_width="0px"
+            android:layout_width="0dp"
             android:layout_height="@dimen/ob_btn_height"
             android:layout_marginTop="@dimen/padding"
             android:layout_weight="1"
             android:background="@color/female_pink"
             android:textColor="@color/text_white"
-            android:textSize="@dimen/ob_text_medium"
-            android:text="Female"/>
+            android:textSize="@dimen/text_medium"
+            android:text="@string/ob_female_btn"/>
 
     </LinearLayout>
 

@@ -112,5 +112,7 @@
     <string name="settings_section_title">Settings</string>
     <string name="summary_section_title">Summary</string>
     <string name="ice_section_title">ICE</string>
+    <string name="ob_female_btn">Female</string>
+    <string name="ob_male_btn">Male</string>
 
 </resources>

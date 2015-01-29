@@ -1,6 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <!-- New v7 ActionBar Theme used to Solve Null Pointer for getActionBar in MainActivity -->
+
+    <!--<style name="CustomLightTheme.ActionBar" parent="Widget.AppCompat.ActionBar">-->
+        <!--<item name="contentInsetStart">0dp</item>-->
+        <!--<item name="contentInsetLeft">0dp</item>-->
+    <!--</style>-->
+
+    <style name="Theme.AppCompat.Light.NoActionBar" parent="@style/Theme.AppCompat.Light">
+        <item name="android:windowActionBar">false</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowActionBarOverlay">true</item>
+    </style>
+
     <style name="Widget.TextView.ListSeparator" parent="@android:style/Widget.TextView">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
@@ -14,18 +27,10 @@
         <item name="android:textStyle">bold</item>
     </style>
 
-    <style name="listViewActivatedStyle"/>
-
     <style name="ContactListView">
         <item name="android:verticalScrollbarPosition">right</item>
         <item name="android:fastScrollAlwaysVisible">true</item>
         <item name="android:scrollbarStyle">outsideInset</item>
-    </style>
-
-    <style name="Theme.AppCompat.Light.NoActionBar" parent="@style/Theme.AppCompat.Light">
-        <item name="android:windowActionBar">false</item>
-        <item name="android:windowNoTitle">true</item>
-        <item name="android:windowActionBarOverlay">true</item>
     </style>
 
 </resources>
