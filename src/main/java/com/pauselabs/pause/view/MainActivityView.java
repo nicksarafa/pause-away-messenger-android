@@ -17,6 +17,8 @@ public class MainActivityView extends LinearLayout {
 
     @InjectView(R.id.pager)
     public ViewPager viewPager;
+//    @InjectView(R.id.toolbar)
+//    public Toolbar toolbar;
 
     public MainActivityView(Context context) {
         super(context);

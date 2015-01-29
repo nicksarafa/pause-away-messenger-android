@@ -54,4 +54,12 @@
     <color name="text_white">#FFFFFF</color>
     <color name="gender_green">#53FB6D</color>
     <color name="test_blue">#FF0000</color>
+
+    <!-- Material Color Palette -->
+
+    <color name="colorPrimary">#3cbeb5</color>
+    <color name="colorPrimaryDark">#123936</color>
+    <color name="colorStatusBar">#123936</color>
+    <color name="colorAccent">#beb53c</color>
+
 </resources>

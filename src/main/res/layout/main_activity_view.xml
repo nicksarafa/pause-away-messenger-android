@@ -13,5 +13,9 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
+    <!-- v7 Toolbar -->
+
+    <!--<include layout="@layout/toolbar" />-->
+
 </com.pauselabs.pause.view.MainActivityView>
 

@@ -17,9 +17,9 @@ import com.pauselabs.R;
 import com.pauselabs.pause.Injector;
 import com.pauselabs.pause.PauseApplication;
 import com.pauselabs.pause.controllers.IceViewController;
-import com.pauselabs.pause.controllers.messages.EmojiDirectoryViewController;
 import com.pauselabs.pause.controllers.SettingsViewController;
 import com.pauselabs.pause.controllers.SummaryViewController;
+import com.pauselabs.pause.controllers.messages.EmojiDirectoryViewController;
 import com.pauselabs.pause.util.UIUtils;
 import com.pauselabs.pause.view.MainActivityView;
 import com.pauselabs.pause.view.tabs.actionbar.TabBarView;
@@ -27,8 +27,6 @@ import com.pauselabs.pause.view.tabs.actionbar.TabBarView;
 import java.util.Locale;
 
 import javax.inject.Inject;
-
-import static android.app.ActionBar.DISPLAY_SHOW_CUSTOM;
 
 public class MainActivity extends Activity {
 
@@ -81,8 +79,8 @@ public class MainActivity extends Activity {
         tabBarView = new TabBarView(this);
         tabBarView.setViewPager(mainActivityView.viewPager);
 
-        getActionBar().setDisplayOptions(DISPLAY_SHOW_CUSTOM);
-        getActionBar().setCustomView(tabBarView);
+//        getActionBar().setDisplayOptions(DISPLAY_SHOW_CUSTOM);
+//        getActionBar().setCustomView(tabBarView);
 
         emojiDirectoryViewController = new EmojiDirectoryViewController();
         settingsViewController = new SettingsViewController();

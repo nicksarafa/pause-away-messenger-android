@@ -11,6 +11,8 @@ import com.pauselabs.R;
 import butterknife.InjectView;
 import butterknife.Views;
 
+;
+
 /**
  * Created by Admin on 12/13/14.
  */
