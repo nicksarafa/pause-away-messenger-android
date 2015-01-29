@@ -8,15 +8,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.pauselabs.R;
 import com.pauselabs.pause.Injector;
 import com.pauselabs.pause.view.EmojiSquareView;
 import com.pauselabs.pause.view.tabs.EmojiDirectoryView;
-
-import java.util.ArrayList;
 
 import javax.inject.Inject;
 
@@ -47,6 +43,7 @@ public class EmojiDirectoryViewController implements AdapterView.OnItemClickList
         emojiDirectoryArrayAdapter = new EmojiAdapter(emojiDirectoryView.getContext(),R.layout.emoji_square_view);
         emojiDirectoryView.emojiGrid.setAdapter(emojiDirectoryArrayAdapter);
         emojiDirectoryView.emojiGrid.setOnItemClickListener(this);
+
     }
 
     @Override
@@ -65,7 +62,11 @@ public class EmojiDirectoryViewController implements AdapterView.OnItemClickList
                     "Dark Grey",
                     "Grey",
                     "Green",
-                    "Cyan"
+                    "Cyan",
+                    "Indigo",
+                    "Violet",
+                    "Fusha",
+                    "Sparkly Pink"
             };
 
             for (String color : colors) {

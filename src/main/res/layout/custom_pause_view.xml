@@ -10,9 +10,9 @@
             xmlns:android="http://schemas.android.com/apk/res/android"
             android:orientation="vertical"
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="fill_parent">
 
-            <!-- Top Button View (Seen in Emoiji View) -->
+            <!-- Custom Button -->
 
             <Button
                 android:id="@+id/slideUp"
@@ -25,10 +25,12 @@
                 android:layout_alignTop="@+id/custom_text"
                 android:text="Custom"/>
 
+                <!-- Write Custom Message -->
+
                 <EditText
                     android:id="@+id/custom_text"
                     android:layout_width="fill_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="fill_parent"
                     android:layout_gravity="center_horizontal"
                     android:textColor="@color/pause_green"
                     android:gravity="center_horizontal|center_vertical"
@@ -40,7 +42,6 @@
                     android:freezesText="false"
                     android:inputType="textPersonName"
                     android:imeOptions="flagNoEnterAction"
-                    android:layout_margin="@dimen/padding"
                     android:paddingLeft="@dimen/activity_horizontal_margin"
                     android:paddingRight="@dimen/activity_horizontal_margin"
                     android:hint="What's cookin, good lookin?"/>

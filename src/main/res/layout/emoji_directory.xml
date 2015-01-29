@@ -11,17 +11,28 @@
         android:id="@+id/emojiDirectoryGrid"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:numColumns="3"
+        android:numColumns="2"
         android:verticalSpacing="10dp"
         android:horizontalSpacing="10dp"
-        android:padding="@dimen/padding"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:paddingTop="10dp"
+        android:isScrollContainer="false"
         android:scrollbarStyle="outsideOverlay"
         android:verticalScrollbarPosition="right"
+        android:listSelector="@color/transparent"
+        android:cacheColorHint="@color/transparent"
+        android:clipToPadding="false"
+        android:overScrollMode="never"
         android:scrollbars="vertical"
         android:textAlignment="center"
-        android:stretchMode="columnWidth"/>
+        android:overScrollFooter="@android:color/transparent"
+        android:footerDividersEnabled="true"
+        android:smoothScrollbar="true"
+        android:stretchMode="columnWidth" />
 
-    <!-- Custom Pause View injected in Java -->
+    <!-- Custom Pause View injected via Java -->
+    <!-- Injecting the SoThree via Java also means I can't find it anymore to change up the styling. Need Help with that -->
 
 </com.pauselabs.pause.view.tabs.EmojiDirectoryView>
 

@@ -39,6 +39,7 @@
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
+
         </activity>
 
         <activity android:name=".pause.activity.MainActivity"
@@ -54,18 +55,17 @@
                 <action android:name="android.intent.action.SEARCH" />
             </intent-filter>
 
-            <meta-data
-                android:name="android.app.searchable"
-                android:resource="@xml/searchable_contacts"
-                android:value=".pause.ui.BlacklistActivity"/>
+                <meta-data
+                    android:name="android.app.searchable"
+                    android:resource="@xml/searchable_contacts"
+                    android:value=".pause.ui.BlacklistActivity"/>
         </activity>
 
         <!-- Crashalytics and Google Analytics Setup -->
 
         <receiver android:name=".pause.listeners.NotificationActionListener"/>
-        <meta-data android:name="com.crashlytics.ApiKey" android:value="c5b66f7bae194d35e898f5f0e5ff5fd1ea78a618"/>
-        <meta-data android:name="com.google.android.gms.version"
-                   android:value="@integer/google_play_services_version" />
+            <meta-data android:name="com.crashlytics.ApiKey" android:value="c5b66f7bae194d35e898f5f0e5ff5fd1ea78a618" />
+            <meta-data android:name="com.google.android.gms.version" android:value="@integer/google_play_services_version" />
 
     </application>
 </manifest>

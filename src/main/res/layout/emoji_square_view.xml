@@ -1,31 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.pauselabs.pause.view.EmojiSquareView
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
     android:layout_marginTop="@dimen/emoji_grid_margin"
     android:background="@drawable/card_background">
 
     <TextView
         android:id="@+id/emojiText"
-        android:layout_width="match_parent"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:gravity="center"
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
         android:paddingTop="10dp"
         android:paddingBottom="10dp"
         android:layout_gravity="bottom"
-        android:textAlignment="center"
         android:textIsSelectable="false"
         android:textColor="@android:color/white"
+        android:textSize="@dimen/text_medium"
         android:text="Noah is Gay"
-        android:background="@color/holo_blue"
+        android:background="@drawable/card_text_background"
         />
 
         <ImageView
             android:id="@+id/emoji"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:scaleType="centerCrop"/>
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"/>
 
 </com.pauselabs.pause.view.EmojiSquareView>
