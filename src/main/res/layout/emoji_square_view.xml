@@ -20,8 +20,7 @@
         android:textColor="@android:color/white"
         android:textSize="@dimen/text_medium"
         android:text="Noah is Gay"
-        android:background="@drawable/card_text_background"
-        />
+        android:background="@drawable/card_text_background"/>
 
         <ImageView
             android:id="@+id/emoji"

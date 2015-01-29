@@ -5,7 +5,7 @@
     android:orientation="horizontal"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:padding="@dimen/padding">
+    android:padding="@dimen/summary_view_padding">
 
     <ImageView
         android:id="@+id/messageType"
@@ -19,7 +19,7 @@
         android:minHeight="40dp"
         android:orientation="vertical"
         android:layout_toRightOf="@id/messageType"
-        android:layout_marginLeft="@dimen/listview_item_padding">
+        android:layout_marginLeft="@dimen/summary_view_padding">
 
         <TextView
             android:id="@+id/summaryMessageSender"

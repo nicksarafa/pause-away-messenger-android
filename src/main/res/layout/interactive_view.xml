@@ -20,7 +20,7 @@
         android:textIsSelectable="false"
         android:textSize="@dimen/text_medium"
         android:textAlignment="center"
-        android:padding="@dimen/padding"/>
+        android:padding="@dimen/ob_btn_margin_top"/>
 
     <LinearLayout
         android:id="@+id/interactive_button_layout"

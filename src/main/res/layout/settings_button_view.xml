@@ -20,7 +20,7 @@
             android:layout_toEndOf="@id/thumbnail"
             android:layout_toLeftOf="@id/icon"
             android:layout_toStartOf="@+id/icon"
-            android:layout_marginLeft="@dimen/card_label_padding"
+            android:layout_marginLeft="@dimen/settings_item_padding"
             android:layout_centerVertical="true"
             android:layout_centerHorizontal="true"
             android:textColor="@android:color/black"
@@ -35,7 +35,7 @@
                 android:layout_toEndOf="@+id/thumbnail"
                 android:layout_toStartOf="@id/icon"
                 android:layout_toLeftOf="@id/icon"
-                android:layout_marginLeft="@dimen/card_label_padding"
+                android:layout_marginLeft="@dimen/settings_item_padding"
                 android:layout_marginTop="6dp"
                 android:textColor="@android:color/darker_gray"
                 android:text="Matt"/>

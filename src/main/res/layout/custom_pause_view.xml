@@ -17,7 +17,7 @@
             <Button
                 android:id="@+id/slideUp"
                 android:layout_width="fill_parent"
-                android:layout_height="@dimen/ob_btn_height"
+                android:layout_height="@dimen/bottom_btn_height"
                 android:background="@color/holo_blue"
                 android:textColor="@color/text_white"
                 android:textSize="@dimen/text_medium"
@@ -26,6 +26,8 @@
                 android:text="Custom"/>
 
                 <!-- Write Custom Message -->
+
+                <!-- Using inputType="textNoSuggestions" to kill annoying Zero Span Bug. Need to reintroduce "personName" later on -->
 
                 <EditText
                     android:id="@+id/custom_text"
@@ -40,10 +42,10 @@
                     android:textCursorDrawable="@drawable/cursor"
                     android:background="@android:color/transparent"
                     android:freezesText="false"
-                    android:inputType="textPersonName"
                     android:imeOptions="flagNoEnterAction"
                     android:paddingLeft="@dimen/activity_horizontal_margin"
                     android:paddingRight="@dimen/activity_horizontal_margin"
+                    android:inputType="textNoSuggestions"
                     android:hint="What's cookin, good lookin?"/>
 
             <!-- Begin Button -->

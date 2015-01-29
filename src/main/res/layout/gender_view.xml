@@ -6,9 +6,7 @@
     android:layout_height="fill_parent"
     android:gravity="center">
 
-    <!-- TODO Fix Header Image Later -->
-
-    <!-- PNG 9 -->
+    <!-- Frame Layout for Word Mark PNG -->
 
     <FrameLayout
         android:layout_width="fill_parent"
@@ -16,69 +14,72 @@
 
         <ImageView
             android:layout_width="fill_parent"
-            android:layout_height="100dp"
+            android:layout_height="@dimen/ob_word_mark_height"
             android:layout_gravity="center_horizontal"
             android:src="@drawable/ob_full_face"
             android:layout_marginTop="20dp"/>
 
     </FrameLayout>
 
-    <EditText
-        android:id="@+id/ob_name"
-        android:layout_width="fill_parent"
-        android:layout_height="match_parent"
-        android:layout_centerVertical="true"
-        android:layout_gravity="center_horizontal"
-        android:textColor="@color/pause_green"
-        android:gravity="center_horizontal|center_vertical"
-        android:textSize="@dimen/text_medium"
-        android:textColorHint="@color/text_light"
-        android:textIsSelectable="false"
-        android:textCursorDrawable="@drawable/cursor"
-        android:background="@android:color/transparent"
-        android:freezesText="false"
-        android:inputType="textPersonName"
-        android:imeOptions="flagNoEnterAction"
-        android:hint="Enter Your First Name"/>
+        <!-- Enter First Name -->
 
-    <View
-        android:layout_width="fill_parent"
-        android:layout_height="1dip"
-        android:background="#7c7c7c"/>
+        <!-- Using inputType="textNoSuggestions" to kill annoying Zero Span Bug. Need to reintroduce "personName" later on -->
 
-
-    <LinearLayout
-        android:id="@+id/on_boarding_bottom_buttons"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:orientation="horizontal"
-        android:layout_centerHorizontal="true">
-
-
-        <Button
-            android:id="@+id/male"
-            android:layout_width="0dp"
-            android:layout_height="@dimen/ob_btn_height"
-            android:layout_marginTop="@dimen/padding"
-            android:layout_weight="1"
-            android:background="@color/holo_blue"
-            android:textColor="@color/text_white"
+        <EditText
+            android:id="@+id/ob_name"
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent"
+            android:layout_centerVertical="true"
+            android:layout_gravity="center_horizontal"
+            android:textColor="@color/pause_green"
+            android:gravity="center_horizontal|center_vertical"
             android:textSize="@dimen/text_medium"
-            android:text="@string/ob_male_btn"/>
+            android:textColorHint="@color/text_light"
+            android:textIsSelectable="false"
+            android:textCursorDrawable="@drawable/cursor"
+            android:background="@android:color/transparent"
+            android:freezesText="false"
+            android:inputType="textNoSuggestions"
+            android:imeOptions="flagNoEnterAction"
+            android:hint="Enter Your First Name"/>
 
-        <Button
-            android:id="@+id/female"
-            android:layout_width="0dp"
-            android:layout_height="@dimen/ob_btn_height"
-            android:layout_marginTop="@dimen/padding"
-            android:layout_weight="1"
-            android:background="@color/female_pink"
-            android:textColor="@color/text_white"
-            android:textSize="@dimen/text_medium"
-            android:text="@string/ob_female_btn"/>
+            <!-- Male or Female -->
 
-    </LinearLayout>
+            <LinearLayout
+                android:id="@+id/on_boarding_bottom_buttons"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:orientation="horizontal"
+                android:layout_centerHorizontal="true">
+
+                    <!-- Male -->
+
+                    <Button
+                        android:id="@+id/male"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/ob_btn_height"
+                        android:layout_marginTop="@dimen/ob_btn_margin_top"
+                        android:layout_weight="1"
+                        android:background="@color/holo_blue"
+                        android:textColor="@color/text_white"
+                        android:textSize="@dimen/text_large"
+                        android:text="@string/ob_male_btn"/>
+
+                    <!-- Female -->
+
+                    <Button
+                        android:id="@+id/female"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/ob_btn_height"
+                        android:layout_marginTop="@dimen/ob_btn_margin_top"
+                        android:layout_weight="1"
+                        android:background="@color/female_pink"
+                        android:textColor="@color/text_white"
+                        android:textSize="@dimen/text_large"
+                        android:text="@string/ob_female_btn"/>
+
+            </LinearLayout>
 
 </com.pauselabs.pause.view.GenderView>
 

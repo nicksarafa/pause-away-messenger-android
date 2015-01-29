@@ -7,27 +7,35 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent">
 
-    <!-- Custom Scroll View -->
-
     <LinearLayout
         android:id="@+id/slidingBottomList"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:orientation="vertical"
-        android:layout_below="@+id/sliding_bottom_title"
-        android:padding="@dimen/listview_item_padding">
+        android:orientation="vertical">
+
+        <!-- Begin Contact List Scroll View -->
 
         <ScrollView
             xmlns:custom="http://schemas.android.com/apk/res-auto"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:overScrollMode="never"
+            android:listSelector="@color/pause_green_light"
+            android:cacheColorHint="@color/transparent"
+            android:clipToPadding="false"
+            android:scrollbars="vertical"
+            android:isScrollContainer="false"
+            android:scrollbarStyle="outsideOverlay"
+            android:smoothScrollbar="true"
+            android:verticalScrollbarPosition="right"
+            android:overScrollFooter="@android:color/transparent"
+            android:footerDividersEnabled="false"
+            android:stretchMode="columnWidth">
 
                 <LinearLayout
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
-                android:orientation="vertical"
-                android:padding="10dp">
-
+                android:orientation="vertical">
 
                 <!-- Name -->
 
@@ -107,13 +115,13 @@
                     custom:label="@string/toasts_label"
                     custom:content="On"/>
 
-                <!-- Email URI -->
+                <!-- Feedback Label -->
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/feedback_section_label"
-                    style="@style/ListSeparatorTextView"/>
+                <!--<TextView-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:text="@string/feedback_section_label"-->
+                    <!--style="@style/ListSeparatorTextView"/>-->
 
                 <!-- Rate Us URI -->
 
@@ -136,13 +144,13 @@
                     custom:label="@string/contact_us_label"
                     custom:content="We Would Love To Hear From You"/>
 
-                <!-- Help -->
+                <!-- Help Label -->
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/help_label"
-                    style="@style/ListSeparatorTextView"/>
+                <!--<TextView-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:text="@string/help_label"-->
+                    <!--style="@style/ListSeparatorTextView"/>-->
 
                 <!-- Support URI -->
 
