@@ -80,10 +80,10 @@ public class MainActivity extends ActionBarActivity {
             }
         });
 
+        setSupportActionBar(mainActivityView.toolbar);
         ActionBar actionBar = getSupportActionBar();
         tabBarView = new TabBarView(this);
         tabBarView.setViewPager(mainActivityView.viewPager);
-        actionBar.setHideOnContentScrollEnabled(true);
         actionBar.setDisplayShowCustomEnabled(true);
         actionBar.setCustomView(tabBarView);
 
@@ -140,7 +140,7 @@ public class MainActivity extends ActionBarActivity {
         summaryViewController.updateUI();
 
         if(PauseApplication.isActiveSession()) {
-            mainActivityView.viewPager.setCurrentItem(3, true);
+//            mainActivityView.viewPager.setCurrentItem(3, true);
         }
     }
 

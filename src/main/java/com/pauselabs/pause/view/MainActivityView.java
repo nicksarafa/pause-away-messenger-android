@@ -2,6 +2,7 @@ package com.pauselabs.pause.view;
 
 import android.content.Context;
 import android.support.v4.view.ViewPager;
+import android.support.v7.widget.Toolbar;
 import android.util.AttributeSet;
 import android.widget.LinearLayout;
 
@@ -17,8 +18,8 @@ public class MainActivityView extends LinearLayout {
 
     @InjectView(R.id.pager)
     public ViewPager viewPager;
-//    @InjectView(R.id.toolbar)
-//    public Toolbar toolbar;
+    @InjectView(R.id.toolbar)
+    public Toolbar toolbar;
 
     public MainActivityView(Context context) {
         super(context);
