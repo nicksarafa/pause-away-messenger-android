@@ -29,8 +29,6 @@ public class EmojiDirectoryViewController implements AdapterView.OnItemClickList
 
     public EmojiDirectoryView emojiDirectoryView;
 
-    public SummaryViewController summaryViewController;
-
     private ArrayAdapter<EmojiSquareView> emojiDirectoryArrayAdapter;
 
     @Inject
@@ -38,47 +36,10 @@ public class EmojiDirectoryViewController implements AdapterView.OnItemClickList
     @Inject
     LayoutInflater inflater;
 
-    int normalHeight;
-
     public EmojiDirectoryViewController() {
         Injector.inject(this);
 
-        summaryViewController = new SummaryViewController();
-
         emojiDirectoryView = (EmojiDirectoryView) inflater.inflate(R.layout.emoji_directory, null);
-        emojiDirectoryView.addView(summaryViewController.summaryView);
-        emojiDirectoryView.setDragView(summaryViewController.summaryView.startPauseButton);
-        normalHeight = emojiDirectoryView.getHeight();
-        emojiDirectoryView.setPanelSlideListener(new SlidingUpPanelLayout.PanelSlideListener() {
-            @Override
-            public void onPanelSlide(View view, float f) {
-                MainActivity m = PauseApplication.mainActivity;
-                float toolBarHeight = m.mainActivityView.toolbar.getHeight();
-                m.mainActivityView.toolbar.setY(-(f * toolBarHeight));
-                emojiDirectoryView.emojiGrid.setY(-(f * toolBarHeight));
-            }
-
-            @Override
-            public void onPanelCollapsed(View view) {
-
-            }
-
-            @Override
-            public void onPanelExpanded(View view) {
-
-            }
-
-            @Override
-            public void onPanelAnchored(View view) {
-
-            }
-
-            @Override
-            public void onPanelHidden(View view) {
-
-            }
-        });
-        summaryViewController.summaryView.setClickable(true);
 
         emojiDirectoryArrayAdapter = new EmojiAdapter(emojiDirectoryView.getContext(),R.layout.emoji_square_view);
         emojiDirectoryView.emojiGrid.setAdapter(emojiDirectoryArrayAdapter);

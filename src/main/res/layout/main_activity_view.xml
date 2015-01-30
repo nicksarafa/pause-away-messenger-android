@@ -2,24 +2,31 @@
 
 <com.pauselabs.pause.view.MainActivityView
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:sothree="http://schemas.android.com/apk/res-auto"
     android:id="@+id/home_content"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:orientation="vertical"
-    android:clipChildren="false">
+    android:gravity="bottom"
+    sothree:panelHeight="@dimen/emoji_summary_sothree_height"
+    sothree:shadowHeight="0dp"
+    sothree:overlay="true">
 
-    <!-- v7 Toolbar -->
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
 
-    <include layout="@layout/toolbar"
-        android:id="@+id/main_toolbar_include"/>
+        <!-- v7 Toolbar -->
 
-    <android.support.v4.view.ViewPager
-        android:id="@+id/pager"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:clipToPadding="false"
-        android:layout_alignParentTop="true"
-        android:paddingTop="40dp"/>
+        <include layout="@layout/toolbar"
+            android:id="@+id/main_toolbar_include"/>
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/pager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+    </LinearLayout>
 
 </com.pauselabs.pause.view.MainActivityView>
 

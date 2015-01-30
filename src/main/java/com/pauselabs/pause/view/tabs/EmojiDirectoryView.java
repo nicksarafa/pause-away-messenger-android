@@ -3,6 +3,7 @@ package com.pauselabs.pause.view.tabs;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.widget.GridView;
+import android.widget.LinearLayout;
 
 import com.pauselabs.R;
 import com.sothree.slidinguppanel.SlidingUpPanelLayout;
@@ -13,7 +14,7 @@ import butterknife.Views;
 /**
  * Created by Passa on 1/27/15.
  */
-public class EmojiDirectoryView extends SlidingUpPanelLayout {
+public class EmojiDirectoryView extends LinearLayout {
 
     @InjectView(R.id.emojiDirectoryGrid)
     public GridView emojiGrid;

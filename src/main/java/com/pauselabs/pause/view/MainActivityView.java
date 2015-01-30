@@ -8,6 +8,7 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
 import com.pauselabs.R;
+import com.sothree.slidinguppanel.SlidingUpPanelLayout;
 
 import butterknife.InjectView;
 import butterknife.Views;
@@ -15,7 +16,7 @@ import butterknife.Views;
 /**
  * Created by Passa on 1/27/15.
  */
-public class MainActivityView extends RelativeLayout {
+public class MainActivityView extends SlidingUpPanelLayout {
 
     @InjectView(R.id.pager)
     public ViewPager viewPager;

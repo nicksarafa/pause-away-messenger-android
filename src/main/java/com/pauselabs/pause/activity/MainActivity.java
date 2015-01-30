@@ -6,7 +6,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v13.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
+import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -20,9 +23,11 @@ import com.pauselabs.pause.controllers.CustomPauseViewController;
 import com.pauselabs.pause.controllers.IceViewController;
 import com.pauselabs.pause.controllers.SettingsViewController;
 import com.pauselabs.pause.controllers.messages.EmojiDirectoryViewController;
+import com.pauselabs.pause.controllers.messages.SummaryViewController;
 import com.pauselabs.pause.util.UIUtils;
 import com.pauselabs.pause.view.MainActivityView;
 import com.pauselabs.pause.view.tabs.actionbar.TabBarView;
+import com.sothree.slidinguppanel.SlidingUpPanelLayout;
 
 import java.util.Locale;
 
@@ -38,9 +43,11 @@ public class MainActivity extends ActionBarActivity {
     public static final int HIDDEN_CUSTOM = 3;
 
     public MainActivityView mainActivityView;
+    public ActionBar actionBar;
     private TabBarView tabBarView;
     public int pageIndex;
 
+    public SummaryViewController summaryViewController;
     public static EmojiDirectoryViewController emojiDirectoryViewController;
     public static SettingsViewController settingsViewController;
     public static CustomPauseViewController customPauseViewController;
@@ -79,12 +86,49 @@ public class MainActivity extends ActionBarActivity {
         tabBarView = new TabBarView(this);
         tabBarView.setViewPager(mainActivityView.viewPager);
 
-        mainActivityView.toolbar.addView(tabBarView);
+        setSupportActionBar(mainActivityView.toolbar);
+        actionBar = getSupportActionBar();
+        actionBar.setDisplayShowTitleEnabled(false);
+        actionBar.setDisplayShowCustomEnabled(true);
+        actionBar.setCustomView(tabBarView);
+        Log.i("Main","Is showing: " + actionBar.isShowing());
+        Log.i("Main","Height: " + tabBarView.getHeight());
 
+        summaryViewController = new SummaryViewController();
         emojiDirectoryViewController = new EmojiDirectoryViewController();
         settingsViewController = new SettingsViewController();
         customPauseViewController = new CustomPauseViewController();
         iceViewController = new IceViewController();
+
+        mainActivityView.addView(summaryViewController.summaryView);
+        mainActivityView.setDragView(summaryViewController.summaryView.startPauseButton);
+        mainActivityView.setPanelSlideListener(new SlidingUpPanelLayout.PanelSlideListener() {
+            @Override
+            public void onPanelSlide(View view, float f) {
+                actionBar.getCustomView().setY(-(f * actionBar.getHeight()));
+            }
+
+            @Override
+            public void onPanelCollapsed(View view) {
+
+            }
+
+            @Override
+            public void onPanelExpanded(View view) {
+
+            }
+
+            @Override
+            public void onPanelAnchored(View view) {
+
+            }
+
+            @Override
+            public void onPanelHidden(View view) {
+
+            }
+        });
+        summaryViewController.summaryView.setClickable(true);
 
         setContentView(mainActivityView);
     }
@@ -131,7 +175,7 @@ public class MainActivity extends ActionBarActivity {
     }
 
     public void updateView() {
-        emojiDirectoryViewController.summaryViewController.updateUI();
+        summaryViewController.updateUI();
 
         if(PauseApplication.isActiveSession()) {
             mainActivityView.viewPager.setCurrentItem(EMOJI_SUMMARY_TAB, true);
