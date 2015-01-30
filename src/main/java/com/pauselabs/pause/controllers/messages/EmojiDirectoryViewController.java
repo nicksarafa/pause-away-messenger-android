@@ -3,6 +3,7 @@ package com.pauselabs.pause.controllers.messages;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.util.Log;
+import android.view.DragEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,9 +12,13 @@ import android.widget.ArrayAdapter;
 
 import com.pauselabs.R;
 import com.pauselabs.pause.Injector;
+import com.pauselabs.pause.PauseApplication;
+import com.pauselabs.pause.activity.MainActivity;
 import com.pauselabs.pause.controllers.CustomPauseViewController;
 import com.pauselabs.pause.view.EmojiSquareView;
+import com.pauselabs.pause.view.MainActivityView;
 import com.pauselabs.pause.view.tabs.EmojiDirectoryView;
+import com.sothree.slidinguppanel.SlidingUpPanelLayout;
 
 import javax.inject.Inject;
 
@@ -33,6 +38,8 @@ public class EmojiDirectoryViewController implements AdapterView.OnItemClickList
     @Inject
     LayoutInflater inflater;
 
+    int normalHeight;
+
     public EmojiDirectoryViewController() {
         Injector.inject(this);
 
@@ -41,6 +48,36 @@ public class EmojiDirectoryViewController implements AdapterView.OnItemClickList
         emojiDirectoryView = (EmojiDirectoryView) inflater.inflate(R.layout.emoji_directory, null);
         emojiDirectoryView.addView(summaryViewController.summaryView);
         emojiDirectoryView.setDragView(summaryViewController.summaryView.startPauseButton);
+        normalHeight = emojiDirectoryView.getHeight();
+        emojiDirectoryView.setPanelSlideListener(new SlidingUpPanelLayout.PanelSlideListener() {
+            @Override
+            public void onPanelSlide(View view, float f) {
+                MainActivity m = PauseApplication.mainActivity;
+                float toolBarHeight = m.mainActivityView.toolbar.getHeight();
+                m.mainActivityView.toolbar.setY(-(f * toolBarHeight));
+                emojiDirectoryView.emojiGrid.setY(-(f * toolBarHeight));
+            }
+
+            @Override
+            public void onPanelCollapsed(View view) {
+
+            }
+
+            @Override
+            public void onPanelExpanded(View view) {
+
+            }
+
+            @Override
+            public void onPanelAnchored(View view) {
+
+            }
+
+            @Override
+            public void onPanelHidden(View view) {
+
+            }
+        });
         summaryViewController.summaryView.setClickable(true);
 
         emojiDirectoryArrayAdapter = new EmojiAdapter(emojiDirectoryView.getContext(),R.layout.emoji_square_view);

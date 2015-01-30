@@ -1,6 +1,6 @@
 package com.pauselabs.pause;
 
-import com.pauselabs.pause.activity.BlacklistActivity;
+import com.pauselabs.pause.activity.BlackListActivity;
 import com.pauselabs.pause.activity.BlacklistFragment;
 import com.pauselabs.pause.activity.MainActivity;
 import com.pauselabs.pause.activity.OnBoardingActivity;
@@ -21,6 +21,7 @@ import com.pauselabs.pause.model.PauseSession;
 import com.pauselabs.pause.model.StringRandomizer;
 import com.pauselabs.pause.services.PauseApplicationService;
 import com.pauselabs.pause.services.PauseSessionService;
+import com.pauselabs.pause.view.ContactListView;
 import com.pauselabs.pause.view.EmojiSquareView;
 import com.pauselabs.pause.view.GenderView;
 import com.pauselabs.pause.view.InteractiveView;
@@ -51,8 +52,10 @@ import dagger.Provides;
 
                 OnBoardingActivity.class,
                 MainActivity.class,
-                BlacklistActivity.class,
+                BlackListActivity.class,
                 BlacklistFragment.class,
+
+                ContactListView.class,
 
                 GenderViewController.class,
                 GenderView.class,

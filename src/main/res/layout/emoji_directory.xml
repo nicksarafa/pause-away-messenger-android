@@ -7,8 +7,11 @@
     android:id="@+id/emojiDirectory"
     android:layout_height="fill_parent"
     android:layout_width="fill_parent"
+    android:clipChildren="false"
     android:gravity="bottom"
-    sothree:overlay="false">
+    sothree:panelHeight="@dimen/emoji_summary_sothree_height"
+    sothree:shadowHeight="0dp"
+    sothree:overlay="true">
 
     <GridView
         android:id="@+id/emojiDirectoryGrid"
@@ -16,9 +19,7 @@
         android:layout_height="fill_parent"
         android:verticalSpacing="10dp"
         android:horizontalSpacing="10dp"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp"
-        android:paddingTop="10dp"
+        android:padding="10dp"
         android:numColumns="2"
         android:textAlignment="center"
         android:listSelector="@color/transparent"
@@ -34,8 +35,7 @@
         android:footerDividersEnabled="false"
         android:stretchMode="columnWidth" />
 
-    <!-- Custom Pause View injected via Java -->
-    <!-- Injecting the SoThree via Java also means I can't find it anymore to change up the styling. Need Help with that -->
+    <!-- Summary View injected via Java -->
 
 </com.pauselabs.pause.view.tabs.EmojiDirectoryView>
 

@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v13.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -38,7 +37,7 @@ public class MainActivity extends ActionBarActivity {
     public static final int ICE_TAB = 2;
     public static final int HIDDEN_CUSTOM = 3;
 
-    private MainActivityView mainActivityView;
+    public MainActivityView mainActivityView;
     private TabBarView tabBarView;
     public int pageIndex;
 
@@ -48,7 +47,7 @@ public class MainActivity extends ActionBarActivity {
     public static IceViewController iceViewController;
 
     @Inject
-    LayoutInflater inflator;
+    LayoutInflater inflater;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,7 +57,7 @@ public class MainActivity extends ActionBarActivity {
 
         PauseApplication.mainActivity = this;
 
-        mainActivityView = (MainActivityView) inflator.inflate(R.layout.main_activity_view,null);
+        mainActivityView = (MainActivityView) inflater.inflate(R.layout.main_activity_view,null);
         mainActivityView.viewPager.setAdapter(new SectionsPagerAdapter(getFragmentManager()));
         mainActivityView.viewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
@@ -77,12 +76,10 @@ public class MainActivity extends ActionBarActivity {
             }
         });
 
-        setSupportActionBar(mainActivityView.toolbar);
-        ActionBar actionBar = getSupportActionBar();
         tabBarView = new TabBarView(this);
         tabBarView.setViewPager(mainActivityView.viewPager);
-        actionBar.setDisplayShowCustomEnabled(true);
-        actionBar.setCustomView(tabBarView);
+
+        mainActivityView.toolbar.addView(tabBarView);
 
         emojiDirectoryViewController = new EmojiDirectoryViewController();
         settingsViewController = new SettingsViewController();

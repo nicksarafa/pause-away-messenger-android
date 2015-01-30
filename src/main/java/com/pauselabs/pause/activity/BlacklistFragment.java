@@ -81,7 +81,7 @@ public class BlacklistFragment extends ListFragment implements AdapterView.OnIte
     @Override
     public View onCreateView(final LayoutInflater inflater, final ViewGroup container,
                              final Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.contact_list_fragment, container, false);
+        View view = inflater.inflate(R.layout.contact_list_view, container, false);
 
         // Inject Butterknife views
         Views.inject(this, view);

@@ -5,16 +5,21 @@
     android:id="@+id/home_content"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:clipChildren="false">
 
     <!-- v7 Toolbar -->
 
-    <include layout="@layout/toolbar" />
+    <include layout="@layout/toolbar"
+        android:id="@+id/main_toolbar_include"/>
 
     <android.support.v4.view.ViewPager
         android:id="@+id/pager"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:clipToPadding="false"
+        android:layout_alignParentTop="true"
+        android:paddingTop="40dp"/>
 
 </com.pauselabs.pause.view.MainActivityView>
 
