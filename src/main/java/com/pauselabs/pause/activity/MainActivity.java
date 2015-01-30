@@ -162,7 +162,7 @@ public class MainActivity extends ActionBarActivity {
                 R.drawable.ic_action_directory_empty,
                 R.drawable.ic_action_settings_empty,
                 R.drawable.ic_action_ice_empty,
-                R.drawable.ic_sms_icon
+                R.drawable.ic_action_custom_message_empty
         };
 
 
