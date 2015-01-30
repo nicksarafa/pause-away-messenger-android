@@ -8,11 +8,8 @@ import com.pauselabs.R;
 import com.pauselabs.pause.Injector;
 import com.pauselabs.pause.adapters.ContactsAdapter;
 import com.pauselabs.pause.view.ContactListView;
-import com.pauselabs.pause.view.MainActivityView;
 
 import javax.inject.Inject;
-
-import butterknife.Views;
 
 /**
  * Created by tyndallm on 10/5/14.

@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/transparent_drawable">
 
-    <!-- Fab -->
+    <!-- Fab Container -->
     <RelativeLayout
         android:id="@+id/fab_container"
         android:layout_width="fill_parent"
@@ -32,6 +32,8 @@
 
     </RelativeLayout>
 
+    <!-- Messages Container -->
+
     <RelativeLayout
         android:id="@+id/summary_view_container"
         android:layout_width="fill_parent"
@@ -54,8 +56,7 @@
             android:layout_centerVertical="true"
             android:textSize="36sp"
             android:textColor="@color/pause_green"
-            android:text="No Messages"
-            />
+            android:text="No Messages"/>
 
     </RelativeLayout>
 
