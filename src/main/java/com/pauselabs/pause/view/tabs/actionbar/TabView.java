@@ -60,7 +60,7 @@ public class TabView extends LinearLayout {
             mImageView.setVisibility(View.VISIBLE);
             mImageView.setImageDrawable(icon);
         } else {
-            mImageView.setImageResource(View.GONE);
+            mImageView.setVisibility(View.GONE);
         }
     }
 

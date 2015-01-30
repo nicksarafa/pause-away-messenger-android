@@ -4,9 +4,13 @@ import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v13.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.ActionBarActivity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -28,7 +32,7 @@ import java.util.Locale;
 
 import javax.inject.Inject;
 
-public class MainActivity extends Activity {
+public class MainActivity extends ActionBarActivity {
 
     public static final String TAG = MainActivity.class.getSimpleName();
 
@@ -76,11 +80,12 @@ public class MainActivity extends Activity {
             }
         });
 
+        ActionBar actionBar = getSupportActionBar();
         tabBarView = new TabBarView(this);
         tabBarView.setViewPager(mainActivityView.viewPager);
-
-//        getActionBar().setDisplayOptions(DISPLAY_SHOW_CUSTOM);
-//        getActionBar().setCustomView(tabBarView);
+        actionBar.setHideOnContentScrollEnabled(true);
+        actionBar.setDisplayShowCustomEnabled(true);
+        actionBar.setCustomView(tabBarView);
 
         emojiDirectoryViewController = new EmojiDirectoryViewController();
         settingsViewController = new SettingsViewController();

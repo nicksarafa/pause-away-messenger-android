@@ -23,7 +23,7 @@
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
 
     <application android:name=".pause.PauseApplication"
-                 android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+                 android:theme="@style/AppTheme"
                  android:icon="@drawable/ic_launcher"
                  android:label="@string/app_name">
 
@@ -43,12 +43,10 @@
 
             <activity android:name=".pause.activity.MainActivity"
                 android:windowSoftInputMode="stateHidden"
-                android:screenOrientation="portrait"
-                android:theme="@style/Theme.AppCompat.Light"/>
+                android:screenOrientation="portrait"/>
 
             <activity android:name=".pause.activity.BlacklistActivity"
-                android:screenOrientation="portrait"
-                android:theme="@style/Theme.AppCompat.Light">
+                android:screenOrientation="portrait">
 
                 <intent-filter>
                     <action android:name="android.intent.action.SEARCH" />
