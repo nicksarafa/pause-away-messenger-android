@@ -161,7 +161,7 @@ public class MainActivity extends ActionBarActivity {
         private int[] tab_icons = {
                 R.drawable.ic_action_directory_empty,
                 R.drawable.ic_action_settings_empty,
-                R.drawable.ic_action_sleep,
+                R.drawable.ic_action_ice_empty,
                 R.drawable.ic_sms_icon
         };
 
