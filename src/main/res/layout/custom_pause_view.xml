@@ -9,77 +9,64 @@
     sothree:overlay="true"
     sothree:fadeColor="@android:color/transparent">
 
-        <RelativeLayout
-            xmlns:android="http://schemas.android.com/apk/res/android"
-            android:id="@+id/edit_text_layout"
-            android:orientation="vertical"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent">
+    <RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/edit_text_layout"
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:background="@drawable/transparent_drawable">
 
-            <!-- Combo Sliding Button Holder -->
-
-                <!-- Custom SlideUp Button -->
-
-                <!--<Button-->
-                    <!--android:id="@+id/slideUp"-->
-                    <!--android:layout_width="fill_parent"-->
-                    <!--android:layout_height="@dimen/bottom_btn_height"-->
-                    <!--android:background="@color/holo_blue"-->
-                    <!--android:textColor="@color/text_white"-->
-                    <!--android:text="Custom"/>-->
-
-                <!-- Fab -->
-
-                <ImageButton
-                    android:id="@+id/fab_image_button"
-                    android:layout_width="@dimen/fab_button_diameter"
-                    android:layout_height="@dimen/fab_button_diameter"
-                    android:layout_alignParentTop="true"
-                    android:layout_alignParentRight="true"
-                    android:layout_alignParentEnd="true"
-                    android:layout_marginTop="@dimen/fab_button_margin_top"
-                    android:layout_marginRight="@dimen/fab_button_margin_right"
-                    android:layout_marginEnd="@dimen/fab_button_margin_right"
-                    android:background="@drawable/fab_button"
-                    android:src="@drawable/ic_action_sleep"
-                    android:tint="@android:color/white"/>
+        <!-- Fab -->
+        <ImageButton
+            android:id="@+id/fab_image_button"
+            android:layout_width="@dimen/fab_button_diameter"
+            android:layout_height="@dimen/fab_button_diameter"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="@dimen/fab_button_margin_top"
+            android:layout_marginRight="@dimen/fab_button_margin_right"
+            android:layout_marginEnd="@dimen/fab_button_margin_right"
+            android:background="@drawable/fab_button"
+            android:src="@drawable/ic_action_sleep"
+            android:tint="@android:color/white"/>
 
 
-                <!-- Write Custom Message -->
+            <!-- Using inputType="textNoSuggestions" to kill annoying Zero Span Bug. Need to reintroduce "personName" later on -->
 
-                <!-- Using inputType="textNoSuggestions" to kill annoying Zero Span Bug. Need to reintroduce "personName" later on -->
+            <EditText
+                android:id="@+id/custom_text"
+                android:layout_width="wrap_content"
+                android:layout_height="200dp"
+                android:layout_gravity="center_horizontal"
+                android:textColor="@color/pause_green"
+                android:gravity="center_horizontal|center_vertical"
+                android:textSize="@dimen/text_medium"
+                android:textColorHint="@color/text_light"
+                android:textIsSelectable="false"
+                android:textCursorDrawable="@drawable/cursor"
+                android:background="@drawable/transparent_drawable"
+                android:freezesText="false"
+                android:imeOptions="flagNoEnterAction"
+                android:paddingLeft="@dimen/activity_horizontal_margin"
+                android:paddingRight="@dimen/activity_horizontal_margin"
+                android:layout_marginTop="200dp"
+                android:inputType="textNoSuggestions"
+                android:hint="What's cookin, good lookin?"/>
 
-                <EditText
-                    android:id="@+id/custom_text"
+                <!-- Begin Button -->
+
+                <Button
+                    android:id="@+id/begin"
                     android:layout_width="fill_parent"
-                    android:layout_height="fill_parent"
-                    android:layout_gravity="center_horizontal"
-                    android:textColor="@color/pause_green"
-                    android:gravity="center_horizontal|center_vertical"
+                    android:layout_height="@dimen/ob_btn_height"
+                    android:background="@color/holo_blue"
+                    android:textColor="@color/text_white"
                     android:textSize="@dimen/text_medium"
-                    android:textColorHint="@color/text_light"
-                    android:textIsSelectable="false"
-                    android:textCursorDrawable="@drawable/cursor"
-                    android:background="@drawable/transparent_drawable"
-                    android:freezesText="false"
-                    android:imeOptions="flagNoEnterAction"
-                    android:paddingLeft="@dimen/activity_horizontal_margin"
-                    android:paddingRight="@dimen/activity_horizontal_margin"
-                    android:inputType="textNoSuggestions"
-                    android:hint="What's cookin, good lookin?"/>
+                    android:layout_alignParentBottom="true"
+                    android:text="Begin"/>
 
-                    <!-- Begin Button -->
-
-                    <Button
-                        android:id="@+id/begin"
-                        android:layout_width="fill_parent"
-                        android:layout_height="@dimen/ob_btn_height"
-                        android:background="@color/holo_blue"
-                        android:textColor="@color/text_white"
-                        android:textSize="@dimen/text_medium"
-                        android:layout_alignParentBottom="true"
-                        android:text="Begin"/>
-
-        </RelativeLayout>
+    </RelativeLayout>
 
 </com.pauselabs.pause.view.tabs.CustomPauseView>
