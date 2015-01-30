@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <com.pauselabs.pause.view.tabs.CustomPauseView
+    xmlns:sothree="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/sliding_custom_layout"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent">
-
+    android:layout_height="fill_parent"
+    sothree:overlay="true"
+    sothree:fadeColor="@android:color/transparent">
 
         <RelativeLayout
             xmlns:android="http://schemas.android.com/apk/res/android"
@@ -14,15 +16,34 @@
             android:layout_width="fill_parent"
             android:layout_height="fill_parent">
 
-            <!-- Custom SlideUp Button -->
+            <!-- Combo Sliding Button Holder -->
 
-            <Button
-                android:id="@+id/slideUp"
-                android:layout_width="fill_parent"
-                android:layout_height="@dimen/bottom_btn_height"
-                android:background="@color/holo_blue"
-                android:textColor="@color/text_white"
-                android:text="Custom"/>
+                <!-- Custom SlideUp Button -->
+
+                <!--<Button-->
+                    <!--android:id="@+id/slideUp"-->
+                    <!--android:layout_width="fill_parent"-->
+                    <!--android:layout_height="@dimen/bottom_btn_height"-->
+                    <!--android:background="@color/holo_blue"-->
+                    <!--android:textColor="@color/text_white"-->
+                    <!--android:text="Custom"/>-->
+
+                <!-- Fab -->
+
+                <ImageButton
+                    android:id="@+id/fab_image_button"
+                    android:layout_width="@dimen/fab_button_diameter"
+                    android:layout_height="@dimen/fab_button_diameter"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginTop="@dimen/fab_button_margin_top"
+                    android:layout_marginRight="@dimen/fab_button_margin_right"
+                    android:layout_marginEnd="@dimen/fab_button_margin_right"
+                    android:background="@drawable/fab_button"
+                    android:src="@drawable/ic_action_sleep"
+                    android:tint="@android:color/white"/>
+
 
                 <!-- Write Custom Message -->
 
@@ -39,7 +60,7 @@
                     android:textColorHint="@color/text_light"
                     android:textIsSelectable="false"
                     android:textCursorDrawable="@drawable/cursor"
-                    android:background="@android:color/transparent"
+                    android:background="@drawable/transparent_drawable"
                     android:freezesText="false"
                     android:imeOptions="flagNoEnterAction"
                     android:paddingLeft="@dimen/activity_horizontal_margin"
