@@ -1,10 +1,9 @@
 package com.pauselabs.pause.listeners;
 
-import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.util.Log;
+
 import com.pauselabs.pause.PauseApplication;
 import com.pauselabs.pause.activity.MainActivity;
 import com.pauselabs.pause.model.Constants;
@@ -26,7 +25,7 @@ public class NotificationActionListener extends BroadcastReceiver {
                 case Constants.Notification.EDIT_PAUSE_SESSION:
                     Intent i = new Intent(PauseApplication.getInstance(), MainActivity.class);
                     i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                    i.putExtra("SET_EDIT_ITEM",MainActivity.EMOJI_TAB);
+                    i.putExtra("SET_EDIT_ITEM",MainActivity.EMOJI_SUMMARY_TAB);
                     PauseApplication.getInstance().startActivity(i);
 
                     break;

@@ -1,4 +1,4 @@
-package com.pauselabs.pause.controllers.messages;
+package com.pauselabs.pause.controllers;
 
 import android.content.SharedPreferences;
 import android.view.LayoutInflater;

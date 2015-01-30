@@ -1,4 +1,4 @@
-package com.pauselabs.pause.controllers;
+package com.pauselabs.pause.controllers.messages;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;

@@ -11,6 +11,7 @@ import android.widget.ArrayAdapter;
 
 import com.pauselabs.R;
 import com.pauselabs.pause.Injector;
+import com.pauselabs.pause.controllers.CustomPauseViewController;
 import com.pauselabs.pause.view.EmojiSquareView;
 import com.pauselabs.pause.view.tabs.EmojiDirectoryView;
 
@@ -23,7 +24,7 @@ public class EmojiDirectoryViewController implements AdapterView.OnItemClickList
 
     public EmojiDirectoryView emojiDirectoryView;
 
-    public static CustomPauseViewController customPauseViewController;
+    public SummaryViewController summaryViewController;
 
     private ArrayAdapter<EmojiSquareView> emojiDirectoryArrayAdapter;
 
@@ -35,10 +36,12 @@ public class EmojiDirectoryViewController implements AdapterView.OnItemClickList
     public EmojiDirectoryViewController() {
         Injector.inject(this);
 
-        customPauseViewController = new CustomPauseViewController();
+        summaryViewController = new SummaryViewController();
 
         emojiDirectoryView = (EmojiDirectoryView) inflater.inflate(R.layout.emoji_directory, null);
-        emojiDirectoryView.addView(customPauseViewController.customPauseView);
+        emojiDirectoryView.addView(summaryViewController.summaryView);
+        emojiDirectoryView.setDragView(summaryViewController.summaryView.startPauseButton);
+        summaryViewController.summaryView.setClickable(true);
 
         emojiDirectoryArrayAdapter = new EmojiAdapter(emojiDirectoryView.getContext(),R.layout.emoji_square_view);
         emojiDirectoryView.emojiGrid.setAdapter(emojiDirectoryArrayAdapter);

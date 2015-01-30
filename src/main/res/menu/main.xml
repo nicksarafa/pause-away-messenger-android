@@ -6,6 +6,6 @@
         android:id="@+id/action_settings"
         android:orderInCategory="100"
         android:showAsAction="never"
-        android:title="@string/summary_section_title" />
+        android:title="@string/hidden_custom_section_title" />
 
 </menu>
