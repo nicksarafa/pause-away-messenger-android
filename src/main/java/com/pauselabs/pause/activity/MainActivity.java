@@ -79,10 +79,15 @@ public class MainActivity extends ActionBarActivity {
 
         setSupportActionBar(mainActivityView.toolbar);
         ActionBar actionBar = getSupportActionBar();
+        getSupportActionBar().setBackgroundDrawable(
+                getResources().getDrawable(R.drawable.transparent_drawable));
         tabBarView = new TabBarView(this);
         tabBarView.setViewPager(mainActivityView.viewPager);
         actionBar.setDisplayShowCustomEnabled(true);
         actionBar.setCustomView(tabBarView);
+        actionBar.setDisplayShowTitleEnabled(false);
+
+
 
         emojiDirectoryViewController = new EmojiDirectoryViewController();
         settingsViewController = new SettingsViewController();
@@ -154,8 +159,8 @@ public class MainActivity extends ActionBarActivity {
     public class SectionsPagerAdapter extends FragmentPagerAdapter implements TabBarView.IconTabProvider {
 
         private int[] tab_icons = {
-                R.drawable.ic_action_wake,
-                R.drawable.ic_action_settings_gear,
+                R.drawable.ic_action_directory_empty,
+                R.drawable.ic_action_settings_empty,
                 R.drawable.ic_action_sleep,
                 R.drawable.ic_sms_icon
         };
