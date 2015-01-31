@@ -3,6 +3,7 @@ package com.pauselabs.pause.activity;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 
 import com.pauselabs.R;
@@ -26,12 +27,13 @@ public class BlacklistActivity extends ActionBarActivity implements BlacklistFra
         // fragment. One larger screen devices this is a two pane view with two fragments.
         setContentView(R.layout.blacklist_activity);
 
-//        ActionBar ab = getSupportActionBar();
-//        ab.setDisplayHomeAsUpEnabled(true);
-//        ab.setDisplayShowHomeEnabled(false);
-//        ab.setDisplayShowTitleEnabled(true);
-//        ab.setTitle("Blacklist");
-//        ab.setDisplayUseLogoEnabled(false);
+        setSupportActionBar((Toolbar)getLayoutInflater().inflate(R.layout.toolbar,null));
+        ActionBar ab = getSupportActionBar();
+        ab.setDisplayHomeAsUpEnabled(true);
+        ab.setDisplayShowHomeEnabled(false);
+        ab.setDisplayShowTitleEnabled(true);
+        ab.setTitle("Blacklist");
+        ab.setDisplayUseLogoEnabled(false);
     }
 
     @Override

@@ -178,7 +178,7 @@ public class BlacklistFragment extends ListFragment implements AdapterView.OnIte
         // Set listeners for SearchView
         searchView.setOnQueryTextListener(this);
 
-        searchItem.setOnActionExpandListener(new MenuItem.OnActionExpandListener() {
+        MenuItemCompat.setOnActionExpandListener(searchItem, new MenuItemCompat.OnActionExpandListener() {
             @Override
             public boolean onMenuItemActionExpand(MenuItem menuItem) {
                 // Nothing to do when the action item is expanded
