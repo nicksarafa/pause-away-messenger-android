@@ -23,6 +23,6 @@
             android:background="@color/pause_green"
             android:textColor="@color/text_white"
             android:textSize="@dimen/text_medium"
-            android:text="Add Ice Contact"/>
+            android:text="This is going bye-bye"/>
 
 </com.pauselabs.pause.view.tabs.IceView>
