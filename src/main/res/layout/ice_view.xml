@@ -18,11 +18,9 @@
         <Button
             android:id="@+id/add_ice_button"
             android:layout_width="fill_parent"
+            android:background="#707c7c7c"
             android:layout_height="@dimen/bottom_btn_height"
             android:layout_alignParentBottom="true"
-            android:background="@color/pause_green"
-            android:textColor="@color/text_white"
-            android:textSize="@dimen/text_medium"
             android:text="This is going bye-bye"/>
 
 </com.pauselabs.pause.view.tabs.IceView>

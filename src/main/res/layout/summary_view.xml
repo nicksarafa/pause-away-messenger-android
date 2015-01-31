@@ -12,7 +12,7 @@
     <RelativeLayout
         android:id="@+id/fab_container"
         android:layout_width="fill_parent"
-        android:layout_height="@dimen/emoji_summary_sothree_height"
+        android:layout_height="@dimen/so_three_panel_height"
         android:background="@drawable/transparent_drawable">
 
         <ImageButton
@@ -40,7 +40,7 @@
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:layout_below="@id/fab_container"
-        android:background="@drawable/transparent_drawable">
+        android:background="@color/text_white">
 
         <ListView
             android:id="@+id/summary_card_list_view"
