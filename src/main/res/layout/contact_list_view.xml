@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 
     <!-- Keeping Contact List Shell. Filled by "contact_list_item.xml -->
-<com.pauselabs.pause.view.ContactListView
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
-
-    <include layout="@layout/toolbar"/>
 
     <TextView
         android:layout_width="match_parent"
@@ -22,7 +20,7 @@
 
         <!-- Use standard android.R class list id instead of app specific id. This is just useful for
              consistency. -->
-        <ListView android:id="@+id/contact_list_view"
+        <ListView android:id="@id/android:list"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
 
@@ -39,5 +37,5 @@
 
     </FrameLayout>
 
-</com.pauselabs.pause.view.ContactListView>
+</LinearLayout>
 

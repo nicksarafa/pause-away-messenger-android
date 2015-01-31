@@ -13,7 +13,7 @@ import android.widget.EditText;
 import com.pauselabs.R;
 import com.pauselabs.pause.Injector;
 import com.pauselabs.pause.PauseApplication;
-import com.pauselabs.pause.activity.BlackListActivity;
+import com.pauselabs.pause.activity.BlacklistActivity;
 import com.pauselabs.pause.model.Constants;
 import com.pauselabs.pause.view.tabs.SettingsView;
 
@@ -233,7 +233,7 @@ public class SettingsViewController implements View.OnClickListener {
         try {
             settingsView.getContext().startActivity(goToMarket);
         } catch (ActivityNotFoundException e) {
-            PauseApplication.mainActivity.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("http://play.google.com/store/apps/details?id=" + settingsView.getContext().getPackageName())));
+            PauseApplication.mainActivity.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("http://play.google.com/store/apps/details?id=" + settingsView.getContext().getPackageName())).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
         }
     }
 
@@ -241,20 +241,20 @@ public class SettingsViewController implements View.OnClickListener {
         Intent emailIntent = new Intent(android.content.Intent.ACTION_SEND);
         emailIntent.putExtra(android.content.Intent.EXTRA_EMAIL, new String[] {"feedback@pauselabs.com"});
         emailIntent.setType("message/rfc822");
-        PauseApplication.mainActivity.startActivity(Intent.createChooser(emailIntent, "Contact Üs"));
+        PauseApplication.mainActivity.startActivity(Intent.createChooser(emailIntent, "Contact Üs").addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
     }
 
     private void launchSupportLink() {
-        Intent termsIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.woot.com"));
+        Intent termsIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.woot.com")).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         PauseApplication.mainActivity.startActivity(termsIntent);
     }
 
     private void launchTermsLink() {
-        Intent supportIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.google.com/"));
+        Intent supportIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.google.com/")).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         PauseApplication.mainActivity.startActivity(supportIntent);
     }
     private void launchBlacklistActivity() {
-        Intent blacklistIntent = new Intent(PauseApplication.mainActivity, BlackListActivity.class);
+        Intent blacklistIntent = new Intent(PauseApplication.mainActivity, BlacklistActivity.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         PauseApplication.mainActivity.startActivity(blacklistIntent);
     }
 

@@ -84,8 +84,7 @@ public class MainActivity extends ActionBarActivity {
         });
 
         setSupportActionBar(mainActivityView.toolbar);
-        getSupportActionBar().setBackgroundDrawable(
-        getResources().getDrawable(R.drawable.transparent_drawable));
+        getSupportActionBar().setBackgroundDrawable(getResources().getDrawable(R.drawable.transparent_drawable));
         tabBarView = new TabBarView(this);
         tabBarView.setViewPager(mainActivityView.viewPager);
 

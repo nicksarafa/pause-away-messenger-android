@@ -1,40 +1,41 @@
 package com.pauselabs.pause.activity;
 
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.view.LayoutInflater;
 
 import com.pauselabs.R;
 import com.pauselabs.pause.Injector;
 import com.pauselabs.pause.adapters.ContactsAdapter;
-import com.pauselabs.pause.view.ContactListView;
 
 import javax.inject.Inject;
 
 /**
  * Created by tyndallm on 10/5/14.
  */
-public class BlackListActivity extends ActionBarActivity {
+public class BlacklistActivity extends ActionBarActivity implements BlacklistFragment.OnContactsInteractionListener{
 
-    public ContactListView blackListActivityView;
-
-    @Inject
-    LayoutInflater inflater;
-
-    ContactsAdapter contactsAdapter;
+    private BlacklistFragment mContactDetailFragment;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        Injector.inject(this);
+        // Set main content view. On smaller screen devices this is a single pane view with one
+        // fragment. One larger screen devices this is a two pane view with two fragments.
+        setContentView(R.layout.blacklist_activity);
 
-        blackListActivityView = (ContactListView)inflater.inflate(R.layout.contact_list_view, null);
-        setContentView(blackListActivityView);
+//        ActionBar ab = getSupportActionBar();
+//        ab.setDisplayHomeAsUpEnabled(true);
+//        ab.setDisplayShowHomeEnabled(false);
+//        ab.setDisplayShowTitleEnabled(true);
+//        ab.setTitle("Blacklist");
+//        ab.setDisplayUseLogoEnabled(false);
+    }
 
-        contactsAdapter = new ContactsAdapter(this);
-        blackListActivityView.listView.setAdapter(contactsAdapter);
-
+    @Override
+    public void onSelectionCleared() {
 
     }
 }
