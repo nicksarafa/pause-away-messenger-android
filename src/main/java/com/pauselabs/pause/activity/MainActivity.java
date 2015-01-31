@@ -112,13 +112,13 @@ public class MainActivity extends ActionBarActivity {
 
             @Override
             public void onPanelCollapsed(View view) {
+                summaryViewController.summaryView.startPauseButton.setImageResource(R.drawable.ic_action_wake);
 
             }
 
             @Override
             public void onPanelExpanded(View view) {
-//                summaryViewController.summaryView.summaryViewContainer.setY(+(actionBar.getHeight()));
-
+                summaryViewController.summaryView.startPauseButton.setImageResource(R.drawable.ic_action_sleep);
             }
 
             @Override

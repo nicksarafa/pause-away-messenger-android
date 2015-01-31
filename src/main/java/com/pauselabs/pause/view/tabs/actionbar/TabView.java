@@ -36,7 +36,7 @@ public class TabView extends LinearLayout {
 					.getDisplayMetrics());
 
         mImageView = new ImageView(context);
-        mImageView.setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.MATCH_PARENT));
+        mImageView.setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT, 300));
         mImageView.setScaleType(ScaleType.CENTER_INSIDE);
 
         mTextView = new TextView(context);
