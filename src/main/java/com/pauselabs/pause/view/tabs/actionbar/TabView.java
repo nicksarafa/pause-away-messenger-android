@@ -15,6 +15,7 @@ public class TabView extends LinearLayout {
 
     private ImageView mImageView;
     private TextView mTextView;
+    private int actionBarHeight;
 
     public TabView(Context context) {
         this(context, null);
@@ -31,12 +32,15 @@ public class TabView extends LinearLayout {
         context.getTheme().resolveAttribute(android.R.attr.actionBarTabTextStyle, outValue, true);
 
         int txtstyle = outValue.data;
+
+        int actionBarHeight = 80;
+
+        int mActionBarHeight = (int) (actionBarHeight * getResources().getDisplayMetrics().density + .5f);
         
-        int pad = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 8, getResources()
-					.getDisplayMetrics());
+        int pad = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 8, getResources().getDisplayMetrics());
 
         mImageView = new ImageView(context);
-        mImageView.setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT, 300));
+        mImageView.setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT, mActionBarHeight));
         mImageView.setScaleType(ScaleType.CENTER_INSIDE);
 
         mTextView = new TextView(context);
