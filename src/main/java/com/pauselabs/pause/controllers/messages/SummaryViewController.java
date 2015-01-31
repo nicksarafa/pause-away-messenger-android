@@ -32,6 +32,7 @@ public class SummaryViewController implements AdapterView.OnItemClickListener, R
 
     public SummaryView summaryView;
 
+
     private ArrayAdapter<SummaryConversationCard> summaryCardArrayAdapter;
 
     @Inject LayoutInflater inflater;

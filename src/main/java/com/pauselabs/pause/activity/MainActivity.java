@@ -14,6 +14,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ScrollView;
 
 import com.pauselabs.R;
 import com.pauselabs.pause.Injector;
@@ -43,6 +44,7 @@ public class MainActivity extends ActionBarActivity {
 
     public MainActivityView mainActivityView;
     public ActionBar actionBar;
+    public ScrollView scrollView;
     private TabBarView tabBarView;
     public int pageIndex;
 
@@ -90,7 +92,7 @@ public class MainActivity extends ActionBarActivity {
         actionBar.setDisplayShowTitleEnabled(false);
         actionBar.setDisplayShowCustomEnabled(true);
         actionBar.setCustomView(tabBarView);
-        Log.i("Main","Is showing: " + actionBar.isShowing());
+        Log.i("Main", "Is showing: " + actionBar.isShowing());
         Log.i("Main","Height: " + tabBarView.getHeight());
 
         summaryViewController = new SummaryViewController();
@@ -105,6 +107,7 @@ public class MainActivity extends ActionBarActivity {
             @Override
             public void onPanelSlide(View view, float f) {
                 actionBar.getCustomView().setY(-(f * actionBar.getHeight()));
+
             }
 
             @Override
@@ -114,6 +117,7 @@ public class MainActivity extends ActionBarActivity {
 
             @Override
             public void onPanelExpanded(View view) {
+//                summaryViewController.summaryView.summaryViewContainer.setY(+(actionBar.getHeight()));
 
             }
 
@@ -158,7 +162,7 @@ public class MainActivity extends ActionBarActivity {
 
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main, menu);
-        return true;
+        return false;
     }
 
     @Override

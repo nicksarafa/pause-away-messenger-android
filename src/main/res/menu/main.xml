@@ -3,9 +3,10 @@
     tools:context="com.example.demo.MainActivity">
 
     <item
+        xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/action_settings"
         android:orderInCategory="100"
-        android:showAsAction="never"
+        app:showAsAction="never"
         android:title="@string/hidden_custom_section_title" />
 
 </menu>
