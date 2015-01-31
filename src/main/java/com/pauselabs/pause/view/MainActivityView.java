@@ -4,8 +4,6 @@ import android.content.Context;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
 import android.util.AttributeSet;
-import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 
 import com.pauselabs.R;
 import com.sothree.slidinguppanel.SlidingUpPanelLayout;
@@ -20,7 +18,7 @@ public class MainActivityView extends SlidingUpPanelLayout {
 
     @InjectView(R.id.pager)
     public ViewPager viewPager;
-    @InjectView(R.id.main_toolbar_include)
+    @InjectView(R.id.toolbar)
     public Toolbar toolbar;
 
     public MainActivityView(Context context) {

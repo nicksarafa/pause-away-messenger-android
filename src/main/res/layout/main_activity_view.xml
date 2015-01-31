@@ -14,17 +14,20 @@
 
     <LinearLayout
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent">
+        android:layout_height="fill_parent"
+        android:orientation="vertical">
 
-        <!-- v7 Toolbar -->
-
-        <include layout="@layout/toolbar"
-            android:id="@+id/main_toolbar_include"/>
-
-        <android.support.v4.view.ViewPager
-            android:id="@+id/pager"
+        <android.support.v7.widget.Toolbar
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimary"/>
+
+            <android.support.v4.view.ViewPager
+                android:id="@+id/pager"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
 
     </LinearLayout>
 
