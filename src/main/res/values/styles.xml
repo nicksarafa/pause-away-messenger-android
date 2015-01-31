@@ -20,6 +20,8 @@
         <item name="android:windowActionBarOverlay">true</item>
     </style>
 
+    <!-- Custom Widget Style Updates -->
+
     <style name="Widget.TextView.ListSeparator" parent="@android:style/Widget.TextView">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
@@ -28,15 +30,15 @@
         <item name="android:gravity">center_vertical</item>
     </style>
 
-    <style name="searchTextHiglight">
-        <item name="android:textColor">@color/holo_blue</item>
-        <item name="android:textStyle">bold</item>
-    </style>
+    <!--<style name="searchTextHiglight">-->
+        <!--<item name="android:textColor">@color/holo_blue</item>-->
+        <!--<item name="android:textStyle">bold</item>-->
+    <!--</style>-->
 
-    <style name="ContactListView">
-        <item name="android:verticalScrollbarPosition">right</item>
-        <item name="android:fastScrollAlwaysVisible">true</item>
-        <item name="android:scrollbarStyle">outsideInset</item>
-    </style>
+    <!--<style name="ContactListView">-->
+        <!--<item name="android:verticalScrollbarPosition">right</item>-->
+        <!--<item name="android:fastScrollAlwaysVisible">true</item>-->
+        <!--<item name="android:scrollbarStyle">outsideInset</item>-->
+    <!--</style>-->
 
 </resources>
