@@ -8,7 +8,6 @@ import android.support.v13.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -85,9 +84,8 @@ public class MainActivity extends ActionBarActivity {
         });
 
         setSupportActionBar(mainActivityView.toolbar);
-        ActionBar actionBar = getSupportActionBar();
         getSupportActionBar().setBackgroundDrawable(
-                getResources().getDrawable(R.drawable.transparent_drawable));
+        getResources().getDrawable(R.drawable.transparent_drawable));
         tabBarView = new TabBarView(this);
         tabBarView.setViewPager(mainActivityView.viewPager);
 
