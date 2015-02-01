@@ -5,13 +5,13 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.os.Build;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewTreeObserver.OnGlobalLayoutListener;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 
 public class TabBarView extends LinearLayout {
 	public interface IconTabProvider {
@@ -36,18 +36,30 @@ public class TabBarView extends LinearLayout {
 
 	private View nextChild;
 
-	public static int a;
+	public static int ab;
 
 	public TabBarView(Context context) {
 		this(context, null);
 	}
 
 	public TabBarView(Context context, AttributeSet attrs) {
-		this(context, attrs, android.R.attr.actionBarTabBarStyle);
+		this(context, attrs, ab);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            ab = 0;
+        } else{
+            ab = android.R.attr.actionBarTabBarStyle;
+        }
 	}
 
 	public TabBarView(Context context, AttributeSet attrs, int defStyle) {
 		super(context, attrs, defStyle);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            setLayoutParams(new LinearLayout.LayoutParams(LayoutParams.WRAP_CONTENT,
+                    LinearLayout.LayoutParams.MATCH_PARENT));
+
+        }
 
         setWillNotDraw(false);
 

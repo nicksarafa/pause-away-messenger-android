@@ -15,7 +15,6 @@ public class TabView extends LinearLayout {
 
     private ImageView mImageView;
     private TextView mTextView;
-    private int actionBarHeight;
 
     public TabView(Context context) {
         this(context, null);
