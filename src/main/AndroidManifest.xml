@@ -44,7 +44,7 @@
             <activity android:name=".pause.activity.MainActivity"
                 android:windowSoftInputMode="stateHidden"/>
 
-            <activity android:name=".pause.activity.BlacklistActivity"
+            <activity android:name=".pause.activity.BlackWhitelistActivity"
                 android:theme="@style/Theme.Pause.Blacklist"
                 android:parentActivityName=".pause.activity.MainActivity"
                 android:label="@string/blacklist_ab_title">

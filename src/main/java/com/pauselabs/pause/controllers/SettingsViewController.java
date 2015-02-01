@@ -13,7 +13,7 @@ import android.widget.EditText;
 import com.pauselabs.R;
 import com.pauselabs.pause.Injector;
 import com.pauselabs.pause.PauseApplication;
-import com.pauselabs.pause.activity.BlacklistActivity;
+import com.pauselabs.pause.activity.BlackWhitelistActivity;
 import com.pauselabs.pause.model.Constants;
 import com.pauselabs.pause.view.tabs.SettingsView;
 
@@ -35,6 +35,7 @@ public class SettingsViewController implements View.OnClickListener {
     LayoutInflater inflater;
 
     private Set<String> blacklistContacts;
+    private Set<String> whitelistContacts;
 
     public SettingsViewController() {
         Injector.inject(this);
@@ -53,6 +54,13 @@ public class SettingsViewController implements View.OnClickListener {
         } else {
             settingsView.blacklistBtn.setContent("Setup Blacklist");
         }
+        settingsView.whitelistBtn.setContent(prefs.getString(Constants.Settings.USING_WHITELIST, "Setup Whitelist"));
+        whitelistContacts = prefs.getStringSet(Constants.Settings.WHITELIST, new HashSet<String>());
+        if(whitelistContacts.size() > 0) {
+            settingsView.whitelistBtn.setContent("Whitelist Active");
+        } else {
+            settingsView.whitelistBtn.setContent("Setup Whitelist");
+        }
 
         settingsView.volumeBtn.setContent((prefs.getBoolean(Constants.Settings.PAUSE_ON_VIBRATE_KEY, false)) ? "Yes" : "No");
         settingsView.voiceBtn.setContent((prefs.getBoolean(Constants.Settings.PAUSE_VOICE_FEEDBACK_KEY, true)) ? "On" : "Off");
@@ -65,6 +73,7 @@ public class SettingsViewController implements View.OnClickListener {
         settingsView.rateBtn.setOnClickListener(this);
         settingsView.contactBtn.setOnClickListener(this);
         settingsView.blacklistBtn.setOnClickListener(this);
+        settingsView.whitelistBtn.setOnClickListener(this);
         settingsView.supportBtn.setOnClickListener(this);
         settingsView.termsBtn.setOnClickListener(this);
         settingsView.volumeBtn.setOnClickListener(this);
@@ -98,6 +107,9 @@ public class SettingsViewController implements View.OnClickListener {
                 break;
             case R.id.blacklistBtn:
                 launchBlacklistActivity();
+                break;
+            case R.id.whitelistBtn:
+                launchWhitelistActivity();
                 break;
             case R.id.supportBtn:
                 launchSupportLink();
@@ -254,8 +266,12 @@ public class SettingsViewController implements View.OnClickListener {
         PauseApplication.mainActivity.startActivity(supportIntent);
     }
     private void launchBlacklistActivity() {
-        Intent blacklistIntent = new Intent(PauseApplication.mainActivity, BlacklistActivity.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        Intent blacklistIntent = new Intent(PauseApplication.mainActivity, BlackWhitelistActivity.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK).putExtra("test",0);
         PauseApplication.mainActivity.startActivity(blacklistIntent);
+    }
+    private void launchWhitelistActivity() {
+        Intent whitelistIntent = new Intent(PauseApplication.mainActivity, BlackWhitelistActivity.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK).putExtra("test",1);
+        PauseApplication.mainActivity.startActivity(whitelistIntent);
     }
 
 }

@@ -38,6 +38,7 @@ public class PauseSession implements Serializable {
     private ArrayList<PauseConversation> conversations;
 
     private Set<String> mBlacklistContacts;
+    private Set<String> mWhitelistContacts;
     private String smsPrivacySetting;
     private String callPrivacySetting;
 
@@ -52,6 +53,7 @@ public class PauseSession implements Serializable {
         responseCount = 0;
 
         mBlacklistContacts = retrieveBlacklistContacts();
+        mWhitelistContacts = retrieveWhitelistContacts();
         smsPrivacySetting = mPrefs.getString(Constants.Settings.REPLY_SMS, Constants.Privacy.EVERYBODY);
         callPrivacySetting = mPrefs.getString(Constants.Settings.REPLY_MISSED_CALL, Constants.Privacy.EVERYBODY);
     }
@@ -116,19 +118,25 @@ public class PauseSession implements Serializable {
      * @return true if sender is safe to respond to
      */
     public Boolean shouldSenderReceivedBounceback(String contactId) {
-        Boolean shouldSendBounceback;
+        Boolean shouldSendBounceback = true;
 
-        if(mBlacklistContacts.contains(contactId)) {
-            shouldSendBounceback = false;
-        } else {
-            shouldSendBounceback = privacyCheckPassed(contactId);
+        if (!mWhitelistContacts.contains(contactId)) {
+            if (mBlacklistContacts.contains(contactId)) {
+                shouldSendBounceback = false;
+            } else {
+                shouldSendBounceback = privacyCheckPassed(contactId);
+            }
         }
+
 
         return shouldSendBounceback;
     }
 
     private Set<String> retrieveBlacklistContacts() {
         return mPrefs.getStringSet(Constants.Settings.BLACKLIST, new HashSet<String>());
+    }
+    private Set<String> retrieveWhitelistContacts() {
+        return mPrefs.getStringSet(Constants.Settings.WHITELIST, new HashSet<String>());
     }
 
     private Boolean privacyCheckPassed(String contactId) {

@@ -1,7 +1,7 @@
 package com.pauselabs.pause;
 
-import com.pauselabs.pause.activity.BlacklistActivity;
-import com.pauselabs.pause.activity.BlacklistFragment;
+import com.pauselabs.pause.activity.BlackWhitelistActivity;
+import com.pauselabs.pause.activity.BlackWhitelistFragment;
 import com.pauselabs.pause.activity.MainActivity;
 import com.pauselabs.pause.activity.OnBoardingActivity;
 import com.pauselabs.pause.controllers.IceViewController;
@@ -51,8 +51,8 @@ import dagger.Provides;
 
                 OnBoardingActivity.class,
                 MainActivity.class,
-                BlacklistActivity.class,
-                BlacklistFragment.class,
+                BlackWhitelistActivity.class,
+                BlackWhitelistFragment.class,
 
                 GenderViewController.class,
                 GenderView.class,

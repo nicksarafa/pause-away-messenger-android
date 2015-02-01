@@ -36,9 +36,9 @@ import butterknife.Views;
 /**
  * Created by tyndallm on 10/12/14.
  */
-public class BlacklistFragment extends ListFragment implements AdapterView.OnItemClickListener, LoaderManager.LoaderCallbacks<Cursor>, SearchView.OnQueryTextListener {
+public class BlackWhitelistFragment extends ListFragment implements AdapterView.OnItemClickListener, LoaderManager.LoaderCallbacks<Cursor>, SearchView.OnQueryTextListener {
 
-    private static final String TAG = BlacklistFragment.class.getSimpleName();
+    private static final String TAG = BlackWhitelistFragment.class.getSimpleName();
 
     // Bundle key for saving previously selected search result item
     private static final String STATE_PREVIOUSLY_SELECTED_KEY = "com.example.android.contacts_list.ui.SELECTED_ITEM";
@@ -56,7 +56,7 @@ public class BlacklistFragment extends ListFragment implements AdapterView.OnIte
     // Whether or not the search query has changed since the last time the loader was refreshed
     private boolean mSearchQueryChanged;
 
-    public BlacklistFragment() {}
+    public BlackWhitelistFragment() {}
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -66,21 +66,20 @@ public class BlacklistFragment extends ListFragment implements AdapterView.OnIte
         setHasOptionsMenu(true);
 
         // Create the main contacts adapter
-        mAdapter = new ContactsAdapter(getActivity());
+        mAdapter = new ContactsAdapter(getActivity(),getTag());
+        Log.i("BWF:",getTag());
 
         if (savedInstanceState != null) {
             // If we're restoring state after this fragment was recreated then
             // retrieve previous search term and previously selected search
             // result.
             mSearchTerm = savedInstanceState.getString(SearchManager.QUERY);
-            mPreviouslySelectedSearchItem =
-                    savedInstanceState.getInt(STATE_PREVIOUSLY_SELECTED_KEY, 0);
+            mPreviouslySelectedSearchItem = savedInstanceState.getInt(STATE_PREVIOUSLY_SELECTED_KEY, 0);
         }
     }
 
     @Override
-    public View onCreateView(final LayoutInflater inflater, final ViewGroup container,
-                             final Bundle savedInstanceState) {
+    public View onCreateView(final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.contact_list_view, container, false);
 
         // Inject Butterknife views
@@ -133,9 +132,7 @@ public class BlacklistFragment extends ListFragment implements AdapterView.OnIte
         cursor.moveToPosition(position);
 
         // Creates a contact lookup Uri from contact ID and lookup_key
-        final Uri uri = ContactsContract.Contacts.getLookupUri(
-                cursor.getLong(ContactsQuery.ID),
-                cursor.getString(ContactsQuery.LOOKUP_KEY));
+        final Uri uri = ContactsContract.Contacts.getLookupUri(cursor.getLong(ContactsQuery.ID), cursor.getString(ContactsQuery.LOOKUP_KEY));
 
     }
 
@@ -193,8 +190,7 @@ public class BlacklistFragment extends ListFragment implements AdapterView.OnIte
                     onSelectionCleared();
                 }
                 mSearchTerm = null;
-                getLoaderManager().restartLoader(
-                        ContactsQuery.QUERY_ID, null, BlacklistFragment.this);
+                getLoaderManager().restartLoader(ContactsQuery.QUERY_ID, null, BlackWhitelistFragment.this);
                 return true;
             }
         });
@@ -257,8 +253,7 @@ public class BlacklistFragment extends ListFragment implements AdapterView.OnIte
             } else {
                 // Since there's a search string, use the special content Uri that searches the
                 // Contacts table. The URI consists of a base Uri and the search string.
-                contentUri =
-                        Uri.withAppendedPath(ContactsQuery.FILTER_URI, Uri.encode(mSearchTerm));
+                contentUri = Uri.withAppendedPath(ContactsQuery.FILTER_URI, Uri.encode(mSearchTerm));
             }
 
             // Returns a new CursorLoader for querying the Contacts table. No arguments are used
@@ -349,7 +344,7 @@ public class BlacklistFragment extends ListFragment implements AdapterView.OnIte
         // necessary content Uri from mSearchTerm.
         mSearchQueryChanged = true;
         getLoaderManager().restartLoader(
-                ContactsQuery.QUERY_ID, null, BlacklistFragment.this);
+                ContactsQuery.QUERY_ID, null, BlackWhitelistFragment.this);
         return true;
     }
 

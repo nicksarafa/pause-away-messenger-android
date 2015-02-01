@@ -77,6 +77,7 @@
     <string name="reply_to_calls_settings_label">Reply to Calls</string>
     <string name="reply_to_SMS_settings_label">Reply to incoming SMS text messages from…</string>
     <string name="blacklist_label">Do not respond to…</string>
+    <string name="whitelist_label">Always respond to…</string>
     <string name="vibrate_label">Pause On Vibrate</string>
     <string name="voice_label">Voice Feedback</string>
     <string name="toasts_label">Toasts On</string>

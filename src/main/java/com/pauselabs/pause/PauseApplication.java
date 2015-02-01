@@ -6,6 +6,7 @@ import android.app.Instrumentation;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
+import android.app.Service;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -22,6 +23,7 @@ import android.provider.ContactsContract;
 import android.speech.SpeechRecognizer;
 import android.speech.tts.TextToSpeech;
 import android.support.v4.app.NotificationCompat;
+import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.view.Gravity;
 import android.widget.EditText;
@@ -50,6 +52,8 @@ import com.pauselabs.pause.services.PauseSessionService;
 import com.pauselabs.pause.view.SettingsButton;
 import com.squareup.otto.Bus;
 
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
@@ -451,8 +455,32 @@ public class PauseApplication extends Application {
             messageSender.sendSmsMessage(bounceBackMessage.getTo(), bounceBackMessage);
 
             currentPauseSession.incrementResponseCount();
-        } else
+        } else {
+            if (receivedMessage.getType() == Constants.Message.Type.PHONE_INCOMING) {
+                TelephonyManager telephonyManager = (TelephonyManager) instance.getSystemService(Service.TELEPHONY_SERVICE);
+
+                Class c = null;
+                try {
+                    c = Class.forName(telephonyManager.getClass().getName());
+                    Method m = c.getDeclaredMethod("getITelephony");
+                    m.setAccessible(true);
+                    Object telephonyService = m.invoke(telephonyManager); // Get the internal ITelephony object
+                    c = Class.forName(telephonyService.getClass().getName()); // Get its class
+                    m = c.getDeclaredMethod("endCall"); // Get the "endCall()" method
+                    m.setAccessible(true); // Make it accessible
+                    m.invoke(telephonyService); // invoke endCall()
+
+                    PauseApplication.numCall++;
+
+                    PauseApplication.updateNotifications();
+                    PauseApplication.updateUI();
+                } catch (ClassNotFoundException | InvocationTargetException | NoSuchMethodException | IllegalAccessException e) {
+                    e.printStackTrace();
+                }
+            }
+
             sendToast("Ignored " + receivedMessage.getTypeString() + " from " + conversation.getContactName());
+        }
 
         updateNotifications();
     }

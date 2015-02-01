@@ -8,9 +8,9 @@ import com.pauselabs.R;
 /**
  * Created by tyndallm on 10/5/14.
  */
-public class BlacklistActivity extends ActionBarActivity implements BlacklistFragment.OnContactsInteractionListener{
+public class BlackWhitelistActivity extends ActionBarActivity implements BlackWhitelistFragment.OnContactsInteractionListener{
 
-    private BlacklistFragment mContactDetailFragment;
+    private BlackWhitelistFragment mContactDetailFragment;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -18,9 +18,18 @@ public class BlacklistActivity extends ActionBarActivity implements BlacklistFra
 
         // Set main content view. On smaller screen devices this is a single pane view with one
         // fragment. One larger screen devices this is a two pane view with two fragments.
-        setContentView(R.layout.blacklist_activity);
+
         getSupportActionBar().setDisplayShowTitleEnabled(true);
         getSupportActionBar().setElevation(0);
+
+        int type = getIntent().getIntExtra("test",0);
+        if (type == 0) {
+            setContentView(R.layout.blacklist_activity);
+            getSupportActionBar().setTitle("BLACKLIST");
+        } else {
+            setContentView(R.layout.whitelist_activity);
+            getSupportActionBar().setTitle("WHITELIST");
+        }
 
     }
 

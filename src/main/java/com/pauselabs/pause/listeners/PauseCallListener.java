@@ -12,6 +12,8 @@ import com.pauselabs.pause.PauseApplication;
 import com.pauselabs.pause.model.Constants;
 import com.pauselabs.pause.model.PauseMessage;
 
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.Date;
 
 /**
@@ -47,11 +49,11 @@ public class PauseCallListener extends BroadcastReceiver{
         public void onCallStateChanged(int state, String incomingNumber) {
             SharedPreferences sharedPreferences = this.context.getApplicationContext().getSharedPreferences(Constants.Message.MISSED_CALL_PREFERENCE, Context.MODE_WORLD_WRITEABLE | Context.MODE_WORLD_READABLE);
 
-            int olderSharedPreference = sharedPreferences.getInt(Constants.Message.PREFERENCE_OLDER_PHONE_STATE, -1);
+//            int olderSharedPreference = sharedPreferences.getInt(Constants.Message.PREFERENCE_OLDER_PHONE_STATE, -1);
 
-            if(!incomingNumber.equals("")) {
-                sharedPreferences.edit().putString(Constants.Message.PREFERENCE_LAST_CALL_NUMBER, incomingNumber).apply();
-            }
+//            if(!incomingNumber.equals("")) {
+//                sharedPreferences.edit().putString(Constants.Message.PREFERENCE_LAST_CALL_NUMBER, incomingNumber).apply();
+//            }
 
             SharedPreferences.Editor editor = sharedPreferences.edit();
             editor.putInt(Constants.Message.PREFERENCE_OLDER_PHONE_STATE, state);
@@ -59,20 +61,23 @@ public class PauseCallListener extends BroadcastReceiver{
 
             switch (state) {
                 case TelephonyManager.CALL_STATE_IDLE:
-                    if (olderSharedPreference == TelephonyManager.CALL_STATE_RINGING) {
-                        String savedNumber = sharedPreferences.getString(Constants.Message.PREFERENCE_LAST_CALL_NUMBER, "none");
-                        PauseMessage messageReceived = new PauseMessage(savedNumber, "0", "missed phone call", new Date().getTime(), Constants.Message.Type.PHONE_INCOMING);
-                        PauseApplication.handleMessageReceived(messageReceived);
-
-                        PauseApplication.numCall++;
-
-                        PauseApplication.updateNotifications();
-                        PauseApplication.updateUI();
-                    }
+//                    if (olderSharedPreference == TelephonyManager.CALL_STATE_RINGING) {
+//                        String savedNumber = sharedPreferences.getString(Constants.Message.PREFERENCE_LAST_CALL_NUMBER, "none");
+//                        PauseMessage messageReceived = new PauseMessage(savedNumber, "0", "missed phone call", new Date().getTime(), Constants.Message.Type.PHONE_INCOMING);
+//                        PauseApplication.handleMessageReceived(messageReceived);
+//
+//                        PauseApplication.numCall++;
+//
+//                        PauseApplication.updateNotifications();
+//                        PauseApplication.updateUI();
+//                    }
                     break;
                 case TelephonyManager.CALL_STATE_OFFHOOK:
                     break;
                 case TelephonyManager.CALL_STATE_RINGING:
+                    PauseMessage messageReceived = new PauseMessage(incomingNumber, "0", "", new Date().getTime(), Constants.Message.Type.PHONE_INCOMING);
+                    PauseApplication.handleMessageReceived(messageReceived);
+
                     break;
             }
         }
