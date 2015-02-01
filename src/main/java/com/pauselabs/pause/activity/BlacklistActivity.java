@@ -19,6 +19,9 @@ public class BlacklistActivity extends ActionBarActivity implements BlacklistFra
         // Set main content view. On smaller screen devices this is a single pane view with one
         // fragment. One larger screen devices this is a two pane view with two fragments.
         setContentView(R.layout.blacklist_activity);
+        getSupportActionBar().setDisplayShowTitleEnabled(true);
+        getSupportActionBar().setElevation(0);
+
     }
 
     @Override

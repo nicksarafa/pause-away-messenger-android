@@ -45,8 +45,9 @@
                 android:windowSoftInputMode="stateHidden"/>
 
             <activity android:name=".pause.activity.BlacklistActivity"
-                android:theme="@style/Theme.AppCompat.Light"
-                android:parentActivityName=".pause.activity.MainActivity">
+                android:theme="@style/Theme.Pause.Blacklist"
+                android:parentActivityName=".pause.activity.MainActivity"
+                android:label="@string/blacklist_ab_title">
                 <intent-filter>
                     <action android:name="android.intent.action.SEARCH" />
                 </intent-filter>

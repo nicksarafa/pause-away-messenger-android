@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-    <!-- Keeping. Filled by Blacklist item -->
+    <!-- Blacklist ListView holding contact searcher. Filled by Blacklist item -->
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
@@ -9,6 +9,8 @@
     <ListView
         android:id="@+id/blacklistListView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"></ListView>
+        android:layout_height="wrap_content">
+
+        </ListView>
 
 </LinearLayout>

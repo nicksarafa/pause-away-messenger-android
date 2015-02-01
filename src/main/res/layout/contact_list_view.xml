@@ -10,8 +10,8 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="6dp"
-        android:text="Checked contacts will not receive auto reply messages"
+        android:padding="@dimen/blacklist_sub_title_padding"
+        android:text="@string/blacklist_sub_header_text"
         android:gravity="center_horizontal"/>
 
     <FrameLayout
@@ -22,7 +22,18 @@
              consistency. -->
         <ListView android:id="@id/android:list"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="match_parent"
+            android:overScrollMode="never"
+            android:listSelector="@color/pause_green_light"
+            android:cacheColorHint="@color/transparent"
+            android:clipToPadding="false"
+            android:scrollbars="vertical"
+            android:isScrollContainer="false"
+            android:scrollbarStyle="outsideOverlay"
+            android:smoothScrollbar="true"
+            android:verticalScrollbarPosition="right"
+            android:overScrollFooter="@android:color/transparent"
+            android:footerDividersEnabled="false"/>
 
         <!-- style="@style/ContactListView" -->
         <!-- Use standard android.R class empty id instead of app specific id. This is just useful for

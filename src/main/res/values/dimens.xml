@@ -48,5 +48,6 @@
     <dimen name="emoji_summary_sothree_height">80dp</dimen>
     <dimen name="goose_egg">0dp</dimen>
     <dimen name="bottom_btn_height">68dp</dimen>
+    <dimen name="blacklist_sub_title_padding">8dp</dimen>
 
 </resources>

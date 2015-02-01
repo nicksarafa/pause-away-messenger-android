@@ -42,30 +42,35 @@
     <style name="ContactListView">
         <item name="android:verticalScrollbarPosition">right</item>
         <item name="android:fastScrollAlwaysVisible">true</item>
-        <!--<item name="android:scrollbarStyle">outsideInset</item>-->
+        <item name="android:scrollbarStyle">outsideOverlay</item>
     </style>
 
-    <style name="Theme.Pause.Blacklist" parent="@style/Theme.AppCompat">
+    <style name="Theme.Pause.Blacklist" parent="@style/Theme.AppCompat.Light">
         <item name="android:windowBackground">@color/pager_background</item>
         <item name="actionBarStyle">@style/Widget.Styled.ActionBar</item>
         <item name="android:actionBarStyle">@style/Widget.Styled.ActionBar</item>
-        <item name="android:editTextBackground">@drawable/pausetheme_edit_text_holo_light</item>
+        <!-- remove shadow below action bar -->
+        <item name="android:windowContentOverlay">@null</item>
+        <!-- Support library compatibility -->
+        <item name="elevation">0dp</item>
+        <!--<item name="android:editTextBackground">@drawable/pausetheme_edit_text_holo_light</item>-->
         <!--<item name="android:seekBarStyle">@style/SeekBarPauseTheme</item>-->
     </style>
 
-    <style name="Widget.Styled.ActionBar" parent="@style/Widget.AppCompat.ActionBar.Solid">
-        <item name="android:background">@drawable/transparent_drawable</item>
+    <style name="Widget.Styled.ActionBar" parent="@style/Widget.AppCompat.ActionBar">
+        <item name="android:background">@color/pause_green</item>
         <item name="android:titleTextStyle">@style/Theme.Pause.Blacklist.Styled.ActionBar.TitleTextStyle</item>
+        <item name="android:title">BLACKLIST</item>
+        <item name="android:searchButtonText">Search Contacts</item>
         <item name="android:displayOptions">showHome|homeAsUp</item>
         <item name="displayOptions">showHome|homeAsUp</item>
-        <item name="android:icon">@android:color/transparent</item> <!-- This does the magic! -->
-        <!--<item name="android:icon">@drawable/icon</item>-->
+        <item name="android:icon">@drawable/icon</item> <!-- This does the magic! -->
     </style>
 
-    <style name="Theme.Pause.Blacklist.Styled.ActionBar.TitleTextStyle" parent="@android:style/Widget.TextView">
-        <item name="android:text">BLACKLIST</item>
+    <style name="Theme.Pause.Blacklist.Styled.ActionBar.TitleTextStyle" parent="@style/Widget.Styled.ActionBar">
+        <item name="android:label">BLACKLIST</item>
         <item name="android:textSize">20sp</item>
-        <item name="android:textColor">@color/text_white</item>
+        <item name="android:textColor">@color/pause_green</item>
         <item name="android:textStyle">bold</item>
     </style>
 

@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="horizontal"
-    android:padding="6dp">
+    android:padding="@dimen/blacklist_sub_title_padding">
 
     <CheckBox
         android:id="@+id/checkbox"
@@ -19,7 +19,7 @@
         android:layout_toRightOf="@+id/checkbox"
         android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:textSize="24dp"
+        android:textSize="24sp"
         android:textColor="@android:color/black"
         android:text="Matt Tyndall"
         android:layout_weight="4"/>
