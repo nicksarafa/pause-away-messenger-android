@@ -18,6 +18,8 @@
         <item name="android:windowActionBar">false</item>
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowActionBarOverlay">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:showDividers">none</item>
     </style>
 
     <!-- Custom Widget Style Updates -->
@@ -30,7 +32,7 @@
         <item name="android:gravity">center_vertical</item>
     </style>
 
-    <style name="searchTextHiglight">
+    <style name="searchTextHighlight">
         <item name="android:textColor">@color/holo_blue</item>
         <item name="android:textStyle">bold</item>
     </style>

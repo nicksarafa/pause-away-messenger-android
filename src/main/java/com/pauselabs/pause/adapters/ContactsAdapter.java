@@ -64,7 +64,7 @@ public class ContactsAdapter extends CursorAdapter implements SectionIndexer {
 
         // Defines a span for highlighting the part of a display name that matches the search
         // string
-        highlightTextSpan = new TextAppearanceSpan(context, R.style.searchTextHiglight);
+        highlightTextSpan = new TextAppearanceSpan(context, R.style.searchTextHighlight);
 
         blacklistContacts = prefs.getStringSet(Constants.Settings.BLACKLIST, new HashSet<String>());
 

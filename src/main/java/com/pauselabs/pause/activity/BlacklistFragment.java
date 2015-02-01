@@ -41,7 +41,7 @@ public class BlacklistFragment extends ListFragment implements AdapterView.OnIte
     private static final String TAG = BlacklistFragment.class.getSimpleName();
 
     // Bundle key for saving previously selected search result item
-    private static final String STATE_PREVIOUSLY_SELECTED_KEY = "com.example.android.contactslist.ui.SELECTED_ITEM";
+    private static final String STATE_PREVIOUSLY_SELECTED_KEY = "com.example.android.contacts_list.ui.SELECTED_ITEM";
 
     private OnContactsInteractionListener mOnContactSelectedListener;
 
