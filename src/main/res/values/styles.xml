@@ -30,15 +30,101 @@
         <item name="android:gravity">center_vertical</item>
     </style>
 
-    <style name="searchTextHighlight">
+    <style name="searchTextHiglight">
         <item name="android:textColor">@color/holo_blue</item>
         <item name="android:textStyle">bold</item>
     </style>
 
+    <!-- BlackList (Other Old Styles Too) -->
+
+    <style name="listViewActivatedStyle"/>
+
     <style name="ContactListView">
         <item name="android:verticalScrollbarPosition">right</item>
         <item name="android:fastScrollAlwaysVisible">true</item>
-        <item name="android:scrollbarStyle">outsideInset</item>
+        <!--<item name="android:scrollbarStyle">outsideInset</item>-->
     </style>
+
+    <style name="Theme.Pause.Blacklist" parent="@style/Theme.AppCompat">
+        <item name="android:windowBackground">@color/pager_background</item>
+        <item name="actionBarStyle">@style/Widget.Styled.ActionBar</item>
+        <item name="android:actionBarStyle">@style/Widget.Styled.ActionBar</item>
+        <item name="android:editTextBackground">@drawable/pausetheme_edit_text_holo_light</item>
+        <!--<item name="android:seekBarStyle">@style/SeekBarPauseTheme</item>-->
+    </style>
+
+    <style name="Widget.Styled.ActionBar" parent="@style/Widget.AppCompat.ActionBar.Solid">
+        <item name="android:background">@drawable/transparent_drawable</item>
+        <item name="android:titleTextStyle">@style/Theme.Pause.Blacklist.Styled.ActionBar.TitleTextStyle</item>
+        <item name="android:displayOptions">showHome|homeAsUp</item>
+        <item name="displayOptions">showHome|homeAsUp</item>
+        <item name="android:icon">@android:color/transparent</item> <!-- This does the magic! -->
+        <!--<item name="android:icon">@drawable/icon</item>-->
+    </style>
+
+    <style name="Theme.Pause.Blacklist.Styled.ActionBar.TitleTextStyle" parent="@android:style/Widget.TextView">
+        <item name="android:text">BLACKLIST</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">@color/text_white</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="ListSeparatorTextView" parent="Widget.TextView.ListSeparator">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:background">@drawable/list_section_divider</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/pause_green</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:gravity">center_vertical</item>
+        <!--<item name="android:paddingStart">8dp</item>-->
+        <!--<item name="android:paddingTop">8dp</item>-->
+    </style>
+
+    <!-- Used for Timer - Reimport or use Google Material Library? -->
+
+    <!--<style name="SeekBarPauseTheme" parent="android:Widget.Holo.Light.SeekBar">-->
+    <!--<item name="android:progressDrawable">@drawable/pausetheme_scrubber_progress_horizontal_holo_light</item>-->
+    <!--<item name="android:indeterminateDrawable">@drawable/pausetheme_scrubber_progress_horizontal_holo_light</item>-->
+    <!--<item name="android:thumb">@drawable/pausetheme_scrubber_control_selector_holo_light</item>-->
+    <!--</style>-->
+
+
+
+            <!-- New v7 ActionBar Theme used to Solve Null Pointer for getActionBar in MainActivity -->
+
+    <!--<style name="AppTheme" parent="AppTheme.Base"/>-->
+
+    <!--<style name="AppTheme.Base" parent="@style/Theme.AppCompat.Light.NoActionBar">-->
+        <!--<item name="colorPrimary">@color/colorPrimary</item>-->
+        <!--<item name="colorPrimaryDark">@color/colorPrimaryDark</item>-->
+        <!--<item name="colorAccent">@color/colorAccent</item>-->
+        <!--<item name="android:windowNoTitle">true</item>-->
+        <!--<item name="windowActionBar">false</item>-->
+        <!--<item name="windowActionModeOverlay">true</item>-->
+        <!--<item name="android:windowContentTransitions">true</item>-->
+        <!--<item name="android:windowAllowEnterTransitionOverlap">true</item>-->
+        <!--<item name="android:windowAllowReturnTransitionOverlap">true</item>-->
+        <!--<item name="android:windowSharedElementEnterTransition">@android:transition/move</item>-->
+        <!--<item name="android:windowSharedElementExitTransition">@android:transition/move</item>-->
+    <!--</style>-->
+
+    <!--<style name="Theme.AppCompat.Light.NoActionBar" parent="@style/Theme.AppCompat.Light">-->
+        <!--<item name="android:windowActionBar">false</item>-->
+        <!--<item name="android:windowNoTitle">true</item>-->
+        <!--<item name="android:windowActionBarOverlay">true</item>-->
+    <!--</style>-->
+
+    <!-- Custom Widget Style Updates -->
+
+    <!--<style name="Widget.TextView.ListSeparator" parent="@android:style/Widget.TextView">-->
+        <!--<item name="android:layout_width">match_parent</item>-->
+        <!--<item name="android:layout_height">wrap_content</item>-->
+        <!--<item name="android:textStyle">bold</item>-->
+        <!--<item name="android:textSize">14sp</item>-->
+        <!--<item name="android:gravity">center_vertical</item>-->
+    <!--</style>-->
+
 
 </resources>

@@ -45,16 +45,18 @@
                 android:windowSoftInputMode="stateHidden"/>
 
             <activity android:name=".pause.activity.BlacklistActivity"
-                android:screenOrientation="portrait">
-
+                android:theme="@style/Theme.AppCompat.Light"
+                android:parentActivityName=".pause.activity.MainActivity">
                 <intent-filter>
                     <action android:name="android.intent.action.SEARCH" />
                 </intent-filter>
-
-                    <meta-data
-                        android:name="android.app.searchable"
-                        android:resource="@xml/searchable_contacts"
-                        android:value=".pause.ui.BlacklistActivity"/>
+                <meta-data
+                    android:name="android.app.searchable"
+                    android:resource="@xml/searchable_contacts"
+                    android:value=".pause.activity.BlacklistActivity"/>
+                <meta-data
+                    android:name="android.support.PARENT_ACTIVITY"
+                    android:value=".pause.activity.MainActivity" />
             </activity>
 
         <!-- Crashalytics and Google Analytics Setup -->
