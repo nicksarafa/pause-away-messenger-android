@@ -8,7 +8,9 @@ import android.widget.TextView;
 
 import com.pauselabs.R;
 import com.pauselabs.pause.Injector;
+import com.pauselabs.pause.PauseApplication;
 import com.pauselabs.pause.model.PauseConversation;
+import com.pauselabs.pause.model.PauseMessage;
 
 import butterknife.InjectView;
 import butterknife.Views;
@@ -61,8 +63,15 @@ public class SummaryConversationCard extends RelativeLayout {
     }
 
     public void updateMessageText() {
-        if (messageText != null)
-        messageText.setText(conversation.getLastMessageReceived().getMessage());
+        if (messageText != null) {
+            PauseMessage lastMessage = conversation.getLastMessage();
+
+            String textToDisplay = (lastMessage.getFrom().equals("0")) ? "Me: " : conversation.getContactName() + ": ";
+
+            textToDisplay += lastMessage.getMessage();
+
+            messageText.setText(textToDisplay);
+        }
     }
 
     public boolean isShowingConvo() {

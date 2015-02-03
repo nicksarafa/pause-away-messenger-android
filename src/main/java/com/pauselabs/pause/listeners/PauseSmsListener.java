@@ -93,9 +93,6 @@ public class PauseSmsListener extends ContentObserver {
 
             }
 
-            PauseApplication.updateNotifications();
-            PauseApplication.updateUI();
-
             previousCount = newCount;
         }
 

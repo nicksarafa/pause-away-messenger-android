@@ -5,12 +5,17 @@ import android.app.Instrumentation;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
+import android.app.Service;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.graphics.BitmapFactory;
+import android.media.AudioManager;
+import android.media.MediaPlayer;
+import android.media.Ringtone;
+import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Handler;
 import android.os.Message;
@@ -20,6 +25,7 @@ import android.provider.ContactsContract;
 import android.speech.SpeechRecognizer;
 import android.speech.tts.TextToSpeech;
 import android.support.v4.app.NotificationCompat;
+import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.view.Gravity;
 import android.widget.LinearLayout;
@@ -46,6 +52,8 @@ import com.pauselabs.pause.services.PauseApplicationService;
 import com.pauselabs.pause.services.PauseSessionService;
 import com.squareup.otto.Bus;
 
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
@@ -114,46 +122,46 @@ public class PauseApplication extends Application {
     public void onCreate() {
         super.onCreate();
 
-            if (instance == null) {
-                // Perform injection
-                Injector.init(getRootModule(), this);
+        if (instance == null) {
+            // Perform injection
+            Injector.init(getRootModule(), this);
 
-                instance = this;
+            instance = this;
 
-                if ( BuildConfig.USE_CRASHLYTICS ) {
-                    Crashlytics.start(instance);
-                }
+//            if ( BuildConfig.USE_CRASHLYTICS ) {
+//                Crashlytics.start(instance);
+//            }
 
-                prefs = PreferenceManager.getDefaultSharedPreferences(instance);
+            prefs = PreferenceManager.getDefaultSharedPreferences(instance);
 
-                // Register the bus so we can send notifcations
-                //        eventBus.register(this);
+            // Register the bus so we can send notifcations
+            //        eventBus.register(this);
 
-                notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+            notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
 
-                initImageLoader(getApplicationContext());
+            initImageLoader(getApplicationContext());
 
-                messageSender = new PauseMessageSender(instance);
+            messageSender = new PauseMessageSender(instance);
 
-                startPauseApplicationService();
+            startPauseApplicationService();
 
-                sr = SpeechRecognizer.createSpeechRecognizer(instance);
+            sr = SpeechRecognizer.createSpeechRecognizer(instance);
 
-                tts = new TextToSpeech(instance,new TextToSpeech.OnInitListener() {
-                    @Override
-                    public void onInit(int status) {
-                        if (status != TextToSpeech.ERROR) {
-                            tts.setLanguage(Locale.getDefault());
-                            tts.setSpeechRate(0.9f);
-                            tts.setPitch(1.45f);
+            tts = new TextToSpeech(instance,new TextToSpeech.OnInitListener() {
+                @Override
+                public void onInit(int status) {
+                    if (status != TextToSpeech.ERROR) {
+                        tts.setLanguage(Locale.getDefault());
+                        tts.setSpeechRate(0.9f);
+                        tts.setPitch(1.45f);
 
-                            // The app has not been opened yet. Play intro voice.
-                            if (!prefs.getBoolean(Constants.Pause.PAUSE_ALREADY_LAUNCHED_KEY, false))
-                                speak("Hello. I am your new personal assistant. What's your name?");
-                        }
+                        // The app has not been opened yet. Play intro voice.
+                        if (!prefs.getBoolean(Constants.Pause.PAUSE_ALREADY_LAUNCHED_KEY, false))
+                            speak("Hello. I am your new personal assistant. What's your name?");
                     }
-                });
-            }
+                }
+            });
+        }
     }
 
     /**
@@ -276,7 +284,10 @@ public class PauseApplication extends Application {
 //    }
 
     public static Notification updateMainNotification() {
-        int num = getCurrentSession().getConversations().size();
+        int num = 0;
+        for (PauseConversation convo: getCurrentSession().getConversations())
+            if (convo.getMessagesReceived().size() != 0)
+                num++;
         String message = (num > 0) ? num + ((num == 1) ? " person has" : " people have") + " contacted you." : "No one has contacted you";
 
         final Intent i = new Intent(instance, MainActivity.class);
@@ -440,17 +451,32 @@ public class PauseApplication extends Application {
 
         String contactId = lookupContact(receivedMessage.getFrom());
 
-        // Check who created the Session to in order to send appropriate message
-        if(currentPauseSession.shouldSenderReceivedBounceback(contactId) && conversation.getMessagesSentFromUser().size() == 0 ) {
-            PauseMessage bounceBackMessage = getMessageToBounceBack(receivedMessage.getFrom(), conversation);
-            conversation.addMessage(bounceBackMessage);
-            messageSender.sendSmsMessage(bounceBackMessage.getTo(), bounceBackMessage);
+        // Check who created the Session to in order to send appropri
 
-            currentPauseSession.incrementResponseCount();
-        } else
-            sendToast("Ignored " + receivedMessage.getTypeString() + " from " + conversation.getContactName());
+        if (currentPauseSession.isWhiteListed(contactId)) {
+            // TODO not playing sound
+            
+            AudioManager manager = (AudioManager)instance.getSystemService(Context.AUDIO_SERVICE);
+            manager.setStreamVolume(AudioManager.STREAM_MUSIC, manager.getStreamMaxVolume(AudioManager.STREAM_MUSIC) / 2, 0);
 
-        updateNotifications();
+            Uri notification = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+
+            MediaPlayer player = MediaPlayer.create(instance, notification);
+            player.start();
+        } else {
+            if (currentPauseSession.shouldSenderReceivedBounceback(contactId) && conversation.getMessagesSentFromUser().size() == 0) {
+                PauseMessage bounceBackMessage = getMessageToBounceBack(receivedMessage.getFrom(), conversation);
+                conversation.addMessage(bounceBackMessage);
+                messageSender.sendSmsMessage(bounceBackMessage.getTo(), bounceBackMessage);
+
+                currentPauseSession.incrementResponseCount();
+            } else {
+                sendToast("Ignored " + receivedMessage.getTypeString() + " from " + conversation.getContactName());
+            }
+
+            updateNotifications();
+            updateUI();
+        }
     }
 
     public static void handleMessageSent(PauseMessage sentMessage) {
@@ -461,6 +487,9 @@ public class PauseApplication extends Application {
 
         if (conversation.getMessagesSentFromUser().size() == 1)
             PauseApplication.sendToast("I will no longer reply to " + conversation.getContactName() + " until your next Paüse.");
+
+        updateNotifications();
+        updateUI();
     }
 
     public static String lookupContact(String contactNumber) {

@@ -15,6 +15,7 @@
     <uses-permission android:name="android.permission.WRITE_SMS" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
     <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.CALL_PHONE"/>
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.PROCESS_OUTGOING_CALLS" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
@@ -45,7 +46,7 @@
                 android:windowSoftInputMode="stateHidden"
                 android:screenOrientation="portrait"/>
 
-            <activity android:name=".pause.activity.BlacklistActivity"
+            <activity android:name=".pause.activity.BlackWhitelistActivity"
                 android:theme="@style/Theme.Pause.Blacklist"
                 android:parentActivityName=".pause.activity.MainActivity"
                 android:screenOrientation="portrait"
@@ -65,7 +66,7 @@
         <!-- Crashalytics and Google Analytics Setup -->
 
         <receiver android:name=".pause.listeners.NotificationActionListener"/>
-            <meta-data android:name="com.crashlytics.ApiKey" android:value="c5b66f7bae194d35e898f5f0e5ff5fd1ea78a618" />
+            <meta-data android:name="com.crashlytics.ApiKey" android:value="e4dd54a9cfe517a2ae26c1996bd2f19553c260db" />
             <meta-data android:name="com.google.android.gms.version" android:value="@integer/google_play_services_version" />
 
     </application>

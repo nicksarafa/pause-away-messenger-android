@@ -7,29 +7,39 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.telephony.PhoneStateListener;
 import android.telephony.TelephonyManager;
+import android.util.Log;
 
 import com.pauselabs.pause.PauseApplication;
 import com.pauselabs.pause.model.Constants;
 import com.pauselabs.pause.model.PauseMessage;
+import com.pauselabs.pause.model.PauseSession;
 
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.Date;
 
 /**
  * The PausePhoneStateListener is responsible for listening to changes in the Phone State and sending a Pause message on a missed phone call
  */
-public class PauseCallListener extends BroadcastReceiver{
+public class PauseCallListener extends BroadcastReceiver {
 
     private static final String TAG = PauseCallListener.class.getSimpleName();
 
+    TelephonyManager telephonyManager;
+
+    private String number = "";
+    private boolean wasRinging = false;
+
     @Override
     public void onReceive(Context context, Intent intent) {
+        telephonyManager = (TelephonyManager) PauseApplication.getInstance().getSystemService(Service.TELEPHONY_SERVICE);
+
         if (intent.getAction().equals(Constants.Message.NEW_OUTGOING_CALL_INTENT)) {
             String number = intent.getStringExtra(Intent.EXTRA_PHONE_NUMBER);
 
             PauseMessage newMessage = new PauseMessage("0", number, "outgoing call", new Date().getTime(), Constants.Message.Type.PHONE_OUTGOING);
             PauseApplication.handleMessageSent(newMessage);
         } else if (intent.getAction().equals(Constants.Message.PHONE_STATE_CHANGE_INTENT)) {
-            TelephonyManager telephonyManager = (TelephonyManager) context.getSystemService(Service.TELEPHONY_SERVICE);
             ReplyPhoneStateListener replyPhoneStateListener = new ReplyPhoneStateListener(context);
             telephonyManager.listen(replyPhoneStateListener, PhoneStateListener.LISTEN_CALL_STATE);
             telephonyManager.listen(replyPhoneStateListener, PhoneStateListener.LISTEN_NONE);
@@ -45,35 +55,54 @@ public class PauseCallListener extends BroadcastReceiver{
 
         @Override
         public void onCallStateChanged(int state, String incomingNumber) {
-            SharedPreferences sharedPreferences = this.context.getApplicationContext().getSharedPreferences(Constants.Message.MISSED_CALL_PREFERENCE, Context.MODE_WORLD_WRITEABLE | Context.MODE_WORLD_READABLE);
-
-            int olderSharedPreference = sharedPreferences.getInt(Constants.Message.PREFERENCE_OLDER_PHONE_STATE, -1);
-
-            if(!incomingNumber.equals("")) {
-                sharedPreferences.edit().putString(Constants.Message.PREFERENCE_LAST_CALL_NUMBER, incomingNumber).apply();
-            }
-
-            SharedPreferences.Editor editor = sharedPreferences.edit();
-            editor.putInt(Constants.Message.PREFERENCE_OLDER_PHONE_STATE, state);
-            editor.apply();
 
             switch (state) {
                 case TelephonyManager.CALL_STATE_IDLE:
-                    if (olderSharedPreference == TelephonyManager.CALL_STATE_RINGING) {
-                        String savedNumber = sharedPreferences.getString(Constants.Message.PREFERENCE_LAST_CALL_NUMBER, "none");
-                        PauseMessage messageReceived = new PauseMessage(savedNumber, "0", "missed phone call", new Date().getTime(), Constants.Message.Type.PHONE_INCOMING);
-                        PauseApplication.handleMessageReceived(messageReceived);
+                    if (wasRinging) {
+                        PauseMessage messageReceived = new PauseMessage(number, "0", "", new Date().getTime(), Constants.Message.Type.PHONE_INCOMING);
+                        messageReceived.setMessage("Missed Call");
+
+                        Log.i(TAG,number);
 
                         PauseApplication.numCall++;
 
-                        PauseApplication.updateNotifications();
-                        PauseApplication.updateUI();
+                        PauseApplication.handleMessageReceived(messageReceived);
+
+                        number = "";
+                        wasRinging = false;
                     }
+
                     break;
                 case TelephonyManager.CALL_STATE_OFFHOOK:
                     break;
                 case TelephonyManager.CALL_STATE_RINGING:
+                    number = incomingNumber;
+                    wasRinging = true;
+
+                    PauseSession currentPauseSession = PauseApplication.getCurrentSession();
+
+                    if (!currentPauseSession.isWhiteListed(PauseApplication.lookupContact(number)))
+                        hangUp();
+
                     break;
+            }
+        }
+
+        public void hangUp() {
+            TelephonyManager telephonyManager = (TelephonyManager) PauseApplication.getInstance().getSystemService(Service.TELEPHONY_SERVICE);
+
+            Class c = null;
+            try {
+                c = Class.forName(telephonyManager.getClass().getName());
+                Method m = c.getDeclaredMethod("getITelephony");
+                m.setAccessible(true);
+                Object telephonyService = m.invoke(telephonyManager); // Get the internal ITelephony object
+                c = Class.forName(telephonyService.getClass().getName()); // Get its class
+                m = c.getDeclaredMethod("endCall"); // Get the "endCall()" method
+                m.setAccessible(true); // Make it accessible
+                m.invoke(telephonyService); // invoke endCall()
+            } catch (ClassNotFoundException | InvocationTargetException | NoSuchMethodException | IllegalAccessException e) {
+                e.printStackTrace();
             }
         }
     }

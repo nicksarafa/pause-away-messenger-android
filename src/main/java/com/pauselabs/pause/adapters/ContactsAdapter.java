@@ -8,6 +8,7 @@ import android.support.v4.widget.CursorAdapter;
 import android.text.SpannableString;
 import android.text.TextUtils;
 import android.text.style.TextAppearanceSpan;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -37,19 +38,22 @@ public class ContactsAdapter extends CursorAdapter implements SectionIndexer {
     private TextAppearanceSpan highlightTextSpan; // Stores the highlight text appearance style
     private String mSearchTerm;
     protected SharedPreferences prefs;
-    private Set<String> blacklistContacts;
+    private Set<String> listContacts;
+
+    private String type;
 
     /**
      * Instantiates a new Contacts Adapter.
      * @param context A context that has access to the app's layout.
      */
-    public ContactsAdapter(Context context) {
+    public ContactsAdapter(Context context, String tag) {
         super(context, null, 0);
 
         // Stores inflater for use later
         mInflater = LayoutInflater.from(context);
 
         prefs = PreferenceManager.getDefaultSharedPreferences(context);
+        setListContactsFromTag(tag);
 
         // Loads a string containing the English alphabet. To fully localize the app, provide a
         // strings.xml file in res/values-<x> directories, where <x> is a locale. In the file,
@@ -65,9 +69,15 @@ public class ContactsAdapter extends CursorAdapter implements SectionIndexer {
         // Defines a span for highlighting the part of a display name that matches the search
         // string
         highlightTextSpan = new TextAppearanceSpan(context, R.style.searchTextHighlight);
+    }
 
-        blacklistContacts = prefs.getStringSet(Constants.Settings.BLACKLIST, new HashSet<String>());
-
+    public void setListContactsFromTag(String tag) {
+        type = tag;
+        Log.i("ContactsAdapter","Tag: " + type);
+        if (type.equals("black"))
+            listContacts = prefs.getStringSet(Constants.Settings.BLACKLIST, new HashSet<String>());
+        else if (type.equals("white"))
+            listContacts = prefs.getStringSet(Constants.Settings.WHITELIST, new HashSet<String>());
     }
 
     /**
@@ -106,17 +116,23 @@ public class ContactsAdapter extends CursorAdapter implements SectionIndexer {
         holder.checkbox.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                blacklistContacts = prefs.getStringSet(Constants.Settings.BLACKLIST, new HashSet<String>());
+                if (type.equals("black"))
+                    listContacts = prefs.getStringSet(Constants.Settings.BLACKLIST, new HashSet<String>());
+                else if (type.equals("white"))
+                    listContacts = prefs.getStringSet(Constants.Settings.WHITELIST, new HashSet<String>());
 
                 CheckBox checkbox = (CheckBox) v;
                 String contactId = String.valueOf(v.getTag());
 
                 if(checkbox.isChecked()) {
-                    blacklistContacts.add(contactId);
+                    listContacts.add(contactId);
                 } else {
-                    blacklistContacts.remove(contactId);
+                    listContacts.remove(contactId);
                 }
-                prefs.edit().putStringSet(Constants.Settings.BLACKLIST, blacklistContacts).apply();
+                if (type.equals("black"))
+                    prefs.edit().putStringSet(Constants.Settings.BLACKLIST, listContacts).apply();
+                else if (type.equals("white"))
+                    prefs.edit().putStringSet(Constants.Settings.WHITELIST, listContacts).apply();
             }
         });
 
@@ -166,7 +182,7 @@ public class ContactsAdapter extends CursorAdapter implements SectionIndexer {
             holder.checkbox.setText(highlightedName);
         }
 
-        if(blacklistContacts.contains(String.valueOf(contactId))){
+        if(listContacts.contains(String.valueOf(contactId))){
             holder.checkbox.setChecked(true);
         } else {
             holder.checkbox.setChecked(false);

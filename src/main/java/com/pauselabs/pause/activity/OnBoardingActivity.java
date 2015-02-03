@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 
+import com.crashlytics.android.Crashlytics;
 import com.pauselabs.pause.Injector;
 import com.pauselabs.pause.controllers.onboarding.GenderViewController;
 import com.pauselabs.pause.controllers.onboarding.InteractiveViewController;
@@ -36,8 +37,11 @@ public class OnBoardingActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Crashlytics.getInstance().setDebugMode(true);
+        Crashlytics.start(this);
 
         Injector.inject(this);
+
 
         genderViewController = new GenderViewController(this);
         interactiveViewController = new InteractiveViewController(this);
@@ -87,6 +91,7 @@ public class OnBoardingActivity extends Activity {
     }
 
     public void startApp() {
+        
         startActivity(new Intent(this, MainActivity.class));
     }
 

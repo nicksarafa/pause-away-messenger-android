@@ -24,6 +24,8 @@ public class SettingsView extends LinearLayout {
     public SettingsButton receivedSmsBtn;
     @InjectView(R.id.blacklistBtn)
     public SettingsButton blacklistBtn;
+    @InjectView(R.id.whitelistBtn)
+    public SettingsButton whitelistBtn;
     @InjectView(R.id.rateBtn)
     public SettingsButton rateBtn;
     @InjectView(R.id.contactBtn)

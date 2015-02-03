@@ -38,6 +38,7 @@ public class PauseSession implements Serializable {
     private ArrayList<PauseConversation> conversations;
 
     private Set<String> mBlacklistContacts;
+    private Set<String> mWhitelistContacts;
     private String smsPrivacySetting;
     private String callPrivacySetting;
 
@@ -47,11 +48,12 @@ public class PauseSession implements Serializable {
         Date date = new Date();
         createdOn = date.getTime();
         creator = sessionCreator;
-        conversations = new ArrayList<PauseConversation>();
+        conversations = new ArrayList<>();
         isActive = Boolean.TRUE;
         responseCount = 0;
 
         mBlacklistContacts = retrieveBlacklistContacts();
+        mWhitelistContacts = retrieveWhitelistContacts();
         smsPrivacySetting = mPrefs.getString(Constants.Settings.REPLY_SMS, Constants.Privacy.EVERYBODY);
         callPrivacySetting = mPrefs.getString(Constants.Settings.REPLY_MISSED_CALL, Constants.Privacy.EVERYBODY);
     }
@@ -127,8 +129,16 @@ public class PauseSession implements Serializable {
         return shouldSendBounceback;
     }
 
+    public Boolean isWhiteListed(String contactId) {
+        return mWhitelistContacts.contains(contactId);
+    }
+
     private Set<String> retrieveBlacklistContacts() {
         return mPrefs.getStringSet(Constants.Settings.BLACKLIST, new HashSet<String>());
+    }
+
+    private Set<String> retrieveWhitelistContacts() {
+        return mPrefs.getStringSet(Constants.Settings.WHITELIST, new HashSet<String>());
     }
 
     private Boolean privacyCheckPassed(String contactId) {

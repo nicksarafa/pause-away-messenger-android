@@ -74,15 +74,25 @@
                     android:background="@null"
                     custom:label="@string/reply_to_SMS_settings_label"/>
 
-                <!-- BlackList -->
+                    <!-- BlackList -->
 
-                <com.pauselabs.pause.view.SettingsButton
-                    android:id="@+id/blacklistBtn"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@null"
-                    custom:label="@string/blacklist_label"
-                    custom:content=""/>
+                    <com.pauselabs.pause.view.SettingsButton
+                        android:id="@+id/blacklistBtn"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@null"
+                        custom:label="@string/blacklist_label"
+                        custom:content=""/>
+
+                    <!-- WhiteList -->
+
+                    <com.pauselabs.pause.view.SettingsButton
+                        android:id="@+id/whitelistBtn"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@null"
+                        custom:label="@string/whitelist_label"
+                        custom:content=""/>
 
                 <!-- Volume Settings Key -->
 
