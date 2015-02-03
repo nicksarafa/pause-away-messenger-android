@@ -14,6 +14,10 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.graphics.BitmapFactory;
+import android.media.AudioManager;
+import android.media.MediaPlayer;
+import android.media.Ringtone;
+import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Handler;
 import android.os.Message;
@@ -284,7 +288,10 @@ public class PauseApplication extends Application {
 //    }
 
     public static Notification updateMainNotification() {
-        int num = getCurrentSession().getConversations().size();
+        int num = 0;
+        for (PauseConversation convo: getCurrentSession().getConversations())
+            if (convo.getMessagesReceived().size() != 0)
+                num++;
         String message = (num > 0) ? num + ((num == 1) ? " person has" : " people have") + " contacted you." : "No one has contacted you";
 
         final Intent i = new Intent(instance, MainActivity.class);
@@ -448,41 +455,32 @@ public class PauseApplication extends Application {
 
         String contactId = lookupContact(receivedMessage.getFrom());
 
-        // Check who created the Session to in order to send appropriate message
-        if(currentPauseSession.shouldSenderReceivedBounceback(contactId) && conversation.getMessagesSentFromUser().size() == 0 ) {
-            PauseMessage bounceBackMessage = getMessageToBounceBack(receivedMessage.getFrom(), conversation);
-            conversation.addMessage(bounceBackMessage);
-            messageSender.sendSmsMessage(bounceBackMessage.getTo(), bounceBackMessage);
+        // Check who created the Session to in order to send appropri
 
-            currentPauseSession.incrementResponseCount();
+        if (currentPauseSession.isWhiteListed(contactId)) {
+            // TODO not playing sound
+            
+            AudioManager manager = (AudioManager)instance.getSystemService(Context.AUDIO_SERVICE);
+            manager.setStreamVolume(AudioManager.STREAM_MUSIC, manager.getStreamMaxVolume(AudioManager.STREAM_MUSIC) / 2, 0);
+
+            Uri notification = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+
+            MediaPlayer player = MediaPlayer.create(instance, notification);
+            player.start();
         } else {
-            if (receivedMessage.getType() == Constants.Message.Type.PHONE_INCOMING) {
-                TelephonyManager telephonyManager = (TelephonyManager) instance.getSystemService(Service.TELEPHONY_SERVICE);
+            if (currentPauseSession.shouldSenderReceivedBounceback(contactId) && conversation.getMessagesSentFromUser().size() == 0) {
+                PauseMessage bounceBackMessage = getMessageToBounceBack(receivedMessage.getFrom(), conversation);
+                conversation.addMessage(bounceBackMessage);
+                messageSender.sendSmsMessage(bounceBackMessage.getTo(), bounceBackMessage);
 
-                Class c = null;
-                try {
-                    c = Class.forName(telephonyManager.getClass().getName());
-                    Method m = c.getDeclaredMethod("getITelephony");
-                    m.setAccessible(true);
-                    Object telephonyService = m.invoke(telephonyManager); // Get the internal ITelephony object
-                    c = Class.forName(telephonyService.getClass().getName()); // Get its class
-                    m = c.getDeclaredMethod("endCall"); // Get the "endCall()" method
-                    m.setAccessible(true); // Make it accessible
-                    m.invoke(telephonyService); // invoke endCall()
-
-                    PauseApplication.numCall++;
-
-                    PauseApplication.updateNotifications();
-                    PauseApplication.updateUI();
-                } catch (ClassNotFoundException | InvocationTargetException | NoSuchMethodException | IllegalAccessException e) {
-                    e.printStackTrace();
-                }
+                currentPauseSession.incrementResponseCount();
+            } else {
+                sendToast("Ignored " + receivedMessage.getTypeString() + " from " + conversation.getContactName());
             }
 
-            sendToast("Ignored " + receivedMessage.getTypeString() + " from " + conversation.getContactName());
+            updateNotifications();
+            updateUI();
         }
-
-        updateNotifications();
     }
 
     public static void handleMessageSent(PauseMessage sentMessage) {
@@ -493,6 +491,9 @@ public class PauseApplication extends Application {
 
         if (conversation.getMessagesSentFromUser().size() == 1)
             PauseApplication.sendToast("I will no longer reply to " + conversation.getContactName() + " until your next Paüse.");
+
+        updateNotifications();
+        updateUI();
     }
 
     public static String lookupContact(String contactNumber) {

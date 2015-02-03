@@ -180,7 +180,6 @@ public class MainActivity extends ActionBarActivity {
         summaryViewController.updateUI();
 
         if(PauseApplication.isActiveSession()) {
-            mainActivityView.viewPager.setCurrentItem(EMOJI_SUMMARY_TAB, true);
             // TODO slide panel up to summary tab
         }
     }

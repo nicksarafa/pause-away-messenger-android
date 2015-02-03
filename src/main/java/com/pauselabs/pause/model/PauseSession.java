@@ -48,7 +48,7 @@ public class PauseSession implements Serializable {
         Date date = new Date();
         createdOn = date.getTime();
         creator = sessionCreator;
-        conversations = new ArrayList<PauseConversation>();
+        conversations = new ArrayList<>();
         isActive = Boolean.TRUE;
         responseCount = 0;
 
@@ -118,23 +118,25 @@ public class PauseSession implements Serializable {
      * @return true if sender is safe to respond to
      */
     public Boolean shouldSenderReceivedBounceback(String contactId) {
-        Boolean shouldSendBounceback = true;
+        Boolean shouldSendBounceback;
 
-        if (!mWhitelistContacts.contains(contactId)) {
-            if (mBlacklistContacts.contains(contactId)) {
-                shouldSendBounceback = false;
-            } else {
-                shouldSendBounceback = privacyCheckPassed(contactId);
-            }
+        if(mBlacklistContacts.contains(contactId)) {
+            shouldSendBounceback = false;
+        } else {
+            shouldSendBounceback = privacyCheckPassed(contactId);
         }
 
-
         return shouldSendBounceback;
+    }
+
+    public Boolean isWhiteListed(String contactId) {
+        return mWhitelistContacts.contains(contactId);
     }
 
     private Set<String> retrieveBlacklistContacts() {
         return mPrefs.getStringSet(Constants.Settings.BLACKLIST, new HashSet<String>());
     }
+
     private Set<String> retrieveWhitelistContacts() {
         return mPrefs.getStringSet(Constants.Settings.WHITELIST, new HashSet<String>());
     }

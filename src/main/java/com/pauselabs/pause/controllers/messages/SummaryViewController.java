@@ -2,6 +2,7 @@ package com.pauselabs.pause.controllers.messages;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -61,6 +62,7 @@ public class SummaryViewController implements AdapterView.OnItemClickListener, R
                     SummaryConversationCard newCard = (SummaryConversationCard) inflater.inflate(R.layout.summary_conversation_card, null);
                     newCard.setConversation(convo);
 
+                    Log.i("SummaryController", (newCard.getConversation().getContactName()));
                     summaryCardArrayAdapter.add(newCard);
                 }
             }
