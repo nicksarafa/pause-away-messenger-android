@@ -42,11 +42,13 @@
             </activity>
 
             <activity android:name=".pause.activity.MainActivity"
-                android:windowSoftInputMode="stateHidden"/>
+                android:windowSoftInputMode="stateHidden"
+                android:screenOrientation="portrait"/>
 
             <activity android:name=".pause.activity.BlacklistActivity"
                 android:theme="@style/Theme.Pause.Blacklist"
                 android:parentActivityName=".pause.activity.MainActivity"
+                android:screenOrientation="portrait"
                 android:label="@string/blacklist_ab_title">
                 <intent-filter>
                     <action android:name="android.intent.action.SEARCH" />
