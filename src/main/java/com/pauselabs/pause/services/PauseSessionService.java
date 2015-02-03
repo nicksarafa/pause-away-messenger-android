@@ -12,6 +12,7 @@ import android.util.Log;
 
 import com.pauselabs.pause.Injector;
 import com.pauselabs.pause.PauseApplication;
+import com.pauselabs.pause.activity.MainActivity;
 import com.pauselabs.pause.model.Constants;
 import com.pauselabs.pause.listeners.PauseCallListener;
 import com.pauselabs.pause.listeners.PauseSmsListener;
@@ -84,9 +85,13 @@ public class PauseSessionService extends Service{
         PauseApplication.updateUI();
 
         PauseApplication.speak("Pause on.");
-        PauseApplication.sendToast("PAÜSE ON Ü");
+        PauseApplication.sendToast("PAUSE ON Ü");
 
 //        PauseApplication.sr.startListening(intent);
+
+        if (PauseApplication.getCurrentSession().getCreator() == Constants.Session.Creator.CUSTOM) {
+            prefs.edit().putString(Constants.Pause.CUSTOM_PAUSE_MESSAGE_KEY, MainActivity.customPauseViewController.customPauseView.customTxtView.getText().toString()).apply();
+        }
 
         // start SMS observer
         observer = new PauseSmsListener(null);

@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.media.AudioManager;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 
@@ -65,8 +64,8 @@ public class OnBoardingActivity extends Activity {
             genderSet = true;
         }
 
-        in.setDuration(1000);
-        out.setDuration(1000);
+        in.setDuration(600);
+        out.setDuration(600);
         out.setAnimationListener(new Animation.AnimationListener() {
             @Override
             public void onAnimationStart(Animation animation) {
@@ -105,5 +104,4 @@ public class OnBoardingActivity extends Activity {
                 prefs.edit().putInt(Constants.Pause.ONBOARDING_NUMBER_KEY, ++interactiveViewController.count).apply();
         }
     }
-
 }

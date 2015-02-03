@@ -85,8 +85,6 @@
         <item name="android:textColor">@color/pause_green</item>
         <item name="android:textSize">14sp</item>
         <item name="android:gravity">center_vertical</item>
-        <!--<item name="android:paddingStart">8dp</item>-->
-        <!--<item name="android:paddingTop">8dp</item>-->
     </style>
 
     <!-- Used for Timer - Reimport or use Google Material Library? -->

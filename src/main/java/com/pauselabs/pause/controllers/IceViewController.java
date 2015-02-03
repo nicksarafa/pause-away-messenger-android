@@ -25,7 +25,7 @@ public class IceViewController implements View.OnClickListener {
         
         iceView = (IceView)inflater.inflate(com.pauselabs.R.layout.ice_view,null);
 
-        iceView.addIceBtn.setOnClickListener(this);
+//        iceView.addIceBtn.setOnClickListener(this);
 
     }
 

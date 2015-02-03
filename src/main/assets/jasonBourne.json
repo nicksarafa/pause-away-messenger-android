@@ -13,7 +13,7 @@
             pauseMsg:"I was designed to let your friends know you will get back to them later!",
             buttons:[
                 {
-                   btnText:"Meh. How does it work?",
+                   btnText:"How does it work?",
                    actionId:5000
                 }
             ]
@@ -22,7 +22,7 @@
             pauseMsg:"It is easy! Simply silence your phone to begin!",
             buttons:[
                 {
-                   btnText:"I'm lazy. Silence the phone for me.",
+                   btnText:"Silence the phone for me.",
                    actionId:5001
                 }
             ]
@@ -40,11 +40,7 @@
             pauseMsg:"Nice! When your phone is not silenced, I don't answer calls and texts!\n",
             buttons:[
                 {
-                   btnText:"Awesome",
-                   actionId:5003
-                },
-                {
-                   btnText:"Lovely",
+                   btnText:"Gotcha",
                    actionId:5003
                 }
             ]

@@ -2,8 +2,6 @@ package com.pauselabs.pause.view;
 
 import android.content.Context;
 import android.util.AttributeSet;
-import android.util.Log;
-import android.view.LayoutInflater;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -11,8 +9,6 @@ import android.widget.TextView;
 import com.pauselabs.R;
 import com.pauselabs.pause.Injector;
 import com.pauselabs.pause.model.PauseConversation;
-
-import javax.inject.Inject;
 
 import butterknife.InjectView;
 import butterknife.Views;

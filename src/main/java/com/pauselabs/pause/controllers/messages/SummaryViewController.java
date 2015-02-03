@@ -45,6 +45,15 @@ public class SummaryViewController implements AdapterView.OnItemClickListener, R
         summaryCardArrayAdapter = new SummaryCardAdapter(summaryView.getContext(), R.layout.summary_conversation_card);
         summaryView.listView.setAdapter(summaryCardArrayAdapter);
         summaryView.listView.setOnItemClickListener(this);
+
+        summaryView.startPauseButton.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+
+                PauseApplication.startPauseService(Constants.Session.Creator.CUSTOM);
+            }
+        });
     }
 
     public void updateUI() {

@@ -37,9 +37,10 @@ public class MainActivity extends ActionBarActivity {
     public static final String TAG = MainActivity.class.getSimpleName();
 
     public static final int EMOJI_SUMMARY_TAB = 0;
-    public static final int SETTINGS_TAB = 1;
-    public static final int ICE_TAB = 2;
-    public static final int HIDDEN_CUSTOM = 3;
+    public static final int ICE_TAB = 1;
+    public static final int HIDDEN_CUSTOM = 2;
+    public static final int SETTINGS_TAB = 3;
+
 
     public MainActivityView mainActivityView;
     public ActionBar actionBar;
@@ -198,9 +199,9 @@ public class MainActivity extends ActionBarActivity {
 
         private int[] tab_icons = {
                 R.drawable.ic_action_directory_empty,
-                R.drawable.ic_action_settings_empty,
                 R.drawable.ic_action_ice_empty,
-                R.drawable.ic_action_custom_message_empty
+                R.drawable.ic_action_custom_message_empty,
+                R.drawable.ic_action_settings_empty
         };
 
 

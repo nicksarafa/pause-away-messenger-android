@@ -2,7 +2,6 @@ package com.pauselabs.pause.view.tabs;
 
 import android.content.Context;
 import android.util.AttributeSet;
-import android.widget.Button;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 
@@ -20,8 +19,8 @@ public class IceView extends RelativeLayout {
 
     @InjectView(R.id.ice_contacts_list)
     public ListView contactListView;
-    @InjectView(R.id.add_ice_button)
-    public Button addIceBtn;
+//    @InjectView(R.id.add_ice_button)
+//    public Button addIceBtn;
 
     public IceView(Context context) {
         super(context);

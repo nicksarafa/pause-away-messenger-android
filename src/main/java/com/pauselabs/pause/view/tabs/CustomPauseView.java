@@ -3,7 +3,6 @@ package com.pauselabs.pause.view.tabs;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.util.AttributeSet;
-import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -27,8 +26,6 @@ public class CustomPauseView extends RelativeLayout {
 
     @InjectView(R.id.custom_text)
     public TextView customTxtView;
-    @InjectView(R.id.begin)
-    public Button beginBtn;
 
     public CustomPauseView(Context context) {
         super(context);

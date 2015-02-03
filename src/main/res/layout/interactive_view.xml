@@ -13,20 +13,27 @@
         android:layout_centerHorizontal="true"
         android:src="@drawable/background_face"/>
 
-    <TextView
-        android:id="@+id/interactive_pause_message"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:textIsSelectable="false"
-        android:textSize="@dimen/text_medium"
-        android:textAlignment="center"
-        android:padding="@dimen/ob_btn_margin_top"/>
+    <!-- On Boarding Top Text -->
 
-    <LinearLayout
-        android:id="@+id/interactive_button_layout"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_alignParentBottom="true"/>
+        <TextView
+            android:id="@+id/interactive_pause_message"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:textIsSelectable="false"
+            android:textSize="@dimen/text_extra_large"
+            android:textColor="@color/dark_grey"
+            android:textAlignment="center"
+            android:paddingTop="@dimen/ob_btn_margin"
+            android:paddingRight="@dimen/ob_btn_margin"
+            android:paddingLeft="@dimen/ob_btn_margin"
+            android:paddingStart="@dimen/ob_btn_margin"
+            android:paddingEnd="@dimen/ob_btn_margin"/>
+
+            <LinearLayout
+                android:id="@+id/interactive_button_layout"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_alignParentBottom="true"/>
 
 </com.pauselabs.pause.view.InteractiveView>
