@@ -38,9 +38,11 @@ public class OnBoardingActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Crashlytics.getInstance().setDebugMode(true);
         Crashlytics.start(this);
 
         Injector.inject(this);
+
 
         genderViewController = new GenderViewController(this);
         interactiveViewController = new InteractiveViewController(this);
@@ -90,7 +92,9 @@ public class OnBoardingActivity extends Activity {
     }
 
     public void startApp() {
-        startActivity(new Intent(this, MainActivity.class));
+        throw new RuntimeException("");
+
+//        startActivity(new Intent(this, MainActivity.class));
     }
 
     public void cycle() {

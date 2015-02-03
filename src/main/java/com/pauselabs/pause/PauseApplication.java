@@ -132,9 +132,9 @@ public class PauseApplication extends Application {
 
             instance = this;
 
-            if ( BuildConfig.USE_CRASHLYTICS ) {
-                Crashlytics.start(instance);
-            }
+//            if ( BuildConfig.USE_CRASHLYTICS ) {
+//                Crashlytics.start(instance);
+//            }
 
             prefs = PreferenceManager.getDefaultSharedPreferences(instance);
 

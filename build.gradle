@@ -6,7 +6,7 @@ buildscript {
     }
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:1.0.1'
+        classpath 'com.android.tools.build:gradle:1.+'
         classpath 'com.crashlytics.tools.gradle:crashlytics-gradle:1.+'
     }
 }
@@ -40,7 +40,6 @@ android {
         targetSdkVersion 21
         versionCode 8
         versionName "2.0"
-        testInstrumentationRunner "com.google.android.apps.common.testing.testrunner.GoogleInstrumentationTestRunner"
         renderscriptTargetApi 21
         renderscriptSupportModeEnabled true
     }
@@ -55,15 +54,18 @@ android {
     buildTypes {
         debug {
             applicationIdSuffix '.debug'
+            apply plugin: 'maven'
+            apply plugin: 'crashlytics'
             minifyEnabled false
+
             // zipAlign false // this is default for debug
 
             // enable crashlytics where you need
             buildConfigField "boolean", "USE_CRASHLYTICS", "true"
-//            ext.enableCrashlytics = false
+            ext.enableCrashlytics = true
         }
         release {
-            minifyEnabled false
+
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
             signingConfig signingConfigs.release
         }
