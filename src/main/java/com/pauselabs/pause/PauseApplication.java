@@ -1,6 +1,5 @@
 package com.pauselabs.pause;
 
-import android.app.AlertDialog;
 import android.app.Application;
 import android.app.Instrumentation;
 import android.app.Notification;
@@ -8,7 +7,6 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.ContentResolver;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
@@ -24,7 +22,6 @@ import android.speech.tts.TextToSpeech;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 import android.view.Gravity;
-import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -47,7 +44,6 @@ import com.pauselabs.pause.model.PauseMessage;
 import com.pauselabs.pause.model.PauseSession;
 import com.pauselabs.pause.services.PauseApplicationService;
 import com.pauselabs.pause.services.PauseSessionService;
-import com.pauselabs.pause.view.SettingsButton;
 import com.squareup.otto.Bus;
 
 import java.util.Calendar;

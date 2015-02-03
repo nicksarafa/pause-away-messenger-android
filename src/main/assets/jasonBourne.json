@@ -22,7 +22,7 @@
             pauseMsg:"It is easy! Simply silence your phone to begin!",
             buttons:[
                 {
-                   btnText:"Silence the phone for me.",
+                   btnText:"Silence the phone for me",
                    actionId:5001
                 }
             ]
@@ -31,7 +31,7 @@
             pauseMsg:"Well done! You're an expert at this! When you want to get back to your texts and calls just unsilence your device.",
             buttons:[
                 {
-                   btnText:"My thumb hurts. Unsilence my phone for me.",
+                   btnText:"Unsilence my phone for me",
                    actionId:5002
                 }
             ]

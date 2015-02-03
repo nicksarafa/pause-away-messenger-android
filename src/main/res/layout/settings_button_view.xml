@@ -5,6 +5,8 @@
     android:layout_height="wrap_content"
     android:layout_width="match_parent">
 
+    <!-- Thumbnail -->
+
     <ImageView
         android:id="@+id/thumbnail"
         android:src="@drawable/thumbnail"
@@ -12,23 +14,10 @@
         android:layout_width="@dimen/settings_thumbnail_size"
         android:scaleType="centerCrop"/>
 
-        <TextView
-            android:id="@+id/label"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_toRightOf="@id/thumbnail"
-            android:layout_toEndOf="@id/thumbnail"
-            android:layout_toLeftOf="@id/icon"
-            android:layout_toStartOf="@+id/icon"
-            android:layout_marginLeft="@dimen/settings_item_padding"
-            android:layout_centerVertical="true"
-            android:layout_centerHorizontal="true"
-            android:textColor="@android:color/black"
-            android:textSize="18dp"
-            android:text="Name"/>
+    <!-- Settings Label -->
 
             <TextView
-                android:id="@+id/content"
+                android:id="@+id/label"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_toRightOf="@id/thumbnail"
@@ -36,16 +25,35 @@
                 android:layout_toStartOf="@id/icon"
                 android:layout_toLeftOf="@id/icon"
                 android:layout_marginLeft="@dimen/settings_item_padding"
-                android:layout_marginTop="6dp"
                 android:textColor="@android:color/darker_gray"
-                android:text="Matt"/>
+                android:textSize="@dimen/text_medium"
+                android:layout_alignParentTop="true"
+                android:text="Gender"/>
 
-                <ImageView
-                    android:id="@+id/icon"
-                    android:layout_width="wrap_content"
+                <!-- User Info -->
+
+                <TextView
+                    android:id="@+id/content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/cursor"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"/>
+                    android:layout_toRightOf="@id/thumbnail"
+                    android:layout_toEndOf="@id/thumbnail"
+                    android:layout_toLeftOf="@id/icon"
+                    android:layout_toStartOf="@+id/icon"
+                    android:layout_marginLeft="@dimen/settings_item_padding"
+                    android:layout_centerVertical="true"
+                    android:layout_centerHorizontal="true"
+                    android:textColor="@android:color/black"
+                    android:layout_alignParentBottom="true"
+                    android:textSize="18dp"
+                    android:text="Male"/>
+
+                    <ImageView
+                        android:id="@+id/icon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/cursor"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"/>
 
 </merge>

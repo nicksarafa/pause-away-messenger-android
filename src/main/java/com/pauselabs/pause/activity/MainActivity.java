@@ -8,6 +8,7 @@ import android.support.v13.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -23,6 +24,7 @@ import com.pauselabs.pause.controllers.IceViewController;
 import com.pauselabs.pause.controllers.SettingsViewController;
 import com.pauselabs.pause.controllers.messages.EmojiDirectoryViewController;
 import com.pauselabs.pause.controllers.messages.SummaryViewController;
+import com.pauselabs.pause.model.Constants;
 import com.pauselabs.pause.util.UIUtils;
 import com.pauselabs.pause.view.MainActivityView;
 import com.pauselabs.pause.view.tabs.actionbar.TabBarView;
@@ -114,11 +116,14 @@ public class MainActivity extends ActionBarActivity {
             public void onPanelCollapsed(View view) {
                 summaryViewController.summaryView.startPauseButton.setImageResource(R.drawable.ic_action_wake);
 
+                PauseApplication.stopPauseService(PauseApplication.getCurrentSession().getCreator());
             }
 
             @Override
             public void onPanelExpanded(View view) {
                 summaryViewController.summaryView.startPauseButton.setImageResource(R.drawable.ic_action_sleep);
+
+                PauseApplication.startPauseService(Constants.Session.Creator.SILENCE);
             }
 
             @Override
@@ -140,17 +145,15 @@ public class MainActivity extends ActionBarActivity {
     protected void onStart() {
         super.onStart();
 
-        int intentIndex = getIntent().getIntExtra("SET_EDIT_ITEM", -1);
-        if (intentIndex != -1) {
+        Log.i(TAG,"OnStart");
+
+        boolean from_not = getIntent().getBooleanExtra("FROM_NOT", false);
+        if (from_not) {
             Intent it = new Intent(Intent.ACTION_CLOSE_SYSTEM_DIALOGS);
             sendBroadcast(it);
-
-            mainActivityView.viewPager.setCurrentItem(intentIndex);
-        } else
-        if (PauseApplication.isActiveSession())
-            mainActivityView.viewPager.setCurrentItem(EMOJI_SUMMARY_TAB);
-        else
-            mainActivityView.viewPager.setCurrentItem(pageIndex);
+        }
+//
+        updateView();
     }
 
     private boolean isTablet() {
@@ -177,18 +180,26 @@ public class MainActivity extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    @Override
+    protected void onPostResume() {
+        super.onPostResume();
+    }
+
     public void updateView() {
         summaryViewController.updateUI();
 
-        if(PauseApplication.isActiveSession()) {
-            mainActivityView.viewPager.setCurrentItem(EMOJI_SUMMARY_TAB, true);
-            // TODO slide panel up to summary tab
+        Log.i(TAG,"Active Session: " + PauseApplication.isActiveSession());
+        Log.i(TAG,"Panel Expanded: " + mainActivityView.isPanelExpanded());
+        if(PauseApplication.isActiveSession() && !mainActivityView.isPanelExpanded()) {
+            summaryViewController.summaryView.startPauseButton.performClick();
+        } else if (!PauseApplication.isActiveSession() && mainActivityView.isPanelExpanded()) {
+            summaryViewController.summaryView.startPauseButton.performClick();
         }
     }
 
 
     /******************************************************/
-    /**                   Fragment BS                     */
+    /**                     Fragment                     **/
     /******************************************************/
 
     /**

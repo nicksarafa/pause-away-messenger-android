@@ -74,17 +74,17 @@
 
     <!-- Settings Strings -->
     <string name="name_settings_label">Name</string>
-    <string name="reply_to_calls_settings_label">Reply to Calls</string>
-    <string name="reply_to_SMS_settings_label">Reply to incoming SMS text messages from…</string>
+    <string name="reply_to_calls_settings_label">Reply to Calls From</string>
+    <string name="reply_to_SMS_settings_label">Reply to SMS Texts From</string>
     <string name="blacklist_label">Do not respond to…</string>
     <string name="vibrate_label">Pause On Vibrate</string>
     <string name="voice_label">Voice Feedback</string>
     <string name="toasts_label">Toasts On</string>
-    <string name="rate_us_settings_label">Review PAÜSE</string>
+    <string name="rate_us_settings_label">Review PAUSE</string>
     <string name="contact_us_label">Contact Us</string>
     <string name="support_label">Support</string>
     <string name="privacy_policy_label">Privacy Policy</string>
-    <string name="terms_label">Terms of Use</string>
+    <string name="terms_label">Terms</string>
 
     <string name="blacklist_description">Pause will not respond to selected contacts</string>
 

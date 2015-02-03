@@ -130,8 +130,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@null"
-                    custom:label="@string/rate_us_settings_label"
-                    custom:content="Please? Ü"/>
+                    custom:label="@string/rate_us_settings_label"/>
 
 
                 <!-- Contact Us Email Dialog -->
@@ -141,8 +140,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@null"
-                    custom:label="@string/contact_us_label"
-                    custom:content="We Would Love To Hear From You"/>
+                    custom:label="@string/contact_us_label" />
 
                 <!-- Help Label -->
 
@@ -158,9 +156,9 @@
                     android:id="@+id/supportBtn"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
                     android:background="@null"
-                    custom:label="@string/support_label"
-                    custom:content="We're Here to Help"/>
+                    custom:label="@string/support_label" />
 
                 <!-- Privacy Policy URI -->
 
@@ -169,8 +167,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@null"
-                    custom:label="@string/privacy_policy_label"
-                    custom:content="Why We Protect Your Information"/>
+                    custom:label="@string/privacy_policy_label" />
 
                 <!-- Terms URI -->
 
@@ -179,8 +176,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@null"
-                    custom:label="@string/terms_label"
-                    custom:content="Had to Have It"/>
+                    android:label="@string/terms_label" />
 
                 <!-- Footer - Change to Cool Made in Detroit ImageView -->
 
