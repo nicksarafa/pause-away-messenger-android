@@ -126,46 +126,46 @@ public class PauseApplication extends Application {
     public void onCreate() {
         super.onCreate();
 
-            if (instance == null) {
-                // Perform injection
-                Injector.init(getRootModule(), this);
+        if (instance == null) {
+            // Perform injection
+            Injector.init(getRootModule(), this);
 
-                instance = this;
+            instance = this;
 
-                if ( BuildConfig.USE_CRASHLYTICS ) {
-                    Crashlytics.start(instance);
-                }
-
-                prefs = PreferenceManager.getDefaultSharedPreferences(instance);
-
-                // Register the bus so we can send notifcations
-                //        eventBus.register(this);
-
-                notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
-
-                initImageLoader(getApplicationContext());
-
-                messageSender = new PauseMessageSender(instance);
-
-                startPauseApplicationService();
-
-                sr = SpeechRecognizer.createSpeechRecognizer(instance);
-
-                tts = new TextToSpeech(instance,new TextToSpeech.OnInitListener() {
-                    @Override
-                    public void onInit(int status) {
-                        if (status != TextToSpeech.ERROR) {
-                            tts.setLanguage(Locale.getDefault());
-                            tts.setSpeechRate(0.9f);
-                            tts.setPitch(1.45f);
-
-                            // The app has not been opened yet. Play intro voice.
-                            if (!prefs.getBoolean(Constants.Pause.PAUSE_ALREADY_LAUNCHED_KEY, false))
-                                speak("Hello. I am your new personal assistant. What's your name?");
-                        }
-                    }
-                });
+            if ( BuildConfig.USE_CRASHLYTICS ) {
+                Crashlytics.start(instance);
             }
+
+            prefs = PreferenceManager.getDefaultSharedPreferences(instance);
+
+            // Register the bus so we can send notifcations
+            //        eventBus.register(this);
+
+            notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+
+            initImageLoader(getApplicationContext());
+
+            messageSender = new PauseMessageSender(instance);
+
+            startPauseApplicationService();
+
+            sr = SpeechRecognizer.createSpeechRecognizer(instance);
+
+            tts = new TextToSpeech(instance,new TextToSpeech.OnInitListener() {
+                @Override
+                public void onInit(int status) {
+                    if (status != TextToSpeech.ERROR) {
+                        tts.setLanguage(Locale.getDefault());
+                        tts.setSpeechRate(0.9f);
+                        tts.setPitch(1.45f);
+
+                        // The app has not been opened yet. Play intro voice.
+                        if (!prefs.getBoolean(Constants.Pause.PAUSE_ALREADY_LAUNCHED_KEY, false))
+                            speak("Hello. I am your new personal assistant. What's your name?");
+                    }
+                }
+            });
+        }
     }
 
     /**
