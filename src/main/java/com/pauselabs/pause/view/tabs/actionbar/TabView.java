@@ -32,7 +32,7 @@ public class TabView extends LinearLayout {
 
         int txtstyle = outValue.data;
 
-        int actionBarHeight = 80;
+        int actionBarHeight = 68;
 
         int mActionBarHeight = (int) (actionBarHeight * getResources().getDisplayMetrics().density + .5f);
         
