@@ -117,5 +117,7 @@
     <string name="ob_male_btn">Male</string>
     <string name="blacklist_sub_header_text">Pause Ignores Calls and Texts From Selected Contacts</string>
     <string name="blacklist_ab_title">BLACKLIST</string>
+    <string name="red">red</string>
+    <string name="green">green</string>
 
 </resources>

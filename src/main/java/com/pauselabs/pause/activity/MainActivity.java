@@ -8,9 +8,11 @@ import android.support.v13.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -46,7 +48,6 @@ public class MainActivity extends ActionBarActivity {
 
     public MainActivityView mainActivityView;
     public ActionBar actionBar;
-    public ScrollView scrollView;
     private TabBarView tabBarView;
     public int pageIndex;
 
@@ -78,13 +79,14 @@ public class MainActivity extends ActionBarActivity {
             @Override
             public void onPageSelected(int position) {
                 pageIndex = position;
-                if (pageIndex == 3) {
-                    supportInvalidateOptionsMenu();
-                }
-                else {
-                    invalidateOptionsMenu();
-                }
 
+                if (pageIndex == ICE_TAB) {
+                    mainActivityView.toolbar.getMenu().findItem(R.id.menu_red).setVisible(true);
+                    mainActivityView.toolbar.getMenu().findItem(R.id.menu_green).setVisible(true);
+                } else {
+                    mainActivityView.toolbar.getMenu().findItem(R.id.menu_red).setVisible(false);
+                    mainActivityView.toolbar.getMenu().findItem(R.id.menu_green).setVisible(false);
+                }
             }
 
             @Override
@@ -93,13 +95,13 @@ public class MainActivity extends ActionBarActivity {
             }
         });
 
-        setSupportActionBar(mainActivityView.toolbar);
-        getSupportActionBar().setBackgroundDrawable(getResources().getDrawable(R.color.pause_green));
         tabBarView = new TabBarView(this);
         tabBarView.setViewPager(mainActivityView.viewPager);
-
+        tabBarView.addView(inflater.inflate(R.layout.ice_action_view, null));
+        
         setSupportActionBar(mainActivityView.toolbar);
         actionBar = getSupportActionBar();
+        actionBar.setBackgroundDrawable(getResources().getDrawable(R.color.pause_green));
         actionBar.setDisplayShowTitleEnabled(false);
         actionBar.setDisplayShowCustomEnabled(true);
         actionBar.setCustomView(tabBarView);
@@ -165,26 +167,6 @@ public class MainActivity extends ActionBarActivity {
 
     private boolean isTablet() {
         return UIUtils.isTablet(this);
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
-        return false;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-        if (id == R.id.action_settings) {
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
     }
 
     @Override
