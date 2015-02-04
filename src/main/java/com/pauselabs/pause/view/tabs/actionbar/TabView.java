@@ -36,16 +36,16 @@ public class TabView extends LinearLayout {
 
         int mActionBarHeight = (int) (actionBarHeight * getResources().getDisplayMetrics().density + .5f);
         
-        int pad = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 8, getResources().getDisplayMetrics());
+        int pad = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 0, getResources().getDisplayMetrics());
 
         mImageView = new ImageView(context);
-        mImageView.setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT, mActionBarHeight));
-        mImageView.setScaleType(ScaleType.CENTER_INSIDE);
+        mImageView.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, mActionBarHeight));
+        mImageView.setScaleType(ScaleType.CENTER);
 
         mTextView = new TextView(context);
         mTextView.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
         mTextView.setGravity(Gravity.CENTER);
-        mTextView.setCompoundDrawablePadding(pad);
+//        mTextView.setCompoundDrawablePadding(pad);
         mTextView.setTextAppearance(context, txtstyle);;
         
         

@@ -19,7 +19,7 @@ public class TabBarView extends LinearLayout {
 	}
 
 
-	private static final int STRIP_HEIGHT = 2;
+	private static final int STRIP_HEIGHT = 4;
 
 	public final Paint mPaint;
 
