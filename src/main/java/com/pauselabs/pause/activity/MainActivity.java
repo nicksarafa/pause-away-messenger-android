@@ -20,6 +20,7 @@ import com.pauselabs.R;
 import com.pauselabs.pause.Injector;
 import com.pauselabs.pause.PauseApplication;
 import com.pauselabs.pause.controllers.CustomPauseViewController;
+import com.pauselabs.pause.controllers.IceViewController;
 import com.pauselabs.pause.controllers.SettingsViewController;
 import com.pauselabs.pause.controllers.messages.ASCIIDirectoryViewController;
 import com.pauselabs.pause.controllers.messages.SummaryViewController;
@@ -39,7 +40,8 @@ public class MainActivity extends ActionBarActivity {
 
     public static final int EMOJI_TAB = 0;
     public static final int HIDDEN_CUSTOM = 1;
-    public static final int SETTINGS_TAB = 2;
+    public static final int ICE_TAB = 2;
+    public static final int SETTINGS_TAB = 3;
 
 
     public MainActivityView mainActivityView;
@@ -52,6 +54,7 @@ public class MainActivity extends ActionBarActivity {
     public static ASCIIDirectoryViewController ASCIIDirectoryViewController;
     public static SettingsViewController settingsViewController;
     public static CustomPauseViewController customPauseViewController;
+    public static IceViewController iceViewController;
 
     @Inject
     LayoutInflater inflater;
@@ -75,6 +78,13 @@ public class MainActivity extends ActionBarActivity {
             @Override
             public void onPageSelected(int position) {
                 pageIndex = position;
+                if (pageIndex == 3) {
+                    supportInvalidateOptionsMenu();
+                }
+                else {
+                    invalidateOptionsMenu();
+                }
+
             }
 
             @Override
@@ -84,7 +94,7 @@ public class MainActivity extends ActionBarActivity {
         });
 
         setSupportActionBar(mainActivityView.toolbar);
-        getSupportActionBar().setBackgroundDrawable(getResources().getDrawable(R.drawable.transparent_drawable));
+        getSupportActionBar().setBackgroundDrawable(getResources().getDrawable(R.color.pause_green));
         tabBarView = new TabBarView(this);
         tabBarView.setViewPager(mainActivityView.viewPager);
 
@@ -98,6 +108,7 @@ public class MainActivity extends ActionBarActivity {
         ASCIIDirectoryViewController = new ASCIIDirectoryViewController();
         settingsViewController = new SettingsViewController();
         customPauseViewController = new CustomPauseViewController();
+        iceViewController = new IceViewController();
 
         mainActivityView.addView(summaryViewController.summaryView);
         mainActivityView.setDragView(summaryViewController.summaryView.startPauseButton);
@@ -205,9 +216,10 @@ public class MainActivity extends ActionBarActivity {
     public class SectionsPagerAdapter extends FragmentPagerAdapter implements TabBarView.IconTabProvider {
 
         private int[] tab_icons = {
-                R.drawable.ic_action_directory_empty,
-                R.drawable.ic_action_custom_message_empty,
-                R.drawable.ic_action_settings_empty
+                R.drawable.ic_action_ab_grid_on,
+                R.drawable.ic_action_ab_custom_on,
+                R.drawable.ic_action_ab_privacy_on,
+                R.drawable.ic_action_ab_settings_on
         };
 
 
@@ -238,8 +250,11 @@ public class MainActivity extends ActionBarActivity {
                     return getString(R.string.emoji_section_title).toUpperCase(l);
                 case SETTINGS_TAB:
                     return getString(R.string.settings_section_title).toUpperCase(l);
+                case ICE_TAB:
+                    return "Ice".toUpperCase();
                 case HIDDEN_CUSTOM:
                     return getString(R.string.hidden_custom_section_title).toUpperCase(l);
+
             }
             return null;
         }
@@ -286,6 +301,10 @@ public class MainActivity extends ActionBarActivity {
 
                 case HIDDEN_CUSTOM:
                     rootView = customPauseViewController.customPauseView;
+
+                    break;
+                case ICE_TAB:
+                    rootView = iceViewController.iceView;
 
                     break;
             }
