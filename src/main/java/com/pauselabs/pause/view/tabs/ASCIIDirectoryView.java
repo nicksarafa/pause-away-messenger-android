@@ -14,20 +14,20 @@ import butterknife.Views;
 /**
  * Created by Passa on 1/27/15.
  */
-public class EmojiDirectoryView extends LinearLayout {
+public class ASCIIDirectoryView extends LinearLayout {
 
     @InjectView(R.id.emojiDirectoryGrid)
-    public GridView emojiGrid;
+    public GridView asciiGrid;
 
-    public EmojiDirectoryView(Context context, AttributeSet attrs) {
+    public ASCIIDirectoryView(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
 
-    public EmojiDirectoryView(Context context, AttributeSet attrs, int defStyle) {
+    public ASCIIDirectoryView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
     }
 
-    public EmojiDirectoryView(Context context) {
+    public ASCIIDirectoryView(Context context) {
         super(context);
     }
 

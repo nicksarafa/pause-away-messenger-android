@@ -5,6 +5,7 @@ import android.util.AttributeSet;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.pauselabs.R;
@@ -15,23 +16,23 @@ import butterknife.Views;
 /**
  * Created by Passa on 1/28/15.
  */
-public class EmojiSquareView extends LinearLayout {
+public class ASCIISquareView extends RelativeLayout {
 
     @InjectView(R.id.emoji)
-    public ImageView emoji;
+    public TextView ascii;
 
     @InjectView(R.id.emojiText)
-    public TextView emojiText;
+    public TextView asciiText;
 
-    public EmojiSquareView(Context context) {
+    public ASCIISquareView(Context context) {
         super(context);
     }
 
-    public EmojiSquareView(Context context, AttributeSet attrs) {
+    public ASCIISquareView(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
 
-    public EmojiSquareView(Context context, AttributeSet attrs, int defStyle) {
+    public ASCIISquareView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
     }
 

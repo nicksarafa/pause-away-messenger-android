@@ -91,7 +91,6 @@ public class OnBoardingActivity extends Activity {
     }
 
     public void startApp() {
-        
         startActivity(new Intent(this, MainActivity.class));
     }
 

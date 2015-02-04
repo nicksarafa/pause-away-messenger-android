@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <!-- SoThree SlidingUpPanel -->
-<com.pauselabs.pause.view.tabs.EmojiDirectoryView
+<com.pauselabs.pause.view.tabs.ASCIIDirectoryView
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/emojiDirectory"
     android:layout_height="fill_parent"
@@ -31,5 +31,5 @@
 
     <!-- Summary View injected via Java -->
 
-</com.pauselabs.pause.view.tabs.EmojiDirectoryView>
+</com.pauselabs.pause.view.tabs.ASCIIDirectoryView>
 

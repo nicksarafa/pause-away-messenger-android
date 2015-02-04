@@ -21,7 +21,7 @@ import com.pauselabs.pause.Injector;
 import com.pauselabs.pause.PauseApplication;
 import com.pauselabs.pause.controllers.CustomPauseViewController;
 import com.pauselabs.pause.controllers.SettingsViewController;
-import com.pauselabs.pause.controllers.messages.EmojiDirectoryViewController;
+import com.pauselabs.pause.controllers.messages.ASCIIDirectoryViewController;
 import com.pauselabs.pause.controllers.messages.SummaryViewController;
 import com.pauselabs.pause.model.Constants;
 import com.pauselabs.pause.util.UIUtils;
@@ -37,7 +37,7 @@ public class MainActivity extends ActionBarActivity {
 
     public static final String TAG = MainActivity.class.getSimpleName();
 
-    public static final int EMOJI_SUMMARY_TAB = 0;
+    public static final int EMOJI_TAB = 0;
     public static final int HIDDEN_CUSTOM = 1;
     public static final int SETTINGS_TAB = 2;
 
@@ -49,7 +49,7 @@ public class MainActivity extends ActionBarActivity {
     public int pageIndex;
 
     public SummaryViewController summaryViewController;
-    public static EmojiDirectoryViewController emojiDirectoryViewController;
+    public static ASCIIDirectoryViewController ASCIIDirectoryViewController;
     public static SettingsViewController settingsViewController;
     public static CustomPauseViewController customPauseViewController;
 
@@ -95,7 +95,7 @@ public class MainActivity extends ActionBarActivity {
         actionBar.setCustomView(tabBarView);
 
         summaryViewController = new SummaryViewController();
-        emojiDirectoryViewController = new EmojiDirectoryViewController();
+        ASCIIDirectoryViewController = new ASCIIDirectoryViewController();
         settingsViewController = new SettingsViewController();
         customPauseViewController = new CustomPauseViewController();
 
@@ -234,7 +234,7 @@ public class MainActivity extends ActionBarActivity {
         public CharSequence getPageTitle(int position) {
             Locale l = Locale.getDefault();
             switch (position) {
-                case EMOJI_SUMMARY_TAB:
+                case EMOJI_TAB:
                     return getString(R.string.emoji_section_title).toUpperCase(l);
                 case SETTINGS_TAB:
                     return getString(R.string.settings_section_title).toUpperCase(l);
@@ -275,8 +275,8 @@ public class MainActivity extends ActionBarActivity {
             View rootView = null;
 
             switch (getArguments().getInt(ARG_SECTION_NUMBER)) {
-                case EMOJI_SUMMARY_TAB:
-                    rootView = emojiDirectoryViewController.emojiDirectoryView;
+                case EMOJI_TAB:
+                    rootView = ASCIIDirectoryViewController.asciiDirectoryView;
 
                     break;
                 case SETTINGS_TAB:

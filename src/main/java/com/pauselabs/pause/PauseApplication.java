@@ -290,7 +290,7 @@ public class PauseApplication extends Application {
                 num++;
         String message = (num > 0) ? num + ((num == 1) ? " person has" : " people have") + " contacted you." : "No one has contacted you";
 
-        final Intent i = new Intent(instance, MainActivity.class);
+        final Intent i = new Intent(instance, MainActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 
         // open activity intent
         PendingIntent pendingIntent = PendingIntent.getActivity(instance, 0, i, PendingIntent.FLAG_UPDATE_CURRENT);
