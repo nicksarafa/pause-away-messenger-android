@@ -44,7 +44,8 @@
 
             <activity android:name=".pause.activity.MainActivity"
                 android:windowSoftInputMode="stateHidden"
-                android:screenOrientation="portrait"/>
+                android:screenOrientation="portrait">
+            </activity>
 
             <activity android:name=".pause.activity.BlackWhitelistActivity"
                 android:theme="@style/Theme.Pause.Blacklist"
@@ -62,6 +63,7 @@
                     android:name="android.support.PARENT_ACTIVITY"
                     android:value=".pause.activity.MainActivity" />
             </activity>
+
 
         <!-- Crashalytics and Google Analytics Setup -->
 
