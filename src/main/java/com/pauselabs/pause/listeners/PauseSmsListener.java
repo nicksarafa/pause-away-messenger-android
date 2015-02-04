@@ -109,7 +109,6 @@ public class PauseSmsListener extends ContentObserver {
      */
     private void updatePauseSession(PauseMessage message) {
 
-
     }
 
     public static Cursor getNewSmsCursor() {
