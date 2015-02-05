@@ -5,7 +5,6 @@ import android.app.Instrumentation;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
-import android.app.Service;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
@@ -14,7 +13,6 @@ import android.database.Cursor;
 import android.graphics.BitmapFactory;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
-import android.media.Ringtone;
 import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Handler;
@@ -25,21 +23,18 @@ import android.provider.ContactsContract;
 import android.speech.SpeechRecognizer;
 import android.speech.tts.TextToSpeech;
 import android.support.v4.app.NotificationCompat;
-import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.view.Gravity;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.crashlytics.android.Crashlytics;
 import com.google.android.gms.analytics.GoogleAnalytics;
 import com.google.android.gms.analytics.Tracker;
 import com.nostra13.universalimageloader.cache.disc.naming.Md5FileNameGenerator;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.nostra13.universalimageloader.core.assist.QueueProcessingType;
-import com.pauselabs.BuildConfig;
 import com.pauselabs.R;
 import com.pauselabs.pause.activity.MainActivity;
 import com.pauselabs.pause.core.PauseMessageSender;
@@ -52,8 +47,6 @@ import com.pauselabs.pause.services.PauseApplicationService;
 import com.pauselabs.pause.services.PauseSessionService;
 import com.squareup.otto.Bus;
 
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
@@ -453,16 +446,16 @@ public class PauseApplication extends Application {
 
         // Check who created the Session to in order to send appropri
 
-        if (currentPauseSession.isWhiteListed(contactId)) {
-            // TODO not playing sound
-            
-            AudioManager manager = (AudioManager)instance.getSystemService(Context.AUDIO_SERVICE);
-            manager.setStreamVolume(AudioManager.STREAM_MUSIC, manager.getStreamMaxVolume(AudioManager.STREAM_MUSIC) / 2, 0);
+        if (currentPauseSession.isIced(contactId)) {
+                // TODO not playing sound
 
-            Uri notification = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+                AudioManager manager = (AudioManager)instance.getSystemService(Context.AUDIO_SERVICE);
+                manager.setStreamVolume(AudioManager.STREAM_MUSIC, manager.getStreamMaxVolume(AudioManager.STREAM_MUSIC) / 2, 0);
 
-            MediaPlayer player = MediaPlayer.create(instance, notification);
-            player.start();
+                Uri notification = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+
+                MediaPlayer player = MediaPlayer.create(instance, notification);
+                player.start();
         } else {
             if (currentPauseSession.shouldSenderReceivedBounceback(contactId) && conversation.getMessagesSentFromUser().size() == 0) {
                 PauseMessage bounceBackMessage = getMessageToBounceBack(receivedMessage.getFrom(), conversation);

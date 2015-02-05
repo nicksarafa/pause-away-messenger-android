@@ -4,7 +4,6 @@ import android.app.Service;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.telephony.PhoneStateListener;
 import android.telephony.TelephonyManager;
 import android.util.Log;
@@ -81,7 +80,9 @@ public class PauseCallListener extends BroadcastReceiver {
 
                     PauseSession currentPauseSession = PauseApplication.getCurrentSession();
 
-                    if (!currentPauseSession.isWhiteListed(PauseApplication.lookupContact(number)))
+                    if (currentPauseSession.isIced(PauseApplication.lookupContact(number)))
+                        PauseApplication.speak("Your ICE contact, " + currentPauseSession.getConversationByContactNumber(incomingNumber).getContactName() + ", is calling you!");
+                    else
                         hangUp();
 
                     break;

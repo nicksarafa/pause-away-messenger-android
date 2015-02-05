@@ -8,9 +8,7 @@ import com.pauselabs.R;
 /**
  * Created by tyndallm on 10/5/14.
  */
-public class BlackWhitelistActivity extends ActionBarActivity implements BlackWhitelistFragment.OnContactsInteractionListener{
-
-    private BlackWhitelistFragment mContactDetailFragment;
+public class PrivacylistActivity extends ActionBarActivity implements PrivacylistFragment.OnContactsInteractionListener{
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -22,14 +20,8 @@ public class BlackWhitelistActivity extends ActionBarActivity implements BlackWh
         getSupportActionBar().setDisplayShowTitleEnabled(true);
         getSupportActionBar().setElevation(0);
 
-        int type = getIntent().getIntExtra("test",0);
-        if (type == 0) {
-            setContentView(R.layout.privacy_list_view);
-            getSupportActionBar().setTitle("BLACKLIST");
-        } else {
-            setContentView(R.layout.whitelist_activity);
-            getSupportActionBar().setTitle("WHITELIST");
-        }
+        setContentView(R.layout.privacy_list_view);
+        getSupportActionBar().setTitle("BLACKLIST");
 
     }
 

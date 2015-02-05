@@ -38,7 +38,9 @@ public class ContactsAdapter extends CursorAdapter implements SectionIndexer {
     private TextAppearanceSpan highlightTextSpan; // Stores the highlight text appearance style
     private String mSearchTerm;
     protected SharedPreferences prefs;
+
     private Set<String> listContacts;
+    private Set<String> iceContacts;
 
     private String type;
 
@@ -53,7 +55,8 @@ public class ContactsAdapter extends CursorAdapter implements SectionIndexer {
         mInflater = LayoutInflater.from(context);
 
         prefs = PreferenceManager.getDefaultSharedPreferences(context);
-        setListContactsFromTag(tag);
+        listContacts = prefs.getStringSet(Constants.Settings.BLACKLIST, new HashSet<String>());
+        iceContacts = prefs.getStringSet(Constants.Settings.ICELIST, new HashSet<String>());
 
         // Loads a string containing the English alphabet. To fully localize the app, provide a
         // strings.xml file in res/values-<x> directories, where <x> is a locale. In the file,
@@ -69,15 +72,6 @@ public class ContactsAdapter extends CursorAdapter implements SectionIndexer {
         // Defines a span for highlighting the part of a display name that matches the search
         // string
         highlightTextSpan = new TextAppearanceSpan(context, R.style.searchTextHighlight);
-    }
-
-    public void setListContactsFromTag(String tag) {
-        type = tag;
-        Log.i("ContactsAdapter","Tag: " + type);
-        if (type.equals("black"))
-            listContacts = prefs.getStringSet(Constants.Settings.BLACKLIST, new HashSet<String>());
-        else if (type.equals("white"))
-            listContacts = prefs.getStringSet(Constants.Settings.WHITELIST, new HashSet<String>());
     }
 
     /**
@@ -112,27 +106,40 @@ public class ContactsAdapter extends CursorAdapter implements SectionIndexer {
         // each instance of the layout.
         final ViewHolder holder = new ViewHolder();
         holder.text1 = (TextView) itemLayout.findViewById(android.R.id.text1);
-        holder.checkbox = (CheckBox) itemLayout.findViewById(R.id.checkbox);
-        holder.checkbox.setOnClickListener(new View.OnClickListener() {
+        holder.checkbox_added = (CheckBox) itemLayout.findViewById(R.id.checkbox_added);
+        holder.checkbox_added.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (type.equals("black"))
-                    listContacts = prefs.getStringSet(Constants.Settings.BLACKLIST, new HashSet<String>());
-                else if (type.equals("white"))
-                    listContacts = prefs.getStringSet(Constants.Settings.WHITELIST, new HashSet<String>());
+                listContacts = prefs.getStringSet(Constants.Settings.BLACKLIST, new HashSet<String>());
 
                 CheckBox checkbox = (CheckBox) v;
                 String contactId = String.valueOf(v.getTag());
 
-                if(checkbox.isChecked()) {
+                if (checkbox.isChecked()) {
                     listContacts.add(contactId);
                 } else {
                     listContacts.remove(contactId);
                 }
-                if (type.equals("black"))
-                    prefs.edit().putStringSet(Constants.Settings.BLACKLIST, listContacts).apply();
-                else if (type.equals("white"))
-                    prefs.edit().putStringSet(Constants.Settings.WHITELIST, listContacts).apply();
+
+                prefs.edit().putStringSet(Constants.Settings.BLACKLIST, listContacts).apply();
+            }
+        });
+        holder.checkbox_ice = (CheckBox) itemLayout.findViewById(R.id.checkbox_ice);
+        holder.checkbox_ice.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                iceContacts = prefs.getStringSet(Constants.Settings.ICELIST, new HashSet<String>());
+
+                CheckBox checkbox = (CheckBox) v;
+                String contactId = String.valueOf(v.getTag());
+
+                if (checkbox.isChecked()) {
+                    iceContacts.add(contactId);
+                } else {
+                    iceContacts.remove(contactId);
+                }
+
+                prefs.edit().putStringSet(Constants.Settings.ICELIST, iceContacts).apply();
             }
         });
 
@@ -162,8 +169,8 @@ public class ContactsAdapter extends CursorAdapter implements SectionIndexer {
         if (startIndex == -1) {
             // If the user didn't do a search, or the search string didn't match a display
             // name, show the display name without highlighting
-            //holder.text1.setText(displayName);
-            holder.checkbox.setText(displayName);
+            holder.text1.setText(displayName);
+//            holder.checkbox_added.setText(displayName);
 
         } else {
             // If the search string matched the display name, applies a SpannableString to
@@ -174,21 +181,26 @@ public class ContactsAdapter extends CursorAdapter implements SectionIndexer {
 
             // Sets the span to start at the starting point of the match and end at "length"
             // characters beyond the starting point
-            highlightedName.setSpan(highlightTextSpan, startIndex,
-                    startIndex + mSearchTerm.length(), 0);
+            highlightedName.setSpan(highlightTextSpan, startIndex, startIndex + mSearchTerm.length(), 0);
 
             // Binds the SpannableString to the display name View object
-            //holder.text1.setText(highlightedName);
-            holder.checkbox.setText(highlightedName);
+            holder.text1.setText(highlightedName);
+//            holder.checkbox_ice.setText(highlightedName);
         }
 
         if(listContacts.contains(String.valueOf(contactId))){
-            holder.checkbox.setChecked(true);
+            holder.checkbox_added.setChecked(true);
         } else {
-            holder.checkbox.setChecked(false);
+            holder.checkbox_added.setChecked(false);
+        }
+        if(iceContacts.contains(String.valueOf(contactId))){
+            holder.checkbox_ice.setChecked(true);
+        } else {
+            holder.checkbox_ice.setChecked(false);
         }
 
-        holder.checkbox.setTag(contactId);
+        holder.checkbox_added.setTag(contactId);
+        holder.checkbox_ice.setTag(contactId);
 
     }
 
@@ -256,8 +268,9 @@ public class ContactsAdapter extends CursorAdapter implements SectionIndexer {
      * calling findViewById in each iteration of bindView.
      */
     private class ViewHolder {
+        CheckBox checkbox_ice;
         TextView text1;
-        CheckBox checkbox;
+        CheckBox checkbox_added;
     }
 
 }

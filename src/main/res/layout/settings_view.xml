@@ -77,21 +77,11 @@
                     <!-- BlackList -->
 
                     <com.pauselabs.pause.view.SettingsButton
-                        android:id="@+id/blacklistBtn"
+                        android:id="@+id/privacylistBtn"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@null"
                         custom:label="@string/blacklist_label"
-                        custom:content=""/>
-
-                    <!-- WhiteList -->
-
-                    <com.pauselabs.pause.view.SettingsButton
-                        android:id="@+id/whitelistBtn"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@null"
-                        custom:label="@string/whitelist_label"
                         custom:content=""/>
 
                 <!-- Volume Settings Key -->

@@ -47,7 +47,7 @@
                 android:screenOrientation="portrait">
             </activity>
 
-            <activity android:name=".pause.activity.BlackWhitelistActivity"
+            <activity android:name=".pause.activity.PrivacylistActivity"
                 android:theme="@style/Theme.Pause.Blacklist"
                 android:parentActivityName=".pause.activity.MainActivity"
                 android:screenOrientation="portrait"

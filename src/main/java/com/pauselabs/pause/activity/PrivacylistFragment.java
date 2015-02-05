@@ -36,9 +36,9 @@ import butterknife.Views;
 /**
  * Created by tyndallm on 10/12/14.
  */
-public class BlackWhitelistFragment extends ListFragment implements AdapterView.OnItemClickListener, LoaderManager.LoaderCallbacks<Cursor>, SearchView.OnQueryTextListener {
+public class PrivacylistFragment extends ListFragment implements AdapterView.OnItemClickListener, LoaderManager.LoaderCallbacks<Cursor>, SearchView.OnQueryTextListener {
 
-    private static final String TAG = BlackWhitelistFragment.class.getSimpleName();
+    private static final String TAG = PrivacylistFragment.class.getSimpleName();
 
     // Bundle key for saving previously selected search result item
     private static final String STATE_PREVIOUSLY_SELECTED_KEY = "com.example.android.contacts_list.ui.SELECTED_ITEM";
@@ -56,7 +56,7 @@ public class BlackWhitelistFragment extends ListFragment implements AdapterView.
     // Whether or not the search query has changed since the last time the loader was refreshed
     private boolean mSearchQueryChanged;
 
-    public BlackWhitelistFragment() {}
+    public PrivacylistFragment() {}
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -190,7 +190,7 @@ public class BlackWhitelistFragment extends ListFragment implements AdapterView.
                     onSelectionCleared();
                 }
                 mSearchTerm = null;
-                getLoaderManager().restartLoader(ContactsQuery.QUERY_ID, null, BlackWhitelistFragment.this);
+                getLoaderManager().restartLoader(ContactsQuery.QUERY_ID, null, PrivacylistFragment.this);
                 return true;
             }
         });
@@ -344,7 +344,7 @@ public class BlackWhitelistFragment extends ListFragment implements AdapterView.
         // necessary content Uri from mSearchTerm.
         mSearchQueryChanged = true;
         getLoaderManager().restartLoader(
-                ContactsQuery.QUERY_ID, null, BlackWhitelistFragment.this);
+                ContactsQuery.QUERY_ID, null, PrivacylistFragment.this);
         return true;
     }
 

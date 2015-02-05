@@ -2,15 +2,15 @@
 
     <!-- Keeping Contact List -->
 
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="?android:attr/listPreferredItemHeight">
 
     <CheckBox
-        android:id="@+id/checkbox"
-        android:layout_width="match_parent"
+        android:id="@+id/checkbox_ice"
+        android:layout_width="0dp"
         android:layout_height="?android:attr/listPreferredItemHeight"
-        android:layout_marginLeft="8dp"
+        android:layout_weight="1"
         android:fontFamily="sans-serif-light"
         android:singleLine="true"
         android:ellipsize="marquee"
@@ -21,15 +21,21 @@
         android:paddingRight="@dimen/contact_list_item_padding"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_above="@android:id/text2"
-        android:layout_toRightOf="@+id/checkbox"
+        android:layout_weight="7"
         android:gravity="center_vertical"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignWithParentIfMissing="true"
         android:fontFamily="sans-serif-light"
         android:singleLine="true"
         android:ellipsize="marquee"
         android:textAppearance="?android:attr/textAppearanceLarge"/>
 
-</RelativeLayout>
+    <CheckBox
+        android:id="@+id/checkbox_added"
+        android:layout_width="0dp"
+        android:layout_height="?android:attr/listPreferredItemHeight"
+        android:layout_weight="1"
+        android:fontFamily="sans-serif-light"
+        android:singleLine="true"
+        android:ellipsize="marquee"
+        android:textAppearance="?android:attr/textAppearanceLarge"/>
+
+</LinearLayout>
