@@ -3,7 +3,7 @@
 <merge>
     <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_height="@dimen/settings_thumbnail_size"
+    android:layout_height="wrap_content"
     android:layout_width="fill_parent"
     android:orientation="horizontal">
 
@@ -14,6 +14,9 @@
         android:layout_height="@dimen/settings_thumbnail_size"
         android:layout_width="0dp"
         android:layout_weight="1"
+        android:layout_marginStart="@dimen/settings_thumbnail_padding"
+        android:layout_marginLeft="@dimen/settings_thumbnail_padding"
+        android:layout_gravity="left|center_vertical"
         android:src="@drawable/ic_call_icon"/>
 
     <!-- Settings Label -->
@@ -22,16 +25,18 @@
                 android:id="@+id/label"
                 android:layout_height="match_parent"
                 android:layout_width="0dp"
-                android:layout_weight="4"
+                android:layout_weight="6"
                 android:layout_marginStart="@dimen/settings_item_padding"
                 android:layout_marginLeft="@dimen/settings_item_padding"
-                android:singleLine="true"
                 android:gravity="left|center_vertical"
+                android:ellipsize="none"
+                android:maxLines="100"
+                android:scrollHorizontally="false"
                 android:textAlignment="textStart"
                 android:fontFamily="sans-serif-light"
                 android:textColor="@android:color/background_dark"
-                android:textSize="@dimen/text_medium"
-                android:text="Gender"/>
+                android:textSize="@dimen/text_small"
+                android:text="Respond to Text Messages"/>
 
                 <!-- User Info -->
 
@@ -42,10 +47,12 @@
                     android:layout_weight="2"
                     android:layout_marginStart="@dimen/settings_item_padding"
                     android:layout_marginLeft="@dimen/settings_item_padding"
-                    android:gravity="center"
+                    android:gravity="right|center_vertical"
+                    android:layout_marginRight="@dimen/privacy_checkbox_padding"
+                    android:textAlignment="textEnd"
                     android:textColor="@color/dark_grey"
                     android:fontFamily="sans-serif-light"
-                    android:textSize="@dimen/text_medium"
+                    android:textSize="@dimen/text_small"
                     android:text="Male"/>
 
                     <ImageView

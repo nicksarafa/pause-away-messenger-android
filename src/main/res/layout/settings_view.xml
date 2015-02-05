@@ -4,21 +4,22 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/settings_view"
     android:orientation="vertical"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
-    <LinearLayout
-        android:id="@+id/slidingBottomList"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:orientation="vertical">
+    <!--<LinearLayout-->
+        <!--android:id="@+id/slidingBottomList"-->
+        <!--android:layout_width="fill_parent"-->
+        <!--android:layout_height="fill_parent"-->
+        <!--android:orientation="vertical">-->
 
         <!-- Begin Contact List Scroll View -->
 
+
         <ScrollView
             xmlns:custom="http://schemas.android.com/apk/res-auto"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:overScrollMode="never"
             android:listSelector="@color/pause_green_light"
             android:cacheColorHint="@color/transparent"
@@ -82,7 +83,7 @@
                         android:layout_height="wrap_content"
                         android:background="@null"
                         custom:label="@string/blacklist_label"
-                        custom:content="Choose who I respond to"/>
+                        custom:content=""/>
 
                 <!-- Volume Settings Key -->
 
@@ -191,6 +192,6 @@
             </LinearLayout>
         </ScrollView>
 
-    </LinearLayout>
+    <!--</LinearLayout>-->
 
 </com.pauselabs.pause.view.tabs.SettingsView>
