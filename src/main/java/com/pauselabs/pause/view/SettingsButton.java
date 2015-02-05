@@ -17,23 +17,24 @@ public class SettingsButton extends LinearLayout {
 
     private TextView btnLabel;
     private TextView btnContent;
-    private ImageView mIcon;
-    private ImageView mThumbnail;
+    private ImageView btnEndnail;
+    private ImageView btnFrontnail;
     private String mLabel = "";
     private String mContent = "";
+    private Integer mEndnail;
+    private Integer mFrontnail;
 
     public SettingsButton(Context context, AttributeSet attrs) {
         super(context, attrs);
         TypedArray a = context.getTheme().obtainStyledAttributes(
                 attrs,
-                R.styleable.SettingsButton,
-                0, 0);
+                R.styleable.SettingsButton,0,0);
 
         try {
             mLabel = a.getString(R.styleable.SettingsButton_label);
             mContent = a.getString(R.styleable.SettingsButton_content);
-//            mIcon = a.getResources(R.styleable.SettingsButton_icon);
-//            mThumbnail = a.getResources(R.styleable.SearchView);
+            mEndnail = a.getResourceId(R.styleable.SettingsButton_endnail,0);
+            mFrontnail = a.getResourceId(R.styleable.SettingsButton_frontnail,0);
         } finally {
             a.recycle();
         }
@@ -46,10 +47,12 @@ public class SettingsButton extends LinearLayout {
 
         btnLabel = (TextView) findViewById(R.id.label);
         btnContent = (TextView) findViewById(R.id.content);
-//        mIcon = (ImageView) findViewById(R.id.icon);
-//        mThumbnail = (ImageView) findViewById(R.id.thumbnail);
+        btnEndnail = (ImageView) findViewById(R.id.endnail);
+        btnFrontnail = (ImageView) findViewById(R.id.frontnail);
         btnLabel.setText(mLabel);
         btnContent.setText(mContent);
+        btnEndnail.setImageResource(mEndnail);
+        btnFrontnail.setImageResource(mFrontnail);
     }
 
     public void setLabel(String label) {
@@ -60,6 +63,18 @@ public class SettingsButton extends LinearLayout {
 
     public void setContent(String content) {
         btnContent.setText(content);
+        invalidate();
+        requestLayout();
+    }
+
+    public void setEndnail(Integer endnail) {
+        btnEndnail.setImageResource(endnail);
+        invalidate();
+        requestLayout();
+    }
+
+    public void setfrontnail(Integer frontnail) {
+        btnEndnail.setImageResource(frontnail);
         invalidate();
         requestLayout();
     }
