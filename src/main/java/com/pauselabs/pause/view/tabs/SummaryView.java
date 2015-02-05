@@ -23,8 +23,6 @@ public class SummaryView extends RelativeLayout {
     public TextView noMessages;
     @InjectView(R.id.summary_view_container)
     public RelativeLayout summaryViewContainer;
-    @InjectView(R.id.fab_image_button)
-    public ImageButton startPauseButton;
 
     private final String TAG = SummaryView.class.getSimpleName();
 

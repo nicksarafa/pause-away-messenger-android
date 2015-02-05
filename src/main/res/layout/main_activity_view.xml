@@ -8,13 +8,26 @@
     android:layout_height="fill_parent"
     android:orientation="vertical"
     android:gravity="bottom"
-    sothree:panelHeight="@dimen/fab_button_diameter"
+    sothree:panelHeight="0dp"
     sothree:shadowHeight="0dp"
     sothree:overlay="true">
 
     <!-- Toolbar and ViewPager are inside the toolbar.xml -->
-
     <include layout="@layout/toolbar"/>
+
+    <!-- Fab -->
+    <ImageButton
+        android:id="@+id/fab_image_button"
+        android:layout_height="@dimen/fab_button_diameter"
+        android:layout_width="@dimen/fab_button_diameter"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="@dimen/contact_list_item_padding"
+        android:background="@drawable/fab_button"
+        android:src="@drawable/ic_action_sleep"
+        android:tint="@android:color/white"
+        android:contentDescription="Start Paüse Session" />
 
 </com.pauselabs.pause.view.MainActivityView>
 

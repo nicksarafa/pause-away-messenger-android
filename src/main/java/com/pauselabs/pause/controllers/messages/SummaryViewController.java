@@ -1,12 +1,16 @@
 package com.pauselabs.pause.controllers.messages;
 
 import android.content.Context;
+import android.graphics.Point;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
+import android.view.animation.TranslateAnimation;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
@@ -14,6 +18,7 @@ import android.widget.LinearLayout;
 import com.pauselabs.R;
 import com.pauselabs.pause.Injector;
 import com.pauselabs.pause.PauseApplication;
+import com.pauselabs.pause.controllers.MySlider;
 import com.pauselabs.pause.model.Constants;
 import com.pauselabs.pause.view.SummaryReceivedCard;
 import com.pauselabs.pause.view.SummarySentCard;
@@ -29,10 +34,9 @@ import javax.inject.Inject;
 /**
  * Created by Passa on 12/25/14.
  */
-public class SummaryViewController implements AdapterView.OnItemClickListener, RecyclerView.OnItemTouchListener {
+public class SummaryViewController extends MySlider implements AdapterView.OnItemClickListener, RecyclerView.OnItemTouchListener {
 
     public SummaryView summaryView;
-
 
     private ArrayAdapter<SummaryConversationCard> summaryCardArrayAdapter;
 
@@ -42,6 +46,8 @@ public class SummaryViewController implements AdapterView.OnItemClickListener, R
         Injector.inject(this);
 
         summaryView = (SummaryView) inflater.inflate(R.layout.summary_view, null);
+
+        setMainView(summaryView);
 
         summaryCardArrayAdapter = new SummaryCardAdapter(summaryView.getContext(), R.layout.summary_conversation_card);
         summaryView.listView.setAdapter(summaryCardArrayAdapter);
@@ -80,7 +86,7 @@ public class SummaryViewController implements AdapterView.OnItemClickListener, R
         } else {
             PauseConversation conversation = summaryConversationCard.getConversation();
             for (PauseMessage message : conversation.getMessages()) {
-                View messageCard = null;
+                View messageCard = new View(PauseApplication.mainActivity);
                 if (message.getType() == Constants.Message.Type.SMS_INCOMING || message.getType() == Constants.Message.Type.PHONE_INCOMING) {
                     SummaryReceivedCard receivedMessageCard = (SummaryReceivedCard) inflater.inflate(R.layout.summary_received_card, null);
                     receivedMessageCard.setMessageText(message.getMessage());

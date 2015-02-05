@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.TranslateAnimation;
 
 import com.pauselabs.R;
 import com.pauselabs.pause.Injector;
@@ -63,14 +64,14 @@ public class MainActivity extends ActionBarActivity {
 
         PauseApplication.mainActivity = this;
 
+        mainActivityView = (MainActivityView) inflater.inflate(R.layout.main_activity_view,null);
+        mainActivityView.viewPager.setAdapter(new SectionsPagerAdapter(getFragmentManager()));
+
         summaryViewController = new SummaryViewController();
         ASCIIDirectoryViewController = new ASCIIDirectoryViewController();
         settingsViewController = new SettingsViewController();
         customPauseViewController = new CustomPauseViewController();
         privacyViewController = new PrivacyViewController();
-
-        mainActivityView = (MainActivityView) inflater.inflate(R.layout.main_activity_view,null);
-        mainActivityView.viewPager.setAdapter(new SectionsPagerAdapter(getFragmentManager()));
 
         tabBarView = new TabBarView(this);
         tabBarView.setViewPager(mainActivityView.viewPager);
@@ -106,39 +107,24 @@ public class MainActivity extends ActionBarActivity {
         actionBar.setCustomView(tabBarView);
 
         mainActivityView.addView(summaryViewController.summaryView);
-        mainActivityView.setDragView(summaryViewController.summaryView.startPauseButton);
-        mainActivityView.setPanelSlideListener(new SlidingUpPanelLayout.PanelSlideListener() {
+        summaryViewController.summaryView.offsetTopAndBottom(mainActivityView.getHeight());
+        summaryViewController.summaryView.setClickable(true);
+
+        mainActivityView.startPauseButton.bringToFront();
+        mainActivityView.startPauseButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onPanelSlide(View view, float f) {
-                actionBar.getCustomView().setY(-(f * actionBar.getHeight()));
+            public void onClick(View v) {
+                if (summaryViewController.isExpanded()) {
+                    mainActivityView.startPauseButton.setImageResource(R.drawable.ic_action_wake);
 
-            }
+                    PauseApplication.stopPauseService(PauseApplication.getCurrentSession().getCreator());
+                } else {
+                    mainActivityView.startPauseButton.setImageResource(R.drawable.ic_action_sleep);
 
-            @Override
-            public void onPanelCollapsed(View view) {
-                summaryViewController.summaryView.startPauseButton.setImageResource(R.drawable.ic_action_wake);
-
-                PauseApplication.stopPauseService(PauseApplication.getCurrentSession().getCreator());
-            }
-
-            @Override
-            public void onPanelExpanded(View view) {
-                summaryViewController.summaryView.startPauseButton.setImageResource(R.drawable.ic_action_sleep);
-
-                PauseApplication.startPauseService(Constants.Session.Creator.SILENCE);
-            }
-
-            @Override
-            public void onPanelAnchored(View view) {
-
-            }
-
-            @Override
-            public void onPanelHidden(View view) {
-
+                    PauseApplication.startPauseService(Constants.Session.Creator.SILENCE);
+                }
             }
         });
-        summaryViewController.summaryView.setClickable(true);
 
         setContentView(mainActivityView);
     }
@@ -170,12 +156,10 @@ public class MainActivity extends ActionBarActivity {
     public void updateView() {
         summaryViewController.updateUI();
 
-        Log.i(TAG,"Active Session: " + PauseApplication.isActiveSession());
-        Log.i(TAG,"Panel Expanded: " + mainActivityView.isPanelExpanded());
-        if(PauseApplication.isActiveSession() && !mainActivityView.isPanelExpanded()) {
-            summaryViewController.summaryView.startPauseButton.performClick();
-        } else if (!PauseApplication.isActiveSession() && mainActivityView.isPanelExpanded()) {
-            summaryViewController.summaryView.startPauseButton.performClick();
+        if(PauseApplication.isActiveSession() && !summaryViewController.isExpanded()) {
+            summaryViewController.expand();
+        } else if (!PauseApplication.isActiveSession() && summaryViewController.isExpanded()) {
+            summaryViewController.collapse();
         }
     }
 

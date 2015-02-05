@@ -17,10 +17,7 @@ import butterknife.Views;
  */
 public class PrivacyView extends RelativeLayout {
 
-//    @InjectView(R.id.ice_contacts_list)
-//    public ListView contactListView;
-//    @InjectView(R.id.add_ice_button)
-//    public Button addIceBtn;
+
 
     public PrivacyView(Context context) {
         super(context);

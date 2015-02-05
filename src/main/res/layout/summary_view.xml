@@ -7,41 +7,12 @@
     android:layout_height="fill_parent"
     android:background="@drawable/transparent_drawable">
 
-    <!-- Fab Container -->
-
-    <RelativeLayout
-        android:id="@+id/fab_container"
-        android:layout_width="@dimen/fab_button_diameter"
-        android:layout_height="@dimen/fab_button_diameter"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentTop="true"
-        android:background="@drawable/transparent_drawable">
-
-        <ImageButton
-            android:id="@+id/fab_image_button"
-            android:layout_height="@dimen/fab_button_diameter"
-            android:layout_width="@dimen/fab_button_diameter"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true"
-            android:layout_centerVertical="true"
-            android:layout_marginRight="@dimen/contact_list_item_padding"
-            android:layout_marginBottom="@dimen/contact_list_item_padding"
-            android:background="@drawable/fab_button"
-            android:src="@drawable/ic_action_sleep"
-            android:tint="@android:color/white"
-            android:layout_centerHorizontal="true"
-            android:contentDescription="Start Paüse Session" />
-
-    </RelativeLayout>
-
     <!-- Messages Container -->
 
     <RelativeLayout
         android:id="@+id/summary_view_container"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:layout_below="@id/fab_container"
         android:background="@color/text_white">
 
         <ListView
