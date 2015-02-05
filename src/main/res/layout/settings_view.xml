@@ -2,6 +2,7 @@
 
 <com.pauselabs.pause.view.tabs.SettingsView
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/settings_view"
     android:orientation="vertical"
     android:layout_width="match_parent"
@@ -17,7 +18,7 @@
 
 
         <ScrollView
-            xmlns:custom="http://schemas.android.com/apk/res-auto"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:overScrollMode="never"
@@ -45,8 +46,8 @@
                     android:id="@+id/nameBtn"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    custom:label="@string/name_settings_label"
-                    custom:content="John"/>
+                    app:label="@string/name_settings_label"
+                    app:content="John"/>
 
                 <!-- Gender -->
 
@@ -55,8 +56,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@null"
-                    custom:label="@string/gender_settings_label"
-                    custom:content="Male"/>
+                    app:label="@string/gender_settings_label"
+                    app:content="Male"/>
 
                 <!-- Missed Calls -->
 
@@ -65,7 +66,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@null"
-                    custom:label="@string/reply_to_calls_settings_label"/>
+                    app:label="@string/reply_to_calls_settings_label"/>
 
                 <!-- Replied Text Messages -->
 
@@ -74,7 +75,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@null"
-                    custom:label="@string/reply_to_SMS_settings_label"/>
+                    app:label="@string/reply_to_SMS_settings_label"/>
 
                     <!-- Privacy List -->
 
@@ -83,8 +84,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@null"
-                        custom:label="@string/blacklist_label"
-                        custom:content=""
+                        app:label="@string/blacklist_label"
+                        app:content=""
                         app:frontnail="@drawable/ic_action_ice_empty"/>
 
                 <!-- Volume Settings Key -->
@@ -94,8 +95,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@null"
-                    custom:label="@string/vibrate_label"
-                    custom:content="Yes"/>
+                    app:label="@string/vibrate_label"
+                    app:content="Yes"/>
 
                 <!-- Voice Toggle -->
 
@@ -104,8 +105,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@null"
-                    custom:label="@string/voice_label"
-                    custom:content="On"/>
+                    app:label="@string/voice_label"
+                    app:content="On"/>
 
 
                 <!-- Toasts Toggle -->
@@ -115,8 +116,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@null"
-                    custom:label="@string/toasts_label"
-                    custom:content=""/>
+                    app:label="@string/toasts_label"
+                    app:content=""/>
 
                 <!-- Feedback Label -->
 
@@ -133,7 +134,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@null"
-                    custom:label="@string/rate_us_settings_label"/>
+                    app:label="@string/rate_us_settings_label"/>
 
 
                 <!-- Contact Us Email Dialog -->
@@ -143,7 +144,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@null"
-                    custom:label="@string/contact_us_label" />
+                    app:label="@string/contact_us_label" />
 
                 <!-- Help Label -->
 
@@ -161,7 +162,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center_vertical"
                     android:background="@null"
-                    custom:label="@string/support_label" />
+                    app:label="@string/support_label" />
 
                 <!-- Privacy Policy URI -->
 
@@ -170,7 +171,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@null"
-                    custom:label="@string/privacy_policy_label" />
+                    app:label="@string/privacy_policy_label" />
 
                 <!-- Terms URI -->
 
