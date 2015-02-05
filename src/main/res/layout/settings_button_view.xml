@@ -56,10 +56,10 @@
 
                     <ImageView
                         android:id="@+id/endnail"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:layout_width="0dp"
                         android:layout_weight="0"
-                        android:src="@drawable/cursor"
-                        android:background="@color/pause_green"/>
+                        android:gravity="right|center_vertical"
+                        android:layout_marginRight="@dimen/privacy_checkbox_padding"/>
 
 </merge>

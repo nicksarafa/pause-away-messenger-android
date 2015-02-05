@@ -25,6 +25,8 @@
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/contact_list_item_padding"
+            android:layout_marginBottom="@dimen/contact_list_item_padding"
             android:background="@drawable/fab_button"
             android:src="@drawable/ic_action_sleep"
             android:tint="@android:color/white"

@@ -1,7 +1,6 @@
 package com.pauselabs.pause.view.tabs;
 
 import android.content.Context;
-import android.content.pm.PackageInfo;
 import android.util.AttributeSet;
 import android.widget.LinearLayout;
 
@@ -43,9 +42,6 @@ public class SettingsView extends LinearLayout {
     @InjectView(R.id.termsBtn)
     public SettingsButton termsBtn;
 
-//    @InjectView(R.id.versionFooter)
-//    TextView versionFooter;
-
     public SettingsView(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
@@ -65,13 +61,6 @@ public class SettingsView extends LinearLayout {
 
         Views.inject(this);
 
-        PackageInfo pInfo = null;
-//        try {
-//            pInfo = context.getPackageManager().getPackageInfo(context.getPackageName(), 0);
-//            versionFooter.setText("Version 1.0." + pInfo.versionCode + " © 2014 Pause Labs, LLC");
-//        } catch (PackageManager.NameNotFoundException e) {
-//            e.printStackTrace();
-//        }
     }
 
 }

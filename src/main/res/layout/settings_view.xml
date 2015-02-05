@@ -47,7 +47,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     app:label="@string/name_settings_label"
-                    app:content="John"/>
+                    app:content="John"
+                    app:endnail="@null"/>
 
                 <!-- Gender -->
 
@@ -106,7 +107,7 @@
                     android:layout_height="wrap_content"
                     android:background="@null"
                     app:label="@string/voice_label"
-                    app:content="On"/>
+                    app:content="On" />
 
 
                 <!-- Toasts Toggle -->

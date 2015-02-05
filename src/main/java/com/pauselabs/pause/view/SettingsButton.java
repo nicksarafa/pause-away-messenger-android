@@ -57,35 +57,14 @@ public class SettingsButton extends LinearLayout {
             ((ImageView)findViewById(R.id.endnail)).setImageDrawable(mEndnail);
         }
 
-//        btnLabel = (TextView) findViewById(R.id.label);
             btnContent = (TextView) findViewById(R.id.content);
             btnContent.setText(mContent);
-//        btnEndnail.setImageResource(mEndnail);
-//        btnFrontnail.setImageResource(mFrontnail);
     }
 
-//    public void setLabel(String label) {
-//        btnLabel.setText(label);
-//        invalidate();
-//        requestLayout();
-//    }
-//
     public void setContent(String content) {
         btnContent.setText(content);
         invalidate();
         requestLayout();
     }
-//
-//    public void setEndnail(Drawable endnail) {
-//        btnEndnail.setImageDrawable(endnail);
-//        invalidate();
-//        requestLayout();
-//    }
-//
-//    public void setFrontnail(Drawable frontnail) {
-//        btnEndnail.setImageDrawable(frontnail);
-//        invalidate();
-//        requestLayout();
-//    }
 
 }
