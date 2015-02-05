@@ -4,7 +4,7 @@ import com.pauselabs.pause.activity.BlackWhitelistActivity;
 import com.pauselabs.pause.activity.BlackWhitelistFragment;
 import com.pauselabs.pause.activity.MainActivity;
 import com.pauselabs.pause.activity.OnBoardingActivity;
-import com.pauselabs.pause.controllers.IceViewController;
+import com.pauselabs.pause.controllers.PrivacyViewController;
 import com.pauselabs.pause.controllers.SettingsViewController;
 import com.pauselabs.pause.controllers.messages.ASCIIDirectoryViewController;
 import com.pauselabs.pause.controllers.messages.SummaryViewController;
@@ -29,7 +29,7 @@ import com.pauselabs.pause.view.SummaryReceivedCard;
 import com.pauselabs.pause.view.SummarySentCard;
 import com.pauselabs.pause.view.tabs.CustomPauseView;
 import com.pauselabs.pause.view.tabs.ASCIIDirectoryView;
-import com.pauselabs.pause.view.tabs.IceView;
+import com.pauselabs.pause.view.tabs.PrivacyView;
 import com.pauselabs.pause.view.tabs.SettingsView;
 import com.pauselabs.pause.view.tabs.SummaryView;
 import com.squareup.otto.Bus;
@@ -78,8 +78,8 @@ import dagger.Provides;
                 SummarySentCard.class,
                 SummaryReceivedCard.class,
 
-                IceViewController.class,
-                IceView.class,
+                PrivacyViewController.class,
+                PrivacyView.class,
 
                 PauseApplicationService.class,
                 PauseSessionService.class,

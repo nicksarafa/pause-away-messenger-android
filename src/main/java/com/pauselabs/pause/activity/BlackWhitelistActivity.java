@@ -24,7 +24,7 @@ public class BlackWhitelistActivity extends ActionBarActivity implements BlackWh
 
         int type = getIntent().getIntExtra("test",0);
         if (type == 0) {
-            setContentView(R.layout.blacklist_activity);
+            setContentView(R.layout.privacy_list_view);
             getSupportActionBar().setTitle("BLACKLIST");
         } else {
             setContentView(R.layout.whitelist_activity);

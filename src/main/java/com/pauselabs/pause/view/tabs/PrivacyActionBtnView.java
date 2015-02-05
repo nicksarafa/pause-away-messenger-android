@@ -2,7 +2,7 @@ package com.pauselabs.pause.view.tabs;
 
 import android.content.Context;
 import android.util.AttributeSet;
-import android.widget.ListView;
+import android.widget.ImageButton;
 import android.widget.RelativeLayout;
 
 import com.pauselabs.R;
@@ -10,27 +10,23 @@ import com.pauselabs.R;
 import butterknife.InjectView;
 import butterknife.Views;
 
-;
-
 /**
- * Created by Admin on 12/13/14.
+ * Created by Passa on 2/4/15.
  */
-public class IceView extends RelativeLayout {
+public class PrivacyActionBtnView extends RelativeLayout {
 
-    @InjectView(R.id.ice_contacts_list)
-    public ListView contactListView;
-//    @InjectView(R.id.add_ice_button)
-//    public Button addIceBtn;
+    @InjectView(R.id.ice_atn_1)
+    public ImageButton atnBtn1;
 
-    public IceView(Context context) {
+    public PrivacyActionBtnView(Context context) {
         super(context);
     }
 
-    public IceView(Context context, AttributeSet attrs) {
+    public PrivacyActionBtnView(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
 
-    public IceView(Context context, AttributeSet attrs, int defStyle) {
+    public PrivacyActionBtnView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
     }
 

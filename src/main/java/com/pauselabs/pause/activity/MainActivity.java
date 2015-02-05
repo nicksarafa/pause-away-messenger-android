@@ -8,21 +8,16 @@ import android.support.v13.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ScrollView;
 
 import com.pauselabs.R;
 import com.pauselabs.pause.Injector;
 import com.pauselabs.pause.PauseApplication;
 import com.pauselabs.pause.controllers.CustomPauseViewController;
-import com.pauselabs.pause.controllers.IceViewController;
+import com.pauselabs.pause.controllers.PrivacyViewController;
 import com.pauselabs.pause.controllers.SettingsViewController;
 import com.pauselabs.pause.controllers.messages.ASCIIDirectoryViewController;
 import com.pauselabs.pause.controllers.messages.SummaryViewController;
@@ -55,7 +50,7 @@ public class MainActivity extends ActionBarActivity {
     public static ASCIIDirectoryViewController ASCIIDirectoryViewController;
     public static SettingsViewController settingsViewController;
     public static CustomPauseViewController customPauseViewController;
-    public static IceViewController iceViewController;
+    public static PrivacyViewController privacyViewController;
 
     @Inject
     LayoutInflater inflater;
@@ -68,9 +63,19 @@ public class MainActivity extends ActionBarActivity {
 
         PauseApplication.mainActivity = this;
 
+        summaryViewController = new SummaryViewController();
+        ASCIIDirectoryViewController = new ASCIIDirectoryViewController();
+        settingsViewController = new SettingsViewController();
+        customPauseViewController = new CustomPauseViewController();
+        privacyViewController = new PrivacyViewController();
+
         mainActivityView = (MainActivityView) inflater.inflate(R.layout.main_activity_view,null);
         mainActivityView.viewPager.setAdapter(new SectionsPagerAdapter(getFragmentManager()));
-        mainActivityView.viewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+
+        tabBarView = new TabBarView(this);
+        tabBarView.setViewPager(mainActivityView.viewPager);
+        tabBarView.addView(privacyViewController.privacyBtns);
+        tabBarView.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
                 pageIndex = position;
@@ -81,11 +86,9 @@ public class MainActivity extends ActionBarActivity {
                 pageIndex = position;
 
                 if (pageIndex == ICE_TAB) {
-                    mainActivityView.toolbar.getMenu().findItem(R.id.menu_red).setVisible(true);
-                    mainActivityView.toolbar.getMenu().findItem(R.id.menu_green).setVisible(true);
+                    privacyViewController.privacyBtns.setVisibility(View.VISIBLE);
                 } else {
-                    mainActivityView.toolbar.getMenu().findItem(R.id.menu_red).setVisible(false);
-                    mainActivityView.toolbar.getMenu().findItem(R.id.menu_green).setVisible(false);
+                    privacyViewController.privacyBtns.setVisibility(View.INVISIBLE);
                 }
             }
 
@@ -94,10 +97,6 @@ public class MainActivity extends ActionBarActivity {
 
             }
         });
-
-        tabBarView = new TabBarView(this);
-        tabBarView.setViewPager(mainActivityView.viewPager);
-        tabBarView.addView(inflater.inflate(R.layout.ice_action_view, null));
         
         setSupportActionBar(mainActivityView.toolbar);
         actionBar = getSupportActionBar();
@@ -105,12 +104,6 @@ public class MainActivity extends ActionBarActivity {
         actionBar.setDisplayShowTitleEnabled(false);
         actionBar.setDisplayShowCustomEnabled(true);
         actionBar.setCustomView(tabBarView);
-
-        summaryViewController = new SummaryViewController();
-        ASCIIDirectoryViewController = new ASCIIDirectoryViewController();
-        settingsViewController = new SettingsViewController();
-        customPauseViewController = new CustomPauseViewController();
-        iceViewController = new IceViewController();
 
         mainActivityView.addView(summaryViewController.summaryView);
         mainActivityView.setDragView(summaryViewController.summaryView.startPauseButton);
@@ -286,7 +279,7 @@ public class MainActivity extends ActionBarActivity {
 
                     break;
                 case ICE_TAB:
-                    rootView = iceViewController.iceView;
+                    rootView = privacyViewController.privacyView;
 
                     break;
             }
