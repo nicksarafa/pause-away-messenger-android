@@ -3,8 +3,8 @@
     <declare-styleable name="SettingsButton">
         <attr name="label" format="string" />
         <attr name="content" format="string" />
-        <attr name="endnail" format="integer"/>
-        <attr name="frontnail" format="integer"/>
+        <attr name="endnail" format="reference"/>
+        <attr name="frontnail" format="reference"/>
     </declare-styleable>
     <declare-styleable name="SummaryButton">
         <attr name="name" format="string" />

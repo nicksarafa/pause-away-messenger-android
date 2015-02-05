@@ -7,11 +7,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <!--<LinearLayout-->
-        <!--android:id="@+id/slidingBottomList"-->
-        <!--android:layout_width="fill_parent"-->
-        <!--android:layout_height="fill_parent"-->
-        <!--android:orientation="vertical">-->
+    <LinearLayout
+        android:id="@+id/slidingBottomList"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical">
 
         <!-- Begin Contact List Scroll View -->
 
@@ -34,6 +34,7 @@
             android:stretchMode="columnWidth">
 
                 <LinearLayout
+                xmlns:app="http://schemas.android.com/apk/res-auto"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:orientation="vertical">
@@ -83,7 +84,8 @@
                         android:layout_height="wrap_content"
                         android:background="@null"
                         custom:label="@string/blacklist_label"
-                        custom:content=""/>
+                        custom:content=""
+                        app:frontnail="@drawable/ic_action_ice_empty"/>
 
                 <!-- Volume Settings Key -->
 
@@ -114,7 +116,7 @@
                     android:layout_height="wrap_content"
                     android:background="@null"
                     custom:label="@string/toasts_label"
-                    custom:content="On"/>
+                    custom:content=""/>
 
                 <!-- Feedback Label -->
 
@@ -192,6 +194,6 @@
             </LinearLayout>
         </ScrollView>
 
-    <!--</LinearLayout>-->
+    </LinearLayout>
 
 </com.pauselabs.pause.view.tabs.SettingsView>
