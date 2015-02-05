@@ -4,6 +4,7 @@ import android.content.SharedPreferences;
 import android.media.AudioManager;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
 
 import com.pauselabs.R;
 import com.pauselabs.pause.Injector;
@@ -41,6 +42,7 @@ public class GenderViewController implements View.OnClickListener {
 
         genderView.male.setOnClickListener(this);
         genderView.female.setOnClickListener(this);
+
     }
 
 
@@ -71,6 +73,8 @@ public class GenderViewController implements View.OnClickListener {
             editor.putString(Constants.Settings.NAME_KEY, genderView.name.getText().toString());
             editor.putBoolean(Constants.Settings.IS_MALE, isMale);
             editor.apply();
+
+            genderView.name.onEditorAction(EditorInfo.IME_ACTION_DONE);
 
             onBoardingActivity.cycle();
         } else {

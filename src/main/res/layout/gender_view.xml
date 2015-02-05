@@ -40,7 +40,7 @@
             android:background="@android:color/transparent"
             android:freezesText="false"
             android:inputType="textPersonName"
-            android:imeOptions="flagNoEnterAction"
+            android:imeOptions="actionDone"
             android:hint="Enter Your First Name"/>
 
             <!-- Male or Female -->
