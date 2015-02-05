@@ -74,6 +74,14 @@ public class ContactsAdapter extends CursorAdapter implements SectionIndexer {
         highlightTextSpan = new TextAppearanceSpan(context, R.style.searchTextHighlight);
     }
 
+    public void selectAll() {
+        int count = getCount();
+        for (int i = 0; i < count; i++) {
+            ViewHolder holder = (ViewHolder)getView(i,null,null).getTag();
+            holder.checkbox_added.performClick();
+        }
+    }
+
     /**
      * Identifies the start of the search string in the display name column of a Cursor row.
      * E.g. If displayName was "Adam" and search query (mSearchTerm) was "da" this would
@@ -98,8 +106,7 @@ public class ContactsAdapter extends CursorAdapter implements SectionIndexer {
     @Override
     public View newView(Context context, Cursor cursor, ViewGroup viewGroup) {
         // Inflates the list item layout.
-        final View itemLayout =
-                mInflater.inflate(R.layout.contact_list_item, viewGroup, false);
+        final View itemLayout = mInflater.inflate(R.layout.contact_list_item, viewGroup, false);
 
         // Creates a new ViewHolder in which to store handles to each view resource. This
         // allows bindView() to retrieve stored references instead of calling findViewById for

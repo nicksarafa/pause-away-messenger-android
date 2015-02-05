@@ -74,10 +74,9 @@
 
     <!-- Settings Strings -->
     <string name="name_settings_label">Name</string>
-    <string name="reply_to_calls_settings_label">Reply to Calls From</string>
-    <string name="reply_to_SMS_settings_label">Reply to SMS Texts From</string>
-    <string name="blacklist_label">Do not respond to…</string>
-    <string name="whitelist_label">Always respond to…</string>
+    <string name="reply_to_calls_settings_label">Reply on Calls</string>
+    <string name="reply_to_SMS_settings_label">Reply on SMS Texts</string>
+    <string name="blacklist_label">Privacy List</string>
     <string name="vibrate_label">Pause On Vibrate</string>
     <string name="voice_label">Voice Feedback</string>
     <string name="toasts_label">Toasts On</string>
@@ -115,7 +114,6 @@
     <string name="ice_section_title">ICE</string>
     <string name="ob_female_btn">Female</string>
     <string name="ob_male_btn">Male</string>
-    <string name="blacklist_sub_header_text">Pause Ignores Calls and Texts From Selected Contacts</string>
     <string name="blacklist_ab_title">BLACKLIST</string>
     <string name="red">red</string>
     <string name="green">green</string>

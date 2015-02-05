@@ -39,8 +39,8 @@ public class PauseSession implements Serializable {
 
     private Set<String> mBlacklistContacts;
     private Set<String> mIcelistContacts;
-    private String smsPrivacySetting;
-    private String callPrivacySetting;
+    private Boolean smsPrivacySetting;
+    private Boolean callPrivacySetting;
 
     public PauseSession(int sessionCreator) {
         Injector.inject(this);
@@ -54,8 +54,8 @@ public class PauseSession implements Serializable {
 
         mBlacklistContacts = retrieveBlacklistContacts();
         mIcelistContacts = retrieveIcelistContacts();
-        smsPrivacySetting = mPrefs.getString(Constants.Settings.REPLY_SMS, Constants.Privacy.EVERYBODY);
-        callPrivacySetting = mPrefs.getString(Constants.Settings.REPLY_MISSED_CALL, Constants.Privacy.EVERYBODY);
+        smsPrivacySetting = mPrefs.getBoolean(Constants.Settings.REPLY_SMS, true);
+        callPrivacySetting = mPrefs.getBoolean(Constants.Settings.REPLY_MISSED_CALL, true);
     }
 
     public ArrayList<PauseConversation> getConversations() {
@@ -117,13 +117,13 @@ public class PauseSession implements Serializable {
      * @param contactId
      * @return true if sender is safe to respond to
      */
-    public Boolean shouldSenderReceivedBounceback(String contactId) {
+    public Boolean shouldSenderReceivedBounceback(String contactId, int type) {
         Boolean shouldSendBounceback;
 
         if(mBlacklistContacts.contains(contactId)) {
             shouldSendBounceback = false;
         } else {
-            shouldSendBounceback = privacyCheckPassed(contactId);
+            shouldSendBounceback = privacyCheckPassed(contactId, type);
         }
 
         return shouldSendBounceback;
@@ -141,14 +141,13 @@ public class PauseSession implements Serializable {
         return mPrefs.getStringSet(Constants.Settings.ICELIST, new HashSet<String>());
     }
 
-    private Boolean privacyCheckPassed(String contactId) {
-        if(smsPrivacySetting.equals(Constants.Privacy.CONTACTS_ONLY)) {
+    private Boolean privacyCheckPassed(String contactId, int type) {
+        if(smsPrivacySetting && type == Constants.Message.Type.SMS_INCOMING)
             return !contactId.isEmpty();
-        } else if(smsPrivacySetting.equals(Constants.Privacy.EVERYBODY)) {
-            return true;
-        } else {
-            return false;
-        }
+        else if(callPrivacySetting && type == Constants.Message.Type.PHONE_INCOMING)
+            return !contactId.isEmpty();
+
+        return false;
     }
 
 

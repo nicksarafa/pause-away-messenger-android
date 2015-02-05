@@ -7,12 +7,12 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <TextView
-        android:layout_width="match_parent"
+    <Button
+        android:id="@+id/privacySelectAll"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:padding="@dimen/blacklist_sub_title_padding"
-        android:text="@string/blacklist_sub_header_text"
-        android:gravity="center_horizontal"/>
+        android:text="Select All"
+        android:background="@drawable/transparent_drawable"/>
 
     <FrameLayout
         android:layout_width="match_parent"

@@ -82,7 +82,7 @@
                         android:layout_height="wrap_content"
                         android:background="@null"
                         custom:label="@string/blacklist_label"
-                        custom:content=""/>
+                        custom:content="Choose who I respond to"/>
 
                 <!-- Volume Settings Key -->
 

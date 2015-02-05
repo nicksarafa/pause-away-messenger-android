@@ -457,7 +457,7 @@ public class PauseApplication extends Application {
                 MediaPlayer player = MediaPlayer.create(instance, notification);
                 player.start();
         } else {
-            if (currentPauseSession.shouldSenderReceivedBounceback(contactId) && conversation.getMessagesSentFromUser().size() == 0) {
+            if (currentPauseSession.shouldSenderReceivedBounceback(contactId,receivedMessage.getType()) && conversation.getMessagesSentFromUser().size() == 0) {
                 PauseMessage bounceBackMessage = getMessageToBounceBack(receivedMessage.getFrom(), conversation);
                 conversation.addMessage(bounceBackMessage);
                 messageSender.sendSmsMessage(bounceBackMessage.getTo(), bounceBackMessage);

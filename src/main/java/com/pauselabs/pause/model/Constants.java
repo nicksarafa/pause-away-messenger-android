@@ -223,13 +223,13 @@ public class Constants {
         public static final String PAUSE_ON_VIBRATE_KEY =  "PAUSE_ON_VIBRATE_KEY";
         public static final String PAUSE_VOICE_FEEDBACK_KEY = "PAUSE_VOICE_ON_KEY";
         public static final String PAUSE_TOASTS_ON_KEY = "PAUSE_TOASTS_ON_KEY";
+        public static final String REPLY_MISSED_CALL = "REPLY_MISSED_CALL_KEY";
+        public static final String REPLY_SMS = "REPLY_SMS_KEY";
 
         public static final String NAME_KEY = "NAME_KEY";
         public static final String IS_MALE = "IS_MALE";
         public static final String GENDER_MALE_VALUE = "he";
         public static final String GENDER_FEMALE_VALUE = "she";
-        public static final String REPLY_MISSED_CALL = "REPLY_MISSED_CALL_KEY";
-        public static final String REPLY_SMS = "REPLY_SMS_KEY";
         public static final String USING_BLACKLIST = "USING_BLACKLIST";
         public static final String BLACKLIST = "BLACKLIST";
         public static final String ICELIST = "ICELIST";
@@ -267,16 +267,13 @@ public class Constants {
     public static class Privacy {
         private Privacy() {}
 
-        public static final String CONTACTS_ONLY = "Contacts Only";
-        public static final String EVERYBODY = "Everybody";
-        public static final String NOBODY = "Nobody";
+
     }
 
     public static class Gender {
         private Gender() {}
 
-        public static final Boolean MALE = Boolean.TRUE;
-        public static final Boolean FEMALE = Boolean.FALSE;
+
     }
 
 }

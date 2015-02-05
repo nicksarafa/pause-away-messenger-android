@@ -25,6 +25,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.ListView;
 
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.pauselabs.R;
@@ -45,6 +48,7 @@ public class PrivacylistFragment extends ListFragment implements AdapterView.OnI
 
     private OnContactsInteractionListener mOnContactSelectedListener;
 
+    private ListView list;
     private ContactsAdapter mAdapter; // The main query adapter
     private ImageLoader mImageLoader; // Handles loading the contact image in a background thread
     private String mSearchTerm; // Stores the current search query term
@@ -67,7 +71,6 @@ public class PrivacylistFragment extends ListFragment implements AdapterView.OnI
 
         // Create the main contacts adapter
         mAdapter = new ContactsAdapter(getActivity(),getTag());
-        Log.i("BWF:",getTag());
 
         if (savedInstanceState != null) {
             // If we're restoring state after this fragment was recreated then
@@ -82,6 +85,14 @@ public class PrivacylistFragment extends ListFragment implements AdapterView.OnI
     public View onCreateView(final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.contact_list_view, container, false);
 
+        Button selectall = (Button)view.findViewById(R.id.privacySelectAll);
+        selectall.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mAdapter.selectAll();
+            }
+        });
+
         // Inject Butterknife views
         Views.inject(this, view);
 
@@ -95,7 +106,8 @@ public class PrivacylistFragment extends ListFragment implements AdapterView.OnI
         // Set up ListView, assign adapter and set some listeners. The adapter was previously
         // created in onCreate().
         setListAdapter(mAdapter);
-        getListView().setOnItemClickListener(this);
+        list = getListView();
+        list.setOnItemClickListener(this);
 
         // If there's a previously selected search item from a saved state then don't bother
         // initializing the loader as it will be restarted later when the query is populated into
@@ -146,7 +158,7 @@ public class PrivacylistFragment extends ListFragment implements AdapterView.OnI
         mOnContactSelectedListener.onSelectionCleared();
 
         // Clears currently checked item
-        getListView().clearChoices();
+        list.clearChoices();
     }
 
     @Override
@@ -220,7 +232,7 @@ public class PrivacylistFragment extends ListFragment implements AdapterView.OnI
             outState.putString(SearchManager.QUERY, mSearchTerm);
 
             // Saves the currently selected contact
-            outState.putInt(STATE_PREVIOUSLY_SELECTED_KEY, getListView().getCheckedItemPosition());
+            outState.putInt(STATE_PREVIOUSLY_SELECTED_KEY, list.getCheckedItemPosition());
         }
     }
 
