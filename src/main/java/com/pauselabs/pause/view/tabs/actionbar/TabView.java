@@ -40,7 +40,7 @@ public class TabView extends LinearLayout {
 
         mImageView = new ImageView(context);
         mImageView.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, mActionBarHeight));
-        mImageView.setScaleType(ScaleType.CENTER);
+        mImageView.setScaleType(ScaleType.FIT_CENTER);
 
         mTextView = new TextView(context);
         mTextView.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
