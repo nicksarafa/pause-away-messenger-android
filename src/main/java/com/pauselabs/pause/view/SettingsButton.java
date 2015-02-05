@@ -5,7 +5,7 @@ import android.content.res.TypedArray;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.pauselabs.R;
@@ -13,12 +13,12 @@ import com.pauselabs.R;
 /**
  * Created by tyndallm on 9/29/14.
  */
-public class SettingsButton extends RelativeLayout {
+public class SettingsButton extends LinearLayout {
 
     private TextView btnLabel;
     private TextView btnContent;
-    private ImageView btnIcon;
-    private ImageView btnThumbnail;
+    private ImageView mIcon;
+    private ImageView mThumbnail;
     private String mLabel = "";
     private String mContent = "";
 
@@ -46,8 +46,8 @@ public class SettingsButton extends RelativeLayout {
 
         btnLabel = (TextView) findViewById(R.id.label);
         btnContent = (TextView) findViewById(R.id.content);
-        btnIcon = (ImageView) findViewById(R.id.icon);
-        btnThumbnail = (ImageView) findViewById(R.id.thumbnail);
+//        mIcon = (ImageView) findViewById(R.id.icon);
+//        mThumbnail = (ImageView) findViewById(R.id.thumbnail);
         btnLabel.setText(mLabel);
         btnContent.setText(mContent);
     }

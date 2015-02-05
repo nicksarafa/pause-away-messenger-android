@@ -17,9 +17,6 @@ import com.pauselabs.pause.activity.PrivacylistActivity;
 import com.pauselabs.pause.model.Constants;
 import com.pauselabs.pause.view.tabs.SettingsView;
 
-import java.util.HashSet;
-import java.util.Set;
-
 import javax.inject.Inject;
 
 /**

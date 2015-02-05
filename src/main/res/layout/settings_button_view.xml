@@ -1,59 +1,60 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<merge
+<merge>
+    <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_height="wrap_content"
-    android:layout_width="match_parent">
+    android:layout_height="@dimen/settings_thumbnail_size"
+    android:layout_width="fill_parent"
+    android:orientation="horizontal">
 
     <!-- Thumbnail -->
 
     <ImageView
         android:id="@+id/thumbnail"
-        android:src="@drawable/thumbnail"
         android:layout_height="@dimen/settings_thumbnail_size"
-        android:layout_width="@dimen/settings_thumbnail_size"
-        android:scaleType="centerCrop"/>
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:src="@drawable/ic_call_icon"/>
 
     <!-- Settings Label -->
 
             <TextView
                 android:id="@+id/label"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_toRightOf="@id/thumbnail"
-                android:layout_toEndOf="@+id/thumbnail"
-                android:layout_toStartOf="@id/icon"
-                android:layout_toLeftOf="@id/icon"
+                android:layout_height="match_parent"
+                android:layout_width="0dp"
+                android:layout_weight="4"
+                android:layout_marginStart="@dimen/settings_item_padding"
                 android:layout_marginLeft="@dimen/settings_item_padding"
-                android:textColor="@android:color/darker_gray"
+                android:singleLine="true"
+                android:gravity="left|center_vertical"
+                android:textAlignment="textStart"
+                android:fontFamily="sans-serif-light"
+                android:textColor="@android:color/background_dark"
                 android:textSize="@dimen/text_medium"
-                android:layout_alignParentTop="true"
                 android:text="Gender"/>
 
                 <!-- User Info -->
 
                 <TextView
                     android:id="@+id/content"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_toRightOf="@id/thumbnail"
-                    android:layout_toEndOf="@id/thumbnail"
-                    android:layout_toLeftOf="@id/icon"
-                    android:layout_toStartOf="@+id/icon"
+                    android:layout_height="match_parent"
+                    android:layout_width="0dp"
+                    android:layout_weight="2"
+                    android:layout_marginStart="@dimen/settings_item_padding"
                     android:layout_marginLeft="@dimen/settings_item_padding"
-                    android:layout_centerVertical="true"
-                    android:layout_centerHorizontal="true"
-                    android:textColor="@android:color/black"
-                    android:layout_alignParentBottom="true"
-                    android:textSize="18dp"
+                    android:gravity="center"
+                    android:textColor="@color/dark_grey"
+                    android:fontFamily="sans-serif-light"
+                    android:textSize="@dimen/text_medium"
                     android:text="Male"/>
 
                     <ImageView
                         android:id="@+id/icon"
-                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_width="0dp"
+                        android:layout_weight="0"
                         android:src="@drawable/cursor"
-                        android:layout_alignParentRight="true"
-                        android:layout_centerVertical="true"/>
+                        android:background="@color/pause_green"/>
+    </LinearLayout>
 
 </merge>

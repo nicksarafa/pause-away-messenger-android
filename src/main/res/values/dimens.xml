@@ -19,7 +19,7 @@
     <!-- Text -->
     <dimen name="text_extra_large">28sp</dimen>
     <dimen name="text_large">24sp</dimen>
-    <dimen name="text_medium">20sp</dimen>
+    <dimen name="text_medium">18sp</dimen>
     <dimen name="text_small">16sp</dimen>
 
     <!-- OB = on_boarding face and height -->
@@ -40,7 +40,7 @@
     <dimen name="elevation_low">1dp</dimen>
     <dimen name="elevation_high">8dp</dimen>
 
-    <dimen name="settings_thumbnail_size">60dp</dimen>
+    <dimen name="settings_thumbnail_size">36dp</dimen>
     <dimen name="message_margin">100dp</dimen>
     <dimen name="emoji_grid_margin">10dp</dimen>
     <dimen name="ob_btn_margin">30dp</dimen>
