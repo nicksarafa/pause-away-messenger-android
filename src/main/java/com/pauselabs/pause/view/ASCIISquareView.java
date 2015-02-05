@@ -3,9 +3,6 @@ package com.pauselabs.pause.view;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.widget.FrameLayout;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.pauselabs.R;
@@ -16,7 +13,7 @@ import butterknife.Views;
 /**
  * Created by Passa on 1/28/15.
  */
-public class ASCIISquareView extends RelativeLayout {
+public class ASCIISquareView extends FrameLayout {
 
     @InjectView(R.id.emoji)
     public TextView ascii;

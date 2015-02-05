@@ -2,33 +2,54 @@
 <com.pauselabs.pause.view.ASCIISquareView
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:layout_marginTop="@dimen/emoji_grid_margin"
+    android:layout_height="wrap_content"
     android:background="@drawable/card_background">
 
-    <TextView
-        android:id="@+id/emojiText"
+    <!-- Ascii Art -->
+
+    <LinearLayout
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp"
-        android:paddingTop="10dp"
-        android:paddingBottom="10dp"
-        android:layout_alignParentBottom="true"
-        android:textIsSelectable="false"
-        android:textColor="@android:color/white"
-        android:textSize="@dimen/text_medium"
-        android:text="Noah is Gay"
-        android:background="@drawable/card_text_background"/>
+        android:layout_height="fill_parent"
+        android:orientation="vertical" >
 
     <TextView
         android:id="@+id/emoji"
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:layout_alignParentTop="true"
-        android:text="Sample \nText"
+        android:layout_height="wrap_content"
+        android:layout_weight="2"
         android:gravity="center"
-        android:textSize="@dimen/text_extra_large"/>
+        android:text="Sample \nText"
+        android:textAlignment="center"
+        android:textIsSelectable="false"
+        android:textColor="@color/pause_green"
+        android:textSize="@dimen/text_extra_large"
+        android:paddingTop="50dp"
+        android:paddingBottom="50dp"/>
+
+
+    <TextView
+        android:id="@+id/emojiText"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:textAlignment="center"
+        android:textIsSelectable="false"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/text_medium"
+        android:text="Magenta"
+        android:background="@drawable/card_text_background"/>
+
+
+    </LinearLayout>
+
+    <!-- Grid Box Banner -->
+
+
+    <!-- Blurred Text Background -->
+
+
+
+
 
 </com.pauselabs.pause.view.ASCIISquareView>

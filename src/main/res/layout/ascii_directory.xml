@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<!-- SoThree SlidingUpPanel -->
 <com.pauselabs.pause.view.tabs.ASCIIDirectoryView
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/emojiDirectory"
@@ -15,7 +14,6 @@
         android:horizontalSpacing="10dp"
         android:padding="10dp"
         android:numColumns="2"
-        android:textAlignment="center"
         android:listSelector="@color/transparent"
         android:cacheColorHint="@color/transparent"
         android:clipToPadding="false"
@@ -28,8 +26,6 @@
         android:overScrollFooter="@android:color/transparent"
         android:footerDividersEnabled="false"
         android:stretchMode="columnWidth" />
-
-    <!-- Summary View injected via Java -->
 
 </com.pauselabs.pause.view.tabs.ASCIIDirectoryView>
 
