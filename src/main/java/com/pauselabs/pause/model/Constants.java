@@ -231,7 +231,7 @@ public class Constants {
         public static final String GENDER_MALE_VALUE = "he";
         public static final String GENDER_FEMALE_VALUE = "she";
         public static final String USING_BLACKLIST = "USING_BLACKLIST";
-        public static final String BLACKLIST = "BLACKLIST";
+        public static final String BLACKLIST = "PRIVACY";
         public static final String ICELIST = "ICELIST";
 
         /** jasonActionIds

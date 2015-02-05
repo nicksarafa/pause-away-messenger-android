@@ -7,11 +7,20 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/contact_list_item_padding"
+        android:gravity="center"
+        android:textSize="@dimen/text_medium"
+        android:text="@string/privacy_message"/>
+
     <Button
         android:id="@+id/privacySelectAll"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Select All"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:gravity="center"
+        android:text="@string/select_all_button"
         android:background="@drawable/transparent_drawable"/>
 
     <FrameLayout
