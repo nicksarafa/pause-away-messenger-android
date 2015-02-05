@@ -8,7 +8,7 @@
     android:layout_height="fill_parent"
     android:orientation="vertical"
     android:gravity="bottom"
-    sothree:panelHeight="@dimen/so_three_panel_height"
+    sothree:panelHeight="@dimen/fab_button_diameter"
     sothree:shadowHeight="0dp"
     sothree:overlay="true">
 
