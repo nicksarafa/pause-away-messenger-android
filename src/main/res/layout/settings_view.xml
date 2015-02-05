@@ -53,8 +53,8 @@
                     android:id="@+id/genderBtn"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    custom:label="@string/gender_settings_label"
                     android:background="@null"
+                    custom:label="@string/gender_settings_label"
                     custom:content="Male"/>
 
                 <!-- Missed Calls -->
@@ -75,7 +75,7 @@
                     android:background="@null"
                     custom:label="@string/reply_to_SMS_settings_label"/>
 
-                    <!-- BlackList -->
+                    <!-- Privacy List -->
 
                     <com.pauselabs.pause.view.SettingsButton
                         android:id="@+id/privacylistBtn"

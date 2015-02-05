@@ -2,6 +2,7 @@ package com.pauselabs.pause.view;
 
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.widget.ImageView;
@@ -26,15 +27,20 @@ public class SettingsButton extends LinearLayout {
 
     public SettingsButton(Context context, AttributeSet attrs) {
         super(context, attrs);
-        TypedArray a = context.getTheme().obtainStyledAttributes(
-                attrs,
-                R.styleable.SettingsButton,0,0);
+        TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.SettingsButton, 0, 0);
+        Drawable frontnail = a.getDrawable(R.styleable.SettingsButton_frontnail);
+        Drawable endnail = a.getDrawable(R.styleable.SettingsButton_frontnail);
+
+        if (frontnail != null || endnail != null) {
+            btnEndnail.setBackground(endnail);
+            btnFrontnail.setBackground(frontnail);
+        }
 
         try {
             mLabel = a.getString(R.styleable.SettingsButton_label);
             mContent = a.getString(R.styleable.SettingsButton_content);
-            mEndnail = a.getResourceId(R.styleable.SettingsButton_endnail,0);
-            mFrontnail = a.getResourceId(R.styleable.SettingsButton_frontnail,0);
+//            mEndnail = a.getResourceId(R.styleable.SettingsButton_endnail, 0);
+//            mFrontnail = a.getResourceId(R.styleable.SettingsButton_frontnail, 0);
         } finally {
             a.recycle();
         }
@@ -47,12 +53,12 @@ public class SettingsButton extends LinearLayout {
 
         btnLabel = (TextView) findViewById(R.id.label);
         btnContent = (TextView) findViewById(R.id.content);
-        btnEndnail = (ImageView) findViewById(R.id.endnail);
-        btnFrontnail = (ImageView) findViewById(R.id.frontnail);
+//        btnEndnail = (ImageView) findViewById(R.id.endnail);
+//        btnFrontnail = (ImageView) findViewById(R.id.frontnail);
         btnLabel.setText(mLabel);
         btnContent.setText(mContent);
-        btnEndnail.setImageResource(mEndnail);
-        btnFrontnail.setImageResource(mFrontnail);
+//        btnEndnail.setImageResource(mEndnail);
+//        btnFrontnail.setImageResource(mFrontnail);
     }
 
     public void setLabel(String label) {
@@ -67,14 +73,14 @@ public class SettingsButton extends LinearLayout {
         requestLayout();
     }
 
-    public void setEndnail(Integer endnail) {
-        btnEndnail.setImageResource(endnail);
+    public void setEndnail(Drawable endnail) {
+        btnEndnail.setImageDrawable(endnail);
         invalidate();
         requestLayout();
     }
 
-    public void setfrontnail(Integer frontnail) {
-        btnEndnail.setImageResource(frontnail);
+    public void setFrontnail(Drawable frontnail) {
+        btnEndnail.setImageDrawable(frontnail);
         invalidate();
         requestLayout();
     }
