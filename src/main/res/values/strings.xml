@@ -74,6 +74,7 @@
 
     <!-- Settings Strings -->
     <string name="name_settings_label">Name</string>
+    <string name="reply_to_strangers">Respond to Strangers</string>
     <string name="reply_to_calls_settings_label">Respond to Phone Calls</string>
     <string name="reply_to_SMS_settings_label">Respond to Text Messages</string>
     <string name="blacklist_label">Privacy List</string>

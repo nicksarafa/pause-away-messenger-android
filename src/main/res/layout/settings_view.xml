@@ -35,7 +35,7 @@
 
             <!-- Name -->
 
-            <com.pauselabs.pause.view.SettingsButton
+            <com.pauselabs.pause.model.SettingsButton
                 android:id="@+id/nameBtn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -45,7 +45,7 @@
 
             <!-- Gender -->
 
-            <com.pauselabs.pause.view.SettingsButton
+            <com.pauselabs.pause.model.SettingsButton
                 android:id="@+id/genderBtn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -53,9 +53,18 @@
                 app:label="@string/gender_settings_label"
                 app:content="Male"/>
 
+            <!-- Strangers -->
+
+            <com.pauselabs.pause.model.SettingsButton
+                android:id="@+id/strangersBtn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                app:label="@string/reply_to_strangers"/>
+
             <!-- Missed Calls -->
 
-            <com.pauselabs.pause.view.SettingsButton
+            <com.pauselabs.pause.model.SettingsButton
                 android:id="@+id/missedCallsBtn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -64,7 +73,7 @@
 
             <!-- Replied Text Messages -->
 
-            <com.pauselabs.pause.view.SettingsButton
+            <com.pauselabs.pause.model.SettingsButton
                 android:id="@+id/receivedSMSBtn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -73,7 +82,7 @@
 
             <!-- Volume Settings Key -->
 
-            <com.pauselabs.pause.view.SettingsButton
+            <com.pauselabs.pause.model.SettingsButton
                 android:id="@+id/volumeBtn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -83,7 +92,7 @@
 
             <!-- Voice Toggle -->
 
-            <com.pauselabs.pause.view.SettingsButton
+            <com.pauselabs.pause.model.SettingsButton
                 android:id="@+id/voiceBtn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -94,7 +103,7 @@
 
             <!-- Toasts Toggle -->
 
-            <com.pauselabs.pause.view.SettingsButton
+            <com.pauselabs.pause.model.SettingsButton
                 android:id="@+id/toastsBtn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -112,7 +121,7 @@
 
             <!-- Rate Us URI -->
 
-            <com.pauselabs.pause.view.SettingsButton
+            <com.pauselabs.pause.model.SettingsButton
                 android:id="@+id/rateBtn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -122,7 +131,7 @@
 
             <!-- Contact Us Email Dialog -->
 
-            <com.pauselabs.pause.view.SettingsButton
+            <com.pauselabs.pause.model.SettingsButton
                 android:id="@+id/contactBtn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -139,7 +148,7 @@
 
             <!-- Support URI -->
 
-            <com.pauselabs.pause.view.SettingsButton
+            <com.pauselabs.pause.model.SettingsButton
                 android:id="@+id/supportBtn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -149,7 +158,7 @@
 
             <!-- Privacy Policy URI -->
 
-            <com.pauselabs.pause.view.SettingsButton
+            <com.pauselabs.pause.model.SettingsButton
                 android:id="@+id/privacyBtn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -158,7 +167,7 @@
 
             <!-- Terms URI -->
 
-            <com.pauselabs.pause.view.SettingsButton
+            <com.pauselabs.pause.model.SettingsButton
                 android:id="@+id/termsBtn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

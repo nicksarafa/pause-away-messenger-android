@@ -217,12 +217,14 @@ public class Constants {
     }
 
     public static class Settings {
+
         private Settings() {
         }
 
         public static final String PAUSE_ON_VIBRATE_KEY =  "PAUSE_ON_VIBRATE_KEY";
         public static final String PAUSE_VOICE_FEEDBACK_KEY = "PAUSE_VOICE_ON_KEY";
         public static final String PAUSE_TOASTS_ON_KEY = "PAUSE_TOASTS_ON_KEY";
+        public static final String REPLY_STRANGERS = "REPLY_STRANGERS_KEY";
         public static final String REPLY_MISSED_CALL = "REPLY_MISSED_CALL_KEY";
         public static final String REPLY_SMS = "REPLY_SMS_KEY";
 

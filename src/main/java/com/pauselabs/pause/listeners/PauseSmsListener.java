@@ -39,49 +39,53 @@ public class PauseSmsListener extends ContentObserver {
         Cursor cursor = getNewSmsCursor();
 
         if (cursor.moveToFirst()) {
-            PauseMessage newMessage;
-
             int type = cursor.getInt(cursor.getColumnIndex("type"));
             int dateColumn = cursor.getColumnIndex("date");
             int bodyColumn = cursor.getColumnIndex("body");
             int addressColumn = cursor.getColumnIndex("address");
 
-            String from, to, number = "";
+            String from, to, number = cursor.getString(addressColumn);
             String message = cursor.getString(bodyColumn);
             Long date = cursor.getLong(dateColumn);
 
-            if (type == Telephony.Sms.MESSAGE_TYPE_SENT) {
-                Log.i(TAG,"SMS Type Sent");
-                from = "0";
-                to = cursor.getString(addressColumn);
-                number = to;
+            PauseConversation activeConversation = PauseApplication.getCurrentSession().getConversationByContactNumber(number);
 
-                PauseConversation activeConversation = PauseApplication.getCurrentSession().getConversationByContactNumber(number);
+            int id = cursor.getCount();
+            if (checkLastMessages(activeConversation,id)) {
+                PauseMessage newMessage;
 
-                if (activeConversation.getMessages().size() > 0 && activeConversation.getLastMessage().getType() == Constants.Message.Type.SMS_PAUSE_OUTGOING && activeConversation.getLastMessage().getId() == cursor.getCount()) {
-                    Log.i(TAG,"Pause sent message");
+                if (type == Telephony.Sms.MESSAGE_TYPE_SENT) {
+                    from = "0";
+                    to = number;
 
-                    PauseApplication.sendToast("Replied to message from " + activeConversation.getContactName() + " Ü");
-                } else {
-                    Log.i(TAG,"User sent message");
+                    if (activeConversation.getMessages().size() > 0 && activeConversation.getLastMessage().getType() == Constants.Message.Type.SMS_PAUSE_OUTGOING && activeConversation.getLastMessage().getId() == id) {
+                        PauseApplication.sendToast("Replied to message from " + activeConversation.getContactName() + " Ü");
+                    } else {
+                        newMessage = new PauseMessage(from, to, message, date, Constants.Message.Type.SMS_OUTGOING);
+                        PauseApplication.handleMessageSent(newMessage);
+                    }
+                } else if (type == Telephony.Sms.MESSAGE_TYPE_INBOX) {
+                    PauseApplication.numSMS++;
 
-                    newMessage = new PauseMessage(from, to, message, date, Constants.Message.Type.SMS_OUTGOING);
-                    PauseApplication.handleMessageSent(newMessage);
+                    from = number;
+                    to = "0";
+
+                    newMessage = new PauseMessage(from, to, message, date, Constants.Message.Type.SMS_INCOMING);
+                    PauseApplication.handleMessageReceived(newMessage);
                 }
-            } else if (type == Telephony.Sms.MESSAGE_TYPE_INBOX) {
-                Log.i(TAG, "Message received");
-
-                PauseApplication.numSMS++;
-
-                from = cursor.getString(addressColumn);
-                to = "0";
-
-                newMessage = new PauseMessage(from, to, message, date, Constants.Message.Type.SMS_INCOMING);
-                PauseApplication.handleMessageReceived(newMessage);
             }
         }
 
         cursor.close();
+    }
+
+    private boolean checkLastMessages(PauseConversation activeConversation, int id) {
+        if (activeConversation.getMessages().size() == 0)
+            return true;
+
+        return  (activeConversation.getMessagesReceived().size() != 0 && id != activeConversation.getLastMessageReceived().getId()) ||
+                (activeConversation.getMessagesSentFromUser().size() != 0 && id != activeConversation.getLastMessageSentFromUser().getId()) ||
+                (activeConversation.getMessagesSentFromPause().size() != 0 && id != activeConversation.getLastMessageSentFromPause().getId());
     }
 
     /**

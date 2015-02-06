@@ -12,7 +12,7 @@ import com.pauselabs.pause.PauseApplication;
 import com.pauselabs.pause.activity.OnBoardingActivity;
 import com.pauselabs.pause.model.Constants;
 import com.pauselabs.pause.model.JsonReader;
-import com.pauselabs.pause.view.HomeButton;
+import com.pauselabs.pause.model.HomeButton;
 import com.pauselabs.pause.view.HomeButtonSeparator;
 import com.pauselabs.pause.view.InteractiveView;
 

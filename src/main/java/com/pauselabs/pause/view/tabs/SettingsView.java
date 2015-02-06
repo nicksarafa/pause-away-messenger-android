@@ -5,7 +5,7 @@ import android.util.AttributeSet;
 import android.widget.LinearLayout;
 
 import com.pauselabs.R;
-import com.pauselabs.pause.view.SettingsButton;
+import com.pauselabs.pause.model.SettingsButton;
 
 import butterknife.InjectView;
 import butterknife.Views;
@@ -19,6 +19,8 @@ public class SettingsView extends LinearLayout {
     public SettingsButton nameBtn;
     @InjectView(R.id.missedCallsBtn)
     public SettingsButton missedCallsBtn;
+    @InjectView(R.id.strangersBtn)
+    public SettingsButton strangersBtn;
     @InjectView(R.id.receivedSMSBtn)
     public SettingsButton receivedSmsBtn;
     @InjectView(R.id.rateBtn)

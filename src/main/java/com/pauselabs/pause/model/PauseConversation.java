@@ -121,6 +121,16 @@ public class PauseConversation implements Serializable {
         return messagesReceived.get(messagesReceived.size() - 1);
     }
 
+    public PauseMessage getLastMessageSentFromUser() {
+        ArrayList<PauseMessage> messagesSentFromUser = getMessagesSentFromUser();
+        return messagesSentFromUser.get(messagesSentFromUser.size() - 1);
+    }
+
+    public PauseMessage getLastMessageSentFromPause() {
+        ArrayList<PauseMessage> messagesSentFromPause = getMessagesSentFromPause();
+        return messagesSentFromPause.get(messagesSentFromPause.size() - 1);
+    }
+
     public String getStringForBounceBackMessage() {
         String messageText;
         if(PauseApplication.getCurrentSession().getCreator() == Constants.Session.Creator.CUSTOM) {

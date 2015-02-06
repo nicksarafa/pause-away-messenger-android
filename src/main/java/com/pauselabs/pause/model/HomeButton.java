@@ -1,4 +1,4 @@
-package com.pauselabs.pause.view;
+package com.pauselabs.pause.model;
 
 import android.content.Context;
 import android.view.LayoutInflater;

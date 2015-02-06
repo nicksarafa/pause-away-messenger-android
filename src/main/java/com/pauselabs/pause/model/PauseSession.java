@@ -142,12 +142,10 @@ public class PauseSession implements Serializable {
     }
 
     private Boolean privacyCheckPassed(String contactId, int type) {
-        if(smsPrivacySetting && type == Constants.Message.Type.SMS_INCOMING)
-            return true;
-        else if(callPrivacySetting && type == Constants.Message.Type.PHONE_INCOMING)
-            return true;
-
-        return false;
+        return (contactId.isEmpty() && mPrefs.getBoolean(Constants.Settings.REPLY_STRANGERS, true))
+                &&
+                ((smsPrivacySetting && type == Constants.Message.Type.SMS_INCOMING) ||
+                (callPrivacySetting && type == Constants.Message.Type.PHONE_INCOMING));
     }
 
 

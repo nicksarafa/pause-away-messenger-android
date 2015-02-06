@@ -38,6 +38,7 @@ public class SettingsViewController implements View.OnClickListener {
 
         settingsView.nameBtn.setContent(prefs.getString(Constants.Settings.NAME_KEY, "None"));
         settingsView.genderBtn.setContent((prefs.getBoolean(Constants.Settings.IS_MALE, false)) ? "Male" : "Female");
+        settingsView.strangersBtn.setContent((prefs.getBoolean(Constants.Settings.REPLY_STRANGERS, true)) ? "Yes" : "No");
         settingsView.missedCallsBtn.setContent((prefs.getBoolean(Constants.Settings.REPLY_MISSED_CALL, true)) ? "Yes" : "No");
         settingsView.receivedSmsBtn.setContent((prefs.getBoolean(Constants.Settings.REPLY_SMS, true)) ? "Yes" : "No");
         settingsView.volumeBtn.setContent((prefs.getBoolean(Constants.Settings.PAUSE_ON_VIBRATE_KEY, false)) ? "Yes" : "No");
@@ -46,11 +47,11 @@ public class SettingsViewController implements View.OnClickListener {
 
         settingsView.nameBtn.setOnClickListener(this);
         settingsView.genderBtn.setOnClickListener(this);
+        settingsView.strangersBtn.setOnClickListener(this);
         settingsView.missedCallsBtn.setOnClickListener(this);
         settingsView.receivedSmsBtn.setOnClickListener(this);
         settingsView.rateBtn.setOnClickListener(this);
         settingsView.contactBtn.setOnClickListener(this);
-//        settingsView.blacklistBtn.setOnClickListener(this);
         settingsView.supportBtn.setOnClickListener(this);
         settingsView.termsBtn.setOnClickListener(this);
         settingsView.volumeBtn.setOnClickListener(this);
@@ -66,6 +67,9 @@ public class SettingsViewController implements View.OnClickListener {
                 break;
             case R.id.genderBtn:
                 changeGender();
+                break;
+            case R.id.strangersBtn:
+                changeStrangers();
                 break;
             case R.id.missedCallsBtn:
                 changeMissedCalls();
@@ -137,6 +141,17 @@ public class SettingsViewController implements View.OnClickListener {
             settingsView.genderBtn.setContent("Male");
         }
         prefs.edit().putBoolean(Constants.Settings.IS_MALE, !isMale).apply();
+    }
+
+    private void changeStrangers() {
+        boolean replyStrangers = prefs.getBoolean(Constants.Settings.REPLY_STRANGERS, true);
+
+        if (replyStrangers) {
+            settingsView.strangersBtn.setContent("No");
+        } else {
+            settingsView.strangersBtn.setContent("Yes");
+        }
+        prefs.edit().putBoolean(Constants.Settings.REPLY_STRANGERS, !replyStrangers).apply();
     }
 
     public void changeMissedCalls() {
