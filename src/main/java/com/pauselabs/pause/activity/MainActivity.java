@@ -12,7 +12,9 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
 
+import com.gc.materialdesign.views.ButtonFloat;
 import com.pauselabs.R;
 import com.pauselabs.pause.Injector;
 import com.pauselabs.pause.PauseApplication;
@@ -117,15 +119,19 @@ public class MainActivity extends ActionBarActivity {
         mainActivityView.setPanelSlideListener(new SlidingUpPanelLayout.PanelSlideListener() {
             @Override
             public void onPanelSlide(View view, float ratio) {
-                actionBar.getCustomView().setY(-((ratio + (ratio * 0.1305691057f)) * actionBar.getHeight()));
+                actionBar.getCustomView().setY(-((ratio + (ratio * 0.121875f)) * actionBar.getHeight()));
 
+                ButtonFloat button = (ButtonFloat) mainActivityView.startPauseButton;
+                RelativeLayout.LayoutParams lp = (RelativeLayout.LayoutParams)button.getLayoutParams();
                 float y = summaryViewController.summaryView.getY();
-                mainActivityView.startPauseButton.setY(y - (mainActivityView.startPauseButton.getHeight() + mainActivityView.startPauseButton.getPaddingBottom()));
+                mainActivityView.startPauseButton.setY(y - (mainActivityView.startPauseButton.getHeight() + lp.bottomMargin));
             }
 
             @Override
             public void onPanelCollapsed(View view) {
                 PauseApplication.stopPauseService(PauseApplication.getCurrentSession().getCreator());
+
+
             }
 
             @Override

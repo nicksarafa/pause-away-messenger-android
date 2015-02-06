@@ -8,7 +8,9 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:orientation="vertical"
-    android:gravity="bottom">
+    android:gravity="bottom"
+    sothree:umanoShadowHeight="0dp"
+    sothree:umanoFadeColor="@android:color/transparent">
 
     <RelativeLayout
         android:id="@+id/main_content_container"
@@ -23,8 +25,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
-            android:layout_marginRight="24dp"
+            android:layout_marginRight="@dimen/fab_margin_right"
+            android:layout_marginEnd="@dimen/fab_margin_right"
+            android:layout_marginBottom="@dimen/fab_margin_bottom"
             android:background="#1E88E5"
             materialdesign:animate="true"
             materialdesign:iconDrawable="@drawable/ic_action_wake" />

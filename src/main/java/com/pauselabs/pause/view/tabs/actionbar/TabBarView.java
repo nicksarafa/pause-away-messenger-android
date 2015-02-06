@@ -19,11 +19,11 @@ public class TabBarView extends LinearLayout {
 	}
 
 
-	private static final int STRIP_HEIGHT = 4;
+	public static final int STRIP_HEIGHT = 4;
 
 	public final Paint mPaint;
 
-	private int mStripHeight;
+	public static int mStripHeight;
 	private float mOffset = 0f;
 	public static int mSelectedTab = 0;
 	public ViewPager pager;
