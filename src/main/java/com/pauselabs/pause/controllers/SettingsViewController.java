@@ -13,7 +13,7 @@ import android.widget.EditText;
 import com.pauselabs.R;
 import com.pauselabs.pause.Injector;
 import com.pauselabs.pause.PauseApplication;
-import com.pauselabs.pause.activity.PrivacylistActivity;
+import com.pauselabs.pause.activity.MainActivity;
 import com.pauselabs.pause.model.Constants;
 import com.pauselabs.pause.view.tabs.SettingsView;
 
@@ -62,28 +62,28 @@ public class SettingsViewController implements View.OnClickListener {
     public void onClick(View view) {
         switch(view.getId()){
             case R.id.nameBtn:
-                displayNameDialog();
+                changName();
                 break;
             case R.id.genderBtn:
-                displayGenderDialog();
+                changeGender();
                 break;
             case R.id.missedCallsBtn:
-                displayMissedCallsDialog();
+                changeMissedCalls();
                 break;
             case R.id.receivedSMSBtn:
-                displaySMSReplyDialog();
+                changeSMS();
                 break;
             case R.id.volumeBtn:
-                displayVibrateDialog();
+                changeVibrate();
                 break;
             case R.id.voiceBtn:
-                displayVoiceDialog();
+                changeVoice();
                 break;
             case R.id.toastsBtn:
-                displayToastsDialog();
+                changeToast();
                 break;
             case R.id.privacylistBtn:
-                launchPrivacylistActivity();
+                showPrivacyTab();
                 break;
             case R.id.supportBtn:
                 launchSupportLink();
@@ -102,7 +102,7 @@ public class SettingsViewController implements View.OnClickListener {
         }
     }
 
-    public void displayNameDialog() {
+    public void changName() {
         AlertDialog.Builder alert = new AlertDialog.Builder(PauseApplication.mainActivity);
 
         alert.setTitle("Enter your name");
@@ -131,7 +131,7 @@ public class SettingsViewController implements View.OnClickListener {
         alert.show();
     }
 
-    public void displayGenderDialog() {
+    public void changeGender() {
         boolean isMale = prefs.getBoolean(Constants.Settings.IS_MALE, false);
 
         if (isMale) {
@@ -142,7 +142,7 @@ public class SettingsViewController implements View.OnClickListener {
         prefs.edit().putBoolean(Constants.Settings.IS_MALE, !isMale).apply();
     }
 
-    public void displayMissedCallsDialog() {
+    public void changeMissedCalls() {
         boolean replyMissedCall = prefs.getBoolean(Constants.Settings.REPLY_MISSED_CALL, true);
 
         if (replyMissedCall) {
@@ -153,7 +153,7 @@ public class SettingsViewController implements View.OnClickListener {
         prefs.edit().putBoolean(Constants.Settings.REPLY_MISSED_CALL, !replyMissedCall).apply();
     }
 
-    public void displaySMSReplyDialog() {
+    public void changeSMS() {
         boolean replySMS = prefs.getBoolean(Constants.Settings.REPLY_SMS, true);
 
         if (replySMS) {
@@ -164,7 +164,7 @@ public class SettingsViewController implements View.OnClickListener {
         prefs.edit().putBoolean(Constants.Settings.REPLY_SMS, !replySMS).apply();
     }
 
-    public void displayVibrateDialog() {
+    public void changeVibrate() {
         boolean pauseOnVibrate = prefs.getBoolean(Constants.Settings.PAUSE_ON_VIBRATE_KEY,false);
 
         if (pauseOnVibrate) {
@@ -175,7 +175,7 @@ public class SettingsViewController implements View.OnClickListener {
         prefs.edit().putBoolean(Constants.Settings.PAUSE_ON_VIBRATE_KEY, !pauseOnVibrate).apply();
     }
 
-    public void displayVoiceDialog() {
+    public void changeVoice() {
         boolean pauseVoiceFeedback = prefs.getBoolean(Constants.Settings.PAUSE_VOICE_FEEDBACK_KEY,false);
 
         if (pauseVoiceFeedback) {
@@ -186,7 +186,7 @@ public class SettingsViewController implements View.OnClickListener {
         prefs.edit().putBoolean(Constants.Settings.PAUSE_VOICE_FEEDBACK_KEY, !pauseVoiceFeedback).apply();
     }
 
-    public void displayToastsDialog() {
+    public void changeToast() {
         boolean pauseToastsOn= prefs.getBoolean(Constants.Settings.PAUSE_TOASTS_ON_KEY,true);
 
         if (pauseToastsOn) {
@@ -195,6 +195,10 @@ public class SettingsViewController implements View.OnClickListener {
             settingsView.toastBtn.setContent("On");
         }
         prefs.edit().putBoolean(Constants.Settings.PAUSE_TOASTS_ON_KEY, !pauseToastsOn).apply();
+    }
+
+    private void showPrivacyTab() {
+        PauseApplication.mainActivity.tabBarView.setSelectedTab(MainActivity.PRIVACY_TAB);
     }
 
     private void launchPlayMarketRate() {
@@ -222,10 +226,6 @@ public class SettingsViewController implements View.OnClickListener {
     private void launchTermsLink() {
         Intent supportIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.google.com/")).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         PauseApplication.mainActivity.startActivity(supportIntent);
-    }
-    private void launchPrivacylistActivity() {
-        Intent icelistIntent = new Intent(PauseApplication.mainActivity, PrivacylistActivity.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        PauseApplication.mainActivity.startActivity(icelistIntent);
     }
 
 }

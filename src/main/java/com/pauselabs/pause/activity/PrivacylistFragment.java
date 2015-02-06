@@ -26,7 +26,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.ListView;
 
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -70,7 +69,7 @@ public class PrivacylistFragment extends ListFragment implements AdapterView.OnI
         setHasOptionsMenu(true);
 
         // Create the main contacts adapter
-        mAdapter = new ContactsAdapter(getActivity(),getTag());
+        mAdapter = new ContactsAdapter(getActivity());
 
         if (savedInstanceState != null) {
             // If we're restoring state after this fragment was recreated then
@@ -83,7 +82,7 @@ public class PrivacylistFragment extends ListFragment implements AdapterView.OnI
 
     @Override
     public View onCreateView(final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.contact_list_view, container, false);
+        View view = inflater.inflate(R.layout.privacy_list_view, container, false);
 
         Button selectall = (Button)view.findViewById(R.id.privacySelectAll);
         selectall.setOnClickListener(new View.OnClickListener() {

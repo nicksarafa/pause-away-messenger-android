@@ -12,7 +12,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.TranslateAnimation;
 
 import com.pauselabs.R;
 import com.pauselabs.pause.Injector;
@@ -26,7 +25,6 @@ import com.pauselabs.pause.model.Constants;
 import com.pauselabs.pause.util.UIUtils;
 import com.pauselabs.pause.view.MainActivityView;
 import com.pauselabs.pause.view.tabs.actionbar.TabBarView;
-import com.sothree.slidinguppanel.SlidingUpPanelLayout;
 
 import java.util.Locale;
 
@@ -38,13 +36,13 @@ public class MainActivity extends ActionBarActivity {
 
     public static final int EMOJI_TAB = 0;
     public static final int HIDDEN_CUSTOM = 1;
-    public static final int ICE_TAB = 2;
+    public static final int PRIVACY_TAB = 2;
     public static final int SETTINGS_TAB = 3;
 
 
     public MainActivityView mainActivityView;
     public ActionBar actionBar;
-    private TabBarView tabBarView;
+    public TabBarView tabBarView;
     public int pageIndex;
 
     public SummaryViewController summaryViewController;
@@ -86,7 +84,7 @@ public class MainActivity extends ActionBarActivity {
             public void onPageSelected(int position) {
                 pageIndex = position;
 
-                if (pageIndex == ICE_TAB) {
+                if (pageIndex == PRIVACY_TAB) {
                     privacyViewController.privacyBtns.setVisibility(View.VISIBLE);
                 } else {
                     privacyViewController.privacyBtns.setVisibility(View.INVISIBLE);
@@ -209,7 +207,7 @@ public class MainActivity extends ActionBarActivity {
                     return getString(R.string.emoji_section_title).toUpperCase(l);
                 case SETTINGS_TAB:
                     return getString(R.string.settings_section_title).toUpperCase(l);
-                case ICE_TAB:
+                case PRIVACY_TAB:
                     return "Ice".toUpperCase();
                 case HIDDEN_CUSTOM:
                     return getString(R.string.hidden_custom_section_title).toUpperCase(l);
@@ -262,7 +260,7 @@ public class MainActivity extends ActionBarActivity {
                     rootView = customPauseViewController.customPauseView;
 
                     break;
-                case ICE_TAB:
+                case PRIVACY_TAB:
                     rootView = privacyViewController.privacyView;
 
                     break;

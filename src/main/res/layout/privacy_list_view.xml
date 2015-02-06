@@ -1,10 +1,67 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-    <!-- Keeping. Fragments might not work? -->
-
-<fragment xmlns:android="http://schemas.android.com/apk/res/android"
-    android:name="com.pauselabs.pause.activity.PrivacylistFragment"
-    android:tag="black"
-    android:id="@+id/contact_list"
+<com.pauselabs.pause.view.tabs.PrivacyView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_width="match_parent"/>
+    android:orientation="vertical">
+
+    <SearchView
+        android:id="@+id/contact_search_field"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:imeOptions="actionSearch"
+        android:hint="Search your contacts"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/contact_list_item_padding"
+        android:gravity="center"
+        android:textSize="@dimen/text_medium"
+        android:text="@string/privacy_message"/>
+
+    <Button
+        android:id="@+id/privacySelectAll"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:gravity="center"
+        android:text="@string/select_all_button"
+        android:background="@drawable/transparent_drawable"/>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <!-- Use standard android.R class list id instead of app specific id. This is just useful for
+             consistency. -->
+        <ListView android:id="@+id/contact_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:overScrollMode="never"
+            android:listSelector="@color/pause_green_light"
+            android:cacheColorHint="@color/transparent"
+            android:clipToPadding="false"
+            android:scrollbars="vertical"
+            android:isScrollContainer="false"
+            android:scrollbarStyle="outsideOverlay"
+            android:smoothScrollbar="true"
+            android:verticalScrollbarPosition="right"
+            android:overScrollFooter="@android:color/transparent"
+            android:footerDividersEnabled="false"/>
+
+        <!-- style="@style/ContactListView" -->
+        <!-- Use standard android.R class empty id instead of app specific id. This is just useful for
+         consistency. -->
+        <TextView android:id="@id/android:empty"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/no_contacts"
+            android:fontFamily="sans-serif-light"
+            android:textAppearance="?android:attr/textAppearanceLarge"/>
+
+    </FrameLayout>
+
+</com.pauselabs.pause.view.tabs.PrivacyView>
+

@@ -8,7 +8,6 @@ import android.support.v4.widget.CursorAdapter;
 import android.text.SpannableString;
 import android.text.TextUtils;
 import android.text.style.TextAppearanceSpan;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -48,7 +47,7 @@ public class ContactsAdapter extends CursorAdapter implements SectionIndexer {
      * Instantiates a new Contacts Adapter.
      * @param context A context that has access to the app's layout.
      */
-    public ContactsAdapter(Context context, String tag) {
+    public ContactsAdapter(Context context) {
         super(context, null, 0);
 
         // Stores inflater for use later
@@ -106,7 +105,7 @@ public class ContactsAdapter extends CursorAdapter implements SectionIndexer {
     @Override
     public View newView(Context context, Cursor cursor, ViewGroup viewGroup) {
         // Inflates the list item layout.
-        final View itemLayout = mInflater.inflate(R.layout.contact_list_item, viewGroup, false);
+        final View itemLayout = mInflater.inflate(R.layout.privacy_list_item, viewGroup, false);
 
         // Creates a new ViewHolder in which to store handles to each view resource. This
         // allows bindView() to retrieve stored references instead of calling findViewById for
