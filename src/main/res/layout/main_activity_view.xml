@@ -9,7 +9,9 @@
     android:layout_height="fill_parent"
     android:orientation="vertical"
     android:gravity="bottom"
-    sothree:umanoShadowHeight="0dp"
+    sothree:umanoClipPanel="true"
+    sothree:umanoPanelHeight="0dp"
+    sothree:umanoShadowHeight="2dp"
     sothree:umanoFadeColor="@android:color/transparent">
 
     <RelativeLayout
@@ -27,8 +29,8 @@
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
-            android:layout_marginRight="@dimen/fab_margin_right"
             android:layout_marginEnd="@dimen/fab_margin_right"
+            android:layout_marginRight="@dimen/fab_margin_right"
             android:layout_marginBottom="@dimen/fab_margin_bottom"
             android:background="#1E88E5"
             materialdesign:animate="true"
