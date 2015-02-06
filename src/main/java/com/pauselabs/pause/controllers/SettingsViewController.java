@@ -50,7 +50,7 @@ public class SettingsViewController implements View.OnClickListener {
         settingsView.receivedSmsBtn.setOnClickListener(this);
         settingsView.rateBtn.setOnClickListener(this);
         settingsView.contactBtn.setOnClickListener(this);
-        settingsView.blacklistBtn.setOnClickListener(this);
+//        settingsView.blacklistBtn.setOnClickListener(this);
         settingsView.supportBtn.setOnClickListener(this);
         settingsView.termsBtn.setOnClickListener(this);
         settingsView.volumeBtn.setOnClickListener(this);
@@ -82,9 +82,9 @@ public class SettingsViewController implements View.OnClickListener {
             case R.id.toastsBtn:
                 changeToast();
                 break;
-            case R.id.privacylistBtn:
-                showPrivacyTab();
-                break;
+//            case R.id.privacylistBtn:
+//                showPrivacyTab();
+//                break;
             case R.id.supportBtn:
                 launchSupportLink();
                 break;

@@ -80,14 +80,14 @@
 
                     <!-- Privacy List -->
 
-                    <com.pauselabs.pause.view.SettingsButton
-                        android:id="@+id/privacylistBtn"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@null"
-                        app:label="@string/blacklist_label"
-                        app:content=""
-                        app:frontnail="@drawable/ic_action_ice_empty"/>
+                    <!--<com.pauselabs.pause.view.SettingsButton-->
+                        <!--android:id="@+id/privacylistBtn"-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:background="@null"-->
+                        <!--app:label="@string/blacklist_label"-->
+                        <!--app:content=""-->
+                        <!--app:frontnail="@drawable/ic_action_ice_empty"/>-->
 
                 <!-- Volume Settings Key -->
 

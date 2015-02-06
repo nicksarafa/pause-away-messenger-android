@@ -12,9 +12,6 @@ import android.widget.TextView;
 
 import com.pauselabs.R;
 
-/**
- * Created by tyndallm on 9/29/14.
- */
 public class SettingsButton extends LinearLayout {
 
     private TextView btnContent;
