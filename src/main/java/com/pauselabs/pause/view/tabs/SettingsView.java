@@ -21,8 +21,6 @@ public class SettingsView extends LinearLayout {
     public SettingsButton missedCallsBtn;
     @InjectView(R.id.receivedSMSBtn)
     public SettingsButton receivedSmsBtn;
-    @InjectView(R.id.privacylistBtn)
-    public SettingsButton blacklistBtn;
     @InjectView(R.id.rateBtn)
     public SettingsButton rateBtn;
     @InjectView(R.id.contactBtn)

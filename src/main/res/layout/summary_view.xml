@@ -22,15 +22,15 @@
             android:listSelector="@android:color/transparent"
             android:cacheColorHint="@android:color/transparent"/>
 
-        <TextView
-            android:id="@+id/summary_no_messages"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
-            android:textSize="36sp"
-            android:textColor="@color/pause_green"
-            android:text="No Messages"/>
+            <TextView
+                android:id="@+id/summary_no_messages"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:textSize="36sp"
+                android:textColor="@color/pause_green"
+                android:text="No Messages"/>
 
     </RelativeLayout>
 

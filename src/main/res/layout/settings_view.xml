@@ -4,198 +4,178 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/settings_view"
-    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
-    <LinearLayout
-        android:id="@+id/slidingBottomList"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:orientation="vertical">
+    <!-- Begin Contact List Scroll View -->
 
-        <!-- Begin Contact List Scroll View -->
+    <ScrollView
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:overScrollMode="never"
+        android:listSelector="@color/pause_green_light"
+        android:cacheColorHint="@color/transparent"
+        android:clipToPadding="false"
+        android:scrollbars="vertical"
+        android:isScrollContainer="false"
+        android:scrollbarStyle="outsideOverlay"
+        android:smoothScrollbar="true"
+        android:verticalScrollbarPosition="right"
+        android:overScrollFooter="@android:color/transparent"
+        android:footerDividersEnabled="false"
+        android:stretchMode="columnWidth">
 
-
-        <ScrollView
+            <LinearLayout
             xmlns:app="http://schemas.android.com/apk/res-auto"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:overScrollMode="never"
-            android:listSelector="@color/pause_green_light"
-            android:cacheColorHint="@color/transparent"
-            android:clipToPadding="false"
-            android:scrollbars="vertical"
-            android:isScrollContainer="false"
-            android:scrollbarStyle="outsideOverlay"
-            android:smoothScrollbar="true"
-            android:verticalScrollbarPosition="right"
-            android:overScrollFooter="@android:color/transparent"
-            android:footerDividersEnabled="false"
-            android:stretchMode="columnWidth">
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:orientation="vertical">
 
-                <LinearLayout
-                xmlns:app="http://schemas.android.com/apk/res-auto"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:orientation="vertical">
+            <!-- Name -->
 
-                <!-- Name -->
+            <com.pauselabs.pause.view.SettingsButton
+                android:id="@+id/nameBtn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:label="@string/name_settings_label"
+                app:content="John"
+                app:endnail="@null"/>
 
-                <com.pauselabs.pause.view.SettingsButton
-                    android:id="@+id/nameBtn"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:label="@string/name_settings_label"
-                    app:content="John"
-                    app:endnail="@null"/>
+            <!-- Gender -->
 
-                <!-- Gender -->
+            <com.pauselabs.pause.view.SettingsButton
+                android:id="@+id/genderBtn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                app:label="@string/gender_settings_label"
+                app:content="Male"/>
 
-                <com.pauselabs.pause.view.SettingsButton
-                    android:id="@+id/genderBtn"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@null"
-                    app:label="@string/gender_settings_label"
-                    app:content="Male"/>
+            <!-- Missed Calls -->
 
-                <!-- Missed Calls -->
+            <com.pauselabs.pause.view.SettingsButton
+                android:id="@+id/missedCallsBtn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                app:label="@string/reply_to_calls_settings_label"/>
 
-                <com.pauselabs.pause.view.SettingsButton
-                    android:id="@+id/missedCallsBtn"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@null"
-                    app:label="@string/reply_to_calls_settings_label"/>
+            <!-- Replied Text Messages -->
 
-                <!-- Replied Text Messages -->
+            <com.pauselabs.pause.view.SettingsButton
+                android:id="@+id/receivedSMSBtn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                app:label="@string/reply_to_SMS_settings_label"/>
 
-                <com.pauselabs.pause.view.SettingsButton
-                    android:id="@+id/receivedSMSBtn"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@null"
-                    app:label="@string/reply_to_SMS_settings_label"/>
+            <!-- Volume Settings Key -->
 
-                    <!-- Privacy List -->
+            <com.pauselabs.pause.view.SettingsButton
+                android:id="@+id/volumeBtn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                app:label="@string/vibrate_label"
+                app:content="Yes"/>
 
-                    <com.pauselabs.pause.view.SettingsButton
-                        android:id="@+id/privacylistBtn"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@null"
-                        app:label="@string/blacklist_label"
-                        app:content=""
-                        app:frontnail="@drawable/ic_action_ice_empty"/>
+            <!-- Voice Toggle -->
 
-                <!-- Volume Settings Key -->
-
-                <com.pauselabs.pause.view.SettingsButton
-                    android:id="@+id/volumeBtn"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@null"
-                    app:label="@string/vibrate_label"
-                    app:content="Yes"/>
-
-                <!-- Voice Toggle -->
-
-                <com.pauselabs.pause.view.SettingsButton
-                    android:id="@+id/voiceBtn"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@null"
-                    app:label="@string/voice_label"
-                    app:content="On" />
+            <com.pauselabs.pause.view.SettingsButton
+                android:id="@+id/voiceBtn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                app:label="@string/voice_label"
+                app:content="On" />
 
 
-                <!-- Toasts Toggle -->
+            <!-- Toasts Toggle -->
 
-                <com.pauselabs.pause.view.SettingsButton
-                    android:id="@+id/toastsBtn"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@null"
-                    app:label="@string/toasts_label"
-                    app:content=""/>
+            <com.pauselabs.pause.view.SettingsButton
+                android:id="@+id/toastsBtn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                app:label="@string/toasts_label"
+                app:content=""/>
 
-                <!-- Feedback Label -->
+            <!-- Feedback Label -->
 
-                <!--<TextView-->
-                    <!--android:layout_width="match_parent"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:text="@string/feedback_section_label"-->
-                    <!--style="@style/ListSeparatorTextView"/>-->
+            <!--<TextView-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:text="@string/feedback_section_label"-->
+                <!--style="@style/ListSeparatorTextView"/>-->
 
-                <!-- Rate Us URI -->
+            <!-- Rate Us URI -->
 
-                <com.pauselabs.pause.view.SettingsButton
-                    android:id="@+id/rateBtn"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@null"
-                    app:label="@string/rate_us_settings_label"/>
-
-
-                <!-- Contact Us Email Dialog -->
-
-                <com.pauselabs.pause.view.SettingsButton
-                    android:id="@+id/contactBtn"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@null"
-                    app:label="@string/contact_us_label" />
-
-                <!-- Help Label -->
-
-                <!--<TextView-->
-                    <!--android:layout_width="match_parent"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:text="@string/help_label"-->
-                    <!--style="@style/ListSeparatorTextView"/>-->
-
-                <!-- Support URI -->
-
-                <com.pauselabs.pause.view.SettingsButton
-                    android:id="@+id/supportBtn"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_vertical"
-                    android:background="@null"
-                    app:label="@string/support_label" />
-
-                <!-- Privacy Policy URI -->
-
-                <com.pauselabs.pause.view.SettingsButton
-                    android:id="@+id/privacyBtn"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@null"
-                    app:label="@string/privacy_policy_label" />
-
-                <!-- Terms URI -->
-
-                <com.pauselabs.pause.view.SettingsButton
-                    android:id="@+id/termsBtn"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@null"
-                    android:label="@string/terms_label" />
-
-                <!-- Footer - Change to Cool Made in Detroit ImageView -->
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textAlignment="center"
-                    android:text="\u00A0Born in Detroit\n\n&#9825; \n"
-                    android:gravity="center_horizontal" />
+            <com.pauselabs.pause.view.SettingsButton
+                android:id="@+id/rateBtn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                app:label="@string/rate_us_settings_label"/>
 
 
-            </LinearLayout>
-        </ScrollView>
+            <!-- Contact Us Email Dialog -->
 
-    </LinearLayout>
+            <com.pauselabs.pause.view.SettingsButton
+                android:id="@+id/contactBtn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                app:label="@string/contact_us_label" />
+
+            <!-- Help Label -->
+
+            <!--<TextView-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:text="@string/help_label"-->
+                <!--style="@style/ListSeparatorTextView"/>-->
+
+            <!-- Support URI -->
+
+            <com.pauselabs.pause.view.SettingsButton
+                android:id="@+id/supportBtn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:background="@null"
+                app:label="@string/support_label" />
+
+            <!-- Privacy Policy URI -->
+
+            <com.pauselabs.pause.view.SettingsButton
+                android:id="@+id/privacyBtn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                app:label="@string/privacy_policy_label" />
+
+            <!-- Terms URI -->
+
+            <com.pauselabs.pause.view.SettingsButton
+                android:id="@+id/termsBtn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:label="@string/terms_label" />
+
+            <!-- Footer - Change to Cool Made in Detroit ImageView -->
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:text="\u00A0Born in Detroit\n\n&#9825; \n"
+                android:gravity="center_horizontal" />
+
+
+        </LinearLayout>
+    </ScrollView>
 
 </com.pauselabs.pause.view.tabs.SettingsView>

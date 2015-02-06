@@ -4,9 +4,9 @@ import android.content.Context;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
 import android.util.AttributeSet;
-import android.widget.ImageButton;
 import android.widget.RelativeLayout;
 
+import com.gc.materialdesign.views.Button;
 import com.pauselabs.R;
 import com.sothree.slidinguppanel.SlidingUpPanelLayout;
 
@@ -25,7 +25,7 @@ public class MainActivityView extends SlidingUpPanelLayout {
     @InjectView(R.id.toolbar)
     public Toolbar toolbar;
     @InjectView(R.id.fab_image_button)
-    public ImageButton startPauseButton;
+    public Button startPauseButton;
 
     public MainActivityView(Context context) {
         super(context);

@@ -120,14 +120,14 @@ public class MainActivity extends ActionBarActivity {
 
             @Override
             public void onPanelCollapsed(View view) {
-                mainActivityView.startPauseButton.setImageResource(R.drawable.ic_action_wake);
+                mainActivityView.startPauseButton.setBackgroundResource(R.drawable.ic_action_wake);
 
                 PauseApplication.stopPauseService(PauseApplication.getCurrentSession().getCreator());
             }
 
             @Override
             public void onPanelExpanded(View view) {
-                mainActivityView.startPauseButton.setImageResource(R.drawable.ic_action_sleep);
+                mainActivityView.startPauseButton.setBackgroundResource(R.drawable.ic_action_sleep);
 
                 PauseApplication.startPauseService(Constants.Session.Creator.SILENCE);
             }
@@ -157,7 +157,6 @@ public class MainActivity extends ActionBarActivity {
             Intent it = new Intent(Intent.ACTION_CLOSE_SYSTEM_DIALOGS);
             sendBroadcast(it);
         }
-//
         updateView();
     }
 

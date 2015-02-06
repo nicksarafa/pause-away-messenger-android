@@ -11,15 +11,17 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:imeOptions="actionSearch"
-        android:hint="Search your contacts"/>
+        android:focusableInTouchMode="true"
+        android:focusable="true"
+        android:hint="@string/privacy_search_bar"/>
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="@dimen/contact_list_item_padding"
-        android:gravity="center"
-        android:textSize="@dimen/text_medium"
-        android:text="@string/privacy_message"/>
+    <!--<TextView-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:padding="@dimen/contact_list_item_padding"-->
+        <!--android:gravity="center"-->
+        <!--android:textSize="@dimen/text_medium"-->
+        <!--android:text="@string/privacy_message"/>-->
 
     <Button
         android:id="@+id/privacySelectAll"

@@ -13,9 +13,10 @@
         android:layout_gravity="end"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:layout_width="wrap_content"
+        android:layout_width="@dimen/fab_button_diameter"
         android:layout_height="@dimen/fab_button_diameter"
         android:layout_centerVertical="true"
-        android:src="@drawable/ic_action_search" />
+        android:background="@drawable/transparent_drawable"
+        android:src="@drawable/abc_ic_search_api_mtrl_alpha" />
 
 </com.pauselabs.pause.view.tabs.PrivacyActionBtnView>
