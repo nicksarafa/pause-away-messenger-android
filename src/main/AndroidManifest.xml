@@ -47,23 +47,6 @@
                 android:screenOrientation="portrait">
             </activity>
 
-            <activity android:name=".pause.activity.PrivacylistActivity"
-                android:theme="@style/Theme.Pause.Blacklist"
-                android:parentActivityName=".pause.activity.MainActivity"
-                android:screenOrientation="portrait"
-                android:label="@string/privacy_ab_title">
-                <intent-filter>
-                    <action android:name="android.intent.action.SEARCH" />
-                </intent-filter>
-                <meta-data
-                    android:name="android.app.searchable"
-                    android:resource="@xml/searchable_contacts"
-                    android:value=".pause.activity.BlacklistActivity"/>
-                <meta-data
-                    android:name="android.support.PARENT_ACTIVITY"
-                    android:value=".pause.activity.MainActivity" />
-            </activity>
-
 
         <!-- Crashalytics and Google Analytics Setup -->
 

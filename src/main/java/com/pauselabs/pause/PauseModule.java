@@ -1,7 +1,5 @@
 package com.pauselabs.pause;
 
-import com.pauselabs.pause.activity.PrivacylistActivity;
-import com.pauselabs.pause.activity.PrivacylistFragment;
 import com.pauselabs.pause.activity.MainActivity;
 import com.pauselabs.pause.activity.OnBoardingActivity;
 import com.pauselabs.pause.controllers.PrivacyViewController;
@@ -51,8 +49,6 @@ import dagger.Provides;
 
                 OnBoardingActivity.class,
                 MainActivity.class,
-                PrivacylistActivity.class,
-                PrivacylistFragment.class,
 
                 GenderViewController.class,
                 GenderView.class,
