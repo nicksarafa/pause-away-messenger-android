@@ -34,7 +34,7 @@ import javax.inject.Inject;
 /**
  * Created by Passa on 12/25/14.
  */
-public class SummaryViewController extends MySlider implements AdapterView.OnItemClickListener, RecyclerView.OnItemTouchListener {
+public class SummaryViewController implements AdapterView.OnItemClickListener, RecyclerView.OnItemTouchListener {
 
     public SummaryView summaryView;
 
@@ -46,8 +46,6 @@ public class SummaryViewController extends MySlider implements AdapterView.OnIte
         Injector.inject(this);
 
         summaryView = (SummaryView) inflater.inflate(R.layout.summary_view, null);
-
-        setMainView(summaryView);
 
         summaryCardArrayAdapter = new SummaryCardAdapter(summaryView.getContext(), R.layout.summary_conversation_card);
         summaryView.listView.setAdapter(summaryCardArrayAdapter);

@@ -25,6 +25,7 @@ import com.pauselabs.pause.model.Constants;
 import com.pauselabs.pause.util.UIUtils;
 import com.pauselabs.pause.view.MainActivityView;
 import com.pauselabs.pause.view.tabs.actionbar.TabBarView;
+import com.sothree.slidinguppanel.SlidingUpPanelLayout;
 
 import java.util.Locale;
 
@@ -109,18 +110,36 @@ public class MainActivity extends ActionBarActivity {
         summaryViewController.summaryView.setClickable(true);
 
         mainActivityView.startPauseButton.bringToFront();
-        mainActivityView.startPauseButton.setOnClickListener(new View.OnClickListener() {
+        mainActivityView.setDragView(mainActivityView.startPauseButton);
+        mainActivityView.setPanelHeight(0);
+        mainActivityView.setPanelSlideListener(new SlidingUpPanelLayout.PanelSlideListener() {
             @Override
-            public void onClick(View v) {
-                if (summaryViewController.isExpanded()) {
-                    mainActivityView.startPauseButton.setImageResource(R.drawable.ic_action_wake);
+            public void onPanelSlide(View view, float ratio) {
+                mainActivityView.startPauseButton.setY(mainActivityView.getHeight() - (mainActivityView.getHeight() * ratio) - 100);
+            }
 
-                    PauseApplication.stopPauseService(PauseApplication.getCurrentSession().getCreator());
-                } else {
-                    mainActivityView.startPauseButton.setImageResource(R.drawable.ic_action_sleep);
+            @Override
+            public void onPanelCollapsed(View view) {
+                mainActivityView.startPauseButton.setImageResource(R.drawable.ic_action_wake);
 
-                    PauseApplication.startPauseService(Constants.Session.Creator.SILENCE);
-                }
+                PauseApplication.stopPauseService(PauseApplication.getCurrentSession().getCreator());
+            }
+
+            @Override
+            public void onPanelExpanded(View view) {
+                mainActivityView.startPauseButton.setImageResource(R.drawable.ic_action_sleep);
+
+                PauseApplication.startPauseService(Constants.Session.Creator.SILENCE);
+            }
+
+            @Override
+            public void onPanelAnchored(View view) {
+
+            }
+
+            @Override
+            public void onPanelHidden(View view) {
+
             }
         });
 
@@ -154,10 +173,10 @@ public class MainActivity extends ActionBarActivity {
     public void updateView() {
         summaryViewController.updateUI();
 
-        if(PauseApplication.isActiveSession() && !summaryViewController.isExpanded()) {
-            summaryViewController.expand();
-        } else if (!PauseApplication.isActiveSession() && summaryViewController.isExpanded()) {
-            summaryViewController.collapse();
+        if(PauseApplication.isActiveSession() && !mainActivityView.isPanelExpanded()) {
+            mainActivityView.expandPanel();
+        } else if (!PauseApplication.isActiveSession() && mainActivityView.isPanelExpanded()) {
+            mainActivityView.collapsePanel();
         }
     }
 

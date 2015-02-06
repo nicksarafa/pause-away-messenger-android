@@ -16,8 +16,10 @@ import butterknife.Views;
 /**
  * Created by Passa on 1/27/15.
  */
-public class MainActivityView extends RelativeLayout {
+public class MainActivityView extends SlidingUpPanelLayout {
 
+    @InjectView(R.id.main_content_container)
+    public RelativeLayout mainContentContainer;
     @InjectView(R.id.pager)
     public ViewPager viewPager;
     @InjectView(R.id.toolbar)
