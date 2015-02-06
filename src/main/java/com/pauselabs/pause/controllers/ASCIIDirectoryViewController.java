@@ -16,6 +16,8 @@ import com.pauselabs.pause.model.ASCIIItem;
 import com.pauselabs.pause.view.ASCIISquareView;
 import com.pauselabs.pause.view.tabs.ASCIIDirectoryView;
 
+import java.util.regex.Pattern;
+
 import javax.inject.Inject;
 
 /**

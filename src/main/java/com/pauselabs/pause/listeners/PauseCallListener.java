@@ -61,7 +61,7 @@ public class PauseCallListener extends BroadcastReceiver {
                         PauseMessage messageReceived = new PauseMessage(number, "0", "", new Date().getTime(), Constants.Message.Type.PHONE_INCOMING);
                         messageReceived.setMessage("Missed Call");
 
-                        Log.i(TAG,number);
+                        PauseApplication.stopSpeaking();
 
                         PauseApplication.numCall++;
 
@@ -80,9 +80,11 @@ public class PauseCallListener extends BroadcastReceiver {
 
                     PauseSession currentPauseSession = PauseApplication.getCurrentSession();
 
-                    if (currentPauseSession.isIced(PauseApplication.lookupContact(number)))
+                    if (currentPauseSession.isIced(PauseApplication.lookupContact(number))) {
                         PauseApplication.speak("Your ICE contact, " + currentPauseSession.getConversationByContactNumber(incomingNumber).getContactName() + ", is calling you!");
-                    else
+                        PauseApplication.speak("Your ICE contact, " + currentPauseSession.getConversationByContactNumber(incomingNumber).getContactName() + ", is calling you!");
+                        PauseApplication.speak("Your ICE contact, " + currentPauseSession.getConversationByContactNumber(incomingNumber).getContactName() + ", is calling you!");
+                    } else
                         hangUp();
 
                     break;

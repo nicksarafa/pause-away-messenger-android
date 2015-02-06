@@ -552,5 +552,8 @@ public class PauseApplication extends Application {
             tts.speak(textToSpeak, TextToSpeech.QUEUE_ADD, null);
         }
     }
+    public static void stopSpeaking() {
+        tts.stop();
+    }
 
 }
