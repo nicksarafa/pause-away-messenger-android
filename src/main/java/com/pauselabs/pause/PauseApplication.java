@@ -444,8 +444,6 @@ public class PauseApplication extends Application {
 
         String contactId = lookupContact(receivedMessage.getFrom());
 
-        // Check who created the Session to in order to send appropri
-
         if (currentPauseSession.isIced(contactId)) {
                 // TODO not playing sound
 
@@ -456,20 +454,20 @@ public class PauseApplication extends Application {
 
                 MediaPlayer player = MediaPlayer.create(instance, notification);
                 player.start();
-        } else {
-            if (currentPauseSession.shouldSenderReceivedBounceback(contactId,receivedMessage.getType()) && conversation.getMessagesSentFromUser().size() == 0) {
-                PauseMessage bounceBackMessage = getMessageToBounceBack(receivedMessage.getFrom(), conversation);
-                conversation.addMessage(bounceBackMessage);
-                messageSender.sendSmsMessage(bounceBackMessage.getTo(), bounceBackMessage);
-
-                currentPauseSession.incrementResponseCount();
-            } else {
-                sendToast("Ignored " + receivedMessage.getTypeString() + " from " + conversation.getContactName());
-            }
-
-            updateNotifications();
-            updateUI();
         }
+
+        if (currentPauseSession.shouldSenderReceivedBounceback(contactId,receivedMessage.getType()) && conversation.getMessagesSentFromUser().size() == 0) {
+            PauseMessage bounceBackMessage = getMessageToBounceBack(receivedMessage.getFrom(), conversation);
+            conversation.addMessage(bounceBackMessage);
+            messageSender.sendSmsMessage(bounceBackMessage.getTo(), bounceBackMessage);
+
+            currentPauseSession.incrementResponseCount();
+        } else {
+            sendToast("Ignored " + receivedMessage.getTypeString() + " from " + conversation.getContactName());
+        }
+
+        updateNotifications();
+        updateUI();
     }
 
     public static void handleMessageSent(PauseMessage sentMessage) {

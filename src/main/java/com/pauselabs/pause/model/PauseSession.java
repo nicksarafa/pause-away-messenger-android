@@ -143,9 +143,9 @@ public class PauseSession implements Serializable {
 
     private Boolean privacyCheckPassed(String contactId, int type) {
         if(smsPrivacySetting && type == Constants.Message.Type.SMS_INCOMING)
-            return !contactId.isEmpty();
+            return true;
         else if(callPrivacySetting && type == Constants.Message.Type.PHONE_INCOMING)
-            return !contactId.isEmpty();
+            return true;
 
         return false;
     }

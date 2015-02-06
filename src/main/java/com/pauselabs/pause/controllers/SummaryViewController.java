@@ -1,4 +1,4 @@
-package com.pauselabs.pause.controllers.messages;
+package com.pauselabs.pause.controllers;
 
 import android.content.Context;
 import android.graphics.Point;
@@ -68,7 +68,6 @@ public class SummaryViewController extends MySlider implements AdapterView.OnIte
                     SummaryConversationCard newCard = (SummaryConversationCard) inflater.inflate(R.layout.summary_conversation_card, null);
                     newCard.setConversation(convo);
 
-                    Log.i("SummaryController", (newCard.getConversation().getContactName()));
                     summaryCardArrayAdapter.add(newCard);
                 }
             }

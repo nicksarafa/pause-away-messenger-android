@@ -1,4 +1,4 @@
-package com.pauselabs.pause.controllers.messages;
+package com.pauselabs.pause.controllers;
 
 import android.content.Context;
 import android.content.SharedPreferences;

@@ -43,13 +43,13 @@ public class PauseSmsListener extends ContentObserver {
         Cursor cursor = getNewSmsCursor();
         int newCount = cursor.getCount();
 
-        Log.i(TAG,"count: " + newCount);
+        Log.i(TAG,"prev count: " + previousCount);
+        Log.i(TAG,"new count: " + newCount);
 
         if (newCount > previousCount) {
             if (cursor.moveToFirst()) {
                 PauseMessage newMessage;
 
-                String protocol = cursor.getString(cursor.getColumnIndex("protocol"));
                 int type = cursor.getInt(cursor.getColumnIndex("type"));
                 int dateColumn = cursor.getColumnIndex("date");
                 int bodyColumn = cursor.getColumnIndex("body");
@@ -58,9 +58,6 @@ public class PauseSmsListener extends ContentObserver {
                 String from, to, number = "";
                 String message = cursor.getString(bodyColumn);
                 Long date = cursor.getLong(dateColumn);
-
-                if (protocol != null)
-                    return;
 
                 if (type == Telephony.Sms.MESSAGE_TYPE_SENT) {
                     from = "0";
@@ -90,7 +87,6 @@ public class PauseSmsListener extends ContentObserver {
                     newMessage = new PauseMessage(from, to, message, date, Constants.Message.Type.SMS_INCOMING);
                     PauseApplication.handleMessageReceived(newMessage);
                 }
-
             }
 
             previousCount = newCount;
