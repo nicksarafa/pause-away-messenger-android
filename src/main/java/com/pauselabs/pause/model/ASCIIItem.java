@@ -3,12 +3,12 @@ package com.pauselabs.pause.model;
 /**
  * Created by Passa on 2/4/15.
  */
-public class ASCII {
+public class ASCIIItem {
 
     private String name;
     private String ascii;
 
-    public ASCII(String name, String ascii) {
+    public ASCIIItem(String name, String ascii) {
         this.name = name;
         this.ascii = ascii;
     }

@@ -1,6 +1,7 @@
 package com.pauselabs.pause.controllers;
 
 import android.content.SharedPreferences;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 
@@ -20,7 +21,7 @@ public class CustomPauseViewController implements View.OnClickListener {
     public CustomPauseView customPauseView;
 
     @Inject
-    protected SharedPreferences prefs;
+    public SharedPreferences prefs;
     @Inject
     LayoutInflater inflater;
 
@@ -37,9 +38,13 @@ public class CustomPauseViewController implements View.OnClickListener {
     @Override
     public void onClick(View v) {
         if (v.getId() == R.id.begin && !customPauseView.customTxtView.getText().equals("")) {
-            prefs.edit().putString(Constants.Pause.CUSTOM_PAUSE_MESSAGE_KEY, customPauseView.customTxtView.getText().toString()).apply();
-
-            PauseApplication.startPauseService(Constants.Session.Creator.CUSTOM);
+            setCustomPause(customPauseView.customTxtView.getText().toString());
         }
+    }
+
+    public void setCustomPause(String message) {
+        prefs.edit().putString(Constants.Pause.CUSTOM_PAUSE_MESSAGE_KEY, message).apply();
+
+        PauseApplication.startPauseService(Constants.Session.Creator.CUSTOM);
     }
 }

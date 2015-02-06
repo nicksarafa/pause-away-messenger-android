@@ -47,10 +47,10 @@ public class MainActivity extends ActionBarActivity {
     public int pageIndex;
 
     public SummaryViewController summaryViewController;
-    public static ASCIIDirectoryViewController ASCIIDirectoryViewController;
-    public static SettingsViewController settingsViewController;
-    public static CustomPauseViewController customPauseViewController;
-    public static PrivacyViewController privacyViewController;
+    public ASCIIDirectoryViewController ASCIIDirectoryViewController;
+    public SettingsViewController settingsViewController;
+    public CustomPauseViewController customPauseViewController;
+    public PrivacyViewController privacyViewController;
 
     @Inject
     LayoutInflater inflater;
@@ -266,20 +266,20 @@ public class MainActivity extends ActionBarActivity {
 
             switch (getArguments().getInt(ARG_SECTION_NUMBER)) {
                 case EMOJI_TAB:
-                    rootView = ASCIIDirectoryViewController.asciiDirectoryView;
+                    rootView = PauseApplication.mainActivity.ASCIIDirectoryViewController.asciiDirectoryView;
 
                     break;
                 case SETTINGS_TAB:
-                    rootView = settingsViewController.settingsView;
+                    rootView = PauseApplication.mainActivity.settingsViewController.settingsView;
 
                     break;
 
                 case HIDDEN_CUSTOM:
-                    rootView = customPauseViewController.customPauseView;
+                    rootView = PauseApplication.mainActivity.customPauseViewController.customPauseView;
 
                     break;
                 case PRIVACY_TAB:
-                    rootView = privacyViewController.privacyView;
+                    rootView = PauseApplication.mainActivity.privacyViewController.privacyView;
 
                     break;
             }

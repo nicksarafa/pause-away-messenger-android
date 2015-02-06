@@ -89,10 +89,6 @@ public class PauseSessionService extends Service{
 
 //        PauseApplication.sr.startListening(intent);
 
-        if (PauseApplication.getCurrentSession().getCreator() == Constants.Session.Creator.CUSTOM) {
-            prefs.edit().putString(Constants.Pause.CUSTOM_PAUSE_MESSAGE_KEY, MainActivity.customPauseViewController.customPauseView.customTxtView.getText().toString()).apply();
-        }
-
         // start SMS observer
         observer = new PauseSmsListener(null);
         getContentResolver().registerContentObserver(Uri.parse("content://sms"), true, observer);

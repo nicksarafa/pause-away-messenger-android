@@ -11,6 +11,8 @@ import android.widget.ArrayAdapter;
 
 import com.pauselabs.R;
 import com.pauselabs.pause.Injector;
+import com.pauselabs.pause.PauseApplication;
+import com.pauselabs.pause.model.ASCIIItem;
 import com.pauselabs.pause.view.ASCIISquareView;
 import com.pauselabs.pause.view.tabs.ASCIIDirectoryView;
 
@@ -35,7 +37,7 @@ public class ASCIIDirectoryViewController implements AdapterView.OnItemClickList
 
         asciiDirectoryView = (ASCIIDirectoryView) inflater.inflate(R.layout.ascii_directory, null);
 
-        asciiDirectoryArrayAdapter = new ASCIIAdapter(asciiDirectoryView.getContext(),R.layout.ascii_square_view);
+        asciiDirectoryArrayAdapter = new ASCIIAdapter(asciiDirectoryView.getContext(), R.layout.ascii_square_view);
         asciiDirectoryView.asciiGrid.setAdapter(asciiDirectoryArrayAdapter);
         asciiDirectoryView.asciiGrid.setOnItemClickListener(this);
 
@@ -43,7 +45,9 @@ public class ASCIIDirectoryViewController implements AdapterView.OnItemClickList
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        Log.i("Grid", ((ASCIISquareView) view).asciiText.getText().toString());
+        ASCIIItem item = (ASCIIItem)view.getTag();
+
+        PauseApplication.mainActivity.customPauseViewController.setCustomPause(item.getAscii() + '\n' + item.getName());
     }
 
     private class ASCIIAdapter extends ArrayAdapter<ASCIISquareView> {
@@ -51,34 +55,29 @@ public class ASCIIDirectoryViewController implements AdapterView.OnItemClickList
         public ASCIIAdapter(Context context, int resource) {
             super(context, resource);
 
-            String[] colors = {
-                    "Red",
-                    "Magenta",
-                    "Dark Grey",
-                    "Grey",
-                    "Green",
-                    "Cyan",
-                    "Indigo",
-                    "Violet",
-                    "Fusha",
-                    "Sparkly Pink"
+            ASCIIItem[] asciis = {
+                    new ASCIIItem("On my break", "(____((____________()~~~"),
+                    new ASCIIItem("Out having a good time", "(　＾∇＾)"),
+                    new ASCIIItem("Not sure where I am", "¯\\(°_o)/¯"),
+                    new ASCIIItem("I just want to be left alone", "（￣ー￣）")
             };
 
-            for (String color : colors) {
+            for (ASCIIItem item : asciis) {
                 ASCIISquareView asciiView = (ASCIISquareView) inflater.inflate(R.layout.ascii_square_view, null);
-                asciiView.ascii.setText("(￣(エ)￣)");
-                asciiView.asciiText.setText(color);
+                asciiView.asciiText.setText(item.getName());
+                asciiView.ascii.setText(item.getAscii());
+                asciiView.setTag(item);
 
                 add(asciiView);
             }
-
         }
 
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
-            ASCIISquareView emojiView = getItem(position);
+            ASCIISquareView asciiView = getItem(position);
 
-            return emojiView;
+            return asciiView;
         }
+
     }
 }

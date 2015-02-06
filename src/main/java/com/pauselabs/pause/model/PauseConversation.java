@@ -126,11 +126,10 @@ public class PauseConversation implements Serializable {
         if(PauseApplication.getCurrentSession().getCreator() == Constants.Session.Creator.CUSTOM) {
             messageText = prefs.getString(Constants.Pause.CUSTOM_PAUSE_MESSAGE_KEY,"");
         } else {
-            String
-                    silence = "Silence",
-                    drive = "Drive",
-                    sleep = "Sleep",
-                    modeName = "";
+            String silence = "Silence",
+                   drive = "Drive",
+                   sleep = "Sleep",
+                   modeName = "";
 
 
             ArrayList<PauseMessage> messagesReceived = getMessagesReceived();

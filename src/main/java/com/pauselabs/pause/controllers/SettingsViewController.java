@@ -82,9 +82,6 @@ public class SettingsViewController implements View.OnClickListener {
             case R.id.toastsBtn:
                 changeToast();
                 break;
-//            case R.id.privacylistBtn:
-//                showPrivacyTab();
-//                break;
             case R.id.supportBtn:
                 launchSupportLink();
                 break;
@@ -195,10 +192,6 @@ public class SettingsViewController implements View.OnClickListener {
             settingsView.toastBtn.setContent("On");
         }
         prefs.edit().putBoolean(Constants.Settings.PAUSE_TOASTS_ON_KEY, !pauseToastsOn).apply();
-    }
-
-    private void showPrivacyTab() {
-        PauseApplication.mainActivity.tabBarView.setSelectedTab(MainActivity.PRIVACY_TAB);
     }
 
     private void launchPlayMarketRate() {
