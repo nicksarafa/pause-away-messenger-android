@@ -113,11 +113,11 @@ public class MainActivity extends ActionBarActivity {
             @Override
             public void onClick(View v) {
                 if (summaryViewController.isExpanded()) {
-                    mainActivityView.startPauseButton.setImageResource(R.drawable.ic_action_wake);
+//                    mainActivityView.startPauseButton.setBackground(R.drawable.ic_action_wake);
 
                     PauseApplication.stopPauseService(PauseApplication.getCurrentSession().getCreator());
                 } else {
-                    mainActivityView.startPauseButton.setImageResource(R.drawable.ic_action_sleep);
+//                    mainActivityView.startPauseButton.setImageResource(R.drawable.ic_action_sleep);
 
                     PauseApplication.startPauseService(Constants.Session.Creator.SILENCE);
                 }
