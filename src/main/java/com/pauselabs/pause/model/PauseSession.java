@@ -1,6 +1,7 @@
 package com.pauselabs.pause.model;
 
 import android.content.SharedPreferences;
+import android.util.Log;
 
 import com.pauselabs.pause.Injector;
 import com.pauselabs.pause.PauseApplication;
@@ -122,8 +123,12 @@ public class PauseSession implements Serializable {
 
         if(mBlacklistContacts.contains(contactId)) {
             shouldSendBounceback = false;
+            Log.i("Session","blacklisted");
         } else {
             shouldSendBounceback = privacyCheckPassed(contactId, type);
+            Log.i("Session","contactId: " + contactId);
+            Log.i("Session","type: " + type);
+            Log.i("Session","passed privacy: " + shouldSendBounceback);
         }
 
         return shouldSendBounceback;
@@ -142,10 +147,7 @@ public class PauseSession implements Serializable {
     }
 
     private Boolean privacyCheckPassed(String contactId, int type) {
-        return (contactId.isEmpty() && mPrefs.getBoolean(Constants.Settings.REPLY_STRANGERS, true))
-                &&
-                ((smsPrivacySetting && type == Constants.Message.Type.SMS_INCOMING) ||
-                (callPrivacySetting && type == Constants.Message.Type.PHONE_INCOMING));
+        return ((smsPrivacySetting && type == Constants.Message.Type.SMS_INCOMING) || (callPrivacySetting && type == Constants.Message.Type.PHONE_INCOMING)) && (!contactId.isEmpty() || mPrefs.getBoolean(Constants.Settings.REPLY_STRANGERS, true));
     }
 
 

@@ -51,20 +51,20 @@ public class PauseSmsListener extends ContentObserver {
             PauseConversation activeConversation = PauseApplication.getCurrentSession().getConversationByContactNumber(number);
 
             int id = cursor.getCount();
-            if (checkLastMessages(activeConversation,id)) {
-                PauseMessage newMessage;
+            PauseMessage newMessage;
 
-                if (type == Telephony.Sms.MESSAGE_TYPE_SENT) {
-                    from = "0";
-                    to = number;
+            if (type == Telephony.Sms.MESSAGE_TYPE_SENT) {
+                from = "0";
+                to = number;
 
-                    if (activeConversation.getMessages().size() > 0 && activeConversation.getLastMessage().getType() == Constants.Message.Type.SMS_PAUSE_OUTGOING && activeConversation.getLastMessage().getId() == id) {
-                        PauseApplication.sendToast("Replied to message from " + activeConversation.getContactName() + " Ü");
-                    } else {
-                        newMessage = new PauseMessage(from, to, message, date, Constants.Message.Type.SMS_OUTGOING);
-                        PauseApplication.handleMessageSent(newMessage);
-                    }
-                } else if (type == Telephony.Sms.MESSAGE_TYPE_INBOX) {
+                if (activeConversation.getMessagesSentFromPause().size() != 0 && id /* could send multiple toasts */== activeConversation.getLastMessageSentFromPause().getId()) {
+                    PauseApplication.sendToast("Replied to message from " + activeConversation.getContactName() + " Ü");
+                } else if (activeConversation.getMessagesSentFromUser().size() == 0 || (activeConversation.getMessagesSentFromUser().size() != 0 && id /* could be called multiple times */!= activeConversation.getLastMessageSentFromUser().getId())) {
+                    newMessage = new PauseMessage(from, to, message, date, Constants.Message.Type.SMS_OUTGOING);
+                    PauseApplication.handleMessageSent(newMessage);
+                }
+            } else if (type == Telephony.Sms.MESSAGE_TYPE_INBOX) {
+                if (activeConversation.getMessagesReceived().size() == 0 || (activeConversation.getMessagesReceived().size() != 0 && id != activeConversation.getLastMessageReceived().getId())) {
                     PauseApplication.numSMS++;
 
                     from = number;
@@ -74,18 +74,9 @@ public class PauseSmsListener extends ContentObserver {
                     PauseApplication.handleMessageReceived(newMessage);
                 }
             }
+
+            cursor.close();
         }
-
-        cursor.close();
-    }
-
-    private boolean checkLastMessages(PauseConversation activeConversation, int id) {
-        if (activeConversation.getMessages().size() == 0)
-            return true;
-
-        return  (activeConversation.getMessagesReceived().size() != 0 && id != activeConversation.getLastMessageReceived().getId()) ||
-                (activeConversation.getMessagesSentFromUser().size() != 0 && id != activeConversation.getLastMessageSentFromUser().getId()) ||
-                (activeConversation.getMessagesSentFromPause().size() != 0 && id != activeConversation.getLastMessageSentFromPause().getId());
     }
 
     /**
