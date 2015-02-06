@@ -172,10 +172,10 @@ public class MainActivity extends ActionBarActivity {
     public void updateView() {
         summaryViewController.updateUI();
 
-        if(PauseApplication.isActiveSession() && !mainActivityView.isPanelExpanded()) {
-            mainActivityView.expandPanel();
-        } else if (!PauseApplication.isActiveSession() && mainActivityView.isPanelExpanded()) {
-            mainActivityView.collapsePanel();
+        if(PauseApplication.isActiveSession() && mainActivityView.getPanelState() != SlidingUpPanelLayout.PanelState.EXPANDED) {
+            mainActivityView.setPanelState(SlidingUpPanelLayout.PanelState.EXPANDED);
+        } else if (!PauseApplication.isActiveSession() && mainActivityView.getPanelState() == SlidingUpPanelLayout.PanelState.EXPANDED) {
+            mainActivityView.setPanelState(SlidingUpPanelLayout.PanelState.COLLAPSED);
         }
     }
 

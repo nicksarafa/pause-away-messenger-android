@@ -8,10 +8,7 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:orientation="vertical"
-    android:gravity="bottom"
-    sothree:panelHeight="0dp"
-    sothree:shadowHeight="0dp"
-    sothree:overlay="true">
+    android:gravity="bottom">
 
     <RelativeLayout
         android:id="@+id/main_content_container"
