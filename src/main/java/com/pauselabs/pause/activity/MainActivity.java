@@ -12,14 +12,16 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
 
+import com.gc.materialdesign.views.ButtonFloat;
 import com.pauselabs.R;
 import com.pauselabs.pause.Injector;
 import com.pauselabs.pause.PauseApplication;
+import com.pauselabs.pause.controllers.ASCIIDirectoryViewController;
 import com.pauselabs.pause.controllers.CustomPauseViewController;
 import com.pauselabs.pause.controllers.PrivacyViewController;
 import com.pauselabs.pause.controllers.SettingsViewController;
-import com.pauselabs.pause.controllers.ASCIIDirectoryViewController;
 import com.pauselabs.pause.controllers.SummaryViewController;
 import com.pauselabs.pause.model.Constants;
 import com.pauselabs.pause.util.UIUtils;
@@ -66,6 +68,8 @@ public class MainActivity extends ActionBarActivity {
         mainActivityView = (MainActivityView) inflater.inflate(R.layout.main_activity_view,null);
         mainActivityView.viewPager.setAdapter(new SectionsPagerAdapter(getFragmentManager()));
 
+        setContentView(mainActivityView);
+
         summaryViewController = new SummaryViewController();
         ASCIIDirectoryViewController = new ASCIIDirectoryViewController();
         settingsViewController = new SettingsViewController();
@@ -106,35 +110,38 @@ public class MainActivity extends ActionBarActivity {
         actionBar.setCustomView(tabBarView);
 
         mainActivityView.addView(summaryViewController.summaryView);
-        summaryViewController.summaryView.offsetTopAndBottom(mainActivityView.getHeight());
         summaryViewController.summaryView.setClickable(true);
 
         mainActivityView.startPauseButton.bringToFront();
         mainActivityView.setDragView(mainActivityView.startPauseButton);
         mainActivityView.setPanelHeight(0);
+        mainActivityView.setAnchorPoint(0.8894308943f);
         mainActivityView.setPanelSlideListener(new SlidingUpPanelLayout.PanelSlideListener() {
             @Override
             public void onPanelSlide(View view, float ratio) {
-                mainActivityView.startPauseButton.setY(mainActivityView.getHeight() - (mainActivityView.getHeight() * ratio) - 100);
+                actionBar.getCustomView().setY(-((ratio + (ratio * 0.121875f)) * actionBar.getHeight()));
+
+                ButtonFloat button = (ButtonFloat) mainActivityView.startPauseButton;
+                RelativeLayout.LayoutParams lp = (RelativeLayout.LayoutParams)button.getLayoutParams();
+                float y = summaryViewController.summaryView.getY();
+                mainActivityView.startPauseButton.setY(y - (mainActivityView.startPauseButton.getHeight() + lp.bottomMargin));
             }
 
             @Override
             public void onPanelCollapsed(View view) {
-                mainActivityView.startPauseButton.setBackgroundResource(R.drawable.ic_action_wake);
-
                 PauseApplication.stopPauseService(PauseApplication.getCurrentSession().getCreator());
+
+
             }
 
             @Override
             public void onPanelExpanded(View view) {
-                mainActivityView.startPauseButton.setBackgroundResource(R.drawable.ic_action_sleep);
 
-                PauseApplication.startPauseService(Constants.Session.Creator.SILENCE);
             }
 
             @Override
             public void onPanelAnchored(View view) {
-
+                PauseApplication.startPauseService(Constants.Session.Creator.SILENCE);
             }
 
             @Override
@@ -142,8 +149,6 @@ public class MainActivity extends ActionBarActivity {
 
             }
         });
-
-        setContentView(mainActivityView);
     }
 
     @Override
@@ -172,10 +177,10 @@ public class MainActivity extends ActionBarActivity {
     public void updateView() {
         summaryViewController.updateUI();
 
-        if(PauseApplication.isActiveSession() && !mainActivityView.isPanelExpanded()) {
-            mainActivityView.expandPanel();
-        } else if (!PauseApplication.isActiveSession() && mainActivityView.isPanelExpanded()) {
-            mainActivityView.collapsePanel();
+        if(PauseApplication.isActiveSession() && mainActivityView.getPanelState() != SlidingUpPanelLayout.PanelState.ANCHORED) {
+            mainActivityView.setPanelState(SlidingUpPanelLayout.PanelState.ANCHORED);
+        } else if (!PauseApplication.isActiveSession() && mainActivityView.getPanelState() == SlidingUpPanelLayout.PanelState.ANCHORED) {
+            mainActivityView.setPanelState(SlidingUpPanelLayout.PanelState.COLLAPSED);
         }
     }
 
