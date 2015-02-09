@@ -39,7 +39,7 @@
     <string name="stop_pause_btn">End</string>
     <string name="edit_pause_btn">Edit</string>
     <string name="response_count">Response Messages Sent</string>
-    <string name="no_messages_received">No new messages! If any turn up, we\'ll take care of them. \n Have a nice day!</string>
+    <string name="no_messages_received">No new messages</string>
 
     <!-- Notification Messages -->
     <string name="pause_session_running_custom">Custom Mode</string>
