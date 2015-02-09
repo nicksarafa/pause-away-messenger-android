@@ -34,7 +34,7 @@
                 android:paddingRight="@dimen/activity_horizontal_margin"
                 android:layout_marginTop="100dp"
                 android:inputType="textNoSuggestions"
-                android:hint="What's cookin, good lookin?"/>
+                android:hint="Enter Custom Message"/>
 
                 <!-- Begin Button -->
 
