@@ -7,24 +7,61 @@
     android:layout_height="560dp"
     android:padding="@dimen/summary_view_padding">
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
     <!-- Sender Image View -->
 
     <ImageView
         android:id="@+id/messageType"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
         android:src="@drawable/summary_circle"/>
+
+        <!-- Right Top Icon -->
+
+        <ImageView
+            android:id="@+id/respondReceipt"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:contentDescription="Read Reciept"
+            android:src="@drawable/summary_circle_blue"/>
+
+        <!-- Right Bottom Icon -->
+
+        <ImageView
+            android:id="@+id/respondReceipt2"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:contentDescription="Read Reciept"
+            android:src="@drawable/summary_circle_blue"/>
+
+
 
     <!-- Message List -->
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:id="@+id/message_container"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:minHeight="40dp"
-            android:orientation="vertical"
             android:layout_toRightOf="@id/messageType"
             android:layout_toEndOf="@id/messageType"
-            android:layout_marginLeft="@dimen/summary_view_padding">
+            android:layout_toLeftOf="@id/respondReceipt"
+            android:layout_toStartOf="@id/respondReceipt"
+            android:minHeight="40dp"
+            android:orientation="vertical"
+            android:layout_marginLeft="@dimen/summary_view_padding"
+            android:layout_marginStart="@dimen/summary_view_padding">
+
+            <!-- Number -->
 
                 <TextView
                     android:id="@+id/summaryMessageSender"
@@ -34,6 +71,8 @@
                     android:text="Mark Cuban"
                     android:textColor="@android:color/black"/>
 
+                <!-- Text Preview -->
+
                     <TextView
                         android:id="@+id/summaryMessageText"
                         android:layout_width="wrap_content"
@@ -41,21 +80,28 @@
                         android:text="Hey hows it going?"
                         android:textColor="@android:color/black"/>
 
+
+
+                    <!-- Convo DropDown -->
+
                         <LinearLayout
                             android:id="@+id/convo_holder_view"
                             android:orientation="vertical"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"/>
 
-        </LinearLayout>
+            </LinearLayout>
 
-            <ImageView
-                android:id="@+id/respondReceipt"
-                android:layout_width="10dp"
-                android:layout_height="10dp"
-                android:layout_marginTop="15dp"
-                android:contentDescription="Read Reciept"
-                android:src="@drawable/summary_circle"/>
+
+
+
+
+
+
+        <!-- Right Bottom Icon -->
+
+    </RelativeLayout>
+
 
 
 </com.pauselabs.pause.view.SummaryConversationCard>

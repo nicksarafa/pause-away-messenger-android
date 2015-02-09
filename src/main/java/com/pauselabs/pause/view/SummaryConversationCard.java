@@ -2,13 +2,13 @@ package com.pauselabs.pause.view;
 
 import android.content.Context;
 import android.util.AttributeSet;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.pauselabs.R;
 import com.pauselabs.pause.Injector;
-import com.pauselabs.pause.PauseApplication;
 import com.pauselabs.pause.model.PauseConversation;
 import com.pauselabs.pause.model.PauseMessage;
 
@@ -24,6 +24,10 @@ public class SummaryConversationCard extends RelativeLayout {
     TextView senderName;
     @InjectView(R.id.summaryMessageText)
     TextView messageText;
+    @InjectView(R.id.respondReceipt)
+    ImageView respondReceipt;
+    @InjectView(R.id.message_container)
+    public LinearLayout messageContainer;
     @InjectView(R.id.convo_holder_view)
     public LinearLayout convoHolderView;
 
