@@ -114,7 +114,7 @@ public class SummaryViewController implements AdapterView.OnItemClickListener, R
 
                 LinearLayout.LayoutParams params1 = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
 
-                messageCard.setLayoutParams(params1);
+//                messageCard.setLayoutParams(params1);
 
                 summaryConversationCard.convoHolderView.addView(messageCard);
             }

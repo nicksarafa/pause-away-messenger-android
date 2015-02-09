@@ -98,14 +98,15 @@
 
         <!-- Message List -->
 
-            <LinearLayout
-                android:id="@+id/messageContainer"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:layout_toRightOf="@id/messageType"
-                android:layout_toEndOf="@id/messageType"
-                android:orientation="vertical"
-                android:layout_below="@id/relative_container">
+
+                <LinearLayout
+                    android:id="@+id/messageContainer"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_toRightOf="@id/messageType"
+                    android:layout_toEndOf="@id/messageType"
+                    android:orientation="vertical"
+                    android:layout_below="@id/relative_container">
 
                 <!-- Convo DropDown -->
 
@@ -113,9 +114,9 @@
                         android:id="@+id/convo_holder_view"
                         android:orientation="vertical"
                         android:layout_width="match_parent"
-                        android:layout_height="fill_parent"/>
+                        android:layout_height="fill_parent"/>it 
 
-            </LinearLayout>
+                </LinearLayout>
 
 </com.pauselabs.pause.view.SummaryConversationCard>
 
