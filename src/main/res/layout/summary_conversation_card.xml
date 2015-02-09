@@ -107,13 +107,13 @@
                     android:orientation="vertical"
                     android:layout_below="@id/relative_container">
 
-                        <!-- Convo DropDown -->
+                <!-- Convo DropDown -->
 
-                            <LinearLayout
-                                android:id="@+id/convo_holder_view"
-                                android:orientation="vertical"
-                                android:layout_width="match_parent"
-                                android:layout_height="fill_parent"/>
+                    <LinearLayout
+                        android:id="@+id/convo_holder_view"
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="fill_parent"/>
 
                 </LinearLayout>
 
