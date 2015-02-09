@@ -112,7 +112,7 @@ public class SummaryViewController implements AdapterView.OnItemClickListener, R
                         break;
                 }
 
-                LinearLayout.LayoutParams params1 = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 200);
+                LinearLayout.LayoutParams params1 = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
                 params1.bottomMargin = 10;
 
                 messageCard.setLayoutParams(params1);

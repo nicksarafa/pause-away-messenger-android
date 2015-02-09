@@ -18,7 +18,7 @@
         <ListView
             android:id="@+id/summary_card_list_view"
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:listSelector="@android:color/transparent"
             android:cacheColorHint="@android:color/transparent"/>
 

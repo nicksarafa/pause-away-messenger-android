@@ -23,6 +23,7 @@
             android:minHeight="40dp"
             android:orientation="vertical"
             android:layout_toRightOf="@id/messageType"
+            android:layout_toEndOf="@id/messageType"
             android:layout_marginLeft="@dimen/summary_view_padding">
 
                 <TextView
