@@ -26,7 +26,7 @@ public class SummaryConversationCard extends RelativeLayout {
     TextView messageText;
     @InjectView(R.id.respondReceipt)
     ImageView respondReceipt;
-    @InjectView(R.id.message_container)
+    @InjectView(R.id.messageContainer)
     public LinearLayout messageContainer;
     @InjectView(R.id.convo_holder_view)
     public LinearLayout convoHolderView;

@@ -12,7 +12,7 @@
         android:layout_height="match_parent"
         android:orientation="horizontal">
 
-    <!-- Sender Image View -->
+    <!-- Sender Image Identity Circle -->
 
     <ImageView
         android:id="@+id/messageType"
@@ -20,42 +20,53 @@
         android:layout_height="36dp"
         android:src="@drawable/summary_circle"/>
 
-        <!-- Right Top Icon -->
+        <!-- Wraps Right Icons Vertically -->
 
-        <ImageView
-            android:id="@+id/respondReceipt"
-            android:layout_width="36dp"
-            android:layout_height="36dp"
+        <RelativeLayout
+            android:id="@+id/rightIcons"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
-            android:contentDescription="Read Reciept"
-            android:src="@drawable/summary_circle_blue"/>
+            android:orientation="vertical">
 
-        <!-- Right Bottom Icon -->
+            <!-- Right Top Icon -->
 
-        <ImageView
-            android:id="@+id/respondReceipt2"
-            android:layout_width="36dp"
-            android:layout_height="36dp"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
-            android:contentDescription="Read Reciept"
-            android:src="@drawable/summary_circle_blue"/>
+            <ImageView
+                android:id="@+id/respondReceipt"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:contentDescription="Read Reciept"
+                android:src="@drawable/summary_circle_blue"/>
+
+            <!-- Right Bottom Icon -->
+
+            <ImageView
+                android:id="@+id/respondReceipt2"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_below="@id/respondReceipt"
+                android:contentDescription="Read Reciept"
+                android:src="@drawable/summary_circle_blue"/>
+
+        </RelativeLayout>
 
 
 
     <!-- Message List -->
 
         <LinearLayout
-            android:id="@+id/message_container"
+            android:id="@+id/messageContainer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_toRightOf="@id/messageType"
             android:layout_toEndOf="@id/messageType"
-            android:layout_toLeftOf="@id/respondReceipt"
-            android:layout_toStartOf="@id/respondReceipt"
             android:minHeight="40dp"
             android:orientation="vertical"
             android:layout_marginLeft="@dimen/summary_view_padding"
@@ -82,6 +93,8 @@
 
 
 
+
+
                     <!-- Convo DropDown -->
 
                         <LinearLayout
@@ -94,13 +107,12 @@
 
 
 
-
-
-
-
-        <!-- Right Bottom Icon -->
-
     </RelativeLayout>
+
+
+
+
+
 
 
 
