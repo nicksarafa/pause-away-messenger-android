@@ -27,7 +27,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="4"
-                android:layout_marginLeft="@dimen/summary_view_padding">
+                android:layout_marginLeft="@dimen/summary_view_horizontal_padding">
 
                 <TextView
                     android:id="@+id/messageText"
@@ -40,9 +40,9 @@
 
                 <ImageView
                     android:id="@+id/respondReceipt"
-                    android:layout_width="10dp"
-                    android:layout_height="10dp"
-                    android:layout_marginTop="15dp"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="0dp"
                     android:contentDescription="Read Reciept"
                     android:src="@drawable/summary_circle"/>
 

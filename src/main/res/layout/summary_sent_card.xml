@@ -29,8 +29,8 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="4"
-                android:layout_marginLeft="@dimen/summary_view_padding"
-                android:layout_marginStart="@dimen/summary_view_padding">
+                android:layout_marginLeft="@dimen/summary_view_horizontal_padding"
+                android:layout_marginStart="@dimen/summary_view_horizontal_padding">
 
                 <TextView
                     android:id="@+id/messageText"
