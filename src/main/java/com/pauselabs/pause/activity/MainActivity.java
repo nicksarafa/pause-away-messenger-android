@@ -104,7 +104,7 @@ public class MainActivity extends ActionBarActivity {
         
         setSupportActionBar(mainActivityView.toolbar);
         actionBar = getSupportActionBar();
-        actionBar.setBackgroundDrawable(getResources().getDrawable(R.color.pause_green));
+        actionBar.setBackgroundDrawable(getResources().getDrawable(R.color.pause_off));
         actionBar.setDisplayShowTitleEnabled(false);
         actionBar.setDisplayShowCustomEnabled(true);
         actionBar.setCustomView(tabBarView);
@@ -112,9 +112,9 @@ public class MainActivity extends ActionBarActivity {
         mainActivityView.addView(summaryViewController.summaryView);
         summaryViewController.summaryView.setClickable(true);
 
-
         mainActivityView.setDragView(mainActivityView.startPauseButton);
         ((ButtonFloat) mainActivityView.startPauseButton).setDrawableIcon(getResources().getDrawable(R.drawable.ic_action_pause_off));
+        mainActivityView.startPauseButton.setBackgroundColor(getResources().getColor(R.color.pause_on));
         mainActivityView.setPanelHeight(0);
         mainActivityView.setAnchorPoint(0.8894308943f);
         mainActivityView.setPanelSlideListener(new SlidingUpPanelLayout.PanelSlideListener() {
@@ -141,9 +141,11 @@ public class MainActivity extends ActionBarActivity {
                 float y = summaryViewController.summaryView.getY();
                 mainActivityView.startPauseButton.setY(y - (mainActivityView.startPauseButton.getHeight() + lp.bottomMargin));
 
-                getSupportActionBar().setBackgroundDrawable(getResources().getDrawable(R.color.holo_blue));
+                getSupportActionBar().setBackgroundDrawable(getResources().getDrawable(R.color.pause_on));
 
                 ((ButtonFloat) mainActivityView.startPauseButton).setDrawableIcon(getResources().getDrawable(R.drawable.ic_action_pause_on));
+                mainActivityView.startPauseButton.setBackgroundColor(getResources().getColor(R.color.pause_off));
+
 
                 Log.i(null,"Anchored");
 
@@ -158,9 +160,10 @@ public class MainActivity extends ActionBarActivity {
                 float y = summaryViewController.summaryView.getY();
                 mainActivityView.startPauseButton.setY(y - (mainActivityView.startPauseButton.getHeight() + (lp.bottomMargin * (14/3))));
 
-                getSupportActionBar().setBackgroundDrawable(getResources().getDrawable(R.color.pause_green));
+                getSupportActionBar().setBackgroundDrawable(getResources().getDrawable(R.color.pause_off));
 
                 ((ButtonFloat) mainActivityView.startPauseButton).setDrawableIcon(getResources().getDrawable(R.drawable.ic_action_pause_off));
+                mainActivityView.startPauseButton.setBackgroundColor(getResources().getColor(R.color.pause_on));
 
                 Log.i(null,"Collapsed");
 
