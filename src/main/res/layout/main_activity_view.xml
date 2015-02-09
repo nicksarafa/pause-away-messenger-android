@@ -33,8 +33,7 @@
             android:layout_marginRight="@dimen/fab_margin_right"
             android:layout_marginBottom="@dimen/fab_margin_bottom"
             android:background="#1E88E5"
-            materialdesign:animate="true"
-            materialdesign:iconDrawable="@drawable/ic_action_wake" />
+            materialdesign:animate="true" />
 
     </RelativeLayout>
 

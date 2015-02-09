@@ -112,10 +112,9 @@ public class MainActivity extends ActionBarActivity {
         mainActivityView.addView(summaryViewController.summaryView);
         summaryViewController.summaryView.setClickable(true);
 
-        mainActivityView.startPauseButton.bringToFront();
-        mainActivityView.startPauseButton.invalidate();
-        summaryViewController.summaryView.invalidate();
+
         mainActivityView.setDragView(mainActivityView.startPauseButton);
+        ((ButtonFloat) mainActivityView.startPauseButton).setDrawableIcon(getResources().getDrawable(R.drawable.ic_action_pause_off));
         mainActivityView.setPanelHeight(0);
         mainActivityView.setAnchorPoint(0.8894308943f);
         mainActivityView.setPanelSlideListener(new SlidingUpPanelLayout.PanelSlideListener() {
@@ -144,8 +143,9 @@ public class MainActivity extends ActionBarActivity {
 
                 getSupportActionBar().setBackgroundDrawable(getResources().getDrawable(R.color.holo_blue));
 
-                Log.i(null,"Anchored");
+                ((ButtonFloat) mainActivityView.startPauseButton).setDrawableIcon(getResources().getDrawable(R.drawable.ic_action_pause_on));
 
+                Log.i(null,"Anchored");
 
             }
 
@@ -160,14 +160,14 @@ public class MainActivity extends ActionBarActivity {
 
                 getSupportActionBar().setBackgroundDrawable(getResources().getDrawable(R.color.pause_green));
 
-                Log.i(null,"Collapsed");
+                ((ButtonFloat) mainActivityView.startPauseButton).setDrawableIcon(getResources().getDrawable(R.drawable.ic_action_pause_off));
 
+                Log.i(null,"Collapsed");
 
             }
 
             @Override
             public void onPanelExpanded(View view) {
-
 
                 Log.i(null,"Expanded");
 
@@ -176,7 +176,6 @@ public class MainActivity extends ActionBarActivity {
 
             @Override
             public void onPanelHidden(View view) {
-
 
                 Log.i(null,"Hidden");
 
