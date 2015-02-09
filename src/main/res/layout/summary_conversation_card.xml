@@ -105,9 +105,7 @@
                     android:layout_toRightOf="@id/messageType"
                     android:layout_toEndOf="@id/messageType"
                     android:orientation="vertical"
-                    android:layout_below="@id/relative_container"
-                    android:layout_marginLeft="@dimen/summary_view_horizontal_padding"
-                    android:layout_marginStart="@dimen/summary_view_horizontal_padding">
+                    android:layout_below="@id/relative_container">
 
                         <!-- Convo DropDown -->
 
