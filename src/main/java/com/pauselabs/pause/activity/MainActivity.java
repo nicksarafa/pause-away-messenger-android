@@ -113,6 +113,8 @@ public class MainActivity extends ActionBarActivity {
         summaryViewController.summaryView.setClickable(true);
 
         mainActivityView.startPauseButton.bringToFront();
+        mainActivityView.startPauseButton.invalidate();
+        summaryViewController.summaryView.invalidate();
         mainActivityView.setDragView(mainActivityView.startPauseButton);
         mainActivityView.setPanelHeight(0);
         mainActivityView.setAnchorPoint(0.8894308943f);
@@ -125,11 +127,40 @@ public class MainActivity extends ActionBarActivity {
                 RelativeLayout.LayoutParams lp = (RelativeLayout.LayoutParams)button.getLayoutParams();
                 float y = summaryViewController.summaryView.getY();
                 mainActivityView.startPauseButton.setY(y - (mainActivityView.startPauseButton.getHeight() + lp.bottomMargin));
+
+                Log.i(null,"Sliding");
+
+
+            }
+
+            @Override
+            public void onPanelAnchored(View view) {
+                PauseApplication.startPauseService(Constants.Session.Creator.SILENCE);
+
+                ButtonFloat button = (ButtonFloat) mainActivityView.startPauseButton;
+                RelativeLayout.LayoutParams lp = (RelativeLayout.LayoutParams)button.getLayoutParams();
+                float y = summaryViewController.summaryView.getY();
+////                mainActivityView.startPauseButton.setY(y - (mainActivityView.startPauseButton.getHeight() + lp.bottomMargin));
+                mainActivityView.startPauseButton.setY(y - (mainActivityView.startPauseButton.getHeight() + lp.bottomMargin));
+
+
+
+                Log.i(null,"Anchored");
+
+
             }
 
             @Override
             public void onPanelCollapsed(View view) {
                 PauseApplication.stopPauseService(PauseApplication.getCurrentSession().getCreator());
+
+                ButtonFloat button = (ButtonFloat) mainActivityView.startPauseButton;
+                RelativeLayout.LayoutParams lp = (RelativeLayout.LayoutParams)button.getLayoutParams();
+                float y = summaryViewController.summaryView.getY();
+                mainActivityView.startPauseButton.setY(y - (mainActivityView.startPauseButton.getHeight() + (lp.bottomMargin * (14/3))));
+
+
+                Log.i(null,"Collapsed");
 
 
             }
@@ -137,17 +168,20 @@ public class MainActivity extends ActionBarActivity {
             @Override
             public void onPanelExpanded(View view) {
 
+
+                Log.i(null,"Expanded");
+
             }
 
-            @Override
-            public void onPanelAnchored(View view) {
-                PauseApplication.startPauseService(Constants.Session.Creator.SILENCE);
-            }
 
             @Override
             public void onPanelHidden(View view) {
 
+
+                Log.i(null,"Hidden");
+
             }
+
         });
     }
 
