@@ -140,10 +140,9 @@ public class MainActivity extends ActionBarActivity {
                 ButtonFloat button = (ButtonFloat) mainActivityView.startPauseButton;
                 RelativeLayout.LayoutParams lp = (RelativeLayout.LayoutParams)button.getLayoutParams();
                 float y = summaryViewController.summaryView.getY();
-////                mainActivityView.startPauseButton.setY(y - (mainActivityView.startPauseButton.getHeight() + lp.bottomMargin));
                 mainActivityView.startPauseButton.setY(y - (mainActivityView.startPauseButton.getHeight() + lp.bottomMargin));
 
-
+                getSupportActionBar().setBackgroundDrawable(getResources().getDrawable(R.color.holo_blue));
 
                 Log.i(null,"Anchored");
 
@@ -159,6 +158,7 @@ public class MainActivity extends ActionBarActivity {
                 float y = summaryViewController.summaryView.getY();
                 mainActivityView.startPauseButton.setY(y - (mainActivityView.startPauseButton.getHeight() + (lp.bottomMargin * (14/3))));
 
+                getSupportActionBar().setBackgroundDrawable(getResources().getDrawable(R.color.pause_green));
 
                 Log.i(null,"Collapsed");
 
