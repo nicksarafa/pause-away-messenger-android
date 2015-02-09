@@ -1,19 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 
+<!-- Mirror of summary_sent card -->
+
 <com.pauselabs.pause.view.SummaryReceivedCard
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="horizontal"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="@dimen/summary_view_padding">
+    android:paddingTop="@dimen/message_padding"
+    android:paddingLeft="@dimen/message_padding"
+    android:paddingRight="@dimen/message_padding">
 
     <LinearLayout
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_weight="1"
         android:orientation="horizontal">
-
-
 
         <ImageView
             android:id="@+id/messageType"
@@ -21,33 +23,29 @@
             android:layout_height="40dp"
             android:src="@drawable/summary_circle"/>
 
-        <RelativeLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="4"
-            android:layout_marginLeft="@dimen/summary_view_padding">
-
-            <TextView
-                android:id="@+id/messageText"
-                android:layout_width="wrap_content"
+            <RelativeLayout
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="Hey hows it going?"
-                android:textColor="@android:color/black"/>
+                android:layout_weight="4"
+                android:layout_marginLeft="@dimen/summary_view_padding">
 
-        </RelativeLayout>
+                <TextView
+                    android:id="@+id/messageText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="By default, the panel pushes up the main content. You can make it overlay the main content by using setOverlayed method or umanoOverlay attribute. This is useful if you would like to make the sliding layout semi-transparent. You can also set umanoClipPanel to false to make the panel transparent in non-overlay mode."
+                    android:textColor="@android:color/black"/>
 
-        <ImageView
-            android:id="@+id/respondReceipt"
-            android:layout_width="10dp"
-            android:layout_height="10dp"
-            android:layout_marginTop="15dp"
-            android:contentDescription="Read Reciept"
-            android:src="@drawable/summary_circle"/>
+            </RelativeLayout>
+
+                <ImageView
+                    android:id="@+id/respondReceipt"
+                    android:layout_width="10dp"
+                    android:layout_height="10dp"
+                    android:layout_marginTop="15dp"
+                    android:contentDescription="Read Reciept"
+                    android:src="@drawable/summary_circle"/>
 
     </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="50dp"
-        android:layout_height="match_parent"/>
 
 </com.pauselabs.pause.view.SummaryReceivedCard>
