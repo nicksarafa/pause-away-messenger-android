@@ -148,30 +148,30 @@
 
             <!-- Support URI -->
 
-            <com.pauselabs.pause.model.SettingsButton
-                android:id="@+id/supportBtn"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center_vertical"
-                android:background="@null"
-                app:label="@string/support_label" />
+            <!--<com.pauselabs.pause.model.SettingsButton-->
+                <!--android:id="@+id/supportBtn"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:gravity="center_vertical"-->
+                <!--android:background="@null"-->
+                <!--app:label="@string/support_label" />-->
 
             <!-- Privacy Policy URI -->
 
-            <com.pauselabs.pause.model.SettingsButton
-                android:id="@+id/privacyBtn"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@null"
-                app:label="@string/privacy_policy_label" />
+            <!--<com.pauselabs.pause.model.SettingsButton-->
+                <!--android:id="@+id/privacyBtn"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:background="@null"-->
+                <!--app:label="@string/privacy_policy_label" />-->
 
-            <!-- Terms URI -->
+            <!--&lt;!&ndash; Terms URI &ndash;&gt;-->
 
-            <com.pauselabs.pause.model.SettingsButton
-                android:id="@+id/termsBtn"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@null"
+            <!--<com.pauselabs.pause.model.SettingsButton-->
+                <!--android:id="@+id/termsBtn"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:background="@null"-->
                 android:label="@string/terms_label" />
 
             <!-- Footer - Change to Cool Made in Detroit ImageView -->

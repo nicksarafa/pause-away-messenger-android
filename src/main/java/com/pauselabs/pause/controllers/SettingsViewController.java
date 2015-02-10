@@ -13,7 +13,6 @@ import android.widget.EditText;
 import com.pauselabs.R;
 import com.pauselabs.pause.Injector;
 import com.pauselabs.pause.PauseApplication;
-import com.pauselabs.pause.activity.MainActivity;
 import com.pauselabs.pause.model.Constants;
 import com.pauselabs.pause.view.tabs.SettingsView;
 
@@ -52,8 +51,8 @@ public class SettingsViewController implements View.OnClickListener {
         settingsView.receivedSmsBtn.setOnClickListener(this);
         settingsView.rateBtn.setOnClickListener(this);
         settingsView.contactBtn.setOnClickListener(this);
-        settingsView.supportBtn.setOnClickListener(this);
-        settingsView.termsBtn.setOnClickListener(this);
+//        settingsView.supportBtn.setOnClickListener(this);
+//        settingsView.termsBtn.setOnClickListener(this);
         settingsView.volumeBtn.setOnClickListener(this);
         settingsView.voiceBtn.setOnClickListener(this);
         settingsView.toastBtn.setOnClickListener(this);
@@ -86,12 +85,12 @@ public class SettingsViewController implements View.OnClickListener {
             case R.id.toastsBtn:
                 changeToast();
                 break;
-            case R.id.supportBtn:
-                launchSupportLink();
-                break;
-            case R.id.termsBtn:
-                launchTermsLink();
-                break;
+//            case R.id.supportBtn:
+//                launchSupportLink();
+//                break;
+//            case R.id.termsBtn:
+//                launchTermsLink();
+//                break;
             case R.id.rateBtn:
                 launchPlayMarketRate();
                 break;

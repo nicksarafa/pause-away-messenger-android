@@ -35,12 +35,12 @@ public class SettingsView extends LinearLayout {
     public SettingsButton voiceBtn;
     @InjectView(R.id.toastsBtn)
     public SettingsButton toastBtn;
-    @InjectView(R.id.supportBtn)
-    public SettingsButton supportBtn;
-    @InjectView(R.id.privacyBtn)
-    public SettingsButton privacyBtn;
-    @InjectView(R.id.termsBtn)
-    public SettingsButton termsBtn;
+//    @InjectView(R.id.supportBtn)
+//    public SettingsButton supportBtn;
+//    @InjectView(R.id.privacyBtn)
+//    public SettingsButton privacyBtn;
+//    @InjectView(R.id.termsBtn)
+//    public SettingsButton termsBtn;
 
     public SettingsView(Context context, AttributeSet attrs) {
         super(context, attrs);
