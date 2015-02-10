@@ -31,18 +31,15 @@
         android:text="@string/select_all_button"
         android:background="@drawable/transparent_drawable"/>
 
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
         <!-- Use standard android.R class list id instead of app specific id. This is just useful for
              consistency. -->
-        <ListView android:id="@+id/contact_list"
+        <ListView
+            android:id="@+id/contact_list"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:overScrollMode="never"
-            android:listSelector="@color/pause_green_light"
-            android:cacheColorHint="@color/transparent"
+            android:listSelector="@android:color/transparent"
+            android:cacheColorHint="@android:color/transparent"
             android:clipToPadding="false"
             android:scrollbars="vertical"
             android:isScrollContainer="false"
@@ -62,8 +59,6 @@
             android:text="@string/no_contacts"
             android:fontFamily="sans-serif-light"
             android:textAppearance="?android:attr/textAppearanceLarge"/>
-
-    </FrameLayout>
 
 </com.pauselabs.pause.view.tabs.PrivacyView>
 

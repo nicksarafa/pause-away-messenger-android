@@ -12,13 +12,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AlphabetIndexer;
-import android.widget.CheckBox;
 import android.widget.SectionIndexer;
 import android.widget.TextView;
 
 import com.pauselabs.R;
-import com.pauselabs.pause.model.Constants;
 import com.pauselabs.pause.core.ContactsQuery;
+import com.pauselabs.pause.model.Constants;
 
 import java.util.HashSet;
 import java.util.Locale;
@@ -112,16 +111,16 @@ public class ContactsAdapter extends CursorAdapter implements SectionIndexer {
         // each instance of the layout.
         final ViewHolder holder = new ViewHolder();
         holder.text1 = (TextView) itemLayout.findViewById(android.R.id.text1);
-        holder.checkbox_added = (CheckBox) itemLayout.findViewById(R.id.checkbox_added);
+        holder.checkbox_added = (com.gc.materialdesign.views.CheckBox) itemLayout.findViewById(R.id.checkbox_added);
         holder.checkbox_added.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 listContacts = prefs.getStringSet(Constants.Settings.BLACKLIST, new HashSet<String>());
 
-                CheckBox checkbox = (CheckBox) v;
+                com.gc.materialdesign.views.CheckBox checkbox = (com.gc.materialdesign.views.CheckBox) v;
                 String contactId = String.valueOf(v.getTag());
 
-                if (checkbox.isChecked()) {
+                if (checkbox.isCheck()) {
                     listContacts.add(contactId);
                 } else {
                     listContacts.remove(contactId);
@@ -130,16 +129,16 @@ public class ContactsAdapter extends CursorAdapter implements SectionIndexer {
                 prefs.edit().putStringSet(Constants.Settings.BLACKLIST, listContacts).apply();
             }
         });
-        holder.checkbox_ice = (CheckBox) itemLayout.findViewById(R.id.checkbox_ice);
+        holder.checkbox_ice = (com.gc.materialdesign.views.CheckBox) itemLayout.findViewById(R.id.checkbox_ice);
         holder.checkbox_ice.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 iceContacts = prefs.getStringSet(Constants.Settings.ICELIST, new HashSet<String>());
 
-                CheckBox checkbox = (CheckBox) v;
+               com.gc.materialdesign.views.CheckBox checkbox = (com.gc.materialdesign.views.CheckBox) v;
                 String contactId = String.valueOf(v.getTag());
 
-                if (checkbox.isChecked()) {
+                if (checkbox.isCheck()) {
                     iceContacts.add(contactId);
                 } else {
                     iceContacts.remove(contactId);
@@ -274,9 +273,9 @@ public class ContactsAdapter extends CursorAdapter implements SectionIndexer {
      * calling findViewById in each iteration of bindView.
      */
     private class ViewHolder {
-        CheckBox checkbox_ice;
+        com.gc.materialdesign.views.CheckBox checkbox_ice;
         TextView text1;
-        CheckBox checkbox_added;
+        com.gc.materialdesign.views.CheckBox checkbox_added;
     }
 
 }

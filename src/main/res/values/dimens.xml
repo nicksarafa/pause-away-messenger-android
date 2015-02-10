@@ -44,7 +44,7 @@
     <dimen name="settings_thumbnail_size">36dp</dimen>
     <dimen name="emoji_grid_margin">10dp</dimen>
     <dimen name="ob_btn_margin">30dp</dimen>
-    <dimen name="contact_list_item_padding">8dp</dimen>
+    <dimen name="contact_list_item_padding">6dp</dimen>
     <dimen name="emoji_summary_sothree_height">80dp</dimen>
     <dimen name="goose_egg">0dp</dimen>
     <dimen name="bottom_btn_height">68dp</dimen>

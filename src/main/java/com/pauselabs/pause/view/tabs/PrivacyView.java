@@ -1,13 +1,10 @@
 package com.pauselabs.pause.view.tabs;
 
-import android.app.SearchableInfo;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.RelativeLayout;
 import android.widget.SearchView;
 
 import com.pauselabs.R;
