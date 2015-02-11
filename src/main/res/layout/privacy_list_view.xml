@@ -13,6 +13,10 @@
         android:imeOptions="actionSearch"
         android:focusableInTouchMode="true"
         android:focusable="true"
+        android:textIsSelectable="false"
+        android:textCursorDrawable="@drawable/cursor"
+        android:background="@drawable/transparent_drawable"
+        android:freezesText="false"
         android:hint="@string/privacy_search_bar"/>
 
     <!--<TextView-->
