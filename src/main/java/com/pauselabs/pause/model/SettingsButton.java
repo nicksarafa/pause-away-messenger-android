@@ -36,7 +36,7 @@ public class SettingsButton extends LinearLayout {
         setPadding(minPadding, minPadding, minPadding, minPadding);
 
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        inflater.inflate(R.layout.settings_button_view, this, true);
+        inflater.inflate(R.layout.settings_list_item, this, true);
 
         if(!TextUtils.isEmpty(mLabel)) {
             ((TextView)findViewById(R.id.label)).setText(mLabel);
@@ -50,7 +50,7 @@ public class SettingsButton extends LinearLayout {
             ((ImageView)findViewById(R.id.frontnail)).setImageDrawable(mFrontnail);
         }
 
-        if(null != mFrontnail) {
+        if(null != mEndnail) {
             ((ImageView)findViewById(R.id.endnail)).setImageDrawable(mEndnail);
         }
 

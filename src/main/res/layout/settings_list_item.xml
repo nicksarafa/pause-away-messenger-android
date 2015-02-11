@@ -2,6 +2,7 @@
 
 <merge
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:materialdesign="http://schemas.android.com/apk/res-auto"
     android:layout_height="wrap_content"
     android:layout_width="match_parent"
     android:orientation="horizontal">
@@ -22,22 +23,25 @@
 
             <TextView
                 android:id="@+id/label"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_width="0dp"
                 android:layout_weight="6"
                 android:layout_marginStart="@dimen/settings_item_padding"
                 android:layout_marginLeft="@dimen/settings_item_padding"
-                android:gravity="left|center_vertical"
+                android:layout_centerVertical="true"
+                android:layout_gravity="start|center_vertical"
+                android:gravity="start|center_vertical"
                 android:ellipsize="none"
                 android:maxLines="100"
                 android:scrollHorizontally="false"
                 android:textAlignment="textStart"
                 android:fontFamily="sans-serif-light"
+                android:textSize="@dimen/text_medium"
                 android:textColor="@android:color/background_dark"
-                android:textSize="@dimen/text_small"
+                android:textAppearance="?android:attr/textAppearanceLarge"
                 android:text="Respond to Text Messages"/>
 
-                <!-- User Info -->
+            <!-- User Info -->
 
                 <TextView
                     android:id="@+id/content"
@@ -46,20 +50,36 @@
                     android:layout_weight="2"
                     android:layout_marginStart="@dimen/settings_item_padding"
                     android:layout_marginLeft="@dimen/settings_item_padding"
-                    android:gravity="right|center_vertical"
-                    android:layout_marginRight="@dimen/privacy_checkbox_padding"
+                    android:gravity="end|center_vertical"
+                    android:layout_gravity="end|center_vertical"
                     android:textAlignment="textEnd"
+                    android:layout_marginRight="@dimen/privacy_checkbox_padding"
+                    android:layout_marginEnd="@dimen/privacy_checkbox_padding"
                     android:textColor="@color/dark_grey"
                     android:fontFamily="sans-serif-light"
-                    android:textSize="@dimen/text_small"
+                    android:textSize="@dimen/text_medium"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
                     android:text="Male"/>
+
+                <!-- Endnail -->
 
                     <ImageView
                         android:id="@+id/endnail"
-                        android:layout_height="match_parent"
+                        android:layout_height="0dp"
                         android:layout_width="0dp"
                         android:layout_weight="0"
-                        android:gravity="right|center_vertical"
-                        android:layout_marginRight="@dimen/privacy_checkbox_padding"/>
+                        android:gravity="end|center_vertical"
+                        android:layout_marginRight="@dimen/privacy_checkbox_padding"
+                        android:layout_marginEnd="@dimen/privacy_checkbox_padding"/>
+
+                    <!-- Checkbox. Need to be here? -->
+
+                        <!--<com.gc.materialdesign.views.CheckBox-->
+                            <!--android:id="@+id/checkbox"-->
+                            <!--android:layout_width="wrap_content"-->
+                            <!--android:layout_height="wrap_content"-->
+                            <!--android:layout_gravity="center_vertical|center_horizontal"-->
+                            <!--android:background="@color/pause_green"-->
+                            <!--materialdesign:check="true" />-->
 
 </merge>

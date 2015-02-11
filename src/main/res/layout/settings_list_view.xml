@@ -35,13 +35,12 @@
 
             <!-- Name -->
 
-            <com.pauselabs.pause.model.SettingsButton
+            -<com.pauselabs.pause.model.SettingsButton
                 android:id="@+id/nameBtn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:label="@string/name_settings_label"
-                app:content="John"
-                app:endnail="@null"/>
+                app:content="John"/>
 
             <!-- Gender -->
 
@@ -88,7 +87,7 @@
                 android:layout_height="wrap_content"
                 android:background="@null"
                 app:label="@string/vibrate_label"
-                app:content="Yes"/>
+                app:content=""/>
 
             <!-- Voice Toggle -->
 
@@ -98,7 +97,7 @@
                 android:layout_height="wrap_content"
                 android:background="@null"
                 app:label="@string/voice_label"
-                app:content="On" />
+                app:content=""/>
 
 
             <!-- Toasts Toggle -->
@@ -136,7 +135,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@null"
-                app:label="@string/contact_us_label" />
+                app:label="@string/contact_us_label"
+                app:endnail="@drawable/ic_sms_icon"/>
 
             <!-- Help Label -->
 
@@ -172,7 +172,7 @@
                 <!--android:layout_width="match_parent"-->
                 <!--android:layout_height="wrap_content"-->
                 <!--android:background="@null"-->
-                android:label="@string/terms_label" />
+                <!--android:label="@string/terms_label" />-->
 
             <!-- Footer - Change to Cool Made in Detroit ImageView -->
 

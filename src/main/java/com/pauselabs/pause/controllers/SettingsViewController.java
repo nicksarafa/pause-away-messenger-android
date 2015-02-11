@@ -33,7 +33,7 @@ public class SettingsViewController implements View.OnClickListener {
     public SettingsViewController() {
         Injector.inject(this);
 
-        settingsView = (SettingsView) inflater.inflate(R.layout.settings_view, null);
+        settingsView = (SettingsView) inflater.inflate(R.layout.settings_list_view, null);
 
         settingsView.nameBtn.setContent(prefs.getString(Constants.Settings.NAME_KEY, "None"));
         settingsView.genderBtn.setContent((prefs.getBoolean(Constants.Settings.IS_MALE, false)) ? "Male" : "Female");

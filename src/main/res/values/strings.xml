@@ -74,13 +74,13 @@
 
     <!-- Settings Strings -->
     <string name="name_settings_label">Name</string>
-    <string name="reply_to_strangers">Respond to Strangers</string>
-    <string name="reply_to_calls_settings_label">Respond to Phone Calls</string>
-    <string name="reply_to_SMS_settings_label">Respond to Text Messages</string>
+    <string name="reply_to_strangers">Respond to Unknown Numbers</string>
+    <string name="reply_to_calls_settings_label">Respond to Calls</string>
+    <string name="reply_to_SMS_settings_label">Respond to Texts</string>
     <string name="blacklist_label">Privacy List</string>
     <string name="vibrate_label">Pause On Vibrate</string>
     <string name="voice_label">Voice Feedback</string>
-    <string name="toasts_label">Toasts On</string>
+    <string name="toasts_label">Toasts</string>
     <string name="rate_us_settings_label">Review PAUSE</string>
     <string name="contact_us_label">Contact Us</string>
     <string name="support_label">Support</string>
