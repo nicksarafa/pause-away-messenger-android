@@ -7,6 +7,12 @@
 
     <!-- Universal Padding -->
 
+    <!-- All Headers -->
+
+    <dimen name="header_height">100dp</dimen>
+    <dimen name="header_horizontal_padding">8dp</dimen>
+    <dimen name="header_vertical_padding">20dp</dimen>
+
     <!-- Summary View -->
     <dimen name="privacy_view_horizontal_padding">8dp</dimen>
     <dimen name="privacy_view_vertical_padding">4dp</dimen>
