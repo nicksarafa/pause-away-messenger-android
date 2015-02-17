@@ -11,9 +11,8 @@
     android:paddingEnd="@dimen/header_horizontal_padding"
     android:paddingRight="@dimen/header_horizontal_padding"
     android:paddingLeft="@dimen/header_horizontal_padding"
-    app:paddingStart="@dimen/header_horizontal_padding"
-    android:background="#3cbeb5"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:paddingStart="@dimen/header_horizontal_padding"
+    android:background="#3cbeb5">
 
     <!-- Left Parent Image -->
 

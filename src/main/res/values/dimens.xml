@@ -24,6 +24,10 @@
 
     <dimen name="settings_view_padding">10dp</dimen>
 
+    <!-- Summary View List Padding -->
+    <dimen name="summary_view_horizontal_padding">8dp</dimen>
+    <dimen name="summary_view_vertical_padding">4dp</dimen>
+
     <!-- Settings View -->
     <dimen name="min_padding">10dp</dimen>
     <dimen name="settings_item_padding">10dp</dimen>
