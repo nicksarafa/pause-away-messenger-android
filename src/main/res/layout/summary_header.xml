@@ -24,7 +24,7 @@
         />
 
     <!-- Header Title -->
-
+    
     <TextView
         android:id="@+id/privacy_header_title"
         android:layout_width="wrap_content"
@@ -34,8 +34,8 @@
         android:layout_toRightOf="@id/privacy_header_left_image"
         android:layout_toEndOf="@id/privacy_header_left_image"
         android:textSize="@dimen/text_medium"
-        android:text="@string/privacy_header_title"/>
-
+        android:text="Response Messages Sent"/>
+    
     <!-- # of people replied to image -->
 
     <ImageView
@@ -51,8 +51,38 @@
         android:layout_marginTop="@dimen/privacy_view_vertical_padding"
         android:layout_marginBottom="@dimen/privacy_view_vertical_padding"
         />
-
+    
     <!-- # of people replied to string -->
+
+    <TextView
+        android:id="@+id/contacts_count"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/privacy_header_title"
+        android:layout_marginTop="@dimen/privacy_header_vertical"
+        android:layout_toRightOf="@id/contacts_image"
+        android:layout_toEndOf="@id/contacts_image"
+        android:textSize="@dimen/text_small"
+        android:textColor="@color/text_white"
+        android:text="270"/>
+
+    <!-- # of texts image -->
+
+    <ImageView
+        android:id="@+id/contacts_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_action_wake"
+        android:layout_below="@id/privacy_header_title"
+        android:layout_toEndOf="@id/privacy_header_left_image"
+        android:layout_toRightOf="@id/privacy_header_left_image"
+        android:layout_marginRight="@dimen/privacy_view_horizontal_padding"
+        android:layout_marginEnd="@dimen/privacy_view_horizontal_padding"
+        android:layout_marginTop="@dimen/privacy_view_vertical_padding"
+        android:layout_marginBottom="@dimen/privacy_view_vertical_padding"
+        />
+
+    <!-- # of texts string -->
 
     <TextView
         android:id="@+id/contacts_count"
@@ -100,42 +130,7 @@
 
     <!-- Right Parent Image - More information dialogue on click (Similar to True Call App's header) -->
 
-    <!-- # of texts image -->
-
     <ImageView
-        android:id="@+id/sms_image"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/ic_action_wake"
-        android:layout_below="@id/privacy_header_title"
-        android:layout_toEndOf="@id/reply_count"
-        android:layout_toRightOf="@id/reply_count"
-        android:layout_marginRight="@dimen/privacy_view_horizontal_padding"
-        android:layout_marginEnd="@dimen/privacy_view_horizontal_padding"
-        android:layout_marginTop="@dimen/privacy_view_vertical_padding"
-        android:layout_marginBottom="@dimen/privacy_view_vertical_padding"
-        android:layout_marginStart="@dimen/privacy_header_horiztonal"
-        android:layout_marginLeft="@dimen/privacy_header_horiztonal"
-        />
-
-    <!-- # of texts string -->
-
-    <TextView
-        android:id="@+id/sms_count"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/privacy_header_title"
-        android:layout_marginTop="@dimen/privacy_header_vertical"
-        android:layout_toRightOf="@id/sms_image"
-        android:layout_toEndOf="@id/sms_image"
-        android:textSize="@dimen/text_small"
-        android:textColor="@color/text_white"
-        android:text="270"/>
-
-    <!-- Parent Right Dialogue Image -->
-
-    <ImageView
-        android:id="@+id/privacy_header_right_image"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@android:drawable/ic_menu_info_details"
