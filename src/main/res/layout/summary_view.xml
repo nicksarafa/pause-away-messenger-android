@@ -32,40 +32,40 @@
 
             <!-- Left Parent Image -->
 
-            <ImageView
-                android:id="@+id/privacy_header_left_image"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_action_wake"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentLeft="true"
-                android:layout_centerVertical="true"
-                android:layout_marginRight="@dimen/privacy_view_horizontal_padding"
-                android:layout_marginEnd="@dimen/privacy_view_horizontal_padding"
-                />
+            <!--<ImageView-->
+                <!--android:id="@+id/privacy_header_left_image"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:src="@drawable/dic_action_messages_empty"-->
+                <!--android:layout_alignParentStart="true"-->
+                <!--android:layout_alignParentLeft="true"-->
+                <!--android:layout_centerVertical="true"-->
+                <!--android:layout_marginRight="@dimen/privacy_view_horizontal_padding"-->
+                <!--android:layout_marginEnd="@dimen/privacy_view_horizontal_padding"-->
+                <!--/>-->
 
             <!-- Header Title -->
 
-            <TextView
-                android:id="@+id/privacy_header_title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/text_white"
-                android:layout_alignParentTop="true"
-                android:layout_marginTop="@dimen/privacy_view_vertical_padding"
-                android:layout_toRightOf="@id/privacy_header_left_image"
-                android:layout_toEndOf="@id/privacy_header_left_image"
-                android:textSize="@dimen/text_medium"
-                android:text="@string/summary_header_title"/>
+            <!--<TextView-->
+                <!--android:id="@+id/privacy_header_title"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:textColor="@color/text_white"-->
+                <!--android:layout_alignParentTop="true"-->
+                <!--android:layout_marginTop="@dimen/privacy_view_vertical_padding"-->
+                <!--android:layout_toRightOf="@id/privacy_header_left_image"-->
+                <!--android:layout_toEndOf="@id/privacy_header_left_image"-->
+                <!--android:textSize="@dimen/text_medium"-->
+                <!--android:text="@string/summary_header_title"/>-->
 
             <!-- # of people replied to image -->
 
             <ImageView
-                android:id="@+id/contacts_image"
+                android:id="@+id/replied_contacts_image"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_action_wake"
-                android:layout_alignParentBottom="true"
+                android:src="@drawable/ic_action_ab_privacy_on"
+                android:layout_centerVertical="true"
                 android:layout_below="@id/privacy_header_title"
                 android:layout_toEndOf="@id/privacy_header_left_image"
                 android:layout_toRightOf="@id/privacy_header_left_image"
@@ -74,19 +74,55 @@
                 android:layout_marginTop="@dimen/privacy_view_vertical_padding"
                 />
 
-            <!-- # of people replied count -->
+            <!-- # of people replied to count -->
 
             <TextView
-                android:id="@+id/contacts_count"
+                android:id="@+id/replied_contacts_count"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
                 android:layout_below="@id/privacy_header_title"
                 android:layout_marginTop="@dimen/privacy_header_vertical"
-                android:layout_toRightOf="@id/contacts_image"
-                android:layout_toEndOf="@id/contacts_image"
+                android:layout_marginRight="@dimen/privacy_view_horizontal_padding"
+                android:layout_marginEnd="@dimen/privacy_view_horizontal_padding"
+                android:layout_toRightOf="@id/replied_contacts_image"
+                android:layout_toEndOf="@id/replied_contacts_image"
                 android:textSize="@dimen/text_medium"
                 android:textColor="@color/text_white"
-                android:text="270"/>
+                android:text="10"/>
+
+            <!-- # of people ignored image -->
+
+            <ImageView
+                android:id="@+id/ignored_contacts_image"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_action_ab_privacy_on"
+                android:layout_centerVertical="true"
+                android:layout_below="@id/privacy_header_title"
+                android:layout_toEndOf="@id/replied_contacts_count"
+                android:layout_toRightOf="@id/replied_contacts_count"
+                android:layout_marginStart="@dimen/privacy_header_horiztonal"
+                android:layout_marginLeft="@dimen/privacy_header_horiztonal"
+                android:layout_marginRight="@dimen/privacy_view_horizontal_padding"
+                android:layout_marginEnd="@dimen/privacy_view_horizontal_padding"
+                android:layout_marginTop="@dimen/privacy_view_vertical_padding"
+                />
+
+            <!-- # of people ignored count -->
+
+            <TextView
+                android:id="@+id/ignored_contacts_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_below="@id/privacy_header_title"
+                android:layout_marginTop="@dimen/privacy_header_vertical"
+                android:layout_toRightOf="@id/ignored_contacts_image"
+                android:layout_toEndOf="@id/ignored_contacts_image"
+                android:textSize="@dimen/text_medium"
+                android:textColor="@color/text_white"
+                android:text="10"/>
 
             <!-- # calls Image -->
 
@@ -94,11 +130,11 @@
                 android:id="@+id/reply_image"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_action_wake"
+                android:src="@drawable/ic_call_icon"
                 android:layout_below="@id/privacy_header_title"
-                android:layout_toEndOf="@id/contacts_count"
-                android:layout_toRightOf="@id/contacts_count"
-                android:layout_alignParentBottom="true"
+                android:layout_toEndOf="@id/ignored_contacts_count"
+                android:layout_toRightOf="@id/ignored_contacts_count"
+                android:layout_centerVertical="true"
                 android:layout_marginStart="@dimen/privacy_header_horiztonal"
                 android:layout_marginLeft="@dimen/privacy_header_horiztonal"
                 android:layout_marginRight="@dimen/privacy_view_horizontal_padding"
@@ -112,14 +148,14 @@
                 android:id="@+id/reply_count"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
+                android:layout_centerVertical="true"
                 android:layout_below="@id/privacy_header_title"
                 android:layout_marginTop="@dimen/privacy_header_vertical"
                 android:textColor="@color/text_white"
                 android:layout_toRightOf="@id/reply_image"
                 android:layout_toEndOf="@id/reply_image"
-                android:textSize="@dimen/text_small"
-                android:text="270"/>
+                android:textSize="@dimen/text_medium"
+                android:text="10"/>
 
             <!-- # SMS image -->
 
@@ -127,8 +163,8 @@
                 android:id="@+id/sms_image"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_action_wake"
-                android:layout_alignParentBottom="true"
+                android:layout_centerVertical="true"
+                android:src="@drawable/ic_action_messages_empty"
                 android:layout_below="@id/privacy_header_title"
                 android:layout_toEndOf="@id/reply_count"
                 android:layout_toRightOf="@id/reply_count"
@@ -145,14 +181,13 @@
                 android:id="@+id/sms_count"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
+                android:layout_centerVertical="true"
                 android:layout_below="@id/privacy_header_title"
-                android:layout_marginTop="@dimen/privacy_header_vertical"
                 android:layout_toRightOf="@id/sms_image"
                 android:layout_toEndOf="@id/sms_image"
-                android:textSize="@dimen/text_small"
+                android:textSize="@dimen/text_medium"
                 android:textColor="@color/text_white"
-                android:text="270"/>
+                android:text="10"/>
 
             <!-- Right Parent Image - More information dialogue on click (Similar to True Call App's header) -->
 
@@ -187,7 +222,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:layout_centerVertical="true"
-                android:textSize="36sp"
+                android:textSize="@dimen/no_new_messages_text_size"
                 android:textColor="@color/pause_green"
                 android:text="No Messages"/>
 
