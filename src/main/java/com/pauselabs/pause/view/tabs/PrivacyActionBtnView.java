@@ -2,6 +2,7 @@ package com.pauselabs.pause.view.tabs;
 
 import android.content.Context;
 import android.util.AttributeSet;
+import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 import android.widget.SearchView;
 
@@ -17,6 +18,12 @@ public class PrivacyActionBtnView extends RelativeLayout {
 
     @InjectView(R.id.ice_atn_1)
     public SearchView atnBtn1;
+
+    @Override
+    public void setLayoutParams(ViewGroup.LayoutParams params) {
+        super.setLayoutParams(params);
+
+    }
 
     public PrivacyActionBtnView(Context context) {
         super(context);

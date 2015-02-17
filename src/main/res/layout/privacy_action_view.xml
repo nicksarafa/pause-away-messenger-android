@@ -23,6 +23,8 @@
         android:freezesText="false"
         android:hint="@string/privacy_search_bar"
         android:layout_centerVertical="true"
+        android:showAsAction="always|collapseActionView"
+        android:actionViewClass="android.widget.SearchView"
         android:background="@drawable/transparent_drawable" />
 
     <!--<SearchView-->

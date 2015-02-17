@@ -20,7 +20,7 @@
         android:id="@+id/privacy_header_left_image"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/ic_action_wake"
+        android:src="@drawable/ic_action_ice_empty"
         android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
         android:layout_centerVertical="true"

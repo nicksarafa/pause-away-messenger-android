@@ -38,6 +38,7 @@ public class PrivacyView extends LinearLayout {
         super(context, attrs, defStyle);
     }
 
+
     @Override
     protected void onFinishInflate() {
         super.onFinishInflate();
