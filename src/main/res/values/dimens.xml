@@ -53,6 +53,7 @@
     <dimen name="settings_thumbnail_padding">4dp</dimen>
     <dimen name="fab_margin_right">28dp</dimen>
     <dimen name="fab_margin_bottom">6dp</dimen>
+    <dimen name="ascii_spacing">2dp</dimen>
 
     <!-- Offical Action Bar Height = 84dp -->
 

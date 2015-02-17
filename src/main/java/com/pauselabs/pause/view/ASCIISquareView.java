@@ -2,7 +2,6 @@ package com.pauselabs.pause.view;
 
 import android.content.Context;
 import android.util.AttributeSet;
-import android.widget.FrameLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -19,8 +18,8 @@ public class ASCIISquareView extends RelativeLayout {
     @InjectView(R.id.emoji)
     public TextView ascii;
 
-    @InjectView(R.id.emojiText)
-    public TextView asciiText;
+//    @InjectView(R.id.emojiText)
+//    public TextView asciiText;
 
     public ASCIISquareView(Context context) {
         super(context);
@@ -41,9 +40,9 @@ public class ASCIISquareView extends RelativeLayout {
         Views.inject(this);
     }
 
-    @Override
-    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-        setMeasuredDimension(getMeasuredWidth(), getMeasuredWidth()); //Snap to width
-    }
+//    @Override
+//    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+//        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+//        setMeasuredDimension(getMeasuredWidth(), getMeasuredWidth()); //Snap to width
+//    }
 }

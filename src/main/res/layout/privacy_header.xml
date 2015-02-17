@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    android:id="@+id/summary_header"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#3cbeb5">
+
+    <!-- Left Parent Image -->
+
+    <ImageView
+        android:id="@+id/summary_header_left_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_action_wake"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="@dimen/summary_view_horizontal_padding"
+        android:layout_marginStart="@dimen/summary_view_horizontal_padding"
+        android:layout_marginRight="@dimen/summary_view_horizontal_padding"
+        android:layout_marginEnd="@dimen/summary_view_horizontal_padding"
+        />
+
+        <!-- Header Title -->
+
+        <TextView
+            android:id="@+id/summary_header_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/text_white"
+            android:layout_toRightOf="@id/summary_header_left_image"
+            android:layout_toEndOf="@id/summary_header_left_image"
+            android:text="Reply Statistics"/>
+
+            <!-- # of total contacts Image -->
+
+            <ImageView
+                android:id="@+id/contacts_image"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_action_wake"
+                android:layout_below="@id/summary_header_title"
+                android:layout_toEndOf="@id/summary_header_left_image"
+                android:layout_toRightOf="@id/summary_header_left_image"
+                android:layout_marginRight="@dimen/summary_view_horizontal_padding"
+                android:layout_marginEnd="@dimen/summary_view_horizontal_padding"
+                />
+
+            <!-- # of total contacts text -->
+
+            <TextView
+                android:id="@+id/contacts_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/summary_header_title"
+                android:layout_toRightOf="@id/contacts_image"
+                android:layout_toEndOf="@id/contacts_image"
+                android:textColor="@color/text_white"
+                android:text="270"/>
+
+                <!-- # of total contacts Image -->
+
+                <ImageView
+                    android:id="@+id/reply_image"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_action_wake"
+                    android:layout_below="@id/summary_header_title"
+                    android:layout_toEndOf="@id/contacts_count"
+                    android:layout_toRightOf="@id/contacts_count"
+                    android:layout_marginRight="@dimen/summary_view_horizontal_padding"
+                    android:layout_marginEnd="@dimen/summary_view_horizontal_padding"
+                    />
+
+                <!-- # of total contacts text -->
+
+                <TextView
+                    android:id="@+id/reply_count"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/summary_header_title"
+                    android:textColor="@color/text_white"
+                    android:layout_toRightOf="@id/reply_image"
+                    android:layout_toEndOf="@id/reply_image"
+                    android:text="270"/>
+
+
+    <!-- Right Parent Image -->
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_action_wake"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="@dimen/summary_view_horizontal_padding"
+        android:layout_marginStart="@dimen/summary_view_horizontal_padding"
+        android:layout_marginRight="@dimen/summary_view_horizontal_padding"
+        android:layout_marginEnd="@dimen/summary_view_horizontal_padding"
+        />
+
+</RelativeLayout>

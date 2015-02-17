@@ -2,14 +2,15 @@
 
 <com.pauselabs.pause.view.tabs.PrivacyView
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
     <SearchView
         android:id="@+id/contact_search_field"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:imeOptions="actionSearch"
         android:focusableInTouchMode="true"
         android:focusable="true"
@@ -19,13 +20,66 @@
         android:freezesText="false"
         android:hint="@string/privacy_search_bar"/>
 
-    <!--<TextView-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:padding="@dimen/contact_list_item_padding"-->
-        <!--android:gravity="center"-->
-        <!--android:textSize="@dimen/text_medium"-->
-        <!--android:text="@string/privacy_message"/>-->
+    <com.pauselabs.pause.model.SettingsButton
+        android:id="@+id/strangersBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@null"
+        app:label="@string/reply_to_strangers">
+
+        <com.gc.materialdesign.views.CheckBox
+            android:id="@+id/checkbox_added"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical|center_horizontal"
+            android:fontFamily="sans-serif-light"
+            android:ellipsize="marquee"
+            android:singleLine="true"
+            android:textAppearance="?android:attr/textAppearanceLarge"/>
+
+        </com.pauselabs.pause.model.SettingsButton>
+
+    <!-- Missed Calls -->
+
+    <com.pauselabs.pause.model.SettingsButton
+        android:id="@+id/missedCallsBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@null"
+        app:label="@string/reply_to_calls_settings_label">
+
+        <com.gc.materialdesign.views.CheckBox
+            android:id="@+id/checkbox_added"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical|center_horizontal"
+            android:fontFamily="sans-serif-light"
+            android:ellipsize="marquee"
+            android:singleLine="true"
+            android:textAppearance="?android:attr/textAppearanceLarge"/>
+
+        </com.pauselabs.pause.model.SettingsButton>
+
+    <!-- Replied Text Messages -->
+
+    <com.pauselabs.pause.model.SettingsButton
+        android:id="@+id/receivedSMSBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@null"
+        app:label="@string/reply_to_SMS_settings_label">
+
+        <com.gc.materialdesign.views.CheckBox
+            android:id="@+id/checkbox_added"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical|center_horizontal"
+            android:fontFamily="sans-serif-light"
+            android:ellipsize="marquee"
+            android:singleLine="true"
+            android:textAppearance="?android:attr/textAppearanceLarge"/>
+
+        </com.pauselabs.pause.model.SettingsButton>
 
     <Button
         android:id="@+id/privacySelectAll"

@@ -2,7 +2,6 @@ package com.pauselabs.pause.controllers;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,8 +14,6 @@ import com.pauselabs.pause.PauseApplication;
 import com.pauselabs.pause.model.ASCIIItem;
 import com.pauselabs.pause.view.ASCIISquareView;
 import com.pauselabs.pause.view.tabs.ASCIIDirectoryView;
-
-import java.util.regex.Pattern;
 
 import javax.inject.Inject;
 
@@ -58,15 +55,21 @@ public class ASCIIDirectoryViewController implements AdapterView.OnItemClickList
             super(context, resource);
 
             ASCIIItem[] asciis = {
-                    new ASCIIItem("On my break", "(____((____________()~~~"),
                     new ASCIIItem("Out having a good time", "(　＾∇＾)"),
                     new ASCIIItem("Not sure where I am", "¯\\(°_o)/¯"),
-                    new ASCIIItem("I just want to be left alone", "（￣ー￣）")
+                    new ASCIIItem("I just want to be left alone", "（￣ー￣）"),
+                    new ASCIIItem("Happy Dance!!!","┏(･o･)┛♪┗ (･o･) ┓"),
+                    new ASCIIItem(
+                            "Dog","♫•*¨*•.¸ ¸\n" +
+                            ".//^ ^ \\\\.\n" +
+                            "(/(_•_) \\)•♪♫•*•.¸\n" +
+                            "._/''*''\\_ღ♥* :o)))\n" +
+                            "..(\")_(\") (¸.•* (¸.•*¨*•♪♫")
             };
 
             for (ASCIIItem item : asciis) {
                 ASCIISquareView asciiView = (ASCIISquareView) inflater.inflate(R.layout.ascii_square_view, null);
-                asciiView.asciiText.setText(item.getName());
+//                asciiView.asciiText.setText(item.getName());
                 asciiView.ascii.setText(item.getAscii());
                 asciiView.setTag(item);
 
