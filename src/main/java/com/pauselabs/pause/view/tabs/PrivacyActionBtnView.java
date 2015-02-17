@@ -2,8 +2,8 @@ package com.pauselabs.pause.view.tabs;
 
 import android.content.Context;
 import android.util.AttributeSet;
-import android.widget.ImageButton;
 import android.widget.RelativeLayout;
+import android.widget.SearchView;
 
 import com.pauselabs.R;
 
@@ -16,7 +16,7 @@ import butterknife.Views;
 public class PrivacyActionBtnView extends RelativeLayout {
 
     @InjectView(R.id.ice_atn_1)
-    public ImageButton atnBtn1;
+    public SearchView atnBtn1;
 
     public PrivacyActionBtnView(Context context) {
         super(context);

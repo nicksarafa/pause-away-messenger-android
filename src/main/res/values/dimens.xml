@@ -11,6 +11,11 @@
     <dimen name="summary_view_horizontal_padding">8dp</dimen>
     <dimen name="summary_view_vertical_padding">4dp</dimen>
 
+    <!-- Privacy Header -->
+
+    <dimen name="privacy_header_vertical">12dp</dimen>
+    <dimen name="privacy_header_horiztonal">12dp</dimen>
+
     <dimen name="settings_view_padding">10dp</dimen>
 
     <!-- Settings View -->

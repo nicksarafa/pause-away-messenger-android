@@ -30,8 +30,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/text_white"
+            android:layout_marginTop="@dimen/summary_view_vertical_padding"
             android:layout_toRightOf="@id/summary_header_left_image"
             android:layout_toEndOf="@id/summary_header_left_image"
+            android:textSize="@dimen/text_medium"
             android:text="Reply Statistics"/>
 
             <!-- # of total contacts Image -->
@@ -46,6 +48,8 @@
                 android:layout_toRightOf="@id/summary_header_left_image"
                 android:layout_marginRight="@dimen/summary_view_horizontal_padding"
                 android:layout_marginEnd="@dimen/summary_view_horizontal_padding"
+                android:layout_marginTop="@dimen/summary_view_vertical_padding"
+                android:layout_marginBottom="@dimen/summary_view_vertical_padding"
                 />
 
             <!-- # of total contacts text -->
@@ -55,8 +59,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/summary_header_title"
+                android:layout_marginTop="@dimen/privacy_header_vertical"
                 android:layout_toRightOf="@id/contacts_image"
                 android:layout_toEndOf="@id/contacts_image"
+                android:textSize="@dimen/text_small"
                 android:textColor="@color/text_white"
                 android:text="270"/>
 
@@ -70,8 +76,11 @@
                     android:layout_below="@id/summary_header_title"
                     android:layout_toEndOf="@id/contacts_count"
                     android:layout_toRightOf="@id/contacts_count"
+                    android:layout_marginLeft="@dimen/privacy_header_horiztonal"
                     android:layout_marginRight="@dimen/summary_view_horizontal_padding"
                     android:layout_marginEnd="@dimen/summary_view_horizontal_padding"
+                    android:layout_marginTop="@dimen/summary_view_vertical_padding"
+                    android:layout_marginBottom="@dimen/summary_view_vertical_padding"
                     />
 
                 <!-- # of total contacts text -->
@@ -81,18 +90,19 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/summary_header_title"
+                    android:layout_marginTop="@dimen/privacy_header_vertical"
                     android:textColor="@color/text_white"
                     android:layout_toRightOf="@id/reply_image"
                     android:layout_toEndOf="@id/reply_image"
+                    android:textSize="@dimen/text_small"
                     android:text="270"/>
-
 
     <!-- Right Parent Image -->
 
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/ic_action_wake"
+        android:src="@android:drawable/ic_menu_info_details"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
