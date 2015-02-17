@@ -80,7 +80,7 @@
     <string name="blacklist_label">Privacy List</string>
     <string name="vibrate_label">Pause On Vibrate</string>
     <string name="voice_label">Voice Feedback</string>
-    <string name="toasts_label">Toasts</string>
+    <string name="toasts_label">Pop Up Alerts</string>
     <string name="rate_us_settings_label">Review PAUSE</string>
     <string name="contact_us_label">Contact Us</string>
     <string name="support_label">Support</string>
@@ -122,5 +122,7 @@
     <string name="select_all_button">Select All</string>
     <string name="privacy_search_bar">Search Contacts</string>
     <string name="privacy_header_title">Privacy Summary</string>
+    <string name="summary_header_title">Pause Summary</string>
+    <string name="ice_header_title">Emergency Contacts</string>
 
 </resources>
