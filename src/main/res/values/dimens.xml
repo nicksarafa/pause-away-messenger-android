@@ -33,8 +33,8 @@
     <dimen name="settings_item_padding">10dp</dimen>
 
     <!-- Text -->
-    <dimen name="text_extra_large">28sp</dimen>
-    <dimen name="text_large">24sp</dimen>
+    <dimen name="text_extra_large">24sp</dimen>
+    <dimen name="text_large">20sp</dimen>
     <dimen name="text_medium">18sp</dimen>
     <dimen name="text_small">16sp</dimen>
 

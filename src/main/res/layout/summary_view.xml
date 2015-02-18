@@ -83,11 +83,9 @@
                 android:layout_centerVertical="true"
                 android:layout_below="@id/privacy_header_title"
                 android:layout_marginTop="@dimen/privacy_header_vertical"
-                android:layout_marginRight="@dimen/privacy_view_horizontal_padding"
-                android:layout_marginEnd="@dimen/privacy_view_horizontal_padding"
                 android:layout_toRightOf="@id/replied_contacts_image"
                 android:layout_toEndOf="@id/replied_contacts_image"
-                android:textSize="@dimen/text_medium"
+                android:textSize="@dimen/text_large"
                 android:textColor="@color/text_white"
                 android:text="10"/>
 
@@ -120,7 +118,7 @@
                 android:layout_marginTop="@dimen/privacy_header_vertical"
                 android:layout_toRightOf="@id/ignored_contacts_image"
                 android:layout_toEndOf="@id/ignored_contacts_image"
-                android:textSize="@dimen/text_medium"
+                android:textSize="@dimen/text_large"
                 android:textColor="@color/text_white"
                 android:text="10"/>
 
@@ -154,7 +152,7 @@
                 android:textColor="@color/text_white"
                 android:layout_toRightOf="@id/reply_image"
                 android:layout_toEndOf="@id/reply_image"
-                android:textSize="@dimen/text_medium"
+                android:textSize="@dimen/text_large"
                 android:text="10"/>
 
             <!-- # SMS image -->
@@ -185,13 +183,14 @@
                 android:layout_below="@id/privacy_header_title"
                 android:layout_toRightOf="@id/sms_image"
                 android:layout_toEndOf="@id/sms_image"
-                android:textSize="@dimen/text_medium"
+                android:textSize="@dimen/text_large"
                 android:textColor="@color/text_white"
                 android:text="10"/>
 
             <!-- Right Parent Image - More information dialogue on click (Similar to True Call App's header) -->
 
             <ImageView
+                android:id="@+id/summary_dialogue"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@android:drawable/ic_menu_info_details"
@@ -224,7 +223,7 @@
                 android:layout_centerVertical="true"
                 android:textSize="@dimen/no_new_messages_text_size"
                 android:textColor="@color/pause_green"
-                android:text="No Messages"/>
+                android:text="@string/summary_splash_no_new_messages"/>
 
     </RelativeLayout>
 
