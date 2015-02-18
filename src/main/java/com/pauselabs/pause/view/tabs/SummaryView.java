@@ -2,11 +2,11 @@ package com.pauselabs.pause.view.tabs;
 
 import android.content.Context;
 import android.util.AttributeSet;
-import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.gc.materialdesign.views.ButtonFloatSmall;
 import com.pauselabs.R;
 
 import butterknife.InjectView;
@@ -21,6 +21,8 @@ public class SummaryView extends RelativeLayout {
     public ListView listView;
     @InjectView(R.id.summary_no_messages)
     public TextView noMessages;
+    @InjectView(R.id.summary_dialogue)
+    public ButtonFloatSmall summaryDialogue;
     @InjectView(R.id.summary_view_container)
     public RelativeLayout summaryViewContainer;
 
@@ -46,4 +48,16 @@ public class SummaryView extends RelativeLayout {
         Views.inject(this);
     }
 
+    //TODO get onClickListener working properly
+
+//    @Override
+//    public void setOnClickListener(OnClickListener l) {
+//        super.setOnClickListener(l);
+//        summaryDialogue.setOnClickListener(new OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Toast.makeText(getContext(), "Clicked", Toast.LENGTH_LONG).show();
+//            }
+//        });
+//    }
 }
