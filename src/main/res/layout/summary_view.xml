@@ -128,7 +128,7 @@
                 android:id="@+id/reply_image"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_call_icon"
+                android:src="@drawable/ic_action_phone"
                 android:layout_below="@id/privacy_header_title"
                 android:layout_toEndOf="@id/ignored_contacts_count"
                 android:layout_toRightOf="@id/ignored_contacts_count"
