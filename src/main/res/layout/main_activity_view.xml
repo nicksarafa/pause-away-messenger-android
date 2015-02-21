@@ -11,7 +11,7 @@
     android:gravity="bottom"
     sothree:umanoClipPanel="true"
     sothree:umanoPanelHeight="0dp"
-    sothree:umanoShadowHeight="2dp"
+    sothree:umanoShadowHeight="4dp"
     sothree:umanoFadeColor="@android:color/transparent">
 
     <RelativeLayout
