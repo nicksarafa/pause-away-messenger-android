@@ -125,5 +125,6 @@
     <string name="summary_header_title">Pause Summary</string>
     <string name="ice_header_title">Emergency Contacts</string>
     <string name="summary_splash_no_new_messages">No Messages</string>
+    <string name="custom_pause_hint">Enter Custom Message</string>
 
 </resources>

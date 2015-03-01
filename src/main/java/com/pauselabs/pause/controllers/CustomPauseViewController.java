@@ -1,9 +1,7 @@
 package com.pauselabs.pause.controllers;
 
 import android.content.SharedPreferences;
-import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.View;
 
 import com.pauselabs.R;
 import com.pauselabs.pause.Injector;
@@ -16,7 +14,7 @@ import javax.inject.Inject;
 /**
  * Created by Passa on 1/26/15.
  */
-public class CustomPauseViewController implements View.OnClickListener {
+public class CustomPauseViewController {
 
     public CustomPauseView customPauseView;
 
@@ -30,17 +28,17 @@ public class CustomPauseViewController implements View.OnClickListener {
 
         customPauseView = (CustomPauseView) inflater.inflate(R.layout.custom_pause_view, null);
 
-        customPauseView.beginBtn.setOnClickListener(this);
+//        customPauseView.beginBtn.setOnClickListener(this);
 
         customPauseView.customTxtView.setText(prefs.getString(Constants.Pause.CUSTOM_PAUSE_MESSAGE_KEY, ""));
     }
 
-    @Override
-    public void onClick(View v) {
-        if (v.getId() == R.id.begin && !customPauseView.customTxtView.getText().equals("")) {
-            setCustomPause(customPauseView.customTxtView.getText().toString());
-        }
-    }
+//    @Override
+//    public void onClick(View v) {
+//        if (v.getId() == R.id.begin && !customPauseView.customTxtView.getText().equals("")) {
+//            setCustomPause(customPauseView.customTxtView.getText().toString());
+//        }
+//    }
 
     public void setCustomPause(String message) {
         prefs.edit().putString(Constants.Pause.CUSTOM_PAUSE_MESSAGE_KEY, message).apply();
