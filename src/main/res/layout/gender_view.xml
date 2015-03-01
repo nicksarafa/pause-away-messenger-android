@@ -22,10 +22,6 @@
 
     </FrameLayout>
 
-        <!-- Enter First Name -->
-
-        <!-- Using inputType="textNoSuggestions" to kill annoying Zero Span Bug. Need to reintroduce "personName" later on -->
-
         <EditText
             android:id="@+id/ob_name"
             android:layout_width="fill_parent"

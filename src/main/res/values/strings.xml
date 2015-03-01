@@ -74,7 +74,7 @@
 
     <!-- Settings Strings -->
     <string name="name_settings_label">Name</string>
-    <string name="reply_to_strangers">Respond to Unknown Numbers</string>
+    <string name="reply_to_strangers">Respond to Strangers</string>
     <string name="reply_to_calls_settings_label">Respond to Calls</string>
     <string name="reply_to_SMS_settings_label">Respond to Texts</string>
     <string name="blacklist_label">Privacy List</string>
@@ -128,5 +128,6 @@
     <string name="custom_pause_hint">Enter Custom Message</string>
     <string name="on_boarding_name_hint">Enter Your First Name</string>
     <string name="on_boarding_picture_content_description">Welcome to Pause!</string>
+    <string name="born_in_detroit_settings_footer"><![CDATA[ Born in Detroit\n\n♡ \n]]></string>
 
 </resources>
