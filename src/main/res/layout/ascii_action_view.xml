@@ -8,38 +8,21 @@
     android:layout_alignParentRight="true"
     android:layout_alignParentEnd="true">
 
-    <SearchView
-        android:id="@+id/ice_atn_1"
+    <ImageButton
+        android:id="@+id/ascii_action_btn"
         android:layout_gravity="end"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
         android:layout_width="@dimen/fab_button_diameter"
         android:layout_height="@dimen/fab_button_diameter"
-        android:imeOptions="actionSearch"
         android:focusableInTouchMode="true"
         android:focusable="true"
-        android:visibility="visible"
         android:textIsSelectable="false"
         android:textCursorDrawable="@drawable/cursor"
-        android:freezesText="false"
         android:hint="@string/privacy_search_bar"
         android:layout_centerVertical="true"
+        android:src="@drawable/ic_action_ab_custom_on"
         android:showAsAction="always|collapseActionView"
-        android:actionViewClass="android.widget.SearchView"
         android:background="@drawable/transparent_drawable" />
-
-    <SearchView
-        android:id="@+id/contact_search_field"
-        android:layout_width="@dimen/fab_button_diameter"
-        android:layout_height="@dimen/fab_button_diameter"
-        android:imeOptions="actionSearch"
-        android:visibility="gone"
-        android:focusableInTouchMode="true"
-        android:focusable="true"
-        android:textIsSelectable="false"
-        android:textCursorDrawable="@drawable/cursor"
-        android:background="@drawable/transparent_drawable"
-        android:freezesText="false"
-        android:hint="@string/privacy_search_bar"/>
 
 </com.pauselabs.pause.view.tabs.PrivacyActionBtnView>

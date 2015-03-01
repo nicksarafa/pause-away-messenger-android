@@ -74,15 +74,16 @@
 
     <!-- Settings Strings -->
     <string name="name_settings_label">Name</string>
-    <string name="reply_to_strangers">Respond to Strangers</string>
-    <string name="reply_to_calls_settings_label">Respond to Calls</string>
-    <string name="reply_to_SMS_settings_label">Respond to Texts</string>
+    <string name="reply_to_strangers">Reply to Strangers</string>
+    <string name="reply_to_calls_settings_label">Reply to Calls</string>
+    <string name="reply_to_SMS_settings_label">Reply to Texts</string>
     <string name="blacklist_label">Privacy List</string>
-    <string name="vibrate_label">Pause On Vibrate</string>
+    <string name="activate_on_silence_settings_label">Activate On Silence</string>
+    <string name="activate_on_vibrate_settings_label">Activate On Vibrate</string>
     <string name="voice_label">Voice Feedback</string>
     <string name="toasts_label">Pop Up Alerts</string>
-    <string name="rate_us_settings_label">Review PAUSE</string>
-    <string name="contact_us_label">Contact Us</string>
+    <string name="rate_us_settings_label">Show Some Love</string>
+    <string name="contact_us_label">Hit Us Up</string>
     <string name="support_label">Support</string>
     <string name="privacy_policy_label">Privacy Policy</string>
     <string name="terms_label">Terms</string>

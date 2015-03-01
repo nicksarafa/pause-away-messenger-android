@@ -38,9 +38,9 @@ public class MainActivity extends ActionBarActivity {
     public static final String TAG = MainActivity.class.getSimpleName();
 
     public static final int EMOJI_TAB = 0;
-    public static final int HIDDEN_CUSTOM = 1;
-    public static final int PRIVACY_TAB = 2;
-    public static final int SETTINGS_TAB = 3;
+//    public static final int HIDDEN_CUSTOM = 1;
+    public static final int PRIVACY_TAB = 1;
+    public static final int SETTINGS_TAB = 2;
 
 
     public MainActivityView mainActivityView;
@@ -233,7 +233,7 @@ public class MainActivity extends ActionBarActivity {
 
         private int[] tab_icons = {
                 R.drawable.ic_action_ab_grid_on,
-                R.drawable.ic_action_ab_custom_on,
+//                R.drawable.ic_action_ab_custom_on,
                 R.drawable.ic_action_ab_privacy_on,
                 R.drawable.ic_action_ab_settings_on
         };
@@ -268,8 +268,8 @@ public class MainActivity extends ActionBarActivity {
                     return getString(R.string.settings_section_title).toUpperCase(l);
                 case PRIVACY_TAB:
                     return "Ice".toUpperCase();
-                case HIDDEN_CUSTOM:
-                    return getString(R.string.hidden_custom_section_title).toUpperCase(l);
+//                case HIDDEN_CUSTOM:
+//                    return getString(R.string.hidden_custom_section_title).toUpperCase(l);
 
             }
             return null;
@@ -315,10 +315,10 @@ public class MainActivity extends ActionBarActivity {
 
                     break;
 
-                case HIDDEN_CUSTOM:
-                    rootView = PauseApplication.mainActivity.customPauseViewController.customPauseView;
-
-                    break;
+//                case HIDDEN_CUSTOM:
+//                    rootView = PauseApplication.mainActivity.customPauseViewController.customPauseView;
+//
+//                    break;
                 case PRIVACY_TAB:
                     rootView = PauseApplication.mainActivity.privacyViewController.privacyView;
 

@@ -3,7 +3,7 @@ package com.pauselabs.pause.view.tabs;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.widget.FrameLayout;
-import android.widget.GridView;
+import android.widget.ListView;
 
 import com.pauselabs.R;
 
@@ -16,7 +16,7 @@ import butterknife.Views;
 public class ASCIIDirectoryView extends FrameLayout {
 
     @InjectView(R.id.emojiDirectoryGrid)
-    public GridView asciiGrid;
+    public ListView asciiGrid;
 
     public ASCIIDirectoryView(Context context, AttributeSet attrs) {
         super(context, attrs);

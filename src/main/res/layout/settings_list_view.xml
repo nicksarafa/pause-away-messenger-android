@@ -34,21 +34,23 @@
         android:layout_height="fill_parent"
         android:orientation="vertical">
 
-        <!-- Name -->
+        <!-- Name Visibility = GONE -->
 
         -<com.pauselabs.pause.model.SettingsButton
             android:id="@+id/nameBtn"
             android:layout_width="match_parent"
             android:layout_height="?android:attr/listPreferredItemHeight"
+            android:visibility="gone"
             app:label="@string/name_settings_label"
             app:content="John"/>
 
-        <!-- Gender -->
+        <!-- Gender Visibility = GONE -->
 
         <com.pauselabs.pause.model.SettingsButton
             android:id="@+id/genderBtn"
             android:layout_width="match_parent"
             android:layout_height="?android:attr/listPreferredItemHeight"
+            android:visibility="gone"
             android:background="@null"
             app:label="@string/gender_settings_label"
             app:content="Male"/>
@@ -87,7 +89,17 @@
             android:layout_width="match_parent"
             android:layout_height="?android:attr/listPreferredItemHeight"
             android:background="@null"
-            app:label="@string/vibrate_label"
+            app:label="@string/activate_on_vibrate_settings_label"
+            app:content=""/>
+
+        <!-- Toasts Toggle -->
+
+        <com.pauselabs.pause.model.SettingsButton
+            android:id="@+id/toastsBtn"
+            android:layout_width="match_parent"
+            android:layout_height="?android:attr/listPreferredItemHeight"
+            android:background="@null"
+            app:label="@string/toasts_label"
             app:content=""/>
 
         <!-- Voice Toggle -->
@@ -98,17 +110,6 @@
             android:layout_height="?android:attr/listPreferredItemHeight"
             android:background="@null"
             app:label="@string/voice_label"
-            app:content=""/>
-
-
-        <!-- Toasts Toggle -->
-
-        <com.pauselabs.pause.model.SettingsButton
-            android:id="@+id/toastsBtn"
-            android:layout_width="match_parent"
-            android:layout_height="?android:attr/listPreferredItemHeight"
-            android:background="@null"
-            app:label="@string/toasts_label"
             app:content=""/>
 
         <!-- Feedback Label -->
@@ -127,7 +128,6 @@
             android:layout_height="?android:attr/listPreferredItemHeight"
             android:background="@null"
             app:label="@string/rate_us_settings_label"/>
-
 
         <!-- Contact Us Email Dialog -->
 
