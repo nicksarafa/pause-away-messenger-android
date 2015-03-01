@@ -12,7 +12,7 @@
         android:layout_height="fill_parent"
         android:verticalSpacing="@dimen/ascii_spacing"
         android:horizontalSpacing="@dimen/ascii_spacing"
-        android:numColumns="auto_fit"
+        android:numColumns="1"
         android:listSelector="@color/transparent"
         android:cacheColorHint="@color/transparent"
         android:clipToPadding="false"
