@@ -14,25 +14,27 @@
         android:layout_height="match_parent"
         android:background="@drawable/transparent_drawable">
 
-            <EditText
-                android:id="@+id/custom_text"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_gravity="center_horizontal"
-                android:textColor="@color/pause_green"
-                android:paddingTop="@dimen/privacy_view_vertical_padding"
-                android:gravity="center_horizontal"
-                android:textSize="@dimen/text_large"
-                android:textColorHint="@color/text_light"
-                android:textIsSelectable="false"
-                android:textCursorDrawable="@drawable/cursor"
-                android:background="@drawable/transparent_drawable"
-                android:freezesText="false"
-                android:imeOptions="flagNoEnterAction"
-                android:paddingLeft="@dimen/activity_horizontal_margin"
-                android:paddingRight="@dimen/activity_horizontal_margin"
-                android:inputType="textMultiLine"
-                android:hint="@string/custom_pause_hint"/>
+        <EditText
+            android:id="@+id/custom_text"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="start"
+            android:gravity="start"
+            android:textSize="@dimen/text_large"
+            android:textColorHint="@color/text_light"
+            android:textColor="@color/text_color"
+            android:textIsSelectable="false"
+            android:textCursorDrawable="@drawable/cursor"
+            android:background="@drawable/transparent_drawable"
+            android:freezesText="false"
+            android:imeOptions="flagNoEnterAction"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:paddingTop="@dimen/activity_vertical_margin"
+            android:paddingLeft="@dimen/activity_horizontal_margin"
+            android:paddingRight="@dimen/activity_horizontal_margin"
+            android:inputType="textMultiLine"
+            android:hint="@string/custom_pause_hint"/>
 
     </RelativeLayout>
 

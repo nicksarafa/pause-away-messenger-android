@@ -10,16 +10,18 @@
     android:layout_height="?android:attr/listPreferredItemHeight">
 
     <com.gc.materialdesign.views.CheckBox
+        xmlns:materialdesign="http://schemas.android.com/apk/res-auto"
         android:id="@+id/checkbox_ice"
+        android:focusable="false"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:singleLine="true"
-        android:fontFamily="sans-serif-light"
         android:ellipsize="marquee"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:layout_gravity="center_vertical|center_horizontal"/>
 
-    <TextView android:id="@android:id/text1"
+    <TextView
+        android:id="@android:id/text1"
         android:paddingLeft="@dimen/contact_list_item_padding"
         android:paddingRight="@dimen/contact_list_item_padding"
         android:layout_gravity="center_vertical|center_horizontal"
@@ -37,13 +39,14 @@
         android:textAppearance="?android:attr/textAppearanceLarge"/>
 
     <com.gc.materialdesign.views.CheckBox
+        xmlns:materialdesign="http://schemas.android.com/apk/res-auto"
         android:id="@+id/checkbox_added"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical|center_horizontal"
-        android:fontFamily="sans-serif-light"
         android:ellipsize="marquee"
         android:singleLine="true"
+        android:focusable="false"
         android:textAppearance="?android:attr/textAppearanceLarge"/>
 
 </LinearLayout>

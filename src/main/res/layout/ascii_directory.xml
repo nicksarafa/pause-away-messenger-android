@@ -24,7 +24,8 @@
         android:overScrollMode="never"
         android:overScrollFooter="@android:color/transparent"
         android:footerDividersEnabled="false"
-        android:stretchMode="columnWidth" />
+        android:stretchMode="columnWidth"
+        android:paddingBottom="@dimen/activity_horizontal_margin"/>
 
 </com.pauselabs.pause.view.tabs.ASCIIDirectoryView>
 

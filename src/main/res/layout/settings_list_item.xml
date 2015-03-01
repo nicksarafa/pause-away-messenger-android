@@ -16,7 +16,7 @@
         android:layout_weight="1"
         android:layout_marginStart="@dimen/settings_thumbnail_padding"
         android:layout_marginLeft="@dimen/settings_thumbnail_padding"
-        android:layout_gravity="left|center_vertical"
+        android:layout_gravity="start|center_vertical"
         android:src="@drawable/ic_call_icon"/>
 
     <!-- Settings Label -->
@@ -34,12 +34,11 @@
                 android:ellipsize="none"
                 android:maxLines="100"
                 android:scrollHorizontally="false"
+                android:textIsSelectable="false"
+                android:textColor="@color/text_color"
                 android:textAlignment="textStart"
-                android:fontFamily="sans-serif-light"
-                android:textSize="@dimen/text_medium"
-                android:textColor="@android:color/background_dark"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="Respond to Text Messages"/>
+                android:textSize="@dimen/text_large"
+                android:textAppearance="?android:attr/textAppearanceLarge"/>
 
             <!-- User Info -->
 
@@ -53,13 +52,11 @@
                     android:gravity="end|center_vertical"
                     android:layout_gravity="end|center_vertical"
                     android:textAlignment="textEnd"
+                    android:textColor="@color/text_color"
                     android:layout_marginRight="@dimen/privacy_checkbox_padding"
                     android:layout_marginEnd="@dimen/privacy_checkbox_padding"
-                    android:textColor="@color/dark_grey"
-                    android:fontFamily="sans-serif-light"
-                    android:textSize="@dimen/text_medium"
-                    android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:text="Male"/>
+                    android:textSize="@dimen/text_large"
+                    android:textAppearance="?android:attr/textAppearanceLarge"/>
 
                 <!-- Endnail -->
 
@@ -71,15 +68,5 @@
                         android:gravity="end|center_vertical"
                         android:layout_marginRight="@dimen/privacy_checkbox_padding"
                         android:layout_marginEnd="@dimen/privacy_checkbox_padding"/>
-
-                    <!-- Checkbox. Need to be here? -->
-
-                        <!--<com.gc.materialdesign.views.CheckBox-->
-                            <!--android:id="@+id/checkbox"-->
-                            <!--android:layout_width="wrap_content"-->
-                            <!--android:layout_height="wrap_content"-->
-                            <!--android:layout_gravity="center_vertical|center_horizontal"-->
-                            <!--android:background="@color/pause_green"-->
-                            <!--materialdesign:check="true" />-->
 
 </merge>

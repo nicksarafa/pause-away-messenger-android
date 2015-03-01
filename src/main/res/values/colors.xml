@@ -39,12 +39,6 @@
     <color name="button_background_disabled_end">#646464</color>
     <color name="text_shadow">#000000</color>
 
-    <color name="background_selected">#1fb6ed</color>
-    <color name="nav_button_text_light">#ffffff</color>
-    <color name="nav_button_pressed">#1fb6ed</color>
-    <color name="nav_button_disabled">#646464</color>
-    <color name="nav_button_text_disabled">#464646</color>
-
     <color name="dark_grey">#1f1f1f</color>
     <color name="navigation_drawer_item_separator">#c2c2c2</color>
 
@@ -67,5 +61,6 @@
     <color name="colorPrimaryDark">#123936</color>
     <color name="colorStatusBar">#123936</color>
     <color name="colorAccent">#beb53c</color>
+    <color name="text_color">#7c7c7c</color>
 
 </resources>
