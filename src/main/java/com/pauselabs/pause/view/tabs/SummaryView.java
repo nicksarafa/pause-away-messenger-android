@@ -6,7 +6,6 @@ import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.gc.materialdesign.views.ButtonFloatSmall;
 import com.pauselabs.R;
 
 import butterknife.InjectView;
@@ -21,8 +20,8 @@ public class SummaryView extends RelativeLayout {
     public ListView listView;
     @InjectView(R.id.summary_no_messages)
     public TextView noMessages;
-    @InjectView(R.id.summary_dialogue)
-    public ButtonFloatSmall summaryDialogue;
+//    @InjectView(R.id.summary_dialogue)
+//    public ButtonFloatSmall summaryDialogue;
     @InjectView(R.id.summary_view_container)
     public RelativeLayout summaryViewContainer;
 

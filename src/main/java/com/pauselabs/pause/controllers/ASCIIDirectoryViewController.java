@@ -63,7 +63,7 @@ public class ASCIIDirectoryViewController implements AdapterView.OnItemClickList
                             "“’Tis some visitor,” I muttered, “tapping at my chamber door—\n" +
                             "            Only this and nothing more.”"),
                     new ASCIIItem("I just want to be left alone", "Studying all night"),
-                    new ASCIIItem("Happy Dance!!!","Dancing with all the homies in the club bottle full of bub mama I got what you need ┏(･o･)┛♪┗ (･o･) ┓"),
+                    new ASCIIItem("Happy Dance!!!","Dancing with all the homies in the club bottle full of bub mama I got what you need"),
                     new ASCIIItem("Dog","nobody said it was easy")
             };
 
