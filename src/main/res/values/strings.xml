@@ -126,5 +126,7 @@
     <string name="ice_header_title">Emergency Contacts</string>
     <string name="summary_splash_no_new_messages">No Messages</string>
     <string name="custom_pause_hint">Enter Custom Message</string>
+    <string name="on_boarding_name_hint">Enter Your First Name</string>
+    <string name="on_boarding_picture_content_description">Welcome to Pause!</string>
 
 </resources>

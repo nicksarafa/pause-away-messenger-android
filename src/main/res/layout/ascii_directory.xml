@@ -20,7 +20,7 @@
         android:isScrollContainer="false"
         android:scrollbarStyle="outsideOverlay"
         android:smoothScrollbar="true"
-        android:verticalScrollbarPosition="right"
+        android:verticalScrollbarPosition="left"
         android:overScrollMode="never"
         android:overScrollFooter="@android:color/transparent"
         android:footerDividersEnabled="false"

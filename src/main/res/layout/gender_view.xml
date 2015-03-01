@@ -15,6 +15,7 @@
         <ImageView
             android:layout_width="fill_parent"
             android:layout_height="@dimen/ob_word_mark_height"
+            android:contentDescription="@string/on_boarding_picture_content_description"
             android:layout_gravity="center_horizontal"
             android:src="@drawable/ob_full_face"
             android:layout_marginTop="20dp"/>
@@ -33,7 +34,7 @@
             android:layout_gravity="center_horizontal"
             android:textColor="@color/pause_green"
             android:gravity="center_horizontal|center_vertical"
-            android:textSize="@dimen/text_large"
+            android:textSize="@dimen/text_extra_large"
             android:textColorHint="@color/text_light"
             android:textIsSelectable="false"
             android:textCursorDrawable="@drawable/cursor"
@@ -41,7 +42,7 @@
             android:freezesText="false"
             android:inputType="textPersonName"
             android:imeOptions="actionDone"
-            android:hint="Enter Your First Name"/>
+            android:hint="@string/on_boarding_name_hint"/>
 
             <!-- Male or Female -->
 
@@ -53,31 +54,31 @@
                 android:orientation="horizontal"
                 android:layout_centerHorizontal="true">
 
-                    <!-- Male -->
+                <!-- Male -->
 
-                    <Button
-                        android:id="@+id/male"
-                        android:layout_width="0dp"
-                        android:layout_height="@dimen/ob_btn_height"
-                        android:layout_marginTop="@dimen/ob_btn_margin"
-                        android:layout_weight="1"
-                        android:background="@color/holo_blue"
-                        android:textColor="@color/text_white"
-                        android:textSize="@dimen/text_large"
-                        android:text="@string/ob_male_btn"/>
+                <Button
+                    android:id="@+id/male"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/ob_btn_height"
+                    android:layout_marginTop="@dimen/ob_btn_margin"
+                    android:layout_weight="1"
+                    android:background="@color/holo_blue"
+                    android:textColor="@color/text_white"
+                    android:textSize="@dimen/text_large"
+                    android:text="@string/ob_male_btn"/>
 
-                    <!-- Female -->
+                <!-- Female -->
 
-                    <Button
-                        android:id="@+id/female"
-                        android:layout_width="0dp"
-                        android:layout_height="@dimen/ob_btn_height"
-                        android:layout_marginTop="@dimen/ob_btn_margin"
-                        android:layout_weight="1"
-                        android:background="@color/female_pink"
-                        android:textColor="@color/text_white"
-                        android:textSize="@dimen/text_large"
-                        android:text="@string/ob_female_btn"/>
+                <Button
+                    android:id="@+id/female"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/ob_btn_height"
+                    android:layout_marginTop="@dimen/ob_btn_margin"
+                    android:layout_weight="1"
+                    android:background="@color/female_pink"
+                    android:textColor="@color/text_white"
+                    android:textSize="@dimen/text_large"
+                    android:text="@string/ob_female_btn"/>
 
             </LinearLayout>
 
