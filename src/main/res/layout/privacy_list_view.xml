@@ -22,64 +22,6 @@
         android:freezesText="false"
         android:hint="@string/privacy_search_bar"/>
 
-    <!--<com.pauselabs.pause.model.SettingsButton-->
-        <!--android:id="@+id/strangersBtn"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:background="@null"-->
-        <!--app:label="@string/reply_to_strangers">-->
-
-        <!--<com.gc.materialdesign.views.CheckBox-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_gravity="center_vertical|center_horizontal"-->
-            <!--android:fontFamily="sans-serif-light"-->
-            <!--android:ellipsize="marquee"-->
-            <!--android:singleLine="true"-->
-            <!--android:textAppearance="?android:attr/textAppearanceLarge"/>-->
-
-        <!--</com.pauselabs.pause.model.SettingsButton>-->
-
-    <!-- Missed Calls -->
-
-    <!--<com.pauselabs.pause.model.SettingsButton-->
-        <!--android:id="@+id/missedCallsBtn"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:background="@null"-->
-        <!--app:label="@string/reply_to_calls_settings_label">-->
-
-        <!--<com.gc.materialdesign.views.CheckBox-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_gravity="center_vertical|center_horizontal"-->
-            <!--android:fontFamily="sans-serif-light"-->
-            <!--android:ellipsize="marquee"-->
-            <!--android:singleLine="true"-->
-            <!--android:textAppearance="?android:attr/textAppearanceLarge"/>-->
-
-        <!--</com.pauselabs.pause.model.SettingsButton>-->
-
-    <!-- Replied Text Messages -->
-
-    <!--<com.pauselabs.pause.model.SettingsButton-->
-        <!--android:id="@+id/receivedSMSBtn"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:background="@null"-->
-        <!--app:label="@string/reply_to_SMS_settings_label">-->
-
-        <!--<com.gc.materialdesign.views.CheckBox-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_gravity="center_vertical|center_horizontal"-->
-            <!--android:fontFamily="sans-serif-light"-->
-            <!--android:ellipsize="marquee"-->
-            <!--android:singleLine="true"-->
-            <!--android:textAppearance="?android:attr/textAppearanceLarge"/>-->
-
-        <!--</com.pauselabs.pause.model.SettingsButton>-->
-
     <Button
         android:id="@+id/privacySelectAll"
         android:layout_width="0dp"
@@ -109,13 +51,12 @@
         <!-- style="@style/ContactListView" -->
         <!-- Use standard android.R class empty id instead of app specific id. This is just useful for
          consistency. -->
-        <TextView android:id="@id/android:empty"
-            android:gravity="center"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="@string/no_contacts"
-            android:fontFamily="sans-serif-light"
-            android:textAppearance="?android:attr/textAppearanceLarge"/>
+        <!--<TextView android:id="@id/android:empty"-->
+            <!--android:gravity="center"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:text="@string/no_contacts"-->
+            <!--android:textAppearance="?android:attr/textAppearanceLarge"/>-->
 
 </com.pauselabs.pause.view.tabs.PrivacyView>
 

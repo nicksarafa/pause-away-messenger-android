@@ -32,11 +32,10 @@
         android:layout_marginRight="@dimen/privacy_checkbox_padding"
         android:layout_marginEnd="@dimen/privacy_checkbox_padding"
         android:gravity="center_vertical"
-        android:fontFamily="sans-serif-light"
         android:singleLine="true"
         android:ellipsize="marquee"
-        android:textAlignment="center"
-        android:textAppearance="?android:attr/textAppearanceLarge"/>
+        android:textSize="@dimen/text_large"
+        android:textAlignment="center"/>
 
     <com.gc.materialdesign.views.CheckBox
         xmlns:materialdesign="http://schemas.android.com/apk/res-auto"

@@ -21,52 +21,52 @@
 
     <!-- Settings Label -->
 
+        <TextView
+            android:id="@+id/label"
+            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight="6"
+            android:layout_marginStart="@dimen/settings_item_padding"
+            android:layout_marginLeft="@dimen/settings_item_padding"
+            android:layout_centerVertical="true"
+            android:layout_gravity="start|center_vertical"
+            android:gravity="start|center_vertical"
+            android:ellipsize="none"
+            android:maxLines="100"
+            android:scrollHorizontally="false"
+            android:textIsSelectable="false"
+            android:textColor="@color/text_color"
+            android:textAlignment="textStart"
+            android:textSize="@dimen/text_large"
+            android:textAppearance="?android:attr/textAppearanceLarge"/>
+
+        <!-- User Info -->
+
             <TextView
-                android:id="@+id/label"
-                android:layout_height="wrap_content"
+                android:id="@+id/content"
+                android:layout_height="match_parent"
                 android:layout_width="0dp"
-                android:layout_weight="6"
+                android:layout_weight="2"
                 android:layout_marginStart="@dimen/settings_item_padding"
                 android:layout_marginLeft="@dimen/settings_item_padding"
-                android:layout_centerVertical="true"
-                android:layout_gravity="start|center_vertical"
-                android:gravity="start|center_vertical"
-                android:ellipsize="none"
-                android:maxLines="100"
-                android:scrollHorizontally="false"
-                android:textIsSelectable="false"
+                android:gravity="end|center_vertical"
+                android:layout_gravity="end|center_vertical"
+                android:textAlignment="textEnd"
                 android:textColor="@color/text_color"
-                android:textAlignment="textStart"
+                android:layout_marginRight="@dimen/privacy_checkbox_padding"
+                android:layout_marginEnd="@dimen/privacy_checkbox_padding"
                 android:textSize="@dimen/text_large"
                 android:textAppearance="?android:attr/textAppearanceLarge"/>
 
-            <!-- User Info -->
+            <!-- Endnail -->
 
-                <TextView
-                    android:id="@+id/content"
-                    android:layout_height="match_parent"
+                <ImageView
+                    android:id="@+id/endnail"
+                    android:layout_height="0dp"
                     android:layout_width="0dp"
-                    android:layout_weight="2"
-                    android:layout_marginStart="@dimen/settings_item_padding"
-                    android:layout_marginLeft="@dimen/settings_item_padding"
+                    android:layout_weight="0"
                     android:gravity="end|center_vertical"
-                    android:layout_gravity="end|center_vertical"
-                    android:textAlignment="textEnd"
-                    android:textColor="@color/text_color"
                     android:layout_marginRight="@dimen/privacy_checkbox_padding"
-                    android:layout_marginEnd="@dimen/privacy_checkbox_padding"
-                    android:textSize="@dimen/text_large"
-                    android:textAppearance="?android:attr/textAppearanceLarge"/>
-
-                <!-- Endnail -->
-
-                    <ImageView
-                        android:id="@+id/endnail"
-                        android:layout_height="0dp"
-                        android:layout_width="0dp"
-                        android:layout_weight="0"
-                        android:gravity="end|center_vertical"
-                        android:layout_marginRight="@dimen/privacy_checkbox_padding"
-                        android:layout_marginEnd="@dimen/privacy_checkbox_padding"/>
+                    android:layout_marginEnd="@dimen/privacy_checkbox_padding"/>
 
 </merge>
