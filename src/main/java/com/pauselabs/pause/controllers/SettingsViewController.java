@@ -40,9 +40,9 @@ public class SettingsViewController implements View.OnClickListener {
         settingsView.strangersBtn.setContent((prefs.getBoolean(Constants.Settings.REPLY_STRANGERS, true)) ? "Yes" : "No");
         settingsView.missedCallsBtn.setContent((prefs.getBoolean(Constants.Settings.REPLY_MISSED_CALL, true)) ? "Yes" : "No");
         settingsView.receivedSmsBtn.setContent((prefs.getBoolean(Constants.Settings.REPLY_SMS, true)) ? "Yes" : "No");
-        settingsView.silentBtn.setContent((prefs.getBoolean(Constants.Settings.PAUSE_ON_SILENT_KEY, false)) ? "Yes" : "No");
-        settingsView.vibrateBtn.setContent((prefs.getBoolean(Constants.Settings.PAUSE_ON_VIBRATE_KEY, false)) ? "Yes" : "No");
-        settingsView.voiceBtn.setContent((prefs.getBoolean(Constants.Settings.PAUSE_VOICE_FEEDBACK_KEY, true)) ? "On" : "Off");
+        settingsView.silentBtn.setContent((prefs.getBoolean(Constants.Settings.PAUSE_ON_SILENT_KEY, true)) ? "Yes" : "No");
+        settingsView.vibrateBtn.setContent((prefs.getBoolean(Constants.Settings.PAUSE_ON_VIBRATE_KEY, true)) ? "Yes" : "No");
+        settingsView.voiceBtn.setContent((prefs.getBoolean(Constants.Settings.PAUSE_VOICE_FEEDBACK_KEY, false)) ? "On" : "Off");
         settingsView.toastBtn.setContent((prefs.getBoolean(Constants.Settings.PAUSE_TOASTS_ON_KEY, true)) ? "On" : "Off");
 
         settingsView.nameBtn.setOnClickListener(this);
@@ -181,7 +181,7 @@ public class SettingsViewController implements View.OnClickListener {
     }
 
     public void changeSilent() {
-        boolean pauseOnSilent = prefs.getBoolean(Constants.Settings.PAUSE_ON_SILENT_KEY,false);
+        boolean pauseOnSilent = prefs.getBoolean(Constants.Settings.PAUSE_ON_SILENT_KEY,true);
 
         if (pauseOnSilent) {
             settingsView.silentBtn.setContent("No");
@@ -192,7 +192,7 @@ public class SettingsViewController implements View.OnClickListener {
     }
 
     public void changeVibrate() {
-        boolean pauseOnVibrate = prefs.getBoolean(Constants.Settings.PAUSE_ON_VIBRATE_KEY,false);
+        boolean pauseOnVibrate = prefs.getBoolean(Constants.Settings.PAUSE_ON_VIBRATE_KEY,true);
 
         if (pauseOnVibrate) {
             settingsView.vibrateBtn.setContent("No");

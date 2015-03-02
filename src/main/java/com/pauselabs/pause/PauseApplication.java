@@ -548,7 +548,7 @@ public class PauseApplication extends Application {
     }
 
     public static void speak(String textToSpeak) {
-        if (prefs.getBoolean(Constants.Settings.PAUSE_VOICE_FEEDBACK_KEY,true)) {
+        if (prefs.getBoolean(Constants.Settings.PAUSE_VOICE_FEEDBACK_KEY,false)) {
             tts.speak(textToSpeak, TextToSpeech.QUEUE_ADD, null);
         }
     }
