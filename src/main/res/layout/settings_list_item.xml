@@ -9,15 +9,14 @@
 
     <!-- Thumbnail -->
 
-    <ImageView
+    <IconText
         android:id="@+id/frontnail"
         android:layout_height="@dimen/settings_thumbnail_size"
         android:layout_width="0dp"
         android:layout_weight="1"
         android:layout_marginStart="@dimen/settings_thumbnail_padding"
         android:layout_marginLeft="@dimen/settings_thumbnail_padding"
-        android:layout_gravity="start|center_vertical"
-        android:src="@drawable/ic_call_icon"/>
+        android:layout_gravity="start|center_vertical"/>
 
     <!-- Settings Label -->
 
