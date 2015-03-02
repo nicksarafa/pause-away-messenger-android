@@ -40,7 +40,8 @@ public class SettingsViewController implements View.OnClickListener {
         settingsView.strangersBtn.setContent((prefs.getBoolean(Constants.Settings.REPLY_STRANGERS, true)) ? "Yes" : "No");
         settingsView.missedCallsBtn.setContent((prefs.getBoolean(Constants.Settings.REPLY_MISSED_CALL, true)) ? "Yes" : "No");
         settingsView.receivedSmsBtn.setContent((prefs.getBoolean(Constants.Settings.REPLY_SMS, true)) ? "Yes" : "No");
-        settingsView.volumeBtn.setContent((prefs.getBoolean(Constants.Settings.PAUSE_ON_VIBRATE_KEY, false)) ? "Yes" : "No");
+        settingsView.silentBtn.setContent((prefs.getBoolean(Constants.Settings.PAUSE_ON_SILENT_KEY, false)) ? "Yes" : "No");
+        settingsView.vibrateBtn.setContent((prefs.getBoolean(Constants.Settings.PAUSE_ON_VIBRATE_KEY, false)) ? "Yes" : "No");
         settingsView.voiceBtn.setContent((prefs.getBoolean(Constants.Settings.PAUSE_VOICE_FEEDBACK_KEY, true)) ? "On" : "Off");
         settingsView.toastBtn.setContent((prefs.getBoolean(Constants.Settings.PAUSE_TOASTS_ON_KEY, true)) ? "On" : "Off");
 
@@ -53,7 +54,8 @@ public class SettingsViewController implements View.OnClickListener {
         settingsView.contactBtn.setOnClickListener(this);
 //        settingsView.supportBtn.setOnClickListener(this);
 //        settingsView.termsBtn.setOnClickListener(this);
-        settingsView.volumeBtn.setOnClickListener(this);
+        settingsView.silentBtn.setOnClickListener(this);
+        settingsView.vibrateBtn.setOnClickListener(this);
         settingsView.voiceBtn.setOnClickListener(this);
         settingsView.toastBtn.setOnClickListener(this);
     }
@@ -76,7 +78,10 @@ public class SettingsViewController implements View.OnClickListener {
             case R.id.receivedSMSBtn:
                 changeSMS();
                 break;
-            case R.id.volumeBtn:
+            case R.id.silentBtn:
+                changeSilent();
+                break;
+            case R.id.vibrateBtn:
                 changeVibrate();
                 break;
             case R.id.voiceBtn:
@@ -175,13 +180,24 @@ public class SettingsViewController implements View.OnClickListener {
         prefs.edit().putBoolean(Constants.Settings.REPLY_SMS, !replySMS).apply();
     }
 
+    public void changeSilent() {
+        boolean pauseOnSilent = prefs.getBoolean(Constants.Settings.PAUSE_ON_SILENT_KEY,false);
+
+        if (pauseOnSilent) {
+            settingsView.silentBtn.setContent("No");
+        } else {
+            settingsView.silentBtn.setContent("Yes");
+        }
+        prefs.edit().putBoolean(Constants.Settings.PAUSE_ON_SILENT_KEY, !pauseOnSilent).apply();
+    }
+
     public void changeVibrate() {
         boolean pauseOnVibrate = prefs.getBoolean(Constants.Settings.PAUSE_ON_VIBRATE_KEY,false);
 
         if (pauseOnVibrate) {
-            settingsView.volumeBtn.setContent("No");
+            settingsView.vibrateBtn.setContent("No");
         } else {
-            settingsView.volumeBtn.setContent("Yes");
+            settingsView.vibrateBtn.setContent("Yes");
         }
         prefs.edit().putBoolean(Constants.Settings.PAUSE_ON_VIBRATE_KEY, !pauseOnVibrate).apply();
     }

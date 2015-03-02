@@ -83,7 +83,15 @@
         <!-- Volume Settings Key -->
 
         <com.pauselabs.pause.model.SettingsButton
-            android:id="@+id/volumeBtn"
+            android:id="@+id/silentBtn"
+            android:layout_width="match_parent"
+            android:layout_height="?android:attr/listPreferredItemHeight"
+            android:background="@null"
+            app:label="@string/silent_label"
+            app:content=""/>
+
+        <com.pauselabs.pause.model.SettingsButton
+            android:id="@+id/vibrateBtn"
             android:layout_width="match_parent"
             android:layout_height="?android:attr/listPreferredItemHeight"
             android:background="@null"

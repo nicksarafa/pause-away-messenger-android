@@ -25,9 +25,9 @@ public class SilenceListener extends BroadcastReceiver {
     public void onReceive(Context context, Intent intent) {
         if (intent.getAction().equals(AudioManager.RINGER_MODE_CHANGED_ACTION)) {
 
-            if (am.getRingerMode() == AudioManager.RINGER_MODE_SILENT || (am.getRingerMode() == AudioManager.RINGER_MODE_VIBRATE && prefs.getBoolean(Constants.Settings.PAUSE_ON_VIBRATE_KEY,false))) {
+            if ((am.getRingerMode() == AudioManager.RINGER_MODE_SILENT && prefs.getBoolean(Constants.Settings.PAUSE_ON_SILENT_KEY,false)) || (am.getRingerMode() == AudioManager.RINGER_MODE_VIBRATE && prefs.getBoolean(Constants.Settings.PAUSE_ON_VIBRATE_KEY,false))) {
                 PauseApplication.startPauseService(Constants.Session.Creator.SILENCE);
-            } else if (am.getRingerMode() == AudioManager.RINGER_MODE_NORMAL || (am.getRingerMode() == AudioManager.RINGER_MODE_VIBRATE && !prefs.getBoolean(Constants.Settings.PAUSE_ON_VIBRATE_KEY,false))) {
+            } else if ((am.getRingerMode() == AudioManager.RINGER_MODE_SILENT && !prefs.getBoolean(Constants.Settings.PAUSE_ON_SILENT_KEY,false)) || (am.getRingerMode() == AudioManager.RINGER_MODE_VIBRATE && !prefs.getBoolean(Constants.Settings.PAUSE_ON_VIBRATE_KEY,false)) || am.getRingerMode() == AudioManager.RINGER_MODE_NORMAL) {
                 PauseApplication.stopPauseService(Constants.Session.Destroyer.SILENCE);
                 PauseApplication.setOldRingerMode(am.getRingerMode());
             }
