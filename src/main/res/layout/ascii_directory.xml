@@ -13,7 +13,7 @@
         android:verticalSpacing="@dimen/ascii_spacing"
         android:horizontalSpacing="@dimen/ascii_spacing"
         android:numColumns="1"
-        android:paddingTop="70dp"
+        android:layout_marginTop="70dp"
         android:listSelector="@color/transparent"
         android:cacheColorHint="@color/transparent"
         android:clipToPadding="false"
@@ -29,11 +29,12 @@
         android:paddingBottom="@dimen/activity_horizontal_margin"/>
 
         <RelativeLayout
-            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/custom_pause_container"
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="@dimen/fab_button_diameter"
             android:layout_alignParentTop="true"
+            android:layout_alignTop="@id/emojiDirectoryGrid"
             android:background="@color/material_blue_grey_800">
 
             <EditText
