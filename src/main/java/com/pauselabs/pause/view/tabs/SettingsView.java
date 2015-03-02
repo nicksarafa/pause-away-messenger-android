@@ -29,8 +29,10 @@ public class SettingsView extends LinearLayout {
     public SettingsButton contactBtn;
     @InjectView(R.id.genderBtn)
     public SettingsButton genderBtn;
-    @InjectView(R.id.volumeBtn)
-    public SettingsButton volumeBtn;
+    @InjectView(R.id.silentBtn)
+    public SettingsButton silentBtn;
+    @InjectView(R.id.vibrateBtn)
+    public SettingsButton vibrateBtn;
     @InjectView(R.id.voiceBtn)
     public SettingsButton voiceBtn;
     @InjectView(R.id.toastsBtn)
