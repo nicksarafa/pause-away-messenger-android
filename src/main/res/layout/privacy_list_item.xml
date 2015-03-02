@@ -6,7 +6,7 @@
     android:layout_height="?android:attr/listPreferredItemHeight"
     android:listSelector="@android:color/transparent">
 
-    <com.gc.materialdesign.views.CheckBox
+    <CheckBox
         android:id="@+id/checkbox_ice"
         android:focusable="false"
         android:layout_width="wrap_content"
@@ -35,7 +35,7 @@
             android:ellipsize="marquee"
             android:textSize="@dimen/text_large"/>
 
-            <com.gc.materialdesign.views.CheckBox
+            <CheckBox
                 android:id="@+id/checkbox_added"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
