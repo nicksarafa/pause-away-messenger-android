@@ -1,16 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-    <!-- Static Top of Privacy List View -->
-
 <com.pauselabs.pause.view.tabs.PrivacyView
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <!-- Use standard android.R class list id instead of app specific id. This is just useful for
-         consistency. -->
     <ListView
         android:id="@+id/contact_list"
         android:layout_width="match_parent"
@@ -29,37 +24,29 @@
         android:overScrollFooter="@android:color/transparent"
         android:footerDividersEnabled="false"/>
 
-    <SearchView
-        android:id="@+id/contact_search_field"
-        android:layout_width="match_parent"
-        android:layout_height="68dp"
-        android:layout_alignParentTop="true"
-        android:imeOptions="actionSearch"
-        android:focusableInTouchMode="true"
-        android:focusable="true"
-        android:textIsSelectable="false"
-        android:textCursorDrawable="@drawable/cursor"
-        android:background="@color/colorPrimaryDark"
-        android:freezesText="false"
-        android:hint="@string/privacy_search_bar"/>
+        <SearchView
+            android:id="@+id/contact_search_field"
+            android:layout_width="match_parent"
+            android:layout_height="68dp"
+            android:layout_alignParentTop="true"
+            android:imeOptions="actionSearch"
+            android:focusableInTouchMode="true"
+            android:focusable="true"
+            android:textIsSelectable="false"
+            android:textCursorDrawable="@drawable/cursor"
+            android:paddingStart="@dimen/activity_horizontal_margin"
+            android:paddingLeft="@dimen/activity_horizontal_margin"
+            android:background="@color/material_blue_grey_800"
+            android:freezesText="false"
+            android:hint="@string/privacy_search_bar"/>
 
-    <Button
-        android:id="@+id/privacySelectAll"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:gravity="center"
-        android:text="@string/select_all_button"
-        android:background="@drawable/transparent_drawable"/>
-
-        <!-- style="@style/ContactListView" -->
-        <!-- Use standard android.R class empty id instead of app specific id. This is just useful for
-         consistency. -->
-        <!--<TextView android:id="@id/android:empty"-->
-            <!--android:gravity="center"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="match_parent"-->
-            <!--android:text="@string/no_contacts"-->
-            <!--android:textAppearance="?android:attr/textAppearanceLarge"/>-->
+            <Button
+                android:id="@+id/privacySelectAll"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:gravity="center"
+                android:text="@string/select_all_button"
+                android:background="@drawable/transparent_drawable"/>
 
 </com.pauselabs.pause.view.tabs.PrivacyView>
 

@@ -55,7 +55,7 @@ public class ASCIIDirectoryViewController implements AdapterView.OnItemClickList
             super(context, resource);
 
             ASCIIItem[] asciis = {
-                    new ASCIIItem("Out having a good time", "Out having a really really good time with all my friends"),
+                    new ASCIIItem("Can't talk. Out having a good time", "Can't talk, Out having a really really good time with all my friends"),
                     new ASCIIItem("Not sure where I am", "Once upon a midnight dreary, while I pondered, weak and weary,\n" +
                             "Over many a quaint and curious volume of forgotten lore—\n" +
                             "    While I nodded, nearly napping, suddenly there came a tapping,\n" +

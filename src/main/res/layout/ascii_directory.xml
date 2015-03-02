@@ -5,20 +5,15 @@
     android:id="@+id/emojiDirectory"
     android:layout_height="fill_parent"
     android:layout_width="fill_parent">
-    
-    <ImageButton
-        android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:background="@color/colorPrimaryDark"/>
 
     <ListView
         android:id="@+id/emojiDirectoryGrid"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:paddingTop="100dp"
         android:verticalSpacing="@dimen/ascii_spacing"
         android:horizontalSpacing="@dimen/ascii_spacing"
         android:numColumns="1"
+        android:paddingTop="70dp"
         android:listSelector="@color/transparent"
         android:cacheColorHint="@color/transparent"
         android:clipToPadding="false"
@@ -32,6 +27,40 @@
         android:footerDividersEnabled="false"
         android:stretchMode="columnWidth"
         android:paddingBottom="@dimen/activity_horizontal_margin"/>
+
+        <RelativeLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/fab_button_diameter"
+            android:layout_alignParentTop="true"
+            android:background="@color/material_blue_grey_800">
+
+            <EditText
+                android:id="@+id/custom_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/transparent"
+                android:layout_centerInParent="true"
+                android:focusableInTouchMode="true"
+                android:focusable="true"
+                android:textSize="@dimen/text_large"
+                android:textColorHint="@color/text_light"
+                android:textColor="@color/text_color"
+                android:textIsSelectable="false"
+                android:textCursorDrawable="@drawable/cursor"
+                android:freezesText="false"
+                android:maxLines="10"
+                android:scrollbars="none"
+                android:imeOptions="flagNoEnterAction"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:paddingLeft="@dimen/activity_horizontal_margin"
+                android:paddingRight="@dimen/activity_horizontal_margin"
+                android:inputType="textMultiLine"
+                android:hint="@string/custom_pause_hint"/>
+
+        </RelativeLayout>
 
 </com.pauselabs.pause.view.tabs.ASCIIDirectoryView>
 

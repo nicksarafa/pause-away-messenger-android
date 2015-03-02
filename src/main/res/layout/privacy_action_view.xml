@@ -18,7 +18,7 @@
         android:imeOptions="actionSearch"
         android:focusableInTouchMode="true"
         android:focusable="true"
-        android:visibility="visible"
+        android:visibility="invisible"
         android:textIsSelectable="false"
         android:textCursorDrawable="@drawable/cursor"
         android:freezesText="false"
