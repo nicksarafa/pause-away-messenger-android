@@ -4,6 +4,7 @@ import android.app.SearchManager;
 import android.app.SearchableInfo;
 import android.content.Context;
 import android.database.Cursor;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.ContactsContract;
@@ -74,6 +75,9 @@ public class PrivacyViewController implements View.OnClickListener, AdapterView.
         SearchableInfo searchableInfo = searchManager.getSearchableInfo(PauseApplication.mainActivity.getComponentName());
         privacyView.contactSearchField.setSearchableInfo(searchableInfo);
         privacyView.contactSearchField.setOnQueryTextListener(this);
+
+        privacyView.contactSearchField.setQueryHint("Search Contacts");
+        privacyView.contactSearchField.setBackgroundColor(Color.WHITE);
 
         PauseApplication.mainActivity.getSupportLoaderManager().restartLoader(ContactsQuery.QUERY_ID, null, this);
     }

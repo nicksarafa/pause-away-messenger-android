@@ -3,7 +3,6 @@ package com.pauselabs.pause.view.tabs;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.widget.Button;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.SearchView;
@@ -37,6 +36,7 @@ public class PrivacyView extends RelativeLayout {
 
     public PrivacyView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
+
     }
 
 

@@ -26,17 +26,18 @@
 
         <SearchView
             android:id="@+id/contact_search_field"
-            android:layout_width="match_parent"
+            android:layout_width="fill_parent"
             android:layout_height="68dp"
             android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:showAsAction="always|collapseActionView"
+            android:actionViewClass="android.widget.SearchView"
             android:imeOptions="actionSearch"
             android:focusableInTouchMode="true"
             android:focusable="true"
             android:textIsSelectable="false"
             android:textCursorDrawable="@drawable/cursor"
-            android:paddingStart="@dimen/activity_horizontal_margin"
-            android:paddingLeft="@dimen/activity_horizontal_margin"
-            android:background="@color/material_blue_grey_800"
+            android:background="@color/holo_blue"
             android:freezesText="false"
             android:hint="@string/privacy_search_bar"/>
 

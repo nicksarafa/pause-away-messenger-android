@@ -23,6 +23,8 @@
         android:smoothScrollbar="true"
         android:verticalScrollbarPosition="left"
         android:overScrollMode="never"
+        android:overScrollHeader="@color/transparent"
+        android:headerDividersEnabled="false"
         android:overScrollFooter="@android:color/transparent"
         android:footerDividersEnabled="false"
         android:stretchMode="columnWidth"
