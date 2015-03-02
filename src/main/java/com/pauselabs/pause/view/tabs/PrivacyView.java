@@ -5,6 +5,7 @@ import android.util.AttributeSet;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.SearchView;
 
 import com.pauselabs.R;
@@ -17,7 +18,7 @@ import butterknife.Views;
 /**
  * Created by Admin on 12/13/14.
  */
-public class PrivacyView extends LinearLayout {
+public class PrivacyView extends RelativeLayout {
 
     @InjectView(R.id.contact_search_field)
     public SearchView contactSearchField;

@@ -7,12 +7,14 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.ContactsContract;
+import android.support.v4.app.LoaderManager;
 import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.SearchView;
 
@@ -29,7 +31,7 @@ import javax.inject.Inject;
 /**
  * Created by Admin on 1/28/15.
  */
-public class PrivacyViewController implements View.OnClickListener, AdapterView.OnItemClickListener, SearchView.OnQueryTextListener, android.support.v4.app.LoaderManager.LoaderCallbacks<Cursor> {
+public class PrivacyViewController implements View.OnClickListener, AdapterView.OnItemClickListener, SearchView.OnQueryTextListener, LoaderManager.LoaderCallbacks<Cursor>, AbsListView.OnScrollListener {
 
     private final String TAG = PrivacyViewController.class.getSimpleName();
 
@@ -53,6 +55,7 @@ public class PrivacyViewController implements View.OnClickListener, AdapterView.
         mAdapter = new ContactsAdapter(PauseApplication.mainActivity);
         privacyView.contactList.setAdapter(mAdapter);
         privacyView.contactList.setOnItemClickListener(this);
+        privacyView.contactList.setOnScrollListener(this);
 
         privacyView.selectAllBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -73,6 +76,16 @@ public class PrivacyViewController implements View.OnClickListener, AdapterView.
         privacyView.contactSearchField.setOnQueryTextListener(this);
 
         PauseApplication.mainActivity.getSupportLoaderManager().restartLoader(ContactsQuery.QUERY_ID, null, this);
+    }
+
+    @Override
+    public void onScrollStateChanged(AbsListView view, int scrollState) {
+
+    }
+
+    @Override
+    public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+
     }
 
     @Override
@@ -185,5 +198,4 @@ public class PrivacyViewController implements View.OnClickListener, AdapterView.
             mAdapter.swapCursor(null);
         }
     }
-
 }

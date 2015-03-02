@@ -91,6 +91,8 @@ public class MainActivity extends ActionBarActivity {
 
                 if (pageIndex == PRIVACY_TAB) {
                     privacyViewController.privacyBtns.setVisibility(View.VISIBLE);
+                } else if(pageIndex == EMOJI_TAB) {
+
                 } else {
                     privacyViewController.privacyBtns.setVisibility(View.INVISIBLE);
                 }

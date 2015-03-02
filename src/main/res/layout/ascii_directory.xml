@@ -5,11 +5,17 @@
     android:id="@+id/emojiDirectory"
     android:layout_height="fill_parent"
     android:layout_width="fill_parent">
+    
+    <ImageButton
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:background="@color/colorPrimaryDark"/>
 
     <ListView
         android:id="@+id/emojiDirectoryGrid"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
+        android:paddingTop="100dp"
         android:verticalSpacing="@dimen/ascii_spacing"
         android:horizontalSpacing="@dimen/ascii_spacing"
         android:numColumns="1"

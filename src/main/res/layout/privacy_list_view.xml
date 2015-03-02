@@ -9,16 +9,37 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+    <!-- Use standard android.R class list id instead of app specific id. This is just useful for
+         consistency. -->
+    <ListView
+        android:id="@+id/contact_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:paddingTop="70dp"
+        android:overScrollMode="never"
+        android:listSelector="@android:color/transparent"
+        android:cacheColorHint="@android:color/transparent"
+        android:clipToPadding="false"
+        android:scrollbars="vertical"
+        android:isScrollContainer="false"
+        android:scrollbarStyle="outsideOverlay"
+        android:smoothScrollbar="true"
+        android:verticalScrollbarPosition="right"
+        android:overScrollFooter="@android:color/transparent"
+        android:footerDividersEnabled="false"/>
+
     <SearchView
         android:id="@+id/contact_search_field"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="match_parent"
+        android:layout_height="68dp"
+        android:layout_alignParentTop="true"
         android:imeOptions="actionSearch"
         android:focusableInTouchMode="true"
         android:focusable="true"
         android:textIsSelectable="false"
         android:textCursorDrawable="@drawable/cursor"
-        android:background="@drawable/transparent_drawable"
+        android:background="@color/colorPrimaryDark"
         android:freezesText="false"
         android:hint="@string/privacy_search_bar"/>
 
@@ -29,24 +50,6 @@
         android:gravity="center"
         android:text="@string/select_all_button"
         android:background="@drawable/transparent_drawable"/>
-
-        <!-- Use standard android.R class list id instead of app specific id. This is just useful for
-             consistency. -->
-        <ListView
-            android:id="@+id/contact_list"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:overScrollMode="never"
-            android:listSelector="@android:color/transparent"
-            android:cacheColorHint="@android:color/transparent"
-            android:clipToPadding="false"
-            android:scrollbars="vertical"
-            android:isScrollContainer="false"
-            android:scrollbarStyle="outsideOverlay"
-            android:smoothScrollbar="true"
-            android:verticalScrollbarPosition="right"
-            android:overScrollFooter="@android:color/transparent"
-            android:footerDividersEnabled="false"/>
 
         <!-- style="@style/ContactListView" -->
         <!-- Use standard android.R class empty id instead of app specific id. This is just useful for
