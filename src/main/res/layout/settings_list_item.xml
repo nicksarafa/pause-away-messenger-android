@@ -9,14 +9,27 @@
 
     <!-- Thumbnail -->
 
-    <IconText
+    <IconTextView
         android:id="@+id/frontnail"
         android:layout_height="@dimen/settings_thumbnail_size"
         android:layout_width="0dp"
+        android:layout_centerHorizontal="true"
+        android:textAlignment="center"
+        android:textIsSelectable="false"
+        android:text="{fa-android}"
+        android:shadowColor="#22000000"
+        android:shadowDx="0"
+        android:shadowDy="0"
+        android:shadowRadius="0"
+        android:textSize="24dp"
+        android:textColor="@color/pause_dark_grey"
         android:layout_weight="1"
         android:layout_marginStart="@dimen/settings_thumbnail_padding"
         android:layout_marginLeft="@dimen/settings_thumbnail_padding"
-        android:layout_gravity="start|center_vertical"/>
+        android:layout_marginRight="@dimen/settings_thumbnail_padding"
+        android:layout_marginEnd="@dimen/settings_thumbnail_padding"
+        android:gravity="center_horizontal|center_vertical"
+        android:layout_gravity="center_horizontal|center_vertical"/>
 
     <!-- Settings Label -->
 

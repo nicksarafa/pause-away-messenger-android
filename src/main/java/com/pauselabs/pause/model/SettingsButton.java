@@ -6,6 +6,7 @@ import android.graphics.drawable.Drawable;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
+import android.widget.IconTextView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -21,12 +22,12 @@ public class SettingsButton extends LinearLayout {
         TypedArray a = context.getTheme().obtainStyledAttributes(attrs, R.styleable.SettingsButton, 0, 0);
         String mLabel = "";
         String mContent = "";
-        Drawable mFrontnail;
+        String mFrontnail;
         Drawable mEndnail;
         try {
             mLabel = a.getString(R.styleable.SettingsButton_label);
             mContent = a.getString(R.styleable.SettingsButton_content);
-            mFrontnail = a.getDrawable(R.styleable.SettingsButton_frontnail);
+            mFrontnail = a.getString(R.styleable.SettingsButton_frontnail);
             mEndnail = a.getDrawable(R.styleable.SettingsButton_endnail);
         } finally {
             a.recycle();
@@ -47,7 +48,7 @@ public class SettingsButton extends LinearLayout {
         }
 
         if(null != mFrontnail) {
-            ((ImageView)findViewById(R.id.frontnail)).setImageDrawable(mFrontnail);
+            ((IconTextView)findViewById(R.id.frontnail)).setText(mFrontnail);
         }
 
         if(null != mEndnail) {
