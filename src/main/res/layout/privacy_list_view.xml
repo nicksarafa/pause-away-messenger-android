@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<com.pauselabs.pause.view.tabs.PrivacyView
+<com.pauselabs.pause.view.tabs.SearchPrivacyView
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -57,5 +57,5 @@
                 android:text="@string/select_all_button"
                 android:background="@drawable/transparent_drawable"/>
 
-</com.pauselabs.pause.view.tabs.PrivacyView>
+</com.pauselabs.pause.view.tabs.SearchPrivacyView>
 

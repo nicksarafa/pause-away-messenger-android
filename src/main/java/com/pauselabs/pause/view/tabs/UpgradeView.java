@@ -18,20 +18,21 @@ import butterknife.Views;
 /**
  * Created by Admin on 3/8/15.
  */
-public class PrivacyView extends RelativeLayout {
+public class UpgradeView extends RelativeLayout {
 
-    @InjectView(R.id.privacy_btn)
-    public Button privacyBtn;
+    @InjectView(R.id.upgrade_btn)
+    public Button upgradeBtn;
 
-    public PrivacyView(Context context) {
+
+    public UpgradeView(Context context) {
         super(context);
     }
 
-    public PrivacyView(Context context, AttributeSet attrs) {
+    public UpgradeView(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
 
-    public PrivacyView(Context context, AttributeSet attrs, int defStyle) {
+    public UpgradeView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
     }
 
@@ -41,4 +42,5 @@ public class PrivacyView extends RelativeLayout {
 
         Views.inject(this);
     }
+}
 }

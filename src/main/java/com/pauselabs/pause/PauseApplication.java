@@ -361,7 +361,6 @@ public class PauseApplication extends Application {
 //                        .addAction(R.drawable.ic_icon_steering_wheel, "Drive", drivePausePendingIntent)
 //                        .addAction(R.drawable.ic_action_sleep, "Sleep", sleepPausePendingIntent);
 
-
                 break;
             case Constants.Session.Creator.SLEEP:
                 notBuilder

@@ -25,7 +25,7 @@ import com.pauselabs.pause.PauseApplication;
 import com.pauselabs.pause.adapters.ContactsAdapter;
 import com.pauselabs.pause.core.ContactsQuery;
 import com.pauselabs.pause.view.tabs.PrivacyActionBtnView;
-import com.pauselabs.pause.view.tabs.PrivacyView;
+import com.pauselabs.pause.view.tabs.SearchPrivacyView;
 
 import javax.inject.Inject;
 
@@ -36,7 +36,7 @@ public class SearchPrivacyViewController implements View.OnClickListener, Adapte
 
     private final String TAG = SearchPrivacyViewController.class.getSimpleName();
 
-    public PrivacyView privacyView;
+    public SearchPrivacyView searchSearchPrivacyView;
     public PrivacyActionBtnView privacyBtns;
 
     private ContactsAdapter mAdapter;
@@ -49,23 +49,23 @@ public class SearchPrivacyViewController implements View.OnClickListener, Adapte
     public SearchPrivacyViewController() {
         Injector.inject(this);
         
-        privacyView = (PrivacyView)inflater.inflate(R.layout.privacy_list_view,null);
+        searchSearchPrivacyView = (SearchPrivacyView)inflater.inflate(R.layout.privacy_list_view,null);
         privacyBtns = (PrivacyActionBtnView)inflater.inflate(R.layout.privacy_action_view, null);
 
         // Create the main contacts adapter
         mAdapter = new ContactsAdapter(PauseApplication.mainActivity);
-        privacyView.contactList.setAdapter(mAdapter);
-        privacyView.contactList.setOnItemClickListener(this);
-        privacyView.contactList.setOnScrollListener(this);
+        searchSearchPrivacyView.contactList.setAdapter(mAdapter);
+        searchSearchPrivacyView.contactList.setOnItemClickListener(this);
+        searchSearchPrivacyView.contactList.setOnScrollListener(this);
 
-        privacyView.selectAllBtn.setOnClickListener(new View.OnClickListener() {
+        searchSearchPrivacyView.selectAllBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 mAdapter.selectAll();
             }
         });
 
-        privacyView.contactSearchField.setOnQueryTextListener(this);
+        searchSearchPrivacyView.contactSearchField.setOnQueryTextListener(this);
 
         // Set visibility to hidden by default
         privacyBtns.setVisibility(View.INVISIBLE);
@@ -73,11 +73,11 @@ public class SearchPrivacyViewController implements View.OnClickListener, Adapte
 
         SearchManager searchManager = (SearchManager) PauseApplication.mainActivity.getSystemService(Context.SEARCH_SERVICE);
         SearchableInfo searchableInfo = searchManager.getSearchableInfo(PauseApplication.mainActivity.getComponentName());
-        privacyView.contactSearchField.setSearchableInfo(searchableInfo);
-        privacyView.contactSearchField.setOnQueryTextListener(this);
+        searchSearchPrivacyView.contactSearchField.setSearchableInfo(searchableInfo);
+        searchSearchPrivacyView.contactSearchField.setOnQueryTextListener(this);
 
-        privacyView.contactSearchField.setQueryHint("Search Contacts");
-        privacyView.contactSearchField.setBackgroundColor(Color.WHITE);
+        searchSearchPrivacyView.contactSearchField.setQueryHint("Search Contacts");
+        searchSearchPrivacyView.contactSearchField.setBackgroundColor(Color.WHITE);
 
         PauseApplication.mainActivity.getSupportLoaderManager().restartLoader(ContactsQuery.QUERY_ID, null, this);
     }

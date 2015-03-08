@@ -23,9 +23,11 @@ import com.pauselabs.pause.Injector;
 import com.pauselabs.pause.PauseApplication;
 import com.pauselabs.pause.controllers.ASCIIDirectoryViewController;
 import com.pauselabs.pause.controllers.CustomPauseViewController;
+import com.pauselabs.pause.controllers.PrivacyViewController;
 import com.pauselabs.pause.controllers.SearchPrivacyViewController;
 import com.pauselabs.pause.controllers.SettingsViewController;
 import com.pauselabs.pause.controllers.SummaryViewController;
+import com.pauselabs.pause.controllers.UpgradeViewController;
 import com.pauselabs.pause.model.Constants;
 import com.pauselabs.pause.util.UIUtils;
 import com.pauselabs.pause.view.MainActivityView;
@@ -41,9 +43,10 @@ public class MainActivity extends ActionBarActivity {
     public static final String TAG = MainActivity.class.getSimpleName();
 
     public static final int EMOJI_TAB = 0;
-//    public static final int HIDDEN_CUSTOM = 1;
-    public static final int SEARCH_CONTACTS_TAB = 1;
-    public static final int SETTINGS_TAB = 2;
+    public static final int PRIVACY_TAB = 1;
+    public static final int SEARCH_CONTACTS_TAB = 2;
+    public static final int UPGRADE_TAB = 3;
+    public static final int SETTINGS_TAB = 4;
 
 
     public MainActivityView mainActivityView;
@@ -53,9 +56,12 @@ public class MainActivity extends ActionBarActivity {
 
     public SummaryViewController summaryViewController;
     public ASCIIDirectoryViewController ASCIIDirectoryViewController;
-    public SettingsViewController settingsViewController;
     public CustomPauseViewController customPauseViewController;
+    public PrivacyViewController privacyViewController;
     public SearchPrivacyViewController searchPrivacyViewController;
+    public UpgradeViewController upgradeViewController;
+    public SettingsViewController settingsViewController;
+
 
     @Inject
     LayoutInflater inflater;
@@ -75,9 +81,11 @@ public class MainActivity extends ActionBarActivity {
 
         summaryViewController = new SummaryViewController();
         ASCIIDirectoryViewController = new ASCIIDirectoryViewController();
-        settingsViewController = new SettingsViewController();
         customPauseViewController = new CustomPauseViewController();
+        privacyViewController = new PrivacyViewController();
         searchPrivacyViewController = new SearchPrivacyViewController();
+        upgradeViewController = new UpgradeViewController();
+        settingsViewController = new SettingsViewController();
 
         tabBarView = new TabBarView(this);
         tabBarView.setViewPager(mainActivityView.viewPager);
@@ -117,6 +125,8 @@ public class MainActivity extends ActionBarActivity {
 
         mainActivityView.addView(summaryViewController.summaryView);
         summaryViewController.summaryView.setClickable(true);
+
+        // Pencil icon added via Font-Awesome to custom view EditText.. Might change to feather later
 
         Drawable pencilIcon = new IconDrawable(getApplicationContext(), Iconify.IconValue.fa_pencil).colorRes(R.color.pause_dark_grey).actionBarSize();
         ASCIIDirectoryViewController.asciiDirectoryView.customText.setCompoundDrawables(pencilIcon, null, null, null);
@@ -243,6 +253,8 @@ public class MainActivity extends ActionBarActivity {
                 R.drawable.ic_action_ab_grid_on,
 //                R.drawable.ic_action_ab_custom_on,
                 R.drawable.ic_action_ab_privacy_on,
+                R.drawable.ic_action_search,
+                R.drawable.ic_action_lightbulb,
                 R.drawable.ic_action_ab_settings_on
         };
 
@@ -276,6 +288,10 @@ public class MainActivity extends ActionBarActivity {
                     return getString(R.string.settings_section_title).toUpperCase(l);
                 case SEARCH_CONTACTS_TAB:
                     return "Ice".toUpperCase();
+                case PRIVACY_TAB:
+                    return "Privacy".toUpperCase();
+                case UPGRADE_TAB:
+                    return "Upgrade".toUpperCase();
 //                case HIDDEN_CUSTOM:
 //                    return getString(R.string.hidden_custom_section_title).toUpperCase(l);
 
@@ -318,6 +334,22 @@ public class MainActivity extends ActionBarActivity {
                     rootView = PauseApplication.mainActivity.ASCIIDirectoryViewController.asciiDirectoryView;
 
                     break;
+
+                case PRIVACY_TAB:
+                    rootView = PauseApplication.mainActivity.privacyViewController.privacyView;
+
+                    break;
+
+                case SEARCH_CONTACTS_TAB:
+                    rootView = PauseApplication.mainActivity.searchPrivacyViewController.searchSearchPrivacyView;
+
+                    break;
+
+                case UPGRADE_TAB:
+                    rootView = PauseApplication.mainActivity.upgradeViewController.upgradeView;
+
+                    break;
+
                 case SETTINGS_TAB:
                     rootView = PauseApplication.mainActivity.settingsViewController.settingsView;
 
@@ -327,10 +359,7 @@ public class MainActivity extends ActionBarActivity {
 //                    rootView = PauseApplication.mainActivity.customPauseViewController.customPauseView;
 //
 //                    break;
-                case SEARCH_CONTACTS_TAB:
-                    rootView = PauseApplication.mainActivity.searchPrivacyViewController.privacyView;
 
-                    break;
             }
 
             return rootView;
