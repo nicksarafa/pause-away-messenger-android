@@ -25,6 +25,9 @@ import android.speech.SpeechRecognizer;
 import android.speech.tts.TextToSpeech;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
+import android.view.Gravity;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.github.johnpersano.supertoasts.SuperToast;
 import com.google.android.gms.analytics.GoogleAnalytics;
@@ -533,8 +536,9 @@ public class PauseApplication extends Application {
             SuperToast superToast = new SuperToast(instance);
             superToast.setDuration(SuperToast.Duration.MEDIUM);
             superToast.setText(message);
+            ((TextView)((LinearLayout)superToast.getView()).getChildAt(0)).setGravity(Gravity.CENTER_VERTICAL|Gravity.LEFT);
             superToast.setBackground(R.drawable.toast_card_background);
-            superToast.setAnimations(SuperToast.Animations.FADE);
+            superToast.setAnimations(SuperToast.Animations.FLYIN);
             superToast.setTextColor(Color.WHITE);
             superToast.setIcon(R.drawable.ic_action_pause_on, SuperToast.IconPosition.LEFT);
             superToast.show();
