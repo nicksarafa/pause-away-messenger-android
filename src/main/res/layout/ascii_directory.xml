@@ -4,13 +4,14 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/emojiDirectory"
     android:layout_height="fill_parent"
-    android:layout_width="fill_parent">
+    android:layout_width="fill_parent"
+    android:background="@drawable/transparent_drawable">
 
     <ListView
         android:id="@+id/emojiDirectoryGrid"
         android:layout_width="match_parent"
         android:layout_height="fill_parent"
-        android:horizontalSpacing="@dimen/ascii_spacing"
+
         android:numColumns="1"
         android:layout_marginTop="80dp"
         android:listSelector="@color/transparent"
@@ -36,7 +37,7 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/fab_button_diameter"
             android:layout_alignParentTop="true"
-            android:layout_margin="6dp"
+            android:layout_margin="8dp"
             android:layout_alignTop="@id/emojiDirectoryGrid"
             android:background="@drawable/card_background">
 
@@ -48,7 +49,7 @@
                 android:layout_centerInParent="true"
                 android:focusableInTouchMode="true"
                 android:focusable="true"
-                android:textSize="@dimen/text_large"
+                android:textSize="@dimen/text_medium"
                 android:textColorHint="@color/text_light"
                 android:textColor="@color/text_color"
                 android:textIsSelectable="false"
