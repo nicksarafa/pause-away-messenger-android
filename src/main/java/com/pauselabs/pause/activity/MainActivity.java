@@ -102,6 +102,7 @@ public class MainActivity extends ActionBarActivity {
             public void onPageScrollStateChanged(int state) {
 
             }
+
         });
         
         setSupportActionBar(mainActivityView.toolbar);
@@ -328,4 +329,7 @@ public class MainActivity extends ActionBarActivity {
             return rootView;
         }
     }
+
+
+
 }

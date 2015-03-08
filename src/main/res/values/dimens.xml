@@ -31,7 +31,7 @@
 
     <!-- Text -->
     <dimen name="text_extra_large">24sp</dimen>
-    <dimen name="text_large">20sp</dimen>
+    <dimen name="text_large">18sp</dimen>
     <dimen name="text_medium">18sp</dimen>
     <dimen name="text_small">16sp</dimen>
 

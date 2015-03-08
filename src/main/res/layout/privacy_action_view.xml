@@ -28,18 +28,4 @@
         android:actionViewClass="android.widget.SearchView"
         android:background="@drawable/transparent_drawable" />
 
-    <SearchView
-        android:id="@+id/contact_search_field"
-        android:layout_width="@dimen/fab_button_diameter"
-        android:layout_height="@dimen/fab_button_diameter"
-        android:imeOptions="actionSearch"
-        android:visibility="gone"
-        android:focusableInTouchMode="true"
-        android:focusable="true"
-        android:textIsSelectable="false"
-        android:textCursorDrawable="@drawable/cursor"
-        android:background="@drawable/transparent_drawable"
-        android:freezesText="false"
-        android:hint="@string/privacy_search_bar"/>
-
 </com.pauselabs.pause.view.tabs.PrivacyActionBtnView>

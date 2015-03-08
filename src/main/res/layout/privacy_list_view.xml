@@ -3,15 +3,14 @@
 <com.pauselabs.pause.view.tabs.PrivacyView
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:layout_height="match_parent">
 
     <ListView
         android:id="@+id/contact_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="70dp"
+        android:layout_marginTop="82dp"
         android:overScrollMode="never"
         android:listSelector="@android:color/transparent"
         android:cacheColorHint="@android:color/transparent"
@@ -24,22 +23,31 @@
         android:overScrollFooter="@android:color/transparent"
         android:footerDividersEnabled="false"/>
 
-        <SearchView
-            android:id="@+id/contact_search_field"
-            android:layout_width="fill_parent"
-            android:layout_height="68dp"
+        <RelativeLayout
+            android:id="@+id/search_privacy_container"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/fab_button_diameter"
             android:layout_alignParentTop="true"
-            android:layout_alignParentRight="true"
-            android:showAsAction="always|collapseActionView"
-            android:actionViewClass="android.widget.SearchView"
-            android:imeOptions="actionSearch"
-            android:focusableInTouchMode="true"
-            android:focusable="true"
-            android:textIsSelectable="false"
-            android:textCursorDrawable="@drawable/cursor"
-            android:background="@color/holo_blue"
-            android:freezesText="false"
-            android:hint="@string/privacy_search_bar"/>
+            android:layout_margin="8dp"
+            android:layout_alignTop="@id/emojiDirectoryGrid"
+            android:background="@drawable/card_background">
+
+            <SearchView
+                android:id="@+id/contact_search_field"
+                android:layout_width="fill_parent"
+                android:layout_height="68dp"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentRight="true"
+                android:imeOptions="actionSearch"
+                android:focusableInTouchMode="true"
+                android:focusable="true"
+                android:textIsSelectable="false"
+                android:textCursorDrawable="@drawable/cursor"
+                android:freezesText="false"
+                android:hint="@string/privacy_search_bar"/>
+
+        </RelativeLayout>
 
             <Button
                 android:id="@+id/privacySelectAll"
