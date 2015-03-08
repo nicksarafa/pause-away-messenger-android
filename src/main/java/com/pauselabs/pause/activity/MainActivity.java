@@ -253,7 +253,7 @@ public class MainActivity extends ActionBarActivity {
                 R.drawable.ic_action_ab_grid_on,
 //                R.drawable.ic_action_ab_custom_on,
                 R.drawable.ic_action_ab_privacy_on,
-                R.drawable.ic_action_search,
+                R.drawable.ic_action_ice_full,
                 R.drawable.ic_action_lightbulb,
                 R.drawable.ic_action_ab_settings_on
         };
