@@ -5,11 +5,9 @@
     <item
         android:id="@+id/menu_red"
         android:orderInCategory="1"
-        app:showAsAction="ifRoom"
-        android:title="@string/red"/>
+        app:showAsAction="ifRoom"/>
     <item
         android:id="@+id/menu_green"
         android:orderInCategory="2"
-        app:showAsAction="ifRoom"
-        android:title="@string/green"/>
+        app:showAsAction="ifRoom"/>
 </menu>

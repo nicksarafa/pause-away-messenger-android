@@ -52,7 +52,7 @@
 
                 <!-- Male -->
 
-                <Button
+                <android.widget.IconButton
                     android:id="@+id/male"
                     android:layout_width="0dp"
                     android:layout_height="@dimen/ob_btn_height"
@@ -60,12 +60,12 @@
                     android:layout_weight="1"
                     android:background="@color/holo_blue"
                     android:textColor="@color/text_white"
-                    android:textSize="@dimen/text_large"
+                    android:textSize="@dimen/text_extra_large"
                     android:text="@string/ob_male_btn"/>
 
                 <!-- Female -->
 
-                <Button
+                <android.widget.IconButton
                     android:id="@+id/female"
                     android:layout_width="0dp"
                     android:layout_height="@dimen/ob_btn_height"
@@ -73,7 +73,7 @@
                     android:layout_weight="1"
                     android:background="@color/female_pink"
                     android:textColor="@color/text_white"
-                    android:textSize="@dimen/text_large"
+                    android:textSize="@dimen/text_extra_large"
                     android:text="@string/ob_female_btn"/>
 
             </LinearLayout>

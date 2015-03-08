@@ -4,7 +4,6 @@
 
     <!-- Pause Menu -->
     <string name="settings_menu_title">Settings</string>
-    <string name="other_menu_title">Other</string>
     <string name="pause_action">Start Pause</string>
 
     <!-- Create Pause Screen -->
@@ -13,13 +12,6 @@
 
     <string name="pauseSessionActive">Pause Session Active</string>
     <string name="pauseSessionInactive">No Pause Session Active</string>
-
-    <string name="pauseMessageLabel">Message Text</string>
-    <string name="pauseMessageLocation">Location</string>
-    <string name="pauseMessageDuration">Duration</string>
-    <string name="pauseMessageTextHint">What are you up to?</string>
-    <string name="pauseMessageLocationHint">Location</string>
-    <string name="pauseMessageDurationIndefinite">Until stopped</string>
 
     <string name="pauseMessageDurationPrefix">Until&#160;</string>
     <string name="durationSelectorMinutesLabel">&#160;MINUTES</string>
@@ -114,11 +106,9 @@
     <string name="settings_section_title">Settings</string>
     <string name="hidden_custom_section_title">Custom</string>
     <string name="ice_section_title">ICE</string>
-    <string name="ob_female_btn">Female</string>
-    <string name="ob_male_btn">Male</string>
+    <string name="ob_female_btn">{fa-female}\u0020\u0020\u0020Female</string>
+    <string name="ob_male_btn">{fa-male}\u0020\u0020\u0020Male</string>
     <string name="privacy_ab_title">PRIVACY</string>
-    <string name="red">red</string>
-    <string name="green">green</string>
     <string name="privacy_message">Block friends from receiving away messages.</string>
     <string name="select_all_button">Select All</string>
     <string name="privacy_search_bar">Search Contacts</string>
@@ -127,7 +117,7 @@
     <string name="ice_header_title">Emergency Contacts</string>
     <string name="summary_splash_no_new_messages">No Messages</string>
     <string name="custom_pause_hint">Enter Custom Message</string>
-    <string name="on_boarding_name_hint">Enter Your First Name</string>
+    <string name="on_boarding_name_hint">Please Enter Your First Name</string>
     <string name="on_boarding_picture_content_description">Welcome to Pause!</string>
     <string name="born_in_detroit_settings_footer"><![CDATA[ Born in Detroit\n\n♡ \n]]></string>
 
