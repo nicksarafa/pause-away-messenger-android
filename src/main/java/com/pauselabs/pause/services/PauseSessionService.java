@@ -53,10 +53,10 @@ public class PauseSessionService extends Service{
         int responseCount = PauseApplication.getCurrentSession().getResponseCount();
 
         PauseApplication.speak("Pause off.");
-        PauseApplication.sendToast("PAÜSE OFF");
+        PauseApplication.sendToast("Off");
         PauseApplication.sendToast(
-                PauseApplication.numCall + " Missed Calls \n" +
-                PauseApplication.numSMS + " Missed Texts \n" +
+                PauseApplication.numCall + " Missed Calls" + "\n" +
+                PauseApplication.numSMS + " Missed Texts" + "\n" +
                 responseCount + " Repl" + ((responseCount == 1) ? "y" : "ies") + " Sent"
         );
 
@@ -83,7 +83,7 @@ public class PauseSessionService extends Service{
         PauseApplication.updateUI();
 
         PauseApplication.speak("Pause on.");
-        PauseApplication.sendToast("PAUSE ON Ü");
+        PauseApplication.sendToast("On");
 
 //        PauseApplication.sr.startListening(intent);
 

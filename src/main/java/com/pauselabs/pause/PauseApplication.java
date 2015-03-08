@@ -536,8 +536,9 @@ public class PauseApplication extends Application {
             superToast.setBackground(R.drawable.toast_card_background);
             superToast.setAnimations(SuperToast.Animations.FADE);
             superToast.setTextColor(Color.WHITE);
-            superToast.setIcon(R.drawable.ic_action_pause_on, SuperToast.IconPosition.BOTTOM);
+            superToast.setIcon(R.drawable.ic_action_pause_on, SuperToast.IconPosition.LEFT);
             superToast.show();
+
 
 
 //            Toast toast = Toast.makeText(instance, message, Toast.LENGTH_LONG);
