@@ -1,16 +1,10 @@
 package com.pauselabs.pause.view.tabs;
 
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.util.AttributeSet;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
 
-import com.gc.materialdesign.views.Button;
 import com.pauselabs.R;
-import com.pauselabs.pause.Injector;
-
-import javax.inject.Inject;
 
 import butterknife.InjectView;
 import butterknife.Views;
@@ -21,7 +15,7 @@ import butterknife.Views;
 public class PrivacyView extends RelativeLayout {
 
     @InjectView(R.id.privacy_btn)
-    public Button privacyBtn;
+    public android.widget.Button privacyBtn;
 
     public PrivacyView(Context context) {
         super(context);

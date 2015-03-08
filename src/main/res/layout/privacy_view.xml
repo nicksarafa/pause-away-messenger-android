@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<com.pauselabs.pause.view.tabs.PrivacyView
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/privacy_view"
     android:orientation="vertical"
@@ -12,4 +12,4 @@
         android:layout_height="fill_parent"
         android:text="ADD CONTACTS"/>
 
-</RelativeLayout>
+</com.pauselabs.pause.view.tabs.PrivacyView>

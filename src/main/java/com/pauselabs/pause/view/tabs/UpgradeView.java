@@ -1,16 +1,10 @@
 package com.pauselabs.pause.view.tabs;
 
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.util.AttributeSet;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
 
-import com.gc.materialdesign.views.Button;
 import com.pauselabs.R;
-import com.pauselabs.pause.Injector;
-
-import javax.inject.Inject;
 
 import butterknife.InjectView;
 import butterknife.Views;
@@ -21,7 +15,7 @@ import butterknife.Views;
 public class UpgradeView extends RelativeLayout {
 
     @InjectView(R.id.upgrade_btn)
-    public Button upgradeBtn;
+    public android.widget.Button upgradeBtn;
 
 
     public UpgradeView(Context context) {
@@ -42,5 +36,4 @@ public class UpgradeView extends RelativeLayout {
 
         Views.inject(this);
     }
-}
 }
