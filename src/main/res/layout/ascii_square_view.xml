@@ -4,7 +4,7 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent">
 
-    <!-- Ascii Art -->
+    <!-- Custom Pause Message Save List -->
 
     <TextView
         android:id="@+id/emoji"
@@ -13,15 +13,18 @@
         android:textIsSelectable="false"
         android:textColor="@color/text_color"
         android:textSize="@dimen/text_large"
-        android:paddingTop="@dimen/activity_vertical_margin"
-        android:paddingLeft="@dimen/activity_horizontal_margin"
-        android:paddingRight="@dimen/activity_horizontal_margin"
         android:layout_gravity="start|center_vertical"
         android:gravity="start|center_vertical"
+        android:layout_marginLeft="6dp"
+        android:layout_marginRight="6dp"
+        android:layout_marginStart="6dp"
+        android:layout_marginEnd="6dp"
+        android:layout_marginTop="6dp"
+        android:padding="16dp"
         android:ellipsize="marquee"
         android:maxLines="100"
         android:scrollHorizontally="false"
-        android:background="@drawable/transparent_drawable"/>
+        android:background="@drawable/save_card_background"/>
 
     <!-- Old Ascii Description -->
 

@@ -25,7 +25,7 @@
             android:textColor="@color/text_color"
             android:textIsSelectable="false"
             android:textCursorDrawable="@drawable/cursor"
-            android:background="@drawable/transparent_drawable"
+            android:background="@drawable/card_background"
             android:freezesText="false"
             android:imeOptions="flagNoEnterAction"
             android:layout_alignParentLeft="true"

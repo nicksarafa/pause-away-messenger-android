@@ -131,7 +131,6 @@ public class MainActivity extends ActionBarActivity {
 
                 Log.i(null,"Sliding");
 
-
             }
 
             @Override
@@ -147,7 +146,6 @@ public class MainActivity extends ActionBarActivity {
 
                 ((ButtonFloat) mainActivityView.startPauseButton).setDrawableIcon(getResources().getDrawable(R.drawable.ic_action_pause_on));
                 mainActivityView.startPauseButton.setBackgroundColor(getResources().getColor(R.color.pause_off));
-
 
                 Log.i(null,"Anchored");
 

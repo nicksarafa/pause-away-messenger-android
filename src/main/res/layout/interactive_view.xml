@@ -26,7 +26,6 @@
             android:paddingTop="@dimen/ob_btn_margin"
             android:paddingRight="@dimen/ob_btn_margin"
             android:paddingLeft="@dimen/ob_btn_margin"
-            android:paddingStart="@dimen/ob_btn_margin"
             android:paddingEnd="@dimen/ob_btn_margin"/>
 
             <LinearLayout

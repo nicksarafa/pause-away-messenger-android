@@ -8,7 +8,7 @@
 
     <ListView
         android:id="@+id/emojiDirectoryGrid"
-        android:layout_width="fill_parent"
+        android:layout_width="match_parent"
         android:layout_height="fill_parent"
         android:verticalSpacing="@dimen/ascii_spacing"
         android:horizontalSpacing="@dimen/ascii_spacing"
@@ -16,7 +16,7 @@
         android:layout_marginTop="70dp"
         android:listSelector="@color/transparent"
         android:cacheColorHint="@color/transparent"
-        android:clipToPadding="false"
+        android:clipToPadding="true"
         android:scrollbars="vertical"
         android:isScrollContainer="false"
         android:scrollbarStyle="outsideOverlay"
@@ -36,8 +36,9 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/fab_button_diameter"
             android:layout_alignParentTop="true"
+            android:layout_margin="6dp"
             android:layout_alignTop="@id/emojiDirectoryGrid"
-            android:background="@color/material_blue_grey_800">
+            android:background="@drawable/card_background">
 
             <EditText
                 android:id="@+id/custom_text"
