@@ -11,6 +11,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.media.RingtoneManager;
@@ -474,7 +475,7 @@ public class PauseApplication extends Application {
         conversation.addMessage(sentMessage);
 
         if (conversation.getMessagesSentFromUser().size() == 1)
-            PauseApplication.sendToast("I will no longer reply to " + conversation.getContactName() + " until your next Paüse.");
+            PauseApplication.sendToast("I will no longer reply to " + conversation.getContactName() + " until your next Pause.");
 
         updateNotifications();
         updateUI();
@@ -530,9 +531,12 @@ public class PauseApplication extends Application {
             String message = (String)msg.obj;
 
             SuperToast superToast = new SuperToast(instance);
-            superToast.setDuration(SuperToast.Duration.LONG);
+            superToast.setDuration(SuperToast.Duration.MEDIUM);
             superToast.setText(message);
-            superToast.setIcon(SuperToast.Icon.Dark.INFO, SuperToast.IconPosition.LEFT);
+            superToast.setBackground(R.drawable.toast_card_background);
+            superToast.setAnimations(SuperToast.Animations.FADE);
+            superToast.setTextColor(Color.WHITE);
+            superToast.setIcon(R.drawable.ic_action_pause_on, SuperToast.IconPosition.BOTTOM);
             superToast.show();
 
 

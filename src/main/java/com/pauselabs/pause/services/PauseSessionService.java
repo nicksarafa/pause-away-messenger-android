@@ -12,10 +12,9 @@ import android.util.Log;
 
 import com.pauselabs.pause.Injector;
 import com.pauselabs.pause.PauseApplication;
-import com.pauselabs.pause.activity.MainActivity;
-import com.pauselabs.pause.model.Constants;
 import com.pauselabs.pause.listeners.PauseCallListener;
 import com.pauselabs.pause.listeners.PauseSmsListener;
+import com.pauselabs.pause.model.Constants;
 
 import javax.inject.Inject;
 
@@ -54,12 +53,11 @@ public class PauseSessionService extends Service{
         int responseCount = PauseApplication.getCurrentSession().getResponseCount();
 
         PauseApplication.speak("Pause off.");
-        PauseApplication.sendToast("PAÜSE OFF Ü");
+        PauseApplication.sendToast("PAÜSE OFF");
         PauseApplication.sendToast(
-                PauseApplication.numCall + " missed calls \n" +
-                PauseApplication.numSMS + " missed texts \n" +
-                "\n" +
-                "I sent " + responseCount + " message" + ((responseCount == 1) ? "" : "s") + " for you."
+                PauseApplication.numCall + " Missed Calls \n" +
+                PauseApplication.numSMS + " Missed Texts \n" +
+                responseCount + " Repl" + ((responseCount == 1) ? "y" : "ies") + " Sent"
         );
 
         PauseApplication.numSMS = 0;
