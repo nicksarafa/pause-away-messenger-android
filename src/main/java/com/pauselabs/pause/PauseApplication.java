@@ -24,11 +24,8 @@ import android.speech.SpeechRecognizer;
 import android.speech.tts.TextToSpeech;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
-import android.view.Gravity;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-import android.widget.Toast;
 
+import com.github.johnpersano.supertoasts.SuperToast;
 import com.google.android.gms.analytics.GoogleAnalytics;
 import com.google.android.gms.analytics.Tracker;
 import com.nostra13.universalimageloader.cache.disc.naming.Md5FileNameGenerator;
@@ -532,9 +529,16 @@ public class PauseApplication extends Application {
         public void handleMessage(Message msg) {
             String message = (String)msg.obj;
 
-            Toast toast = Toast.makeText(instance, message, Toast.LENGTH_LONG);
-            ((TextView)((LinearLayout)toast.getView()).getChildAt(0)).setGravity(Gravity.CENTER_HORIZONTAL);
-            toast.show();
+            SuperToast superToast = new SuperToast(instance);
+            superToast.setDuration(SuperToast.Duration.LONG);
+            superToast.setText(message);
+            superToast.setIcon(SuperToast.Icon.Dark.INFO, SuperToast.IconPosition.LEFT);
+            superToast.show();
+
+
+//            Toast toast = Toast.makeText(instance, message, Toast.LENGTH_LONG);
+//            ((TextView)((LinearLayout)toast.getView()).getChildAt(0)).setGravity(Gravity.CENTER_HORIZONTAL);
+//            toast.show();
 
         }
     };
