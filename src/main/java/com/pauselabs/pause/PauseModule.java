@@ -2,7 +2,7 @@ package com.pauselabs.pause;
 
 import com.pauselabs.pause.activity.MainActivity;
 import com.pauselabs.pause.activity.OnBoardingActivity;
-import com.pauselabs.pause.controllers.PrivacyViewController;
+import com.pauselabs.pause.controllers.SearchPrivacyViewController;
 import com.pauselabs.pause.controllers.SettingsViewController;
 import com.pauselabs.pause.controllers.ASCIIDirectoryViewController;
 import com.pauselabs.pause.controllers.SummaryViewController;
@@ -74,7 +74,7 @@ import dagger.Provides;
                 SummarySentCard.class,
                 SummaryReceivedCard.class,
 
-                PrivacyViewController.class,
+                SearchPrivacyViewController.class,
                 PrivacyView.class,
 
                 PauseApplicationService.class,

@@ -3,6 +3,7 @@ package com.pauselabs.pause.activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v13.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
@@ -15,12 +16,14 @@ import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 
 import com.gc.materialdesign.views.ButtonFloat;
+import com.joanzapata.android.iconify.IconDrawable;
+import com.joanzapata.android.iconify.Iconify;
 import com.pauselabs.R;
 import com.pauselabs.pause.Injector;
 import com.pauselabs.pause.PauseApplication;
 import com.pauselabs.pause.controllers.ASCIIDirectoryViewController;
 import com.pauselabs.pause.controllers.CustomPauseViewController;
-import com.pauselabs.pause.controllers.PrivacyViewController;
+import com.pauselabs.pause.controllers.SearchPrivacyViewController;
 import com.pauselabs.pause.controllers.SettingsViewController;
 import com.pauselabs.pause.controllers.SummaryViewController;
 import com.pauselabs.pause.model.Constants;
@@ -39,7 +42,7 @@ public class MainActivity extends ActionBarActivity {
 
     public static final int EMOJI_TAB = 0;
 //    public static final int HIDDEN_CUSTOM = 1;
-    public static final int PRIVACY_TAB = 1;
+    public static final int SEARCH_CONTACTS_TAB = 1;
     public static final int SETTINGS_TAB = 2;
 
 
@@ -52,7 +55,7 @@ public class MainActivity extends ActionBarActivity {
     public ASCIIDirectoryViewController ASCIIDirectoryViewController;
     public SettingsViewController settingsViewController;
     public CustomPauseViewController customPauseViewController;
-    public PrivacyViewController privacyViewController;
+    public SearchPrivacyViewController searchPrivacyViewController;
 
     @Inject
     LayoutInflater inflater;
@@ -74,11 +77,11 @@ public class MainActivity extends ActionBarActivity {
         ASCIIDirectoryViewController = new ASCIIDirectoryViewController();
         settingsViewController = new SettingsViewController();
         customPauseViewController = new CustomPauseViewController();
-        privacyViewController = new PrivacyViewController();
+        searchPrivacyViewController = new SearchPrivacyViewController();
 
         tabBarView = new TabBarView(this);
         tabBarView.setViewPager(mainActivityView.viewPager);
-        tabBarView.addView(privacyViewController.privacyBtns);
+        tabBarView.addView(searchPrivacyViewController.privacyBtns);
         tabBarView.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
@@ -89,12 +92,12 @@ public class MainActivity extends ActionBarActivity {
             public void onPageSelected(int position) {
                 pageIndex = position;
 
-                if (pageIndex == PRIVACY_TAB) {
-                    privacyViewController.privacyBtns.setVisibility(View.VISIBLE);
+                if (pageIndex == SEARCH_CONTACTS_TAB) {
+                    searchPrivacyViewController.privacyBtns.setVisibility(View.VISIBLE);
                 } else if(pageIndex == EMOJI_TAB) {
 
                 } else {
-                    privacyViewController.privacyBtns.setVisibility(View.INVISIBLE);
+                    searchPrivacyViewController.privacyBtns.setVisibility(View.INVISIBLE);
                 }
             }
 
@@ -114,6 +117,10 @@ public class MainActivity extends ActionBarActivity {
 
         mainActivityView.addView(summaryViewController.summaryView);
         summaryViewController.summaryView.setClickable(true);
+
+        Drawable pencilIcon = new IconDrawable(getApplicationContext(), Iconify.IconValue.fa_pencil).colorRes(R.color.pause_dark_grey).actionBarSize();
+        ASCIIDirectoryViewController.asciiDirectoryView.customText.setCompoundDrawables(pencilIcon, null, null, null);
+        ASCIIDirectoryViewController.asciiDirectoryView.customText.setCompoundDrawablePadding(20);
 
         mainActivityView.setDragView(mainActivityView.startPauseButton);
         ((ButtonFloat) mainActivityView.startPauseButton).setDrawableIcon(getResources().getDrawable(R.drawable.ic_action_pause_off));
@@ -267,7 +274,7 @@ public class MainActivity extends ActionBarActivity {
                     return getString(R.string.emoji_section_title).toUpperCase(l);
                 case SETTINGS_TAB:
                     return getString(R.string.settings_section_title).toUpperCase(l);
-                case PRIVACY_TAB:
+                case SEARCH_CONTACTS_TAB:
                     return "Ice".toUpperCase();
 //                case HIDDEN_CUSTOM:
 //                    return getString(R.string.hidden_custom_section_title).toUpperCase(l);
@@ -320,8 +327,8 @@ public class MainActivity extends ActionBarActivity {
 //                    rootView = PauseApplication.mainActivity.customPauseViewController.customPauseView;
 //
 //                    break;
-                case PRIVACY_TAB:
-                    rootView = PauseApplication.mainActivity.privacyViewController.privacyView;
+                case SEARCH_CONTACTS_TAB:
+                    rootView = PauseApplication.mainActivity.searchPrivacyViewController.privacyView;
 
                     break;
             }

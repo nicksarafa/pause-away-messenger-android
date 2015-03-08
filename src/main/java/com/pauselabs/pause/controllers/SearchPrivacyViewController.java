@@ -32,9 +32,9 @@ import javax.inject.Inject;
 /**
  * Created by Admin on 1/28/15.
  */
-public class PrivacyViewController implements View.OnClickListener, AdapterView.OnItemClickListener, SearchView.OnQueryTextListener, LoaderManager.LoaderCallbacks<Cursor>, AbsListView.OnScrollListener {
+public class SearchPrivacyViewController implements View.OnClickListener, AdapterView.OnItemClickListener, SearchView.OnQueryTextListener, LoaderManager.LoaderCallbacks<Cursor>, AbsListView.OnScrollListener {
 
-    private final String TAG = PrivacyViewController.class.getSimpleName();
+    private final String TAG = SearchPrivacyViewController.class.getSimpleName();
 
     public PrivacyView privacyView;
     public PrivacyActionBtnView privacyBtns;
@@ -46,7 +46,7 @@ public class PrivacyViewController implements View.OnClickListener, AdapterView.
     @Inject
     LayoutInflater inflater;
 
-    public PrivacyViewController() {
+    public SearchPrivacyViewController() {
         Injector.inject(this);
         
         privacyView = (PrivacyView)inflater.inflate(R.layout.privacy_list_view,null);

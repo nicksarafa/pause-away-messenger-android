@@ -536,11 +536,11 @@ public class PauseApplication extends Application {
             SuperToast superToast = new SuperToast(instance);
             superToast.setDuration(SuperToast.Duration.MEDIUM);
             superToast.setText(message);
-            ((TextView)((LinearLayout)superToast.getView()).getChildAt(0)).setGravity(Gravity.CENTER_VERTICAL|Gravity.LEFT);
             superToast.setBackground(R.drawable.toast_card_background);
             superToast.setAnimations(SuperToast.Animations.FLYIN);
             superToast.setTextColor(Color.WHITE);
             superToast.setIcon(R.drawable.ic_action_pause_on, SuperToast.IconPosition.LEFT);
+            ((TextView)((LinearLayout)superToast.getView()).getChildAt(0)).setGravity(Gravity.CENTER_VERTICAL|Gravity.LEFT);
             superToast.show();
 
 
