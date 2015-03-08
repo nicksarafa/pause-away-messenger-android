@@ -10,10 +10,9 @@
         android:id="@+id/emojiDirectoryGrid"
         android:layout_width="match_parent"
         android:layout_height="fill_parent"
-        android:verticalSpacing="@dimen/ascii_spacing"
         android:horizontalSpacing="@dimen/ascii_spacing"
         android:numColumns="1"
-        android:layout_marginTop="70dp"
+        android:layout_marginTop="80dp"
         android:listSelector="@color/transparent"
         android:cacheColorHint="@color/transparent"
         android:clipToPadding="true"
@@ -27,8 +26,9 @@
         android:headerDividersEnabled="false"
         android:overScrollFooter="@android:color/transparent"
         android:footerDividersEnabled="false"
-        android:stretchMode="columnWidth"
-        android:paddingBottom="@dimen/activity_horizontal_margin"/>
+        android:stretchMode="columnWidth"/>
+
+        <!-- Custom Message View Holder -->
 
         <RelativeLayout
             android:id="@+id/custom_pause_container"
