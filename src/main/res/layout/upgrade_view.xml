@@ -9,7 +9,8 @@
     <Button
         android:id="@+id/upgrade_btn"
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
+        android:layout_height="300dp"
+        android:layout_centerVertical="true"
         android:text="UPGRADE"/>
 
 </com.pauselabs.pause.view.tabs.UpgradeView>
