@@ -247,7 +247,6 @@ public class PauseActivity extends ActionBarActivity {
         private int[] tab_icons = {
                 R.drawable.ic_action_ab_grid_on,
                 R.drawable.ic_action_ab_privacy_on,
-//                R.drawable.ic_action_ice_full,
                 R.drawable.ic_action_lightbulb,
                 R.drawable.ic_action_ab_settings_on
         };
@@ -280,8 +279,6 @@ public class PauseActivity extends ActionBarActivity {
                     return getString(R.string.saves_activity_title).toUpperCase(l);
                 case SETTINGS_TAB:
                     return getString(R.string.settings_section_title).toUpperCase(l);
-//                case SEARCH_CONTACTS_TAB:
-//                    return "Ice".toUpperCase();
                 case PRIVACY_TAB:
                     return "Privacy".toUpperCase();
                 case UPGRADE_TAB:
@@ -331,11 +328,6 @@ public class PauseActivity extends ActionBarActivity {
                     rootView = PauseApplication.pauseActivity.privacyViewController.privacyView;
 
                     break;
-
-//                case SEARCH_CONTACTS_TAB:
-//                    rootView = PauseApplication.pauseActivity.searchPrivacyViewController.searchSearchPrivacyView;
-//
-//                    break;
 
                 case UPGRADE_TAB:
                     rootView = PauseApplication.pauseActivity.upgradeViewController.upgradeView;
