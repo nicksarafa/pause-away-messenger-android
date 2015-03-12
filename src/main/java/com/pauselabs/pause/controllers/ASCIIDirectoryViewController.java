@@ -56,32 +56,14 @@ public class ASCIIDirectoryViewController implements AdapterView.OnItemClickList
 
             ASCIIItem[] asciis = {
                     new ASCIIItem("Can't talk. Out having a good time", "Can't talk, Out having a really really good time with all my friends"),
-                    new ASCIIItem("Not sure where I am", "Once upon a midnight dreary, while I pondered, weak and weary,\n" +
-                            "Over many a quaint and curious volume of forgotten lore—\n" +
-                            "    While I nodded, nearly napping, suddenly there came a tapping,\n" +
-                            "As of some one gently rapping, rapping at my chamber door.\n" +
-                            "“’Tis some visitor,” I muttered, “tapping at my chamber door—\n" +
-                            "            Only this and nothing more.”"),
                     new ASCIIItem("I just want to be left alone", "Studying all night"),
                     new ASCIIItem("Happy Dance!!!","Dancing with all the homies in the club bottle full of bub mama I got what you need"),
                     new ASCIIItem("Dog","nobody said it was easy"),
                     new ASCIIItem("Out having a good time", "Out having a really really good time with all my friends"),
-                    new ASCIIItem("Not sure where I am", "Once upon a midnight dreary, while I pondered, weak and weary,\n" +
-                            "Over many a quaint and curious volume of forgotten lore—\n" +
-                            "    While I nodded, nearly napping, suddenly there came a tapping,\n" +
-                            "As of some one gently rapping, rapping at my chamber door.\n" +
-                            "“’Tis some visitor,” I muttered, “tapping at my chamber door—\n" +
-                            "            Only this and nothing more.”"),
                     new ASCIIItem("I just want to be left alone", "Studying all night"),
                     new ASCIIItem("Happy Dance!!!","Dancing with all the homies in the club bottle full of bub mama I got what you need"),
                     new ASCIIItem("Dog","nobody said it was easy"),
                     new ASCIIItem("Out having a good time", "Out having a really really good time with all my friends"),
-                    new ASCIIItem("Not sure where I am", "Once upon a midnight dreary, while I pondered, weak and weary,\n" +
-                            "Over many a quaint and curious volume of forgotten lore—\n" +
-                            "    While I nodded, nearly napping, suddenly there came a tapping,\n" +
-                            "As of some one gently rapping, rapping at my chamber door.\n" +
-                            "“’Tis some visitor,” I muttered, “tapping at my chamber door—\n" +
-                            "            Only this and nothing more.”"),
                     new ASCIIItem("I just want to be left alone", "Studying all night"),
                     new ASCIIItem("Happy Dance!!!","Dancing with all the homies in the club bottle full of bub mama I got what you need"),
                     new ASCIIItem("Dog","nobody said it was easy")
