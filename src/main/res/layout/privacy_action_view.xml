@@ -8,18 +8,19 @@
     android:layout_alignParentRight="true"
     android:layout_alignParentEnd="true">
 
-    <SearchView
+    <IconButton
         android:id="@+id/privacy_search_activity_start_btn"
         android:layout_gravity="end"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
         android:layout_width="@dimen/ab_icon_universal_width_and_height"
         android:layout_height="@dimen/ab_icon_universal_width_and_height"
-        android:imeOptions="actionSearch"
         android:focusableInTouchMode="true"
         android:focusable="true"
         android:textIsSelectable="false"
         android:textCursorDrawable="@drawable/cursor"
+        android:text="{fa-user-plus}"
+        android:textColor="@color/white"
         android:freezesText="false"
         android:hint="@string/privacy_search_bar"
         android:layout_centerVertical="true"

@@ -3,8 +3,8 @@ package com.pauselabs.pause.view.tabs;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.ViewGroup;
+import android.widget.IconButton;
 import android.widget.RelativeLayout;
-import android.widget.SearchView;
 
 import com.pauselabs.R;
 
@@ -17,7 +17,7 @@ import butterknife.Views;
 public class PrivacyActionBtnView extends RelativeLayout {
 
     @InjectView(R.id.privacy_search_activity_start_btn)
-    public SearchView atnBtn1;
+    public IconButton atnBtn1;
 
     @Override
     public void setLayoutParams(ViewGroup.LayoutParams params) {
