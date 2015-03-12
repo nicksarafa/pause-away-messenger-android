@@ -16,7 +16,7 @@ import butterknife.Views;
  */
 public class PrivacyActionBtnView extends RelativeLayout {
 
-    @InjectView(R.id.ice_atn_1)
+    @InjectView(R.id.privacy_search_activity_start_btn)
     public SearchView atnBtn1;
 
     @Override

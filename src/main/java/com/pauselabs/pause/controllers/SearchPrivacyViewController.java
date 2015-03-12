@@ -24,7 +24,6 @@ import com.pauselabs.pause.Injector;
 import com.pauselabs.pause.PauseApplication;
 import com.pauselabs.pause.adapters.ContactsAdapter;
 import com.pauselabs.pause.core.ContactsQuery;
-import com.pauselabs.pause.view.tabs.PrivacyActionBtnView;
 import com.pauselabs.pause.view.tabs.SearchPrivacyView;
 
 import javax.inject.Inject;
@@ -32,12 +31,11 @@ import javax.inject.Inject;
 /**
  * Created by Admin on 1/28/15.
  */
-public class SearchPrivacyViewController implements View.OnClickListener, AdapterView.OnItemClickListener, SearchView.OnQueryTextListener, LoaderManager.LoaderCallbacks<Cursor>, AbsListView.OnScrollListener {
+public class SearchPrivacyViewController implements AdapterView.OnItemClickListener, SearchView.OnQueryTextListener, LoaderManager.LoaderCallbacks<Cursor>, AbsListView.OnScrollListener {
 
     private final String TAG = SearchPrivacyViewController.class.getSimpleName();
 
     public SearchPrivacyView searchSearchPrivacyView;
-    public PrivacyActionBtnView privacyBtns;
 
     private ContactsAdapter mAdapter;
 
@@ -50,7 +48,6 @@ public class SearchPrivacyViewController implements View.OnClickListener, Adapte
         Injector.inject(this);
         
         searchSearchPrivacyView = (SearchPrivacyView)inflater.inflate(R.layout.privacy_list_view,null);
-        privacyBtns = (PrivacyActionBtnView)inflater.inflate(R.layout.privacy_action_view, null);
 
         // Create the main contacts adapter
         mAdapter = new ContactsAdapter(PauseApplication.pauseActivity);
@@ -67,9 +64,7 @@ public class SearchPrivacyViewController implements View.OnClickListener, Adapte
 
         searchSearchPrivacyView.contactSearchField.setOnQueryTextListener(this);
 
-        // Set visibility to hidden by default
-        privacyBtns.setVisibility(View.INVISIBLE);
-        privacyBtns.atnBtn1.setOnClickListener(this);
+
 
         SearchManager searchManager = (SearchManager) PauseApplication.pauseActivity.getSystemService(Context.SEARCH_SERVICE);
         SearchableInfo searchableInfo = searchManager.getSearchableInfo(PauseApplication.pauseActivity.getComponentName());
@@ -90,16 +85,6 @@ public class SearchPrivacyViewController implements View.OnClickListener, Adapte
     @Override
     public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
 
-    }
-
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.ice_atn_1:
-                Log.i("IceController","Action Button 1 Pressed");
-
-                break;
-        }
     }
 
     @Override

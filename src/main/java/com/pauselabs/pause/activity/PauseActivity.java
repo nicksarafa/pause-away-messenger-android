@@ -44,9 +44,9 @@ public class PauseActivity extends ActionBarActivity {
 
     public static final int EMOJI_TAB = 0;
     public static final int PRIVACY_TAB = 1;
-    public static final int SEARCH_CONTACTS_TAB = 2;
-    public static final int UPGRADE_TAB = 3;
-    public static final int SETTINGS_TAB = 4;
+//    public static final int SEARCH_CONTACTS_TAB = 2;
+    public static final int UPGRADE_TAB = 2;
+    public static final int SETTINGS_TAB = 3;
 
     public PauseActivityView pauseActivityView;
     public ActionBar actionBar;
@@ -81,13 +81,13 @@ public class PauseActivity extends ActionBarActivity {
         ASCIIDirectoryViewController = new ASCIIDirectoryViewController();
         customPauseViewController = new CustomPauseViewController();
         privacyViewController = new PrivacyViewController();
-        searchPrivacyViewController = new SearchPrivacyViewController();
         upgradeViewController = new UpgradeViewController();
         settingsViewController = new SettingsViewController();
 
         tabBarView = new TabBarView(this);
         tabBarView.setViewPager(pauseActivityView.viewPager);
-        tabBarView.addView(searchPrivacyViewController.privacyBtns);
+        tabBarView.addView(privacyViewController.privacyBtns);
+        privacyViewController.privacyBtns.setVisibility(View.INVISIBLE);
         tabBarView.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
@@ -98,12 +98,10 @@ public class PauseActivity extends ActionBarActivity {
             public void onPageSelected(int position) {
                 pageIndex = position;
 
-                if (pageIndex == SEARCH_CONTACTS_TAB) {
-                    searchPrivacyViewController.privacyBtns.setVisibility(View.VISIBLE);
-                } else if(pageIndex == EMOJI_TAB) {
-
+                if (pageIndex == PRIVACY_TAB) {
+                    privacyViewController.privacyBtns.setVisibility(View.VISIBLE);
                 } else {
-                    searchPrivacyViewController.privacyBtns.setVisibility(View.INVISIBLE);
+                    privacyViewController.privacyBtns.setVisibility(View.INVISIBLE);
                 }
             }
 
@@ -249,9 +247,8 @@ public class PauseActivity extends ActionBarActivity {
 
         private int[] tab_icons = {
                 R.drawable.ic_action_ab_grid_on,
-//                R.drawable.ic_action_ab_custom_on,
                 R.drawable.ic_action_ab_privacy_on,
-                R.drawable.ic_action_ice_full,
+//                R.drawable.ic_action_ice_full,
                 R.drawable.ic_action_lightbulb,
                 R.drawable.ic_action_ab_settings_on
         };
@@ -284,14 +281,12 @@ public class PauseActivity extends ActionBarActivity {
                     return getString(R.string.saves_activity_title).toUpperCase(l);
                 case SETTINGS_TAB:
                     return getString(R.string.settings_section_title).toUpperCase(l);
-                case SEARCH_CONTACTS_TAB:
-                    return "Ice".toUpperCase();
+//                case SEARCH_CONTACTS_TAB:
+//                    return "Ice".toUpperCase();
                 case PRIVACY_TAB:
                     return "Privacy".toUpperCase();
                 case UPGRADE_TAB:
                     return "Upgrade".toUpperCase();
-//                case HIDDEN_CUSTOM:
-//                    return getString(R.string.hidden_custom_section_title).toUpperCase(l);
 
             }
             return null;
@@ -338,10 +333,10 @@ public class PauseActivity extends ActionBarActivity {
 
                     break;
 
-                case SEARCH_CONTACTS_TAB:
-                    rootView = PauseApplication.pauseActivity.searchPrivacyViewController.searchSearchPrivacyView;
-
-                    break;
+//                case SEARCH_CONTACTS_TAB:
+//                    rootView = PauseApplication.pauseActivity.searchPrivacyViewController.searchSearchPrivacyView;
+//
+//                    break;
 
                 case UPGRADE_TAB:
                     rootView = PauseApplication.pauseActivity.upgradeViewController.upgradeView;
@@ -352,11 +347,6 @@ public class PauseActivity extends ActionBarActivity {
                     rootView = PauseApplication.pauseActivity.settingsViewController.settingsView;
 
                     break;
-
-//                case HIDDEN_CUSTOM:
-//                    rootView = PauseApplication.mainActivity.customPauseViewController.customPauseView;
-//
-//                    break;
 
             }
 

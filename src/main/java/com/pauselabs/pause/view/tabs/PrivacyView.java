@@ -17,6 +17,12 @@ public class PrivacyView extends RelativeLayout {
     @InjectView(R.id.privacy_btn)
     public android.widget.Button privacyBtn;
 
+//    @Override
+//    public void setLayoutParams(ViewGroup.LayoutParams params) {
+//        super.setLayoutParams(params);
+//
+//    }
+
     public PrivacyView(Context context) {
         super(context);
     }

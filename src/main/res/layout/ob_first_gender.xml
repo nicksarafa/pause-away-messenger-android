@@ -37,7 +37,7 @@
             android:background="@android:color/transparent"
             android:freezesText="false"
             android:inputType="textPersonName|textCapSentences"
-            android:imeOptions="actionDone"git 
+            android:imeOptions="actionDone"
             android:hint="@string/on_boarding_name_hint"/>
 
             <!-- Male or Female -->
