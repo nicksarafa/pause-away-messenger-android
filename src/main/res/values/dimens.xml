@@ -15,7 +15,8 @@
     <dimen name="main_list_view_universal_margin_top">82dp</dimen>
 
     <!-- Text - Universal -->
-    <dimen name="text_super_size">30sp</dimen>
+    <dimen name="text_super_size">28sp</dimen>
+    <dimen name="text_double_extra_large">26sp</dimen>
     <dimen name="text_extra_large">24sp</dimen>
     <dimen name="text_large">22dp</dimen>
     <dimen name="text_medium">18sp</dimen>

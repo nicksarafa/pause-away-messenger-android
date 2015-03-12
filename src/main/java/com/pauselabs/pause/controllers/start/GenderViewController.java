@@ -55,20 +55,16 @@ public class GenderViewController implements View.OnClickListener {
                 case R.id.male:
                     genderValue = Constants.Settings.GENDER_MALE_VALUE;
 
-                    genderView.male.setBackgroundResource(R.drawable.btn_gender_pressed);
-
                     break;
 
                 case R.id.female:
                     genderValue = Constants.Settings.GENDER_FEMALE_VALUE;
 
-                    genderView.female.setBackgroundResource(R.drawable.btn_gender_pressed);
-
                     break;
             }
 
             try {
-                Thread.sleep(1500);
+                Thread.sleep(1000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

@@ -1,4 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<selector xmlns:android="http://schemas.android.com/apk/res/android">
 
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_focused="false" android:state_pressed="false" android:color="@color/btn_pink" android:drawable="@drawable/transparent_drawable" />
+    <item android:state_focused="true" android:state_pressed="false" android:color="@color/btn_green" android:drawable="@drawable/transparent_drawable" />
+    <item android:state_focused="true" android:state_pressed="true" android:color="@color/btn_green" android:drawable="@drawable/transparent_drawable" />
+    <item android:state_focused="false" android:state_pressed="true" android:color="@color/btn_green" android:drawable="@drawable/transparent_drawable" />
+    <item android:color="@color/btn_pink" android:drawable="@drawable/transparent_drawable" />
 </selector>
