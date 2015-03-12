@@ -30,8 +30,7 @@
             android:layout_height="@dimen/fab_button_diameter"
             android:layout_alignParentTop="true"
             android:layout_margin="8dp"
-            android:layout_alignTop="@id/emojiDirectoryGrid"
-            android:background="@drawable/card_background">
+            android:background="@drawable/card_bg">
 
             <SearchView
                 android:id="@+id/contact_search_field"

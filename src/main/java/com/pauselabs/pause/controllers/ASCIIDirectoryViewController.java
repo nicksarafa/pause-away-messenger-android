@@ -34,9 +34,9 @@ public class ASCIIDirectoryViewController implements AdapterView.OnItemClickList
     public ASCIIDirectoryViewController() {
         Injector.inject(this);
 
-        asciiDirectoryView = (ASCIIDirectoryView) inflater.inflate(R.layout.ascii_directory, null);
+        asciiDirectoryView = (ASCIIDirectoryView) inflater.inflate(R.layout.save_directory, null);
 
-        asciiDirectoryArrayAdapter = new ASCIIAdapter(asciiDirectoryView.getContext(), R.layout.ascii_square_view);
+        asciiDirectoryArrayAdapter = new ASCIIAdapter(asciiDirectoryView.getContext(), R.layout.save_list_item_view);
         asciiDirectoryView.asciiGrid.setAdapter(asciiDirectoryArrayAdapter);
         asciiDirectoryView.asciiGrid.setOnItemClickListener(this);
 
@@ -70,7 +70,7 @@ public class ASCIIDirectoryViewController implements AdapterView.OnItemClickList
             };
 
             for (ASCIIItem item : asciis) {
-                ASCIISquareView asciiView = (ASCIISquareView) inflater.inflate(R.layout.ascii_square_view, null);
+                ASCIISquareView asciiView = (ASCIISquareView) inflater.inflate(R.layout.save_list_item_view, null);
 //                asciiView.asciiText.setText(item.getName());
                 asciiView.ascii.setText(item.getAscii());
                 asciiView.setTag(item);

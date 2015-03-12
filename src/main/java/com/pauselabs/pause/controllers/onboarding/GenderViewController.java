@@ -38,7 +38,7 @@ public class GenderViewController implements View.OnClickListener {
 
         onBoardingActivity = activity;
 
-        genderView = (GenderView) inflater.inflate(R.layout.gender_view, null);
+        genderView = (GenderView) inflater.inflate(R.layout.ob_gender_first_view, null);
 
         genderView.male.setOnClickListener(this);
         genderView.female.setOnClickListener(this);

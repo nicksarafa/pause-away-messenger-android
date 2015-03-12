@@ -30,6 +30,6 @@
         android:ellipsize="marquee"
         android:maxLines="100"
         android:scrollHorizontally="false"
-        android:background="@drawable/save_card_background"/>
+        android:background="@drawable/card_bg"/>
 
 </com.pauselabs.pause.view.ASCIISquareView>

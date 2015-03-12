@@ -38,7 +38,7 @@
             android:layout_alignParentTop="true"
             android:layout_margin="8dp"
             android:layout_alignTop="@id/emojiDirectoryGrid"
-            android:background="@drawable/card_background">
+            android:background="@drawable/card_bg">
 
             <EditText
                 android:id="@+id/custom_text"

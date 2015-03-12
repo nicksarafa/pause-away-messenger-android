@@ -26,8 +26,6 @@ public class CustomPauseView extends RelativeLayout {
 
     @InjectView(R.id.custom_text)
     public TextView customTxtView;
-//    @InjectView(R.id.begin)
-//    public Button beginBtn;
 
     public CustomPauseView(Context context) {
         super(context);

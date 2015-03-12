@@ -63,6 +63,7 @@
         <item name="android:searchButtonText">Search Contacts</item>
         <item name="android:displayOptions">showHome|homeAsUp</item>
         <item name="displayOptions">showHome|homeAsUp</item>
+
         <item name="android:icon">@drawable/icon</item> <!-- This does the magic! -->
     </style>
 
