@@ -21,7 +21,7 @@
             <android.widget.IconButton
                 android:id="@+id/upgrade_btn"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/fab_button_diameter"
+                android:layout_height="@dimen/view_header_universal_height"
                 android:layout_alignParentTop="true"
                 android:layout_centerVertical="true"
                 android:background="@drawable/upgrade_card_btn_background"
@@ -35,7 +35,7 @@
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
                     android:orientation="vertical"
-                    android:layout_marginTop="@dimen/list_view_margin_top"
+                    android:layout_marginTop="@dimen/list_view_universal_margin_top"
                     android:layout_alignParentBottom="true">
 
                     <TextView

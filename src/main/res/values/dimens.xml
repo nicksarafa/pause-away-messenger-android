@@ -1,73 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <!-- Default screen margins, per the Android Design guidelines. -->
-    <dimen name="activity_horizontal_margin">10dp</dimen>
+    <!-- Fab (Featured/Floating Action Button) - Universal -->
+    <dimen name="fab_diameter">68dp</dimen>
+    <dimen name="fab_margin_right">28dp</dimen>
+    <dimen name="fab_margin_bottom">6dp</dimen>
 
-    <!-- All Headers -->
+    <!-- Action Bar (ab) & Toolbar (Same thing) - Universal -->
+    <dimen name="ab_toolbar_universal_height">68dp</dimen>
+    <dimen name="ab_icon_universal_width_and_height">68dp</dimen>
 
-    <dimen name="header_height">100dp</dimen>
-    <dimen name="header_horizontal_padding">8dp</dimen>
-    <dimen name="header_vertical_padding">20dp</dimen>
+    <!-- Header & View Below - Universal -->
+    <dimen name="view_header_universal_height">68dp</dimen>
+    <dimen name="list_view_universal_margin_top">82dp</dimen>
 
-    <!-- Summary View -->
-
-    <dimen name="privacy_view_horizontal_padding">8dp</dimen>
-    <dimen name="privacy_view_vertical_padding">4dp</dimen>
-
-    <!-- Summary View List Padding -->
-    <dimen name="summary_view_horizontal_padding">8dp</dimen>
-    <dimen name="summary_view_vertical_padding">4dp</dimen>
-
-    <!-- Privacy Header -->
-
-    <dimen name="privacy_header_horiztonal">16dp</dimen>
-    <dimen name="privacy_header_vertical">12dp</dimen>
-    <dimen name="settings_view_padding">10dp</dimen>
-
-    <!-- Settings View -->
-    <dimen name="min_padding">10dp</dimen>
-    <dimen name="settings_item_padding">10dp</dimen>
-
-    <!-- Text -->
+    <!-- Text - Universal -->
+    <dimen name="text_super_sized">30sp</dimen>
     <dimen name="text_extra_large">24sp</dimen>
-    <dimen name="text_large">18sp</dimen>
+    <dimen name="text_large">22dp</dimen>
     <dimen name="text_medium">18sp</dimen>
     <dimen name="text_small">16sp</dimen>
 
-    <!-- OB = on_boarding face and height -->
-    <dimen name="ob_word_mark_height">80dp</dimen>
-    <dimen name="ob_face_width">70dp</dimen>
-    <dimen name="ob_face_height">75dp</dimen>
-    <dimen name="ob_letters_height">200dp</dimen>
-    <dimen name="ob_letters_width">300dp</dimen>
-    <dimen name="ob_btn_height">68dp</dimen>
+    <!-- UNIVERSAL *Privacy* View -->
+    <dimen name="privacy_checkbox_and_text_padding">6dp</dimen>
 
-    <!-- Fab Holder Height (Universal) -->
-    <dimen name="so_three_panel_height">80dp</dimen>
+    <!-- Save View -->
+    <dimen name="save_horizontal_margin">10dp</dimen>
 
-    <!-- Fab Dimens -->
-    <dimen name="fab_container_height">68dp</dimen>
-    <dimen name="fab_button_diameter">68dp</dimen>
-    <dimen name="fab_button_margin">16dp</dimen>
-    <dimen name="elevation_low">1dp</dimen>
-    <dimen name="elevation_high">8dp</dimen>
+    <!-- Summary View -->
+    <dimen name="privacy_view_horizontal_padding">8dp</dimen>
+    <dimen name="privacy_view_vertical_padding">4dp</dimen>
 
-    <dimen name="settings_thumbnail_size">36dp</dimen>
-    <dimen name="emoji_grid_margin">10dp</dimen>
-    <dimen name="ob_btn_margin">30dp</dimen>
-    <dimen name="contact_list_item_padding">6dp</dimen>
-    <dimen name="emoji_summary_sothree_height">80dp</dimen>
-    <dimen name="goose_egg">0dp</dimen>
-    <dimen name="bottom_btn_height">68dp</dimen>
-    <dimen name="toolbar_height">68dp</dimen>
-    <dimen name="privacy_checkbox_padding">6dp</dimen>
+    <!-- Settings View -->
     <dimen name="settings_thumbnail_padding">4dp</dimen>
-    <dimen name="fab_margin_right">28dp</dimen>
-    <dimen name="fab_margin_bottom">6dp</dimen>
-    <dimen name="save_list_spacing">4dp</dimen>
-    <dimen name="no_new_messages_text_size">30sp</dimen>
-    <dimen name="list_view_margin_top">82dp</dimen>
+    <dimen name="settings_thumbnail_size">36dp</dimen>
+    <dimen name="settings_item_padding">10dp</dimen>
+    <dimen name="settings_text_padding">10dp</dimen>
+
+    <!-- Summary View -->
+    <dimen name="summary_view_horizontal_padding">8dp</dimen>
+    <dimen name="summary_view_vertical_padding">4dp</dimen>
+
+    <!-- Upgrade View -->
     <dimen name="upgrade_list_item_height">100dp</dimen>
+
+    <!-- On Boarding (OB - Tabled) -->
+    <dimen name="ob_word_mark_height">80dp</dimen>
+    <dimen name="ob_face_height">76dp</dimen>
+    <dimen name="ob_face_width">70dp</dimen>
+    <dimen name="ob_btn_height">68dp</dimen>
+    <dimen name="ob_btn_margin">30dp</dimen>
+    <dimen name="ob_word_container_width">300dp</dimen>
+    <dimen name="ob_word_container_height">200dp</dimen>
+
+    <!-- Headers (Tabled - Keep for reference/future header integration) -->
+    <dimen name="header_height">100dp</dimen>
+    <dimen name="info_header_vertical_padding">20dp</dimen>
+    <dimen name="info_header_horizontal_padding">8dp</dimen>
+    <dimen name="info_header_horiztonal_margin">16dp</dimen>
+    <dimen name="info_header_vertical_margin">12dp</dimen>
 
 </resources>

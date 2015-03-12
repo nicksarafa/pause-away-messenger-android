@@ -236,7 +236,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:layout_centerVertical="true"
-                android:textSize="@dimen/no_new_messages_text_size"
+                android:textSize="@dimen/text_super_sized"
                 android:textColor="@color/main"
                 android:text="@string/summary_splash_no_new_messages"/>
 

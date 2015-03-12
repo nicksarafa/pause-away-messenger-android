@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="fill_parent"
         android:numColumns="1"
-        android:layout_marginTop="@dimen/list_view_margin_top"
+        android:layout_marginTop="@dimen/list_view_universal_margin_top"
         android:listSelector="@drawable/transparent_drawable"
         android:cacheColorHint="@color/transparent"
         android:clipToPadding="true"
@@ -34,7 +34,7 @@
             android:id="@+id/custom_pause_container"
             android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/fab_button_diameter"
+            android:layout_height="@dimen/view_header_universal_height"
             android:layout_alignParentTop="true"
             android:layout_margin="8dp"
             android:layout_alignTop="@id/saveDirectoryList"
@@ -59,8 +59,8 @@
                 android:imeOptions="flagNoEnterAction"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
-                android:paddingLeft="@dimen/activity_horizontal_margin"
-                android:paddingRight="@dimen/activity_horizontal_margin"
+                android:paddingLeft="@dimen/save_horizontal_margin"
+                android:paddingRight="@dimen/save_horizontal_margin"
                 android:inputType="textMultiLine"
                 android:hint="@string/custom_pause_hint"/>
 

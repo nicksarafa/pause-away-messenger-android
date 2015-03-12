@@ -65,8 +65,8 @@
                 android:layout_gravity="end|center_vertical"
                 android:textAlignment="textEnd"
                 android:textColor="@color/text"
-                android:layout_marginRight="@dimen/privacy_checkbox_padding"
-                android:layout_marginEnd="@dimen/privacy_checkbox_padding"
+                android:layout_marginRight="@dimen/privacy_checkbox_and_text_padding"
+                android:layout_marginEnd="@dimen/privacy_checkbox_and_text_padding"
                 android:textSize="@dimen/text_large"
                 android:textAppearance="?android:attr/textAppearanceLarge"/>
 
@@ -78,7 +78,7 @@
                     android:layout_width="0dp"
                     android:layout_weight="0"
                     android:gravity="end|center_vertical"
-                    android:layout_marginRight="@dimen/privacy_checkbox_padding"
-                    android:layout_marginEnd="@dimen/privacy_checkbox_padding"/>
+                    android:layout_marginRight="@dimen/privacy_checkbox_and_text_padding"
+                    android:layout_marginEnd="@dimen/privacy_checkbox_and_text_padding"/>
 
 </merge>

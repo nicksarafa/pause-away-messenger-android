@@ -33,7 +33,7 @@ public class SettingsButton extends LinearLayout {
             a.recycle();
         }
 
-        int minPadding = (int) getResources().getDimension(R.dimen.min_padding);
+        int minPadding = (int) getResources().getDimension(R.dimen.settings_item_padding);
         setPadding(minPadding, minPadding, minPadding, minPadding);
 
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
