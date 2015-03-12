@@ -281,7 +281,7 @@ public class PauseActivity extends ActionBarActivity {
             Locale l = Locale.getDefault();
             switch (position) {
                 case EMOJI_TAB:
-                    return getString(R.string.emoji_section_title).toUpperCase(l);
+                    return getString(R.string.saves_activity_title).toUpperCase(l);
                 case SETTINGS_TAB:
                     return getString(R.string.settings_section_title).toUpperCase(l);
                 case SEARCH_CONTACTS_TAB:

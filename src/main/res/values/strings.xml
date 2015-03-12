@@ -102,7 +102,7 @@
     <string name="gender_settings_label">Gender</string>
     <string name="help_label">Help</string>
 
-    <string name="emoji_section_title">Emoji</string>
+    <string name="saves_activity_title">Saves</string>
     <string name="settings_section_title">Settings</string>
     <string name="hidden_custom_section_title">Custom</string>
     <string name="ice_section_title">ICE</string>
@@ -121,5 +121,8 @@
     <string name="on_boarding_picture_content_description">Welcome to Pause!</string>
     <string name="born_in_detroit_settings_footer"><![CDATA[ Born in Detroit\n\n♡ \n]]></string>
     <string name="upgrade_btn_text">{fa-diamond}\u0020\u0020UPGRADE\u0020\u0020{fa-diamond}</string>
+    <string name="slide4_start_app_btn">Begin</string>
+    <string name="slide2_activate_pause_btn">On</string>
+    <string name="slide3_start_app_btn">Off</string>
 
 </resources>

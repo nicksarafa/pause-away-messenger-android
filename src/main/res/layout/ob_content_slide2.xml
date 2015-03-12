@@ -1,13 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.pauselabs.pause.view.start.onboaring.content.Slide2
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:materialdesign="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <Button
-        android:id="@+id/slide2_deactivate_btn"
-        android:layout_width="100dp"
-        android:layout_height="50dp"
-        android:text="Stop Paüse"/>
+    <RelativeLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="8dp">
+
+        <com.gc.materialdesign.views.ButtonFloat
+            android:id="@+id/slide2_deactivate_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginEnd="@dimen/fab_margin_right"
+            android:layout_marginRight="@dimen/fab_margin_right"
+            android:layout_marginBottom="@dimen/fab_margin_bottom"
+            materialdesign:animate="true" />
+
+    </RelativeLayout>
 
 </com.pauselabs.pause.view.start.onboaring.content.Slide2>
