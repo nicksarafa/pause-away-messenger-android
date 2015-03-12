@@ -38,13 +38,12 @@ public class GenderViewController implements View.OnClickListener {
 
         startActivity = activity;
 
-        genderView = (GenderView) inflater.inflate(R.layout.ob_gender_first_view, null);
+        genderView = (GenderView) inflater.inflate(R.layout.ob_first_gender, null);
 
         genderView.male.setOnClickListener(this);
         genderView.female.setOnClickListener(this);
 
     }
-
 
     @Override
     public void onClick(View v) {
@@ -54,18 +53,24 @@ public class GenderViewController implements View.OnClickListener {
 
             switch (v.getId()) {
                 case R.id.male:
-                    genderValue = prefs.getString(Constants.Settings.GENDER_MALE_VALUE,"");
+                    genderValue = Constants.Settings.GENDER_MALE_VALUE;
 
                     genderView.male.setBackgroundResource(R.drawable.btn_gender_pressed);
 
                     break;
 
                 case R.id.female:
-                    genderValue = prefs.getString(Constants.Settings.GENDER_FEMALE_VALUE,"");
+                    genderValue = Constants.Settings.GENDER_FEMALE_VALUE;
 
                     genderView.female.setBackgroundResource(R.drawable.btn_gender_pressed);
 
                     break;
+            }
+
+            try {
+                Thread.sleep(1500);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
             }
 
             SharedPreferences.Editor editor = prefs.edit();

@@ -12,21 +12,21 @@ import butterknife.InjectView;
 /**
  * Created by Passa on 3/12/15.
  */
-public class Slide2 extends OnboardingContentView {
+public class OB1 extends OnboardingContentView {
 
-    @InjectView(R.id.slide2_deactivate_btn)
-    public ButtonFloat deactivateBtn;
+    @InjectView(R.id.slide1_activate_btn)
+    public ButtonFloat activateBtn;
 
-    public Slide2(Context context) {
+    public OB1(Context context) {
         super(context);
     }
 
-    public Slide2(Context context, AttributeSet attrs) {
+    public OB1(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
 
-    public Slide2(Context context, AttributeSet attrs, int defStyle) {
+    public OB1(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
     }
-    
+
 }

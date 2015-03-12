@@ -17,11 +17,10 @@ import com.pauselabs.pause.activity.StartActivity;
 import com.pauselabs.pause.model.Constants;
 import com.pauselabs.pause.view.start.onboaring.OnboardingContainerView;
 import com.pauselabs.pause.view.start.onboaring.OnboardingContentView;
-import com.pauselabs.pause.view.start.onboaring.content.Slide0;
-import com.pauselabs.pause.view.start.onboaring.content.Slide1;
-import com.pauselabs.pause.view.start.onboaring.content.Slide2;
-import com.pauselabs.pause.view.start.onboaring.content.Slide3;
-import com.pauselabs.pause.view.start.onboaring.content.Slide4;
+import com.pauselabs.pause.view.start.onboaring.content.OB0;
+import com.pauselabs.pause.view.start.onboaring.content.OB1;
+import com.pauselabs.pause.view.start.onboaring.content.OB2;
+import com.pauselabs.pause.view.start.onboaring.content.OB3;
 
 import javax.inject.Inject;
 
@@ -36,7 +35,7 @@ public class OnboardingViewController implements View.OnClickListener {
 
     public OnboardingContainerView onboardingContainerView;
 
-    public static final int NUM_VIEWS = 5;
+    public static final int NUM_VIEWS = 4;
     public final OnboardingContentView[] contentViews = new OnboardingContentView[NUM_VIEWS];
 
     public int pageIndex;
@@ -51,43 +50,37 @@ public class OnboardingViewController implements View.OnClickListener {
 
         startActivity = activity;
 
-        onboardingContainerView = (OnboardingContainerView) inflater.inflate(R.layout.onboarding_container_view, null);
+        onboardingContainerView = (OnboardingContainerView) inflater.inflate(R.layout.ob_container_view, null);
 
         for (int i = 0; i < NUM_VIEWS; i++) {
             OnboardingContentView viewToAdd = null;
 
             switch (i) {
                 case 0:
-                    Slide0 slide0 = (Slide0)inflater.inflate(R.layout.ob_content_slide0, null);
+                    OB0 OB0 = (OB0)inflater.inflate(R.layout.ob_0, null);
 
-                    viewToAdd = slide0;
+                    viewToAdd = OB0;
 
                     break;
                 case 1:
-                    Slide1 slide1 = (Slide1)inflater.inflate(R.layout.ob_content_slide1, null);
-                    slide1.activateBtn.setOnClickListener(this);
+                    OB1 OB1 = (OB1)inflater.inflate(R.layout.ob_1, null);
+                    OB1.activateBtn.setOnClickListener(this);
 
-                    viewToAdd = slide1;
+                    viewToAdd = OB1;
 
                     break;
                 case 2:
-                    Slide2 slide2 = (Slide2)inflater.inflate(R.layout.ob_content_slide2, null);
-                    slide2.deactivateBtn.setOnClickListener(this);
+                    OB2 OB2 = (OB2)inflater.inflate(R.layout.ob_2, null);
+                    OB2.deactivateBtn.setOnClickListener(this);
 
-                    viewToAdd = slide2;
+                    viewToAdd = OB2;
 
                     break;
                 case 3:
-                    Slide3 slide3 = (Slide3)inflater.inflate(R.layout.ob_content_slide3, null);
+                    OB3 OB3 = (OB3)inflater.inflate(R.layout.ob_3, null);
+                    OB3.startAppBtn.setOnClickListener(this);
 
-                    viewToAdd = slide3;
-
-                    break;
-                case 4:
-                    Slide4 slide4 = (Slide4)inflater.inflate(R.layout.ob_content_slide4, null);
-                    slide4.startAppBtn.setOnClickListener(this);
-
-                    viewToAdd = slide4;
+                    viewToAdd = OB3;
 
                     break;
             }
@@ -105,7 +98,6 @@ public class OnboardingViewController implements View.OnClickListener {
             @Override
             public void onPageSelected(int position) {
                 pageIndex = position;
-
 
             }
 
@@ -128,7 +120,7 @@ public class OnboardingViewController implements View.OnClickListener {
                 PauseApplication.stopPauseService(Constants.Session.Destroyer.VOLUME);
 
                 break;
-            case R.id.slide4_start_app_btn:
+            case R.id.ob_final_start_main_activity_btn:
                 prefs.edit().putBoolean(Constants.Pause.ONBOARDING_FINISHED_KEY, true).apply();
 
                 startActivity.startApp();

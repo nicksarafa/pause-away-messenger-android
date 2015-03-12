@@ -140,17 +140,16 @@ public class SettingsViewController implements View.OnClickListener {
     }
 
     public void changeGender() {
-        String male = prefs.getString(Constants.Settings.GENDER_MALE_VALUE,"");
-        String female = prefs.getString(Constants.Settings.GENDER_FEMALE_VALUE,"");
         String genderSwap;
 
-        boolean isMale = prefs.getString(Constants.Settings.GENDER_KEY, "").equals(male);
+        boolean isMale = prefs.getString(Constants.Settings.GENDER_KEY, "").equals(Constants.Settings.GENDER_MALE_VALUE);
 
         if (isMale) {
-            genderSwap = female;
+            genderSwap = Constants.Settings.GENDER_FEMALE_VALUE;
         } else {
-            genderSwap = male;
+            genderSwap = Constants.Settings.GENDER_MALE_VALUE;
         }
+        settingsView.genderBtn.setContent(genderSwap);
         prefs.edit().putString(Constants.Settings.GENDER_KEY, genderSwap).apply();
     }
 
