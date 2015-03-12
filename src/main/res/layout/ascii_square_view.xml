@@ -7,7 +7,7 @@
     <!-- Custom Pause Message Save List -->
 
     <android.widget.IconTextView
-        android:id="@+id/emoji"
+        android:id="@+id/ascii"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:textIsSelectable="false"

@@ -5,6 +5,7 @@ import android.content.ActivityNotFoundException;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.media.AudioManager;
 import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -29,6 +30,8 @@ public class SettingsViewController implements View.OnClickListener {
     protected SharedPreferences prefs;
     @Inject
     LayoutInflater inflater;
+    @Inject
+    AudioManager am;
 
     public SettingsViewController() {
         Injector.inject(this);
@@ -36,7 +39,7 @@ public class SettingsViewController implements View.OnClickListener {
         settingsView = (SettingsView) inflater.inflate(R.layout.settings_list_view, null);
 
         settingsView.nameBtn.setContent(prefs.getString(Constants.Settings.NAME_KEY, "None"));
-        settingsView.genderBtn.setContent((prefs.getBoolean(Constants.Settings.IS_MALE, false)) ? "Male" : "Female");
+        settingsView.genderBtn.setContent(prefs.getString(Constants.Settings.GENDER_KEY, ""));
         settingsView.strangersBtn.setContent((prefs.getBoolean(Constants.Settings.REPLY_STRANGERS, true)) ? "Yes" : "No");
         settingsView.missedCallsBtn.setContent((prefs.getBoolean(Constants.Settings.REPLY_MISSED_CALL, true)) ? "Yes" : "No");
         settingsView.receivedSmsBtn.setContent((prefs.getBoolean(Constants.Settings.REPLY_SMS, true)) ? "Yes" : "No");
@@ -108,13 +111,13 @@ public class SettingsViewController implements View.OnClickListener {
     }
 
     public void changName() {
-        AlertDialog.Builder alert = new AlertDialog.Builder(PauseApplication.mainActivity);
+        AlertDialog.Builder alert = new AlertDialog.Builder(PauseApplication.pauseActivity);
 
         alert.setTitle("Enter your name");
         alert.setMessage("Bounce back messages will include this");
 
         // Set an EditText view to get user input
-        final EditText input = new EditText(PauseApplication.mainActivity);
+        final EditText input = new EditText(PauseApplication.pauseActivity);
         String existingName = prefs.getString(Constants.Settings.NAME_KEY, "");
         if(!existingName.equals("")){
             input.setText(existingName);
@@ -137,14 +140,18 @@ public class SettingsViewController implements View.OnClickListener {
     }
 
     public void changeGender() {
-        boolean isMale = prefs.getBoolean(Constants.Settings.IS_MALE, false);
+        String male = prefs.getString(Constants.Settings.GENDER_MALE_VALUE,"");
+        String female = prefs.getString(Constants.Settings.GENDER_FEMALE_VALUE,"");
+        String genderSwap;
+
+        boolean isMale = prefs.getString(Constants.Settings.GENDER_KEY, "").equals(male);
 
         if (isMale) {
-            settingsView.genderBtn.setContent("Female");
+            genderSwap = female;
         } else {
-            settingsView.genderBtn.setContent("Male");
+            genderSwap = male;
         }
-        prefs.edit().putBoolean(Constants.Settings.IS_MALE, !isMale).apply();
+        prefs.edit().putString(Constants.Settings.GENDER_KEY, genderSwap).apply();
     }
 
     private void changeStrangers() {
@@ -209,6 +216,8 @@ public class SettingsViewController implements View.OnClickListener {
             settingsView.voiceBtn.setContent("Off");
         } else {
             settingsView.voiceBtn.setContent("On");
+
+            am.setStreamVolume(AudioManager.STREAM_MUSIC, am.getStreamMaxVolume(AudioManager.STREAM_MUSIC) / 2, AudioManager.FLAG_ALLOW_RINGER_MODES);
         }
         prefs.edit().putBoolean(Constants.Settings.PAUSE_VOICE_FEEDBACK_KEY, !pauseVoiceFeedback).apply();
     }
@@ -230,7 +239,7 @@ public class SettingsViewController implements View.OnClickListener {
         try {
             settingsView.getContext().startActivity(goToMarket);
         } catch (ActivityNotFoundException e) {
-            PauseApplication.mainActivity.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("http://play.google.com/store/apps/details?id=" + settingsView.getContext().getPackageName())).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
+            PauseApplication.pauseActivity.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("http://play.google.com/store/apps/details?id=" + settingsView.getContext().getPackageName())).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
         }
     }
 
@@ -238,17 +247,17 @@ public class SettingsViewController implements View.OnClickListener {
         Intent emailIntent = new Intent(android.content.Intent.ACTION_SEND);
         emailIntent.putExtra(android.content.Intent.EXTRA_EMAIL, new String[] {"feedback@pauselabs.com"});
         emailIntent.setType("message/rfc822");
-        PauseApplication.mainActivity.startActivity(Intent.createChooser(emailIntent, "Contact Üs").addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
+        PauseApplication.pauseActivity.startActivity(Intent.createChooser(emailIntent, "Contact Üs").addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
     }
 
     private void launchSupportLink() {
         Intent termsIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.woot.com")).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        PauseApplication.mainActivity.startActivity(termsIntent);
+        PauseApplication.pauseActivity.startActivity(termsIntent);
     }
 
     private void launchTermsLink() {
         Intent supportIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.google.com/")).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        PauseApplication.mainActivity.startActivity(supportIntent);
+        PauseApplication.pauseActivity.startActivity(supportIntent);
     }
 
 }

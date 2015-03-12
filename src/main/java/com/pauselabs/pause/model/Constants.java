@@ -99,7 +99,7 @@ public class Constants {
             /**
              * Pause session created from silence mode
              */
-            public static final int SILENCE = 1;
+            public static final int VOLUME = 1;
 
             /**
              * Pause session created from driving mode
@@ -133,11 +133,6 @@ public class Constants {
          * System Preferences key for onboarding finished (boolean)
          */
         public static final String ONBOARDING_FINISHED_KEY = "ONBOARDING_FINISHED";
-
-        /**
-         * System Preferences key for onboarding number (boolean)
-         */
-        public static final String ONBOARDING_NUMBER_KEY = "ONBOARDING_NUMBER";
 
         /**
          * Key for saved custom Paüse message
@@ -230,21 +225,12 @@ public class Constants {
         public static final String REPLY_SMS = "REPLY_SMS_KEY";
 
         public static final String NAME_KEY = "NAME_KEY";
-        public static final String IS_MALE = "IS_MALE";
-        public static final String GENDER_MALE_VALUE = "he";
-        public static final String GENDER_FEMALE_VALUE = "she";
+        public static final String GENDER_KEY = "GENDER_KEY";
+        public static final String GENDER_MALE_VALUE = "Male";
+        public static final String GENDER_FEMALE_VALUE = "Female";
         public static final String USING_BLACKLIST = "USING_BLACKLIST";
         public static final String BLACKLIST = "PRIVACY";
         public static final String ICELIST = "ICELIST";
-
-        /** jasonActionIds
-         *
-         */
-
-        public static final int ACTION_CYCLE = 5000;
-        public static final int ACTION_ONBOARDING_SILENCE = 5001;
-        public static final int ACTION_ONBOARDING_UNSILENCE = 5002;
-        public static final int ACTION_ONBOARDING_FINISH = 5003;
 
         /**
          * M/S^2 acceleration in either x, y, or z axis
@@ -269,12 +255,6 @@ public class Constants {
 
     public static class Privacy {
         private Privacy() {}
-
-
-    }
-
-    public static class Gender {
-        private Gender() {}
 
 
     }

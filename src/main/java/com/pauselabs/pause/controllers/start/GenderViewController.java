@@ -1,4 +1,4 @@
-package com.pauselabs.pause.controllers.onboarding;
+package com.pauselabs.pause.controllers.start;
 
 import android.content.SharedPreferences;
 import android.media.AudioManager;
@@ -9,9 +9,9 @@ import android.view.inputmethod.EditorInfo;
 import com.pauselabs.R;
 import com.pauselabs.pause.Injector;
 import com.pauselabs.pause.PauseApplication;
-import com.pauselabs.pause.activity.OnBoardingActivity;
+import com.pauselabs.pause.activity.StartActivity;
 import com.pauselabs.pause.model.Constants;
-import com.pauselabs.pause.view.GenderView;
+import com.pauselabs.pause.view.start.GenderView;
 
 import javax.inject.Inject;
 
@@ -20,7 +20,11 @@ import javax.inject.Inject;
  */
 public class GenderViewController implements View.OnClickListener {
 
+    private StartActivity startActivity;
+
     public GenderView genderView;
+
+    String genderValue;
 
     @Inject
     LayoutInflater inflater;
@@ -29,14 +33,10 @@ public class GenderViewController implements View.OnClickListener {
     @Inject
     AudioManager am;
 
-    boolean isMale;
-
-    OnBoardingActivity onBoardingActivity;
-
-    public GenderViewController(OnBoardingActivity activity) {
+    public GenderViewController(StartActivity activity) {
         Injector.inject(this);
 
-        onBoardingActivity = activity;
+        startActivity = activity;
 
         genderView = (GenderView) inflater.inflate(R.layout.gender_view, null);
 
@@ -54,14 +54,14 @@ public class GenderViewController implements View.OnClickListener {
 
             switch (v.getId()) {
                 case R.id.male:
-                    isMale = true;
+                    genderValue = prefs.getString(Constants.Settings.GENDER_MALE_VALUE,"");
 
                     genderView.male.setBackgroundResource(R.drawable.btn_gender_pressed);
 
                     break;
 
                 case R.id.female:
-                    isMale = false;
+                    genderValue = prefs.getString(Constants.Settings.GENDER_FEMALE_VALUE,"");
 
                     genderView.female.setBackgroundResource(R.drawable.btn_gender_pressed);
 
@@ -69,14 +69,13 @@ public class GenderViewController implements View.OnClickListener {
             }
 
             SharedPreferences.Editor editor = prefs.edit();
-            editor.putBoolean(Constants.Pause.PAUSE_ALREADY_LAUNCHED_KEY, true);
             editor.putString(Constants.Settings.NAME_KEY, genderView.name.getText().toString());
-            editor.putBoolean(Constants.Settings.IS_MALE, isMale);
+            editor.putString(Constants.Settings.GENDER_KEY, genderValue);
             editor.apply();
 
             genderView.name.onEditorAction(EditorInfo.IME_ACTION_DONE);
 
-            onBoardingActivity.cycle();
+            startActivity.showOnboarding();
         } else {
             PauseApplication.sendToast("Please Enter Your Name First!");
         }

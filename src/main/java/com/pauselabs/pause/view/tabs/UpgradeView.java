@@ -37,4 +37,5 @@ public class UpgradeView extends RelativeLayout {
 
         Views.inject(this);
     }
+
 }

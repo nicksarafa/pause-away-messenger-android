@@ -16,26 +16,26 @@ import butterknife.Views;
 /**
  * Created by Passa on 1/27/15.
  */
-public class MainActivityView extends SlidingUpPanelLayout {
+public class PauseActivityView extends SlidingUpPanelLayout {
 
     @InjectView(R.id.main_content_container)
     public RelativeLayout mainContentContainer;
-    @InjectView(R.id.pager)
+    @InjectView(R.id.toolbar_pager)
     public ViewPager viewPager;
     @InjectView(R.id.toolbar)
     public Toolbar toolbar;
     @InjectView(R.id.fab_image_button)
     public Button startPauseButton;
 
-    public MainActivityView(Context context) {
+    public PauseActivityView(Context context) {
         super(context);
     }
 
-    public MainActivityView(Context context, AttributeSet attrs) {
+    public PauseActivityView(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
 
-    public MainActivityView(Context context, AttributeSet attrs, int defStyle) {
+    public PauseActivityView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
     }
 

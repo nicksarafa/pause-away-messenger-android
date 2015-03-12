@@ -15,11 +15,8 @@ import butterknife.Views;
  */
 public class ASCIISquareView extends RelativeLayout {
 
-    @InjectView(R.id.emoji)
+    @InjectView(R.id.ascii)
     public TextView ascii;
-
-//    @InjectView(R.id.emojiText)
-//    public TextView asciiText;
 
     public ASCIISquareView(Context context) {
         super(context);
@@ -40,9 +37,4 @@ public class ASCIISquareView extends RelativeLayout {
         Views.inject(this);
     }
 
-//    @Override
-//    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-//        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-//        setMeasuredDimension(getMeasuredWidth(), getMeasuredWidth()); //Snap to width
-//    }
 }

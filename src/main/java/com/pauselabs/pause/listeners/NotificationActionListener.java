@@ -5,7 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 
 import com.pauselabs.pause.PauseApplication;
-import com.pauselabs.pause.activity.MainActivity;
+import com.pauselabs.pause.activity.PauseActivity;
 import com.pauselabs.pause.model.Constants;
 
 /**
@@ -23,7 +23,7 @@ public class NotificationActionListener extends BroadcastReceiver {
 
                     break;
                 case Constants.Notification.EDIT_PAUSE_SESSION:
-                    Intent i = new Intent(PauseApplication.getInstance(), MainActivity.class);
+                    Intent i = new Intent(PauseApplication.getInstance(), PauseActivity.class);
                     i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     i.putExtra("FROM_NOT",true);
                     PauseApplication.getInstance().startActivity(i);
@@ -43,7 +43,7 @@ public class NotificationActionListener extends BroadcastReceiver {
 
                     break;
                 case Constants.Notification.MODE_SILENCE:
-                    PauseApplication.getCurrentSession().setCreator(Constants.Session.Creator.SILENCE);
+                    PauseApplication.getCurrentSession().setCreator(Constants.Session.Creator.VOLUME);
                     PauseApplication.updateNotifications();
 
                     break;

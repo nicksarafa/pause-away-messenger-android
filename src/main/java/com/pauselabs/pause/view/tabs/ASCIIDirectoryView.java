@@ -19,7 +19,7 @@ import butterknife.Views;
  */
 public class ASCIIDirectoryView extends RelativeLayout {
 
-    @InjectView(R.id.emojiDirectoryGrid)
+    @InjectView(R.id.asciiDirectoryGrid)
     public ListView asciiGrid;
     @InjectView(R.id.custom_text)
     public EditText customText;

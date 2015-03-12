@@ -12,8 +12,6 @@ import com.pauselabs.R;
 import butterknife.InjectView;
 import butterknife.Views;
 
-;
-
 /**
  * Created by Admin on 12/13/14.
  */
@@ -36,7 +34,6 @@ public class SearchPrivacyView extends RelativeLayout {
 
     public SearchPrivacyView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
-
     }
 
 
@@ -46,4 +43,5 @@ public class SearchPrivacyView extends RelativeLayout {
 
         Views.inject(this);
     }
+
 }
