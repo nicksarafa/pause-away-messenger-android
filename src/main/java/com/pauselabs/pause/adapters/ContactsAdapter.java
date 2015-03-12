@@ -70,7 +70,7 @@ public class ContactsAdapter extends CursorAdapter implements SectionIndexer {
 
         // Defines a span for highlighting the part of a display name that matches the search
         // string
-        highlightTextSpan = new TextAppearanceSpan(context, R.style.searchTextHighlight);
+        highlightTextSpan = new TextAppearanceSpan(context, R.style.contactSearchTextHighlight);
     }
 
     public void selectAll() {

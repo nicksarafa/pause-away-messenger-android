@@ -15,7 +15,6 @@
 
     <!-- Material Color Palette -->
 
-    <color name="colorPrimary">#3cbeb5</color>
     <color name="card_bottom_shadow">#60888888</color>
 
 </resources>

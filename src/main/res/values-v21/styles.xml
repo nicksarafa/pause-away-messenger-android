@@ -5,9 +5,8 @@
 
     <style name="AppTheme" parent="AppTheme.Base"/>
 
-    <style name="AppTheme.Base" parent="@style/Theme.AppCompat.Light.NoActionBar">
-        <item name="colorPrimary">@color/transparent</item>
-        <item name="colorPrimaryDark">@color/transparent</item>
+    <!-- v21 Main Theme Eliminating Action Bar -->
+    <style name="AppTheme.Base" parent="@style/Theme.AppCompat.Light">
         <item name="android:windowNoTitle">true</item>
         <item name="windowActionBar">false</item>
         <item name="windowActionModeOverlay">true</item>
@@ -18,20 +17,31 @@
         <item name="android:windowSharedElementExitTransition">@android:transition/move</item>
     </style>
 
-    <style name="Theme.AppCompat.Light.NoActionBar" parent="@style/Theme.AppCompat.Light">
-        <item name="android:windowActionBar">false</item>
-        <item name="android:windowNoTitle">true</item>
-        <item name="android:windowActionBarOverlay">true</item>
-    </style>
-
-    <!-- Custom Widget Style Updates -->
-
-    <style name="Widget.TextView.ListSeparator" parent="@android:style/Widget.TextView">
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">wrap_content</item>
+    <!-- Contact Search Text Highlight -->
+    <style name="contactSearchTextHighlight">
+        <item name="android:textColor">@color/main</item>
         <item name="android:textStyle">bold</item>
-        <item name="android:textSize">14sp</item>
-        <item name="android:gravity">center_vertical</item>
     </style>
 
 </resources>
+
+    <!-- Old v21 styles code. Might need depending on Android 5.1/5.1 testing via Scott's phone -->
+    <!--<style name="AppTheme.Base" parent="@style/Theme.AppCompat.Light.NoActionBar">-->
+    <!--<item name="colorPrimary">@color/transparent</item>-->
+    <!--<item name="colorPrimaryDark">@color/transparent</item>-->
+    <!--<item name="android:windowNoTitle">true</item>-->
+    <!--<item name="windowActionBar">false</item>-->
+    <!--<item name="windowActionModeOverlay">true</item>-->
+    <!--<item name="android:windowContentTransitions">true</item>-->
+    <!--<item name="android:windowAllowEnterTransitionOverlap">true</item>-->
+    <!--<item name="android:windowAllowReturnTransitionOverlap">true</item>-->
+    <!--<item name="android:windowSharedElementEnterTransition">@android:transition/move</item>-->
+    <!--<item name="android:windowSharedElementExitTransition">@android:transition/move</item>-->
+    <!--</style>-->
+
+    <!--<style name="Theme.AppCompat.Light.NoActionBar" parent="@style/Theme.AppCompat.Light">-->
+    <!--<item name="android:windowActionBar">false</item>-->
+    <!--<item name="android:windowNoTitle">true</item>-->
+    <!--<item name="android:windowActionBarOverlay">true</item>-->
+    <!--</style>-->
+
