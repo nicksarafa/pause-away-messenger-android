@@ -10,7 +10,7 @@
     <dimen name="ab_toolbar_universal_height">68dp</dimen>
     <dimen name="ab_icon_universal_width_and_height">68dp</dimen>
 
-    <!-- Header & View Below - Universal -->
+    <!-- Real Header & View Below - Universal -->
     <dimen name="main_header_universal_height">68dp</dimen>
     <dimen name="main_list_view_universal_margin_top">82dp</dimen>
 
@@ -53,7 +53,7 @@
     <dimen name="ob_word_container_height">200dp</dimen>
 
     <!-- Headers (Tabled - Keep for reference/future header integration) -->
-    <dimen name="header_height">100dp</dimen>
+    <dimen name="info_header_height">100dp</dimen>
     <dimen name="info_header_vertical_padding">20dp</dimen>
     <dimen name="info_header_horizontal_padding">8dp</dimen>
     <dimen name="info_header_horizontal_margin">16dp</dimen>
