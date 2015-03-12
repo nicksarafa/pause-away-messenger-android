@@ -7,14 +7,10 @@
     <color name="text">#7c7c7c</color>
     <color name="text_hint">#999999</color>
     <color name="text_white">#FFFFFF</color>
-    <color name="holo_blue">#FF33B5E5</color>
     <color name="btn_blue">#FF33B5E5</color>
     <color name="btn_pink">#FB53E1</color>
     <color name="btn_green">#45BE3C</color>
     <color name="transparent">#00000000</color>
-
-    <!-- Material Color Palette -->
-
     <color name="card_bottom_shadow">#60888888</color>
 
 </resources>

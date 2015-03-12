@@ -2,18 +2,18 @@
 
 <com.pauselabs.pause.view.tabs.ASCIIDirectoryView
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/emojiDirectory"
+    android:id="@+id/saveDirectory"
     android:layout_height="fill_parent"
     android:layout_width="fill_parent"
     android:background="@drawable/transparent_drawable">
 
     <ListView
-        android:id="@+id/emojiDirectoryGrid"
+        android:id="@+id/saveDirectoryList"
         android:layout_width="match_parent"
         android:layout_height="fill_parent"
         android:numColumns="1"
         android:layout_marginTop="@dimen/list_view_margin_top"
-        android:listSelector="@color/transparent"
+        android:listSelector="@drawable/transparent_drawable"
         android:cacheColorHint="@color/transparent"
         android:clipToPadding="true"
         android:scrollbars="vertical"
@@ -22,7 +22,7 @@
         android:smoothScrollbar="true"
         android:verticalScrollbarPosition="left"
         android:overScrollMode="never"
-        android:overScrollHeader="@color/transparent"
+        android:overScrollHeader="@drawable/transparent_drawable"
         android:headerDividersEnabled="false"
         android:overScrollFooter="@android:color/transparent"
         android:footerDividersEnabled="false"
@@ -37,14 +37,14 @@
             android:layout_height="@dimen/fab_button_diameter"
             android:layout_alignParentTop="true"
             android:layout_margin="8dp"
-            android:layout_alignTop="@id/emojiDirectoryGrid"
+            android:layout_alignTop="@id/saveDirectoryList"
             android:background="@drawable/card_bg">
 
             <EditText
                 android:id="@+id/custom_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/transparent"
+                android:background="@drawable/transparent_drawable"
                 android:layout_centerInParent="true"
                 android:focusableInTouchMode="true"
                 android:focusable="true"

@@ -15,7 +15,7 @@ import butterknife.Views;
  */
 public class ASCIISquareView extends RelativeLayout {
 
-    @InjectView(R.id.emoji)
+    @InjectView(R.id.save)
     public TextView ascii;
 
 //    @InjectView(R.id.emojiText)
