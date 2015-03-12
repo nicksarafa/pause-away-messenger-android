@@ -1,4 +1,4 @@
-package com.pauselabs.pause.view;
+package com.pauselabs.pause.view.start;
 
 import android.content.Context;
 import android.util.AttributeSet;
@@ -7,7 +7,6 @@ import android.widget.EditText;
 import android.widget.RelativeLayout;
 
 import com.pauselabs.R;
-import com.pauselabs.pause.Injector;
 
 import butterknife.InjectView;
 import butterknife.Views;

@@ -77,7 +77,7 @@ public class SummaryViewController implements AdapterView.OnItemClickListener, R
         } else {
             PauseConversation conversation = summaryConversationCard.getConversation();
             for (PauseMessage message : conversation.getMessages()) {
-                View messageCard = new View(PauseApplication.mainActivity);
+                View messageCard = new View(PauseApplication.pauseActivity);
                 if (message.getType() == Constants.Message.Type.SMS_INCOMING || message.getType() == Constants.Message.Type.PHONE_INCOMING) {
                     SummaryReceivedCard receivedMessageCard = (SummaryReceivedCard) inflater.inflate(R.layout.summary_received_card, null);
                     receivedMessageCard.setMessageText(message.getMessage());

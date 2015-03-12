@@ -26,9 +26,9 @@ public class SilenceListener extends BroadcastReceiver {
         if (intent.getAction().equals(AudioManager.RINGER_MODE_CHANGED_ACTION)) {
 
             if ((am.getRingerMode() == AudioManager.RINGER_MODE_SILENT && prefs.getBoolean(Constants.Settings.PAUSE_ON_SILENT_KEY,true)) || (am.getRingerMode() == AudioManager.RINGER_MODE_VIBRATE && prefs.getBoolean(Constants.Settings.PAUSE_ON_VIBRATE_KEY,true))) {
-                PauseApplication.startPauseService(Constants.Session.Creator.SILENCE);
+                PauseApplication.startPauseService(Constants.Session.Creator.VOLUME);
             } else if ((am.getRingerMode() == AudioManager.RINGER_MODE_SILENT && !prefs.getBoolean(Constants.Settings.PAUSE_ON_SILENT_KEY,true)) || (am.getRingerMode() == AudioManager.RINGER_MODE_VIBRATE && !prefs.getBoolean(Constants.Settings.PAUSE_ON_VIBRATE_KEY,true)) || am.getRingerMode() == AudioManager.RINGER_MODE_NORMAL) {
-                PauseApplication.stopPauseService(Constants.Session.Destroyer.SILENCE);
+                PauseApplication.stopPauseService(Constants.Session.Destroyer.VOLUME);
                 PauseApplication.setOldRingerMode(am.getRingerMode());
             }
         }

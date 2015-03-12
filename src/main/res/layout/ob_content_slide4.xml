@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.pauselabs.pause.view.start.onboaring.content.Slide4
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <Button
+        android:id="@+id/slide4_start_app_btn"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:text="Start Application"/>
+
+</com.pauselabs.pause.view.start.onboaring.content.Slide4>

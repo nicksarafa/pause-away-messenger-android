@@ -30,7 +30,7 @@ import com.pauselabs.pause.controllers.SummaryViewController;
 import com.pauselabs.pause.controllers.UpgradeViewController;
 import com.pauselabs.pause.model.Constants;
 import com.pauselabs.pause.util.UIUtils;
-import com.pauselabs.pause.view.MainActivityView;
+import com.pauselabs.pause.view.PauseActivityView;
 import com.pauselabs.pause.view.tabs.actionbar.TabBarView;
 import com.sothree.slidinguppanel.SlidingUpPanelLayout;
 
@@ -38,9 +38,9 @@ import java.util.Locale;
 
 import javax.inject.Inject;
 
-public class MainActivity extends ActionBarActivity {
+public class PauseActivity extends ActionBarActivity {
 
-    public static final String TAG = MainActivity.class.getSimpleName();
+    public static final String TAG = PauseActivity.class.getSimpleName();
 
     public static final int EMOJI_TAB = 0;
     public static final int PRIVACY_TAB = 1;
@@ -48,7 +48,7 @@ public class MainActivity extends ActionBarActivity {
     public static final int UPGRADE_TAB = 3;
     public static final int SETTINGS_TAB = 4;
 
-    public MainActivityView mainActivityView;
+    public PauseActivityView pauseActivityView;
     public ActionBar actionBar;
     public TabBarView tabBarView;
     public int pageIndex;
@@ -70,12 +70,12 @@ public class MainActivity extends ActionBarActivity {
 
         Injector.inject(this);
 
-        PauseApplication.mainActivity = this;
+        PauseApplication.pauseActivity = this;
 
-        mainActivityView = (MainActivityView) inflater.inflate(R.layout.main_activity_view,null);
-        mainActivityView.viewPager.setAdapter(new SectionsPagerAdapter(getFragmentManager()));
+        pauseActivityView = (PauseActivityView) inflater.inflate(R.layout.pause_activity_view,null);
+        pauseActivityView.viewPager.setAdapter(new SectionsPagerAdapter(getFragmentManager()));
 
-        setContentView(mainActivityView);
+        setContentView(pauseActivityView);
 
         summaryViewController = new SummaryViewController();
         ASCIIDirectoryViewController = new ASCIIDirectoryViewController();
@@ -86,7 +86,7 @@ public class MainActivity extends ActionBarActivity {
         settingsViewController = new SettingsViewController();
 
         tabBarView = new TabBarView(this);
-        tabBarView.setViewPager(mainActivityView.viewPager);
+        tabBarView.setViewPager(pauseActivityView.viewPager);
         tabBarView.addView(searchPrivacyViewController.privacyBtns);
         tabBarView.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
@@ -114,14 +114,14 @@ public class MainActivity extends ActionBarActivity {
 
         });
         
-        setSupportActionBar(mainActivityView.toolbar);
+        setSupportActionBar(pauseActivityView.toolbar);
         actionBar = getSupportActionBar();
         actionBar.setBackgroundDrawable(getResources().getDrawable(R.color.off));
         actionBar.setDisplayShowTitleEnabled(false);
         actionBar.setDisplayShowCustomEnabled(true);
         actionBar.setCustomView(tabBarView);
 
-        mainActivityView.addView(summaryViewController.summaryView);
+        pauseActivityView.addView(summaryViewController.summaryView);
         summaryViewController.summaryView.setClickable(true);
 
         // Pencil icon added via Font-Awesome to custom view EditText.. Might change to feather later
@@ -130,20 +130,20 @@ public class MainActivity extends ActionBarActivity {
         ASCIIDirectoryViewController.asciiDirectoryView.customText.setCompoundDrawables(pencilIcon, null, null, null);
         ASCIIDirectoryViewController.asciiDirectoryView.customText.setCompoundDrawablePadding(20);
 
-        mainActivityView.setDragView(mainActivityView.startPauseButton);
-        ((ButtonFloat) mainActivityView.startPauseButton).setDrawableIcon(getResources().getDrawable(R.drawable.ic_action_pause_off));
-        mainActivityView.startPauseButton.setBackgroundColor(getResources().getColor(R.color.on));
-        mainActivityView.setPanelHeight(0);
-        mainActivityView.setAnchorPoint(0.8894308943f);
-        mainActivityView.setPanelSlideListener(new SlidingUpPanelLayout.PanelSlideListener() {
+        pauseActivityView.setDragView(pauseActivityView.startPauseButton);
+        ((ButtonFloat) pauseActivityView.startPauseButton).setDrawableIcon(getResources().getDrawable(R.drawable.ic_action_pause_off));
+        pauseActivityView.startPauseButton.setBackgroundColor(getResources().getColor(R.color.on));
+        pauseActivityView.setPanelHeight(0);
+        pauseActivityView.setAnchorPoint(0.8894308943f);
+        pauseActivityView.setPanelSlideListener(new SlidingUpPanelLayout.PanelSlideListener() {
             @Override
             public void onPanelSlide(View view, float ratio) {
                 actionBar.getCustomView().setY(-((ratio + (ratio * 0.121875f)) * actionBar.getHeight()));
 
-                ButtonFloat button = (ButtonFloat) mainActivityView.startPauseButton;
+                ButtonFloat button = (ButtonFloat) pauseActivityView.startPauseButton;
                 RelativeLayout.LayoutParams lp = (RelativeLayout.LayoutParams)button.getLayoutParams();
                 float y = summaryViewController.summaryView.getY();
-                mainActivityView.startPauseButton.setY(y - (mainActivityView.startPauseButton.getHeight() + lp.bottomMargin));
+                pauseActivityView.startPauseButton.setY(y - (pauseActivityView.startPauseButton.getHeight() + lp.bottomMargin));
 
                 Log.i(null,"Sliding");
 
@@ -151,17 +151,17 @@ public class MainActivity extends ActionBarActivity {
 
             @Override
             public void onPanelAnchored(View view) {
-                PauseApplication.startPauseService(Constants.Session.Creator.SILENCE);
+                PauseApplication.startPauseService(Constants.Session.Creator.VOLUME);
 
-                ButtonFloat button = (ButtonFloat) mainActivityView.startPauseButton;
+                ButtonFloat button = (ButtonFloat) pauseActivityView.startPauseButton;
                 RelativeLayout.LayoutParams lp = (RelativeLayout.LayoutParams)button.getLayoutParams();
                 float y = summaryViewController.summaryView.getY();
-                mainActivityView.startPauseButton.setY(y - (mainActivityView.startPauseButton.getHeight() + lp.bottomMargin));
+                pauseActivityView.startPauseButton.setY(y - (pauseActivityView.startPauseButton.getHeight() + lp.bottomMargin));
 
                 getSupportActionBar().setBackgroundDrawable(getResources().getDrawable(R.color.on));
 
-                ((ButtonFloat) mainActivityView.startPauseButton).setDrawableIcon(getResources().getDrawable(R.drawable.ic_action_pause_on));
-                mainActivityView.startPauseButton.setBackgroundColor(getResources().getColor(R.color.off));
+                ((ButtonFloat) pauseActivityView.startPauseButton).setDrawableIcon(getResources().getDrawable(R.drawable.ic_action_pause_on));
+                pauseActivityView.startPauseButton.setBackgroundColor(getResources().getColor(R.color.off));
 
                 Log.i(null,"Anchored");
 
@@ -171,15 +171,15 @@ public class MainActivity extends ActionBarActivity {
             public void onPanelCollapsed(View view) {
                 PauseApplication.stopPauseService(PauseApplication.getCurrentSession().getCreator());
 
-                ButtonFloat button = (ButtonFloat) mainActivityView.startPauseButton;
+                ButtonFloat button = (ButtonFloat) pauseActivityView.startPauseButton;
                 RelativeLayout.LayoutParams lp = (RelativeLayout.LayoutParams)button.getLayoutParams();
                 float y = summaryViewController.summaryView.getY();
-                mainActivityView.startPauseButton.setY(y - (mainActivityView.startPauseButton.getHeight() + (lp.bottomMargin * (14/3))));
+                pauseActivityView.startPauseButton.setY(y - (pauseActivityView.startPauseButton.getHeight() + (lp.bottomMargin * (14/3))));
 
                 getSupportActionBar().setBackgroundDrawable(getResources().getDrawable(R.color.off));
 
-                ((ButtonFloat) mainActivityView.startPauseButton).setDrawableIcon(getResources().getDrawable(R.drawable.ic_action_pause_off));
-                mainActivityView.startPauseButton.setBackgroundColor(getResources().getColor(R.color.on));
+                ((ButtonFloat) pauseActivityView.startPauseButton).setDrawableIcon(getResources().getDrawable(R.drawable.ic_action_pause_off));
+                pauseActivityView.startPauseButton.setBackgroundColor(getResources().getColor(R.color.on));
 
                 Log.i(null,"Collapsed");
 
@@ -229,10 +229,10 @@ public class MainActivity extends ActionBarActivity {
     public void updateView() {
         summaryViewController.updateUI();
 
-        if(PauseApplication.isActiveSession() && mainActivityView.getPanelState() != SlidingUpPanelLayout.PanelState.ANCHORED) {
-            mainActivityView.setPanelState(SlidingUpPanelLayout.PanelState.ANCHORED);
-        } else if (!PauseApplication.isActiveSession() && mainActivityView.getPanelState() == SlidingUpPanelLayout.PanelState.ANCHORED) {
-            mainActivityView.setPanelState(SlidingUpPanelLayout.PanelState.COLLAPSED);
+        if(PauseApplication.isActiveSession() && pauseActivityView.getPanelState() != SlidingUpPanelLayout.PanelState.ANCHORED) {
+            pauseActivityView.setPanelState(SlidingUpPanelLayout.PanelState.ANCHORED);
+        } else if (!PauseApplication.isActiveSession() && pauseActivityView.getPanelState() == SlidingUpPanelLayout.PanelState.ANCHORED) {
+            pauseActivityView.setPanelState(SlidingUpPanelLayout.PanelState.COLLAPSED);
         }
     }
 
@@ -329,27 +329,27 @@ public class MainActivity extends ActionBarActivity {
 
             switch (getArguments().getInt(ARG_SECTION_NUMBER)) {
                 case EMOJI_TAB:
-                    rootView = PauseApplication.mainActivity.ASCIIDirectoryViewController.asciiDirectoryView;
+                    rootView = PauseApplication.pauseActivity.ASCIIDirectoryViewController.asciiDirectoryView;
 
                     break;
 
                 case PRIVACY_TAB:
-                    rootView = PauseApplication.mainActivity.privacyViewController.privacyView;
+                    rootView = PauseApplication.pauseActivity.privacyViewController.privacyView;
 
                     break;
 
                 case SEARCH_CONTACTS_TAB:
-                    rootView = PauseApplication.mainActivity.searchPrivacyViewController.searchSearchPrivacyView;
+                    rootView = PauseApplication.pauseActivity.searchPrivacyViewController.searchSearchPrivacyView;
 
                     break;
 
                 case UPGRADE_TAB:
-                    rootView = PauseApplication.mainActivity.upgradeViewController.upgradeView;
+                    rootView = PauseApplication.pauseActivity.upgradeViewController.upgradeView;
 
                     break;
 
                 case SETTINGS_TAB:
-                    rootView = PauseApplication.mainActivity.settingsViewController.settingsView;
+                    rootView = PauseApplication.pauseActivity.settingsViewController.settingsView;
 
                     break;
 

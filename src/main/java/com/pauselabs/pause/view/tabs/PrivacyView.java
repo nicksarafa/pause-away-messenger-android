@@ -35,4 +35,5 @@ public class PrivacyView extends RelativeLayout {
 
         Views.inject(this);
     }
+
 }

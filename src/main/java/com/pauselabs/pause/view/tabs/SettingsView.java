@@ -10,10 +10,7 @@ import com.pauselabs.pause.model.SettingsButton;
 import butterknife.InjectView;
 import butterknife.Views;
 
-
 public class SettingsView extends LinearLayout {
-
-    private static final String TAG = SettingsView.class.getSimpleName();
 
     @InjectView(R.id.nameBtn)
     public SettingsButton nameBtn;
@@ -62,7 +59,6 @@ public class SettingsView extends LinearLayout {
         super.onFinishInflate();
 
         Views.inject(this);
-
     }
 
 }

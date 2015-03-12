@@ -74,7 +74,7 @@ public class PauseSessionService extends Service{
     public int onStartCommand(Intent intent, int flags, int startId) {
         super.onStartCommand(intent,flags,startId);
 
-        if (prefs.getBoolean(Constants.Settings.PAUSE_ON_VIBRATE_KEY,false))
+        if (prefs.getBoolean(Constants.Settings.PAUSE_ON_VIBRATE_KEY,true))
             am.setRingerMode(AudioManager.RINGER_MODE_VIBRATE);
         else
             am.setRingerMode(AudioManager.RINGER_MODE_SILENT);

@@ -1,7 +1,7 @@
 package com.pauselabs.pause;
 
-import com.pauselabs.pause.activity.MainActivity;
-import com.pauselabs.pause.activity.OnBoardingActivity;
+import com.pauselabs.pause.activity.PauseActivity;
+import com.pauselabs.pause.activity.StartActivity;
 import com.pauselabs.pause.controllers.ASCIIDirectoryViewController;
 import com.pauselabs.pause.controllers.CustomPauseViewController;
 import com.pauselabs.pause.controllers.PrivacyViewController;
@@ -9,8 +9,8 @@ import com.pauselabs.pause.controllers.SearchPrivacyViewController;
 import com.pauselabs.pause.controllers.SettingsViewController;
 import com.pauselabs.pause.controllers.SummaryViewController;
 import com.pauselabs.pause.controllers.UpgradeViewController;
-import com.pauselabs.pause.controllers.onboarding.GenderViewController;
-import com.pauselabs.pause.controllers.onboarding.InteractiveViewController;
+import com.pauselabs.pause.controllers.start.GenderViewController;
+import com.pauselabs.pause.controllers.start.OnboardingViewController;
 import com.pauselabs.pause.core.PostFromAnyThreadBus;
 import com.pauselabs.pause.listeners.PauseSmsListener;
 import com.pauselabs.pause.listeners.SilenceListener;
@@ -21,19 +21,9 @@ import com.pauselabs.pause.model.PauseSession;
 import com.pauselabs.pause.model.StringRandomizer;
 import com.pauselabs.pause.services.PauseApplicationService;
 import com.pauselabs.pause.services.PauseSessionService;
-import com.pauselabs.pause.view.ASCIISquareView;
-import com.pauselabs.pause.view.GenderView;
-import com.pauselabs.pause.view.InteractiveView;
 import com.pauselabs.pause.view.SummaryConversationCard;
 import com.pauselabs.pause.view.SummaryReceivedCard;
 import com.pauselabs.pause.view.SummarySentCard;
-import com.pauselabs.pause.view.tabs.ASCIIDirectoryView;
-import com.pauselabs.pause.view.tabs.CustomPauseView;
-import com.pauselabs.pause.view.tabs.PrivacyView;
-import com.pauselabs.pause.view.tabs.SearchPrivacyView;
-import com.pauselabs.pause.view.tabs.SettingsView;
-import com.pauselabs.pause.view.tabs.SummaryView;
-import com.pauselabs.pause.view.tabs.UpgradeView;
 import com.squareup.otto.Bus;
 
 import javax.inject.Singleton;
@@ -51,35 +41,26 @@ import dagger.Provides;
         injects = {
                 PauseApplication.class,
 
-                OnBoardingActivity.class,
-                MainActivity.class,
+                StartActivity.class,
+                PauseActivity.class,
 
                 GenderViewController.class,
-                GenderView.class,
-                InteractiveViewController.class,
-                InteractiveView.class,
+                OnboardingViewController.class,
 
                 ASCIIDirectoryViewController.class,
-                ASCIIDirectoryView.class,
 
                 CustomPauseViewController.class,
-                CustomPauseView.class,
 
                 ASCIIDirectoryViewController.class,
-                ASCIIDirectoryView.class,
-                ASCIISquareView.class,
 
                 SettingsViewController.class,
-                SettingsView.class,
 
                 SummaryViewController.class,
-                SummaryView.class,
                 SummaryConversationCard.class,
                 SummarySentCard.class,
                 SummaryReceivedCard.class,
 
                 SearchPrivacyViewController.class,
-                SearchPrivacyView.class,
 
                 PauseApplicationService.class,
                 PauseSessionService.class,
@@ -94,10 +75,8 @@ import dagger.Provides;
                 PauseConversation.class,
 
                 UpgradeViewController.class,
-                UpgradeView.class,
 
                 PrivacyViewController.class,
-                PrivacyView.class
         }
 )
 public class PauseModule {

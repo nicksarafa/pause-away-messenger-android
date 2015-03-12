@@ -53,7 +53,7 @@ public class SearchPrivacyViewController implements View.OnClickListener, Adapte
         privacyBtns = (PrivacyActionBtnView)inflater.inflate(R.layout.privacy_action_view, null);
 
         // Create the main contacts adapter
-        mAdapter = new ContactsAdapter(PauseApplication.mainActivity);
+        mAdapter = new ContactsAdapter(PauseApplication.pauseActivity);
         searchSearchPrivacyView.contactList.setAdapter(mAdapter);
         searchSearchPrivacyView.contactList.setOnItemClickListener(this);
         searchSearchPrivacyView.contactList.setOnScrollListener(this);
@@ -71,15 +71,15 @@ public class SearchPrivacyViewController implements View.OnClickListener, Adapte
         privacyBtns.setVisibility(View.INVISIBLE);
         privacyBtns.atnBtn1.setOnClickListener(this);
 
-        SearchManager searchManager = (SearchManager) PauseApplication.mainActivity.getSystemService(Context.SEARCH_SERVICE);
-        SearchableInfo searchableInfo = searchManager.getSearchableInfo(PauseApplication.mainActivity.getComponentName());
+        SearchManager searchManager = (SearchManager) PauseApplication.pauseActivity.getSystemService(Context.SEARCH_SERVICE);
+        SearchableInfo searchableInfo = searchManager.getSearchableInfo(PauseApplication.pauseActivity.getComponentName());
         searchSearchPrivacyView.contactSearchField.setSearchableInfo(searchableInfo);
         searchSearchPrivacyView.contactSearchField.setOnQueryTextListener(this);
 
         searchSearchPrivacyView.contactSearchField.setQueryHint("Search Contacts");
         searchSearchPrivacyView.contactSearchField.setBackgroundColor(Color.WHITE);
 
-        PauseApplication.mainActivity.getSupportLoaderManager().restartLoader(ContactsQuery.QUERY_ID, null, this);
+        PauseApplication.pauseActivity.getSupportLoaderManager().restartLoader(ContactsQuery.QUERY_ID, null, this);
     }
 
     @Override
@@ -143,7 +143,7 @@ public class SearchPrivacyViewController implements View.OnClickListener, Adapte
 
         // Restarts the loader. This triggers onCreateLoader(), which builds the
         // necessary content Uri from mSearchTerm.
-        PauseApplication.mainActivity.getSupportLoaderManager().restartLoader(ContactsQuery.QUERY_ID, null, this);
+        PauseApplication.pauseActivity.getSupportLoaderManager().restartLoader(ContactsQuery.QUERY_ID, null, this);
 
         return true;
     }
@@ -174,7 +174,7 @@ public class SearchPrivacyViewController implements View.OnClickListener, Adapte
             // for the selection clause. The search string is either encoded onto the content URI,
             // or no contacts search string is used. The other search criteria are constants. See
             // the ContactsQuery interface.
-            return new CursorLoader(PauseApplication.mainActivity,
+            return new CursorLoader(PauseApplication.pauseActivity,
                     contentUri,
                     ContactsQuery.PROJECTION,
                     ContactsQuery.SELECTION,

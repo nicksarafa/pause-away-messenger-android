@@ -37,7 +37,8 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.nostra13.universalimageloader.core.assist.QueueProcessingType;
 import com.pauselabs.R;
-import com.pauselabs.pause.activity.MainActivity;
+import com.pauselabs.pause.activity.PauseActivity;
+import com.pauselabs.pause.activity.StartActivity;
 import com.pauselabs.pause.core.PauseMessageSender;
 import com.pauselabs.pause.listeners.NotificationActionListener;
 import com.pauselabs.pause.model.Constants;
@@ -59,7 +60,8 @@ import javax.inject.Inject;
 public class PauseApplication extends Application {
 
     private static PauseApplication instance;
-    public static MainActivity mainActivity;
+    public static StartActivity startActivity;
+    public static PauseActivity pauseActivity;
 
     private static final String TAG = PauseApplication.class.getSimpleName();
     public static HashMap<TrackerName, Tracker> mTrackers = new HashMap<TrackerName, Tracker>();
@@ -284,7 +286,7 @@ public class PauseApplication extends Application {
                 num++;
         String message = (num > 0) ? num + ((num == 1) ? " person has" : " people have") + " contacted you." : "No one has contacted you";
 
-        final Intent i = new Intent(instance, MainActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        final Intent i = new Intent(instance, PauseActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 
         // open activity intent
         PendingIntent pendingIntent = PendingIntent.getActivity(instance, 0, i, PendingIntent.FLAG_UPDATE_CURRENT);
@@ -354,7 +356,7 @@ public class PauseApplication extends Application {
 
 
                 break;
-            case Constants.Session.Creator.SILENCE:
+            case Constants.Session.Creator.VOLUME:
                 notBuilder
                         .setContentTitle(instance.getString(R.string.app_name) + " " + instance.getString(R.string.pause_session_running_silence))
                         .addAction(R.drawable.ic_stat_notificaiton_end, "End", stopPausePendingIntent);
@@ -415,7 +417,7 @@ public class PauseApplication extends Application {
                 .setContentIntent(PendingIntent.getBroadcast(instance, new Random().nextInt(), new Intent(), PendingIntent.FLAG_CANCEL_CURRENT))
                 .setPriority(NotificationCompat.PRIORITY_MIN);
 
-        if (getCurrentSession().getCreator() != Constants.Session.Creator.SILENCE)
+        if (getCurrentSession().getCreator() != Constants.Session.Creator.VOLUME)
             changeModeNotBuilder.addAction(R.drawable.ic_stat_notificaiton_end, "Silence", silencePausePendingIntent);
         if (getCurrentSession().getCreator() != Constants.Session.Creator.SLEEP)
             changeModeNotBuilder.addAction(R.drawable.ic_stat_notificaiton_end, "Sleep", sleepPausePendingIntent);
@@ -518,11 +520,11 @@ public class PauseApplication extends Application {
     }
 
     public static void updateUI() {
-        if (mainActivity != null) {
-            mainActivity.runOnUiThread(new Runnable() {
+        if (pauseActivity != null) {
+            pauseActivity.runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
-                    PauseApplication.mainActivity.updateView();
+                    PauseApplication.pauseActivity.updateView();
                 }
             });
         }

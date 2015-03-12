@@ -146,7 +146,7 @@ public class PauseConversation implements Serializable {
             int num = (messagesReceived.size() <= numberOfStringFiles) ? messagesReceived.size() : numberOfStringFiles;
 
             switch (PauseApplication.getCurrentSession().getCreator()) {
-                case Constants.Session.Creator.SILENCE:
+                case Constants.Session.Creator.VOLUME:
                     modeName = silence;
 
                     break;

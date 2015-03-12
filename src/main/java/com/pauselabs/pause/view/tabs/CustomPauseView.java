@@ -1,7 +1,6 @@
 package com.pauselabs.pause.view.tabs;
 
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.util.AttributeSet;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -18,11 +17,6 @@ import butterknife.Views;
  * Created by Passa on 12/23/14.
  */
 public class CustomPauseView extends RelativeLayout {
-
-    private final String TAG = CustomPauseView.class.getSimpleName();
-
-    @Inject
-    SharedPreferences prefs;
 
     @InjectView(R.id.custom_text)
     public TextView customTxtView;
@@ -44,6 +38,5 @@ public class CustomPauseView extends RelativeLayout {
         super.onFinishInflate();
 
         Views.inject(this);
-        Injector.inject(this);
     }
 }

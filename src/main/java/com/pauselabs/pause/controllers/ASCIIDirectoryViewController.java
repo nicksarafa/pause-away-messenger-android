@@ -46,7 +46,7 @@ public class ASCIIDirectoryViewController implements AdapterView.OnItemClickList
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         ASCIIItem item = (ASCIIItem)view.getTag();
 
-        PauseApplication.mainActivity.customPauseViewController.setCustomPause(item.getAscii() + '\n' + item.getName());
+        PauseApplication.pauseActivity.customPauseViewController.setCustomPause(item.getAscii() + '\n' + item.getName());
     }
 
     private class ASCIIAdapter extends ArrayAdapter<ASCIISquareView> {
