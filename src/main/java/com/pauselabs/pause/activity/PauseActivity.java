@@ -44,7 +44,6 @@ public class PauseActivity extends ActionBarActivity {
 
     public static final int EMOJI_TAB = 0;
     public static final int PRIVACY_TAB = 1;
-//    public static final int SEARCH_CONTACTS_TAB = 2;
     public static final int UPGRADE_TAB = 2;
     public static final int SETTINGS_TAB = 3;
 
