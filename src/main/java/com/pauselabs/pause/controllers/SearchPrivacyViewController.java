@@ -77,7 +77,7 @@ public class SearchPrivacyViewController implements View.OnClickListener, Adapte
         searchSearchPrivacyView.contactSearchField.setOnQueryTextListener(this);
 
         searchSearchPrivacyView.contactSearchField.setQueryHint("Search Contacts");
-        searchSearchPrivacyView.contactSearchField.setBackgroundColor(Color.WHITE);
+        searchSearchPrivacyView.contactSearchField.setBackgroundColor(Color.TRANSPARENT);
 
         PauseApplication.pauseActivity.getSupportLoaderManager().restartLoader(ContactsQuery.QUERY_ID, null, this);
     }

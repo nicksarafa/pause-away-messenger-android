@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<com.pauselabs.pause.view.tabs.SearchPrivacyView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<com.pauselabs.pause.view.tabs.SearchPrivacyView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -36,10 +36,15 @@
                 android:id="@+id/contact_search_field"
                 android:layout_width="fill_parent"
                 android:layout_height="68dp"
+                android:background="@android:color/transparent"
+                android:queryBackground="@android:color/transparent"
+                android:backgroundTint="@android:color/transparent"
+                android:backgroundTintMode="@android:color/transparent"
                 android:layout_alignParentTop="true"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentEnd="true"
                 android:imeOptions="actionSearch"
+                android:inputType="textPersonName|textCapSentences"
                 android:focusableInTouchMode="true"
                 android:focusable="true"
                 android:textIsSelectable="false"

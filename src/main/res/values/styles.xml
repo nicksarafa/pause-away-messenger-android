@@ -11,12 +11,18 @@
             <item name="windowActionModeOverlay">true</item>
             <item name="android:windowContentOverlay">@null</item>
             <item name="android:showDividers">none</item>
+            <item name="searchViewStyle">@style/contactSearchTextHighlight</item>
         </style>
 
         <!-- Contact Search Text Highlight -->
         <style name="contactSearchTextHighlight">
             <item name="android:textColor">@color/main</item>
             <item name="android:textStyle">bold</item>
+            <item name="displayOptions">showHome</item>
+            <item name="android:background">@android:color/transparent</item>
+            <item name="android:searchButtonText">Search Con</item>
+            <item name="android:displayOptions">showHome|homeAsUp</item>
+            <item name="android:icon">@drawable/icon</item>
         </style>
 
 </resources>
@@ -55,14 +61,7 @@
 
     <!-- Blacklist Override Widget. Might need for contact search bar. Be sure to emulate in v21/styles -->
 
-    <!--<style name="Widget.Styled.ActionBar" parent="@style/Widget.AppCompat.ActionBar">-->
-        <!--<item name="android:background">@color/main</item>-->
-        <!--<item name="android:titleTextStyle">@style/Theme.Pause.Blacklist.Styled.ActionBar.TitleTextStyle</item>-->
-        <!--<item name="android:searchButtonText">Search Contacts</item>-->
-        <!--<item name="android:displayOptions">showHome|homeAsUp</item>-->
-        <!--<item name="displayOptions">showHome|homeAsUp</item>-->
-        <!--<item name="android:icon">@drawable/icon</item> <!- This does the magic! ->
-    <!-</style>-->
+
 
     <!--<style name="Theme.Pause.Blacklist.Styled.ActionBar.TitleTextStyle" parent="@style/Widget.Styled.ActionBar">-->
         <!--<item name="android:textSize">20sp</item>-->
