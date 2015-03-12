@@ -7,7 +7,7 @@
 
             <corners android:radius="2dp"/>
 
-                <solid android:color="@color/card_bottom_shadow" />
+            <solid android:color="@color/card_bottom_shadow" />
 
         </shape>
     </item>
@@ -19,9 +19,9 @@
 
             <corners android:radius="2dp" />
 
-                <solid android:color="@android:color/white" />
+            <solid android:color="@color/gender_green" />
 
-                    <padding android:bottom="4dp" />
+            <padding android:bottom="4dp" />
         </shape>
     </item>
 

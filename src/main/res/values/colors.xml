@@ -62,5 +62,6 @@
     <color name="colorStatusBar">#123936</color>
     <color name="colorAccent">#beb53c</color>
     <color name="text_color">#7c7c7c</color>
+    <color name="card_bottom_shadow">#60888888</color>
 
 </resources>

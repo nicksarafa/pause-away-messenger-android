@@ -106,8 +106,8 @@
     <string name="settings_section_title">Settings</string>
     <string name="hidden_custom_section_title">Custom</string>
     <string name="ice_section_title">ICE</string>
-    <string name="ob_female_btn">{fa-female}\u0020\u0020\u0020Female</string>
-    <string name="ob_male_btn">{fa-male}\u0020\u0020\u0020Male</string>
+    <string name="ob_female_btn">{fa-female}\u0020\u0020Female</string>
+    <string name="ob_male_btn">{fa-male}\u0020\u0020Male</string>
     <string name="privacy_ab_title">PRIVACY</string>
     <string name="privacy_message">Block friends from receiving away messages.</string>
     <string name="select_all_button">Select All</string>
@@ -120,5 +120,6 @@
     <string name="on_boarding_name_hint">Please Enter Your First Name</string>
     <string name="on_boarding_picture_content_description">Welcome to Pause!</string>
     <string name="born_in_detroit_settings_footer"><![CDATA[ Born in Detroit\n\n♡ \n]]></string>
+    <string name="upgrade_btn_text">{fa-diamond}\u0020\u0020UPGRADE\u0020\u0020{fa-diamond}</string>
 
 </resources>

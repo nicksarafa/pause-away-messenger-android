@@ -48,7 +48,6 @@ public class MainActivity extends ActionBarActivity {
     public static final int UPGRADE_TAB = 3;
     public static final int SETTINGS_TAB = 4;
 
-
     public MainActivityView mainActivityView;
     public ActionBar actionBar;
     public TabBarView tabBarView;
@@ -61,7 +60,6 @@ public class MainActivity extends ActionBarActivity {
     public SearchPrivacyViewController searchPrivacyViewController;
     public UpgradeViewController upgradeViewController;
     public SettingsViewController settingsViewController;
-
 
     @Inject
     LayoutInflater inflater;
