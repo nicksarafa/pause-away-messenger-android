@@ -5,7 +5,7 @@
         android:layout_width="fill_parent"
         android:layout_height="100dp"
         android:background="?android:selectableItemBackground"
-        android:textColor="@color/pause_green_dark"
-        android:textSize="@dimen/text_large"
+        android:textColor="@color/text"
+        android:textSize="@dimen/text_extra_large"
         android:alpha="0.7"
         android:paddingTop="2dp"/>

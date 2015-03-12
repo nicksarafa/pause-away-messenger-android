@@ -309,7 +309,7 @@ public class PauseApplication extends Application {
         notDriverPauseIntent.putExtra(Constants.Notification.PAUSE_NOTIFICATION_INTENT, Constants.Notification.NOT_DRIVER);
         PendingIntent notDriverPausePendingIntent = PendingIntent.getBroadcast(instance, new Random().nextInt(), notDriverPauseIntent, PendingIntent.FLAG_CANCEL_CURRENT);
 
-        // cusomt intent
+        // custom intent
         Intent customPauseIntent = new Intent(instance, NotificationActionListener.class);
         customPauseIntent.putExtra(Constants.Notification.PAUSE_NOTIFICATION_INTENT, Constants.Notification.MODE_CUSTOM);
         PendingIntent customPausePendingIntent = PendingIntent.getBroadcast(instance, new Random().nextInt(), customPauseIntent, PendingIntent.FLAG_CANCEL_CURRENT);

@@ -7,8 +7,6 @@
 
     <style name="AppTheme.Base" parent="@style/Theme.AppCompat.Light.NoActionBar">
         <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
         <item name="android:windowNoTitle">true</item>
         <item name="windowActionBar">false</item>
         <item name="windowActionModeOverlay">true</item>
@@ -33,7 +31,7 @@
     </style>
 
     <style name="searchTextHighlight">
-        <item name="android:textColor">@color/holo_blue</item>
+        <item name="android:textColor">@color/main</item>
         <item name="android:textStyle">bold</item>
     </style>
 
@@ -48,7 +46,7 @@
     </style>
 
     <style name="Theme.Pause.Blacklist" parent="@style/Theme.AppCompat.Light">
-        <item name="android:windowBackground">@color/pager_background</item>
+        <item name="android:windowBackground">@color/main</item>
         <item name="actionBarStyle">@style/Widget.Styled.ActionBar</item>
         <item name="android:actionBarStyle">@style/Widget.Styled.ActionBar</item>
         <!-- remove shadow below action bar -->
@@ -60,7 +58,7 @@
     </style>
 
     <style name="Widget.Styled.ActionBar" parent="@style/Widget.AppCompat.ActionBar">
-        <item name="android:background">@color/pause_green</item>
+        <item name="android:background">@color/main</item>
         <item name="android:titleTextStyle">@style/Theme.Pause.Blacklist.Styled.ActionBar.TitleTextStyle</item>
         <item name="android:searchButtonText">Search Contacts</item>
         <item name="android:displayOptions">showHome|homeAsUp</item>
@@ -70,7 +68,7 @@
 
     <style name="Theme.Pause.Blacklist.Styled.ActionBar.TitleTextStyle" parent="@style/Widget.Styled.ActionBar">
         <item name="android:textSize">20sp</item>
-        <item name="android:textColor">@color/pause_green</item>
+        <item name="android:textColor">@color/main</item>
         <item name="android:textStyle">bold</item>
     </style>
 

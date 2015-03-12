@@ -18,7 +18,7 @@ public class HomeButtonSeparator extends RelativeLayout {
         super(context);
 
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        inflater.inflate(R.layout.home_button_separator, this, true);
+        inflater.inflate(R.layout.ob_button_separator, this, true);
 
         separator = (View) findViewById(R.id.home_button_separator);
     }

@@ -16,7 +16,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:overScrollMode="never"
-        android:listSelector="@color/pause_green_light"
+        android:listSelector="@color/main"
         android:cacheColorHint="@color/transparent"
         android:clipToPadding="false"
         android:scrollbars="none"

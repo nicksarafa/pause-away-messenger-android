@@ -28,7 +28,7 @@ public class ASCIIDirectoryView extends RelativeLayout {
 
     public EditText getCustomText() {
 
-        Drawable pencilIcon = new IconDrawable(getContext(), Iconify.IconValue.fa_pencil).colorRes(R.color.pause_dark_grey).actionBarSize();
+        Drawable pencilIcon = new IconDrawable(getContext(), Iconify.IconValue.fa_pencil).colorRes(R.color.text).actionBarSize();
         getCustomText().setCompoundDrawables(pencilIcon, null, null, null);
         getCustomText().setCompoundDrawablePadding(4);
 

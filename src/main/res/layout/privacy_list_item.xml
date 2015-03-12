@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="8dp"
         android:layout_marginStart="8dp"
-        android:textColor="@color/text_color"
+        android:textColor="@color/text"
         android:singleLine="true"
         android:ellipsize="marquee"
         android:layout_gravity="center_vertical|center_horizontal"/>
@@ -24,7 +24,7 @@
             android:paddingRight="@dimen/contact_list_item_padding"
             android:layout_gravity="center_vertical|center_horizontal"
             android:textIsSelectable="false"
-            android:textColor="@color/text_color"
+            android:textColor="@color/text"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="8"
@@ -42,7 +42,7 @@
                 android:layout_marginRight="8dp"
                 android:layout_marginEnd="8dp"
                 android:layout_gravity="center_vertical|center_horizontal"
-                android:textColor="@color/text_color"
+                android:textColor="@color/text"
                 android:ellipsize="marquee"
                 android:singleLine="true"
                 android:focusable="false"/>

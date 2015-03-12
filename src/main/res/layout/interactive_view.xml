@@ -21,7 +21,7 @@
             android:layout_height="wrap_content"
             android:textIsSelectable="false"
             android:textSize="@dimen/text_extra_large"
-            android:textColor="@color/dark_grey"
+            android:textColor="@color/text"
             android:textAlignment="center"
             android:paddingTop="@dimen/ob_btn_margin"
             android:paddingRight="@dimen/ob_btn_margin"

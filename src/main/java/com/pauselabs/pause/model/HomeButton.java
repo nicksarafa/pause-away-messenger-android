@@ -18,7 +18,7 @@ public class HomeButton extends RelativeLayout {
         super(context);
 
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        inflater.inflate(R.layout.home_button_view, this, true);
+        inflater.inflate(R.layout.ob_button_view, this, true);
 
         button = (Button) findViewById(R.id.home_button);
     }

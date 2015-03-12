@@ -11,7 +11,7 @@
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:textIsSelectable="false"
-        android:textColor="@color/text_color"
+        android:textColor="@color/text"
         android:textSize="@dimen/text_medium"
         android:layout_gravity="start|center_vertical"
         android:gravity="start|center_vertical"

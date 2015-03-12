@@ -68,5 +68,6 @@
     <dimen name="save_list_spacing">4dp</dimen>
     <dimen name="no_new_messages_text_size">30sp</dimen>
     <dimen name="list_view_margin_top">82dp</dimen>
+    <dimen name="upgrade_list_item_height">100dp</dimen>
 
 </resources>

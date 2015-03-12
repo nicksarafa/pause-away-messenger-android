@@ -116,7 +116,7 @@ public class MainActivity extends ActionBarActivity {
         
         setSupportActionBar(mainActivityView.toolbar);
         actionBar = getSupportActionBar();
-        actionBar.setBackgroundDrawable(getResources().getDrawable(R.color.pause_off));
+        actionBar.setBackgroundDrawable(getResources().getDrawable(R.color.off));
         actionBar.setDisplayShowTitleEnabled(false);
         actionBar.setDisplayShowCustomEnabled(true);
         actionBar.setCustomView(tabBarView);
@@ -126,13 +126,13 @@ public class MainActivity extends ActionBarActivity {
 
         // Pencil icon added via Font-Awesome to custom view EditText.. Might change to feather later
 
-        Drawable pencilIcon = new IconDrawable(getApplicationContext(), Iconify.IconValue.fa_pencil).colorRes(R.color.pause_dark_grey).actionBarSize();
+        Drawable pencilIcon = new IconDrawable(getApplicationContext(), Iconify.IconValue.fa_pencil).colorRes(R.color.text).actionBarSize();
         ASCIIDirectoryViewController.asciiDirectoryView.customText.setCompoundDrawables(pencilIcon, null, null, null);
         ASCIIDirectoryViewController.asciiDirectoryView.customText.setCompoundDrawablePadding(20);
 
         mainActivityView.setDragView(mainActivityView.startPauseButton);
         ((ButtonFloat) mainActivityView.startPauseButton).setDrawableIcon(getResources().getDrawable(R.drawable.ic_action_pause_off));
-        mainActivityView.startPauseButton.setBackgroundColor(getResources().getColor(R.color.pause_on));
+        mainActivityView.startPauseButton.setBackgroundColor(getResources().getColor(R.color.on));
         mainActivityView.setPanelHeight(0);
         mainActivityView.setAnchorPoint(0.8894308943f);
         mainActivityView.setPanelSlideListener(new SlidingUpPanelLayout.PanelSlideListener() {
@@ -158,10 +158,10 @@ public class MainActivity extends ActionBarActivity {
                 float y = summaryViewController.summaryView.getY();
                 mainActivityView.startPauseButton.setY(y - (mainActivityView.startPauseButton.getHeight() + lp.bottomMargin));
 
-                getSupportActionBar().setBackgroundDrawable(getResources().getDrawable(R.color.pause_on));
+                getSupportActionBar().setBackgroundDrawable(getResources().getDrawable(R.color.on));
 
                 ((ButtonFloat) mainActivityView.startPauseButton).setDrawableIcon(getResources().getDrawable(R.drawable.ic_action_pause_on));
-                mainActivityView.startPauseButton.setBackgroundColor(getResources().getColor(R.color.pause_off));
+                mainActivityView.startPauseButton.setBackgroundColor(getResources().getColor(R.color.off));
 
                 Log.i(null,"Anchored");
 
@@ -176,10 +176,10 @@ public class MainActivity extends ActionBarActivity {
                 float y = summaryViewController.summaryView.getY();
                 mainActivityView.startPauseButton.setY(y - (mainActivityView.startPauseButton.getHeight() + (lp.bottomMargin * (14/3))));
 
-                getSupportActionBar().setBackgroundDrawable(getResources().getDrawable(R.color.pause_off));
+                getSupportActionBar().setBackgroundDrawable(getResources().getDrawable(R.color.off));
 
                 ((ButtonFloat) mainActivityView.startPauseButton).setDrawableIcon(getResources().getDrawable(R.drawable.ic_action_pause_off));
-                mainActivityView.startPauseButton.setBackgroundColor(getResources().getColor(R.color.pause_on));
+                mainActivityView.startPauseButton.setBackgroundColor(getResources().getColor(R.color.on));
 
                 Log.i(null,"Collapsed");
 

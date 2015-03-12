@@ -5,5 +5,5 @@
     <size
         android:width="2dip" />
     <solid
-        android:color="@color/pause_green" />
+        android:color="@color/main" />
 </shape>
