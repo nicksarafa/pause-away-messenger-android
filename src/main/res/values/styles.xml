@@ -61,8 +61,6 @@
 
     <!-- Blacklist Override Widget. Might need for contact search bar. Be sure to emulate in v21/styles -->
 
-
-
     <!--<style name="Theme.Pause.Blacklist.Styled.ActionBar.TitleTextStyle" parent="@style/Widget.Styled.ActionBar">-->
         <!--<item name="android:textSize">20sp</item>-->
         <!--<item name="android:textColor">@color/main</item>-->
