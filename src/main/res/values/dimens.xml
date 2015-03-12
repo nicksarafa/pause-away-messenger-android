@@ -10,12 +10,12 @@
     <dimen name="ab_toolbar_universal_height">68dp</dimen>
     <dimen name="ab_icon_universal_width_and_height">68dp</dimen>
 
-    <!-- Header & View Below - Universal -->
-    <dimen name="view_header_universal_height">68dp</dimen>
-    <dimen name="list_view_universal_margin_top">82dp</dimen>
+    <!-- Real Header & View Below - Universal -->
+    <dimen name="main_header_universal_height">68dp</dimen>
+    <dimen name="main_list_view_universal_margin_top">82dp</dimen>
 
     <!-- Text - Universal -->
-    <dimen name="text_super_sized">30sp</dimen>
+    <dimen name="text_super_size">30sp</dimen>
     <dimen name="text_extra_large">24sp</dimen>
     <dimen name="text_large">22dp</dimen>
     <dimen name="text_medium">18sp</dimen>
@@ -25,17 +25,16 @@
     <dimen name="privacy_checkbox_and_text_padding">6dp</dimen>
 
     <!-- Save View -->
-    <dimen name="save_horizontal_margin">10dp</dimen>
+    <dimen name="save_horizontal_and_vertical_padding">10dp</dimen>
 
     <!-- Summary View -->
     <dimen name="privacy_view_horizontal_padding">8dp</dimen>
     <dimen name="privacy_view_vertical_padding">4dp</dimen>
 
     <!-- Settings View -->
-    <dimen name="settings_thumbnail_padding">4dp</dimen>
-    <dimen name="settings_thumbnail_size">36dp</dimen>
-    <dimen name="settings_item_padding">10dp</dimen>
-    <dimen name="settings_text_padding">10dp</dimen>
+    <dimen name="settings_frontnail_height">36dp</dimen>
+    <dimen name="settings_text_horizontal_margin">10dp</dimen>
+    <dimen name="settings_thumbnail_horizontal_and_vertical_margin">4dp</dimen>
 
     <!-- Summary View -->
     <dimen name="summary_view_horizontal_padding">8dp</dimen>
@@ -54,10 +53,10 @@
     <dimen name="ob_word_container_height">200dp</dimen>
 
     <!-- Headers (Tabled - Keep for reference/future header integration) -->
-    <dimen name="header_height">100dp</dimen>
+    <dimen name="info_header_height">100dp</dimen>
     <dimen name="info_header_vertical_padding">20dp</dimen>
     <dimen name="info_header_horizontal_padding">8dp</dimen>
-    <dimen name="info_header_horiztonal_margin">16dp</dimen>
+    <dimen name="info_header_horizontal_margin">16dp</dimen>
     <dimen name="info_header_vertical_margin">12dp</dimen>
 
 </resources>
