@@ -1,6 +1,5 @@
 package com.pauselabs.pause.activity;
 
-import android.app.Activity;
 import android.app.SearchManager;
 import android.app.SearchableInfo;
 import android.content.Context;
@@ -9,6 +8,7 @@ import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.ContactsContract;
+import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
@@ -32,7 +32,7 @@ import javax.inject.Inject;
 /**
  * Created by Admin on 1/28/15.
  */
-public class SearchPrivacyActivity extends Activity implements AdapterView.OnItemClickListener, SearchView.OnQueryTextListener, LoaderManager.LoaderCallbacks<Cursor>, AbsListView.OnScrollListener {
+public class SearchPrivacyActivity extends FragmentActivity implements AdapterView.OnItemClickListener, SearchView.OnQueryTextListener, LoaderManager.LoaderCallbacks<Cursor>, AbsListView.OnScrollListener {
 
     private final String TAG = SearchPrivacyActivity.class.getSimpleName();
 
@@ -55,7 +55,7 @@ public class SearchPrivacyActivity extends Activity implements AdapterView.OnIte
         setContentView(searchPrivacyView);
 
         // Create the main contacts adapter
-        mAdapter = new ContactsAdapter(PauseApplication.pauseActivity);
+        mAdapter = new ContactsAdapter(this);
         searchPrivacyView.contactList.setAdapter(mAdapter);
         searchPrivacyView.contactList.setOnItemClickListener(this);
         searchPrivacyView.contactList.setOnScrollListener(this);
@@ -69,15 +69,15 @@ public class SearchPrivacyActivity extends Activity implements AdapterView.OnIte
 
         searchPrivacyView.contactSearchField.setOnQueryTextListener(this);
 
-        SearchManager searchManager = (SearchManager) PauseApplication.pauseActivity.getSystemService(Context.SEARCH_SERVICE);
-        SearchableInfo searchableInfo = searchManager.getSearchableInfo(PauseApplication.pauseActivity.getComponentName());
+        SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
+        SearchableInfo searchableInfo = searchManager.getSearchableInfo(getComponentName());
         searchPrivacyView.contactSearchField.setSearchableInfo(searchableInfo);
         searchPrivacyView.contactSearchField.setOnQueryTextListener(this);
 
         searchPrivacyView.contactSearchField.setQueryHint("Search Contacts");
         searchPrivacyView.contactSearchField.setBackgroundColor(Color.TRANSPARENT);
 
-        PauseApplication.pauseActivity.getSupportLoaderManager().restartLoader(ContactsQuery.QUERY_ID, null, this);
+        getSupportLoaderManager().restartLoader(ContactsQuery.QUERY_ID, null, this);
     }
 
     @Override
@@ -131,7 +131,7 @@ public class SearchPrivacyActivity extends Activity implements AdapterView.OnIte
 
         // Restarts the loader. This triggers onCreateLoader(), which builds the
         // necessary content Uri from mSearchTerm.
-        PauseApplication.pauseActivity.getSupportLoaderManager().restartLoader(ContactsQuery.QUERY_ID, null, this);
+        getSupportLoaderManager().restartLoader(ContactsQuery.QUERY_ID, null, this);
 
         return true;
     }

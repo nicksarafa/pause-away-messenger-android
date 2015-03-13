@@ -37,7 +37,7 @@ public class PrivacyViewController implements View.OnClickListener {
         // Set visibility to hidden by default
         privacyBtns.atnBtn1.setOnClickListener(this);
 
-        }
+    }
 
 
     @Override
