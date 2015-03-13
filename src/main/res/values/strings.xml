@@ -124,5 +124,6 @@
     <string name="upgrade_btn_text">{fa-diamond}\u0020\u0020UPGRADE\u0020\u0020{fa-diamond}</string>
     <string name="ob_start_app_btn">Begin Trial</string>
     <string name="ob_1_custom_message_intro">Customize your first reply message...</string>
+    <string name="save_fa_button">{fa-save}</string>
 
 </resources>
