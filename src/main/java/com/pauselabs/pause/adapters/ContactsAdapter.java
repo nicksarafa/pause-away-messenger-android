@@ -1,5 +1,6 @@
 package com.pauselabs.pause.adapters;
 
+import android.app.LoaderManager;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.database.Cursor;
@@ -8,6 +9,7 @@ import android.support.v4.widget.CursorAdapter;
 import android.text.SpannableString;
 import android.text.TextUtils;
 import android.text.style.TextAppearanceSpan;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,6 +21,7 @@ import android.widget.TextView;
 import com.pauselabs.R;
 import com.pauselabs.pause.core.ContactsQuery;
 import com.pauselabs.pause.model.Constants;
+import com.pauselabs.pause.view.SearchPrivacyListItem;
 
 import java.util.HashSet;
 import java.util.Locale;
@@ -38,8 +41,8 @@ public class ContactsAdapter extends CursorAdapter implements SectionIndexer {
     private String mSearchTerm;
     protected SharedPreferences prefs;
 
-    private Set<String> listContacts;
-    private Set<String> iceContacts;
+    private HashSet<String> blackContacts;
+    private HashSet<String> iceContacts;
 
     private String type;
 
@@ -54,8 +57,8 @@ public class ContactsAdapter extends CursorAdapter implements SectionIndexer {
         mInflater = LayoutInflater.from(context);
 
         prefs = PreferenceManager.getDefaultSharedPreferences(context);
-        listContacts = prefs.getStringSet(Constants.Settings.BLACKLIST, new HashSet<String>());
-        iceContacts = prefs.getStringSet(Constants.Settings.ICELIST, new HashSet<String>());
+        blackContacts = new HashSet<>(prefs.getStringSet(Constants.Settings.BLACKLIST, new HashSet<String>()));
+        iceContacts = new HashSet<>(prefs.getStringSet(Constants.Settings.ICELIST, new HashSet<String>()));
 
         // Loads a string containing the English alphabet. To fully localize the app, provide a
         // strings.xml file in res/values-<x> directories, where <x> is a locale. In the file,
@@ -76,8 +79,8 @@ public class ContactsAdapter extends CursorAdapter implements SectionIndexer {
     public void selectAll() {
         int count = getCount();
         for (int i = 0; i < count; i++) {
-            ViewHolder holder = (ViewHolder)getView(i,null,null).getTag();
-            holder.checkbox_added.performClick();
+            SearchPrivacyListItem item = (SearchPrivacyListItem)getView(i,null,null).getTag();
+            item.addedCheckbox.performClick();
         }
     }
 
@@ -93,8 +96,7 @@ public class ContactsAdapter extends CursorAdapter implements SectionIndexer {
      */
     private int indexOfSearchQuery(String displayName) {
         if (!TextUtils.isEmpty(mSearchTerm)) {
-            return displayName.toLowerCase(Locale.getDefault()).indexOf(
-                    mSearchTerm.toLowerCase(Locale.getDefault()));
+            return displayName.toLowerCase(Locale.getDefault()).indexOf(mSearchTerm.toLowerCase(Locale.getDefault()));
         }
         return -1;
     }
@@ -105,56 +107,38 @@ public class ContactsAdapter extends CursorAdapter implements SectionIndexer {
     @Override
     public View newView(Context context, Cursor cursor, ViewGroup viewGroup) {
         // Inflates the list item layout.
-        final View itemLayout = mInflater.inflate(R.layout.search_privacy_list_item, viewGroup, false);
-
-        // Creates a new ViewHolder in which to store handles to each view resource. This
-        // allows bindView() to retrieve stored references instead of calling findViewById for
-        // each instance of the layout.
-        final ViewHolder holder = new ViewHolder();
-        holder.text1 = (TextView) itemLayout.findViewById(android.R.id.text1);
-        holder.checkbox_added = (CheckBox) itemLayout.findViewById(R.id.checkbox_added);
-        holder.checkbox_added.setOnClickListener(new View.OnClickListener() {
+        final SearchPrivacyListItem item = (SearchPrivacyListItem)mInflater.inflate(R.layout.search_privacy_list_item, null);;
+        item.addedCheckbox.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                listContacts = prefs.getStringSet(Constants.Settings.BLACKLIST, new HashSet<String>());
-
                 CheckBox checkbox = (CheckBox) v;
-                String contactId = String.valueOf(v.getTag());
 
                 if (checkbox.isChecked()) {
-                    listContacts.add(contactId);
+                    blackContacts.add(item.contactId);
                 } else {
-                    listContacts.remove(contactId);
+                    blackContacts.remove(item.contactId);
                 }
 
-                prefs.edit().putStringSet(Constants.Settings.BLACKLIST, listContacts).apply();
+                prefs.edit().putStringSet(Constants.Settings.BLACKLIST, new HashSet<>(blackContacts)).apply();
             }
         });
-        holder.checkbox_ice = (CheckBox) itemLayout.findViewById(R.id.checkbox_ice);
-        holder.checkbox_ice.setOnClickListener(new View.OnClickListener() {
+        item.iceCheckbox.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                iceContacts = prefs.getStringSet(Constants.Settings.ICELIST, new HashSet<String>());
-
                 CheckBox checkbox = (CheckBox) v;
-                String contactId = String.valueOf(v.getTag());
 
                 if (checkbox.isChecked()) {
-                    iceContacts.add(contactId);
+                    iceContacts.add(item.contactId);
                 } else {
-                    iceContacts.remove(contactId);
+                    iceContacts.remove(item.contactId);
                 }
 
-                prefs.edit().putStringSet(Constants.Settings.ICELIST, iceContacts).apply();
+                prefs.edit().putStringSet(Constants.Settings.ICELIST, new HashSet<>(iceContacts)).apply();
             }
         });
-
-        // Stores the resourceHolder instance in itemLayout. This makes resourceHolder
-        // available to bindView and other methods that receive a handle to the item view.
-        itemLayout.setTag(holder);
 
         // Returns the item layout view
-        return itemLayout;
+        return item;
     }
 
     /**
@@ -163,19 +147,17 @@ public class ContactsAdapter extends CursorAdapter implements SectionIndexer {
     @Override
     public void bindView(View view, Context context, Cursor cursor) {
         // Gets handles to individual view resources
-        final ViewHolder holder = (ViewHolder) view.getTag();
+        final SearchPrivacyListItem item = (SearchPrivacyListItem) view;
 
         final String displayName = cursor.getString(ContactsQuery.DISPLAY_NAME);
-        final long contactId = cursor.getLong(ContactsQuery.ID);
-
-
+        final String contactId = cursor.getString(ContactsQuery.ID);
 
         final int startIndex = indexOfSearchQuery(displayName);
 
         if (startIndex == -1) {
             // If the user didn't do a search, or the search string didn't match a display
             // name, show the display name without highlighting
-            holder.text1.setText(displayName);
+            item.contactNameField.setText(displayName);
 //            holder.checkbox_added.setText(displayName);
 
         } else {
@@ -190,23 +172,22 @@ public class ContactsAdapter extends CursorAdapter implements SectionIndexer {
             highlightedName.setSpan(highlightTextSpan, startIndex, startIndex + mSearchTerm.length(), 0);
 
             // Binds the SpannableString to the display name View object
-            holder.text1.setText(highlightedName);
+            item.contactNameField.setText(highlightedName);
 //            holder.checkbox_ice.setText(highlightedName);
         }
 
-        if(listContacts.contains(String.valueOf(contactId))){
-            holder.checkbox_added.setChecked(true);
+        if(blackContacts.contains(contactId)){
+            item.addedCheckbox.setChecked(true);
         } else {
-            holder.checkbox_added.setChecked(false);
+            item.addedCheckbox.setChecked(false);
         }
-        if(iceContacts.contains(String.valueOf(contactId))){
-            holder.checkbox_ice.setChecked(true);
+        if(iceContacts.contains(contactId)){
+            item.iceCheckbox.setChecked(true);
         } else {
-            holder.checkbox_ice.setChecked(false);
+            item.iceCheckbox.setChecked(false);
         }
 
-        holder.checkbox_added.setTag(contactId);
-        holder.checkbox_ice.setTag(contactId);
+        item.contactId = contactId;
 
     }
 
@@ -265,18 +246,6 @@ public class ContactsAdapter extends CursorAdapter implements SectionIndexer {
 
     public void updateSearchTerm(String searchTerm) {
         this.mSearchTerm = searchTerm;
-    }
-
-
-    /**
-     * A class that defines fields for each resource ID in the list item layout. This allows
-     * ContactsAdapter.newView() to store the IDs once, when it inflates the layout, instead of
-     * calling findViewById in each iteration of bindView.
-     */
-    private class ViewHolder {
-        CheckBox checkbox_ice;
-        TextView text1;
-        CheckBox checkbox_added;
     }
 
 }

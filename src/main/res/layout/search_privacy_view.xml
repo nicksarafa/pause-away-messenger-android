@@ -35,21 +35,12 @@
             <SearchView
                 android:id="@+id/contact_search_field"
                 android:layout_width="fill_parent"
-                android:layout_height="68dp"
-                android:background="@android:color/transparent"
-                android:queryBackground="@android:color/transparent"
-                android:backgroundTint="@android:color/transparent"
-                android:backgroundTintMode="@android:color/transparent"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentEnd="true"
+                android:layout_height="fill_parent"
+                android:iconifiedByDefault="false"
                 android:imeOptions="actionSearch"
                 android:inputType="textPersonName|textCapSentences"
-                android:focusableInTouchMode="true"
                 android:focusable="true"
-                android:textIsSelectable="false"
                 android:textCursorDrawable="@drawable/cursor"
-                android:freezesText="false"
                 android:hint="@string/privacy_search_bar"/>
 
         </RelativeLayout>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout
+<com.pauselabs.pause.view.SearchPrivacyListItem
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="?android:attr/listPreferredItemHeight"
@@ -18,33 +18,33 @@
         android:ellipsize="marquee"
         android:layout_gravity="center_vertical|center_horizontal"/>
 
-        <TextView
-            android:id="@android:id/text1"
-            android:paddingLeft="@dimen/privacy_checkbox_and_text_padding"
-            android:paddingRight="@dimen/privacy_checkbox_and_text_padding"
-            android:layout_gravity="center_vertical|center_horizontal"
-            android:textIsSelectable="false"
-            android:textColor="@color/text"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="8"
-            android:layout_marginRight="2dp"
-            android:layout_marginEnd="2dp"
-            android:gravity="center_vertical"
-            android:singleLine="true"
-            android:ellipsize="marquee"
-            android:textSize="@dimen/text_large"/>
+    <TextView
+        android:id="@+id/contact_name_field"
+        android:paddingLeft="@dimen/privacy_checkbox_and_text_padding"
+        android:paddingRight="@dimen/privacy_checkbox_and_text_padding"
+        android:layout_gravity="center_vertical|center_horizontal"
+        android:textIsSelectable="false"
+        android:textColor="@color/text"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="8"
+        android:layout_marginRight="2dp"
+        android:layout_marginEnd="2dp"
+        android:gravity="center_vertical"
+        android:singleLine="true"
+        android:ellipsize="marquee"
+        android:textSize="@dimen/text_large"/>
 
-            <CheckBox
-                android:id="@+id/checkbox_added"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="8dp"
-                android:layout_marginEnd="8dp"
-                android:layout_gravity="center_vertical|center_horizontal"
-                android:textColor="@color/text"
-                android:ellipsize="marquee"
-                android:singleLine="true"
-                android:focusable="false"/>
+    <CheckBox
+        android:id="@+id/checkbox_added"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_gravity="center_vertical|center_horizontal"
+        android:textColor="@color/text"
+        android:ellipsize="marquee"
+        android:singleLine="true"
+        android:focusable="false"/>
 
-</LinearLayout>
+</com.pauselabs.pause.view.SearchPrivacyListItem>
