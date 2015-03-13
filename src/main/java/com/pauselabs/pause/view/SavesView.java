@@ -1,4 +1,4 @@
-package com.pauselabs.pause.view.tabs;
+package com.pauselabs.pause.view;
 
 import android.content.Context;
 import android.util.AttributeSet;
@@ -6,30 +6,27 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.pauselabs.R;
-import com.pauselabs.pause.Injector;
-
-import javax.inject.Inject;
 
 import butterknife.InjectView;
 import butterknife.Views;
 
 /**
- * Created by Passa on 12/23/14.
+ * Created by Passa on 1/28/15.
  */
-public class CustomPauseView extends RelativeLayout {
+public class SavesView extends RelativeLayout {
 
-    @InjectView(R.id.custom_text)
-    public TextView customTxtView;
+    @InjectView(R.id.savesTextView)
+    public TextView savesTextView;
 
-    public CustomPauseView(Context context) {
+    public SavesView(Context context) {
         super(context);
     }
 
-    public CustomPauseView(Context context, AttributeSet attrs) {
+    public SavesView(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
 
-    public CustomPauseView(Context context, AttributeSet attrs, int defStyle) {
+    public SavesView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
     }
 
@@ -39,4 +36,5 @@ public class CustomPauseView extends RelativeLayout {
 
         Views.inject(this);
     }
+
 }
