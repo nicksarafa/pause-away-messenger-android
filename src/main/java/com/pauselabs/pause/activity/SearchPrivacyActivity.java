@@ -1,5 +1,6 @@
-package com.pauselabs.pause.controllers;
+package com.pauselabs.pause.activity;
 
+import android.app.Activity;
 import android.app.SearchManager;
 import android.app.SearchableInfo;
 import android.content.Context;
@@ -31,11 +32,11 @@ import javax.inject.Inject;
 /**
  * Created by Admin on 1/28/15.
  */
-public class SearchPrivacyViewController implements AdapterView.OnItemClickListener, SearchView.OnQueryTextListener, LoaderManager.LoaderCallbacks<Cursor>, AbsListView.OnScrollListener {
+public class SearchPrivacyActivity extends Activity implements AdapterView.OnItemClickListener, SearchView.OnQueryTextListener, LoaderManager.LoaderCallbacks<Cursor>, AbsListView.OnScrollListener {
 
-    private final String TAG = SearchPrivacyViewController.class.getSimpleName();
+    private final String TAG = SearchPrivacyActivity.class.getSimpleName();
 
-    public SearchPrivacyView searchSearchPrivacyView;
+    public SearchPrivacyView searchPrivacyView;
 
     private ContactsAdapter mAdapter;
 
@@ -44,35 +45,37 @@ public class SearchPrivacyViewController implements AdapterView.OnItemClickListe
     @Inject
     LayoutInflater inflater;
 
-    public SearchPrivacyViewController() {
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
         Injector.inject(this);
-        
-        searchSearchPrivacyView = (SearchPrivacyView)inflater.inflate(R.layout.privacy_list_view,null);
+
+        searchPrivacyView = (SearchPrivacyView)inflater.inflate(R.layout.search_privacy_view,null);
+        setContentView(searchPrivacyView);
 
         // Create the main contacts adapter
         mAdapter = new ContactsAdapter(PauseApplication.pauseActivity);
-        searchSearchPrivacyView.contactList.setAdapter(mAdapter);
-        searchSearchPrivacyView.contactList.setOnItemClickListener(this);
-        searchSearchPrivacyView.contactList.setOnScrollListener(this);
+        searchPrivacyView.contactList.setAdapter(mAdapter);
+        searchPrivacyView.contactList.setOnItemClickListener(this);
+        searchPrivacyView.contactList.setOnScrollListener(this);
 
-        searchSearchPrivacyView.selectAllBtn.setOnClickListener(new View.OnClickListener() {
+        searchPrivacyView.selectAllBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 mAdapter.selectAll();
             }
         });
 
-        searchSearchPrivacyView.contactSearchField.setOnQueryTextListener(this);
-
-
+        searchPrivacyView.contactSearchField.setOnQueryTextListener(this);
 
         SearchManager searchManager = (SearchManager) PauseApplication.pauseActivity.getSystemService(Context.SEARCH_SERVICE);
         SearchableInfo searchableInfo = searchManager.getSearchableInfo(PauseApplication.pauseActivity.getComponentName());
-        searchSearchPrivacyView.contactSearchField.setSearchableInfo(searchableInfo);
-        searchSearchPrivacyView.contactSearchField.setOnQueryTextListener(this);
+        searchPrivacyView.contactSearchField.setSearchableInfo(searchableInfo);
+        searchPrivacyView.contactSearchField.setOnQueryTextListener(this);
 
-        searchSearchPrivacyView.contactSearchField.setQueryHint("Search Contacts");
-        searchSearchPrivacyView.contactSearchField.setBackgroundColor(Color.TRANSPARENT);
+        searchPrivacyView.contactSearchField.setQueryHint("Search Contacts");
+        searchPrivacyView.contactSearchField.setBackgroundColor(Color.TRANSPARENT);
 
         PauseApplication.pauseActivity.getSupportLoaderManager().restartLoader(ContactsQuery.QUERY_ID, null, this);
     }

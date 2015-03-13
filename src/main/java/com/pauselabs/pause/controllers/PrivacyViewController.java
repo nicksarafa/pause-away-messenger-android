@@ -1,11 +1,14 @@
 package com.pauselabs.pause.controllers;
 
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 
 import com.pauselabs.R;
 import com.pauselabs.pause.Injector;
+import com.pauselabs.pause.PauseApplication;
+import com.pauselabs.pause.activity.SearchPrivacyActivity;
 import com.pauselabs.pause.view.tabs.PrivacyActionBtnView;
 import com.pauselabs.pause.view.tabs.PrivacyView;
 
@@ -23,16 +26,16 @@ public class PrivacyViewController implements View.OnClickListener {
 
     @Inject
     LayoutInflater inflater;
+    @Inject 
 
     public PrivacyViewController() {
         Injector.inject(this);
 
-        // Set visibility to hidden by default
-//        privacyBtns.atnBtn1.setVisibility(View.INVISIBLE);
-//        privacyBtns.atnBtn1.setOnClickListener(this);
-
         privacyView = (PrivacyView) inflater.inflate(R.layout.privacy_view, null);
         privacyBtns = (PrivacyActionBtnView) inflater.inflate(R.layout.privacy_action_view, null);
+
+        // Set visibility to hidden by default
+        privacyBtns.atnBtn1.setOnClickListener(this);
 
         }
 
@@ -42,6 +45,8 @@ public class PrivacyViewController implements View.OnClickListener {
         switch (v.getId()) {
             case R.id.privacy_search_activity_start_btn:
                 Log.i("PrivacyController", "Switching to PrivacySearchView");
+
+                PauseApplication.pauseActivity.startActivity(new Intent(PauseApplication.pauseActivity,SearchPrivacyActivity.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
 
                 break;
         }

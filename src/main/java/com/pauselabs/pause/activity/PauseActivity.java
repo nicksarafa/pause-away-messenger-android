@@ -24,7 +24,6 @@ import com.pauselabs.pause.PauseApplication;
 import com.pauselabs.pause.controllers.ASCIIDirectoryViewController;
 import com.pauselabs.pause.controllers.CustomPauseViewController;
 import com.pauselabs.pause.controllers.PrivacyViewController;
-import com.pauselabs.pause.controllers.SearchPrivacyViewController;
 import com.pauselabs.pause.controllers.SettingsViewController;
 import com.pauselabs.pause.controllers.SummaryViewController;
 import com.pauselabs.pause.controllers.UpgradeViewController;
@@ -56,7 +55,6 @@ public class PauseActivity extends ActionBarActivity {
     public ASCIIDirectoryViewController ASCIIDirectoryViewController;
     public CustomPauseViewController customPauseViewController;
     public PrivacyViewController privacyViewController;
-    public SearchPrivacyViewController searchPrivacyViewController;
     public UpgradeViewController upgradeViewController;
     public SettingsViewController settingsViewController;
 

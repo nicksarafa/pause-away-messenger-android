@@ -47,6 +47,11 @@
                 android:screenOrientation="portrait">
             </activity>
 
+            <activity android:name=".pause.activity.SearchPrivacyActivity"
+                android:windowSoftInputMode="stateHidden"
+                android:screenOrientation="portrait">
+            </activity>
+
 
         <!-- Crashalytics and Google Analytics Setup -->
 
