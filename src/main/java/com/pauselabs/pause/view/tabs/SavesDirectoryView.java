@@ -1,15 +1,12 @@
 package com.pauselabs.pause.view.tabs;
 
 import android.content.Context;
-import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
-import android.widget.Button;
 import android.widget.EditText;
+import android.widget.IconButton;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 
-import com.joanzapata.android.iconify.IconDrawable;
-import com.joanzapata.android.iconify.Iconify;
 import com.pauselabs.R;
 
 import butterknife.InjectView;
@@ -20,8 +17,8 @@ import butterknife.Views;
  */
 public class SavesDirectoryView extends RelativeLayout {
 
-    @InjectView(R.id.add_custom_btn)
-    public Button addCustomBtn;
+    @InjectView(R.id.save_pause_message_btn)
+    public IconButton addCustomBtn;
     @InjectView(R.id.custom_text)
     public EditText customText;
     @InjectView(R.id.savesDirectoryGrid)
@@ -45,9 +42,9 @@ public class SavesDirectoryView extends RelativeLayout {
 
         Views.inject(this);
 
-        Drawable pencilIcon = new IconDrawable(getContext(), Iconify.IconValue.fa_pencil).colorRes(R.color.text).actionBarSize();
-        customText.setCompoundDrawables(pencilIcon, null, null, null);
-        customText.setCompoundDrawablePadding(4);
+//        Drawable pencilIcon = new IconDrawable(getContext(), Iconify.IconValue.fa_pencil).colorRes(R.color.text).actionBarSize();
+//        customText.setCompoundDrawables(pencilIcon, null, null, null);
+//        customText.setCompoundDrawablePadding(4);
     }
 
 }

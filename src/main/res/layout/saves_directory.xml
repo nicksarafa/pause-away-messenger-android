@@ -10,73 +10,97 @@
     <!-- Custom Message View Holder -->
 
     <LinearLayout
-        android:orientation="horizontal"
+        android:id="@+id/custom_pause_container"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="@dimen/main_header_universal_height"
+        android:orientation="horizontal"
+        android:layout_margin="8dp"
+        android:background="@drawable/card_bg">
 
-        <Button
-            android:id="@+id/add_custom_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="@dimen/main_header_universal_height"
-            android:text="Add"/>
+        <EditText
+            android:id="@+id/custom_text"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="7"
+            android:background="@drawable/transparent_drawable"
+            android:focusableInTouchMode="true"
+            android:focusable="true"
+            android:textSize="@dimen/text_medium"
+            android:textColorHint="@color/text"
+            android:textColor="@color/text"
+            android:textIsSelectable="false"
+            android:textCursorDrawable="@drawable/cursor"
+            android:freezesText="false"
+            android:maxLines="10"
+            android:scrollbars="none"
+            android:imeOptions="flagNoEnterAction"
+            android:paddingLeft="@dimen/save_horizontal_and_vertical_padding"
+            android:paddingRight="@dimen/save_horizontal_and_vertical_padding"
+            android:inputType="textCapSentences|textMultiLine"
+            android:hint="@string/custom_pause_hint"/>
 
-        <RelativeLayout
-            android:id="@+id/custom_pause_container"
-            android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/main_header_universal_height"
-            android:layout_margin="8dp"
-            android:background="@drawable/card_bg">
+            <RelativeLayout
+                android:id="@+id/custom_pause_right_end_container"
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:orientation="vertical">
 
-            <EditText
-                android:id="@+id/custom_text"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/transparent_drawable"
-                android:layout_centerInParent="true"
-                android:focusableInTouchMode="true"
-                android:focusable="true"
-                android:textSize="@dimen/text_medium"
-                android:textColorHint="@color/text"
-                android:textColor="@color/text"
-                android:textIsSelectable="false"
-                android:textCursorDrawable="@drawable/cursor"
-                android:freezesText="false"
-                android:maxLines="10"
-                android:scrollbars="none"
-                android:imeOptions="flagNoEnterAction"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:paddingLeft="@dimen/save_horizontal_and_vertical_padding"
-                android:paddingRight="@dimen/save_horizontal_and_vertical_padding"
-                android:inputType="textMultiLine"
-                android:hint="@string/custom_pause_hint"/>
+                <!-- Save Button -->
 
-        </RelativeLayout>
+                <IconButton
+                    android:id="@+id/save_pause_message_btn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/transparent_drawable"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:visibility="visible"
+                    android:textColor="@color/text"
+                    android:text="@string/save_fa_button"/>
+
+                <!-- Character Count -->
+
+                <TextView
+                    android:id="@+id/message_character_count"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerHorizontal="true"
+                    android:textSize="@dimen/text_small"
+                    android:textColor="@color/main"
+                    android:text="@string/sms_character_cieling" />
+
+            </RelativeLayout>
 
     </LinearLayout>
 
-    <ListView
-        android:id="@+id/savesDirectoryGrid"
-        android:layout_width="match_parent"
-        android:layout_height="fill_parent"
-        android:layout_alignParentTop="true"
-        android:numColumns="1"
-        android:layout_marginTop="@dimen/main_list_view_universal_margin_top"
-        android:listSelector="@drawable/transparent_drawable"
-        android:cacheColorHint="@color/transparent"
-        android:clipToPadding="true"
-        android:scrollbars="vertical"
-        android:isScrollContainer="false"
-        android:scrollbarStyle="outsideOverlay"
-        android:smoothScrollbar="true"
-        android:verticalScrollbarPosition="left"
-        android:overScrollMode="never"
-        android:overScrollHeader="@drawable/transparent_drawable"
-        android:headerDividersEnabled="false"
-        android:overScrollFooter="@android:color/transparent"
-        android:footerDividersEnabled="false"
-        android:stretchMode="columnWidth"/>
+        <!-- Save List -->
+
+        <ListView
+            android:id="@+id/savesDirectoryGrid"
+            android:layout_width="match_parent"
+            android:layout_height="fill_parent"
+            android:layout_alignParentTop="true"
+            android:numColumns="1"
+            android:layout_marginTop="@dimen/main_list_view_universal_margin_top"
+            android:listSelector="@drawable/transparent_drawable"
+            android:cacheColorHint="@color/transparent"
+            android:clipToPadding="true"
+            android:scrollbars="vertical"
+            android:isScrollContainer="false"
+            android:scrollbarStyle="outsideOverlay"
+            android:smoothScrollbar="true"
+            android:verticalScrollbarPosition="left"
+            android:overScrollMode="never"
+            android:overScrollHeader="@drawable/transparent_drawable"
+            android:headerDividersEnabled="false"
+            android:overScrollFooter="@android:color/transparent"
+            android:footerDividersEnabled="false"
+            android:stretchMode="columnWidth"/>
 
 </com.pauselabs.pause.view.tabs.SavesDirectoryView>
 

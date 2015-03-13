@@ -1,6 +1,5 @@
 package com.pauselabs.pause.adapters;
 
-import android.app.LoaderManager;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.database.Cursor;
@@ -9,14 +8,12 @@ import android.support.v4.widget.CursorAdapter;
 import android.text.SpannableString;
 import android.text.TextUtils;
 import android.text.style.TextAppearanceSpan;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AlphabetIndexer;
 import android.widget.CheckBox;
 import android.widget.SectionIndexer;
-import android.widget.TextView;
 
 import com.pauselabs.R;
 import com.pauselabs.pause.core.ContactsQuery;
@@ -25,7 +22,6 @@ import com.pauselabs.pause.view.SearchPrivacyListItem;
 
 import java.util.HashSet;
 import java.util.Locale;
-import java.util.Set;
 
 /**
  * This is a subclass of CursorAdapter that supports binding Cursor columns to a view layout.
@@ -80,7 +76,7 @@ public class ContactsAdapter extends CursorAdapter implements SectionIndexer {
         int count = getCount();
         for (int i = 0; i < count; i++) {
             SearchPrivacyListItem item = (SearchPrivacyListItem)getView(i,null,null).getTag();
-            item.addedCheckbox.performClick();
+            item.blackCheckbox.performClick();
         }
     }
 
@@ -108,7 +104,7 @@ public class ContactsAdapter extends CursorAdapter implements SectionIndexer {
     public View newView(Context context, Cursor cursor, ViewGroup viewGroup) {
         // Inflates the list item layout.
         final SearchPrivacyListItem item = (SearchPrivacyListItem)mInflater.inflate(R.layout.search_privacy_list_item, null);;
-        item.addedCheckbox.setOnClickListener(new View.OnClickListener() {
+        item.blackCheckbox.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 CheckBox checkbox = (CheckBox) v;
@@ -177,9 +173,9 @@ public class ContactsAdapter extends CursorAdapter implements SectionIndexer {
         }
 
         if(blackContacts.contains(contactId)){
-            item.addedCheckbox.setChecked(true);
+            item.blackCheckbox.setChecked(true);
         } else {
-            item.addedCheckbox.setChecked(false);
+            item.blackCheckbox.setChecked(false);
         }
         if(iceContacts.contains(contactId)){
             item.iceCheckbox.setChecked(true);

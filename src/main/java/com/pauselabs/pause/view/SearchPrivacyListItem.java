@@ -21,7 +21,7 @@ public class SearchPrivacyListItem extends LinearLayout {
     @InjectView(R.id.contact_name_field)
     public TextView contactNameField;
     @InjectView(R.id.checkbox_added)
-    public CheckBox addedCheckbox;
+    public CheckBox blackCheckbox;
 
     public String contactId;
 

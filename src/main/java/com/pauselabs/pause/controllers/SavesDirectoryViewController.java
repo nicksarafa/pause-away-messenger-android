@@ -14,7 +14,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.EditText;
 
 import com.pauselabs.R;
 import com.pauselabs.pause.Injector;
@@ -59,7 +58,7 @@ public class SavesDirectoryViewController implements View.OnClickListener, Adapt
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.add_custom_btn:
+            case R.id.save_pause_message_btn:
                 dbHelper.insertSave(savesDirectoryView.customText.getText().toString());
                 savesDirectoryView.customText.setText("");
 

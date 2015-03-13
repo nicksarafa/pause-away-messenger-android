@@ -47,8 +47,7 @@ public class TabView extends LinearLayout {
         mTextView.setGravity(Gravity.CENTER);
 //        mTextView.setCompoundDrawablePadding(pad);
         mTextView.setTextAppearance(context, txtstyle);;
-        
-        
+
         this.addView(mImageView);
         this.addView(mTextView);
         this.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
