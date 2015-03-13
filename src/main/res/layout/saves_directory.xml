@@ -69,7 +69,6 @@
                     android:layout_alignParentBottom="true"
                     android:layout_alignParentEnd="true"
                     android:layout_alignParentRight="true"
-                    android:layout_centerHorizontal="true"
                     android:textSize="@dimen/text_small"
                     android:textColor="@color/main"
                     android:text="@string/sms_character_cieling" />

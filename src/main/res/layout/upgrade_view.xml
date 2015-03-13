@@ -6,80 +6,346 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-
     <!-- Upgrade Button -->
 
-        <RelativeLayout
-            android:id="@+id/upgrade_btn_container"
-            android:orientation="vertical"
+    <RelativeLayout
+        android:id="@+id/upgrade_btn_container"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="8dp">
+
+        <!-- Upgrade Button -->
+
+        <android.widget.IconButton
+            android:id="@+id/upgrade_btn"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_margin="8dp">
+            android:layout_height="@dimen/main_header_universal_height"
+            android:layout_alignParentBottom="true"
+            android:layout_centerVertical="true"
+            android:background="@drawable/upgrade_card_btn_background"
+            android:textColor="@color/text_white"
+            android:textSize="@dimen/text_extra_large"
+            android:text="@string/upgrade_btn_text"/>
 
-            <!-- Upgrade Button -->
+    </RelativeLayout>
 
-            <android.widget.IconButton
-                android:id="@+id/upgrade_btn"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/main_header_universal_height"
-                android:layout_alignParentTop="true"
-                android:layout_centerVertical="true"
-                android:background="@drawable/upgrade_card_btn_background"
-                android:textColor="@color/text_white"
-                android:textSize="@dimen/text_extra_large"
-                android:text="@string/upgrade_btn_text"/>
+    <!-- List of Features that are included with Upgrade -->
 
-                <!-- List of Features that are included with Upgrade -->
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical"
+        android:layout_alignParentBottom="true">
 
-                <LinearLayout
-                    android:layout_width="fill_parent"
-                    android:layout_height="fill_parent"
-                    android:orientation="vertical"
-                    android:layout_marginTop="@dimen/main_list_view_universal_margin_top"
-                    android:layout_alignParentBottom="true">
+        <LinearLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_margin="@dimen/settings_text_horizontal_margin"
+            android:orientation="horizontal">
+
+            <IconTextView
+                android:layout_width="0dp"
+                android:layout_height="@dimen/settings_frontnail_height"
+                android:textAlignment="center"
+                android:textIsSelectable="false"
+                android:text="{fa-android}"
+                android:shadowColor="#22000000"
+                android:shadowDx="0"
+                android:shadowDy="0"
+                android:shadowRadius="0"
+                android:textSize="24dp"
+                android:textColor="@color/text"
+                android:layout_weight="1"
+                android:layout_marginStart="@dimen/settings_thumbnail_horizontal_and_vertical_margin"
+                android:layout_marginLeft="@dimen/settings_thumbnail_horizontal_and_vertical_margin"
+                android:layout_marginRight="@dimen/settings_thumbnail_horizontal_and_vertical_margin"
+                android:layout_marginEnd="@dimen/settings_thumbnail_horizontal_and_vertical_margin"
+                android:gravity="center_horizontal|center_vertical"
+                android:layout_gravity="center_horizontal|center_vertical"/>
+
+            <TextView
+                android:id="@+id/label"
+                android:layout_height="wrap_content"
+                android:layout_width="0dp"
+                android:layout_weight="6"
+                android:layout_marginStart="@dimen/settings_text_horizontal_margin"
+                android:layout_marginLeft="@dimen/settings_text_horizontal_margin"
+                android:layout_gravity="start|center_vertical"
+                android:gravity="start|center_vertical"
+                android:ellipsize="none"
+                android:maxLines="100"
+                android:scrollHorizontally="false"
+                android:textIsSelectable="false"
+                android:textColor="@color/text"
+                android:textAlignment="textStart"
+                android:textSize="@dimen/text_large"
+                android:text="Reason Four"
+                android:textAppearance="?android:attr/textAppearanceLarge"/>
+
+            <!-- User Info -->
+
+            <TextView
+                android:id="@+id/content"
+                android:layout_height="match_parent"
+                android:layout_width="0dp"
+                android:layout_weight="2"
+                android:layout_marginStart="@dimen/settings_text_horizontal_margin"
+                android:layout_marginLeft="@dimen/settings_text_horizontal_margin"
+                android:gravity="end|center_vertical"
+                android:layout_gravity="end|center_vertical"
+                android:textAlignment="textEnd"
+                android:textColor="@color/text"
+                android:layout_marginRight="@dimen/privacy_checkbox_and_text_padding"
+                android:layout_marginEnd="@dimen/privacy_checkbox_and_text_padding"
+                android:textSize="@dimen/text_large"
+                android:textAppearance="?android:attr/textAppearanceLarge"/>
+
+            <!-- Endnail -->
+
+            <ImageView
+                android:id="@+id/endnail"
+                android:layout_height="0dp"
+                android:layout_width="0dp"
+                android:layout_weight="0"
+                android:gravity="end|center_vertical"
+                android:layout_marginRight="@dimen/privacy_checkbox_and_text_padding"
+                android:layout_marginEnd="@dimen/privacy_checkbox_and_text_padding"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_margin="@dimen/settings_text_horizontal_margin"
+            android:orientation="horizontal">
+
+            <IconTextView
+                android:layout_width="0dp"
+                android:layout_height="@dimen/settings_frontnail_height"
+                android:textAlignment="center"
+                android:textIsSelectable="false"
+                android:text="{fa-android}"
+                android:shadowColor="#22000000"
+                android:shadowDx="0"
+                android:shadowDy="0"
+                android:shadowRadius="0"
+                android:textSize="24dp"
+                android:textColor="@color/text"
+                android:layout_weight="1"
+                android:layout_marginStart="@dimen/settings_thumbnail_horizontal_and_vertical_margin"
+                android:layout_marginLeft="@dimen/settings_thumbnail_horizontal_and_vertical_margin"
+                android:layout_marginRight="@dimen/settings_thumbnail_horizontal_and_vertical_margin"
+                android:layout_marginEnd="@dimen/settings_thumbnail_horizontal_and_vertical_margin"
+                android:gravity="center_horizontal|center_vertical"
+                android:layout_gravity="center_horizontal|center_vertical"/>
+
+            <TextView
+                android:id="@+id/label"
+                android:layout_height="wrap_content"
+                android:layout_width="0dp"
+                android:layout_weight="6"
+                android:layout_marginStart="@dimen/settings_text_horizontal_margin"
+                android:layout_marginLeft="@dimen/settings_text_horizontal_margin"
+                android:layout_gravity="start|center_vertical"
+                android:gravity="start|center_vertical"
+                android:ellipsize="none"
+                android:maxLines="100"
+                android:scrollHorizontally="false"
+                android:textIsSelectable="false"
+                android:textColor="@color/text"
+                android:textAlignment="textStart"
+                android:textSize="@dimen/text_large"
+                android:text="Reason Four"
+                android:textAppearance="?android:attr/textAppearanceLarge"/>
+
+            <!-- User Info -->
+
+            <TextView
+                android:id="@+id/content"
+                android:layout_height="match_parent"
+                android:layout_width="0dp"
+                android:layout_weight="2"
+                android:layout_marginStart="@dimen/settings_text_horizontal_margin"
+                android:layout_marginLeft="@dimen/settings_text_horizontal_margin"
+                android:gravity="end|center_vertical"
+                android:layout_gravity="end|center_vertical"
+                android:textAlignment="textEnd"
+                android:textColor="@color/text"
+                android:layout_marginRight="@dimen/privacy_checkbox_and_text_padding"
+                android:layout_marginEnd="@dimen/privacy_checkbox_and_text_padding"
+                android:textSize="@dimen/text_large"
+                android:textAppearance="?android:attr/textAppearanceLarge"/>
+
+            <!-- Endnail -->
+
+            <ImageView
+                android:id="@+id/endnail"
+                android:layout_height="0dp"
+                android:layout_width="0dp"
+                android:layout_weight="0"
+                android:gravity="end|center_vertical"
+                android:layout_marginRight="@dimen/privacy_checkbox_and_text_padding"
+                android:layout_marginEnd="@dimen/privacy_checkbox_and_text_padding"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_margin="@dimen/settings_text_horizontal_margin"
+            android:orientation="horizontal">
+
+            <IconTextView
+                android:layout_width="0dp"
+                android:layout_height="@dimen/settings_frontnail_height"
+                android:textAlignment="center"
+                android:textIsSelectable="false"
+                android:text="{fa-android}"
+                android:shadowColor="#22000000"
+                android:shadowDx="0"
+                android:shadowDy="0"
+                android:shadowRadius="0"
+                android:textSize="24dp"
+                android:textColor="@color/text"
+                android:layout_weight="1"
+                android:layout_marginStart="@dimen/settings_thumbnail_horizontal_and_vertical_margin"
+                android:layout_marginLeft="@dimen/settings_thumbnail_horizontal_and_vertical_margin"
+                android:layout_marginRight="@dimen/settings_thumbnail_horizontal_and_vertical_margin"
+                android:layout_marginEnd="@dimen/settings_thumbnail_horizontal_and_vertical_margin"
+                android:gravity="center_horizontal|center_vertical"
+                android:layout_gravity="center_horizontal|center_vertical"/>
+
+            <TextView
+                android:id="@+id/label"
+                android:layout_height="wrap_content"
+                android:layout_width="0dp"
+                android:layout_weight="6"
+                android:layout_marginStart="@dimen/settings_text_horizontal_margin"
+                android:layout_marginLeft="@dimen/settings_text_horizontal_margin"
+                android:layout_gravity="start|center_vertical"
+                android:gravity="start|center_vertical"
+                android:ellipsize="none"
+                android:maxLines="100"
+                android:scrollHorizontally="false"
+                android:textIsSelectable="false"
+                android:textColor="@color/text"
+                android:textAlignment="textStart"
+                android:textSize="@dimen/text_large"
+                android:text="Reason Four"
+                android:textAppearance="?android:attr/textAppearanceLarge"/>
+
+            <!-- User Info -->
+
+            <TextView
+                android:id="@+id/content"
+                android:layout_height="match_parent"
+                android:layout_width="0dp"
+                android:layout_weight="2"
+                android:layout_marginStart="@dimen/settings_text_horizontal_margin"
+                android:layout_marginLeft="@dimen/settings_text_horizontal_margin"
+                android:gravity="end|center_vertical"
+                android:layout_gravity="end|center_vertical"
+                android:textAlignment="textEnd"
+                android:textColor="@color/text"
+                android:layout_marginRight="@dimen/privacy_checkbox_and_text_padding"
+                android:layout_marginEnd="@dimen/privacy_checkbox_and_text_padding"
+                android:textSize="@dimen/text_large"
+                android:textAppearance="?android:attr/textAppearanceLarge"/>
+
+            <!-- Endnail -->
+
+            <ImageView
+                android:id="@+id/endnail"
+                android:layout_height="0dp"
+                android:layout_width="0dp"
+                android:layout_weight="0"
+                android:gravity="end|center_vertical"
+                android:layout_marginRight="@dimen/privacy_checkbox_and_text_padding"
+                android:layout_marginEnd="@dimen/privacy_checkbox_and_text_padding"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_margin="@dimen/settings_text_horizontal_margin"
+            android:orientation="horizontal">
+
+            <IconTextView
+                android:layout_width="0dp"
+                android:layout_height="@dimen/settings_frontnail_height"
+                android:textAlignment="center"
+                android:textIsSelectable="false"
+                android:text="{fa-android}"
+                android:shadowColor="#22000000"
+                android:shadowDx="0"
+                android:shadowDy="0"
+                android:shadowRadius="0"
+                android:textSize="24dp"
+                android:textColor="@color/text"
+                android:layout_weight="1"
+                android:layout_marginStart="@dimen/settings_thumbnail_horizontal_and_vertical_margin"
+                android:layout_marginLeft="@dimen/settings_thumbnail_horizontal_and_vertical_margin"
+                android:layout_marginRight="@dimen/settings_thumbnail_horizontal_and_vertical_margin"
+                android:layout_marginEnd="@dimen/settings_thumbnail_horizontal_and_vertical_margin"
+                android:gravity="center_horizontal|center_vertical"
+                android:layout_gravity="center_horizontal|center_vertical"/>
+
+                <TextView
+                    android:id="@+id/label"
+                    android:layout_height="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight="6"
+                    android:layout_marginStart="@dimen/settings_text_horizontal_margin"
+                    android:layout_marginLeft="@dimen/settings_text_horizontal_margin"
+                    android:layout_gravity="start|center_vertical"
+                    android:gravity="start|center_vertical"
+                    android:ellipsize="none"
+                    android:maxLines="100"
+                    android:scrollHorizontally="false"
+                    android:textIsSelectable="false"
+                    android:textColor="@color/text"
+                    android:textAlignment="textStart"
+                    android:textSize="@dimen/text_large"
+                    android:text="Reason Four"
+                    android:textAppearance="?android:attr/textAppearanceLarge"/>
+
+                    <!-- User Info -->
 
                     <TextView
-                        android:id="@+id/upgrade_bullet_1"
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/upgrade_list_item_height"
-                        android:textSize="@dimen/text_large"
-                        android:gravity="center_vertical|start"
-                        android:layout_gravity="center_vertical|start"
+                        android:id="@+id/content"
+                        android:layout_height="match_parent"
+                        android:layout_width="0dp"
+                        android:layout_weight="2"
+                        android:layout_marginStart="@dimen/settings_text_horizontal_margin"
+                        android:layout_marginLeft="@dimen/settings_text_horizontal_margin"
+                        android:gravity="end|center_vertical"
+                        android:layout_gravity="end|center_vertical"
+                        android:textAlignment="textEnd"
                         android:textColor="@color/text"
-                        android:text="Reason One"/>
-
-                    <TextView
-                        android:id="@+id/upgrade_bullet_2"
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/upgrade_list_item_height"
+                        android:layout_marginRight="@dimen/privacy_checkbox_and_text_padding"
+                        android:layout_marginEnd="@dimen/privacy_checkbox_and_text_padding"
                         android:textSize="@dimen/text_large"
-                        android:gravity="center_vertical|start"
-                        android:layout_gravity="center_vertical|start"
-                        android:textColor="@color/text"
-                        android:text="Reason Two"/>
+                        android:textAppearance="?android:attr/textAppearanceLarge"/>
 
-                    <TextView
-                        android:id="@+id/upgrade_bullet_3"
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/upgrade_list_item_height"
-                        android:textSize="@dimen/text_large"
-                        android:gravity="center_vertical|start"
-                        android:layout_gravity="center_vertical|start"
-                        android:textColor="@color/text"
-                        android:text="Reason Three"/>
+                        <!-- Endnail -->
 
-                    <TextView
-                        android:id="@+id/upgrade_bullet_4"
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/upgrade_list_item_height"
-                        android:textSize="@dimen/text_large"
-                        android:gravity="center_vertical|start"
-                        android:layout_gravity="center_vertical|start"
-                        android:textColor="@color/text"
-                        android:text="Reason Four"/>
+                        <ImageView
+                            android:id="@+id/endnail"
+                            android:layout_height="0dp"
+                            android:layout_width="0dp"
+                            android:layout_weight="0"
+                            android:gravity="end|center_vertical"
+                            android:layout_marginRight="@dimen/privacy_checkbox_and_text_padding"
+                            android:layout_marginEnd="@dimen/privacy_checkbox_and_text_padding"/>
 
-                </LinearLayout>
+        </LinearLayout>
 
-        </RelativeLayout>
+    </LinearLayout>
 
 </com.pauselabs.pause.view.tabs.UpgradeView>
