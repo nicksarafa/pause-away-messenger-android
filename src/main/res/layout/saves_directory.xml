@@ -1,43 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<com.pauselabs.pause.view.tabs.ASCIIDirectoryView
+<com.pauselabs.pause.view.tabs.SavesDirectoryView
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/saveDirectory"
     android:layout_height="fill_parent"
     android:layout_width="fill_parent"
     android:background="@drawable/transparent_drawable">
 
-    <ListView
-        android:id="@+id/asciiDirectoryGrid"
-        android:layout_width="match_parent"
-        android:layout_height="fill_parent"
-        android:numColumns="1"
-        android:layout_marginTop="@dimen/main_list_view_universal_margin_top"
-        android:listSelector="@drawable/transparent_drawable"
-        android:cacheColorHint="@color/transparent"
-        android:clipToPadding="true"
-        android:scrollbars="vertical"
-        android:isScrollContainer="false"
-        android:scrollbarStyle="outsideOverlay"
-        android:smoothScrollbar="true"
-        android:verticalScrollbarPosition="left"
-        android:overScrollMode="never"
-        android:overScrollHeader="@drawable/transparent_drawable"
-        android:headerDividersEnabled="false"
-        android:overScrollFooter="@android:color/transparent"
-        android:footerDividersEnabled="false"
-        android:stretchMode="columnWidth"/>
+    <!-- Custom Message View Holder -->
 
-        <!-- Custom Message View Holder -->
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:id="@+id/add_custom_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/main_header_universal_height"
+            android:text="Add"/>
 
         <RelativeLayout
             android:id="@+id/custom_pause_container"
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="@dimen/main_header_universal_height"
-            android:layout_alignParentTop="true"
             android:layout_margin="8dp"
-            android:layout_alignTop="@id/asciiDirectoryGrid"
             android:background="@drawable/card_bg">
 
             <EditText
@@ -66,5 +54,29 @@
 
         </RelativeLayout>
 
-</com.pauselabs.pause.view.tabs.ASCIIDirectoryView>
+    </LinearLayout>
+
+    <ListView
+        android:id="@+id/savesDirectoryGrid"
+        android:layout_width="match_parent"
+        android:layout_height="fill_parent"
+        android:layout_alignParentTop="true"
+        android:numColumns="1"
+        android:layout_marginTop="@dimen/main_list_view_universal_margin_top"
+        android:listSelector="@drawable/transparent_drawable"
+        android:cacheColorHint="@color/transparent"
+        android:clipToPadding="true"
+        android:scrollbars="vertical"
+        android:isScrollContainer="false"
+        android:scrollbarStyle="outsideOverlay"
+        android:smoothScrollbar="true"
+        android:verticalScrollbarPosition="left"
+        android:overScrollMode="never"
+        android:overScrollHeader="@drawable/transparent_drawable"
+        android:headerDividersEnabled="false"
+        android:overScrollFooter="@android:color/transparent"
+        android:footerDividersEnabled="false"
+        android:stretchMode="columnWidth"/>
+
+</com.pauselabs.pause.view.tabs.SavesDirectoryView>
 

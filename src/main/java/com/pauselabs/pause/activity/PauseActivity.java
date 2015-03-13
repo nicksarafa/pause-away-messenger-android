@@ -3,7 +3,6 @@ package com.pauselabs.pause.activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v13.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
@@ -16,13 +15,10 @@ import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 
 import com.gc.materialdesign.views.ButtonFloat;
-import com.joanzapata.android.iconify.IconDrawable;
-import com.joanzapata.android.iconify.Iconify;
 import com.pauselabs.R;
 import com.pauselabs.pause.Injector;
 import com.pauselabs.pause.PauseApplication;
-import com.pauselabs.pause.controllers.ASCIIDirectoryViewController;
-import com.pauselabs.pause.controllers.CustomPauseViewController;
+import com.pauselabs.pause.controllers.SavesDirectoryViewController;
 import com.pauselabs.pause.controllers.PrivacyViewController;
 import com.pauselabs.pause.controllers.SettingsViewController;
 import com.pauselabs.pause.controllers.SummaryViewController;
@@ -41,7 +37,7 @@ public class PauseActivity extends ActionBarActivity {
 
     public static final String TAG = PauseActivity.class.getSimpleName();
 
-    public static final int EMOJI_TAB = 0;
+    public static final int SAVES_TAB = 0;
     public static final int PRIVACY_TAB = 1;
     public static final int UPGRADE_TAB = 2;
     public static final int SETTINGS_TAB = 3;
@@ -52,8 +48,7 @@ public class PauseActivity extends ActionBarActivity {
     public int pageIndex;
 
     public SummaryViewController summaryViewController;
-    public ASCIIDirectoryViewController ASCIIDirectoryViewController;
-    public CustomPauseViewController customPauseViewController;
+    public SavesDirectoryViewController savesDirectoryViewController;
     public PrivacyViewController privacyViewController;
     public UpgradeViewController upgradeViewController;
     public SettingsViewController settingsViewController;
@@ -75,8 +70,7 @@ public class PauseActivity extends ActionBarActivity {
         setContentView(pauseActivityView);
 
         summaryViewController = new SummaryViewController();
-        ASCIIDirectoryViewController = new ASCIIDirectoryViewController();
-        customPauseViewController = new CustomPauseViewController();
+        savesDirectoryViewController = new SavesDirectoryViewController();
         privacyViewController = new PrivacyViewController();
         upgradeViewController = new UpgradeViewController();
         settingsViewController = new SettingsViewController();
@@ -118,12 +112,6 @@ public class PauseActivity extends ActionBarActivity {
 
         pauseActivityView.addView(summaryViewController.summaryView);
         summaryViewController.summaryView.setClickable(true);
-
-        // Pencil icon added via Font-Awesome to custom view EditText.. Might change to feather later
-
-        Drawable pencilIcon = new IconDrawable(getApplicationContext(), Iconify.IconValue.fa_pencil).colorRes(R.color.text).actionBarSize();
-        ASCIIDirectoryViewController.asciiDirectoryView.customText.setCompoundDrawables(pencilIcon, null, null, null);
-        ASCIIDirectoryViewController.asciiDirectoryView.customText.setCompoundDrawablePadding(20);
 
         pauseActivityView.setDragView(pauseActivityView.startPauseButton);
         ((ButtonFloat) pauseActivityView.startPauseButton).setDrawableIcon(getResources().getDrawable(R.drawable.ic_action_pause_off));
@@ -273,14 +261,14 @@ public class PauseActivity extends ActionBarActivity {
         public CharSequence getPageTitle(int position) {
             Locale l = Locale.getDefault();
             switch (position) {
-                case EMOJI_TAB:
-                    return getString(R.string.saves_activity_title).toUpperCase(l);
+                case SAVES_TAB:
+                    return getString(R.string.saves_section_title).toUpperCase(l);
+                case PRIVACY_TAB:
+                    return getString(R.string.privacy_section_title).toUpperCase();
+                case UPGRADE_TAB:
+                    return getString(R.string.upgrade_section_title).toUpperCase();
                 case SETTINGS_TAB:
                     return getString(R.string.settings_section_title).toUpperCase(l);
-                case PRIVACY_TAB:
-                    return "Privacy".toUpperCase();
-                case UPGRADE_TAB:
-                    return "Upgrade".toUpperCase();
 
             }
             return null;
@@ -317,8 +305,8 @@ public class PauseActivity extends ActionBarActivity {
             View rootView = null;
 
             switch (getArguments().getInt(ARG_SECTION_NUMBER)) {
-                case EMOJI_TAB:
-                    rootView = PauseApplication.pauseActivity.ASCIIDirectoryViewController.asciiDirectoryView;
+                case SAVES_TAB:
+                    rootView = PauseApplication.pauseActivity.savesDirectoryViewController.savesDirectoryView;
 
                     break;
 

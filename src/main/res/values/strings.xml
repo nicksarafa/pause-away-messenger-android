@@ -102,10 +102,11 @@
     <string name="gender_settings_label">Gender</string>
     <string name="help_label">Help</string>
 
-    <string name="saves_activity_title">Saves</string>
+    <string name="saves_section_title">Saves</string>
+    <string name="privacy_section_title">Privacy</string>
+    <string name="upgrade_section_title">Upgrade</string>
     <string name="settings_section_title">Settings</string>
-    <string name="hidden_custom_section_title">Custom</string>
-    <string name="ice_section_title">ICE</string>
+
     <string name="ob_female_btn">{fa-female}\u0020\u0020Female</string>
     <string name="ob_male_btn">{fa-male}\u0020\u0020Male</string>
     <string name="privacy_ab_title">PRIVACY</string>

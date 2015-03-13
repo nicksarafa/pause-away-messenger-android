@@ -2,8 +2,7 @@ package com.pauselabs.pause;
 
 import com.pauselabs.pause.activity.PauseActivity;
 import com.pauselabs.pause.activity.StartActivity;
-import com.pauselabs.pause.controllers.ASCIIDirectoryViewController;
-import com.pauselabs.pause.controllers.CustomPauseViewController;
+import com.pauselabs.pause.controllers.SavesDirectoryViewController;
 import com.pauselabs.pause.controllers.PrivacyViewController;
 import com.pauselabs.pause.activity.SearchPrivacyActivity;
 import com.pauselabs.pause.controllers.SettingsViewController;
@@ -47,11 +46,9 @@ import dagger.Provides;
                 GenderViewController.class,
                 OnboardingViewController.class,
 
-                ASCIIDirectoryViewController.class,
+                SavesDirectoryViewController.class,
 
-                CustomPauseViewController.class,
-
-                ASCIIDirectoryViewController.class,
+                SavesDirectoryViewController.class,
 
                 SettingsViewController.class,
 

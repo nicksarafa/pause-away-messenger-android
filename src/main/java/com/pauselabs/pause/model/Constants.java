@@ -135,11 +135,6 @@ public class Constants {
         public static final String ONBOARDING_FINISHED_KEY = "ONBOARDING_FINISHED";
 
         /**
-         * Key for saved custom Paüse message
-         */
-        public static final String CUSTOM_PAUSE_MESSAGE_KEY = "CUSTOM_PAUSE_MESSAGE_KEY";
-
-        /**
          * Pause Bundle Identifier String
          */
         public static final String PAUSE_BUNDLE = "PAUSE_BUNDLE";
