@@ -40,6 +40,7 @@
                 android:queryBackground="@android:color/transparent"
                 android:backgroundTint="@android:color/transparent"
                 android:backgroundTintMode="@android:color/transparent"
+                android:iconifiedByDefault="false"
                 android:layout_alignParentTop="true"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentEnd="true"

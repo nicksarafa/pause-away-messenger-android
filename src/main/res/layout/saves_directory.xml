@@ -14,12 +14,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <Button
-            android:id="@+id/add_custom_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="@dimen/main_header_universal_height"
-            android:text="Add"/>
-
         <RelativeLayout
             android:id="@+id/custom_pause_container"
             android:orientation="vertical"
@@ -51,6 +45,12 @@
                 android:paddingRight="@dimen/save_horizontal_and_vertical_padding"
                 android:inputType="textMultiLine"
                 android:hint="@string/custom_pause_hint"/>
+
+            <Button
+                android:id="@+id/add_custom_btn"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/main_header_universal_height"
+                android:text="Add"/>
 
         </RelativeLayout>
 
