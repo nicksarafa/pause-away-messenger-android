@@ -39,6 +39,7 @@
         android:layout_alignParentBottom="true">
 
         <LinearLayout
+            android:id="@+id/upgrade_bullet_1"
             xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_height="wrap_content"
             android:layout_width="match_parent"
@@ -116,6 +117,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/upgrade_bullet_2"
             xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_height="wrap_content"
             android:layout_width="match_parent"
@@ -193,6 +195,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/upgrade_bullet_3"
             xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_height="wrap_content"
             android:layout_width="match_parent"
@@ -270,6 +273,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/upgrade_bullet_4"
             xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_height="wrap_content"
             android:layout_width="match_parent"
