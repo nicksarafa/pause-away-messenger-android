@@ -15,8 +15,8 @@ import butterknife.Views;
  */
 public class UpgradeView extends RelativeLayout {
 
-    @InjectView(R.id.upgrade_btn)
-    public IconButton upgradeBtn;
+    @InjectView(R.id.suggestion_btn)
+    public IconButton suggestionBtn;
 
     public UpgradeView(Context context) {
         super(context);
