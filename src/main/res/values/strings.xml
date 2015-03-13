@@ -125,5 +125,6 @@
     <string name="ob_start_app_btn">Begin Trial</string>
     <string name="ob_1_custom_message_intro">Customize your first reply message...</string>
     <string name="save_fa_button">{fa-save}</string>
+    <string name="sms_character_cieling">140</string>
 
 </resources>
