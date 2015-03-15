@@ -16,8 +16,6 @@ import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.media.RingtoneManager;
 import android.net.Uri;
-import android.os.Handler;
-import android.os.Message;
 import android.preference.PreferenceManager;
 import android.provider.BaseColumns;
 import android.provider.ContactsContract;
@@ -530,34 +528,40 @@ public class PauseApplication extends Application {
         }
     }
 
-    private static Handler toastHandler = new Handler() {
-        public void handleMessage(Message msg) {
-            String message = (String)msg.obj;
-
-            SuperToast superToast = new SuperToast(instance);
-            superToast.setDuration(SuperToast.Duration.MEDIUM);
-            superToast.setText(message);
-            superToast.setBackground(R.drawable.toast_card_background);
-            superToast.setAnimations(SuperToast.Animations.FLYIN);
-            superToast.setTextColor(Color.WHITE);
-            superToast.setIcon(R.drawable.ic_action_pause_on, SuperToast.IconPosition.LEFT);
-            ((TextView)((LinearLayout)superToast.getView()).getChildAt(0)).setGravity(Gravity.CENTER_VERTICAL|Gravity.LEFT);
-            superToast.show();
-
-
-
-//            Toast toast = Toast.makeText(instance, message, Toast.LENGTH_LONG);
-//            ((TextView)((LinearLayout)toast.getView()).getChildAt(0)).setGravity(Gravity.CENTER_HORIZONTAL);
-//            toast.show();
-
-        }
-    };
-
     public static void sendToast(final String textToSend) {
+        sendToast(textToSend, SuperToast.Duration.MEDIUM);
+    }
+    public static void sendToast(final String textToSend, final int duration) {
+        sendToast(textToSend, duration, R.drawable.toast_card_bg_pause_on);
+    }
+    public static void sendToast(final String textToSend, final int duration, final int background) {
+        sendToast(textToSend, duration, background, SuperToast.Animations.FLYIN);
+    }
+    public static void sendToast(final String textToSend, final int duration, final int background, final SuperToast.Animations animation) {
+        sendToast(textToSend, duration, background, animation, Color.WHITE);
+    }
+    public static void sendToast(final String textToSend, final int duration, final int background, final SuperToast.Animations animation, final int textColor) {
+        sendToast(textToSend, duration, background, animation, textColor, R.drawable.ic_action_pause_on);
+    }
+    public static void sendToast(final String textToSend, final int duration, final int background, final SuperToast.Animations animation, final int textColor, final int icon) {
+        sendToast(textToSend, duration, background, animation, textColor, icon, SuperToast.IconPosition.LEFT);
+    }
+    public static void sendToast(final String textToSend, final int duration, final int background, final SuperToast.Animations animation, final int textColor, final int icon, final SuperToast.IconPosition iconPosition) {
         if (prefs.getBoolean(Constants.Settings.PAUSE_TOASTS_ON_KEY,true)) {
-            Message msg = new Message();
-            msg.obj = textToSend;
-            toastHandler.sendMessage(msg);
+            new Runnable() {
+                @Override
+                public void run() {
+                    SuperToast superToast = new SuperToast(instance);
+                    superToast.setText(textToSend);
+                    superToast.setDuration(duration);
+                    superToast.setBackground(background);
+                    superToast.setAnimations(animation);
+                    superToast.setTextColor(textColor);
+                    superToast.setIcon(icon, iconPosition);
+                    ((TextView)((LinearLayout)superToast.getView()).getChildAt(0)).setGravity(Gravity.CENTER_VERTICAL|Gravity.LEFT);
+                    superToast.show();
+                }
+            }.run();
         }
     }
 

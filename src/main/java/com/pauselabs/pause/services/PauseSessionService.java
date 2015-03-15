@@ -10,6 +10,8 @@ import android.net.Uri;
 import android.os.IBinder;
 import android.util.Log;
 
+import com.github.johnpersano.supertoasts.SuperToast;
+import com.pauselabs.R;
 import com.pauselabs.pause.Injector;
 import com.pauselabs.pause.PauseApplication;
 import com.pauselabs.pause.listeners.PauseCallListener;
@@ -42,35 +44,6 @@ public class PauseSessionService extends Service{
     }
 
     @Override
-    public void onDestroy() {
-        super.onDestroy();
-
-        am.setRingerMode(PauseApplication.getOldRingerMode());
-        Log.i(TAG,"Destroyed");
-
-        PauseApplication.updateUI();
-
-        int responseCount = PauseApplication.getCurrentSession().getResponseCount();
-
-        PauseApplication.speak("Pause off.");
-        PauseApplication.sendToast("Off");
-        PauseApplication.sendToast(
-                PauseApplication.numCall + " Missed Calls" + "\n" +
-                PauseApplication.numSMS + " Missed Texts" + "\n" +
-                responseCount + " Repl" + ((responseCount == 1) ? "y" : "ies") + " Sent"
-        );
-
-        PauseApplication.numSMS = 0;
-        PauseApplication.numCall = 0;
-
-        getContentResolver().unregisterContentObserver(observer);
-
-        unregisterReceiver(callListener);
-
-        super.onDestroy();
-    }
-
-    @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         super.onStartCommand(intent,flags,startId);
 
@@ -78,12 +51,11 @@ public class PauseSessionService extends Service{
             am.setRingerMode(AudioManager.RINGER_MODE_VIBRATE);
         else
             am.setRingerMode(AudioManager.RINGER_MODE_SILENT);
-        Log.i(TAG,"Started");
 
         PauseApplication.updateUI();
 
         PauseApplication.speak("Pause on.");
-        PauseApplication.sendToast("On");
+        PauseApplication.sendToast("On", SuperToast.Duration.SHORT, R.drawable.toast_card_bg_pause_on);
 
 //        PauseApplication.sr.startListening(intent);
 
@@ -102,6 +74,35 @@ public class PauseSessionService extends Service{
         startForeground(Constants.Notification.SESSION_NOTIFICATION_ID, not);
 
         return Service.START_STICKY; // Service will not be restarted if android kills it
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+
+        am.setRingerMode(PauseApplication.getOldRingerMode());
+        Log.i(TAG,"Destroyed");
+
+        PauseApplication.updateUI();
+
+        int responseCount = PauseApplication.getCurrentSession().getResponseCount();
+
+        PauseApplication.speak("Pause off.");
+        PauseApplication.sendToast("Off", SuperToast.Duration.SHORT, R.drawable.toast_card_bg_pause_off);
+        PauseApplication.sendToast(PauseApplication.numCall + " Missed Calls" + "\n" +
+                        PauseApplication.numSMS + " Missed Texts" + "\n" +
+                        responseCount + " Repl" + ((responseCount == 1) ? "y" : "ies") + " Sent",
+                SuperToast.Duration.LONG, R.drawable.toast_card_bg_pause_off_summary
+        );
+
+        PauseApplication.numSMS = 0;
+        PauseApplication.numCall = 0;
+
+        getContentResolver().unregisterContentObserver(observer);
+
+        unregisterReceiver(callListener);
+
+        super.onDestroy();
     }
 
 

@@ -18,7 +18,7 @@
 
             <corners android:radius="100dp" />
 
-            <solid android:color="#3cbeb5" />
+            <solid android:color="#ee4444" />
 
             <padding android:bottom="4dp" />
         </shape>
