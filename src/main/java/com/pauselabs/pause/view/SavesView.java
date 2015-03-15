@@ -2,8 +2,8 @@ package com.pauselabs.pause.view;
 
 import android.content.Context;
 import android.util.AttributeSet;
+import android.widget.IconTextView;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
 
 import com.pauselabs.R;
 
@@ -16,7 +16,7 @@ import butterknife.Views;
 public class SavesView extends RelativeLayout {
 
     @InjectView(R.id.savesTextView)
-    public TextView savesTextView;
+    public IconTextView savesTextView;
 
     public SavesView(Context context) {
         super(context);

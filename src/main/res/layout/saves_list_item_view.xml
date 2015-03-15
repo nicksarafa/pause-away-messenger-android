@@ -6,7 +6,7 @@
 
     <!-- Custom Pause Message Save List -->
 
-    <android.widget.TextView
+    <IconTextView
         android:id="@+id/savesTextView"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
@@ -14,8 +14,8 @@
         android:textColor="@color/text"
         android:textSize="@dimen/text_medium"
         android:hapticFeedbackEnabled="true"
-        android:layout_gravity="start|center_vertical"
-        android:gravity="start|center_vertical"
+        android:layout_gravity="center_vertical"
+        android:gravity="center_vertical"
         android:layout_marginTop="4dp"
         android:layout_marginBottom="4dp"
         android:layout_marginLeft="8dp"

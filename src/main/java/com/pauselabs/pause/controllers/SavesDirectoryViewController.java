@@ -6,13 +6,17 @@ import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.graphics.drawable.Drawable;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.RelativeLayout;
 
+import com.joanzapata.android.iconify.IconDrawable;
+import com.joanzapata.android.iconify.Iconify;
 import com.pauselabs.R;
 import com.pauselabs.pause.Injector;
 import com.pauselabs.pause.PauseApplication;
@@ -134,10 +138,23 @@ public class SavesDirectoryViewController implements View.OnClickListener, Adapt
         public View getView(int position, View convertView, ViewGroup parent) {
             SavesView savesView = getItem(position);
 
+            Drawable iconSilence = new IconDrawable(getContext(), Iconify.IconValue.fa_bell_slash_o).colorRes(R.color.text_white).sizeDp(22);
+            Drawable iconInfo = new IconDrawable(getContext(), Iconify.IconValue.fa_question_circle).colorRes(R.color.text_white).sizeDp(22);
+
+            RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(savesView.savesTextView.getLayoutParams());
+
             SavesItem item = (SavesItem)savesView.getTag();
             if (dbHelper.isDefaultSave(item.getId())) {
-                savesView.savesTextView.setBackgroundColor(PauseApplication.pauseActivity.getResources().getColor(R.color.main));
+                savesView.savesTextView.getBackground();
+                savesView.savesTextView.setBackgroundResource(R.drawable.card_bg_deafult_save);
                 savesView.savesTextView.setTextColor(PauseApplication.pauseActivity.getResources().getColor(R.color.text_white));
+                params.setMargins(18, 4, 18, 4);
+                savesView.savesTextView.setPadding(28,20,28,20);
+                savesView.savesTextView.getCompoundDrawablePadding();
+                savesView.savesTextView.setCompoundDrawablePadding(28);
+                savesView.savesTextView.setCompoundDrawables(iconSilence, null, iconInfo, null);
+                savesView.savesTextView.setText(item.getText());
+
             }
 
             return savesView;

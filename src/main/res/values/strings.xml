@@ -7,6 +7,7 @@
     <string name="pause_action">Start Pause</string>
 
     <!-- Create Pause Screen -->
+    <string name="silence_fa_icon">{fa-bell-slash-o)</string>
     <string name="startPauseSessionBtn">Start Pause Session</string>
     <string name="stopPauseSessionBtn">Stop Pause Session</string>
 
