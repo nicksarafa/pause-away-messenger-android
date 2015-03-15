@@ -6,6 +6,7 @@
     android:orientation="vertical"
     android:layout_width="fill_parent"
     android:layout_height="560dp"
+    android:isScrollContainer="true"
     android:paddingBottom="@dimen/summary_view_vertical_padding"
     android:paddingLeft="@dimen/summary_view_horizontal_padding"
     android:paddingRight="@dimen/summary_view_horizontal_padding"
