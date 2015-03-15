@@ -107,8 +107,8 @@
     <string name="upgrade_section_title">Upgrade</string>
     <string name="settings_section_title">Settings</string>
 
-    <string name="ob_female_btn">{fa-female}\u0020\u0020Female</string>
-    <string name="ob_male_btn">{fa-male}\u0020\u0020Male</string>
+    <string name="ob_female_btn">{fa-female}\u0020\u0020Girl</string>
+    <string name="ob_male_btn">{fa-male}\u0020\u0020Boy</string>
     <string name="privacy_ab_title">PRIVACY</string>
     <string name="privacy_message">Block friends from receiving away messages.</string>
     <string name="select_all_button">Select All</string>
@@ -127,5 +127,7 @@
     <string name="save_fa_button">{fa-save}</string>
     <string name="sms_character_cieling">140</string>
     <string name="suggestion_btn_text">Have an idea?! Tell us!</string>
+    <string name="summary_respond_receipt1">Respond Receipt Top</string>
+    <string name="summary_respond_receipt2">Read Receipt Bottom</string>
 
 </resources>

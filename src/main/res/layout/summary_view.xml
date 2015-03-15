@@ -5,218 +5,17 @@
     android:id="@+id/home_summary"
     android:orientation="vertical"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:background="@drawable/transparent_drawable">
+    android:layout_height="wrap_content"
+    android:background="@color/btn_pink"
+    android:paddingBottom="@dimen/ab_toolbar_universal_height">
 
     <!-- Messages Container -->
 
     <RelativeLayout
         android:id="@+id/summary_view_container"
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
+        android:layout_height="match_parent"
         android:background="@color/text_white">
-
-        <!-- Summary Message Header -->
-
-        <!--<RelativeLayout-->
-            <!--xmlns:materialdesign="http://schemas.android.com/apk/res-auto"-->
-            <!--android:id="@+id/summary_header"-->
-            <!--android:orientation="horizontal"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="@dimen/header_height"-->
-            <!--android:paddingTop="@dimen/header_vertical_padding"-->
-            <!--android:paddingBottom="@dimen/header_vertical_padding"-->
-            <!--android:paddingEnd="@dimen/header_horizontal_padding"-->
-            <!--android:paddingRight="@dimen/header_horizontal_padding"-->
-            <!--android:paddingLeft="@dimen/header_horizontal_padding"-->
-            <!--android:paddingStart="@dimen/header_horizontal_padding"-->
-            <!--android:background="#3cbeb5">-->
-
-            <!-- Left Parent Image -->
-
-            <!--<ImageView-->
-                <!--android:id="@+id/privacy_header_left_image"-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:src="@drawable/dic_action_messages_empty"-->
-                <!--android:layout_alignParentStart="true"-->
-                <!--android:layout_alignParentLeft="true"-->
-                <!--android:layout_centerVertical="true"-->
-                <!--android:layout_marginRight="@dimen/privacy_view_horizontal_padding"-->
-                <!--android:layout_marginEnd="@dimen/privacy_view_horizontal_padding"-->
-                <!--/>-->
-
-            <!-- Header Title -->
-
-            <!--<TextView-->
-                <!--android:id="@+id/privacy_header_title"-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:textColor="@color/text_white"-->
-                <!--android:layout_alignParentTop="true"-->
-                <!--android:layout_marginTop="@dimen/privacy_view_vertical_padding"-->
-                <!--android:layout_toRightOf="@id/privacy_header_left_image"-->
-                <!--android:layout_toEndOf="@id/privacy_header_left_image"-->
-                <!--android:textSize="@dimen/text_medium"-->
-                <!--android:text="@string/summary_header_title"/>-->
-
-            <!-- # of people replied to image -->
-
-            <!--<ImageView-->
-                <!--android:id="@+id/replied_contacts_image"-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:src="@drawable/ic_action_ab_privacy_on"-->
-                <!--android:layout_centerVertical="true"-->
-                <!--android:layout_below="@id/privacy_header_title"-->
-                <!--android:layout_toEndOf="@id/privacy_header_left_image"-->
-                <!--android:layout_toRightOf="@id/privacy_header_left_image"-->
-                <!--android:layout_marginRight="@dimen/privacy_view_horizontal_padding"-->
-                <!--android:layout_marginEnd="@dimen/privacy_view_horizontal_padding"-->
-                <!--android:layout_marginTop="@dimen/privacy_view_vertical_padding"-->
-                <!--/>-->
-
-            <!-- # of people replied to count -->
-
-            <!--<TextView-->
-                <!--android:id="@+id/replied_contacts_count"-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:layout_centerVertical="true"-->
-                <!--android:layout_below="@id/privacy_header_title"-->
-                <!--android:layout_marginTop="@dimen/privacy_header_vertical"-->
-                <!--android:layout_toRightOf="@id/replied_contacts_image"-->
-                <!--android:layout_toEndOf="@id/replied_contacts_image"-->
-                <!--android:textSize="@dimen/text_large"-->
-                <!--android:textColor="@color/text_white"-->
-                <!--android:text="10"/>-->
-
-            <!-- # of people ignored image -->
-
-            <!--<ImageView-->
-                <!--android:id="@+id/ignored_contacts_image"-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:src="@drawable/ic_action_ab_privacy_on"-->
-                <!--android:layout_centerVertical="true"-->
-                <!--android:layout_below="@id/privacy_header_title"-->
-                <!--android:layout_toEndOf="@id/replied_contacts_count"-->
-                <!--android:layout_toRightOf="@id/replied_contacts_count"-->
-                <!--android:layout_marginStart="@dimen/privacy_header_horiztonal"-->
-                <!--android:layout_marginLeft="@dimen/privacy_header_horiztonal"-->
-                <!--android:layout_marginRight="@dimen/privacy_view_horizontal_padding"-->
-                <!--android:layout_marginEnd="@dimen/privacy_view_horizontal_padding"-->
-                <!--android:layout_marginTop="@dimen/privacy_view_vertical_padding"-->
-                <!--/>-->
-
-            <!-- # of people ignored count -->
-
-            <!--<TextView-->
-                <!--android:id="@+id/ignored_contacts_count"-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:layout_centerVertical="true"-->
-                <!--android:layout_below="@id/privacy_header_title"-->
-                <!--android:layout_marginTop="@dimen/privacy_header_vertical"-->
-                <!--android:layout_toRightOf="@id/ignored_contacts_image"-->
-                <!--android:layout_toEndOf="@id/ignored_contacts_image"-->
-                <!--android:textSize="@dimen/text_large"-->
-                <!--android:textColor="@color/text_white"-->
-                <!--android:text="10"/>-->
-
-            <!-- # calls Image -->
-
-            <!--<ImageView-->
-                <!--android:id="@+id/reply_image"-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:src="@drawable/ic_action_phone"-->
-                <!--android:layout_below="@id/privacy_header_title"-->
-                <!--android:layout_toEndOf="@id/ignored_contacts_count"-->
-                <!--android:layout_toRightOf="@id/ignored_contacts_count"-->
-                <!--android:layout_centerVertical="true"-->
-                <!--android:layout_marginStart="@dimen/privacy_header_horiztonal"-->
-                <!--android:layout_marginLeft="@dimen/privacy_header_horiztonal"-->
-                <!--android:layout_marginRight="@dimen/privacy_view_horizontal_padding"-->
-                <!--android:layout_marginEnd="@dimen/privacy_view_horizontal_padding"-->
-                <!--android:layout_marginTop="@dimen/privacy_view_vertical_padding"-->
-                <!--/>-->
-
-            <!-- # of calls count -->
-
-            <!--<TextView-->
-                <!--android:id="@+id/reply_count"-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:layout_centerVertical="true"-->
-                <!--android:layout_below="@id/privacy_header_title"-->
-                <!--android:layout_marginTop="@dimen/privacy_header_vertical"-->
-                <!--android:textColor="@color/text_white"-->
-                <!--android:layout_toRightOf="@id/reply_image"-->
-                <!--android:layout_toEndOf="@id/reply_image"-->
-                <!--android:textSize="@dimen/text_large"-->
-                <!--android:text="10"/>-->
-
-            <!-- # SMS image -->
-
-            <!--<ImageView-->
-                <!--android:id="@+id/sms_image"-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:layout_centerVertical="true"-->
-                <!--android:src="@drawable/ic_action_messages_empty"-->
-                <!--android:layout_below="@id/privacy_header_title"-->
-                <!--android:layout_toEndOf="@id/reply_count"-->
-                <!--android:layout_toRightOf="@id/reply_count"-->
-                <!--android:layout_marginStart="@dimen/privacy_header_horiztonal"-->
-                <!--android:layout_marginLeft="@dimen/privacy_header_horiztonal"-->
-                <!--android:layout_marginRight="@dimen/privacy_view_horizontal_padding"-->
-                <!--android:layout_marginEnd="@dimen/privacy_view_horizontal_padding"-->
-                <!--android:layout_marginTop="@dimen/privacy_view_vertical_padding"-->
-                <!--/>-->
-
-            <!-- # SMS count -->
-
-            <!--<TextView-->
-                <!--android:id="@+id/sms_count"-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:layout_centerVertical="true"-->
-                <!--android:layout_below="@id/privacy_header_title"-->
-                <!--android:layout_toRightOf="@id/sms_image"-->
-                <!--android:layout_toEndOf="@id/sms_image"-->
-                <!--android:textSize="@dimen/text_large"-->
-                <!--android:textColor="@color/text_white"-->
-                <!--android:text="10"/>-->
-
-            <!-- Right Parent Image - More information dialogue on click (Similar to True Call App's header) -->
-
-            <!--<ImageView-->
-                <!--android:id="@+id/summary_dialogue"-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:src="@drawable/ic_action_info_02"-->
-                <!--android:layout_alignParentEnd="true"-->
-                <!--android:layout_alignParentRight="true"-->
-                <!--android:layout_centerVertical="true"-->
-                <!--android:layout_marginLeft="@dimen/privacy_view_horizontal_padding"-->
-                <!--android:layout_marginStart="@dimen/privacy_view_horizontal_padding"-->
-                <!--/>-->
-
-            <!--<com.gc.materialdesign.views.ButtonFloatSmall-->
-                <!--xmlns:materialdesign="http://schemas.android.com/apk/res-auto"-->
-                <!--android:id="@+id/summary_dialogue"-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:layout_centerVertical="true"-->
-                <!--android:layout_alignParentEnd="true"-->
-                <!--android:layout_alignParentRight="true"-->
-                <!--android:layout_marginLeft="@dimen/privacy_view_horizontal_padding"-->
-                <!--android:layout_marginStart="@dimen/privacy_view_horizontal_padding"-->
-                <!--android:background="#1E88E5"-->
-                <!--materialdesign:iconDrawable="@drawable/ic_action_info_02" />-->
-
-        <!--</RelativeLayout>-->
 
         <!-- Message Storage container -->
 
@@ -228,7 +27,7 @@
             android:listSelector="@android:color/transparent"
             android:cacheColorHint="@color/transparent"/>
 
-        <!-- Preset "no messages" image -->
+            <!-- Preset "no messages" image -->
 
             <TextView
                 android:id="@+id/summary_no_messages"
