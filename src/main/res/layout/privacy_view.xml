@@ -6,11 +6,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <Button
-        android:id="@+id/privacy_btn"
+    <GridView
+        android:id="@+id/privacy_contacts_grid"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:textColor="@color/text"
-        android:text="ADD CONTACTS"/>
+        android:numColumns="auto_fit"
+        android:gravity="center"
+        android:columnWidth="50dp"
+        android:stretchMode="columnWidth" />
 
 </com.pauselabs.pause.view.tabs.PrivacyView>

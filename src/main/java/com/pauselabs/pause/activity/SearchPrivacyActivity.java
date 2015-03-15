@@ -9,11 +9,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.LoaderManager;
-import android.support.v4.content.CursorLoader;
-import android.support.v4.content.Loader;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AbsListView;
@@ -23,7 +19,7 @@ import android.widget.SearchView;
 import com.pauselabs.R;
 import com.pauselabs.pause.Injector;
 import com.pauselabs.pause.PauseApplication;
-import com.pauselabs.pause.adapters.ContactsAdapter;
+import com.pauselabs.pause.adapters.ContactsSearchAdapter;
 import com.pauselabs.pause.core.ContactsQuery;
 import com.pauselabs.pause.view.tabs.SearchPrivacyView;
 
@@ -32,13 +28,13 @@ import javax.inject.Inject;
 /**
  * Created by Admin on 1/28/15.
  */
-public class SearchPrivacyActivity extends FragmentActivity implements AdapterView.OnItemClickListener, SearchView.OnQueryTextListener, LoaderManager.LoaderCallbacks<Cursor>, AbsListView.OnScrollListener {
+public class SearchPrivacyActivity extends FragmentActivity implements AdapterView.OnItemClickListener, SearchView.OnQueryTextListener, AbsListView.OnScrollListener {
 
     private final String TAG = SearchPrivacyActivity.class.getSimpleName();
 
     public SearchPrivacyView searchPrivacyView;
 
-    private ContactsAdapter mAdapter;
+    private ContactsSearchAdapter mAdapter;
 
     private String mSearchTerm;
 
@@ -55,7 +51,7 @@ public class SearchPrivacyActivity extends FragmentActivity implements AdapterVi
         setContentView(searchPrivacyView);
 
         // Create the main contacts adapter
-        mAdapter = new ContactsAdapter(this);
+        mAdapter = new ContactsSearchAdapter(this);
         searchPrivacyView.contactList.setAdapter(mAdapter);
         searchPrivacyView.contactList.setOnItemClickListener(this);
         searchPrivacyView.contactList.setOnScrollListener(this);
@@ -76,8 +72,13 @@ public class SearchPrivacyActivity extends FragmentActivity implements AdapterVi
 
         searchPrivacyView.contactSearchField.setQueryHint("Search Contacts");
         searchPrivacyView.contactSearchField.setBackgroundColor(Color.TRANSPARENT);
+    }
 
-        getSupportLoaderManager().restartLoader(ContactsQuery.QUERY_ID, null, this);
+    @Override
+    public void onBackPressed() {
+        PauseApplication.pauseActivity.getSupportLoaderManager().restartLoader(ContactsQuery.QUERY_ID, null, PauseApplication.pauseActivity.privacyViewController.contactsGridAdapter);
+
+        super.onBackPressed();
     }
 
     @Override
@@ -131,63 +132,8 @@ public class SearchPrivacyActivity extends FragmentActivity implements AdapterVi
 
         // Restarts the loader. This triggers onCreateLoader(), which builds the
         // necessary content Uri from mSearchTerm.
-        getSupportLoaderManager().restartLoader(ContactsQuery.QUERY_ID, null, this);
+        getSupportLoaderManager().restartLoader(ContactsQuery.QUERY_ID, null, mAdapter);
 
         return true;
-    }
-
-    @Override
-    public Loader<Cursor> onCreateLoader(int id, Bundle args) {
-
-        // If this is the loader for finding contacts in the Contacts Provider
-        // (the only one supported)
-        if (id == ContactsQuery.QUERY_ID) {
-            Uri contentUri;
-
-            // There are two types of searches, one which displays all contacts and
-            // one which filters contacts by a search query. If mSearchTerm is set
-            // then a search query has been entered and the latter should be used.
-
-            if (mSearchTerm == null) {
-                // Since there's no search string, use the content URI that searches the entire
-                // Contacts table
-                contentUri = ContactsQuery.CONTENT_URI;
-            } else {
-                // Since there's a search string, use the special content Uri that searches the
-                // Contacts table. The URI consists of a base Uri and the search string.
-                contentUri = Uri.withAppendedPath(ContactsQuery.FILTER_URI, Uri.encode(mSearchTerm));
-            }
-
-            // Returns a new CursorLoader for querying the Contacts table. No arguments are used
-            // for the selection clause. The search string is either encoded onto the content URI,
-            // or no contacts search string is used. The other search criteria are constants. See
-            // the ContactsQuery interface.
-            return new CursorLoader(PauseApplication.pauseActivity,
-                    contentUri,
-                    ContactsQuery.PROJECTION,
-                    ContactsQuery.SELECTION,
-                    null,
-                    ContactsQuery.SORT_ORDER);
-        }
-
-        Log.e(TAG, "onCreateLoader - incorrect ID provided (" + id + ")");
-        return null;
-    }
-
-    @Override
-    public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
-        // This swaps the new cursor into the adapter.
-        if (loader.getId() == ContactsQuery.QUERY_ID) {
-            mAdapter.swapCursor(data);
-        }
-    }
-
-    @Override
-    public void onLoaderReset(Loader<Cursor> loader) {
-        if (loader.getId() == ContactsQuery.QUERY_ID) {
-            // When the loader is being reset, clear the cursor from the adapter. This allows the
-            // cursor resources to be freed.
-            mAdapter.swapCursor(null);
-        }
     }
 }

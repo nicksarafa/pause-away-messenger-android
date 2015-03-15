@@ -3,25 +3,23 @@ package com.pauselabs.pause.adapters;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.database.Cursor;
+import android.net.Uri;
+import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.v4.app.LoaderManager;
+import android.support.v4.content.CursorLoader;
+import android.support.v4.content.Loader;
 import android.support.v4.widget.CursorAdapter;
-import android.text.SpannableString;
-import android.text.TextUtils;
-import android.text.style.TextAppearanceSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AlphabetIndexer;
-import android.widget.CheckBox;
-import android.widget.SectionIndexer;
 
-import com.pauselabs.R;
+import com.pauselabs.pause.PauseApplication;
 import com.pauselabs.pause.core.ContactsQuery;
 import com.pauselabs.pause.model.Constants;
-import com.pauselabs.pause.view.SearchPrivacyListItem;
 
 import java.util.HashSet;
-import java.util.Locale;
 
 /**
  * This is a subclass of CursorAdapter that supports binding Cursor columns to a view layout.
@@ -29,72 +27,27 @@ import java.util.Locale;
  * query text. An {@link AlphabetIndexer} is used to allow quicker navigation up and down the
  * ListView.
  */
-public class ContactsAdapter extends CursorAdapter implements SectionIndexer {
+public class ContactsAdapter extends CursorAdapter implements LoaderManager.LoaderCallbacks<Cursor> {
 
-    private LayoutInflater mInflater; // Stores the layout inflater
-    private AlphabetIndexer mAlphabetIndexer; // Stores the AlphabetIndexer instance
-    private TextAppearanceSpan highlightTextSpan; // Stores the highlight text appearance style
-    private String mSearchTerm;
+    protected LayoutInflater inflater; // Stores the layout inflater
     protected SharedPreferences prefs;
 
-    private HashSet<String> blackContacts;
-    private HashSet<String> iceContacts;
-
-    private String type;
+    protected HashSet<String> blackContacts;
+    protected HashSet<String> iceContacts;
 
     /**
      * Instantiates a new Contacts Adapter.
      * @param context A context that has access to the app's layout.
      */
     public ContactsAdapter(Context context) {
-        super(context, null, 0);
+        super(context, null, true);
 
         // Stores inflater for use later
-        mInflater = LayoutInflater.from(context);
+        inflater = LayoutInflater.from(context);
 
         prefs = PreferenceManager.getDefaultSharedPreferences(context);
         blackContacts = new HashSet<>(prefs.getStringSet(Constants.Settings.BLACKLIST, new HashSet<String>()));
         iceContacts = new HashSet<>(prefs.getStringSet(Constants.Settings.ICELIST, new HashSet<String>()));
-
-        // Loads a string containing the English alphabet. To fully localize the app, provide a
-        // strings.xml file in res/values-<x> directories, where <x> is a locale. In the file,
-        // define a string with android:name="alphabet" and contents set to all of the
-        // alphabetic characters in the language in their proper sort order, in upper case if
-        // applicable.
-        final String alphabet = context.getString(R.string.alphabet);
-
-        // Instantiates a new AlphabetIndexer bound to the column used to sort contact names.
-        // The cursor is left null, because it has not yet been retrieved.
-        mAlphabetIndexer = new AlphabetIndexer(null, ContactsQuery.SORT_KEY, alphabet);
-
-        // Defines a span for highlighting the part of a display name that matches the search
-        // string
-        highlightTextSpan = new TextAppearanceSpan(context, R.style.contactSearchTextHighlight);
-    }
-
-    public void selectAll() {
-        int count = getCount();
-        for (int i = 0; i < count; i++) {
-            SearchPrivacyListItem item = (SearchPrivacyListItem)getView(i,null,null).getTag();
-            item.blackCheckbox.performClick();
-        }
-    }
-
-    /**
-     * Identifies the start of the search string in the display name column of a Cursor row.
-     * E.g. If displayName was "Adam" and search query (mSearchTerm) was "da" this would
-     * return 1.
-     *
-     * @param displayName The contact display name.
-     * @return The starting position of the search string in the display name, 0-based. The
-     * method returns -1 if the string is not found in the display name, or if the search
-     * string is empty or null.
-     */
-    private int indexOfSearchQuery(String displayName) {
-        if (!TextUtils.isEmpty(mSearchTerm)) {
-            return displayName.toLowerCase(Locale.getDefault()).indexOf(mSearchTerm.toLowerCase(Locale.getDefault()));
-        }
-        return -1;
     }
 
     /**
@@ -102,39 +55,9 @@ public class ContactsAdapter extends CursorAdapter implements SectionIndexer {
      */
     @Override
     public View newView(Context context, Cursor cursor, ViewGroup viewGroup) {
-        // Inflates the list item layout.
-        final SearchPrivacyListItem item = (SearchPrivacyListItem)mInflater.inflate(R.layout.search_privacy_list_item, null);;
-        item.blackCheckbox.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                CheckBox checkbox = (CheckBox) v;
 
-                if (checkbox.isChecked()) {
-                    blackContacts.add(item.contactId);
-                } else {
-                    blackContacts.remove(item.contactId);
-                }
 
-                prefs.edit().putStringSet(Constants.Settings.BLACKLIST, new HashSet<>(blackContacts)).apply();
-            }
-        });
-        item.iceCheckbox.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                CheckBox checkbox = (CheckBox) v;
-
-                if (checkbox.isChecked()) {
-                    iceContacts.add(item.contactId);
-                } else {
-                    iceContacts.remove(item.contactId);
-                }
-
-                prefs.edit().putStringSet(Constants.Settings.ICELIST, new HashSet<>(iceContacts)).apply();
-            }
-        });
-
-        // Returns the item layout view
-        return item;
+        return null;
     }
 
     /**
@@ -142,106 +65,34 @@ public class ContactsAdapter extends CursorAdapter implements SectionIndexer {
      */
     @Override
     public void bindView(View view, Context context, Cursor cursor) {
-        // Gets handles to individual view resources
-        final SearchPrivacyListItem item = (SearchPrivacyListItem) view;
-
-        final String displayName = cursor.getString(ContactsQuery.DISPLAY_NAME);
-        final String contactId = cursor.getString(ContactsQuery.ID);
-
-        final int startIndex = indexOfSearchQuery(displayName);
-
-        if (startIndex == -1) {
-            // If the user didn't do a search, or the search string didn't match a display
-            // name, show the display name without highlighting
-            item.contactNameField.setText(displayName);
-//            holder.checkbox_added.setText(displayName);
-
-        } else {
-            // If the search string matched the display name, applies a SpannableString to
-            // highlight the search string with the displayed display name
-
-            // Wraps the display name in the SpannableString
-            final SpannableString highlightedName = new SpannableString(displayName);
-
-            // Sets the span to start at the starting point of the match and end at "length"
-            // characters beyond the starting point
-            highlightedName.setSpan(highlightTextSpan, startIndex, startIndex + mSearchTerm.length(), 0);
-
-            // Binds the SpannableString to the display name View object
-            item.contactNameField.setText(highlightedName);
-//            holder.checkbox_ice.setText(highlightedName);
-        }
-
-        if(blackContacts.contains(contactId)){
-            item.blackCheckbox.setChecked(true);
-        } else {
-            item.blackCheckbox.setChecked(false);
-        }
-        if(iceContacts.contains(contactId)){
-            item.iceCheckbox.setChecked(true);
-        } else {
-            item.iceCheckbox.setChecked(false);
-        }
-
-        item.contactId = contactId;
 
     }
 
-    /**
-     * Overrides swapCursor to move the new Cursor into the AlphabetIndex as well as the
-     * CursorAdapter.
-     */
     @Override
-    public Cursor swapCursor(Cursor newCursor) {
-        // Update the AlphabetIndexer with new cursor as well
-        mAlphabetIndexer.setCursor(newCursor);
-        return super.swapCursor(newCursor);
+    public Loader<Cursor> onCreateLoader(int id, Bundle args) {
+        return new CursorLoader(PauseApplication.pauseActivity,
+                ContactsQuery.CONTENT_URI,
+                ContactsQuery.PROJECTION,
+                ContactsQuery.SELECTION,
+                null,
+                ContactsQuery.SORT_ORDER);
     }
 
-    /**
-     * An override of getCount that simplifies accessing the Cursor. If the Cursor is null,
-     * getCount returns zero. As a result, no test for Cursor == null is needed.
-     */
     @Override
-    public int getCount() {
-        if (getCursor() == null) {
-            return 0;
+    public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
+        // This swaps the new cursor into the adapter.
+        if (loader.getId() == ContactsQuery.QUERY_ID) {
+            swapCursor(data);
         }
-        return super.getCount();
     }
 
-    /**
-     * Defines the SectionIndexer.getSections() interface.
-     */
     @Override
-    public Object[] getSections() {
-        return mAlphabetIndexer.getSections();
-    }
-
-    /**
-     * Defines the SectionIndexer.getPositionForSection() interface.
-     */
-    @Override
-    public int getPositionForSection(int i) {
-        if (getCursor() == null) {
-            return 0;
+    public void onLoaderReset(Loader<Cursor> loader) {
+        if (loader.getId() == ContactsQuery.QUERY_ID) {
+            // When the loader is being reset, clear the cursor from the adapter. This allows the
+            // cursor resources to be freed.
+            swapCursor(null);
         }
-        return mAlphabetIndexer.getPositionForSection(i);
-    }
-
-    /**
-     * Defines the SectionIndexer.getSectionForPosition() interface.
-     */
-    @Override
-    public int getSectionForPosition(int i) {
-        if (getCursor() == null) {
-            return 0;
-        }
-        return mAlphabetIndexer.getSectionForPosition(i);
-    }
-
-    public void updateSearchTerm(String searchTerm) {
-        this.mSearchTerm = searchTerm;
     }
 
 }
