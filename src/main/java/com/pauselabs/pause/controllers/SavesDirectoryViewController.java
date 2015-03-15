@@ -25,6 +25,8 @@ import com.pauselabs.pause.view.tabs.SavesDirectoryView;
 
 import javax.inject.Inject;
 
+import cn.pedant.SweetAlert.SweetAlertDialog;
+
 /**
  * Created by Passa on 1/26/15.
  */
@@ -86,25 +88,33 @@ public class SavesDirectoryViewController implements View.OnClickListener, Adapt
     public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
         final SavesItem item = (SavesItem)view.getTag();
 
-        AlertDialog.Builder alert = new AlertDialog.Builder(PauseApplication.pauseActivity);
+        SweetAlertDialog  alert = new SweetAlertDialog(PauseApplication.pauseActivity);
 
-        alert.setTitle("Edit Save #" + (position+1));
-        alert.setMessage(item.getText());
+        alert.setTitleText("Edit Save #" + (position + 1));
+        alert.setContentText(item.getText());
 
-        alert.setPositiveButton("Default", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int whichButton) {
+        alert.setConfirmText("Default");
+        alert.setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+            @Override
+            public void onClick(SweetAlertDialog sweetAlertDialog) {
                 dbHelper.setDefaultSave(item.getId());
 
                 savesDirectoryArrayAdapter.resetList();
+
+                sweetAlertDialog.dismissWithAnimation();
             }
         });
 
         if (item.getId() > 1) {
-            alert.setNegativeButton("Delete", new DialogInterface.OnClickListener() {
-                public void onClick(DialogInterface dialog, int whichButton) {
+            alert.setCancelText("Delete");
+            alert.setCancelClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                @Override
+                public void onClick(SweetAlertDialog sweetAlertDialog) {
                     dbHelper.deleteSave(item.getId());
 
                     savesDirectoryArrayAdapter.resetList();
+
+                    sweetAlertDialog.dismissWithAnimation();
                 }
             });
         }
