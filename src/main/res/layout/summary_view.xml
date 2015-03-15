@@ -5,15 +5,16 @@
     android:id="@+id/home_summary"
     android:orientation="vertical"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:background="@drawable/transparent_drawable">
+    android:layout_height="wrap_content"
+    android:background="@color/btn_pink"
+    android:paddingBottom="@dimen/ab_toolbar_universal_height">
 
     <!-- Messages Container -->
 
     <RelativeLayout
         android:id="@+id/summary_view_container"
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
+        android:layout_height="match_parent"
         android:background="@color/text_white">
 
         <!-- Message Storage container -->

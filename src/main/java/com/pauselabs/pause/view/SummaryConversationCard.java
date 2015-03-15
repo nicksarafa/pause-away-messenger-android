@@ -72,11 +72,9 @@ public class SummaryConversationCard extends RelativeLayout {
 
     public void updateMessageText() {
         if (messageText != null) {
-            PauseMessage lastMessage = conversation.getLastMessage();
+            PauseMessage lastMessage = conversation.getLastMessageReceived();
 
-            String textToDisplay = (lastMessage.getFrom().equals("0")) ? "Me: " : conversation.getContactName() + ": ";
-
-            textToDisplay += lastMessage.getMessage();
+            String textToDisplay = lastMessage.getMessage();
 
             messageText.setText(textToDisplay);
         }
@@ -89,6 +87,5 @@ public class SummaryConversationCard extends RelativeLayout {
     public void setShowingConvo(boolean showing) {
         showingConvo = showing;
     }
-
 
 }

@@ -39,8 +39,8 @@
     <dimen name="settings_thumbnail_horizontal_and_vertical_margin">4dp</dimen>
 
     <!-- Summary View -->
-    <dimen name="summary_view_horizontal_padding">8dp</dimen>
-    <dimen name="summary_view_vertical_padding">4dp</dimen>
+    <dimen name="summary_view_horizontal_padding">16dp</dimen>
+    <dimen name="summary_view_vertical_padding">16dp</dimen>
 
     <!-- Upgrade View -->
     <dimen name="upgrade_list_item_height">100dp</dimen>
@@ -58,5 +58,6 @@
     <dimen name="info_header_horizontal_padding">8dp</dimen>
     <dimen name="info_header_horizontal_margin">16dp</dimen>
     <dimen name="info_header_vertical_margin">12dp</dimen>
+    <dimen name="summary_view_padding_bottom">68dp</dimen>
 
 </resources>

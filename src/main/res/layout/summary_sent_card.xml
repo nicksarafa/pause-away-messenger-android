@@ -11,7 +11,7 @@
 
     <LinearLayout
         android:layout_width="0dp"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_weight="1"
         android:orientation="horizontal">
 
@@ -19,6 +19,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="4"
+            android:gravity="end|right"
             android:layout_marginRight="@dimen/summary_view_horizontal_padding"
             android:layout_marginEnd="@dimen/summary_view_horizontal_padding">
 
@@ -26,11 +27,11 @@
                 android:id="@+id/messageText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="start"
+                android:gravity="end"
                 android:layout_centerVertical="true"
-                android:textAlignment="viewStart"
+                android:textAlignment="viewEnd"
                 android:textSize="@dimen/text_small"
-                android:text="PAUSEEEEEE IS RESPONDING You still there? the panel pushes up the main content. You can make it overlay the main content by using setOverlayed method or umanoOverlay attribute. This is useful if you would like to make the sliding layout semi-transparent. You can also set umanoClipPanel to false to make the panel transparent in non-overlay mode."
+                android:text="hola"
                 android:textColor="@color/text"/>
 
         </RelativeLayout>
@@ -40,7 +41,6 @@
                 android:layout_width="36dp"
                 android:layout_height="36dp"
                 android:src="@drawable/summary_circle"/>
-
 
     </LinearLayout>
 
