@@ -1,9 +1,7 @@
 package com.pauselabs.pause.controllers;
 
-import android.app.AlertDialog;
 import android.content.ContentValues;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -138,7 +136,8 @@ public class SavesDirectoryViewController implements View.OnClickListener, Adapt
 
             SavesItem item = (SavesItem)savesView.getTag();
             if (dbHelper.isDefaultSave(item.getId())) {
-                savesView.savesTextView.setBackgroundColor(PauseApplication.pauseActivity.getResources().getColor(R.color.gold));
+                savesView.savesTextView.setBackgroundColor(PauseApplication.pauseActivity.getResources().getColor(R.color.main));
+                savesView.savesTextView.setTextColor(PauseApplication.pauseActivity.getResources().getColor(R.color.text_white));
             }
 
             return savesView;
@@ -188,7 +187,7 @@ public class SavesDirectoryViewController implements View.OnClickListener, Adapt
                         " (" + KEYS[KEY_LIST] + " int DEFAULT 0, " + KEYS[KEY_TEXT] + " VARCHAR(255) NOT NULL, " + KEYS[KEY_DEFAULT] + " int DEFAULT 0)";
         private final String SQL_DEFAULT_ROW =
                 " INSERT INTO " + DB_TABLE + " (" + KEYS[KEY_LIST] + ", " + KEYS[KEY_TEXT] + ", " + KEYS[KEY_DEFAULT] + ")" +
-                        " SELECT 0, " + "'I''m way from my phone, please leave a message.'" + ", " + DEFAULT_TRUE +
+                        " SELECT 0, " + "'I am away from my phone, please leave a message.'" + ", " + DEFAULT_TRUE +
                 " WHERE NOT EXISTS (SELECT * FROM " + DB_TABLE +
                         " WHERE " + KEYS[KEY_ID] + " = 1)";
         private final String SQL_INCREASE_LIST = "UPDATE " + DB_TABLE + " SET " + KEYS[KEY_LIST] + " = " + KEYS[KEY_LIST] + " + 1";
