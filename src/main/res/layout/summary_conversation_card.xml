@@ -12,15 +12,13 @@
     android:paddingRight="@dimen/summary_view_horizontal_padding"
     android:paddingEnd="@dimen/summary_view_horizontal_padding">
 
-    <!-- Top View Container -->
-
     <RelativeLayout
         android:id="@+id/relative_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="horizontal">
 
-        <!-- Was most recent message Call or Text? -->
+        <!-- Left Icon - Was most recent message Call or Text? -->
 
         <IconTextView
             android:id="@+id/messageType"
@@ -44,22 +42,24 @@
                 android:id="@+id/rightIcons"
                 android:layout_width="wrap_content"
                 android:layout_height="fill_parent"
+                android:layout_marginLeft="@dimen/summary_view_horizontal_padding"
+                android:layout_marginStart="@dimen/summary_view_horizontal_padding"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentEnd="true"
-                android:gravity="center_vertical|right|end"
+                android:layout_centerVertical="true"
+                android:gravity="right|end"
                 android:orientation="vertical">
 
                 <!-- Right Top Icon -->
 
                 <IconTextView
                     android:id="@+id/repliedSlashIgnoredIcon"
-                    android:layout_width="36dp"
-                    android:layout_height="36dp"
-                    android:textSize="36dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="28dp"
                     android:gravity="center_vertical|end|right|top"
                     android:textColor="@color/green"
                     android:layout_alignParentTop="true"
-                    android:layout_centerHorizontal="true"
                     android:text="{fa-check}"
                     android:shadowColor="@color/card_bottom_shadow"
                     android:shadowDx="3"
@@ -68,20 +68,22 @@
                     android:contentDescription="@string/summary_respond_receipt1"
                     android:src="@drawable/summary_circle_blue"/>
 
-                <!-- Missed Text/Call Time -->
+                    <!-- Missed Text/Call Time -->
 
-                <TextView
-                    android:id="@+id/messageTime"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="@dimen/text_extra_small"
-                    android:gravity="end|right|bottom"
-                    android:textColor="@color/text"
-                    android:layout_alignParentBottom="true"
-                    android:text="22:36am"
-                    android:layout_below="@id/repliedSlashIgnoredIcon"
-                    android:contentDescription="@string/summary_respond_receipt2"
-                    android:src="@drawable/summary_circle_blue"/>
+                    <TextView
+                        android:id="@+id/messageTime"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/text_extra_small"
+                        android:gravity="end|right|bottom"
+                        android:textColor="@color/text"
+                        android:layout_centerHorizontal="true"
+                        android:layout_alignParentBottom="true"
+                        android:text="22:36am"
+                        android:singleLine="true"
+                        android:layout_below="@id/repliedSlashIgnoredIcon"
+                        android:contentDescription="@string/summary_respond_receipt2"
+                        android:src="@drawable/summary_circle_blue"/>
 
             </RelativeLayout>
 
@@ -105,18 +107,19 @@
                     android:layout_height="wrap_content"
                     android:textSize="@dimen/text_small"
                     android:text="Mark Cuban"
+                    android:textStyle="bold"
                     android:textColor="@color/text"/>
 
-                <!-- Incoming Text Message Preview/Missed Call Info if not SMS -->
+                    <!-- Incoming Text Message Preview/Missed Call Info if not SMS -->
 
-                <TextView
-                    android:id="@+id/summaryMessageText"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/summaryMessageSender"
-                    android:textSize="@dimen/text_small"
-                    android:text="Hey hows it going?"
-                    android:textColor="@color/text"/>
+                    <TextView
+                        android:id="@+id/summaryMessageText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/summaryMessageSender"
+                        android:textSize="@dimen/text_small"
+                        android:text="Hey hows it going?"
+                        android:textColor="@color/text"/>
 
             </RelativeLayout>
 
@@ -124,24 +127,24 @@
 
         <!-- Message List -->
 
+        <LinearLayout
+            android:id="@+id/messageContainer"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_toRightOf="@id/messageType"
+            android:layout_toEndOf="@id/messageType"
+            android:orientation="vertical"
+            android:layout_below="@id/relative_container">
+
+            <!-- Conversation DropDown View -->
+
             <LinearLayout
-                android:id="@+id/messageContainer"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:layout_toRightOf="@id/messageType"
-                android:layout_toEndOf="@id/messageType"
+                android:id="@+id/convo_holder_view"
                 android:orientation="vertical"
-                android:layout_below="@id/relative_container">
+                android:layout_width="match_parent"
+                android:layout_height="fill_parent"/>
 
-                <!-- Conversation DropDown View -->
-
-                <LinearLayout
-                    android:id="@+id/convo_holder_view"
-                    android:orientation="vertical"
-                    android:layout_width="match_parent"
-                    android:layout_height="fill_parent"/>
-
-            </LinearLayout>
+        </LinearLayout>
 
 </com.pauselabs.pause.view.SummaryConversationCard>
 
