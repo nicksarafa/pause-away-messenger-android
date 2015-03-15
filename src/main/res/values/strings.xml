@@ -129,5 +129,6 @@
     <string name="suggestion_btn_text">Have an idea?! Tell us!</string>
     <string name="summary_respond_receipt1">Respond Receipt Top</string>
     <string name="summary_respond_receipt2">Read Receipt Bottom</string>
+    <string name="privacy_ab_font_awesome_icon_name">{fa-arrows-alt}</string>
 
 </resources>

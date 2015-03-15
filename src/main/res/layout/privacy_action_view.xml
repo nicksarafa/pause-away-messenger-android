@@ -10,13 +10,13 @@
 
     <IconButton
         android:id="@+id/privacy_search_activity_start_btn"
-        android:layout_gravity="end"
+        android:layout_gravity="end|center_vertical"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
         android:layout_width="@dimen/ab_icon_universal_width_and_height"
         android:layout_height="@dimen/ab_icon_universal_width_and_height"
-        android:textSize="@dimen/ab_icon_universal_width_and_height"
-        android:text="{fa-user-plus}"
+        android:textSize="@dimen/ab_icon_dimen"
+        android:text="@string/privacy_ab_font_awesome_icon_name"
         android:textColor="@color/white"
         android:hint="@string/privacy_search_bar"
         android:layout_centerVertical="true"
