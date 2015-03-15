@@ -15,16 +15,11 @@
         android:layout_alignParentEnd="true"
         android:layout_width="@dimen/ab_icon_universal_width_and_height"
         android:layout_height="@dimen/ab_icon_universal_width_and_height"
-        android:focusableInTouchMode="true"
-        android:focusable="true"
-        android:textIsSelectable="false"
-        android:textCursorDrawable="@drawable/cursor"
+        android:textSize="@dimen/ab_icon_universal_width_and_height"
         android:text="{fa-user-plus}"
         android:textColor="@color/white"
-        android:freezesText="false"
         android:hint="@string/privacy_search_bar"
         android:layout_centerVertical="true"
-        android:showAsAction="always|collapseActionView"
         android:actionViewClass="android.widget.SearchView"
         android:background="@drawable/transparent_drawable" />
 

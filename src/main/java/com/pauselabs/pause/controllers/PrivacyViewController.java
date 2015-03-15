@@ -4,8 +4,6 @@ import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.ArrayAdapter;
-import android.widget.ListAdapter;
 
 import com.pauselabs.R;
 import com.pauselabs.pause.Injector;
@@ -37,14 +35,14 @@ public class PrivacyViewController implements View.OnClickListener {
     public PrivacyViewController() {
         Injector.inject(this);
 
-        privacyView = (PrivacyView) inflater.inflate(R.layout.privacy_view, null);
+        privacyView = (PrivacyView) inflater.inflate(R.layout.privacy_list_view, null);
         privacyBtns = (PrivacyActionBtnView) inflater.inflate(R.layout.privacy_action_view, null);
 
         // Set visibility to hidden by default
         privacyBtns.atnBtn1.setOnClickListener(this);
 
         contactsGridAdapter = new ContactsGridAdapter(PauseApplication.pauseActivity);
-        privacyView.contactsGrid.setAdapter(contactsGridAdapter);
+        privacyView.contactsList.setAdapter(contactsGridAdapter);
     }
 
     public void updateUI() {

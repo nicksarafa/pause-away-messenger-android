@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.pauselabs.pause.view.tabs.PrivacyView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/privacy_view"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ListView
+        android:id="@+id/privacy_contacts_list"
+        android:layout_width="match_parent"
+        android:layout_height="fill_parent"
+        android:layout_alignParentTop="true"
+        android:numColumns="1"
+        android:listSelector="@drawable/transparent_drawable"
+        android:cacheColorHint="@color/transparent"
+        android:clipToPadding="true"
+        android:scrollbars="vertical"
+        android:isScrollContainer="false"
+        android:scrollbarStyle="outsideOverlay"
+        android:smoothScrollbar="true"
+        android:verticalScrollbarPosition="left"
+        android:overScrollMode="never"
+        android:overScrollHeader="@drawable/transparent_drawable"
+        android:headerDividersEnabled="false"
+        android:overScrollFooter="@android:color/transparent"
+        android:footerDividersEnabled="false"
+        android:stretchMode="columnWidth" />
+
+</com.pauselabs.pause.view.tabs.PrivacyView>
