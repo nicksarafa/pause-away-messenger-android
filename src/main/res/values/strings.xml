@@ -125,9 +125,12 @@
     <string name="ob_start_app_btn">Begin Trial</string>
     <string name="ob_1_custom_message_intro">Customize your first reply message...</string>
     <string name="save_fa_button">{fa-save}</string>
-    <string name="sms_character_cieling">140</string>
+    <string name="sms_character_limit">140</string>
     <string name="suggestion_btn_text">Have an idea?! Tell us!</string>
     <string name="summary_respond_receipt1">Respond Receipt Top</string>
     <string name="summary_respond_receipt2">Read Receipt Bottom</string>
+    <string name="privacy_ab_font_awesome_icon_name">{fa-search-plus}</string>
+    <string name="privacy_tab_emergency_fa_icon">{fa-plus}\u0020\u0020Emergency</string>
+    <string name="privacy_tab_white_list_fa_icon">{fa-smile-o}\u0020\u0020Friends</string>
 
 </resources>

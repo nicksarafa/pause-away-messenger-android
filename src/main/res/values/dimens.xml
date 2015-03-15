@@ -9,6 +9,7 @@
     <!-- Action Bar (ab) & Toolbar (Same thing) - Universal -->
     <dimen name="ab_toolbar_universal_height">68dp</dimen>
     <dimen name="ab_icon_universal_width_and_height">68dp</dimen>
+    <dimen name="ab_icon_dimen">28dp</dimen>
 
     <!-- Real Header & View Below - Universal -->
     <dimen name="main_header_universal_height">68dp</dimen>

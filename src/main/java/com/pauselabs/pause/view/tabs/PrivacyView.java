@@ -2,7 +2,7 @@ package com.pauselabs.pause.view.tabs;
 
 import android.content.Context;
 import android.util.AttributeSet;
-import android.widget.GridView;
+import android.widget.ListView;
 import android.widget.RelativeLayout;
 
 import com.pauselabs.R;
@@ -15,8 +15,8 @@ import butterknife.Views;
  */
 public class PrivacyView extends RelativeLayout {
 
-    @InjectView(R.id.privacy_contacts_grid)
-    public GridView contactsGrid;
+    @InjectView(R.id.privacy_contacts_list)
+    public ListView contactsList;
 
     public PrivacyView(Context context) {
         super(context);

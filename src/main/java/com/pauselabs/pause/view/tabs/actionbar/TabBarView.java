@@ -18,7 +18,6 @@ public class TabBarView extends LinearLayout {
 		public int getPageIconResId(int position);
 	}
 
-
 	public static final int STRIP_HEIGHT = 4;
 
 	public final Paint mPaint;
