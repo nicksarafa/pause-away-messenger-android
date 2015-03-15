@@ -13,22 +13,22 @@ import butterknife.Views;
 /**
  * Created by Passa on 3/13/15.
  */
-public class ContactsGridViewItem extends RelativeLayout {
+public class PrivacyListItemView extends RelativeLayout {
 
-    @InjectView(R.id.grid_name_field)
-    public TextView nameField;
+    @InjectView(R.id.privacy_list_item)
+    public TextView privacyListItemContactName;
 
     public String contactId;
 
-    public ContactsGridViewItem(Context context) {
+    public PrivacyListItemView(Context context) {
         super(context);
     }
 
-    public ContactsGridViewItem(Context context, AttributeSet attrs) {
+    public PrivacyListItemView(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
 
-    public ContactsGridViewItem(Context context, AttributeSet attrs, int defStyleAttr) {
+    public PrivacyListItemView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
     }
 

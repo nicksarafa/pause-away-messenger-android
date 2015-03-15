@@ -71,7 +71,7 @@
                     android:layout_alignParentRight="true"
                     android:textSize="@dimen/text_small"
                     android:textColor="@color/main"
-                    android:text="@string/sms_character_cieling" />
+                    android:text="@string/sms_character_limit" />
 
             </RelativeLayout>
 

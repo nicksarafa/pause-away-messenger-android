@@ -2,21 +2,17 @@ package com.pauselabs.pause.adapters;
 
 import android.content.Context;
 import android.database.Cursor;
-import android.database.CursorWrapper;
-import android.net.Uri;
 import android.os.Bundle;
 import android.provider.ContactsContract;
-import android.support.v4.app.LoaderManager;
 import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.pauselabs.R;
 import com.pauselabs.pause.PauseApplication;
 import com.pauselabs.pause.core.ContactsQuery;
-import com.pauselabs.pause.view.tabs.ContactsGridViewItem;
+import com.pauselabs.pause.view.tabs.PrivacyListItemView;
 
 /**
  * Created by Passa on 3/13/15.
@@ -41,7 +37,7 @@ public class ContactsGridAdapter extends ContactsAdapter {
      */
     @Override
     public View newView(Context context, Cursor cursor, ViewGroup viewGroup) {
-        ContactsGridViewItem item = (ContactsGridViewItem) inflater.inflate(R.layout.contacts_grid_view_item,null);
+        PrivacyListItemView item = (PrivacyListItemView) inflater.inflate(R.layout.privacy_list_item_view,null);
 
 
         return item;
@@ -52,12 +48,12 @@ public class ContactsGridAdapter extends ContactsAdapter {
      */
     @Override
     public void bindView(View view, Context context, Cursor cursor) {
-        ContactsGridViewItem item = (ContactsGridViewItem)view;
+        PrivacyListItemView item = (PrivacyListItemView)view;
 
         final String displayName = cursor.getString(ContactsQuery.DISPLAY_NAME);
         final String contactId = cursor.getString(ContactsQuery.ID);
 
-        item.nameField.setText(displayName);
+        item.privacyListItemContactName.setText(displayName);
         item.contactId = contactId;
     }
 
