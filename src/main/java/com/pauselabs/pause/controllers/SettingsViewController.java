@@ -63,6 +63,10 @@ public class SettingsViewController implements View.OnClickListener {
         settingsView.toastBtn.setOnClickListener(this);
     }
 
+    public void updateUI() {
+
+    }
+
     @Override
     public void onClick(View view) {
         switch(view.getId()){

@@ -4,11 +4,15 @@ import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.ListAdapter;
 
 import com.pauselabs.R;
 import com.pauselabs.pause.Injector;
 import com.pauselabs.pause.PauseApplication;
 import com.pauselabs.pause.activity.SearchPrivacyActivity;
+import com.pauselabs.pause.adapters.ContactsGridAdapter;
+import com.pauselabs.pause.core.ContactsQuery;
 import com.pauselabs.pause.view.tabs.PrivacyActionBtnView;
 import com.pauselabs.pause.view.tabs.PrivacyView;
 
@@ -24,6 +28,8 @@ public class PrivacyViewController implements View.OnClickListener {
     public PrivacyView privacyView;
     public PrivacyActionBtnView privacyBtns;
 
+    public ContactsGridAdapter contactsGridAdapter;
+
     @Inject
     LayoutInflater inflater;
     @Inject 
@@ -37,8 +43,13 @@ public class PrivacyViewController implements View.OnClickListener {
         // Set visibility to hidden by default
         privacyBtns.atnBtn1.setOnClickListener(this);
 
+        contactsGridAdapter = new ContactsGridAdapter(PauseApplication.pauseActivity);
+        privacyView.contactsGrid.setAdapter(contactsGridAdapter);
     }
 
+    public void updateUI() {
+        PauseApplication.pauseActivity.getSupportLoaderManager().restartLoader(ContactsQuery.QUERY_ID, null, contactsGridAdapter);
+    }
 
     @Override
     public void onClick(View v) {

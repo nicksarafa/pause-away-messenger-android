@@ -524,7 +524,7 @@ public class PauseApplication extends Application {
             pauseActivity.runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
-                    PauseApplication.pauseActivity.updateView();
+                    PauseApplication.pauseActivity.updateUI();
                 }
             });
         }

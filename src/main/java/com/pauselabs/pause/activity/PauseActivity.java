@@ -197,7 +197,14 @@ public class PauseActivity extends ActionBarActivity {
             Intent it = new Intent(Intent.ACTION_CLOSE_SYSTEM_DIALOGS);
             sendBroadcast(it);
         }
-        updateView();
+        updateUI();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        updateUI();
     }
 
     private boolean isTablet() {
@@ -209,8 +216,12 @@ public class PauseActivity extends ActionBarActivity {
         super.onPostResume();
     }
 
-    public void updateView() {
+    public void updateUI() {
         summaryViewController.updateUI();
+        savesDirectoryViewController.updateUI();
+        privacyViewController.updateUI();
+        upgradeViewController.updateUI();
+        settingsViewController.updateUI();
 
         if(PauseApplication.isActiveSession() && pauseActivityView.getPanelState() != SlidingUpPanelLayout.PanelState.ANCHORED) {
             pauseActivityView.setPanelState(SlidingUpPanelLayout.PanelState.ANCHORED);
