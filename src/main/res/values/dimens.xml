@@ -21,6 +21,7 @@
     <dimen name="text_large">22sp</dimen>
     <dimen name="text_medium">18sp</dimen>
     <dimen name="text_small">16sp</dimen>
+    <dimen name="text_extra_small">14sp</dimen>
 
     <!-- UNIVERSAL *Privacy* View -->
     <dimen name="privacy_checkbox_and_text_padding">6dp</dimen>

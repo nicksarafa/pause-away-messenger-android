@@ -20,18 +20,25 @@
         android:layout_height="match_parent"
         android:orientation="horizontal">
 
-        <!-- Sender Initials -->
+        <!-- Was most recent message Call or Text? -->
 
-        <ImageView
+        <IconTextView
             android:id="@+id/messageType"
             android:layout_width="36dp"
             android:layout_height="36dp"
-            android:layout_centerVertical="true"
             android:layout_marginRight="@dimen/summary_view_horizontal_padding"
             android:layout_marginEnd="@dimen/summary_view_horizontal_padding"
+            android:layout_centerVertical="true"
+            android:textSize="36dp"
+            android:textColor="@color/text"
+            android:text="{fa-phone}"
+            android:shadowColor="#22000000"
+            android:shadowDx="3"
+            android:shadowDy="3"
+            android:shadowRadius="1"
             android:src="@drawable/summary_circle"/>
 
-            <!-- Align Right Icons Vertically -->
+            <!-- Align reply/ignore icon and response time -->
 
             <RelativeLayout
                 android:id="@+id/rightIcons"
@@ -39,25 +46,41 @@
                 android:layout_height="fill_parent"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentEnd="true"
+                android:gravity="center_vertical|right|end"
                 android:orientation="vertical">
 
                 <!-- Right Top Icon -->
 
-                <ImageView
-                    android:id="@+id/respondReceipt"
+                <IconTextView
+                    android:id="@+id/repliedSlashIgnoredIcon"
                     android:layout_width="36dp"
                     android:layout_height="36dp"
-                    android:contentDescription="Read Reciept"
+                    android:textSize="36dp"
+                    android:gravity="center_vertical|end|right|top"
+                    android:textColor="@color/green"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true"
+                    android:text="{fa-check}"
+                    android:shadowColor="@color/card_bottom_shadow"
+                    android:shadowDx="3"
+                    android:shadowDy="3"
+                    android:shadowRadius="1"
+                    android:contentDescription="@string/summary_respond_receipt1"
                     android:src="@drawable/summary_circle_blue"/>
 
-                <!-- Right Bottom Icon -->
+                <!-- Missed Text/Call Time -->
 
-                <ImageView
-                    android:id="@+id/respondReceipt2"
-                    android:layout_width="36dp"
-                    android:layout_height="36dp"
-                    android:layout_below="@id/respondReceipt"
-                    android:contentDescription="Read Reciept"
+                <TextView
+                    android:id="@+id/messageTime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/text_extra_small"
+                    android:gravity="end|right|bottom"
+                    android:textColor="@color/text"
+                    android:layout_alignParentBottom="true"
+                    android:text="22:36am"
+                    android:layout_below="@id/repliedSlashIgnoredIcon"
+                    android:contentDescription="@string/summary_respond_receipt2"
                     android:src="@drawable/summary_circle_blue"/>
 
             </RelativeLayout>
@@ -74,7 +97,7 @@
                 android:layout_toEndOf="@id/messageType"
                 android:orientation="vertical">
 
-                <!-- Number -->
+                <!-- Contact Name/Phone Number if not in contacts-->
 
                 <TextView
                     android:id="@+id/summaryMessageSender"
@@ -82,17 +105,18 @@
                     android:layout_height="wrap_content"
                     android:textSize="@dimen/text_small"
                     android:text="Mark Cuban"
-                    android:textColor="@android:color/black"/>
+                    android:textColor="@color/text"/>
 
-                <!-- Text Preview -->
+                <!-- Incoming Text Message Preview/Missed Call Info if not SMS -->
 
                 <TextView
                     android:id="@+id/summaryMessageText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/summaryMessageSender"
+                    android:textSize="@dimen/text_small"
                     android:text="Hey hows it going?"
-                    android:textColor="@android:color/black"/>
+                    android:textColor="@color/text"/>
 
             </RelativeLayout>
 
@@ -100,24 +124,24 @@
 
         <!-- Message List -->
 
+            <LinearLayout
+                android:id="@+id/messageContainer"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_toRightOf="@id/messageType"
+                android:layout_toEndOf="@id/messageType"
+                android:orientation="vertical"
+                android:layout_below="@id/relative_container">
+
+                <!-- Conversation DropDown View -->
+
                 <LinearLayout
-                    android:id="@+id/messageContainer"
-                    android:layout_width="fill_parent"
-                    android:layout_height="fill_parent"
-                    android:layout_toRightOf="@id/messageType"
-                    android:layout_toEndOf="@id/messageType"
+                    android:id="@+id/convo_holder_view"
                     android:orientation="vertical"
-                    android:layout_below="@id/relative_container">
+                    android:layout_width="match_parent"
+                    android:layout_height="fill_parent"/>
 
-                <!-- Convo DropDown -->
-
-                    <LinearLayout
-                        android:id="@+id/convo_holder_view"
-                        android:orientation="vertical"
-                        android:layout_width="match_parent"
-                        android:layout_height="fill_parent"/>
-
-                </LinearLayout>
+            </LinearLayout>
 
 </com.pauselabs.pause.view.SummaryConversationCard>
 
