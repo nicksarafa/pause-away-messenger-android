@@ -21,15 +21,15 @@ import butterknife.Views;
 public class SummaryConversationCard extends RelativeLayout {
 
     @InjectView(R.id.summaryMessageSender)
-    TextView senderName;
+    public TextView senderName;
     @InjectView(R.id.summaryMessageText)
-    TextView messageText;
+    public TextView messageText;
     @InjectView(R.id.messageType)
-    IconTextView callOrTextIcon;
+    public IconTextView callOrTextIcon;
     @InjectView(R.id.repliedSlashIgnoredIcon)
-    IconTextView respondSlashIgnoredIcon;
+    public IconTextView respondSlashIgnoredIcon;
     @InjectView(R.id.messageTime)
-    TextView messageTime;
+    public TextView messageTime;
     @InjectView(R.id.messageContainer)
     public LinearLayout messageContainer;
     @InjectView(R.id.convo_holder_view)

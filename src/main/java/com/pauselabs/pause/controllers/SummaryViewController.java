@@ -32,7 +32,7 @@ public class SummaryViewController implements AdapterView.OnItemClickListener, R
 
     public SummaryView summaryView;
 
-    private ArrayAdapter<SummaryConversationCard> summaryCardArrayAdapter;
+    private SummaryCardAdapter summaryCardArrayAdapter;
 
     @Inject LayoutInflater inflater;
 
@@ -47,23 +47,7 @@ public class SummaryViewController implements AdapterView.OnItemClickListener, R
     }
 
     public void updateUI() {
-        summaryCardArrayAdapter.clear();
-        summaryView.noMessages.setVisibility(View.VISIBLE);
-
-        if (PauseApplication.isActiveSession()) {
-            ArrayList<PauseConversation> conversations = PauseApplication.getCurrentSession().getConversationsInTimeOrder();
-            if (conversations != null) {
-                if (conversations.size() > 0)
-                    summaryView.noMessages.setVisibility(View.INVISIBLE);
-
-                for (PauseConversation convo : conversations) {
-                    SummaryConversationCard newCard = (SummaryConversationCard) inflater.inflate(R.layout.summary_conversation_card, null);
-                    newCard.setConversation(convo);
-
-                    summaryCardArrayAdapter.add(newCard);
-                }
-            }
-        }
+        summaryCardArrayAdapter.reload(summaryView);
     }
 
     @Override
@@ -137,7 +121,7 @@ public class SummaryViewController implements AdapterView.OnItemClickListener, R
     /**
      * Created by Passa on 12/25/14.
      */
-    public static class SummaryCardAdapter extends ArrayAdapter<SummaryConversationCard> {
+    public class SummaryCardAdapter extends ArrayAdapter<SummaryConversationCard> {
 
         public SummaryCardAdapter(Context context, int resource) {
             super(context, resource);
@@ -146,9 +130,32 @@ public class SummaryViewController implements AdapterView.OnItemClickListener, R
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
             SummaryConversationCard summaryConversationCard = getItem(position);
-            summaryConversationCard.updateMessageText();
 
             return summaryConversationCard;
+        }
+
+        public void reload(SummaryView summaryView) {
+            clear();
+            summaryView.noMessages.setVisibility(View.VISIBLE);
+
+            if (PauseApplication.isActiveSession()) {
+                ArrayList<PauseConversation> conversations = PauseApplication.getCurrentSession().getConversationsInTimeOrder();
+                if (conversations != null) {
+                    if (conversations.size() > 0)
+                        summaryView.noMessages.setVisibility(View.INVISIBLE);
+
+                    for (PauseConversation convo : conversations) {
+                        SummaryConversationCard newCard = (SummaryConversationCard) inflater.inflate(R.layout.summary_conversation_card, null);
+                        newCard.setConversation(convo);
+                        if (convo.getLastMessage().getType() == Constants.Message.Type.PHONE_INCOMING || convo.getLastMessage().getType() == Constants.Message.Type.PHONE_OUTGOING)
+                            newCard.callOrTextIcon.setText("{fa-phone}");
+                        else if (convo.getLastMessage().getType() == Constants.Message.Type.SMS_INCOMING || convo.getLastMessage().getType() == Constants.Message.Type.SMS_OUTGOING || convo.getLastMessage().getType() == Constants.Message.Type.SMS_PAUSE_OUTGOING)
+                            newCard.callOrTextIcon.setText("{fa-envelope}");
+
+                        summaryCardArrayAdapter.add(newCard);
+                    }
+                }
+            }
         }
 
     }
