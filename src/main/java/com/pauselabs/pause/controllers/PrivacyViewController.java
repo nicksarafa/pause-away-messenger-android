@@ -12,6 +12,7 @@ import com.pauselabs.pause.Injector;
 import com.pauselabs.pause.PauseApplication;
 import com.pauselabs.pause.activity.SearchPrivacyActivity;
 import com.pauselabs.pause.adapters.ContactsGridAdapter;
+import com.pauselabs.pause.core.ContactsQuery;
 import com.pauselabs.pause.view.tabs.PrivacyActionBtnView;
 import com.pauselabs.pause.view.tabs.PrivacyView;
 
@@ -44,8 +45,10 @@ public class PrivacyViewController implements View.OnClickListener {
 
         contactsGridAdapter = new ContactsGridAdapter(PauseApplication.pauseActivity);
         privacyView.contactsGrid.setAdapter(contactsGridAdapter);
+    }
 
-
+    public void updateUI() {
+        PauseApplication.pauseActivity.getSupportLoaderManager().restartLoader(ContactsQuery.QUERY_ID, null, contactsGridAdapter);
     }
 
     @Override

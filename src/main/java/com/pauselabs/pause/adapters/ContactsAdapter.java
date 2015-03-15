@@ -46,6 +46,11 @@ public class ContactsAdapter extends CursorAdapter implements LoaderManager.Load
         inflater = LayoutInflater.from(context);
 
         prefs = PreferenceManager.getDefaultSharedPreferences(context);
+
+        updatedContacts();
+    }
+
+    public void updatedContacts() {
         blackContacts = new HashSet<>(prefs.getStringSet(Constants.Settings.BLACKLIST, new HashSet<String>()));
         iceContacts = new HashSet<>(prefs.getStringSet(Constants.Settings.ICELIST, new HashSet<String>()));
     }

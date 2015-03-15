@@ -23,6 +23,8 @@ import com.pauselabs.pause.view.tabs.ContactsGridViewItem;
  */
 public class ContactsGridAdapter extends ContactsAdapter {
 
+    private final String TAG = ContactsGridAdapter.class.getSimpleName();
+
     /**
      * Instantiates a new Contacts Adapter.
      *
@@ -31,7 +33,7 @@ public class ContactsGridAdapter extends ContactsAdapter {
     public ContactsGridAdapter(Context context) {
         super(context);
 
-        PauseApplication.pauseActivity.getSupportLoaderManager().restartLoader(ContactsQuery.QUERY_ID, null, this);
+
     }
 
     /**
@@ -61,6 +63,8 @@ public class ContactsGridAdapter extends ContactsAdapter {
 
     @Override
     public Loader<Cursor> onCreateLoader(int id, Bundle args) {
+        updatedContacts();
+
         int numContacts = iceContacts.size();
         String[] contactsArray = iceContacts.toArray(new String[numContacts]);
 

@@ -24,4 +24,8 @@ public class UpgradeViewController {
         upgradeView = (UpgradeView) inflater.inflate(R.layout.upgrade_view, null);
     }
 
+    public void updateUI() {
+
+    }
+
 }

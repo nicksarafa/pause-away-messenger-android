@@ -55,6 +55,7 @@ public class SearchPrivacyActivity extends FragmentActivity implements AdapterVi
         searchPrivacyView.contactList.setAdapter(mAdapter);
         searchPrivacyView.contactList.setOnItemClickListener(this);
         searchPrivacyView.contactList.setOnScrollListener(this);
+        getSupportLoaderManager().restartLoader(ContactsQuery.QUERY_ID, null, mAdapter);
 
         searchPrivacyView.selectAllBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -72,13 +73,6 @@ public class SearchPrivacyActivity extends FragmentActivity implements AdapterVi
 
         searchPrivacyView.contactSearchField.setQueryHint("Search Contacts");
         searchPrivacyView.contactSearchField.setBackgroundColor(Color.TRANSPARENT);
-    }
-
-    @Override
-    public void onBackPressed() {
-        PauseApplication.pauseActivity.getSupportLoaderManager().restartLoader(ContactsQuery.QUERY_ID, null, PauseApplication.pauseActivity.privacyViewController.contactsGridAdapter);
-
-        super.onBackPressed();
     }
 
     @Override

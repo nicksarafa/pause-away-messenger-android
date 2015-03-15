@@ -55,6 +55,10 @@ public class SavesDirectoryViewController implements View.OnClickListener, Adapt
         savesDirectoryView.savesGrid.setOnItemLongClickListener(this);
     }
 
+    public void updateUI() {
+
+    }
+
     @Override
     public void onClick(View v) {
         switch (v.getId()) {

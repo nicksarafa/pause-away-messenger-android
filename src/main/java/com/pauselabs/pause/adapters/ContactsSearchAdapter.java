@@ -41,7 +41,7 @@ public class ContactsSearchAdapter extends ContactsAdapter {
         // Defines a span for highlighting the part of a display name that matches the search string
         highlightTextSpan = new TextAppearanceSpan(context, R.style.contactSearchTextHighlight);
 
-        PauseApplication.pauseActivity.getSupportLoaderManager().restartLoader(ContactsQuery.QUERY_ID, null, this);
+
     }
 
     public void selectAll() {
@@ -87,8 +87,6 @@ public class ContactsSearchAdapter extends ContactsAdapter {
                 }
 
                 prefs.edit().putStringSet(Constants.Settings.BLACKLIST, new HashSet<>(blackContacts)).apply();
-
-                PauseApplication.pauseActivity.privacyViewController.contactsGridAdapter.notifyDataSetChanged();
             }
         });
         item.iceCheckbox.setOnClickListener(new View.OnClickListener() {
@@ -103,8 +101,6 @@ public class ContactsSearchAdapter extends ContactsAdapter {
                 }
 
                 prefs.edit().putStringSet(Constants.Settings.ICELIST, new HashSet<>(iceContacts)).apply();
-
-                PauseApplication.pauseActivity.privacyViewController.contactsGridAdapter.notifyDataSetChanged();
             }
         });
 
