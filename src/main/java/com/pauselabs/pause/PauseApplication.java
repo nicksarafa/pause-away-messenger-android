@@ -529,10 +529,10 @@ public class PauseApplication extends Application {
     }
 
     public static void sendToast(final String textToSend) {
-        sendToast(textToSend, SuperToast.Duration.MEDIUM);
+        sendToast(textToSend, SuperToast.Duration.VERY_SHORT, R.drawable.toast_card_bg_pause_on);
     }
     public static void sendToast(final String textToSend, final int duration) {
-        sendToast(textToSend, duration, R.drawable.toast_card_bg_pause_on);
+        sendToast(textToSend, duration);
     }
     public static void sendToast(final String textToSend, final int duration, final int background) {
         sendToast(textToSend, duration, background, SuperToast.Animations.FLYIN);
