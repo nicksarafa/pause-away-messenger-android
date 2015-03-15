@@ -22,7 +22,7 @@ public class TabBarView extends LinearLayout {
 
 	public final Paint mPaint;
 
-	public static int mStripHeight;
+	public int mStripHeight;
 	private float mOffset = 0f;
 	public static int mSelectedTab = 0;
 	public ViewPager pager;

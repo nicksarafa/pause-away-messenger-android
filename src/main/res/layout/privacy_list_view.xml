@@ -13,32 +13,32 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:paddingTop="4dp"
-        android:background="@drawable/card_bg"
+        android:paddingTop="8dp"
+        android:background="@color/off"
         android:orientation="horizontal">
 
         <!-- Friends -->
 
         <android.widget.IconButton
-            android:id="@+id/male"
+            android:id="@+id/friends_tab"
             android:layout_width="0dp"
             android:layout_height="@dimen/main_header_universal_height"
             android:layout_weight="1"
-            android:background="@drawable/male_gender_pressed"
-            android:textColor="@drawable/male_gender_pressed"
-            android:textSize="@dimen/text_large"
+            android:background="@drawable/privacy_sub_header_bg"
+            android:textColor="@color/text_white"
+            android:textSize="@dimen/text_larger"
             android:text="@string/privacy_tab_white_list_fa_icon"/>
 
             <!-- Emergency -->
 
             <android.widget.IconButton
-                android:id="@+id/female"
+                android:id="@+id/emergency_tab"
                 android:layout_width="0dp"
                 android:layout_height="@dimen/main_header_universal_height"
                 android:layout_weight="1"
-                android:background="@drawable/female_gender_pressed"
-                android:textColor="@drawable/female_gender_pressed"
-                android:textSize="@dimen/text_large"
+                android:background="@drawable/privacy_sub_header_bg"
+                android:textColor="@color/text_white"
+                android:textSize="@dimen/text_larger"
                 android:text="@string/privacy_tab_emergency_fa_icon"/>
 
     </LinearLayout>

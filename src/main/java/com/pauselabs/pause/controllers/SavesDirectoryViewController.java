@@ -146,10 +146,10 @@ public class SavesDirectoryViewController implements View.OnClickListener, Adapt
             SavesItem item = (SavesItem)savesView.getTag();
             if (dbHelper.isDefaultSave(item.getId())) {
                 savesView.savesTextView.getBackground();
-                savesView.savesTextView.setBackgroundResource(R.drawable.card_bg_deafult_save);
+                savesView.savesTextView.setBackgroundResource(R.drawable.card_bg_save_default);
                 savesView.savesTextView.setTextColor(PauseApplication.pauseActivity.getResources().getColor(R.color.text_white));
                 params.setMargins(18, 4, 18, 4);
-                savesView.savesTextView.setPadding(28,20,28,20);
+                savesView.savesTextView.setPadding(28, 20, 28, 20);
                 savesView.savesTextView.getCompoundDrawablePadding();
                 savesView.savesTextView.setCompoundDrawablePadding(28);
                 savesView.savesTextView.setCompoundDrawables(iconSilence, null, iconInfo, null);

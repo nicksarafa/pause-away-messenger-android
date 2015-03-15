@@ -2,6 +2,7 @@ package com.pauselabs.pause.view.tabs;
 
 import android.content.Context;
 import android.util.AttributeSet;
+import android.widget.IconButton;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 
@@ -17,6 +18,10 @@ public class PrivacyView extends RelativeLayout {
 
     @InjectView(R.id.privacy_contacts_list)
     public ListView contactsList;
+    @InjectView(R.id.friends_tab)
+    public IconButton friendsTab;
+    @InjectView(R.id.emergency_tab)
+    public IconButton emergencyTab;
 
     public PrivacyView(Context context) {
         super(context);
@@ -28,6 +33,7 @@ public class PrivacyView extends RelativeLayout {
 
     public PrivacyView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
+
     }
 
     @Override

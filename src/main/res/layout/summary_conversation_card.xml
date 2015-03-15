@@ -64,7 +64,7 @@
                     android:layout_alignParentTop="true"
                     android:layout_centerHorizontal="true"
                     android:text="{fa-check}"
-                    android:shadowColor="@color/card_bottom_shadow"
+                    android:shadowColor="@color/card_bg_shadow"
                     android:shadowDx="3"
                     android:shadowDy="3"
                     android:shadowRadius="1"

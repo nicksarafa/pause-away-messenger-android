@@ -19,8 +19,8 @@
     <dimen name="text_super_size">28sp</dimen>
     <dimen name="text_double_extra_large">26sp</dimen>
     <dimen name="text_extra_large">24sp</dimen>
-    <dimen name="text_large">22sp</dimen>
-    <dimen name="text_medium">18sp</dimen>
+    <dimen name="text_large">20sp</dimen>
+    <dimen name="text_medium">20sp</dimen>
     <dimen name="text_small">16sp</dimen>
     <dimen name="text_extra_small">14sp</dimen>
 
@@ -60,5 +60,6 @@
     <dimen name="info_header_horizontal_margin">16dp</dimen>
     <dimen name="info_header_vertical_margin">12dp</dimen>
     <dimen name="summary_view_padding_bottom">68dp</dimen>
+    <dimen name="text_larger">22dp</dimen>
 
 </resources>

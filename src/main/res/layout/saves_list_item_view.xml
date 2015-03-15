@@ -12,7 +12,7 @@
         android:layout_height="fill_parent"
         android:textIsSelectable="false"
         android:textColor="@color/text"
-        android:textSize="@dimen/text_medium"
+        android:textSize="@dimen/text_large"
         android:hapticFeedbackEnabled="true"
         android:layout_gravity="center_vertical"
         android:gravity="center_vertical"

@@ -58,8 +58,8 @@
                     android:layout_height="@dimen/ob_btn_height"
                     android:layout_marginTop="@dimen/ob_btn_margin"
                     android:layout_weight="1"
-                    android:background="@drawable/male_gender_pressed"
-                    android:textColor="@drawable/male_gender_pressed"
+                    android:background="@drawable/ob_male_gender_pressed"
+                    android:textColor="@drawable/ob_male_gender_pressed"
                     android:textSize="@dimen/text_double_extra_large"
                     android:text="@string/ob_male_btn"/>
 
@@ -71,8 +71,8 @@
                     android:layout_height="@dimen/ob_btn_height"
                     android:layout_marginTop="@dimen/ob_btn_margin"
                     android:layout_weight="1"
-                    android:background="@drawable/female_gender_pressed"
-                    android:textColor="@drawable/female_gender_pressed"
+                    android:background="@drawable/ob_female_gender_pressed"
+                    android:textColor="@drawable/ob_female_gender_pressed"
                     android:textSize="@dimen/text_double_extra_large"
                     android:text="@string/ob_female_btn"/>
 

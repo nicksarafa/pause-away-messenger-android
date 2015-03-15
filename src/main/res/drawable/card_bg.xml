@@ -1,28 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
-    <item>
-        <shape
-            android:shape="rectangle"
-            android:dither="true">
 
-            <corners android:radius="2dp"/>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:state_pressed="true"
+        android:drawable="@drawable/card_bg_layer_selected" />
 
-                <solid android:color="@color/white" />
-
-        </shape>
-    </item>
-
-    <item android:bottom="2dp">
-        <shape
-            android:shape="rectangle"
-            android:dither="true">
-
-            <corners android:radius="2dp" />
-
-                <solid android:color="@color/white" />
-
-                    <padding android:bottom="4dp" />
-        </shape>
-    </item>
-
-</layer-list>
+    <item android:drawable="@drawable/card_bg_layer_unselected" />
+</selector>
