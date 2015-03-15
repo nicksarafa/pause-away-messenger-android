@@ -2,7 +2,7 @@ package com.pauselabs.pause.view.tabs;
 
 import android.content.Context;
 import android.util.AttributeSet;
-import android.widget.RelativeLayout;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.pauselabs.R;
@@ -13,7 +13,7 @@ import butterknife.Views;
 /**
  * Created by Passa on 3/13/15.
  */
-public class PrivacyListItemView extends RelativeLayout {
+public class PrivacyListItemView extends LinearLayout {
 
     @InjectView(R.id.privacy_list_item)
     public TextView privacyListItemContactName;

@@ -6,12 +6,55 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <!-- ICE or Blacklist -->
+
+    <LinearLayout
+        android:id="@+id/ice_blacklist_tabs"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:paddingTop="4dp"
+        android:background="@drawable/card_bg"
+        android:orientation="horizontal">
+
+        <!-- Friends -->
+
+        <android.widget.IconButton
+            android:id="@+id/male"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/main_header_universal_height"
+            android:layout_weight="1"
+            android:background="@drawable/male_gender_pressed"
+            android:textColor="@drawable/male_gender_pressed"
+            android:textSize="@dimen/text_large"
+            android:text="@string/privacy_tab_white_list_fa_icon"/>
+
+            <!-- Emergency -->
+
+            <android.widget.IconButton
+                android:id="@+id/female"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/main_header_universal_height"
+                android:layout_weight="1"
+                android:background="@drawable/female_gender_pressed"
+                android:textColor="@drawable/female_gender_pressed"
+                android:textSize="@dimen/text_large"
+                android:text="@string/privacy_tab_emergency_fa_icon"/>
+
+    </LinearLayout>
+
     <ListView
         android:id="@+id/privacy_contacts_list"
         android:layout_width="match_parent"
         android:layout_height="fill_parent"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="4dp"
+        android:layout_gravity="start|center_vertical"
+        android:gravity="start"
+        android:layout_marginTop="@dimen/main_list_view_universal_margin_top"
+        android:layout_marginLeft="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
         android:numColumns="1"
         android:listSelector="@drawable/transparent_drawable"
         android:cacheColorHint="@color/transparent"

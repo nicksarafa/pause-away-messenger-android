@@ -130,5 +130,7 @@
     <string name="summary_respond_receipt1">Respond Receipt Top</string>
     <string name="summary_respond_receipt2">Read Receipt Bottom</string>
     <string name="privacy_ab_font_awesome_icon_name">{fa-search-plus}</string>
+    <string name="privacy_tab_emergency_fa_icon">{fa-plus}\u0020\u0020Emergency</string>
+    <string name="privacy_tab_white_list_fa_icon">{fa-smile-o}\u0020\u0020Friends</string>
 
 </resources>

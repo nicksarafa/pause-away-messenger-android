@@ -42,9 +42,6 @@ public class SavesDirectoryView extends RelativeLayout {
 
         Views.inject(this);
 
-//        Drawable pencilIcon = new IconDrawable(getContext(), Iconify.IconValue.fa_pencil).colorRes(R.color.text).actionBarSize();
-//        customText.setCompoundDrawables(pencilIcon, null, null, null);
-//        customText.setCompoundDrawablePadding(4);
     }
 
 }

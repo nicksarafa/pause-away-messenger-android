@@ -1,20 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.pauselabs.pause.view.tabs.PrivacyListItemView
     xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
     android:orientation="horizontal"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:textIsSelectable="false"
+    android:textColor="@color/text"
+    android:textSize="@dimen/text_medium"
+    android:hapticFeedbackEnabled="true"
+    android:layout_marginBottom="4dp"
+    android:layout_marginLeft="8dp"
+    android:layout_marginStart="8dp"
+    android:layout_marginEnd="8dp"
+    android:layout_marginRight="8dp"
+    android:layout_alignParentLeft="true"
+    android:layout_alignParentStart="true"
+    android:paddingLeft="@dimen/save_horizontal_and_vertical_padding"
+    android:paddingRight="@dimen/save_horizontal_and_vertical_padding">
+
+    <ImageView
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:layout_gravity="start|center_vertical"
+        android:src="@drawable/summary_circle_blue"/>
 
         <TextView
             android:id="@+id/privacy_list_item"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="6"
             android:textIsSelectable="false"
             android:textColor="@color/text"
-            android:textSize="@dimen/text_medium"
+            android:textSize="@dimen/text_large"
             android:hapticFeedbackEnabled="true"
             android:layout_gravity="start|center_vertical"
-            android:gravity="start|center_vertical"
+            android:gravity="start"
             android:layout_marginTop="4dp"
             android:layout_marginBottom="4dp"
             android:layout_marginLeft="8dp"
@@ -26,11 +46,10 @@
             android:paddingLeft="@dimen/save_horizontal_and_vertical_padding"
             android:paddingRight="@dimen/save_horizontal_and_vertical_padding"
             android:paddingTop="6dp"
-            android:paddingBottom="10dp"
+            android:paddingBottom="6dp"
             android:ellipsize="marquee"
             android:maxLines="100"
             android:text="Noah"
-            android:scrollHorizontally="false"
-            android:background="@drawable/card_bg"/>
+            android:scrollHorizontally="false"/>
 
 </com.pauselabs.pause.view.tabs.PrivacyListItemView>
