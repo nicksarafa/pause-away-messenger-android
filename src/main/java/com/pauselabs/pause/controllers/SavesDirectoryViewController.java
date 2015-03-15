@@ -163,6 +163,8 @@ public class SavesDirectoryViewController implements View.OnClickListener, Adapt
                     add(savesView);
                 } while (saves.moveToNext());
             }
+
+            Log.i("SDVC",DatabaseUtils.dumpCursorToString(dbHelper.getAllSaves()));
         }
 
     }
@@ -197,8 +199,6 @@ public class SavesDirectoryViewController implements View.OnClickListener, Adapt
 
         public SavesDatabaseHelper(Context context) {
             super(context, DB_NAME, null, DB_VERSION);
-
-            DatabaseUtils.dumpCursorToString(getAllSaves());
         }
 
         @Override
@@ -257,7 +257,7 @@ public class SavesDirectoryViewController implements View.OnClickListener, Adapt
         public void setDefaultSave(int id) {
             SQLiteDatabase db = getWritableDatabase();
             db.execSQL("UPDATE " + DB_TABLE + " SET " + KEYS[KEY_DEFAULT] + " = " + DEFAULT_FALSE);
-            db.execSQL("UPDATE " + DB_TABLE + " SET " + KEYS[KEY_DEFAULT] + " = " + DEFAULT_TRUE + " WHERE " + KEYS[KEY_DEFAULT] + " = " + id);
+            db.execSQL("UPDATE " + DB_TABLE + " SET " + KEYS[KEY_DEFAULT] + " = " + DEFAULT_TRUE + " WHERE " + KEYS[KEY_ID] + " = " + id);
         }
         public boolean isDefaultSave(int id) {
             return getSaveById(id).getInt(KEY_DEFAULT) == DEFAULT_TRUE;
