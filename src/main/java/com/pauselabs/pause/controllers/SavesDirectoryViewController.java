@@ -204,7 +204,7 @@ public class SavesDirectoryViewController implements View.OnClickListener, Adapt
                         " (" + KEYS[KEY_LIST] + " int DEFAULT 0, " + KEYS[KEY_TEXT] + " VARCHAR(255) NOT NULL, " + KEYS[KEY_DEFAULT] + " int DEFAULT 0)";
         private final String SQL_DEFAULT_ROW =
                 " INSERT INTO " + DB_TABLE + " (" + KEYS[KEY_LIST] + ", " + KEYS[KEY_TEXT] + ", " + KEYS[KEY_DEFAULT] + ")" +
-                        " SELECT 0, " + "'I am away from my phone, please leave a message.'" + ", " + DEFAULT_TRUE +
+                        " SELECT 0, " + "'This is a sad and funny away message. The sad thing is you're IMing me thinking that I'm going to respond and the funny thing is that I'm sitting in front of the computer staring at the screen rolling on the floor laughing watching you IM me.'" + ", " + DEFAULT_TRUE +
                 " WHERE NOT EXISTS (SELECT * FROM " + DB_TABLE +
                         " WHERE " + KEYS[KEY_ID] + " = 1)";
         private final String SQL_INCREASE_LIST = "UPDATE " + DB_TABLE + " SET " + KEYS[KEY_LIST] + " = " + KEYS[KEY_LIST] + " + 1";
