@@ -55,8 +55,8 @@ public class PauseSession implements Serializable {
 
         mBlacklistContacts = retrieveBlacklistContacts();
         mIcelistContacts = retrieveIcelistContacts();
-        smsPrivacySetting = mPrefs.getBoolean(Constants.Settings.REPLY_SMS, true);
-        callPrivacySetting = mPrefs.getBoolean(Constants.Settings.REPLY_MISSED_CALL, true);
+        smsPrivacySetting = mPrefs.getBoolean(Constants.Settings.REPLY_SMS_KEY, true);
+        callPrivacySetting = mPrefs.getBoolean(Constants.Settings.REPLY_MISSED_CALL_KEY, true);
     }
 
     public ArrayList<PauseConversation> getConversations() {
@@ -147,7 +147,7 @@ public class PauseSession implements Serializable {
     }
 
     private Boolean privacyCheckPassed(String contactId, int type) {
-        return ((smsPrivacySetting && type == Constants.Message.Type.SMS_INCOMING) || (callPrivacySetting && type == Constants.Message.Type.PHONE_INCOMING)) && (!contactId.isEmpty() || mPrefs.getBoolean(Constants.Settings.REPLY_STRANGERS, true));
+        return ((smsPrivacySetting && type == Constants.Message.Type.SMS_INCOMING) || (callPrivacySetting && type == Constants.Message.Type.PHONE_INCOMING)) && (!contactId.isEmpty() || mPrefs.getBoolean(Constants.Settings.REPLY_STRANGERS_KEY, true));
     }
 
 
