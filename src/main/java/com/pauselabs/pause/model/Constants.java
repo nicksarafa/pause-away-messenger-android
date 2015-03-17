@@ -211,19 +211,26 @@ public class Constants {
         private Settings() {
         }
 
-        public static final String PAUSE_ON_SILENT_KEY =  "PAUSE_ON_SILENT_KEY";
         public static final String PAUSE_ON_VIBRATE_KEY =  "PAUSE_ON_VIBRATE_KEY";
+        public static final String PAUSE_ON_SILENT_KEY =  "PAUSE_ON_SILENT_KEY";
         public static final String PAUSE_VOICE_FEEDBACK_KEY = "PAUSE_VOICE_ON_KEY";
         public static final String PAUSE_TOASTS_ON_KEY = "PAUSE_TOASTS_ON_KEY";
-        public static final String REPLY_STRANGERS = "REPLY_STRANGERS_KEY";
-        public static final String REPLY_MISSED_CALL = "REPLY_MISSED_CALL_KEY";
-        public static final String REPLY_SMS = "REPLY_SMS_KEY";
+        public static final String REPLY_STRANGERS_KEY = "REPLY_STRANGERS_KEY";
+        public static final String REPLY_MISSED_CALL_KEY = "REPLY_MISSED_CALL_KEY";
+        public static final String REPLY_SMS_KEY = "REPLY_SMS_KEY";
+
+        public static final boolean DEFAULT_PAUSE_ON_VIBRATE = true;
+        public static final boolean DEFAULT_PAUSE_ON_SILENT = true;
+        public static final boolean DEFAULT_PAUSE_VOICE_FEEDBACK = false;
+        public static final boolean DEFAULT_PAUSE_SHOW_TOASTS = true;
+        public static final boolean DEFAULT_REPLY_STRANGERS = false;
+        public static final boolean DEFAULT_REPLY_MISSED_CALL = true;
+        public static final boolean DEFAULT_REPLY_SMS = true;
 
         public static final String NAME_KEY = "NAME_KEY";
         public static final String GENDER_KEY = "GENDER_KEY";
         public static final String GENDER_MALE_VALUE = "Male";
         public static final String GENDER_FEMALE_VALUE = "Female";
-        public static final String USING_BLACKLIST = "USING_BLACKLIST";
         public static final String BLACKLIST = "PRIVACY";
         public static final String ICELIST = "ICELIST";
 

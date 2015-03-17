@@ -4,6 +4,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.database.Cursor;
+import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.graphics.drawable.Drawable;
@@ -178,6 +179,8 @@ public class SavesDirectoryViewController implements View.OnClickListener, Adapt
                     add(savesView);
                 } while (saves.moveToNext());
             }
+
+            Log.i("SDVC",DatabaseUtils.dumpCursorToString(dbHelper.getAllSaves()));
         }
 
     }
@@ -187,6 +190,7 @@ public class SavesDirectoryViewController implements View.OnClickListener, Adapt
      */
     public static class SavesDatabaseHelper extends SQLiteOpenHelper {
 
+        private static final int DEFAULT_FALSE = 0;
         private static final int DEFAULT_TRUE = 1;
 
         public static final int KEY_ID = 0;
@@ -252,17 +256,9 @@ public class SavesDirectoryViewController implements View.OnClickListener, Adapt
         public void moveSave(int id) {
             int list = getSaveById(id).getInt(KEY_LIST);
 
-            ContentValues addVals = new ContentValues();
-            addVals.put(KEYS[KEY_LIST], KEYS[KEY_LIST] + " + 1");
-
-            ContentValues moveVals = new ContentValues();
-            moveVals.put(KEYS[KEY_LIST], "0");
-
             SQLiteDatabase db = getWritableDatabase();
             db.execSQL("UPDATE " + DB_TABLE + " SET " + KEYS[KEY_LIST] + " = " + KEYS[KEY_LIST] + " + 1 WHERE " + KEYS[KEY_LIST] + " < " + list);
-//            db.update(DB_TABLE, addVals, KEYS[KEY_LIST] + " < " + list,null);
             db.execSQL("UPDATE " + DB_TABLE + " SET " + KEYS[KEY_LIST] + " = 0 WHERE " + KEYS[KEY_ID] + " = " + id);
-//            db.update(DB_TABLE, moveVals, KEYS[KEY_ID] + " = " + id,null);
         }
 
         public void insertSave(String text) {
@@ -275,14 +271,9 @@ public class SavesDirectoryViewController implements View.OnClickListener, Adapt
         }
 
         public void setDefaultSave(int id) {
-            ContentValues trueVal = new ContentValues();
-            trueVal.put(KEYS[KEY_DEFAULT], "1");
-            ContentValues falseVal = new ContentValues();
-            falseVal.put(KEYS[KEY_DEFAULT], "0");
-
             SQLiteDatabase db = getWritableDatabase();
-            db.update(DB_TABLE, falseVal, null, null);
-            db.update(DB_TABLE, trueVal, KEYS[KEY_ID] + " = " + id, null);
+            db.execSQL("UPDATE " + DB_TABLE + " SET " + KEYS[KEY_DEFAULT] + " = " + DEFAULT_FALSE);
+            db.execSQL("UPDATE " + DB_TABLE + " SET " + KEYS[KEY_DEFAULT] + " = " + DEFAULT_TRUE + " WHERE " + KEYS[KEY_ID] + " = " + id);
         }
         public boolean isDefaultSave(int id) {
             return getSaveById(id).getInt(KEY_DEFAULT) == DEFAULT_TRUE;
@@ -291,20 +282,13 @@ public class SavesDirectoryViewController implements View.OnClickListener, Adapt
         public void deleteSave(int id) {
             int list = getSaveById(id).getInt(KEY_LIST);
             boolean isDefault = isDefaultSave(id);
-                Log.i("FUCKING TITS","list index: " + list);
-
-            ContentValues updateVal = new ContentValues();
-            updateVal.put(KEYS[KEY_LIST], KEYS[KEY_LIST] + " - 1");
 
             SQLiteDatabase db = getWritableDatabase();
-            db.execSQL("UPDATE " + DB_TABLE + " SET " + KEYS[KEY_LIST] + " = " + KEYS[KEY_LIST] + " + 1 WHERE " + KEYS[KEY_LIST] + " > " + list);
-//            db.update(DB_TABLE, updateVal, KEYS[KEY_LIST] + " > " + list, null);
+            db.execSQL("UPDATE " + DB_TABLE + " SET " + KEYS[KEY_LIST] + " = " + KEYS[KEY_LIST] + " - 1 WHERE " + KEYS[KEY_LIST] + " > " + list);
             db.delete(DB_TABLE, KEYS[KEY_ID] + " = " + id, null);
 
-            ContentValues defaultVal = new ContentValues();
-            defaultVal.put(KEYS[KEY_DEFAULT], DEFAULT_TRUE);
             if (isDefault)
-                db.update(DB_TABLE, defaultVal, KEYS[KEY_LIST] + " = 0", null);
+                setDefaultSave(getSaveByList(0).getInt(KEY_ID));
         }
 
     }

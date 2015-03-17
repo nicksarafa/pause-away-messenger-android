@@ -40,9 +40,9 @@ public class SettingsViewController implements View.OnClickListener {
 
         settingsView.nameBtn.setContent(prefs.getString(Constants.Settings.NAME_KEY, "None"));
         settingsView.genderBtn.setContent(prefs.getString(Constants.Settings.GENDER_KEY, ""));
-        settingsView.strangersBtn.setContent((prefs.getBoolean(Constants.Settings.REPLY_STRANGERS, true)) ? "Yes" : "No");
-        settingsView.missedCallsBtn.setContent((prefs.getBoolean(Constants.Settings.REPLY_MISSED_CALL, true)) ? "Yes" : "No");
-        settingsView.receivedSmsBtn.setContent((prefs.getBoolean(Constants.Settings.REPLY_SMS, true)) ? "Yes" : "No");
+        settingsView.strangersBtn.setContent((prefs.getBoolean(Constants.Settings.REPLY_STRANGERS_KEY, true)) ? "Yes" : "No");
+        settingsView.missedCallsBtn.setContent((prefs.getBoolean(Constants.Settings.REPLY_MISSED_CALL_KEY, true)) ? "Yes" : "No");
+        settingsView.receivedSmsBtn.setContent((prefs.getBoolean(Constants.Settings.REPLY_SMS_KEY, true)) ? "Yes" : "No");
         settingsView.silentBtn.setContent((prefs.getBoolean(Constants.Settings.PAUSE_ON_SILENT_KEY, true)) ? "Yes" : "No");
         settingsView.vibrateBtn.setContent((prefs.getBoolean(Constants.Settings.PAUSE_ON_VIBRATE_KEY, true)) ? "Yes" : "No");
         settingsView.voiceBtn.setContent((prefs.getBoolean(Constants.Settings.PAUSE_VOICE_FEEDBACK_KEY, false)) ? "On" : "Off");
@@ -61,6 +61,7 @@ public class SettingsViewController implements View.OnClickListener {
         settingsView.vibrateBtn.setOnClickListener(this);
         settingsView.voiceBtn.setOnClickListener(this);
         settingsView.toastBtn.setOnClickListener(this);
+        settingsView.defaultSettingsBtn.setOnClickListener(this);
     }
 
     public void updateUI() {
@@ -109,6 +110,9 @@ public class SettingsViewController implements View.OnClickListener {
             case R.id.contactBtn:
                 sendFeedbackEmail();
                 break;
+            case R.id.defaultSettingsBtn:
+                resetDefaultSettings();
+                break;
             default:
                 // do nothing
         }
@@ -148,95 +152,154 @@ public class SettingsViewController implements View.OnClickListener {
 
         boolean isMale = prefs.getString(Constants.Settings.GENDER_KEY, "").equals(Constants.Settings.GENDER_MALE_VALUE);
 
-        if (isMale) {
+        if (isMale)
             genderSwap = Constants.Settings.GENDER_FEMALE_VALUE;
-        } else {
+        else
             genderSwap = Constants.Settings.GENDER_MALE_VALUE;
-        }
+
         settingsView.genderBtn.setContent(genderSwap);
         prefs.edit().putString(Constants.Settings.GENDER_KEY, genderSwap).apply();
     }
 
-    private void changeStrangers() {
-        boolean replyStrangers = prefs.getBoolean(Constants.Settings.REPLY_STRANGERS, true);
+    public void changeStrangers() {
+        changeStrangers(false);
+    }
+    public void changeStrangers(boolean def) {
+        boolean replyStrangers;
 
-        if (replyStrangers) {
-            settingsView.strangersBtn.setContent("No");
-        } else {
+        if (def)
+            replyStrangers = Constants.Settings.DEFAULT_REPLY_STRANGERS;
+        else
+            replyStrangers = !prefs.getBoolean(Constants.Settings.REPLY_STRANGERS_KEY, Constants.Settings.DEFAULT_REPLY_STRANGERS);
+
+        if (replyStrangers)
             settingsView.strangersBtn.setContent("Yes");
-        }
-        prefs.edit().putBoolean(Constants.Settings.REPLY_STRANGERS, !replyStrangers).apply();
+        else
+            settingsView.strangersBtn.setContent("No");
+
+        prefs.edit().putBoolean(Constants.Settings.REPLY_STRANGERS_KEY, replyStrangers).apply();
     }
 
     public void changeMissedCalls() {
-        boolean replyMissedCall = prefs.getBoolean(Constants.Settings.REPLY_MISSED_CALL, true);
+        changeMissedCalls(false);
+    }
+    public void changeMissedCalls(boolean def) {
+        boolean replyMissedCall;
 
-        if (replyMissedCall) {
-            settingsView.missedCallsBtn.setContent("No");
-        } else {
+        if (def)
+            replyMissedCall = Constants.Settings.DEFAULT_REPLY_MISSED_CALL;
+        else
+            replyMissedCall = !prefs.getBoolean(Constants.Settings.REPLY_MISSED_CALL_KEY, Constants.Settings.DEFAULT_REPLY_MISSED_CALL);
+
+        if (replyMissedCall)
             settingsView.missedCallsBtn.setContent("Yes");
-        }
-        prefs.edit().putBoolean(Constants.Settings.REPLY_MISSED_CALL, !replyMissedCall).apply();
+        else
+            settingsView.missedCallsBtn.setContent("No");
+
+        prefs.edit().putBoolean(Constants.Settings.REPLY_MISSED_CALL_KEY, replyMissedCall).apply();
     }
 
     public void changeSMS() {
-        boolean replySMS = prefs.getBoolean(Constants.Settings.REPLY_SMS, true);
+        changeSMS(false);
+    }
+    public void changeSMS(boolean def) {
+        boolean replySMS;
 
-        if (replySMS) {
-            settingsView.receivedSmsBtn.setContent("No");
-        } else {
+        if (def)
+            replySMS = Constants.Settings.DEFAULT_REPLY_SMS;
+        else
+            replySMS = !prefs.getBoolean(Constants.Settings.REPLY_SMS_KEY, Constants.Settings.DEFAULT_REPLY_SMS);
+
+        if (replySMS)
             settingsView.receivedSmsBtn.setContent("Yes");
-        }
-        prefs.edit().putBoolean(Constants.Settings.REPLY_SMS, !replySMS).apply();
+        else
+            settingsView.receivedSmsBtn.setContent("No");
+
+        prefs.edit().putBoolean(Constants.Settings.REPLY_SMS_KEY, replySMS).apply();
     }
 
     public void changeSilent() {
-        boolean pauseOnSilent = prefs.getBoolean(Constants.Settings.PAUSE_ON_SILENT_KEY,true);
+        changeSilent(false);
+    }
+    public void changeSilent(boolean def) {
+        boolean pauseOnSilent;
 
-        if (pauseOnSilent) {
-            settingsView.silentBtn.setContent("No");
-        } else {
+        if (def)
+            pauseOnSilent = Constants.Settings.DEFAULT_PAUSE_ON_SILENT;
+        else
+            pauseOnSilent = !prefs.getBoolean(Constants.Settings.PAUSE_ON_SILENT_KEY,Constants.Settings.DEFAULT_PAUSE_ON_SILENT);
+
+        if (pauseOnSilent)
             settingsView.silentBtn.setContent("Yes");
-        }
-        prefs.edit().putBoolean(Constants.Settings.PAUSE_ON_SILENT_KEY, !pauseOnSilent).apply();
+        else
+            settingsView.silentBtn.setContent("No");
+
+        prefs.edit().putBoolean(Constants.Settings.PAUSE_ON_SILENT_KEY, pauseOnSilent).apply();
     }
 
     public void changeVibrate() {
-        boolean pauseOnVibrate = prefs.getBoolean(Constants.Settings.PAUSE_ON_VIBRATE_KEY,true);
+        changeVibrate(false);
+    }
+    public void changeVibrate(boolean def) {
+        boolean pauseOnVibrate;
 
-        if (pauseOnVibrate) {
-            settingsView.vibrateBtn.setContent("No");
-        } else {
+        if (def)
+            pauseOnVibrate = Constants.Settings.DEFAULT_PAUSE_ON_VIBRATE;
+        else
+            pauseOnVibrate = !prefs.getBoolean(Constants.Settings.PAUSE_ON_VIBRATE_KEY,Constants.Settings.DEFAULT_PAUSE_ON_VIBRATE);
+
+        if (pauseOnVibrate)
             settingsView.vibrateBtn.setContent("Yes");
-        }
-        prefs.edit().putBoolean(Constants.Settings.PAUSE_ON_VIBRATE_KEY, !pauseOnVibrate).apply();
+        else
+            settingsView.vibrateBtn.setContent("No");
+
+        prefs.edit().putBoolean(Constants.Settings.PAUSE_ON_VIBRATE_KEY, pauseOnVibrate).apply();
     }
 
     public void changeVoice() {
-        boolean pauseVoiceFeedback = prefs.getBoolean(Constants.Settings.PAUSE_VOICE_FEEDBACK_KEY,false);
+        changeVoice(false);
+    }
+    public void changeVoice(boolean def) {
+        boolean pauseVoiceFeedback;
+
+        if (def)
+            pauseVoiceFeedback = Constants.Settings.DEFAULT_PAUSE_VOICE_FEEDBACK;
+        else
+            pauseVoiceFeedback = !prefs.getBoolean(Constants.Settings.PAUSE_VOICE_FEEDBACK_KEY,Constants.Settings.DEFAULT_PAUSE_VOICE_FEEDBACK);
 
         if (pauseVoiceFeedback) {
-            settingsView.voiceBtn.setContent("Off");
-        } else {
             settingsView.voiceBtn.setContent("On");
 
             am.setStreamVolume(AudioManager.STREAM_MUSIC, am.getStreamMaxVolume(AudioManager.STREAM_MUSIC) / 2, AudioManager.FLAG_ALLOW_RINGER_MODES);
+        } else {
+            settingsView.voiceBtn.setContent("Off");
+
+            am.setStreamVolume(AudioManager.STREAM_MUSIC, 0, AudioManager.FLAG_REMOVE_SOUND_AND_VIBRATE);
         }
-        prefs.edit().putBoolean(Constants.Settings.PAUSE_VOICE_FEEDBACK_KEY, !pauseVoiceFeedback).apply();
+
+        prefs.edit().putBoolean(Constants.Settings.PAUSE_VOICE_FEEDBACK_KEY, pauseVoiceFeedback).apply();
     }
 
     public void changeToast() {
-        boolean pauseToastsOn= prefs.getBoolean(Constants.Settings.PAUSE_TOASTS_ON_KEY,true);
+        changeToast(true);
+    }
+    public void changeToast(boolean def) {
+        boolean pauseToastsOn;
 
-        if (pauseToastsOn) {
-            settingsView.toastBtn.setContent("Off");
-        } else {
+        if (def)
+            pauseToastsOn = Constants.Settings.DEFAULT_PAUSE_SHOW_TOASTS;
+        else
+            pauseToastsOn = !prefs.getBoolean(Constants.Settings.PAUSE_TOASTS_ON_KEY,Constants.Settings.DEFAULT_PAUSE_SHOW_TOASTS);
+
+        if (pauseToastsOn)
             settingsView.toastBtn.setContent("On");
-        }
-        prefs.edit().putBoolean(Constants.Settings.PAUSE_TOASTS_ON_KEY, !pauseToastsOn).apply();
+        else
+            settingsView.toastBtn.setContent("Off");
+
+        prefs.edit().putBoolean(Constants.Settings.PAUSE_TOASTS_ON_KEY, pauseToastsOn).apply();
     }
 
-    private void launchPlayMarketRate() {
+    public void launchPlayMarketRate() {
         Uri uri = Uri.parse("market://details?id=" + settingsView.getContext().getPackageName());
         Intent goToMarket = new Intent(Intent.ACTION_VIEW, uri);
         try {
@@ -246,19 +309,29 @@ public class SettingsViewController implements View.OnClickListener {
         }
     }
 
-    private void sendFeedbackEmail() {
+    public void sendFeedbackEmail() {
         Intent emailIntent = new Intent(android.content.Intent.ACTION_SEND);
         emailIntent.putExtra(android.content.Intent.EXTRA_EMAIL, new String[] {"feedback@pauselabs.com"});
         emailIntent.setType("message/rfc822");
         PauseApplication.pauseActivity.startActivity(Intent.createChooser(emailIntent, "Contact Üs").addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
     }
 
-    private void launchSupportLink() {
+    public void resetDefaultSettings() {
+        changeStrangers(true);
+        changeMissedCalls(true);
+        changeSMS(true);
+        changeSilent(true);
+        changeVibrate(true);
+        changeVoice(true);
+        changeToast(true);
+    }
+
+    public void launchSupportLink() {
         Intent termsIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.woot.com")).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         PauseApplication.pauseActivity.startActivity(termsIntent);
     }
 
-    private void launchTermsLink() {
+    public void launchTermsLink() {
         Intent supportIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.google.com/")).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         PauseApplication.pauseActivity.startActivity(supportIntent);
     }

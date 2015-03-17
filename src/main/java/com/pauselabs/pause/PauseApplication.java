@@ -547,7 +547,7 @@ public class PauseApplication extends Application {
         sendToast(textToSend, duration, background, animation, textColor, icon, SuperToast.IconPosition.LEFT);
     }
     public static void sendToast(final String textToSend, final int duration, final int background, final SuperToast.Animations animation, final int textColor, final int icon, final SuperToast.IconPosition iconPosition) {
-        if (prefs.getBoolean(Constants.Settings.PAUSE_TOASTS_ON_KEY,true)) {
+        if (prefs.getBoolean(Constants.Settings.PAUSE_TOASTS_ON_KEY,Constants.Settings.DEFAULT_PAUSE_SHOW_TOASTS)) {
             new Runnable() {
                 @Override
                 public void run() {
@@ -566,7 +566,7 @@ public class PauseApplication extends Application {
     }
 
     public static void speak(String textToSpeak) {
-        if (prefs.getBoolean(Constants.Settings.PAUSE_VOICE_FEEDBACK_KEY,false)) {
+        if (prefs.getBoolean(Constants.Settings.PAUSE_VOICE_FEEDBACK_KEY,Constants.Settings.DEFAULT_PAUSE_VOICE_FEEDBACK)) {
             tts.speak(textToSpeak, TextToSpeech.QUEUE_ADD, null);
         }
     }

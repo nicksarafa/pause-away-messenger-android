@@ -34,6 +34,8 @@ public class SettingsView extends LinearLayout {
     public SettingsButton voiceBtn;
     @InjectView(R.id.toastsBtn)
     public SettingsButton toastBtn;
+    @InjectView(R.id.defaultSettingsBtn)
+    public SettingsButton defaultSettingsBtn;
 //    @InjectView(R.id.supportBtn)
 //    public SettingsButton supportBtn;
 //    @InjectView(R.id.privacyBtn)
