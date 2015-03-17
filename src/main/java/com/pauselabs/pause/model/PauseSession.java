@@ -55,8 +55,8 @@ public class PauseSession implements Serializable {
 
         mBlacklistContacts = retrieveBlacklistContacts();
         mIcelistContacts = retrieveIcelistContacts();
-        smsPrivacySetting = mPrefs.getBoolean(Constants.Settings.REPLY_SMS_KEY, true);
-        callPrivacySetting = mPrefs.getBoolean(Constants.Settings.REPLY_MISSED_CALL_KEY, true);
+        smsPrivacySetting = mPrefs.getBoolean(Constants.Settings.REPLY_SMS_KEY, Constants.Settings.DEFAULT_REPLY_SMS);
+        callPrivacySetting = mPrefs.getBoolean(Constants.Settings.REPLY_MISSED_CALL_KEY, Constants.Settings.DEFAULT_REPLY_SMS);
     }
 
     public ArrayList<PauseConversation> getConversations() {
@@ -123,12 +123,8 @@ public class PauseSession implements Serializable {
 
         if(mBlacklistContacts.contains(contactId)) {
             shouldSendBounceback = false;
-            Log.i("Session","blacklisted");
         } else {
             shouldSendBounceback = privacyCheckPassed(contactId, type);
-            Log.i("Session","contactId: " + contactId);
-            Log.i("Session","type: " + type);
-            Log.i("Session","passed privacy: " + shouldSendBounceback);
         }
 
         return shouldSendBounceback;
@@ -147,7 +143,7 @@ public class PauseSession implements Serializable {
     }
 
     private Boolean privacyCheckPassed(String contactId, int type) {
-        return ((smsPrivacySetting && type == Constants.Message.Type.SMS_INCOMING) || (callPrivacySetting && type == Constants.Message.Type.PHONE_INCOMING)) && (!contactId.isEmpty() || mPrefs.getBoolean(Constants.Settings.REPLY_STRANGERS_KEY, true));
+        return ((smsPrivacySetting && type == Constants.Message.Type.SMS_INCOMING) || (callPrivacySetting && type == Constants.Message.Type.PHONE_INCOMING)) && (!contactId.isEmpty() || mPrefs.getBoolean(Constants.Settings.REPLY_STRANGERS_KEY, Constants.Settings.DEFAULT_REPLY_STRANGERS));
     }
 
 
