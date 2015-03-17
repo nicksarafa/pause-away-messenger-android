@@ -51,10 +51,10 @@ public class StartActivity extends Activity {
                 showOnboarding();
             }
         } else {
+            setToRinger(1);
+            
             setContentView(genderViewController.genderView);
         }
-
-        setToRinger(1);
     }
 
     public void setToRinger(int volume) {
@@ -62,12 +62,12 @@ public class StartActivity extends Activity {
     }
 
     public void startApp() {
-        setToRinger(1);
-
         startActivity(new Intent(this, PauseActivity.class));
     }
 
     public void showOnboarding() {
+        setToRinger(1);
+
         setContentView(onboardingViewController.onboardingContainerView);
     }
 }
