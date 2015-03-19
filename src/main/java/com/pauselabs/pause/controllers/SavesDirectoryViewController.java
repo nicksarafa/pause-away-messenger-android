@@ -91,8 +91,9 @@ public class SavesDirectoryViewController implements View.OnClickListener, Adapt
     public boolean onItemLongClick(AdapterView<?> parent, View view, final int position, long id) {
         final SavesItem item = (SavesItem)view.getTag();
 
-        SweetAlertDialog  alert = new SweetAlertDialog(PauseApplication.pauseActivity);
+        SweetAlertDialog alert = new SweetAlertDialog(PauseApplication.pauseActivity);
 
+        alert.setCanceledOnTouchOutside(true);
         alert.setTitleText("Edit Save #" + (position + 1));
         alert.setContentText(item.getText());
         alert.setConfirmText("Set as Default");
@@ -104,7 +105,8 @@ public class SavesDirectoryViewController implements View.OnClickListener, Adapt
             savesDirectoryArrayAdapter.resetList();
 
             sweetAlertDialog.setTitleText("Default Message Changed");
-            sweetAlertDialog.setContentText("Save #" + (position + 1) + "set to Default!");
+            sweetAlertDialog.setCustomImage(R.drawable.silencer_unselected_on_boarding);
+            sweetAlertDialog.setContentText("Save #" + (position + 1) + " set as Default reply message!");
             sweetAlertDialog.showCancelButton(false);
             sweetAlertDialog.setConfirmText("Ok");
 
@@ -130,9 +132,9 @@ public class SavesDirectoryViewController implements View.OnClickListener, Adapt
                 sweetAlertDialog.setTitleText("Complete!");
                 sweetAlertDialog.setContentText("Save #" + (position + 1) + " Deleted");
                 sweetAlertDialog.showCancelButton(false);
-                sweetAlertDialog.setConfirmText("Roger");
+                sweetAlertDialog.setConfirmText("Ok");
 
-                    sweetAlertDialog.setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                    sweetAlertDialog.setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener(){
 
                         @Override
                         public void onClick(SweetAlertDialog sweetAlertDialog) {
