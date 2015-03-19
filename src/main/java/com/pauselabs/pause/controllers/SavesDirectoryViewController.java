@@ -88,36 +88,59 @@ public class SavesDirectoryViewController implements View.OnClickListener, Adapt
     }
 
     @Override
-    public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+    public boolean onItemLongClick(AdapterView<?> parent, View view, final int position, long id) {
         final SavesItem item = (SavesItem)view.getTag();
 
         SweetAlertDialog  alert = new SweetAlertDialog(PauseApplication.pauseActivity);
 
         alert.setTitleText("Edit Save #" + (position + 1));
         alert.setContentText(item.getText());
-
-        alert.setConfirmText("Default");
+        alert.setConfirmText("Set as Default");
         alert.setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
-            @Override
-            public void onClick(SweetAlertDialog sweetAlertDialog) {
-                dbHelper.setDefaultSave(item.getId());
 
-                savesDirectoryArrayAdapter.resetList();
+        @Override
+        public void onClick(SweetAlertDialog sweetAlertDialog) {
+            dbHelper.setDefaultSave(item.getId());
+            savesDirectoryArrayAdapter.resetList();
 
-                sweetAlertDialog.dismissWithAnimation();
-            }
+            sweetAlertDialog.setTitleText("Default Message Changed");
+            sweetAlertDialog.setContentText("Save #" + (position + 1) + "set to Default!");
+            sweetAlertDialog.showCancelButton(false);
+            sweetAlertDialog.setConfirmText("Ok");
+
+            sweetAlertDialog.setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                @Override
+                public void onClick(SweetAlertDialog sweetAlertDialog) {
+
+                    sweetAlertDialog.dismissWithAnimation();
+
+                }
+            });
+        }
         });
 
         if (item.getId() > 1) {
             alert.setCancelText("Delete");
             alert.setCancelClickListener(new SweetAlertDialog.OnSweetClickListener() {
+
                 @Override
                 public void onClick(SweetAlertDialog sweetAlertDialog) {
-                    dbHelper.deleteSave(item.getId());
+                dbHelper.deleteSave(item.getId());
+                savesDirectoryArrayAdapter.resetList();
+                sweetAlertDialog.setTitleText("Complete!");
+                sweetAlertDialog.setContentText("Save #" + (position + 1) + " Deleted");
+                sweetAlertDialog.showCancelButton(false);
+                sweetAlertDialog.setConfirmText("Roger");
 
-                    savesDirectoryArrayAdapter.resetList();
+                    sweetAlertDialog.setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
 
-                    sweetAlertDialog.dismissWithAnimation();
+                        @Override
+                        public void onClick(SweetAlertDialog sweetAlertDialog) {
+
+                            sweetAlertDialog.dismissWithAnimation();
+
+                        }
+                    });
                 }
             });
         }
