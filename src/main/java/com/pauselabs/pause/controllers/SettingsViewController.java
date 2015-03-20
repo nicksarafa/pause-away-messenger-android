@@ -46,7 +46,7 @@ public class SettingsViewController implements View.OnClickListener {
         settingsView.silentBtn.setContent((prefs.getBoolean(Constants.Settings.PAUSE_ON_SILENT_KEY, true)) ? "Yes" : "No");
         settingsView.vibrateBtn.setContent((prefs.getBoolean(Constants.Settings.PAUSE_ON_VIBRATE_KEY, true)) ? "Yes" : "No");
         settingsView.voiceBtn.setContent((prefs.getBoolean(Constants.Settings.PAUSE_VOICE_FEEDBACK_KEY, false)) ? "On" : "Off");
-        settingsView.toastBtn.setContent((prefs.getBoolean(Constants.Settings.PAUSE_TOASTS_ON_KEY, true)) ? "On" : "Off");
+        settingsView.toastBtn.setContent((prefs.getBoolean(Constants.Settings.PAUSE_TOASTS_KEY, true)) ? "On" : "Off");
 
         settingsView.nameBtn.setOnClickListener(this);
         settingsView.genderBtn.setOnClickListener(this);
@@ -280,23 +280,22 @@ public class SettingsViewController implements View.OnClickListener {
         prefs.edit().putBoolean(Constants.Settings.PAUSE_VOICE_FEEDBACK_KEY, pauseVoiceFeedback).apply();
     }
 
-    public void changeToast() {
-        changeToast(true);
-    }
+    public void changeToast() { changeToast(false);  }
+
     public void changeToast(boolean def) {
         boolean pauseToastsOn;
 
         if (def)
             pauseToastsOn = Constants.Settings.DEFAULT_PAUSE_SHOW_TOASTS;
         else
-            pauseToastsOn = !prefs.getBoolean(Constants.Settings.PAUSE_TOASTS_ON_KEY,Constants.Settings.DEFAULT_PAUSE_SHOW_TOASTS);
+            pauseToastsOn = !prefs.getBoolean(Constants.Settings.PAUSE_TOASTS_KEY,Constants.Settings.DEFAULT_PAUSE_SHOW_TOASTS);
 
         if (pauseToastsOn)
             settingsView.toastBtn.setContent("On");
         else
             settingsView.toastBtn.setContent("Off");
 
-        prefs.edit().putBoolean(Constants.Settings.PAUSE_TOASTS_ON_KEY, pauseToastsOn).apply();
+        prefs.edit().putBoolean(Constants.Settings.PAUSE_TOASTS_KEY, pauseToastsOn).apply();
     }
 
     public void launchPlayMarketRate() {

@@ -136,7 +136,7 @@
         <com.pauselabs.pause.model.SettingsButton
             android:id="@+id/defaultSettingsBtn"
             android:layout_width="match_parent"
-            android:layout_height="?android:attr/listPreferredItemHeight"
+            android:layout_height="wrap_content"
             android:background="@null"
             app:frontnail="{fa-refresh}"
             app:label="@string/default_settings_label"

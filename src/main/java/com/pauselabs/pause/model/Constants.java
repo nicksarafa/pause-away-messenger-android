@@ -214,7 +214,7 @@ public class Constants {
         public static final String PAUSE_ON_VIBRATE_KEY =  "PAUSE_ON_VIBRATE_KEY";
         public static final String PAUSE_ON_SILENT_KEY =  "PAUSE_ON_SILENT_KEY";
         public static final String PAUSE_VOICE_FEEDBACK_KEY = "PAUSE_VOICE_ON_KEY";
-        public static final String PAUSE_TOASTS_ON_KEY = "PAUSE_TOASTS_ON_KEY";
+        public static final String PAUSE_TOASTS_KEY = "PAUSE_TOASTS_KEY";
         public static final String REPLY_STRANGERS_KEY = "REPLY_STRANGERS_KEY";
         public static final String REPLY_MISSED_CALL_KEY = "REPLY_MISSED_CALL_KEY";
         public static final String REPLY_SMS_KEY = "REPLY_SMS_KEY";

@@ -556,7 +556,7 @@ public class PauseApplication extends Application {
         sendToast(textToSend, duration, background, animation, textColor, icon, SuperToast.IconPosition.LEFT);
     }
     public static void sendToast(final String textToSend, final int duration, final int background, final SuperToast.Animations animation, final int textColor, final int icon, final SuperToast.IconPosition iconPosition) {
-        if (prefs.getBoolean(Constants.Settings.PAUSE_TOASTS_ON_KEY,Constants.Settings.DEFAULT_PAUSE_SHOW_TOASTS)) {
+        if (prefs.getBoolean(Constants.Settings.PAUSE_TOASTS_KEY,Constants.Settings.DEFAULT_PAUSE_SHOW_TOASTS)) {
             new Runnable() {
                 @Override
                 public void run() {
