@@ -343,7 +343,7 @@ public class SettingsViewController implements View.OnClickListener {
     }
 //
 //    Second Part I'm stuggling to Implement. Basically double checks your decision to reset in a funny way.
-//    
+//
 //        alert.setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
 //            @Override
 //            public void onClick(SweetAlertDialog sweetAlertDialog) {
@@ -353,7 +353,7 @@ public class SettingsViewController implements View.OnClickListener {
 //                alert2.setContentText("This can't be undone!");
 //                alert2.setConfirmText("JUST DO IT ALREADY!");
 //                alert2.setCancelText("Meh. Nevermind");
-
+//
 //                alert2.setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
 //                    @Override
 //                    public void OnClick (SweetAlertDialog sweetAlertDialog) {

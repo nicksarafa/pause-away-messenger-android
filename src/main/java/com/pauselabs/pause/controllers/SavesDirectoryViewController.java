@@ -84,7 +84,7 @@ public class SavesDirectoryViewController implements View.OnClickListener, Adapt
 
         alert.setCanceledOnTouchOutside(true);
         alert.setTitleText("Edit Save #" + (position + 1));
-        alert.setContentText(item.getText());
+//        alert.setContentText(item.getText());
         alert.setConfirmText("Set as Default");
         alert.setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
 
