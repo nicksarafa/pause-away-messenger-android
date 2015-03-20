@@ -12,7 +12,6 @@ import android.view.ViewGroup;
 
 import com.amulyakhare.textdrawable.TextDrawable;
 import com.pauselabs.R;
-import com.pauselabs.pause.PauseApplication;
 import com.pauselabs.pause.core.ContactsQuery;
 import com.pauselabs.pause.view.tabs.PrivacyListItemView;
 
@@ -30,8 +29,8 @@ public class ContactsGridAdapter extends ContactsAdapter {
      *
      * @param context A context that has access to the app's layout.
      */
-    public ContactsGridAdapter(Context context) {
-        super(context);
+    public ContactsGridAdapter(Context context, boolean usingIce) {
+        super(context, usingIce);
 
 
     }
@@ -105,14 +104,20 @@ public class ContactsGridAdapter extends ContactsAdapter {
 
     @Override
     public Loader<Cursor> onCreateLoader(int id, Bundle args) {
-        updatedContacts();
+        int numContacts;
+        String[] contactsArray;
 
-        int numContacts = iceContacts.size();
-        String[] contactsArray = iceContacts.toArray(new String[numContacts]);
+        if (usingIce) {
+            numContacts = iceContacts.size();
+            contactsArray = iceContacts.toArray(new String[numContacts]);
+        } else {
+            numContacts = blackContacts.size();
+            contactsArray = blackContacts.toArray(new String[numContacts]);
+        }
 
         String SELECT;
         String[] SELECTARGS;
-        if (numContacts < 1) {
+        if (numContacts == 0) {
             SELECT = "0";
             SELECTARGS = null;
         } else {
@@ -120,7 +125,7 @@ public class ContactsGridAdapter extends ContactsAdapter {
             SELECTARGS = contactsArray;
         }
 
-        return new CursorLoader(PauseApplication.pauseActivity,
+        return new CursorLoader(c,
                 ContactsQuery.CONTENT_URI,
                 ContactsQuery.PROJECTION,
                 SELECT,

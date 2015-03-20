@@ -41,12 +41,17 @@ public class PrivacyViewController implements View.OnClickListener {
         // Set visibility to hidden by default
         privacyBtns.atnBtn1.setOnClickListener(this);
 
-        contactsGridAdapter = new ContactsGridAdapter(PauseApplication.pauseActivity);
+        privacyView.emergencyTabBtn.setOnClickListener(this);
+        privacyView.blacklistTabBtn.setOnClickListener(this);
+
+        contactsGridAdapter = new ContactsGridAdapter(PauseApplication.pauseActivity, true);
         privacyView.contactsList.setAdapter(contactsGridAdapter);
 
+        updateUI();
     }
 
     public void updateUI() {
+        contactsGridAdapter.updatedContacts();
         PauseApplication.pauseActivity.getSupportLoaderManager().restartLoader(ContactsQuery.QUERY_ID, null, contactsGridAdapter);
     }
 
@@ -54,9 +59,22 @@ public class PrivacyViewController implements View.OnClickListener {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.privacy_search_activity_start_btn:
-                Log.i("PrivacyController", "Switching to PrivacySearchView");
+                Intent i = new Intent(PauseApplication.pauseActivity,SearchPrivacyActivity.class);
+                i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                i.putExtra("usingIce", contactsGridAdapter.usingIce);
+                PauseApplication.pauseActivity.startActivity(i);
 
-                PauseApplication.pauseActivity.startActivity(new Intent(PauseApplication.pauseActivity,SearchPrivacyActivity.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
+                break;
+            case R.id.emergency_tab_btn:
+                contactsGridAdapter.usingIce = true;
+
+                updateUI();
+
+                break;
+            case R.id.blacklist_tab_btn:
+                contactsGridAdapter.usingIce = false;
+
+                updateUI();
 
                 break;
         }

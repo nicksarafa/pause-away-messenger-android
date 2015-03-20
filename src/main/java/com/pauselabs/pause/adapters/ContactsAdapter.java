@@ -3,7 +3,6 @@ package com.pauselabs.pause.adapters;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.database.Cursor;
-import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v4.app.LoaderManager;
@@ -15,7 +14,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AlphabetIndexer;
 
-import com.pauselabs.pause.PauseApplication;
 import com.pauselabs.pause.core.ContactsQuery;
 import com.pauselabs.pause.model.Constants;
 
@@ -32,20 +30,27 @@ public class ContactsAdapter extends CursorAdapter implements LoaderManager.Load
     protected LayoutInflater inflater; // Stores the layout inflater
     protected SharedPreferences prefs;
 
-    protected HashSet<String> blackContacts;
-    protected HashSet<String> iceContacts;
+    protected Context c;
+
+    public boolean usingIce;
+    public HashSet<String> blackContacts;
+    public HashSet<String> iceContacts;
 
     /**
      * Instantiates a new Contacts Adapter.
      * @param context A context that has access to the app's layout.
      */
-    public ContactsAdapter(Context context) {
+    public ContactsAdapter(Context context, boolean usingIce) {
         super(context, null, true);
+
+        c = context;
 
         // Stores inflater for use later
         inflater = LayoutInflater.from(context);
 
         prefs = PreferenceManager.getDefaultSharedPreferences(context);
+
+        this.usingIce = usingIce;
 
         updatedContacts();
     }
@@ -75,7 +80,7 @@ public class ContactsAdapter extends CursorAdapter implements LoaderManager.Load
 
     @Override
     public Loader<Cursor> onCreateLoader(int id, Bundle args) {
-        return new CursorLoader(PauseApplication.pauseActivity,
+        return new CursorLoader(c,
                 ContactsQuery.CONTENT_URI,
                 ContactsQuery.PROJECTION,
                 ContactsQuery.SELECTION,

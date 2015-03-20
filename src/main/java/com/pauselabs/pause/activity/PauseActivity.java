@@ -176,12 +176,12 @@ public class PauseActivity extends ActionBarActivity {
     protected void onResume() {
         super.onResume();
 
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                updateUI();
-            }
-        },500);
+//        new Handler().postDelayed(new Runnable() {
+//            @Override
+//            public void run() {
+//                updateUI();
+//            }
+//        },500);
     }
 
     private boolean isTablet() {

@@ -16,12 +16,10 @@ import butterknife.Views;
  */
 public class SearchPrivacyListItem extends LinearLayout {
 
-    @InjectView(R.id.checkbox_ice)
-    public CheckBox iceCheckbox;
     @InjectView(R.id.contact_name_field)
     public TextView contactNameField;
-    @InjectView(R.id.checkbox_added)
-    public CheckBox blackCheckbox;
+    @InjectView(R.id.contact_checkbox)
+    public CheckBox contactCheckbox;
 
     public String contactId;
 

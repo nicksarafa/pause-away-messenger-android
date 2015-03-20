@@ -17,29 +17,29 @@
         android:background="@color/off"
         android:orientation="horizontal">
 
-        <!-- Friends -->
+        <!-- Emergency -->
 
         <android.widget.IconButton
-            android:id="@+id/friends_tab"
+            android:id="@+id/emergency_tab_btn"
             android:layout_width="0dp"
             android:layout_height="@dimen/main_header_universal_height"
             android:layout_weight="1"
             android:background="@drawable/privacy_sub_header_bg"
             android:textColor="@color/text_white"
             android:textSize="@dimen/text_larger"
-            android:text="@string/privacy_tab_white_list_fa_icon"/>
+            android:text="@string/privacy_tab_emergency_fa_icon"/>
 
-            <!-- Emergency -->
+        <!-- Blacklist -->
 
-            <android.widget.IconButton
-                android:id="@+id/emergency_tab"
-                android:layout_width="0dp"
-                android:layout_height="@dimen/main_header_universal_height"
-                android:layout_weight="1"
-                android:background="@drawable/privacy_sub_header_bg"
-                android:textColor="@color/text_white"
-                android:textSize="@dimen/text_larger"
-                android:text="@string/privacy_tab_emergency_fa_icon"/>
+        <android.widget.IconButton
+            android:id="@+id/blacklist_tab_btn"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/main_header_universal_height"
+            android:layout_weight="1"
+            android:background="@drawable/privacy_sub_header_bg"
+            android:textColor="@color/text_white"
+            android:textSize="@dimen/text_larger"
+            android:text="@string/privacy_tab_blacklist_fa_icon"/>
 
     </LinearLayout>
 
