@@ -125,10 +125,7 @@ public class PauseActivity extends ActionBarActivity {
             public void onPanelSlide(View view, float ratio) {
                 actionBar.getCustomView().setY(-((ratio + (ratio * 0.121875f)) * actionBar.getHeight()));
 
-                ButtonFloat button = pauseActivityView.startPauseButton;
-                RelativeLayout.LayoutParams lp = (RelativeLayout.LayoutParams)button.getLayoutParams();
-                float y = summaryViewController.summaryView.getY();
-                pauseActivityView.startPauseButton.setY(y - (pauseActivityView.startPauseButton.getHeight() + lp.bottomMargin));
+                moveButton();
             }
 
             @Override
@@ -139,6 +136,8 @@ public class PauseActivity extends ActionBarActivity {
 
                 pauseActivityView.startPauseButton.setDrawableIcon(getResources().getDrawable(R.drawable.ic_action_pause_on));
                 pauseActivityView.startPauseButton.setBackgroundColor(getResources().getColor(R.color.off));
+
+                moveButton();
             }
 
             @Override
@@ -149,6 +148,8 @@ public class PauseActivity extends ActionBarActivity {
 
                 pauseActivityView.startPauseButton.setDrawableIcon(getResources().getDrawable(R.drawable.ic_action_pause_off));
                 pauseActivityView.startPauseButton.setBackgroundColor(getResources().getColor(R.color.on));
+
+                moveButton();
             }
 
             @Override
@@ -176,12 +177,12 @@ public class PauseActivity extends ActionBarActivity {
     protected void onResume() {
         super.onResume();
 
-//        new Handler().postDelayed(new Runnable() {
-//            @Override
-//            public void run() {
-//                updateUI();
-//            }
-//        },500);
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                updateUI();
+            }
+        },500);
     }
 
     private boolean isTablet() {
@@ -205,6 +206,14 @@ public class PauseActivity extends ActionBarActivity {
         } else if (!PauseApplication.isActiveSession() && pauseActivityView.getPanelState() == SlidingUpPanelLayout.PanelState.ANCHORED) {
             pauseActivityView.setPanelState(SlidingUpPanelLayout.PanelState.COLLAPSED);
         }
+
+        moveButton();
+    }
+
+    private void moveButton() {
+        ButtonFloat button = pauseActivityView.startPauseButton;
+        RelativeLayout.LayoutParams lp = (RelativeLayout.LayoutParams)button.getLayoutParams();
+        button.setY(summaryViewController.summaryView.getY() - (button.getHeight() + lp.bottomMargin));
     }
 
 
