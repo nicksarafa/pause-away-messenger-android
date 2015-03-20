@@ -228,7 +228,7 @@ public class PauseActivity extends ActionBarActivity {
     public class SectionsPagerAdapter extends FragmentPagerAdapter implements TabBarView.IconTabProvider {
 
         private int[] tab_icons = {
-                R.drawable.ic_action_ab_grid_on,
+                R.drawable.ic_action_ab_custom_on,
                 R.drawable.ic_action_ab_privacy_on,
                 R.drawable.ic_action_lightbulb,
                 R.drawable.ic_action_ab_settings_on
