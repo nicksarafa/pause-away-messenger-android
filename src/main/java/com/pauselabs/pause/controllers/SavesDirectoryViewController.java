@@ -178,7 +178,7 @@ public class SavesDirectoryViewController implements View.OnClickListener, Adapt
                 savesView.savesTextView.setPadding(28, 20, 28, 20);
                 savesView.savesTextView.getCompoundDrawablePadding();
                 savesView.savesTextView.setCompoundDrawablePadding(28);
-                savesView.savesTextView.setCompoundDrawables(iconSilence, null, iconInfo, null);
+                savesView.savesTextView.setCompoundDrawables(iconSilence, null, iconSilence, null);
                 savesView.savesTextView.setText(item.getText());
             }
 
