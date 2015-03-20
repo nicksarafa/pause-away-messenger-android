@@ -79,8 +79,6 @@ public class SavesDirectoryViewController implements View.OnClickListener, Adapt
     @Override
     public void onItemClick(AdapterView<?> parent, View view, final int position, long id) {
         final SavesItem item = (SavesItem)view.getTag();
-//        dbHelper.moveSave(item.getId());
-
 
         SweetAlertDialog alert = new SweetAlertDialog(PauseApplication.pauseActivity);
 

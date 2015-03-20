@@ -77,7 +77,7 @@
     <string name="toasts_label">Pop Up Alerts</string>
     <string name="rate_us_settings_label">Show Some Love</string>
     <string name="contact_us_label">Hit Us Up</string>
-    <string name="default_settings_label">Default Settings</string>
+    <string name="default_settings_label">Reset Settings to Default</string>
     <string name="support_label">Support</string>
     <string name="privacy_policy_label">Privacy Policy</string>
     <string name="terms_label">Terms</string>

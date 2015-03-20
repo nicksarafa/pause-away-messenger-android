@@ -131,6 +131,17 @@
             app:label="@string/voice_label"
             app:content=""/>
 
+        <!-- Reset to Default -->
+
+        <com.pauselabs.pause.model.SettingsButton
+            android:id="@+id/defaultSettingsBtn"
+            android:layout_width="match_parent"
+            android:layout_height="?android:attr/listPreferredItemHeight"
+            android:background="@null"
+            app:frontnail="{fa-refresh}"
+            app:label="@string/default_settings_label"
+            app:endnail="@drawable/ic_sms_icon"/>
+
         <!-- Feedback Label -->
 
         <!--<TextView-->
@@ -158,17 +169,6 @@
             android:background="@null"
             app:frontnail="{fa-send-o}"
             app:label="@string/contact_us_label"
-            app:endnail="@drawable/ic_sms_icon"/>
-
-        <!-- Reset to Default -->
-
-        <com.pauselabs.pause.model.SettingsButton
-            android:id="@+id/defaultSettingsBtn"
-            android:layout_width="match_parent"
-            android:layout_height="?android:attr/listPreferredItemHeight"
-            android:background="@null"
-            app:frontnail="{fa-send-o}"
-            app:label="@string/default_settings_label"
             app:endnail="@drawable/ic_sms_icon"/>
 
         <!-- Help Label -->
