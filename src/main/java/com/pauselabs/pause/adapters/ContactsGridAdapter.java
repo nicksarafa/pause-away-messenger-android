@@ -2,6 +2,7 @@ package com.pauselabs.pause.adapters;
 
 import android.content.Context;
 import android.database.Cursor;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.support.v4.content.CursorLoader;
@@ -14,6 +15,8 @@ import com.pauselabs.R;
 import com.pauselabs.pause.PauseApplication;
 import com.pauselabs.pause.core.ContactsQuery;
 import com.pauselabs.pause.view.tabs.PrivacyListItemView;
+
+import java.util.Random;
 
 /**
  * Created by Passa on 3/13/15.
@@ -53,9 +56,41 @@ public class ContactsGridAdapter extends ContactsAdapter {
         final String displayName = cursor.getString(ContactsQuery.DISPLAY_NAME);
         final String contactId = cursor.getString(ContactsQuery.ID);
 
-        //Set Text Drawable to PrivacyListItem
+        Random rand = new Random();
+        int r = rand.nextInt(255);
+        int g = rand.nextInt(255);
+        int b = rand.nextInt(255);
+        int randomColor = Color.rgb(r,g,b);
 
-        TextDrawable contactInitialsDrawable = TextDrawable.builder().buildRound("A", R.color.green);
+        // Set Text Drawable Initial Extraction
+
+        String contactInitials = "";
+        char firstInitial = displayName.charAt(0);
+
+        if ((firstInitial >= 65 && firstInitial <= 90) || (firstInitial >= 97 && firstInitial <= 122)) {
+
+            String[] nameArray = displayName.split(" ");
+
+            contactInitials = nameArray[0].substring(0,1);
+
+            if(nameArray.length > 1) {
+
+                contactInitials += nameArray[nameArray.length - 1].substring(0,1);
+
+            }
+
+        } else if (firstInitial >= 48 && firstInitial <= 57) {
+
+            contactInitials = "#";
+
+        } else {
+
+            contactInitials = "@";
+        }
+
+        // Set Text Drawable to PrivacyListItem
+
+        TextDrawable contactInitialsDrawable = TextDrawable.builder().buildRound(contactInitials, randomColor);
 
         item.privacyContactInitials.setImageDrawable(contactInitialsDrawable);
         item.privacyListItemContactName.setText(displayName);

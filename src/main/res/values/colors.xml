@@ -15,4 +15,23 @@
     <color name="card_bg_shadow">#c4c4c4c4</color>
     <color name="gold">#c1a155</color>
 
+    <color name="contact_color_1">#000000</color>
+    <color name="contact_color_2">#000000</color>
+    <color name="contact_color_3">#000000</color>
+    <color name="contact_color_4">#000000</color>
+    <color name="contact_color_5">#000000</color>
+    <color name="contact_color_6">#000000</color>
+    <color name="contact_color_7">#000000</color>
+    <color name="contact_color_8">#000000</color>
+    <color name="contact_color_9">#000000</color>
+    <color name="contact_color_10">#000000</color>
+    <color name="contact_color_11">#000000</color>
+    <color name="contact_color_12">#000000</color>
+    <color name="contact_color_13">#000000</color>
+    <color name="contact_color_14">#000000</color>
+    <color name="contact_color_15">#000000</color>
+    <color name="contact_color_16">#000000</color>
+
+
+
 </resources>
