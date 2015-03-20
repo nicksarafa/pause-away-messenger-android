@@ -15,9 +15,9 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginEnd="@dimen/fab_margin_right"
-        android:layout_marginRight="@dimen/fab_margin_right"
-        android:layout_marginBottom="@dimen/fab_margin_bottom"
+        android:layout_marginEnd="@dimen/fab_margin"
+        android:layout_marginRight="@dimen/fab_margin"
+        android:layout_marginBottom="@dimen/fab_margin"
         materialdesign:animate="true" />
 
 </com.pauselabs.pause.view.start.onboaring.content.OB1>

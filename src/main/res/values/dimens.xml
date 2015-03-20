@@ -3,8 +3,7 @@
 
     <!-- Fab (Featured/Floating Action Button) - Universal -->
     <dimen name="fab_diameter">68dp</dimen>
-    <dimen name="fab_margin_right">28dp</dimen>
-    <dimen name="fab_margin_bottom">6dp</dimen>
+    <dimen name="fab_margin">6dp</dimen>
 
     <!-- Action Bar (ab) & Toolbar (Same thing) - Universal -->
     <dimen name="ab_toolbar_universal_height">68dp</dimen>
