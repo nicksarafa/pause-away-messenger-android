@@ -54,32 +54,35 @@
                     android:layout_height="wrap_content"
                     android:background="@drawable/transparent_drawable"
                     android:layout_alignParentTop="true"
+                    android:layout_centerInParent="true"
                     android:layout_alignParentEnd="true"
                     android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_centerHorizontal="true"
                     android:layout_marginRight="@dimen/save_horizontal_and_vertical_padding"
                     android:layout_marginEnd="@dimen/save_horizontal_and_vertical_padding"
                     android:layout_marginTop="@dimen/save_horizontal_and_vertical_padding"
-                    android:gravity="end|right"
+                    android:gravity="center_vertical|center_horizontal|end|right"
                     android:visibility="visible"
                     android:textColor="@color/text"
                     android:textSize="@dimen/text_extra_large"
                     android:text="@string/save_fa_button"/>
 
-                <!-- Character Count -->
+                <!-- Character Count (Tabled) -->
 
-                <TextView
-                    android:id="@+id/message_character_count"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentBottom="true"
-                    android:layout_alignParentEnd="true"
-                    android:layout_alignParentRight="true"
-                    android:layout_marginRight="@dimen/save_horizontal_and_vertical_padding"
-                    android:layout_marginEnd="@dimen/save_horizontal_and_vertical_padding"
-                    android:gravity="end|right"
-                    android:textSize="@dimen/text_small"
-                    android:textColor="@color/main"
-                    android:text="@string/sms_character_limit" />
+                <!--<TextView-->
+                    <!--android:id="@+id/message_character_count"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_alignParentBottom="true"-->
+                    <!--android:layout_alignParentEnd="true"-->
+                    <!--android:layout_alignParentRight="true"-->
+                    <!--android:layout_marginRight="@dimen/save_horizontal_and_vertical_padding"-->
+                    <!--android:layout_marginEnd="@dimen/save_horizontal_and_vertical_padding"-->
+                    <!--android:gravity="end|right"-->
+                    <!--android:textSize="@dimen/text_small"-->
+                    <!--android:textColor="@color/main"-->
+                    <!--android:text="@string/sms_character_limit" />-->
 
             </RelativeLayout>
 
