@@ -67,7 +67,6 @@ public class PauseActivity extends ActionBarActivity {
         PauseApplication.pauseActivity = this;
 
         pauseActivityView = (PauseActivityView) inflater.inflate(R.layout.pause_activity_view,null);
-        pauseActivityView.viewPager.setAdapter(new SectionsPagerAdapter(getFragmentManager()));
 
         setContentView(pauseActivityView);
 
@@ -76,6 +75,8 @@ public class PauseActivity extends ActionBarActivity {
         privacyViewController = new PrivacyViewController();
         upgradeViewController = new UpgradeViewController();
         settingsViewController = new SettingsViewController();
+
+        pauseActivityView.viewPager.setAdapter(new SectionsPagerAdapter(getFragmentManager()));
 
         tabBarView = new TabBarView(this);
         tabBarView.setViewPager(pauseActivityView.viewPager);
@@ -182,7 +183,7 @@ public class PauseActivity extends ActionBarActivity {
             public void run() {
                 updateUI();
             }
-        },500);
+        },1000);
     }
 
     private boolean isTablet() {

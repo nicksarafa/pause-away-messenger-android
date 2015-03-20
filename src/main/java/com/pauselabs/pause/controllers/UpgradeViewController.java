@@ -5,6 +5,7 @@ import android.view.View;
 import android.widget.AdapterView;
 
 import com.parse.ParseException;
+import com.parse.SaveCallback;
 import com.pauselabs.R;
 import com.pauselabs.pause.Injector;
 import com.pauselabs.pause.adapters.UpgradeAdapter;
@@ -40,12 +41,13 @@ public class UpgradeViewController {
                 UpgradeListItem item = (UpgradeListItem) view;
                 Feature tappedFeature = (Feature)item.getTag();
 
-                try {
-                    tappedFeature.addVoter((User)User.getCurrentUser());
-                    tappedFeature.save();
-                } catch (ParseException e) {
-                    e.printStackTrace();
-                }
+                tappedFeature.addVoter((User)User.getCurrentUser());
+                tappedFeature.saveInBackground(new SaveCallback() {
+                    @Override
+                    public void done(ParseException e) {
+                        upgradeAdapter.resetList();
+                    }
+                });
             }
         });
     }

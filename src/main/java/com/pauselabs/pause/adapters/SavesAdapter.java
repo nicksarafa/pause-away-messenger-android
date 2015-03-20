@@ -90,6 +90,8 @@ public class SavesAdapter extends ArrayAdapter<SavesView> {
             } while (saves.moveToNext());
         }
 
+        notifyDataSetChanged();
+
     }
 
 }
