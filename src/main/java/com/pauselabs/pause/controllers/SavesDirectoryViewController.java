@@ -33,7 +33,7 @@ import cn.pedant.SweetAlert.SweetAlertDialog;
 /**
  * Created by Passa on 1/26/15.
  */
-public class SavesDirectoryViewController implements View.OnClickListener, AdapterView.OnItemClickListener, AdapterView.OnItemLongClickListener {
+public class SavesDirectoryViewController implements View.OnClickListener, AdapterView.OnItemClickListener {
 
     public SavesDirectoryView savesDirectoryView;
 
@@ -57,7 +57,6 @@ public class SavesDirectoryViewController implements View.OnClickListener, Adapt
 
         savesDirectoryView.savesGrid.setAdapter(savesDirectoryArrayAdapter);
         savesDirectoryView.savesGrid.setOnItemClickListener(this);
-        savesDirectoryView.savesGrid.setOnItemLongClickListener(this);
     }
 
     public void updateUI() {
@@ -78,18 +77,10 @@ public class SavesDirectoryViewController implements View.OnClickListener, Adapt
     }
 
     @Override
-    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        SavesItem item = (SavesItem)view.getTag();
-        dbHelper.moveSave(item.getId());
-
-        savesDirectoryArrayAdapter.resetList();
-
-//        PauseApplication.startPauseService(Constants.Session.Creator.CUSTOM);
-    }
-
-    @Override
-    public boolean onItemLongClick(AdapterView<?> parent, View view, final int position, long id) {
+    public void onItemClick(AdapterView<?> parent, View view, final int position, long id) {
         final SavesItem item = (SavesItem)view.getTag();
+//        dbHelper.moveSave(item.getId());
+
 
         SweetAlertDialog alert = new SweetAlertDialog(PauseApplication.pauseActivity);
 
@@ -99,26 +90,26 @@ public class SavesDirectoryViewController implements View.OnClickListener, Adapt
         alert.setConfirmText("Set as Default");
         alert.setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
 
-        @Override
-        public void onClick(SweetAlertDialog sweetAlertDialog) {
-            dbHelper.setDefaultSave(item.getId());
-            savesDirectoryArrayAdapter.resetList();
+            @Override
+            public void onClick(SweetAlertDialog sweetAlertDialog) {
+                dbHelper.setDefaultSave(item.getId());
+                savesDirectoryArrayAdapter.resetList();
 
-            sweetAlertDialog.setTitleText("Default Message Changed");
-            sweetAlertDialog.setCustomImage(R.drawable.silencer_unselected_on_boarding);
-            sweetAlertDialog.setContentText("Save #" + (position + 1) + " set as Default reply message!");
-            sweetAlertDialog.showCancelButton(false);
-            sweetAlertDialog.setConfirmText("Ok");
+                sweetAlertDialog.setTitleText("Default Message Changed");
+                sweetAlertDialog.setCustomImage(R.drawable.silencer_unselected_on_boarding);
+                sweetAlertDialog.setContentText("Save #" + (position + 1) + " set as Default reply message!");
+                sweetAlertDialog.showCancelButton(false);
+                sweetAlertDialog.setConfirmText("Ok");
 
-            sweetAlertDialog.setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
-                @Override
-                public void onClick(SweetAlertDialog sweetAlertDialog) {
+                sweetAlertDialog.setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                    @Override
+                    public void onClick(SweetAlertDialog sweetAlertDialog) {
 
-                    sweetAlertDialog.dismissWithAnimation();
+                        sweetAlertDialog.dismissWithAnimation();
 
-                }
-            });
-        }
+                    }
+                });
+            }
         });
 
         if (item.getId() > 1) {
@@ -127,12 +118,12 @@ public class SavesDirectoryViewController implements View.OnClickListener, Adapt
 
                 @Override
                 public void onClick(SweetAlertDialog sweetAlertDialog) {
-                dbHelper.deleteSave(item.getId());
-                savesDirectoryArrayAdapter.resetList();
-                sweetAlertDialog.setTitleText("Complete!");
-                sweetAlertDialog.setContentText("Save #" + (position + 1) + " Deleted");
-                sweetAlertDialog.showCancelButton(false);
-                sweetAlertDialog.setConfirmText("Ok");
+                    dbHelper.deleteSave(item.getId());
+                    savesDirectoryArrayAdapter.resetList();
+                    sweetAlertDialog.setTitleText("Complete!");
+                    sweetAlertDialog.setContentText("Save #" + (position + 1) + " Deleted");
+                    sweetAlertDialog.showCancelButton(false);
+                    sweetAlertDialog.setConfirmText("Ok");
 
                     sweetAlertDialog.setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener(){
 
@@ -149,8 +140,12 @@ public class SavesDirectoryViewController implements View.OnClickListener, Adapt
 
         alert.show();
 
-        return true;
+
+
+//        PauseApplication.startPauseService(Constants.Session.Creator.CUSTOM);
     }
+
+
 
     private class SavesAdapter extends ArrayAdapter<SavesView> {
 
