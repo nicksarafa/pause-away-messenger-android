@@ -3,6 +3,7 @@ package com.pauselabs.pause.activity;
 import android.app.SearchManager;
 import android.app.SearchableInfo;
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Color;
 import android.net.Uri;
@@ -15,10 +16,10 @@ import android.view.View;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.SearchView;
+import android.widget.TextView;
 
 import com.pauselabs.R;
 import com.pauselabs.pause.Injector;
-import com.pauselabs.pause.PauseApplication;
 import com.pauselabs.pause.adapters.ContactsSearchAdapter;
 import com.pauselabs.pause.core.ContactsQuery;
 import com.pauselabs.pause.view.tabs.SearchPrivacyView;
@@ -50,12 +51,16 @@ public class SearchPrivacyActivity extends FragmentActivity implements AdapterVi
         searchPrivacyView = (SearchPrivacyView)inflater.inflate(R.layout.search_privacy_view,null);
         setContentView(searchPrivacyView);
 
+        Intent sentIntent = getIntent();
+
         // Create the main contacts adapter
-        mAdapter = new ContactsSearchAdapter(this);
+        mAdapter = new ContactsSearchAdapter(this, sentIntent.getBooleanExtra("usingIce",true));
         searchPrivacyView.contactList.setAdapter(mAdapter);
         searchPrivacyView.contactList.setOnItemClickListener(this);
         searchPrivacyView.contactList.setOnScrollListener(this);
         getSupportLoaderManager().restartLoader(ContactsQuery.QUERY_ID, null, mAdapter);
+
+        ((TextView)searchPrivacyView.findViewById(R.id.search_type)).setText(mAdapter.usingIce ? "ice" : "black");
 
         searchPrivacyView.selectAllBtn.setOnClickListener(new View.OnClickListener() {
             @Override

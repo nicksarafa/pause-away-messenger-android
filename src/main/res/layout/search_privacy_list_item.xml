@@ -6,18 +6,6 @@
     android:layout_height="?android:attr/listPreferredItemHeight"
     android:listSelector="@android:color/transparent">
 
-    <CheckBox
-        android:id="@+id/checkbox_ice"
-        android:focusable="false"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="8dp"
-        android:layout_marginStart="8dp"
-        android:textColor="@color/text"
-        android:singleLine="true"
-        android:ellipsize="marquee"
-        android:layout_gravity="center_vertical|center_horizontal"/>
-
         <TextView
             android:id="@+id/contact_name_field"
             android:paddingLeft="@dimen/privacy_checkbox_and_text_padding"
@@ -35,16 +23,16 @@
             android:ellipsize="marquee"
             android:textSize="@dimen/text_large"/>
 
-            <CheckBox
-                android:id="@+id/checkbox_added"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="8dp"
-                android:layout_marginEnd="8dp"
-                android:layout_gravity="center_vertical|center_horizontal"
-                android:textColor="@color/text"
-                android:ellipsize="marquee"
-                android:singleLine="true"
-                android:focusable="false"/>
+        <CheckBox
+            android:id="@+id/contact_checkbox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_gravity="center_vertical|center_horizontal"
+            android:textColor="@color/text"
+            android:ellipsize="marquee"
+            android:singleLine="true"
+            android:focusable="false"/>
 
 </com.pauselabs.pause.view.SearchPrivacyListItem>

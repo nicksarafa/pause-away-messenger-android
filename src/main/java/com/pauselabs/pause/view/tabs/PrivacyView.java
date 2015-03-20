@@ -18,10 +18,10 @@ public class PrivacyView extends RelativeLayout {
 
     @InjectView(R.id.privacy_contacts_list)
     public ListView contactsList;
-    @InjectView(R.id.friends_tab)
-    public IconButton friendsTab;
-    @InjectView(R.id.emergency_tab)
-    public IconButton emergencyTab;
+    @InjectView(R.id.emergency_tab_btn)
+    public IconButton emergencyTabBtn;
+    @InjectView(R.id.blacklist_tab_btn)
+    public IconButton blacklistTabBtn;
 
     public PrivacyView(Context context) {
         super(context);

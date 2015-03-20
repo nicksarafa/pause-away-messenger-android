@@ -9,12 +9,13 @@ import android.support.v4.content.Loader;
 import android.text.SpannableString;
 import android.text.TextUtils;
 import android.text.style.TextAppearanceSpan;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 
 import com.pauselabs.R;
-import com.pauselabs.pause.PauseApplication;
 import com.pauselabs.pause.core.ContactsQuery;
 import com.pauselabs.pause.model.Constants;
 import com.pauselabs.pause.view.SearchPrivacyListItem;
@@ -35,20 +36,18 @@ public class ContactsSearchAdapter extends ContactsAdapter {
      *
      * @param context A context that has access to the app's layout.
      */
-    public ContactsSearchAdapter(Context context) {
-        super(context);
+    public ContactsSearchAdapter(Context context, boolean usingIce) {
+        super(context, usingIce);
 
         // Defines a span for highlighting the part of a display name that matches the search string
         highlightTextSpan = new TextAppearanceSpan(context, R.style.contactSearchTextHighlight);
-
-
     }
 
     public void selectAll() {
         int count = getCount();
         for (int i = 0; i < count; i++) {
             SearchPrivacyListItem item = (SearchPrivacyListItem)getView(i,null,null).getTag();
-            item.blackCheckbox.performClick();
+            item.contactCheckbox.performClick();
         }
     }
 
@@ -73,34 +72,38 @@ public class ContactsSearchAdapter extends ContactsAdapter {
      * Overrides newView() to inflate the list item views.
      */
     @Override
-    public View newView(Context context, Cursor cursor, ViewGroup viewGroup) {
-        final SearchPrivacyListItem item = (SearchPrivacyListItem) inflater.inflate(R.layout.search_privacy_list_item, null);;
-        item.blackCheckbox.setOnClickListener(new View.OnClickListener() {
+    public View newView(Context context, final Cursor cursor, ViewGroup viewGroup) {
+        final SearchPrivacyListItem item = (SearchPrivacyListItem) inflater.inflate(R.layout.search_privacy_list_item, null);
+
+        item.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                CheckBox checkbox = (CheckBox) v;
-
-                if (checkbox.isChecked()) {
-                    blackContacts.add(item.contactId);
-                } else {
-                    blackContacts.remove(item.contactId);
-                }
-
-                prefs.edit().putStringSet(Constants.Settings.BLACKLIST, new HashSet<>(blackContacts)).apply();
+                item.contactCheckbox.setChecked(!item.contactCheckbox.isChecked());
             }
         });
-        item.iceCheckbox.setOnClickListener(new View.OnClickListener() {
+        item.contactCheckbox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
-            public void onClick(View v) {
-                CheckBox checkbox = (CheckBox) v;
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                CheckBox checkbox = (CheckBox) buttonView;
+
+                Log.i("ON CHECKED","id: " + item.contactId);
 
                 if (checkbox.isChecked()) {
-                    iceContacts.add(item.contactId);
+                    if (usingIce)
+                        iceContacts.add(item.contactId);
+                    else
+                        blackContacts.add(item.contactId);
                 } else {
-                    iceContacts.remove(item.contactId);
+                    if (usingIce)
+                        iceContacts.remove(item.contactId);
+                    else
+                        blackContacts.remove(item.contactId);
                 }
 
-                prefs.edit().putStringSet(Constants.Settings.ICELIST, new HashSet<>(iceContacts)).apply();
+                if (usingIce)
+                    prefs.edit().putStringSet(Constants.Settings.ICELIST, new HashSet<>(iceContacts)).apply();
+                else
+                    prefs.edit().putStringSet(Constants.Settings.BLACKLIST, new HashSet<>(blackContacts)).apply();
             }
         });
 
@@ -113,11 +116,23 @@ public class ContactsSearchAdapter extends ContactsAdapter {
      */
     @Override
     public void bindView(View view, Context context, Cursor cursor) {
-        // Gets handles to individual view resources
-        SearchPrivacyListItem item = (SearchPrivacyListItem) view;
-
         final String displayName = cursor.getString(ContactsQuery.DISPLAY_NAME);
         final String contactId = cursor.getString(ContactsQuery.ID);
+
+        final SearchPrivacyListItem item = (SearchPrivacyListItem) view;
+        item.contactId = contactId;
+
+        if(usingIce){
+            if (iceContacts.contains(contactId))
+                item.contactCheckbox.setChecked(true);
+            else
+                item.contactCheckbox.setChecked(false);
+        } else {
+            if (blackContacts.contains(contactId))
+                item.contactCheckbox.setChecked(true);
+            else
+                item.contactCheckbox.setChecked(false);
+        }
 
         final int startIndex = indexOfSearchQuery(displayName);
 
@@ -125,8 +140,6 @@ public class ContactsSearchAdapter extends ContactsAdapter {
             // If the user didn't do a search, or the search string didn't match a display
             // name, show the display name without highlighting
             item.contactNameField.setText(displayName);
-//            holder.checkbox_added.setText(displayName);
-
         } else {
             // If the search string matched the display name, applies a SpannableString to
             // highlight the search string with the displayed display name
@@ -142,20 +155,6 @@ public class ContactsSearchAdapter extends ContactsAdapter {
             item.contactNameField.setText(highlightedName);
 //            holder.checkbox_ice.setText(highlightedName);
         }
-
-        if(blackContacts.contains(contactId)){
-            item.blackCheckbox.setChecked(true);
-        } else {
-            item.blackCheckbox.setChecked(false);
-        }
-        if(iceContacts.contains(contactId)){
-            item.iceCheckbox.setChecked(true);
-        } else {
-            item.iceCheckbox.setChecked(false);
-        }
-
-        item.contactId = contactId;
-
     }
 
     public void updateSearchTerm(String term) {
@@ -172,7 +171,7 @@ public class ContactsSearchAdapter extends ContactsAdapter {
             contentUri = Uri.withAppendedPath(ContactsQuery.FILTER_URI, Uri.encode(mSearchTerm));
         }
 
-        return new CursorLoader(PauseApplication.pauseActivity,
+        return new CursorLoader(c,
                 contentUri,
                 ContactsQuery.PROJECTION,
                 ContactsQuery.SELECTION,
