@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.pauselabs.pause.view.start.GenderView
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:whatever="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
@@ -22,8 +23,12 @@
 
     </FrameLayout>
 
-        <EditText
+        <com.andreabaccega.widget.FormEditText
             android:id="@+id/ob_name"
+            whatever:testType="name"
+            whatever:emptyAllowed="false"
+            whatever:emptyErrorString="Empty"
+            whatever:testErrorString="Test"
             android:layout_width="fill_parent"
             android:layout_height="match_parent"
             android:layout_centerVertical="true"

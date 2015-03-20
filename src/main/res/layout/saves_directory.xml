@@ -2,6 +2,7 @@
 
 <com.pauselabs.pause.view.tabs.SavesDirectoryView
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:whatever="http://schemas.android.com/apk/res-auto"
     android:id="@+id/saveDirectory"
     android:layout_height="fill_parent"
     android:layout_width="fill_parent"
@@ -17,8 +18,12 @@
         android:layout_margin="8dp"
         android:background="@drawable/card_bg">
 
-        <EditText
+        <com.andreabaccega.widget.FormEditText
             android:id="@+id/custom_text"
+            whatever:testType="numeric"
+            whatever:emptyAllowed="false"
+            whatever:emptyErrorString="Empty"
+            whatever:testErrorString="Test"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="7"
