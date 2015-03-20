@@ -88,9 +88,15 @@ public class ContactsGridAdapter extends ContactsAdapter {
             contactInitials = "@";
         }
 
-        // Set Text Drawable to PrivacyListItem
+        // Set Text Drawable to PrivacyListItem & customize
 
-        TextDrawable contactInitialsDrawable = TextDrawable.builder().buildRound(contactInitials, randomColor);
+        TextDrawable contactInitialsDrawable = TextDrawable.builder()
+                .beginConfig()
+                    .textColor(Color.WHITE)
+                    .toUpperCase()
+                .endConfig()
+
+        .buildRound(contactInitials, randomColor);
 
         item.privacyContactInitials.setImageDrawable(contactInitialsDrawable);
         item.privacyListItemContactName.setText(displayName);
