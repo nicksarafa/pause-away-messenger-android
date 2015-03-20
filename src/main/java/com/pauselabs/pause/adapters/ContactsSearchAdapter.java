@@ -16,6 +16,7 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 
 import com.pauselabs.R;
+import com.pauselabs.pause.PauseApplication;
 import com.pauselabs.pause.core.ContactsQuery;
 import com.pauselabs.pause.model.Constants;
 import com.pauselabs.pause.view.SearchPrivacyListItem;
@@ -104,6 +105,8 @@ public class ContactsSearchAdapter extends ContactsAdapter {
                     prefs.edit().putStringSet(Constants.Settings.ICELIST, new HashSet<>(iceContacts)).apply();
                 else
                     prefs.edit().putStringSet(Constants.Settings.BLACKLIST, new HashSet<>(blackContacts)).apply();
+
+                PauseApplication.pauseActivity.updateUI();
             }
         });
 
