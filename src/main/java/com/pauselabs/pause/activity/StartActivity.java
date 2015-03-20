@@ -5,15 +5,29 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.media.AudioManager;
 import android.os.Bundle;
+import android.provider.Settings;
 
 import com.crashlytics.android.Crashlytics;
+import com.parse.Parse;
+import com.parse.ParseException;
+import com.parse.ParseObject;
+import com.parse.ParseQuery;
+import com.parse.ParseUser;
+import com.parse.SignUpCallback;
 import com.pauselabs.pause.Injector;
 import com.pauselabs.pause.PauseApplication;
 import com.pauselabs.pause.controllers.start.GenderViewController;
 import com.pauselabs.pause.controllers.start.OnboardingViewController;
 import com.pauselabs.pause.model.Constants;
+import com.pauselabs.pause.model.Parse.Feature;
+import com.pauselabs.pause.model.Parse.User;
+
+import java.util.List;
 
 import javax.inject.Inject;
+
+import bolts.Continuation;
+import bolts.Task;
 
 /**
  * Created by Passa on 12/10/14.
@@ -31,8 +45,6 @@ public class StartActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Crashlytics.getInstance().setDebugMode(true);
-        Crashlytics.start(this);
 
         PauseApplication.startActivity = this;
 

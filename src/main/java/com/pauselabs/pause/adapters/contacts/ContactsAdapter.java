@@ -1,4 +1,4 @@
-package com.pauselabs.pause.adapters;
+package com.pauselabs.pause.adapters.contacts;
 
 import android.content.Context;
 import android.content.SharedPreferences;

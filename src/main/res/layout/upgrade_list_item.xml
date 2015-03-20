@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.pauselabs.pause.view.UpgradeListItem
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <IconTextView
+        android:id="@+id/upgrade_list_item_icon_text"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:textAlignment="viewStart"
+        android:textIsSelectable="false"
+        android:text="{fa-bed}"
+        android:shadowColor="#22000000"
+        android:shadowDx="0"
+        android:shadowDy="0"
+        android:shadowRadius="0"
+        android:textSize="24dp"
+        android:textColor="@color/text"
+        android:layout_weight="1"
+        android:layout_marginStart="@dimen/settings_thumbnail_horizontal_and_vertical_margin"
+        android:layout_marginLeft="@dimen/settings_thumbnail_horizontal_and_vertical_margin"
+        android:layout_marginRight="@dimen/settings_thumbnail_horizontal_and_vertical_margin"
+        android:layout_marginEnd="@dimen/settings_thumbnail_horizontal_and_vertical_margin"
+        android:gravity="start"
+        android:layout_gravity="start"/>
+
+</com.pauselabs.pause.view.UpgradeListItem>
