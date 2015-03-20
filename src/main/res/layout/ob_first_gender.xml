@@ -25,7 +25,7 @@
 
         <com.andreabaccega.widget.FormEditText
             android:id="@+id/ob_name"
-            whatever:testType="name"
+            whatever:testType="personName"
             whatever:emptyAllowed="false"
             whatever:emptyErrorString="Empty"
             whatever:testErrorString="Test"

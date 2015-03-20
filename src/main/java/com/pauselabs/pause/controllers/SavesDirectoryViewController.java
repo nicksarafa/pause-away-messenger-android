@@ -84,7 +84,7 @@ public class SavesDirectoryViewController implements View.OnClickListener, Adapt
 
         savesDirectoryArrayAdapter.resetList();
 
-        PauseApplication.startPauseService(Constants.Session.Creator.CUSTOM);
+//        PauseApplication.startPauseService(Constants.Session.Creator.CUSTOM);
     }
 
     @Override
