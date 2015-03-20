@@ -318,12 +318,13 @@ public class SettingsViewController implements View.OnClickListener {
     }
 
     public void resetDefaultSettings() {
-        SweetAlertDialog alert = new SweetAlertDialog(PauseApplication.pauseActivity);
-        alert.setTitleText("Reset Settings to Default");
-        alert.setContentText("Would you like to reset the settings to default?");
+        final SweetAlertDialog alert = new SweetAlertDialog(PauseApplication.pauseActivity);
+        alert.setTitleText("Reset Pause Settings to Default Settings?");
+        alert.setContentText("Reset the settings to default?");
 
-        alert.setConfirmText("Yes, Reset...");
-        alert.setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+        alert.setConfirmText("Yes");
+        alert.setCancelText("Nevermind");
+        alert.setCancelClickListener(new SweetAlertDialog.OnSweetClickListener() {
             @Override
             public void onClick(SweetAlertDialog sweetAlertDialog) {
                 changeStrangers(true);
@@ -338,16 +339,22 @@ public class SettingsViewController implements View.OnClickListener {
             }
         });
 
-        alert.setCancelText("No! Keep my settings!");
-        alert.setCancelClickListener(new SweetAlertDialog.OnSweetClickListener() {
-            @Override
-            public void onClick(SweetAlertDialog sweetAlertDialog) {
-                sweetAlertDialog.dismissWithAnimation();
-            }
-        });
-
         alert.show();
     }
+//
+//        alert.setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+//            @Override
+//            public void onClick(SweetAlertDialog sweetAlertDialog) {
+//
+//                SweetAlertDialog alert2 = new SweetAlertDialog(PauseApplication.pauseActivity);
+//                alert2.setTitleText("Are you sure?");
+//                alert2.setContentText("This can't be undone!");
+//                alert2.setConfirmText("JUST DO IT ALREADY!");
+//                alert2.setCancelText("Meh. Nevermind");
+
+//                alert2.setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+//                    @Override
+//                    public void OnClick (SweetAlertDialog sweetAlertDialog) {
 
     public void launchSupportLink() {
         Intent termsIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.woot.com")).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
