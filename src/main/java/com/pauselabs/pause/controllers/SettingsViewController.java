@@ -321,10 +321,10 @@ public class SettingsViewController implements View.OnClickListener {
         final SweetAlertDialog alert = new SweetAlertDialog(PauseApplication.pauseActivity);
         alert.setTitleText("Reset Pause Settings to Default Settings?");
         alert.setContentText("Reset the settings to default?");
-
+        alert.setCanceledOnTouchOutside(true);
         alert.setConfirmText("Yes");
         alert.setCancelText("Nevermind");
-        alert.setCancelClickListener(new SweetAlertDialog.OnSweetClickListener() {
+        alert.setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
             @Override
             public void onClick(SweetAlertDialog sweetAlertDialog) {
                 changeStrangers(true);
@@ -342,6 +342,8 @@ public class SettingsViewController implements View.OnClickListener {
         alert.show();
     }
 //
+//    Second Part I'm stuggling to Implement. Basically double checks your decision to reset in a funny way.
+//    
 //        alert.setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
 //            @Override
 //            public void onClick(SweetAlertDialog sweetAlertDialog) {
