@@ -19,6 +19,8 @@ import com.pauselabs.pause.view.tabs.SettingsView;
 
 import javax.inject.Inject;
 
+import cn.pedant.SweetAlert.SweetAlertDialog;
+
 /**
  * Created by Passa on 12/26/14.
  */
@@ -316,13 +318,35 @@ public class SettingsViewController implements View.OnClickListener {
     }
 
     public void resetDefaultSettings() {
-        changeStrangers(true);
-        changeMissedCalls(true);
-        changeSMS(true);
-        changeSilent(true);
-        changeVibrate(true);
-        changeVoice(true);
-        changeToast(true);
+        SweetAlertDialog alert = new SweetAlertDialog(PauseApplication.pauseActivity);
+        alert.setTitleText("Reset Settings to Default");
+        alert.setContentText("Would you like to reset the settings to default?");
+
+        alert.setConfirmText("Yes, Reset...");
+        alert.setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+            @Override
+            public void onClick(SweetAlertDialog sweetAlertDialog) {
+                changeStrangers(true);
+                changeMissedCalls(true);
+                changeSMS(true);
+                changeSilent(true);
+                changeVibrate(true);
+                changeVoice(true);
+                changeToast(true);
+
+                sweetAlertDialog.dismissWithAnimation();
+            }
+        });
+
+        alert.setCancelText("No! Keep my settings!");
+        alert.setCancelClickListener(new SweetAlertDialog.OnSweetClickListener() {
+            @Override
+            public void onClick(SweetAlertDialog sweetAlertDialog) {
+                sweetAlertDialog.dismissWithAnimation();
+            }
+        });
+
+        alert.show();
     }
 
     public void launchSupportLink() {
