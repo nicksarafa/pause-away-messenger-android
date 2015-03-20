@@ -164,10 +164,10 @@ public class SavesDirectoryViewController implements View.OnClickListener, Adapt
         public View getView(int position, View convertView, ViewGroup parent) {
             SavesView savesView = getItem(position);
 
+            RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(savesView.savesTextView.getLayoutParams());
+
             Drawable iconSilence = new IconDrawable(getContext(), Iconify.IconValue.fa_bell_slash_o).colorRes(R.color.text_white).sizeDp(22);
             Drawable iconInfo = new IconDrawable(getContext(), Iconify.IconValue.fa_question_circle).colorRes(R.color.text_white).sizeDp(22);
-
-            RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(savesView.savesTextView.getLayoutParams());
 
             SavesItem item = (SavesItem)savesView.getTag();
             if (dbHelper.isDefaultSave(item.getId())) {
@@ -180,7 +180,6 @@ public class SavesDirectoryViewController implements View.OnClickListener, Adapt
                 savesView.savesTextView.setCompoundDrawablePadding(28);
                 savesView.savesTextView.setCompoundDrawables(iconSilence, null, iconInfo, null);
                 savesView.savesTextView.setText(item.getText());
-
             }
 
             return savesView;
