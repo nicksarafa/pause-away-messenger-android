@@ -62,7 +62,7 @@
         <com.pauselabs.pause.model.SettingsButton
             android:id="@+id/strangersBtn"
             android:layout_width="match_parent"
-            android:layout_height="?android:attr/listPreferredItemHeight"
+            android:layout_height="wrap_content"
             android:background="@null"
             app:frontnail="{fa-user-secret}"
             app:label="@string/reply_to_strangers"/>
