@@ -43,6 +43,7 @@ public class PrivacyViewController implements View.OnClickListener {
 
         contactsGridAdapter = new ContactsGridAdapter(PauseApplication.pauseActivity);
         privacyView.contactsList.setAdapter(contactsGridAdapter);
+
     }
 
     public void updateUI() {

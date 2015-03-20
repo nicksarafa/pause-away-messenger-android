@@ -9,6 +9,7 @@ import android.support.v4.content.Loader;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.amulyakhare.textdrawable.TextDrawable;
 import com.pauselabs.R;
 import com.pauselabs.pause.PauseApplication;
 import com.pauselabs.pause.core.ContactsQuery;
@@ -39,7 +40,6 @@ public class ContactsGridAdapter extends ContactsAdapter {
     public View newView(Context context, Cursor cursor, ViewGroup viewGroup) {
         PrivacyListItemView item = (PrivacyListItemView) inflater.inflate(R.layout.privacy_list_item_view,null);
 
-
         return item;
     }
 
@@ -53,6 +53,11 @@ public class ContactsGridAdapter extends ContactsAdapter {
         final String displayName = cursor.getString(ContactsQuery.DISPLAY_NAME);
         final String contactId = cursor.getString(ContactsQuery.ID);
 
+        //Set Text Drawable to PrivacyListItem
+
+        TextDrawable contactInitialsDrawable = TextDrawable.builder().buildRound("A", R.color.green);
+
+        item.privacyContactInitials.setImageDrawable(contactInitialsDrawable);
         item.privacyListItemContactName.setText(displayName);
         item.contactId = contactId;
     }

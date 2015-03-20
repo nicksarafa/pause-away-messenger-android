@@ -2,6 +2,7 @@ package com.pauselabs.pause.view.tabs;
 
 import android.content.Context;
 import android.util.AttributeSet;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -17,6 +18,8 @@ public class PrivacyListItemView extends LinearLayout {
 
     @InjectView(R.id.privacy_list_item)
     public TextView privacyListItemContactName;
+    @InjectView(R.id.privacy_contact_initials)
+    public ImageView privacyContactInitials;
 
     public String contactId;
 
@@ -37,6 +40,7 @@ public class PrivacyListItemView extends LinearLayout {
         super.onFinishInflate();
 
         Views.inject(this);
+
     }
 
 }
