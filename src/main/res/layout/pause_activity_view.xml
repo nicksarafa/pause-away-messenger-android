@@ -10,7 +10,7 @@
     android:background="@color/light_gray"
     android:orientation="vertical"
     android:gravity="bottom"
-    sothree:umanoClipPanel="true"
+    sothree:umanoClipPanel="false"
     sothree:umanoPanelHeight="0dp"
     sothree:umanoShadowHeight="0dp"
     sothree:umanoFadeColor="@android:color/transparent">
