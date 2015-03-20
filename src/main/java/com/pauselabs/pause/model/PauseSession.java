@@ -121,7 +121,7 @@ public class PauseSession implements Serializable {
     public Boolean shouldSenderReceivedBounceback(String contactId, int type) {
         Boolean shouldSendBounceback;
 
-        if(mBlacklistContacts.contains(contactId)) {
+        if (!mPrefs.getBoolean(Constants.Pause.ONBOARDING_FINISHED_KEY, false) || mBlacklistContacts.contains(contactId)) {
             shouldSendBounceback = false;
         } else {
             shouldSendBounceback = privacyCheckPassed(contactId, type);

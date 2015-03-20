@@ -7,6 +7,8 @@ import android.util.AttributeSet;
 import android.widget.RelativeLayout;
 
 import com.gc.materialdesign.views.Button;
+import com.gc.materialdesign.views.ButtonFlat;
+import com.gc.materialdesign.views.ButtonFloat;
 import com.pauselabs.R;
 import com.sothree.slidinguppanel.SlidingUpPanelLayout;
 
@@ -25,7 +27,7 @@ public class PauseActivityView extends SlidingUpPanelLayout {
     @InjectView(R.id.toolbar)
     public Toolbar toolbar;
     @InjectView(R.id.fab_image_button)
-    public Button startPauseButton;
+    public ButtonFloat startPauseButton;
 
     public PauseActivityView(Context context) {
         super(context);

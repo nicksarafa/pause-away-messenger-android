@@ -52,7 +52,7 @@ public class StartActivity extends Activity {
             }
         } else {
             setToRinger(1);
-            
+
             setContentView(genderViewController.genderView);
         }
     }

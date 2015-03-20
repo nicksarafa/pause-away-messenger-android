@@ -140,9 +140,8 @@ public class SummaryViewController implements AdapterView.OnItemClickListener, R
 
             if (PauseApplication.isActiveSession()) {
                 ArrayList<PauseConversation> conversations = PauseApplication.getCurrentSession().getConversationsInTimeOrder();
-                if (conversations != null) {
-                    if (conversations.size() > 0)
-                        summaryView.noMessages.setVisibility(View.INVISIBLE);
+                if (conversations != null && conversations.size() > 0) {
+                    summaryView.noMessages.setVisibility(View.INVISIBLE);
 
                     for (PauseConversation convo : conversations) {
                         SummaryConversationCard newCard = (SummaryConversationCard) inflater.inflate(R.layout.summary_conversation_card, null);

@@ -278,13 +278,22 @@ public class PauseApplication extends Application {
 //    }
 
     public static Notification updateMainNotification() {
-        int num = 0;
-        for (PauseConversation convo: getCurrentSession().getConversations())
-            if (convo.getMessagesReceived().size() != 0)
-                num++;
-        String message = (num > 0) ? num + ((num == 1) ? " person has" : " people have") + " contacted you." : "No one has contacted you";
+        Intent i;
 
-        final Intent i = new Intent(instance, PauseActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        String message;
+        if (prefs.getBoolean(Constants.Pause.ONBOARDING_FINISHED_KEY, false)) {
+            int num = 0;
+            for (PauseConversation convo : getCurrentSession().getConversations())
+                if (convo.getMessagesReceived().size() != 0)
+                    num++;
+            message = (num > 0) ? num + ((num == 1) ? " person has" : " people have") + " contacted you." : "No one has contacted you";
+
+            i = new Intent(instance, PauseActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        } else {
+            message = "Please finish our onboarding process to use the apps features.";
+
+            i = new Intent(instance, StartActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        }
 
         // open activity intent
         PendingIntent pendingIntent = PendingIntent.getActivity(instance, 0, i, PendingIntent.FLAG_UPDATE_CURRENT);

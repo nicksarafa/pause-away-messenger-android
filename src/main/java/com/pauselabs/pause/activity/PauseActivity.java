@@ -3,7 +3,9 @@ package com.pauselabs.pause.activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v13.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
@@ -114,7 +116,7 @@ public class PauseActivity extends ActionBarActivity {
         summaryViewController.summaryView.setClickable(true);
 
         pauseActivityView.setDragView(pauseActivityView.startPauseButton);
-        ((ButtonFloat) pauseActivityView.startPauseButton).setDrawableIcon(getResources().getDrawable(R.drawable.ic_action_pause_off));
+        pauseActivityView.startPauseButton.setDrawableIcon(getResources().getDrawable(R.drawable.ic_action_pause_off));
         pauseActivityView.startPauseButton.setBackgroundColor(getResources().getColor(R.color.on));
         pauseActivityView.setPanelHeight(0);
         pauseActivityView.setAnchorPoint(0.8894308943f);
@@ -123,63 +125,40 @@ public class PauseActivity extends ActionBarActivity {
             public void onPanelSlide(View view, float ratio) {
                 actionBar.getCustomView().setY(-((ratio + (ratio * 0.121875f)) * actionBar.getHeight()));
 
-                ButtonFloat button = (ButtonFloat) pauseActivityView.startPauseButton;
+                ButtonFloat button = pauseActivityView.startPauseButton;
                 RelativeLayout.LayoutParams lp = (RelativeLayout.LayoutParams)button.getLayoutParams();
                 float y = summaryViewController.summaryView.getY();
                 pauseActivityView.startPauseButton.setY(y - (pauseActivityView.startPauseButton.getHeight() + lp.bottomMargin));
-
-                Log.i(null,"Sliding");
-
             }
 
             @Override
             public void onPanelAnchored(View view) {
                 PauseApplication.startPauseService(Constants.Session.Creator.VOLUME);
 
-                ButtonFloat button = (ButtonFloat) pauseActivityView.startPauseButton;
-                RelativeLayout.LayoutParams lp = (RelativeLayout.LayoutParams)button.getLayoutParams();
-                float y = summaryViewController.summaryView.getY();
-                pauseActivityView.startPauseButton.setY(y - (pauseActivityView.startPauseButton.getHeight() + lp.bottomMargin));
+//                getSupportActionBar().setBackgroundDrawable(getResources().getDrawable(R.color.on));
 
-                getSupportActionBar().setBackgroundDrawable(getResources().getDrawable(R.color.on));
-
-                ((ButtonFloat) pauseActivityView.startPauseButton).setDrawableIcon(getResources().getDrawable(R.drawable.ic_action_pause_on));
+                pauseActivityView.startPauseButton.setDrawableIcon(getResources().getDrawable(R.drawable.ic_action_pause_on));
                 pauseActivityView.startPauseButton.setBackgroundColor(getResources().getColor(R.color.off));
-
-                Log.i(null,"Anchored");
-
             }
 
             @Override
             public void onPanelCollapsed(View view) {
                 PauseApplication.stopPauseService(PauseApplication.getCurrentSession().getCreator());
 
-                ButtonFloat button = (ButtonFloat) pauseActivityView.startPauseButton;
-                RelativeLayout.LayoutParams lp = (RelativeLayout.LayoutParams)button.getLayoutParams();
-                float y = summaryViewController.summaryView.getY();
-                pauseActivityView.startPauseButton.setY(y - (pauseActivityView.startPauseButton.getHeight() + (lp.bottomMargin * (14/3))));
+//                getSupportActionBar().setBackgroundDrawable(getResources().getDrawable(R.color.off));
 
-                getSupportActionBar().setBackgroundDrawable(getResources().getDrawable(R.color.off));
-
-                ((ButtonFloat) pauseActivityView.startPauseButton).setDrawableIcon(getResources().getDrawable(R.drawable.ic_action_pause_off));
+                pauseActivityView.startPauseButton.setDrawableIcon(getResources().getDrawable(R.drawable.ic_action_pause_off));
                 pauseActivityView.startPauseButton.setBackgroundColor(getResources().getColor(R.color.on));
-
-                Log.i(null,"Collapsed");
-
             }
 
             @Override
             public void onPanelExpanded(View view) {
-
-                Log.i(null,"Expanded");
 
             }
 
 
             @Override
             public void onPanelHidden(View view) {
-
-                Log.i(null,"Hidden");
 
             }
 
@@ -190,21 +169,19 @@ public class PauseActivity extends ActionBarActivity {
     protected void onStart() {
         super.onStart();
 
-        Log.i(TAG,"OnStart");
 
-        boolean from_not = getIntent().getBooleanExtra("FROM_NOT", false);
-        if (from_not) {
-            Intent it = new Intent(Intent.ACTION_CLOSE_SYSTEM_DIALOGS);
-            sendBroadcast(it);
-        }
-        updateUI();
     }
 
     @Override
     protected void onResume() {
         super.onResume();
 
-        updateUI();
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                updateUI();
+            }
+        },500);
     }
 
     private boolean isTablet() {
@@ -223,7 +200,7 @@ public class PauseActivity extends ActionBarActivity {
         upgradeViewController.updateUI();
         settingsViewController.updateUI();
 
-        if(PauseApplication.isActiveSession() && pauseActivityView.getPanelState() != SlidingUpPanelLayout.PanelState.ANCHORED) {
+        if(PauseApplication.isActiveSession() && pauseActivityView.getPanelState() == SlidingUpPanelLayout.PanelState.COLLAPSED) {
             pauseActivityView.setPanelState(SlidingUpPanelLayout.PanelState.ANCHORED);
         } else if (!PauseApplication.isActiveSession() && pauseActivityView.getPanelState() == SlidingUpPanelLayout.PanelState.ANCHORED) {
             pauseActivityView.setPanelState(SlidingUpPanelLayout.PanelState.COLLAPSED);

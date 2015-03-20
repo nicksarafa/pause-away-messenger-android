@@ -24,8 +24,6 @@ public class NotificationActionListener extends BroadcastReceiver {
                     break;
                 case Constants.Notification.EDIT_PAUSE_SESSION:
                     Intent i = new Intent(PauseApplication.getInstance(), PauseActivity.class);
-                    i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                    i.putExtra("FROM_NOT",true);
                     PauseApplication.getInstance().startActivity(i);
 
                     break;
