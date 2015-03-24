@@ -81,8 +81,14 @@ public class PauseActivity extends ActionBarActivity {
 
         tabBarView = new TabBarView(this);
         tabBarView.setViewPager(pauseActivityView.viewPager);
+
         tabBarView.addView(privacyViewController.privacyBtns);
-        privacyViewController.privacyBtns.setVisibility(View.INVISIBLE);
+        tabBarView.addView(timeBankViewController.timeBankActionBtnView);
+
+        // Set Additional Action Bar Items to Visibility.GONE otherwise they can't be seen 
+        timeBankViewController.timeBankActionBtnView.setVisibility(View.GONE);
+        privacyViewController.privacyBtns.setVisibility(View.GONE);
+
         tabBarView.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
@@ -96,7 +102,14 @@ public class PauseActivity extends ActionBarActivity {
                 if (pageIndex == PRIVACY_TAB) {
                     privacyViewController.privacyBtns.setVisibility(View.VISIBLE);
                 } else {
-                    privacyViewController.privacyBtns.setVisibility(View.INVISIBLE);
+                    privacyViewController.privacyBtns.setVisibility(View.GONE);
+                }
+
+                if (pageIndex == TIME_BANK_TAB) {
+                    timeBankViewController.timeBankActionBtnView.setVisibility(View.VISIBLE);
+
+                } else {
+                    timeBankViewController.timeBankActionBtnView.setVisibility(View.GONE);
                 }
             }
 

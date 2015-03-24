@@ -20,37 +20,6 @@
 
         <!-- TimeBank Image + Title -->
 
-        <RelativeLayout
-            android:id="@+id/bank_title_image_container"
-            android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <TextView
-                android:id="@+id/time_bank_header_title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:textColor="@color/text_white"
-                android:layout_alignParentTop="true"
-                android:textSize="@dimen/text_extra_large"
-                android:layout_margin="@dimen/info_header_horizontal_padding"
-                android:textStyle="bold"
-                android:text="Time Bank"/>
-
-                <IconTextView
-                    android:id="@+id/time_bank_image"
-                    android:layout_width="wrap_content"
-                    android:layout_height="100dp"
-                    android:text="{fa-bank}"
-                    android:layout_below="@id/time_bank_header_title"
-                    android:textColor="@color/text_white"
-                    android:textSize="100dp"
-                    android:layout_margin="@dimen/info_header_horizontal_padding"
-                    android:layout_centerHorizontal="true"/>
-
-        </RelativeLayout>
-
         <!-- Total Points -->
 
         <LinearLayout
@@ -58,8 +27,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_margin="@dimen/info_header_horizontal_padding"
-            android:layout_below="@id/bank_title_image_container">
+            android:layout_margin="@dimen/info_header_horizontal_padding">
 
             <IconTextView
                 android:id="@+id/points_icon"
@@ -250,7 +218,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/purchases_row_2"
                 android:layout_marginTop="@dimen/purchase_box_half_margin"
-                android:layout_marginBottom="@dimen/purchase_box_full_margin"
+                android:layout_marginBottom="@dimen/purchase_box_half_margin"
                 android:orientation="horizontal">
 
                 <ImageView
@@ -272,6 +240,44 @@
                     android:layout_marginStart="@dimen/purchase_box_half_margin"
                     android:layout_marginRight="@dimen/purchase_box_full_margin"
                     android:layout_marginEnd="@dimen/purchase_box_full_margin"/>
+
+            </LinearLayout>
+
+            <!-- Purchase All/Vote on New Feature -->
+
+            <LinearLayout
+                android:id="@+id/on_boarding_bottom_buttons"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/purchases_row_3"
+                android:layout_marginTop="@dimen/purchase_box_half_margin"
+                android:layout_marginBottom="@dimen/purchase_box_full_margin"
+                android:orientation="horizontal"
+                android:layout_centerHorizontal="true">
+
+                <!-- Buy All -->
+
+                <android.widget.IconButton
+                    android:id="@+id/male"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/ob_btn_height"
+                    android:layout_weight="1"
+                    android:background="@drawable/ob_male_gender_pressed"
+                    android:textColor="@drawable/ob_male_gender_pressed"
+                    android:textSize="@dimen/text_double_extra_large"
+                    android:text="@string/ob_male_btn"/>
+
+                <!-- Vote -->
+
+                <android.widget.IconButton
+                    android:id="@+id/female"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/ob_btn_height"
+                    android:layout_weight="1"
+                    android:background="@drawable/ob_female_gender_pressed"
+                    android:textColor="@drawable/ob_female_gender_pressed"
+                    android:textSize="@dimen/text_double_extra_large"
+                    android:text="@string/ob_female_btn"/>
 
             </LinearLayout>
 

@@ -29,7 +29,6 @@ public class PrivacyViewController implements View.OnClickListener {
 
     @Inject
     LayoutInflater inflater;
-    @Inject 
 
     public PrivacyViewController() {
         Injector.inject(this);
