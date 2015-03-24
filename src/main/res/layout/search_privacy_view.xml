@@ -26,19 +26,11 @@
             android:text="@string/select_all_button"
             android:background="@drawable/transparent_drawable"/>
 
-    <TextView
-        android:id="@+id/search_type"
-        android:layout_width="fill_parent"
-        android:layout_height="40dp"
-        android:layout_below="@id/contact_search_field"
-        android:textColor="@color/black"
-        android:textStyle="bold"/>
-
             <ListView
                 android:id="@+id/contact_list"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_below="@id/search_type"
+                android:layout_below="@id/contact_search_field"
                 android:overScrollMode="never"
                 android:listSelector="@drawable/transparent_drawable"
                 android:cacheColorHint="@color/transparent"

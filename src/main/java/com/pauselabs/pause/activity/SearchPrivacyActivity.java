@@ -16,7 +16,6 @@ import android.view.View;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.SearchView;
-import android.widget.TextView;
 
 import com.pauselabs.R;
 import com.pauselabs.pause.Injector;
@@ -60,7 +59,7 @@ public class SearchPrivacyActivity extends FragmentActivity implements AdapterVi
         searchPrivacyView.contactList.setOnScrollListener(this);
         getSupportLoaderManager().restartLoader(ContactsQuery.QUERY_ID, null, mAdapter);
 
-        ((TextView)searchPrivacyView.findViewById(R.id.search_type)).setText(mAdapter.usingIce ? "ice" : "black");
+//        ((TextView)searchPrivacyView.findViewById(R.id.search_type)).setText(mAdapter.usingIce ? "ice" : "black");
 
         searchPrivacyView.selectAllBtn.setOnClickListener(new View.OnClickListener() {
             @Override
