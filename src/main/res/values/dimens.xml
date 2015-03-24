@@ -47,7 +47,7 @@
     <dimen name="upgrade_list_item_margin">10dp</dimen>
 
     <!-- Time Bank View -->
-    <dimen name="time_bank_fa_icon">26dp</dimen>
+    <dimen name="time_bank_fa_icon">36dp</dimen>
 
     <!-- On Boarding (OB - Tabled) -->
     <dimen name="ob_word_mark_height">80dp</dimen>
