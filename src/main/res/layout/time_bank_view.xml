@@ -162,12 +162,58 @@
 
     </RelativeLayout>
 
-    <!-- TimeBank Purchase Options -->
+    <!-- TimeBank Bullet 1 -->
 
-    <ListView
-        android:id="@+id/time_bank_purchase_option_list"
-        android:layout_width="wrap_content"
+    <IconTextView
+        android:id="@+id/frontnail"
+        android:layout_height="@dimen/settings_frontnail_height"
+        android:layout_width="0dp"
+        android:layout_centerHorizontal="true"
+        android:textAlignment="center"
+        android:textIsSelectable="false"
+        android:text="{fa-android}"
+        android:shadowColor="#22000000"
+        android:shadowDx="0"
+        android:shadowDy="0"
+        android:shadowRadius="0"
+        android:textSize="24dp"
+        android:textColor="@color/text"
+        android:layout_weight="1"
+        android:layout_marginStart="@dimen/settings_thumbnail_horizontal_and_vertical_margin"
+        android:layout_marginLeft="@dimen/settings_thumbnail_horizontal_and_vertical_margin"
+        android:layout_marginRight="@dimen/settings_thumbnail_horizontal_and_vertical_margin"
+        android:layout_marginEnd="@dimen/settings_thumbnail_horizontal_and_vertical_margin"
+        android:gravity="center_horizontal|center_vertical"
+        android:layout_gravity="center_horizontal|center_vertical"/>
+
+    <TextView
+        android:id="@+id/label"
         android:layout_height="wrap_content"
-        android:layout_below="@id/time_bank_header"/>
+        android:layout_width="0dp"
+        android:layout_weight="6"
+        android:layout_marginStart="@dimen/settings_text_horizontal_margin"
+        android:layout_marginLeft="@dimen/settings_text_horizontal_margin"
+        android:layout_centerVertical="true"
+        android:layout_gravity="start|center_vertical"
+        android:gravity="start|center_vertical"
+        android:ellipsize="none"
+        android:maxLines="100"
+        android:scrollHorizontally="false"
+        android:textIsSelectable="false"
+        android:textColor="@color/text"
+        android:textAlignment="textStart"
+        android:textSize="@dimen/text_large"
+        android:textAppearance="?android:attr/textAppearanceLarge"/>
+
+    <!-- Bullet 1 Price -->
+
+    <ImageView
+        android:id="@+id/endnail"
+        android:layout_height="0dp"
+        android:layout_width="0dp"
+        android:layout_weight="0"
+        android:gravity="end|center_vertical"
+        android:layout_marginRight="@dimen/privacy_checkbox_and_text_padding"
+        android:layout_marginEnd="@dimen/privacy_checkbox_and_text_padding"/>
 
 </com.pauselabs.pause.view.tabs.TimeBankView>
