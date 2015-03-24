@@ -51,7 +51,7 @@
             android:layout_toRightOf="@id/privacy_header_left_image"
             android:layout_toEndOf="@id/privacy_header_left_image"
             android:textSize="@dimen/text_medium"
-            android:text="Response Messages Sent"/>
+            android:text="Vote For Your Favorite Feature"/>
 
         <!-- # of people replied to image -->
 
@@ -100,7 +100,7 @@
             android:layout_marginTop="@dimen/privacy_view_vertical_padding"
             />
 
-        <!-- # of calls string -->
+        <!-- # of replies sent -->
 
         <TextView
             android:id="@+id/reply_count"

@@ -2,8 +2,6 @@ package com.pauselabs.pause.view.tabs;
 
 import android.content.Context;
 import android.util.AttributeSet;
-import android.widget.IconButton;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 
@@ -15,7 +13,7 @@ import butterknife.Views;
 /**
  * Created by Admin on 3/8/15.
  */
-public class TimeBankView extends LinearLayout {
+public class TimeBankView extends RelativeLayout {
 
     @InjectView(R.id.time_bank_purchase_option_list)
     public ListView timeBankPurchaseOptionList;
