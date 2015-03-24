@@ -2,15 +2,12 @@ package com.pauselabs.pause.activity;
 
 import android.app.Fragment;
 import android.app.FragmentManager;
-import android.content.Intent;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v13.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,10 +17,11 @@ import com.gc.materialdesign.views.ButtonFloat;
 import com.pauselabs.R;
 import com.pauselabs.pause.Injector;
 import com.pauselabs.pause.PauseApplication;
-import com.pauselabs.pause.controllers.SavesDirectoryViewController;
 import com.pauselabs.pause.controllers.PrivacyViewController;
+import com.pauselabs.pause.controllers.SavesDirectoryViewController;
 import com.pauselabs.pause.controllers.SettingsViewController;
 import com.pauselabs.pause.controllers.SummaryViewController;
+import com.pauselabs.pause.controllers.TimeBankViewController;
 import com.pauselabs.pause.controllers.UpgradeViewController;
 import com.pauselabs.pause.model.Constants;
 import com.pauselabs.pause.util.UIUtils;
@@ -41,8 +39,9 @@ public class PauseActivity extends ActionBarActivity {
 
     public static final int SAVES_TAB = 0;
     public static final int PRIVACY_TAB = 1;
-    public static final int UPGRADE_TAB = 2;
-    public static final int SETTINGS_TAB = 3;
+    public static final int TIME_BANK_TAB = 2;
+    public static final int UPGRADE_TAB = 3;
+    public static final int SETTINGS_TAB = 4;
 
     public PauseActivityView pauseActivityView;
     public ActionBar actionBar;
@@ -52,6 +51,7 @@ public class PauseActivity extends ActionBarActivity {
     public SummaryViewController summaryViewController;
     public SavesDirectoryViewController savesDirectoryViewController;
     public PrivacyViewController privacyViewController;
+    public TimeBankViewController timeBankViewController;
     public UpgradeViewController upgradeViewController;
     public SettingsViewController settingsViewController;
 
@@ -73,6 +73,7 @@ public class PauseActivity extends ActionBarActivity {
         summaryViewController = new SummaryViewController();
         savesDirectoryViewController = new SavesDirectoryViewController();
         privacyViewController = new PrivacyViewController();
+        timeBankViewController = new TimeBankViewController();
         upgradeViewController = new UpgradeViewController();
         settingsViewController = new SettingsViewController();
 
@@ -199,6 +200,7 @@ public class PauseActivity extends ActionBarActivity {
         summaryViewController.updateUI();
         savesDirectoryViewController.updateUI();
         privacyViewController.updateUI();
+        timeBankViewController.updateUI();
         upgradeViewController.updateUI();
         settingsViewController.updateUI();
 
@@ -231,6 +233,7 @@ public class PauseActivity extends ActionBarActivity {
         private int[] tab_icons = {
                 R.drawable.ic_action_ab_custom_on,
                 R.drawable.ic_action_ab_privacy_on,
+                R.drawable.ic_action_wake,
                 R.drawable.ic_action_lightbulb,
                 R.drawable.ic_action_ab_settings_on
         };
@@ -263,6 +266,8 @@ public class PauseActivity extends ActionBarActivity {
                     return getString(R.string.saves_section_title).toUpperCase(l);
                 case PRIVACY_TAB:
                     return getString(R.string.privacy_section_title).toUpperCase();
+                case TIME_BANK_TAB:
+                    return "Time Bank".toUpperCase();
                 case UPGRADE_TAB:
                     return getString(R.string.upgrade_section_title).toUpperCase();
                 case SETTINGS_TAB:
@@ -310,6 +315,11 @@ public class PauseActivity extends ActionBarActivity {
 
                 case PRIVACY_TAB:
                     rootView = PauseApplication.pauseActivity.privacyViewController.privacyView;
+
+                    break;
+
+                case TIME_BANK_TAB:
+                    rootView = PauseApplication.pauseActivity.timeBankViewController.timeBankView;
 
                     break;
 

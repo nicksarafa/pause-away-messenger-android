@@ -9,6 +9,7 @@ import com.pauselabs.pause.controllers.PrivacyViewController;
 import com.pauselabs.pause.activity.SearchPrivacyActivity;
 import com.pauselabs.pause.controllers.SettingsViewController;
 import com.pauselabs.pause.controllers.SummaryViewController;
+import com.pauselabs.pause.controllers.TimeBankViewController;
 import com.pauselabs.pause.controllers.UpgradeViewController;
 import com.pauselabs.pause.controllers.start.GenderViewController;
 import com.pauselabs.pause.controllers.start.OnboardingViewController;
@@ -66,6 +67,8 @@ import dagger.Provides;
 
                 PrivacyViewController.class,
                 SearchPrivacyActivity.class,
+
+                TimeBankViewController.class,
 
                 UpgradeViewController.class,
                 UpgradeAdapter.class,
