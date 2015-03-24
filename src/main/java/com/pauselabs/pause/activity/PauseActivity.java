@@ -85,7 +85,7 @@ public class PauseActivity extends ActionBarActivity {
         tabBarView.addView(privacyViewController.privacyBtns);
         tabBarView.addView(timeBankViewController.timeBankActionBtnView);
 
-        // Set Additional Action Bar Items to Visibility.GONE otherwise they can't be seen 
+        // Set Additional Action Bar Items to Visibility.GONE otherwise they can't be seen
         timeBankViewController.timeBankActionBtnView.setVisibility(View.GONE);
         privacyViewController.privacyBtns.setVisibility(View.GONE);
 
