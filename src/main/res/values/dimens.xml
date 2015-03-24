@@ -48,6 +48,9 @@
 
     <!-- Time Bank View -->
     <dimen name="time_bank_fa_icon">36dp</dimen>
+    <dimen name="purchase_box_height_width">165dp</dimen>
+    <dimen name="purchase_box_full_margin">10dp</dimen>
+    <dimen name="purchase_box_half_margin">5dp</dimen>
 
     <!-- On Boarding (OB - Tabled) -->
     <dimen name="ob_word_mark_height">80dp</dimen>

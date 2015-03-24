@@ -162,58 +162,121 @@
 
     </RelativeLayout>
 
-    <!-- TimeBank Bullet 1 -->
+    <!-- Available Prizes/Purchases -->
 
-    <IconTextView
-        android:id="@+id/frontnail"
-        android:layout_height="@dimen/settings_frontnail_height"
-        android:layout_width="0dp"
-        android:layout_centerHorizontal="true"
-        android:textAlignment="center"
-        android:textIsSelectable="false"
-        android:text="{fa-android}"
-        android:shadowColor="#22000000"
-        android:shadowDx="0"
-        android:shadowDy="0"
-        android:shadowRadius="0"
-        android:textSize="24dp"
-        android:textColor="@color/text"
-        android:layout_weight="1"
-        android:layout_marginStart="@dimen/settings_thumbnail_horizontal_and_vertical_margin"
-        android:layout_marginLeft="@dimen/settings_thumbnail_horizontal_and_vertical_margin"
-        android:layout_marginRight="@dimen/settings_thumbnail_horizontal_and_vertical_margin"
-        android:layout_marginEnd="@dimen/settings_thumbnail_horizontal_and_vertical_margin"
-        android:gravity="center_horizontal|center_vertical"
-        android:layout_gravity="center_horizontal|center_vertical"/>
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_below="@id/time_bank_header"
+        android:overScrollMode="never">
 
-    <TextView
-        android:id="@+id/label"
-        android:layout_height="wrap_content"
-        android:layout_width="0dp"
-        android:layout_weight="6"
-        android:layout_marginStart="@dimen/settings_text_horizontal_margin"
-        android:layout_marginLeft="@dimen/settings_text_horizontal_margin"
-        android:layout_centerVertical="true"
-        android:layout_gravity="start|center_vertical"
-        android:gravity="start|center_vertical"
-        android:ellipsize="none"
-        android:maxLines="100"
-        android:scrollHorizontally="false"
-        android:textIsSelectable="false"
-        android:textColor="@color/text"
-        android:textAlignment="textStart"
-        android:textSize="@dimen/text_large"
-        android:textAppearance="?android:attr/textAppearanceLarge"/>
+        <RelativeLayout
+            android:id="@+id/bank_purchase_options"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:isScrollContainer="true"
+            android:background="@color/dark_gray">
 
-    <!-- Bullet 1 Price -->
+            <!-- Row 1 -->
 
-    <ImageView
-        android:id="@+id/endnail"
-        android:layout_height="0dp"
-        android:layout_width="0dp"
-        android:layout_weight="0"
-        android:gravity="end|center_vertical"
-        android:layout_marginRight="@dimen/privacy_checkbox_and_text_padding"
-        android:layout_marginEnd="@dimen/privacy_checkbox_and_text_padding"/>
+            <LinearLayout
+                android:id="@+id/purchases_row_1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/purchase_box_full_margin"
+                android:layout_marginBottom="@dimen/purchase_box_half_margin"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="@dimen/purchase_box_height_width"
+                    android:layout_height="@dimen/purchase_box_height_width"
+                    android:background="@color/btn_blue"
+                    android:src="@drawable/ic_action_wake"
+                    android:layout_marginLeft="@dimen/purchase_box_full_margin"
+                    android:layout_marginStart="@dimen/purchase_box_full_margin"
+                    android:layout_marginRight="@dimen/purchase_box_half_margin"
+                    android:layout_marginEnd="@dimen/purchase_box_half_margin"/>
+
+                <ImageView
+                    android:layout_width="@dimen/purchase_box_height_width"
+                    android:layout_height="@dimen/purchase_box_height_width"
+                    android:background="@color/btn_blue"
+                    android:src="@drawable/ic_action_wake"
+                    android:layout_marginLeft="@dimen/purchase_box_half_margin"
+                    android:layout_marginStart="@dimen/purchase_box_half_margin"
+                    android:layout_marginRight="@dimen/purchase_box_full_margin"
+                    android:layout_marginEnd="@dimen/purchase_box_full_margin"/>
+
+            </LinearLayout>
+
+            <!-- Row 2 -->
+
+            <LinearLayout
+                android:id="@+id/purchases_row_2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/purchases_row_1"
+                android:layout_marginTop="@dimen/purchase_box_half_margin"
+                android:layout_marginBottom="@dimen/purchase_box_half_margin"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="@dimen/purchase_box_height_width"
+                    android:layout_height="@dimen/purchase_box_height_width"
+                    android:background="@color/btn_blue"
+                    android:src="@drawable/ic_action_wake"
+                    android:layout_marginLeft="@dimen/purchase_box_full_margin"
+                    android:layout_marginStart="@dimen/purchase_box_full_margin"
+                    android:layout_marginRight="@dimen/purchase_box_half_margin"
+                    android:layout_marginEnd="@dimen/purchase_box_half_margin"/>
+
+                <ImageView
+                    android:layout_width="@dimen/purchase_box_height_width"
+                    android:layout_height="@dimen/purchase_box_height_width"
+                    android:background="@color/btn_blue"
+                    android:src="@drawable/ic_action_wake"
+                    android:layout_marginLeft="@dimen/purchase_box_half_margin"
+                    android:layout_marginStart="@dimen/purchase_box_half_margin"
+                    android:layout_marginRight="@dimen/purchase_box_full_margin"
+                    android:layout_marginEnd="@dimen/purchase_box_full_margin"/>
+
+            </LinearLayout>
+
+            <!-- Row 3 -->
+
+            <LinearLayout
+                android:id="@+id/purchases_row_3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/purchases_row_2"
+                android:layout_marginTop="@dimen/purchase_box_half_margin"
+                android:layout_marginBottom="@dimen/purchase_box_full_margin"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="@dimen/purchase_box_height_width"
+                    android:layout_height="@dimen/purchase_box_height_width"
+                    android:background="@color/btn_blue"
+                    android:src="@drawable/ic_action_wake"
+                    android:layout_marginLeft="@dimen/purchase_box_full_margin"
+                    android:layout_marginStart="@dimen/purchase_box_full_margin"
+                    android:layout_marginRight="@dimen/purchase_box_half_margin"
+                    android:layout_marginEnd="@dimen/purchase_box_half_margin"/>
+
+                <ImageView
+                    android:layout_width="@dimen/purchase_box_height_width"
+                    android:layout_height="@dimen/purchase_box_height_width"
+                    android:background="@color/btn_blue"
+                    android:src="@drawable/ic_action_wake"
+                    android:layout_marginLeft="@dimen/purchase_box_half_margin"
+                    android:layout_marginStart="@dimen/purchase_box_half_margin"
+                    android:layout_marginRight="@dimen/purchase_box_full_margin"
+                    android:layout_marginEnd="@dimen/purchase_box_full_margin"/>
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+    </ScrollView>
 
 </com.pauselabs.pause.view.tabs.TimeBankView>
