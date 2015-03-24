@@ -7,7 +7,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 
+import com.parse.GetCallback;
 import com.parse.ParseException;
+import com.parse.ParseQuery;
 import com.pauselabs.pause.Injector;
 import com.pauselabs.pause.PauseApplication;
 import com.pauselabs.pause.model.Parse.Feature;
@@ -48,22 +50,15 @@ public class UpgradeAdapter extends ArrayAdapter<UpgradeListItem> {
 
         item.iconText.setText(feature.getIconText() + " " + feature.getName());
 
-        feature.getVotersRelation().getQuery().findInBackground().continueWith(new Continuation<List<User>, Object>() {
+        ParseQuery<User> query = feature.getVotersRelation().getQuery();
+        query.whereEqualTo("username",PauseApplication.parseVars.currentUser.getUsername());
+        query.getFirstInBackground(new GetCallback<User>() {
             @Override
-            public Object then(Task<List<User>> task) throws Exception {
-                boolean isVoter = false;
-
-                List<User> voters = task.getResult();
-                for (User voter : voters) {
-                    if (voter.getObjectId().equals(PauseApplication.parseVars.currentUser.getObjectId())) {
-                        isVoter = true;
-                    }
-                }
+            public void done(User user, ParseException e) {
+                boolean isVoter = user == null;
 
                 if (isVoter)
                     item.setBackgroundColor(Color.GREEN);
-
-                return null;
             }
         });
 
