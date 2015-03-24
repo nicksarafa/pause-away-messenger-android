@@ -1,11 +1,9 @@
 package com.pauselabs.pause.controllers;
 
-import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
 
-import com.parse.FindCallback;
 import com.parse.GetCallback;
 import com.parse.ParseException;
 import com.parse.ParseQuery;
@@ -19,12 +17,7 @@ import com.pauselabs.pause.model.Parse.User;
 import com.pauselabs.pause.view.UpgradeListItem;
 import com.pauselabs.pause.view.tabs.UpgradeView;
 
-import java.util.List;
-
 import javax.inject.Inject;
-
-import bolts.Continuation;
-import bolts.Task;
 
 /**
  * Created by Admin on 3/8/15.
@@ -56,7 +49,7 @@ public class UpgradeViewController {
                 query.getFirstInBackground(new GetCallback<User>() {
                     @Override
                     public void done(User user, ParseException e) {
-                        boolean isVoter = user == null;
+                        boolean isVoter = user != null;
 
                         if (isVoter)
                             tappedFeature.removeVoter((User) User.getCurrentUser());

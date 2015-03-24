@@ -16,12 +16,7 @@ import com.pauselabs.pause.model.Parse.Feature;
 import com.pauselabs.pause.model.Parse.User;
 import com.pauselabs.pause.view.UpgradeListItem;
 
-import java.util.List;
-
 import javax.inject.Inject;
-
-import bolts.Continuation;
-import bolts.Task;
 
 /**
  * Created by Passa on 3/20/15.
@@ -55,7 +50,7 @@ public class UpgradeAdapter extends ArrayAdapter<UpgradeListItem> {
         query.getFirstInBackground(new GetCallback<User>() {
             @Override
             public void done(User user, ParseException e) {
-                boolean isVoter = user == null;
+                boolean isVoter = user != null;
 
                 if (isVoter)
                     item.setBackgroundColor(Color.GREEN);
