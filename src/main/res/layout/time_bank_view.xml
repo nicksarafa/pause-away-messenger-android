@@ -18,17 +18,38 @@
         android:padding="@dimen/info_header_horizontal_padding"
         android:background="#3cbeb5">
 
-        <!-- TimeBank Header -->
+        <!-- TimeBank Image + Title -->
 
-        <TextView
-            android:id="@+id/time_bank_header_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:textColor="@color/text_white"
-            android:layout_alignParentTop="true"
-            android:textSize="@dimen/text_extra_large"
-            android:text="Time Bank"/>
+        <RelativeLayout
+            android:id="@+id/bank_title_image_container"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/time_bank_header_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:textColor="@color/text_white"
+                android:layout_alignParentTop="true"
+                android:textSize="@dimen/text_extra_large"
+                android:layout_margin="@dimen/info_header_horizontal_padding"
+                android:textStyle="bold"
+                android:text="Time Bank"/>
+
+                <IconTextView
+                    android:id="@+id/time_bank_image"
+                    android:layout_width="wrap_content"
+                    android:layout_height="100dp"
+                    android:text="{fa-bank}"
+                    android:layout_below="@id/time_bank_header_title"
+                    android:textColor="@color/text_white"
+                    android:textSize="100dp"
+                    android:layout_margin="@dimen/info_header_horizontal_padding"
+                    android:layout_centerHorizontal="true"/>
+
+        </RelativeLayout>
 
         <!-- Total Points -->
 
@@ -38,7 +59,7 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:layout_margin="@dimen/info_header_horizontal_padding"
-            android:layout_below="@id/time_bank_header_title">
+            android:layout_below="@id/bank_title_image_container">
 
             <IconTextView
                 android:id="@+id/points_icon"
@@ -47,10 +68,11 @@
                 android:layout_weight="1"
                 android:text="{fa-money}"
                 android:textColor="@color/text_white"
-                android:textSize="@dimen/text_larger"
+                android:textSize="@dimen/time_bank_fa_icon"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentLeft="true"
-                android:layout_gravity="center_vertical"
+                android:gravity="center|center_horizontal|center_vertical"
+                android:layout_gravity="center_vertical|center_horizontal"
                 android:layout_marginLeft="@dimen/privacy_view_horizontal_padding"
                 android:layout_marginStart="@dimen/privacy_view_horizontal_padding"
                 android:layout_marginRight="@dimen/privacy_view_horizontal_padding"
@@ -60,7 +82,7 @@
                     android:id="@+id/points_text"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="7"
+                    android:layout_weight="9"
                     android:layout_below="@id/points_icon"
                     android:layout_gravity="center_vertical"
                     android:layout_toRightOf="@id/points_icon"
@@ -81,37 +103,38 @@
         android:layout_margin="@dimen/info_header_horizontal_padding"
         android:layout_below="@id/points_container">
 
-            <IconTextView
-                android:id="@+id/time_icon"
+        <IconTextView
+            android:id="@+id/time_icon"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:src="@drawable/ic_action_wake"
+            android:gravity="center|center_horizontal|center_vertical"
+            android:layout_gravity="center|center_vertical|center_horizontal"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@id/points_icon"
+            android:text="{fa-clock-o}"
+            android:textSize="@dimen/time_bank_fa_icon"
+            android:textColor="@color/text_white"
+            android:layout_marginLeft="@dimen/privacy_view_horizontal_padding"
+            android:layout_marginStart="@dimen/privacy_view_horizontal_padding"
+            android:layout_marginRight="@dimen/privacy_view_horizontal_padding"
+            android:layout_marginEnd="@dimen/privacy_view_horizontal_padding"/>
+
+            <TextView
+                android:id="@+id/time_text"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:src="@drawable/ic_action_wake"
-                android:layout_gravity="center_vertical"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentLeft="true"
+                android:layout_weight="9"
                 android:layout_below="@id/points_icon"
-                android:text="{fa-clock-o}"
-                android:textSize="@dimen/text_larger"
+                android:layout_toRightOf="@id/time_icon"
+                android:layout_toEndOf="@id/time_icon"
+                android:textStyle="bold"
+                android:layout_gravity="center_vertical"
+                android:textSize="@dimen/text_large"
                 android:textColor="@color/text_white"
-                android:layout_marginLeft="@dimen/privacy_view_horizontal_padding"
-                android:layout_marginStart="@dimen/privacy_view_horizontal_padding"
-                android:layout_marginRight="@dimen/privacy_view_horizontal_padding"
-                android:layout_marginEnd="@dimen/privacy_view_horizontal_padding"/>
-
-                <TextView
-                    android:id="@+id/time_text"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="7"
-                    android:layout_below="@id/points_icon"
-                    android:layout_toRightOf="@id/time_icon"
-                    android:layout_toEndOf="@id/time_icon"
-                    android:textStyle="bold"
-                    android:layout_gravity="center_vertical"
-                    android:textSize="@dimen/text_large"
-                    android:textColor="@color/text_white"
-                    android:text="0:00:00"/>
+                android:text="0:00:00"/>
 
         </LinearLayout>
 
@@ -124,8 +147,8 @@
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
-                android:text="{fa-clock-o}"
-                android:textSize="@dimen/text_larger"
+                android:text="{fa-info-circle}"
+                android:textSize="@dimen/time_bank_fa_icon"
                 android:textColor="@color/text_white"
                 android:layout_marginLeft="@dimen/privacy_view_horizontal_padding"
                 android:layout_marginStart="@dimen/privacy_view_horizontal_padding"

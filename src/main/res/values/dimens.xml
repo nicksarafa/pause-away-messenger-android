@@ -46,6 +46,8 @@
     <dimen name="upgrade_list_item_height">100dp</dimen>
     <dimen name="upgrade_list_item_margin">10dp</dimen>
 
+    <!-- Time Bank View -->
+    <dimen name="time_bank_fa_icon">26dp</dimen>
 
     <!-- On Boarding (OB - Tabled) -->
     <dimen name="ob_word_mark_height">80dp</dimen>
@@ -57,7 +59,7 @@
     <!-- Headers (Tabled - Keep for reference/future header integration) -->
     <dimen name="info_header_height">100dp</dimen>
     <dimen name="info_header_vertical_padding">20dp</dimen>
-    <dimen name="info_header_horizontal_padding">8dp</dimen>
+    <dimen name="info_header_horizontal_padding">6dp</dimen>
     <dimen name="info_header_horizontal_margin">16dp</dimen>
     <dimen name="info_header_vertical_margin">12dp</dimen>
     <dimen name="summary_view_padding_bottom">68dp</dimen>
