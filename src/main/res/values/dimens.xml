@@ -44,6 +44,8 @@
 
     <!-- Upgrade View -->
     <dimen name="upgrade_list_item_height">100dp</dimen>
+    <dimen name="upgrade_list_item_margin">10dp</dimen>
+
 
     <!-- On Boarding (OB - Tabled) -->
     <dimen name="ob_word_mark_height">80dp</dimen>

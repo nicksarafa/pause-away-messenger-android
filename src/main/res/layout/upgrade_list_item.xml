@@ -18,11 +18,13 @@
         android:textSize="24dp"
         android:textColor="@color/text"
         android:layout_weight="1"
-        android:layout_marginStart="@dimen/settings_thumbnail_horizontal_and_vertical_margin"
-        android:layout_marginLeft="@dimen/settings_thumbnail_horizontal_and_vertical_margin"
-        android:layout_marginRight="@dimen/settings_thumbnail_horizontal_and_vertical_margin"
-        android:layout_marginEnd="@dimen/settings_thumbnail_horizontal_and_vertical_margin"
-        android:gravity="start"
-        android:layout_gravity="start"/>
+        android:layout_marginStart="@dimen/upgrade_list_item_margin"
+        android:layout_marginLeft="@dimen/upgrade_list_item_margin"
+        android:layout_marginRight="@dimen/upgrade_list_item_margin"
+        android:layout_marginEnd="@dimen/upgrade_list_item_margin"
+        android:layout_marginBottom="@dimen/upgrade_list_item_margin"
+        android:layout_marginTop="@dimen/upgrade_list_item_margin"
+        android:gravity="left|start|center_vertical"
+        android:layout_gravity="left|start|center_vertical"/>
 
 </com.pauselabs.pause.view.UpgradeListItem>
