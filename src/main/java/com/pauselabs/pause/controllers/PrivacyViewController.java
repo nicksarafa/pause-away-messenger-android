@@ -1,7 +1,6 @@
 package com.pauselabs.pause.controllers;
 
 import android.content.Intent;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 
@@ -9,7 +8,7 @@ import com.pauselabs.R;
 import com.pauselabs.pause.Injector;
 import com.pauselabs.pause.PauseApplication;
 import com.pauselabs.pause.activity.SearchPrivacyActivity;
-import com.pauselabs.pause.adapters.ContactsGridAdapter;
+import com.pauselabs.pause.adapters.contacts.ContactsGridAdapter;
 import com.pauselabs.pause.core.ContactsQuery;
 import com.pauselabs.pause.view.tabs.PrivacyActionBtnView;
 import com.pauselabs.pause.view.tabs.PrivacyView;

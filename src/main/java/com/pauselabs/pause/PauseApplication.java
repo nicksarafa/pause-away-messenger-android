@@ -19,6 +19,7 @@ import android.net.Uri;
 import android.preference.PreferenceManager;
 import android.provider.BaseColumns;
 import android.provider.ContactsContract;
+import android.provider.Settings;
 import android.speech.SpeechRecognizer;
 import android.speech.tts.TextToSpeech;
 import android.support.v4.app.NotificationCompat;
@@ -27,6 +28,7 @@ import android.view.Gravity;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.crashlytics.android.Crashlytics;
 import com.github.johnpersano.supertoasts.SuperToast;
 import com.google.android.gms.analytics.GoogleAnalytics;
 import com.google.android.gms.analytics.Tracker;
@@ -34,12 +36,20 @@ import com.nostra13.universalimageloader.cache.disc.naming.Md5FileNameGenerator;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.nostra13.universalimageloader.core.assist.QueueProcessingType;
+import com.parse.Parse;
+import com.parse.ParseException;
+import com.parse.ParseObject;
+import com.parse.ParseQuery;
+import com.parse.ParseUser;
 import com.pauselabs.R;
 import com.pauselabs.pause.activity.PauseActivity;
 import com.pauselabs.pause.activity.StartActivity;
 import com.pauselabs.pause.core.PauseMessageSender;
 import com.pauselabs.pause.listeners.NotificationActionListener;
 import com.pauselabs.pause.model.Constants;
+import com.pauselabs.pause.model.Parse.Feature;
+import com.pauselabs.pause.model.Parse.GlobalVars;
+import com.pauselabs.pause.model.Parse.User;
 import com.pauselabs.pause.model.PauseConversation;
 import com.pauselabs.pause.model.PauseMessage;
 import com.pauselabs.pause.model.PauseSession;
@@ -55,6 +65,9 @@ import java.util.Random;
 
 import javax.inject.Inject;
 
+import bolts.Continuation;
+import bolts.Task;
+
 public class PauseApplication extends Application {
 
     private static PauseApplication instance;
@@ -66,6 +79,8 @@ public class PauseApplication extends Application {
 
     public static NotificationManager notificationManager;
     @Inject protected Bus eventBus;
+
+    public static GlobalVars parseVars;
 
     static SharedPreferences prefs;
 
@@ -125,6 +140,49 @@ public class PauseApplication extends Application {
 //            if ( BuildConfig.USE_CRASHLYTICS ) {
 //                Crashlytics.start(instance);
 //            }
+
+            Crashlytics.getInstance().setDebugMode(true);
+            Crashlytics.start(this);
+
+            ParseObject.registerSubclass(User.class);
+            ParseObject.registerSubclass(Feature.class);
+            Parse.initialize(this, Constants.Pause.Parse.APP_ID, Constants.Pause.Parse.CLIENT_KEY);
+
+            parseVars = new GlobalVars();
+
+            // Check if user exists to login, else register
+            try {
+                String android_id = Settings.Secure.getString(getContentResolver(), Settings.Secure.ANDROID_ID);
+                ParseQuery<User> query = ParseQuery.getQuery(User.class);
+                query.whereEqualTo("objectId", android_id);
+                boolean userExists = (query.find().size() == 1);
+
+                if (User.getCurrentUser() == null && !userExists) {
+                    final User newUser = new User();
+                    newUser.setUsername(android_id);
+                    newUser.setPassword(android_id);
+
+                    newUser.signUpInBackground().continueWith(new Continuation<Void, Object>() {
+                        @Override
+                        public Object then(Task<Void> task) throws Exception {
+                            parseVars.setCurrentUser(newUser);
+
+                            return null;
+                        }
+                    });
+                } else {
+                    User.logInInBackground(android_id, android_id).continueWith(new Continuation<ParseUser, Object>() {
+                        @Override
+                        public Object then(Task<ParseUser> task) throws Exception {
+                            parseVars.setCurrentUser(task.getResult());
+
+                            return null;
+                        }
+                    });
+                }
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
 
             prefs = PreferenceManager.getDefaultSharedPreferences(instance);
 

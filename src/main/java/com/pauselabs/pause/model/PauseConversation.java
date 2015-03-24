@@ -11,7 +11,7 @@ import android.provider.ContactsContract;
 
 import com.pauselabs.pause.Injector;
 import com.pauselabs.pause.PauseApplication;
-import com.pauselabs.pause.controllers.SavesDirectoryViewController;
+import com.pauselabs.pause.core.SavesDatabaseHelper;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -133,13 +133,13 @@ public class PauseConversation implements Serializable {
     }
 
     public String getStringForBounceBackMessage() {
-        SavesDirectoryViewController.SavesDatabaseHelper db = PauseApplication.pauseActivity.savesDirectoryViewController.dbHelper;
+        SavesDatabaseHelper db = PauseApplication.pauseActivity.savesDirectoryViewController.dbHelper;
         String messageText;
 
         if(PauseApplication.getCurrentSession().getCreator() == Constants.Session.Creator.CUSTOM) {
-            messageText = db.getSaveByList(0).getString(SavesDirectoryViewController.SavesDatabaseHelper.KEY_TEXT);
+            messageText = db.getSaveByList(0).getString(SavesDatabaseHelper.KEY_TEXT);
         } else if(PauseApplication.getCurrentSession().getCreator() == Constants.Session.Creator.VOLUME) {
-            messageText = db.getDefaultSave().getString(SavesDirectoryViewController.SavesDatabaseHelper.KEY_TEXT);
+            messageText = db.getDefaultSave().getString(SavesDatabaseHelper.KEY_TEXT);
         } else {
             String silence = "Silence",
                     drive = "Drive",

@@ -1,4 +1,4 @@
-package com.pauselabs.pause.adapters;
+package com.pauselabs.pause.adapters.contacts;
 
 import android.content.Context;
 import android.database.Cursor;
@@ -87,7 +87,7 @@ public class ContactsSearchAdapter extends ContactsAdapter {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 CheckBox checkbox = (CheckBox) buttonView;
 
-                Log.i("ON CHECKED","id: " + item.contactId);
+                Log.i("ON CHECKED", "id: " + item.contactId);
 
                 if (checkbox.isChecked()) {
                     if (usingIce)

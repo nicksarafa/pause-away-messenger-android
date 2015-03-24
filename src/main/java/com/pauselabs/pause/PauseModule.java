@@ -2,6 +2,8 @@ package com.pauselabs.pause;
 
 import com.pauselabs.pause.activity.PauseActivity;
 import com.pauselabs.pause.activity.StartActivity;
+import com.pauselabs.pause.adapters.SavesAdapter;
+import com.pauselabs.pause.adapters.UpgradeAdapter;
 import com.pauselabs.pause.controllers.SavesDirectoryViewController;
 import com.pauselabs.pause.controllers.PrivacyViewController;
 import com.pauselabs.pause.activity.SearchPrivacyActivity;
@@ -40,25 +42,6 @@ import dagger.Provides;
         injects = {
                 PauseApplication.class,
 
-                StartActivity.class,
-                PauseActivity.class,
-
-                GenderViewController.class,
-                OnboardingViewController.class,
-
-                SavesDirectoryViewController.class,
-
-                SavesDirectoryViewController.class,
-
-                SettingsViewController.class,
-
-                SummaryViewController.class,
-                SummaryConversationCard.class,
-                SummarySentCard.class,
-                SummaryReceivedCard.class,
-
-                SearchPrivacyActivity.class,
-
                 PauseApplicationService.class,
                 PauseSessionService.class,
                 PauseSession.class,
@@ -67,13 +50,31 @@ import dagger.Provides;
                 SilenceListener.class,
                 PauseSmsListener.class,
 
+                StartActivity.class,
+                PauseActivity.class,
+
+                GenderViewController.class,
+                OnboardingViewController.class,
+
+                SummaryViewController.class,
+                SummaryConversationCard.class,
+                SummarySentCard.class,
+                SummaryReceivedCard.class,
+
+                SavesDirectoryViewController.class,
+                SavesAdapter.class,
+
+                PrivacyViewController.class,
+                SearchPrivacyActivity.class,
+
+                UpgradeViewController.class,
+                UpgradeAdapter.class,
+
+                SettingsViewController.class,
+
                 StringRandomizer.class,
                 JsonReader.class,
                 PauseConversation.class,
-
-                UpgradeViewController.class,
-
-                PrivacyViewController.class,
         }
 )
 public class PauseModule {

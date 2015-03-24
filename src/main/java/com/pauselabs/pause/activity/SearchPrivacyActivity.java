@@ -20,7 +20,7 @@ import android.widget.TextView;
 
 import com.pauselabs.R;
 import com.pauselabs.pause.Injector;
-import com.pauselabs.pause.adapters.ContactsSearchAdapter;
+import com.pauselabs.pause.adapters.contacts.ContactsSearchAdapter;
 import com.pauselabs.pause.core.ContactsQuery;
 import com.pauselabs.pause.view.tabs.SearchPrivacyView;
 
