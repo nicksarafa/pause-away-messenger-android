@@ -39,9 +39,9 @@ public class PauseActivity extends ActionBarActivity {
 
     public static final int SAVES_TAB = 0;
     public static final int PRIVACY_TAB = 1;
-    public static final int TIME_BANK_TAB = 2;
-    public static final int UPGRADE_TAB = 3;
-    public static final int SETTINGS_TAB = 4;
+    public static final int SETTINGS_TAB = 3;
+//    public static final int TIME_BANK_TAB = 4;
+//    public static final int UPGRADE_TAB = 5;
 
     public PauseActivityView pauseActivityView;
     public ActionBar actionBar;
@@ -51,9 +51,9 @@ public class PauseActivity extends ActionBarActivity {
     public SummaryViewController summaryViewController;
     public SavesDirectoryViewController savesDirectoryViewController;
     public PrivacyViewController privacyViewController;
-    public TimeBankViewController timeBankViewController;
-    public UpgradeViewController upgradeViewController;
     public SettingsViewController settingsViewController;
+//    public TimeBankViewController timeBankViewController;
+//    public UpgradeViewController upgradeViewController;
 
     @Inject
     LayoutInflater inflater;
@@ -73,9 +73,9 @@ public class PauseActivity extends ActionBarActivity {
         summaryViewController = new SummaryViewController();
         savesDirectoryViewController = new SavesDirectoryViewController();
         privacyViewController = new PrivacyViewController();
-        timeBankViewController = new TimeBankViewController();
-        upgradeViewController = new UpgradeViewController();
         settingsViewController = new SettingsViewController();
+//        timeBankViewController = new TimeBankViewController();
+//        upgradeViewController = new UpgradeViewController();
 
         pauseActivityView.viewPager.setAdapter(new SectionsPagerAdapter(getFragmentManager()));
 
@@ -83,10 +83,10 @@ public class PauseActivity extends ActionBarActivity {
         tabBarView.setViewPager(pauseActivityView.viewPager);
 
         tabBarView.addView(privacyViewController.privacyBtns);
-        tabBarView.addView(timeBankViewController.timeBankActionBtnView);
+//        tabBarView.addView(timeBankViewController.timeBankActionBtnView);
 
         // Set Additional Action Bar Items to Visibility.GONE otherwise they can't be seen
-        timeBankViewController.timeBankActionBtnView.setVisibility(View.GONE);
+//        timeBankViewController.timeBankActionBtnView.setVisibility(View.GONE);
         privacyViewController.privacyBtns.setVisibility(View.GONE);
 
         tabBarView.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
@@ -105,12 +105,12 @@ public class PauseActivity extends ActionBarActivity {
                     privacyViewController.privacyBtns.setVisibility(View.GONE);
                 }
 
-                if (pageIndex == TIME_BANK_TAB) {
-                    timeBankViewController.timeBankActionBtnView.setVisibility(View.VISIBLE);
-
-                } else {
-                    timeBankViewController.timeBankActionBtnView.setVisibility(View.GONE);
-                }
+//                if (pageIndex == TIME_BANK_TAB) {
+//                    timeBankViewController.timeBankActionBtnView.setVisibility(View.VISIBLE);
+//
+//                } else {
+//                    timeBankViewController.timeBankActionBtnView.setVisibility(View.GONE);
+//                }
             }
 
             @Override
@@ -213,9 +213,9 @@ public class PauseActivity extends ActionBarActivity {
         summaryViewController.updateUI();
         savesDirectoryViewController.updateUI();
         privacyViewController.updateUI();
-        timeBankViewController.updateUI();
-        upgradeViewController.updateUI();
         settingsViewController.updateUI();
+//        timeBankViewController.updateUI();
+//        upgradeViewController.updateUI();
 
         if(PauseApplication.isActiveSession() && pauseActivityView.getPanelState() == SlidingUpPanelLayout.PanelState.COLLAPSED) {
             pauseActivityView.setPanelState(SlidingUpPanelLayout.PanelState.ANCHORED);
@@ -246,9 +246,9 @@ public class PauseActivity extends ActionBarActivity {
         private int[] tab_icons = {
                 R.drawable.ic_action_ab_custom_on,
                 R.drawable.ic_action_ab_privacy_on,
-                R.drawable.ic_action_wake,
-                R.drawable.ic_action_lightbulb,
                 R.drawable.ic_action_ab_settings_on
+//                R.drawable.ic_action_wake,
+//                R.drawable.ic_action_lightbulb,
         };
 
 
@@ -279,12 +279,12 @@ public class PauseActivity extends ActionBarActivity {
                     return getString(R.string.saves_section_title).toUpperCase(l);
                 case PRIVACY_TAB:
                     return getString(R.string.privacy_section_title).toUpperCase();
-                case TIME_BANK_TAB:
-                    return "Time Bank".toUpperCase();
-                case UPGRADE_TAB:
-                    return getString(R.string.upgrade_section_title).toUpperCase();
                 case SETTINGS_TAB:
                     return getString(R.string.settings_section_title).toUpperCase(l);
+//                case TIME_BANK_TAB:
+//                    return "Time Bank".toUpperCase();
+//                case UPGRADE_TAB:
+//                    return getString(R.string.upgrade_section_title).toUpperCase();
 
             }
             return null;
@@ -331,20 +331,20 @@ public class PauseActivity extends ActionBarActivity {
 
                     break;
 
-                case TIME_BANK_TAB:
-                    rootView = PauseApplication.pauseActivity.timeBankViewController.timeBankView;
-
-                    break;
-
-                case UPGRADE_TAB:
-                    rootView = PauseApplication.pauseActivity.upgradeViewController.upgradeView;
-
-                    break;
-
                 case SETTINGS_TAB:
                     rootView = PauseApplication.pauseActivity.settingsViewController.settingsView;
 
                     break;
+
+//                case TIME_BANK_TAB:
+//                    rootView = PauseApplication.pauseActivity.timeBankViewController.timeBankView;
+//
+//                    break;
+//
+//                case UPGRADE_TAB:
+//                    rootView = PauseApplication.pauseActivity.upgradeViewController.upgradeView;
+//
+//                    break;
 
             }
 
