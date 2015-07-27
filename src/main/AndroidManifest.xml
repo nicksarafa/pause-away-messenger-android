@@ -56,7 +56,9 @@
         <!-- Crashalytics and Google Analytics Setup -->
 
         <receiver android:name=".pause.listeners.NotificationActionListener"/>
-            <meta-data android:name="com.crashlytics.ApiKey" android:value="e4dd54a9cfe517a2ae26c1996bd2f19553c260db" />
+            <meta-data
+                android:name="com.crashlytics.ApiKey"
+                android:value="e4dd54a9cfe517a2ae26c1996bd2f19553c260db" />
             <meta-data android:name="com.google.android.gms.version" android:value="@integer/google_play_services_version" />
 
     </application>
