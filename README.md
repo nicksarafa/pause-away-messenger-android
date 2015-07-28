@@ -27,5 +27,3 @@ The project uses several additional libraries including:
 * Google Play Services
 
 ## Production Build Instructions
-
-TODO

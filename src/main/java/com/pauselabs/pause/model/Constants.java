@@ -239,7 +239,7 @@ public class Constants {
         public static final boolean DEFAULT_PAUSE_ON_VIBRATE = true;
         public static final boolean DEFAULT_PAUSE_ON_SILENT = true;
         public static final boolean DEFAULT_PAUSE_VOICE_FEEDBACK = false;
-        public static final boolean DEFAULT_PAUSE_SHOW_TOASTS = true;
+        public static final boolean DEFAULT_PAUSE_SHOW_TOASTS = false;
         public static final boolean DEFAULT_REPLY_STRANGERS = false;
         public static final boolean DEFAULT_REPLY_MISSED_CALL = true;
         public static final boolean DEFAULT_REPLY_SMS = true;

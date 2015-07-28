@@ -36,11 +36,11 @@
 
         <!-- Name Visibility = GONE -->
 
-        -<com.pauselabs.pause.model.SettingsButton
+        <com.pauselabs.pause.model.SettingsButton
             android:id="@+id/nameBtn"
             android:layout_width="match_parent"
             android:layout_height="?android:attr/listPreferredItemHeight"
-            android:visibility="visible"
+            android:visibility="gone"
             app:frontnail="{fa-smile-o}"
             app:label="@string/name_settings_label"
             app:content="John"/>
@@ -51,7 +51,7 @@
             android:id="@+id/genderBtn"
             android:layout_width="match_parent"
             android:layout_height="?android:attr/listPreferredItemHeight"
-            android:visibility="visible"
+            android:visibility="gone"
             android:background="@null"
             app:frontnail="{fa-transgender}"
             app:label="@string/gender_settings_label"
@@ -109,7 +109,7 @@
             app:label="@string/activate_on_vibrate_settings_label"
             app:content=""/>
 
-        <!-- Toasts Toggle -->
+        <!-- Toasts Toggle Visibility = GONE -->
 
         <com.pauselabs.pause.model.SettingsButton
             android:id="@+id/toastsBtn"
@@ -120,13 +120,14 @@
             app:label="@string/toasts_label"
             app:content=""/>
 
-        <!-- Voice Toggle -->
+        <!-- Voice Toggle Visibility = GONE -->
 
         <com.pauselabs.pause.model.SettingsButton
             android:id="@+id/voiceBtn"
             android:layout_width="match_parent"
             android:layout_height="?android:attr/listPreferredItemHeight"
             android:background="@null"
+            android:visibility="gone"
             app:frontnail="{fa-bullhorn}"
             app:label="@string/voice_label"
             app:content=""/>
@@ -142,13 +143,6 @@
             app:label="@string/default_settings_label"
             app:endnail="@drawable/ic_sms_icon"/>
 
-        <!-- Feedback Label -->
-
-        <!--<TextView-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="?android:attr/listPreferredItemHeight"-->
-            <!--android:text="@string/feedback_section_label"-->
-            <!--style="@style/ListSeparatorTextView"/>-->
 
         <!-- Rate Us URI -->
 
@@ -170,43 +164,6 @@
             app:frontnail="{fa-send-o}"
             app:label="@string/contact_us_label"
             app:endnail="@drawable/ic_sms_icon"/>
-
-        <!-- Help Label -->
-
-        <!--<TextView-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="?android:attr/listPreferredItemHeight"-->
-            <!--android:text="@string/help_label"-->
-            <!--app:frontnail="{fa-support} -->
-            <!--style="@style/ListSeparatorTextView"/>-->
-
-        <!-- Support URI -->
-
-        <!--<com.pauselabs.pause.model.SettingsButton-->
-            <!--android:id="@+id/supportBtn"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="?android:attr/listPreferredItemHeight"-->
-            <!--android:gravity="center_vertical"-->
-            <!--android:background="@null"-->
-            <!--app:label="@string/support_label" />-->
-
-        <!-- Privacy Policy URI -->
-
-        <!--<com.pauselabs.pause.model.SettingsButton-->
-            <!--android:id="@+id/privacyBtn"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="?android:attr/listPreferredItemHeight"-->
-            <!--android:background="@null"-->
-            <!--app:label="@string/privacy_policy_label" />-->
-
-        <!--&lt;!&ndash; Terms URI &ndash;&gt;-->
-
-        <!--<com.pauselabs.pause.model.SettingsButton-->
-            <!--android:id="@+id/termsBtn"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="?android:attr/listPreferredItemHeight"-->
-            <!--android:background="@null"-->
-            <!--android:label="@string/terms_label" />-->
 
         <TextView
             android:layout_width="match_parent"

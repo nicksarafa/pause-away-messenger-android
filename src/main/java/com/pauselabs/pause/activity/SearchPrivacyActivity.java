@@ -5,7 +5,6 @@ import android.app.SearchableInfo;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
-import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.ContactsContract;
@@ -76,7 +75,7 @@ public class SearchPrivacyActivity extends FragmentActivity implements AdapterVi
         searchPrivacyView.contactSearchField.setOnQueryTextListener(this);
 
         searchPrivacyView.contactSearchField.setQueryHint("Search Contacts");
-        searchPrivacyView.contactSearchField.setBackgroundColor(Color.TRANSPARENT);
+        searchPrivacyView.contactSearchField.setBackgroundColor(getResources().getColor(R.color.main));
     }
 
     @Override

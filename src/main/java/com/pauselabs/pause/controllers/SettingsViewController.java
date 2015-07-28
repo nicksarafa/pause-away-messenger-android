@@ -40,18 +40,18 @@ public class SettingsViewController implements View.OnClickListener {
 
         settingsView = (SettingsView) inflater.inflate(R.layout.settings_list_view, null);
 
-        settingsView.nameBtn.setContent(prefs.getString(Constants.Settings.NAME_KEY, "None"));
-        settingsView.genderBtn.setContent(prefs.getString(Constants.Settings.GENDER_KEY, ""));
+//        settingsView.nameBtn.setContent(prefs.getString(Constants.Settings.NAME_KEY, "None"));
+//        settingsView.genderBtn.setContent(prefs.getString(Constants.Settings.GENDER_KEY, ""));
         settingsView.strangersBtn.setContent((prefs.getBoolean(Constants.Settings.REPLY_STRANGERS_KEY, true)) ? "Yes" : "No");
         settingsView.missedCallsBtn.setContent((prefs.getBoolean(Constants.Settings.REPLY_MISSED_CALL_KEY, true)) ? "Yes" : "No");
         settingsView.receivedSmsBtn.setContent((prefs.getBoolean(Constants.Settings.REPLY_SMS_KEY, true)) ? "Yes" : "No");
         settingsView.silentBtn.setContent((prefs.getBoolean(Constants.Settings.PAUSE_ON_SILENT_KEY, true)) ? "Yes" : "No");
         settingsView.vibrateBtn.setContent((prefs.getBoolean(Constants.Settings.PAUSE_ON_VIBRATE_KEY, true)) ? "Yes" : "No");
-        settingsView.voiceBtn.setContent((prefs.getBoolean(Constants.Settings.PAUSE_VOICE_FEEDBACK_KEY, false)) ? "On" : "Off");
-        settingsView.toastBtn.setContent((prefs.getBoolean(Constants.Settings.PAUSE_TOASTS_KEY, true)) ? "On" : "Off");
+//        settingsView.voiceBtn.setContent((prefs.getBoolean(Constants.Settings.PAUSE_VOICE_FEEDBACK_KEY, false)) ? "On" : "Off");
+        settingsView.toastBtn.setContent((prefs.getBoolean(Constants.Settings.PAUSE_TOASTS_KEY, false)) ? "On" : "Off");
 
         settingsView.nameBtn.setOnClickListener(this);
-        settingsView.genderBtn.setOnClickListener(this);
+//        settingsView.genderBtn.setOnClickListener(this);
         settingsView.strangersBtn.setOnClickListener(this);
         settingsView.missedCallsBtn.setOnClickListener(this);
         settingsView.receivedSmsBtn.setOnClickListener(this);
@@ -61,7 +61,7 @@ public class SettingsViewController implements View.OnClickListener {
 //        settingsView.termsBtn.setOnClickListener(this);
         settingsView.silentBtn.setOnClickListener(this);
         settingsView.vibrateBtn.setOnClickListener(this);
-        settingsView.voiceBtn.setOnClickListener(this);
+//        settingsView.voiceBtn.setOnClickListener(this);
         settingsView.toastBtn.setOnClickListener(this);
         settingsView.defaultSettingsBtn.setOnClickListener(this);
     }
@@ -76,9 +76,9 @@ public class SettingsViewController implements View.OnClickListener {
             case R.id.nameBtn:
                 changName();
                 break;
-            case R.id.genderBtn:
-                changeGender();
-                break;
+//            case R.id.genderBtn:
+//                changeGender();
+//                break;
             case R.id.strangersBtn:
                 changeStrangers();
                 break;
@@ -149,19 +149,19 @@ public class SettingsViewController implements View.OnClickListener {
         alert.show();
     }
 
-    public void changeGender() {
-        String genderSwap;
-
-        boolean isMale = prefs.getString(Constants.Settings.GENDER_KEY, "").equals(Constants.Settings.GENDER_MALE_VALUE);
-
-        if (isMale)
-            genderSwap = Constants.Settings.GENDER_FEMALE_VALUE;
-        else
-            genderSwap = Constants.Settings.GENDER_MALE_VALUE;
-
-        settingsView.genderBtn.setContent(genderSwap);
-        prefs.edit().putString(Constants.Settings.GENDER_KEY, genderSwap).apply();
-    }
+//    public void changeGender() {
+//        String genderSwap;
+//
+//        boolean isMale = prefs.getString(Constants.Settings.GENDER_KEY, "").equals(Constants.Settings.GENDER_MALE_VALUE);
+//
+//        if (isMale)
+//            genderSwap = Constants.Settings.GENDER_FEMALE_VALUE;
+//        else
+//            genderSwap = Constants.Settings.GENDER_MALE_VALUE;
+//
+//        settingsView.genderBtn.setContent(genderSwap);
+//        prefs.edit().putString(Constants.Settings.GENDER_KEY, genderSwap).apply();
+//    }
 
     public void changeStrangers() {
         changeStrangers(false);
@@ -269,21 +269,20 @@ public class SettingsViewController implements View.OnClickListener {
         else
             pauseVoiceFeedback = !prefs.getBoolean(Constants.Settings.PAUSE_VOICE_FEEDBACK_KEY,Constants.Settings.DEFAULT_PAUSE_VOICE_FEEDBACK);
 
-        if (pauseVoiceFeedback) {
-            settingsView.voiceBtn.setContent("On");
-
-            am.setStreamVolume(AudioManager.STREAM_MUSIC, am.getStreamMaxVolume(AudioManager.STREAM_MUSIC) / 2, AudioManager.FLAG_ALLOW_RINGER_MODES);
-        } else {
-            settingsView.voiceBtn.setContent("Off");
-
-            am.setStreamVolume(AudioManager.STREAM_MUSIC, 0, AudioManager.FLAG_REMOVE_SOUND_AND_VIBRATE);
-        }
+//        if (pauseVoiceFeedback) {
+//            settingsView.voiceBtn.setContent("On");
+//
+//            am.setStreamVolume(AudioManager.STREAM_MUSIC, am.getStreamMaxVolume(AudioManager.STREAM_MUSIC) / 2, AudioManager.FLAG_ALLOW_RINGER_MODES);
+//        } else {
+//            settingsView.voiceBtn.setContent("Off");
+//
+//            am.setStreamVolume(AudioManager.STREAM_MUSIC, 0, AudioManager.FLAG_REMOVE_SOUND_AND_VIBRATE);
+//        }
 
         prefs.edit().putBoolean(Constants.Settings.PAUSE_VOICE_FEEDBACK_KEY, pauseVoiceFeedback).apply();
     }
 
     public void changeToast() { changeToast(false);  }
-
     public void changeToast(boolean def) {
         boolean pauseToastsOn;
 
@@ -341,22 +340,6 @@ public class SettingsViewController implements View.OnClickListener {
 
         alert.show();
     }
-//
-//    Second Part I'm stuggling to Implement. Basically double checks your decision to reset in a funny way.
-//
-//        alert.setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
-//            @Override
-//            public void onClick(SweetAlertDialog sweetAlertDialog) {
-//
-//                SweetAlertDialog alert2 = new SweetAlertDialog(PauseApplication.pauseActivity);
-//                alert2.setTitleText("Are you sure?");
-//                alert2.setContentText("This can't be undone!");
-//                alert2.setConfirmText("JUST DO IT ALREADY!");
-//                alert2.setCancelText("Meh. Nevermind");
-//
-//                alert2.setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
-//                    @Override
-//                    public void OnClick (SweetAlertDialog sweetAlertDialog) {
 
     public void launchSupportLink() {
         Intent termsIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.woot.com")).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
