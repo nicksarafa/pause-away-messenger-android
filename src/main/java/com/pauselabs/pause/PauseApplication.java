@@ -401,7 +401,7 @@ public class PauseApplication extends Application {
 
         notBuilder
                 .setSmallIcon(R.drawable.ic_stat_pause_icon_pause)
-                .setLargeIcon(BitmapFactory.decodeResource(instance.getResources(), R.drawable.ic_launcher))
+                .setLargeIcon(BitmapFactory.decodeResource(instance.getResources(), R.mipmap.ic_launcher))
                 .setStyle(bigStyle)
                 .setContentText(message)
                 .setAutoCancel(false)
@@ -472,7 +472,7 @@ public class PauseApplication extends Application {
 
         changeModeNotBuilder
                 .setSmallIcon(R.drawable.ic_stat_pause_icon_pause)
-                .setLargeIcon(BitmapFactory.decodeResource(instance.getResources(), R.drawable.ic_launcher))
+                .setLargeIcon(BitmapFactory.decodeResource(instance.getResources(), R.mipmap.ic_launcher))
                 .setContentTitle(instance.getString(R.string.app_name))
                 .setContentText(instance.getString(R.string.pause_session_change))
                 .setAutoCancel(false)
