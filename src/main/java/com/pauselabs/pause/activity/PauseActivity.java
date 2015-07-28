@@ -21,8 +21,6 @@ import com.pauselabs.pause.controllers.PrivacyViewController;
 import com.pauselabs.pause.controllers.SavesDirectoryViewController;
 import com.pauselabs.pause.controllers.SettingsViewController;
 import com.pauselabs.pause.controllers.SummaryViewController;
-import com.pauselabs.pause.controllers.TimeBankViewController;
-import com.pauselabs.pause.controllers.UpgradeViewController;
 import com.pauselabs.pause.model.Constants;
 import com.pauselabs.pause.util.UIUtils;
 import com.pauselabs.pause.view.PauseActivityView;
@@ -39,7 +37,7 @@ public class PauseActivity extends ActionBarActivity {
 
     public static final int SAVES_TAB = 0;
     public static final int PRIVACY_TAB = 1;
-    public static final int SETTINGS_TAB = 3;
+    public static final int SETTINGS_TAB = 2;
 //    public static final int TIME_BANK_TAB = 4;
 //    public static final int UPGRADE_TAB = 5;
 
