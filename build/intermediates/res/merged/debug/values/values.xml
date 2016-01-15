@@ -369,7 +369,7 @@
     <string name="cameraMessageRequired">Create an away message before adding a photo to your pause message</string>
     <string name="camera_button">camera btn</string>
     <string name="camera_button_clicked">Camera button clicked</string>
-    <string name="com.crashlytics.android.build_id" ns1:ignore="UnusedResources,TypographyDashes" translatable="false">167ad54e-d737-41f3-b516-fc26a5e2ff45</string>
+    <string name="com.crashlytics.android.build_id" ns1:ignore="UnusedResources,TypographyDashes" translatable="false">20eab9c7-e7c1-4406-9a3f-9a81fda45e23</string>
     <string name="common_android_wear_notification_needs_update_text">An application requires an update to the Android Wear app.</string>
     <string name="common_android_wear_update_text">This app won\'t run unless you update the Android Wear app.</string>
     <string msgid="6006316683626838685" name="common_android_wear_update_title">Update Android Wear</string>

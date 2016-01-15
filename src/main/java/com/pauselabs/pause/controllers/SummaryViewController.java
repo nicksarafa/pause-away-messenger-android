@@ -25,9 +25,6 @@ import java.util.ArrayList;
 
 import javax.inject.Inject;
 
-/**
- * Created by Passa on 12/25/14.
- */
 public class SummaryViewController implements AdapterView.OnItemClickListener, RecyclerView.OnItemTouchListener {
 
     public SummaryView summaryView;
@@ -117,6 +114,13 @@ public class SummaryViewController implements AdapterView.OnItemClickListener, R
     public void onTouchEvent(RecyclerView rv, MotionEvent e) {
 
     }
+
+    // override required for RecyclerView to be implemented next to AdapterView
+    @Override
+    public void onRequestDisallowInterceptTouchEvent(boolean disallowIntercept) {
+
+    }
+
 
     /**
      * Created by Passa on 12/25/14.

@@ -1,5 +1,9 @@
 [
     {
+        "merged": "/Users/czar/Android/pause-away-messenger-android/build/intermediates/res/merged/debug/drawable-mdpi-v11/ic_stat_notificaiton_end.png",
+        "source": "/Users/czar/Android/pause-away-messenger-android/src/main/res/drawable-mdpi-v11/ic_stat_notificaiton_end.png"
+    },
+    {
         "merged": "/Users/czar/Android/pause-android/build/intermediates/res/merged/debug/drawable-mdpi-v11/ic_stat_notificaiton_end.png",
         "source": "/Users/czar/Android/pause-android/src/main/res/drawable-mdpi-v11/ic_stat_notificaiton_end.png"
     }

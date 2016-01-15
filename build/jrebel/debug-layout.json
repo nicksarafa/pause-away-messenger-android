@@ -1,0 +1,134 @@
+{
+    "moduleRoot": "/Users/czar/Android/pause-away-messenger-android",
+    "minSdkVersion": 14,
+    "targetSdkVersion": 22,
+    "storeType": "jks",
+    "resourcePackages": [
+        {
+            "path": "/Users/czar/Android/pause-away-messenger-android/build/intermediates/res/resources-debug.ap_",
+            "filters": [
+                
+            ]
+        }
+    ],
+    "projectRoot": "/Users/czar/Android/pause-away-messenger-android",
+    "gradleLock": "/Users/czar/Android/pause-away-messenger-android/build/jrebel/gradle.lock",
+    "keyAlias": "AndroidDebugKey",
+    "androidManifest": [
+        "/Users/czar/Android/pause-away-messenger-android/src/debug/AndroidManifest.xml",
+        "/Users/czar/Android/pause-away-messenger-android/src/main/AndroidManifest.xml"
+    ],
+    "mergedResources": "/Users/czar/Android/pause-away-messenger-android/build/intermediates/res/merged/debug",
+    "storePassword": "android",
+    "assetPath": [
+        "/Users/czar/Android/pause-away-messenger-android/src/debug/assets",
+        "/Users/czar/Android/pause-away-messenger-android/src/main/assets"
+    ],
+    "apks": [
+        {
+            "path": "/Users/czar/Android/pause-away-messenger-android/build/outputs/apk/pause-away-messenger-android-debug.apk",
+            "filters": [
+                
+            ]
+        }
+    ],
+    "explodedLibsResources": [
+        "/Users/czar/Android/pause-away-messenger-android/build/generated/fabric/res/debug",
+        "/Users/czar/Android/pause-away-messenger-android/build/generated/res/resValues/debug",
+        "/Users/czar/Android/pause-away-messenger-android/build/generated/res/rs/debug",
+        "/Users/czar/Android/pause-away-messenger-android/build/intermediates/exploded-aar/com.android.support/cardview-v7/22.0.0/res",
+        "/Users/czar/Android/pause-away-messenger-android/build/intermediates/exploded-aar/com.android.support/palette-v7/22.0.0/res",
+        "/Users/czar/Android/pause-away-messenger-android/build/intermediates/exploded-aar/com.sothree.slidinguppanel/library/3.2.1/res",
+        "/Users/czar/Android/pause-away-messenger-android/build/intermediates/exploded-aar/com.android.support/recyclerview-v7/23.1.1/res",
+        "/Users/czar/Android/pause-away-messenger-android/build/intermediates/exploded-aar/com.github.navasmdc/MaterialDesign/1.4/res",
+        "/Users/czar/Android/pause-away-messenger-android/build/intermediates/exploded-aar/com.github.johnpersano/supertoasts/1.3.4/res",
+        "/Users/czar/Android/pause-away-messenger-android/build/intermediates/exploded-aar/cn.pedant.sweetalert/library/1.3/res",
+        "/Users/czar/Android/pause-away-messenger-android/build/intermediates/exploded-aar/com.pnikosis/materialish-progress/1.0/res",
+        "/Users/czar/Android/pause-away-messenger-android/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.1/res",
+        "/Users/czar/Android/pause-away-messenger-android/build/intermediates/exploded-aar/com.amulyakhare/com.amulyakhare.textdrawable/1.0.1/res",
+        "/Users/czar/Android/pause-away-messenger-android/build/intermediates/exploded-aar/com.andreabaccega/android-form-edittext/1.1.0/res",
+        "/Users/czar/Android/pause-away-messenger-android/build/intermediates/exploded-aar/com.android.support/support-v13/23.1.1/res",
+        "/Users/czar/Android/pause-away-messenger-android/build/intermediates/exploded-aar/com.google.android.gms/play-services/6.5.87/res",
+        "/Users/czar/Android/pause-away-messenger-android/build/intermediates/exploded-aar/com.android.support/support-v4/23.1.1/res",
+        "/Users/czar/Android/pause-away-messenger-android/build/intermediates/exploded-aar/com.crashlytics.sdk.android/crashlytics/2.5.5/res",
+        "/Users/czar/Android/pause-away-messenger-android/build/intermediates/exploded-aar/com.crashlytics.sdk.android/crashlytics-core/2.3.8/res",
+        "/Users/czar/Android/pause-away-messenger-android/build/intermediates/exploded-aar/com.crashlytics.sdk.android/answers/1.3.6/res",
+        "/Users/czar/Android/pause-away-messenger-android/build/intermediates/exploded-aar/io.fabric.sdk.android/fabric/1.3.10/res",
+        "/Users/czar/Android/pause-away-messenger-android/build/intermediates/exploded-aar/com.crashlytics.sdk.android/beta/1.1.4/res"
+    ],
+    "sourcePath": [
+        "/Users/czar/Android/pause-away-messenger-android/src/debug/resources",
+        "/Users/czar/Android/pause-away-messenger-android/src/main/resources"
+    ],
+    "storeFile": "/Users/czar/.android/debug.keystore",
+    "compileSdkVersion": "android-22",
+    "originalApplicationId": "com.pauselabs",
+    "bootClassPath": [
+        "/Users/czar/Library/Android/sdk/platforms/android-22/android.jar"
+    ],
+    "applicationVariant": "debug",
+    "multiDexEnabled": false,
+    "sdkDir": "/Users/czar/Library/Android/sdk",
+    "rebelPluginVersion": "1.0.12 2016-01-14T13:10:55+0000",
+    "keyPassword": "android",
+    "androidPluginVersion": "1.5.0",
+    "resourcePath": [
+        "/Users/czar/Android/pause-away-messenger-android/src/debug/res",
+        "/Users/czar/Android/pause-away-messenger-android/src/main/res"
+    ],
+    "type": "Gradle",
+    "timingsFile": "/Users/czar/Android/pause-away-messenger-android/build/jrebel/timings.json",
+    "rebelDataDir": "/Users/czar/Android/pause-away-messenger-android/build/jrebel/data/debug",
+    "resourcePackagePath": "/Users/czar/Android/pause-away-messenger-android/build/intermediates/res/resources-debug.ap_",
+    "buildSystemVersion": "2.8",
+    "layoutVersion": 10,
+    "applicationId": "com.pauselabs.debug",
+    "apk": "/Users/czar/Android/pause-away-messenger-android/build/outputs/apk/pause-away-messenger-android-debug.apk",
+    "buildToolsDir": "/Users/czar/Library/Android/sdk/build-tools/22.0.1",
+    "generatedJavaSourcePath": [
+        "/Users/czar/Android/pause-away-messenger-android/build/generated/source/r/debug",
+        "/Users/czar/Android/pause-away-messenger-android/build/generated/source/rs/debug",
+        "/Users/czar/Android/pause-away-messenger-android/build/generated/source/buildConfig/debug",
+        "/Users/czar/Android/pause-away-messenger-android/build/generated/source/aidl/debug"
+    ],
+    "classPath": [
+        "/Users/czar/Android/pause-away-messenger-android/build/intermediates/classes/debug",
+        "/Users/czar/.gradle/caches/modules-2/files-2.1/com.nostra13.universalimageloader/universal-image-loader/1.9.3/a85588bec3e2c4584d593d3f15df1677321bca72/universal-image-loader-1.9.3.jar",
+        "/Users/czar/Android/pause-away-messenger-android/build/intermediates/exploded-aar/com.android.support/support-v13/23.1.1/jars/libs/internal_impl-23.1.1.jar",
+        "/Users/czar/Android/pause-away-messenger-android/libs/Parse-1.8.4/ParseFacebookUtils-1.8.4.jar",
+        "/Users/czar/.gradle/caches/modules-2/files-2.1/com.squareup/javawriter/1.0.5/d4576fdb2fb07cd80ab10c0651c5dbf4de28475c/javawriter-1.0.5.jar",
+        "/Users/czar/.gradle/caches/modules-2/files-2.1/com.squareup.dagger/dagger-compiler/1.0.1/c879320dc5c3cfd5cd069899a75c2a5bce8375b5/dagger-compiler-1.0.1.jar",
+        "/Users/czar/Android/pause-away-messenger-android/build/intermediates/exploded-aar/com.android.support/cardview-v7/22.0.0/jars/classes.jar",
+        "/Users/czar/Android/pause-away-messenger-android/build/intermediates/exploded-aar/com.sothree.slidinguppanel/library/3.2.1/jars/classes.jar",
+        "/Users/czar/Android/pause-away-messenger-android/build/intermediates/exploded-aar/com.github.johnpersano/supertoasts/1.3.4/jars/classes.jar",
+        "/Users/czar/Android/pause-away-messenger-android/build/intermediates/exploded-aar/com.pnikosis/materialish-progress/1.0/jars/classes.jar",
+        "/Users/czar/Android/pause-away-messenger-android/build/intermediates/exploded-aar/com.crashlytics.sdk.android/beta/1.1.4/jars/classes.jar",
+        "/Users/czar/Android/pause-away-messenger-android/build/intermediates/exploded-aar/com.amulyakhare/com.amulyakhare.textdrawable/1.0.1/jars/classes.jar",
+        "/Users/czar/Library/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/23.1.1/support-annotations-23.1.1.jar",
+        "/Users/czar/Android/pause-away-messenger-android/libs/Parse-1.8.4/Parse-1.8.4.jar",
+        "/Users/czar/Android/pause-away-messenger-android/build/intermediates/exploded-aar/com.android.support/recyclerview-v7/23.1.1/jars/classes.jar",
+        "/Users/czar/.gradle/caches/modules-2/files-2.1/javax.inject/javax.inject/1/6975da39a7040257bd51d21a231b76c915872d38/javax.inject-1.jar",
+        "/Users/czar/Android/pause-away-messenger-android/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.1/jars/classes.jar",
+        "/Users/czar/Android/pause-away-messenger-android/build/intermediates/exploded-aar/com.crashlytics.sdk.android/answers/1.3.6/jars/classes.jar",
+        "/Users/czar/Android/pause-away-messenger-android/build/intermediates/exploded-aar/com.github.navasmdc/MaterialDesign/1.4/jars/classes.jar",
+        "/Users/czar/Android/pause-away-messenger-android/build/intermediates/exploded-aar/com.android.support/support-v13/23.1.1/jars/classes.jar",
+        "/Users/czar/Android/pause-away-messenger-android/build/intermediates/exploded-aar/com.android.support/support-v4/23.1.1/jars/classes.jar",
+        "/Users/czar/Android/pause-away-messenger-android/build/intermediates/exploded-aar/com.crashlytics.sdk.android/crashlytics/2.5.5/jars/classes.jar",
+        "/Users/czar/Android/pause-away-messenger-android/build/intermediates/exploded-aar/com.android.support/palette-v7/22.0.0/jars/classes.jar",
+        "/Users/czar/Android/pause-away-messenger-android/libs/Parse-1.8.4/ParseCrashReporting-1.8.4.jar",
+        "/Users/czar/.gradle/caches/modules-2/files-2.1/com.nineoldandroids/library/2.4.0/e9b63380f3a242dbdbf103a2355ad7e43bad17cb/library-2.4.0.jar",
+        "/Users/czar/Android/pause-away-messenger-android/build/intermediates/exploded-aar/com.google.android.gms/play-services/6.5.87/jars/classes.jar",
+        "/Users/czar/Android/pause-away-messenger-android/build/intermediates/exploded-aar/cn.pedant.sweetalert/library/1.3/jars/classes.jar",
+        "/Users/czar/Android/pause-away-messenger-android/build/intermediates/exploded-aar/com.android.support/support-v4/23.1.1/jars/libs/internal_impl-23.1.1.jar",
+        "/Users/czar/.gradle/caches/modules-2/files-2.1/com.joanzapata.android/android-iconify/1.0.9/27817b0ae26d4fa788711f1f75aaa45d76901722/android-iconify-1.0.9.jar",
+        "/Users/czar/.gradle/caches/modules-2/files-2.1/com.squareup.dagger/dagger/1.0.1/ec469f2b494fed2aec5af606b61e66ab5ac451cd/dagger-1.0.1.jar",
+        "/Users/czar/Library/Android/sdk/build-tools/22.0.1/renderscript/lib/renderscript-v8.jar",
+        "/Users/czar/Android/pause-away-messenger-android/build/intermediates/exploded-aar/com.andreabaccega/android-form-edittext/1.1.0/jars/classes.jar",
+        "/Users/czar/Android/pause-away-messenger-android/build/intermediates/exploded-aar/com.crashlytics.sdk.android/crashlytics-core/2.3.8/jars/classes.jar",
+        "/Users/czar/.gradle/caches/modules-2/files-2.1/com.parse.bolts/bolts-android/1.1.4/129874135e6081269ace2312092031558865de12/bolts-android-1.1.4.jar",
+        "/Users/czar/.gradle/caches/modules-2/files-2.1/com.squareup/otto/1.3.4/4d72fb811c7b3c0e7f412112020d4430f044e510/otto-1.3.4.jar",
+        "/Users/czar/.gradle/caches/modules-2/files-2.1/com.jakewharton/butterknife/1.3.2/61a856888185f11271372c0508bad85e905617f/butterknife-1.3.2.jar",
+        "/Users/czar/Android/pause-away-messenger-android/build/intermediates/exploded-aar/io.fabric.sdk.android/fabric/1.3.10/jars/classes.jar"
+    ],
+    "gradleJavaHome": "/Library/Java/JavaVirtualMachines/jdk1.7.0_79.jdk/Contents/Home"
+}

@@ -1,10 +1,18 @@
 [
     {
+        "merged": "/Users/czar/Android/pause-away-messenger-android/build/intermediates/res/merged/debug/drawable-xxhdpi-v11/ic_stat_pause_icon_pause.png",
+        "source": "/Users/czar/Android/pause-away-messenger-android/src/main/res/drawable-xxhdpi-v11/ic_stat_pause_icon_pause.png"
+    },
+    {
         "merged": "/Users/czar/Android/pause-android/build/intermediates/res/merged/debug/drawable-xxhdpi-v11/ic_stat_notificaiton_end.png",
         "source": "/Users/czar/Android/pause-android/src/main/res/drawable-xxhdpi-v11/ic_stat_notificaiton_end.png"
     },
     {
         "merged": "/Users/czar/Android/pause-android/build/intermediates/res/merged/debug/drawable-xxhdpi-v11/ic_stat_pause_icon_pause.png",
         "source": "/Users/czar/Android/pause-android/src/main/res/drawable-xxhdpi-v11/ic_stat_pause_icon_pause.png"
+    },
+    {
+        "merged": "/Users/czar/Android/pause-away-messenger-android/build/intermediates/res/merged/debug/drawable-xxhdpi-v11/ic_stat_notificaiton_end.png",
+        "source": "/Users/czar/Android/pause-away-messenger-android/src/main/res/drawable-xxhdpi-v11/ic_stat_notificaiton_end.png"
     }
 ]

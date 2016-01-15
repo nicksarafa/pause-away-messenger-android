@@ -1,5 +1,9 @@
 [
     {
+        "merged": "/Users/czar/Android/pause-away-messenger-android/build/intermediates/res/merged/debug/menu/main.xml",
+        "source": "/Users/czar/Android/pause-away-messenger-android/src/main/res/menu/main.xml"
+    },
+    {
         "merged": "/Users/czar/Android/pause-android/build/intermediates/res/merged/debug/menu/main.xml",
         "source": "/Users/czar/Android/pause-android/src/main/res/menu/main.xml"
     }

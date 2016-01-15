@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="android-form-edittext-1.1.0">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/build/intermediates/exploded-aar/com.andreabaccega/android-form-edittext/1.1.0/jars/classes.jar!/" />
+      <root url="file://$PROJECT_DIR$/build/intermediates/exploded-aar/com.andreabaccega/android-form-edittext/1.1.0/res" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.andreabaccega/android-form-edittext/1.1.0/d1e11e8135a3d59e233da26923b4664f56cde091/android-form-edittext-1.1.0-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
