@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<com.pauselabs.pause.view.tabs.SavesDirectoryView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:whatever="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/saveDirectory"
+    android:layout_height="fill_parent"
+    android:layout_width="fill_parent"
+    android:background="@drawable/transparent_drawable">
+
+    <!-- Custom Message View Holder -->
+
+    <LinearLayout
+        android:id="@+id/custom_pause_container"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/main_header_universal_height"
+        android:orientation="horizontal"
+        android:layout_margin="8dp"
+        android:background="@drawable/card_bg">
+
+        <com.andreabaccega.widget.FormEditText
+            android:id="@+id/custom_text"
+            whatever:testType="numeric"
+            whatever:emptyAllowed="false"
+            whatever:emptyErrorString="Empty"
+            whatever:testErrorString="Test"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="7"
+            android:background="@drawable/transparent_drawable"
+            android:focusableInTouchMode="true"
+            android:focusable="true"
+            android:textSize="@dimen/text_medium"
+            android:textColorHint="@color/text"
+            android:textColor="@color/text"
+            android:textIsSelectable="false"
+            android:textCursorDrawable="@drawable/cursor"
+            android:freezesText="false"
+            android:maxLines="10"
+            android:scrollbars="none"
+            android:imeOptions="flagNoEnterAction"
+            android:paddingLeft="@dimen/save_horizontal_and_vertical_padding"
+            android:paddingRight="@dimen/save_horizontal_and_vertical_padding"
+            android:inputType="textCapSentences|textMultiLine"
+            android:hint="@string/custom_pause_hint"/>
+
+            <RelativeLayout
+                android:id="@+id/custom_pause_right_end_container"
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <!-- Save Button -->
+
+                <IconButton
+                    android:id="@+id/save_pause_message_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/transparent_drawable"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerInParent="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_centerHorizontal="true"
+                    android:paddingRight="@dimen/save_horizontal_and_vertical_padding"
+                    android:paddingEnd="@dimen/save_horizontal_and_vertical_padding"
+                    android:layout_marginRight="4dp"
+                    android:layout_marginEnd="4dp"
+                    android:layout_marginTop="@dimen/save_horizontal_and_vertical_padding"
+                    android:gravity="center_vertical|center_horizontal|end|right"
+                    android:visibility="visible"
+                    android:textColor="@color/text"
+                    android:textSize="@dimen/text_extra_large"
+                    android:text="@string/save_fa_button"/>
+
+                <!-- Character Count (Tabled) -->
+
+                <!--<TextView-->
+                    <!--android:id="@+id/message_character_count"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_alignParentBottom="true"-->
+                    <!--android:layout_alignParentEnd="true"-->
+                    <!--android:layout_alignParentRight="true"-->
+                    <!--android:layout_marginRight="@dimen/save_horizontal_and_vertical_padding"-->
+                    <!--android:layout_marginEnd="@dimen/save_horizontal_and_vertical_padding"-->
+                    <!--android:gravity="end|right"-->
+                    <!--android:textSize="@dimen/text_small"-->
+                    <!--android:textColor="@color/main"-->
+                    <!--android:text="@string/sms_character_limit" />-->
+
+            </RelativeLayout>
+
+    </LinearLayout>
+
+        <!-- Save List -->
+
+        <ListView
+            android:id="@+id/savesDirectoryGrid"
+            android:layout_width="match_parent"
+            android:layout_height="fill_parent"
+            android:layout_alignParentTop="true"
+            android:numColumns="1"
+            android:layout_marginTop="@dimen/main_list_view_universal_margin_top"
+            android:listSelector="@drawable/transparent_drawable"
+            android:cacheColorHint="@color/transparent"
+            android:clipToPadding="true"
+            android:scrollbars="vertical"
+            android:isScrollContainer="false"
+            android:scrollbarStyle="outsideOverlay"
+            android:smoothScrollbar="true"
+            android:verticalScrollbarPosition="left"
+            android:overScrollMode="never"
+            android:overScrollHeader="@drawable/transparent_drawable"
+            android:headerDividersEnabled="false"
+            android:overScrollFooter="@android:color/transparent"
+            android:footerDividersEnabled="false"
+            android:stretchMode="columnWidth"/>
+
+</com.pauselabs.pause.view.tabs.SavesDirectoryView>
+

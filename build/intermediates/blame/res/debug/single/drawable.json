@@ -1,0 +1,434 @@
+[
+    {
+        "merged": "/Users/czar/Android/pause-android/build/intermediates/res/merged/debug/drawable/abc_list_selector_holo_light.xml",
+        "source": "/Users/czar/Android/pause-android/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.1/res/drawable/abc_list_selector_holo_light.xml"
+    },
+    {
+        "merged": "/Users/czar/Android/pause-android/build/intermediates/res/merged/debug/drawable/success_bow.xml",
+        "source": "/Users/czar/Android/pause-android/build/intermediates/exploded-aar/cn.pedant.sweetalert/library/1.3/res/drawable/success_bow.xml"
+    },
+    {
+        "merged": "/Users/czar/Android/pause-android/build/intermediates/res/merged/debug/drawable/abc_btn_check_material.xml",
+        "source": "/Users/czar/Android/pause-android/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.1/res/drawable/abc_btn_check_material.xml"
+    },
+    {
+        "merged": "/Users/czar/Android/pause-android/build/intermediates/res/merged/debug/drawable/background_standard_black.xml",
+        "source": "/Users/czar/Android/pause-android/build/intermediates/exploded-aar/com.github.johnpersano/supertoasts/1.3.4/res/drawable/background_standard_black.xml"
+    },
+    {
+        "merged": "/Users/czar/Android/pause-android/build/intermediates/res/merged/debug/drawable/abc_btn_default_mtrl_shape.xml",
+        "source": "/Users/czar/Android/pause-android/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.1/res/drawable/abc_btn_default_mtrl_shape.xml"
+    },
+    {
+        "merged": "/Users/czar/Android/pause-android/build/intermediates/res/merged/debug/drawable/background_kitkat_black.xml",
+        "source": "/Users/czar/Android/pause-android/build/intermediates/exploded-aar/com.github.johnpersano/supertoasts/1.3.4/res/drawable/background_kitkat_black.xml"
+    },
+    {
+        "merged": "/Users/czar/Android/pause-android/build/intermediates/res/merged/debug/drawable/summary_circle.xml",
+        "source": "/Users/czar/Android/pause-android/src/main/res/drawable/summary_circle.xml"
+    },
+    {
+        "merged": "/Users/czar/Android/pause-android/build/intermediates/res/merged/debug/drawable/abc_list_selector_holo_dark.xml",
+        "source": "/Users/czar/Android/pause-android/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.1/res/drawable/abc_list_selector_holo_dark.xml"
+    },
+    {
+        "merged": "/Users/czar/Android/pause-android/build/intermediates/res/merged/debug/drawable/background_kitkat_red.xml",
+        "source": "/Users/czar/Android/pause-android/build/intermediates/exploded-aar/com.github.johnpersano/supertoasts/1.3.4/res/drawable/background_kitkat_red.xml"
+    },
+    {
+        "merged": "/Users/czar/Android/pause-android/build/intermediates/res/merged/debug/drawable/selector_kitkat_square_undobutton.xml",
+        "source": "/Users/czar/Android/pause-android/build/intermediates/exploded-aar/com.github.johnpersano/supertoasts/1.3.4/res/drawable/selector_kitkat_square_undobutton.xml"
+    },
+    {
+        "merged": "/Users/czar/Android/pause-android/build/intermediates/res/merged/debug/drawable/ab_custom_on.png",
+        "source": "/Users/czar/Android/pause-android/src/main/res/drawable/ab_custom_on.png"
+    },
+    {
+        "merged": "/Users/czar/Android/pause-android/build/intermediates/res/merged/debug/drawable/dialog_background.xml",
+        "source": "/Users/czar/Android/pause-android/build/intermediates/exploded-aar/cn.pedant.sweetalert/library/1.3/res/drawable/dialog_background.xml"
+    },
+    {
+        "merged": "/Users/czar/Android/pause-android/build/intermediates/res/merged/debug/drawable/background_transparent.xml",
+        "source": "/Users/czar/Android/pause-android/build/intermediates/exploded-aar/com.github.navasmdc/MaterialDesign/1.4/res/drawable/background_transparent.xml"
+    },
+    {
+        "merged": "/Users/czar/Android/pause-android/build/intermediates/res/merged/debug/drawable/common_signin_btn_text_dark.xml",
+        "source": "/Users/czar/Android/pause-android/build/intermediates/exploded-aar/com.google.android.gms/play-services/6.5.87/res/drawable/common_signin_btn_text_dark.xml"
+    },
+    {
+        "merged": "/Users/czar/Android/pause-android/build/intermediates/res/merged/debug/drawable/abc_tab_indicator_material.xml",
+        "source": "/Users/czar/Android/pause-android/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.1/res/drawable/abc_tab_indicator_material.xml"
+    },
+    {
+        "merged": "/Users/czar/Android/pause-android/build/intermediates/res/merged/debug/drawable/abc_list_selector_background_transition_holo_light.xml",
+        "source": "/Users/czar/Android/pause-android/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.1/res/drawable/abc_list_selector_background_transition_holo_light.xml"
+    },
+    {
+        "merged": "/Users/czar/Android/pause-android/build/intermediates/res/merged/debug/drawable/background_checkbox_uncheck.xml",
+        "source": "/Users/czar/Android/pause-android/build/intermediates/exploded-aar/com.github.navasmdc/MaterialDesign/1.4/res/drawable/background_checkbox_uncheck.xml"
+    },
+    {
+        "merged": "/Users/czar/Android/pause-android/build/intermediates/res/merged/debug/drawable/shape_kitkat_square_undobarselected.xml",
+        "source": "/Users/czar/Android/pause-android/build/intermediates/exploded-aar/com.github.johnpersano/supertoasts/1.3.4/res/drawable/shape_kitkat_square_undobarselected.xml"
+    },
+    {
+        "merged": "/Users/czar/Android/pause-android/build/intermediates/res/merged/debug/drawable/background_kitkat_purple.xml",
+        "source": "/Users/czar/Android/pause-android/build/intermediates/exploded-aar/com.github.johnpersano/supertoasts/1.3.4/res/drawable/background_kitkat_purple.xml"
+    },
+    {
+        "merged": "/Users/czar/Android/pause-android/build/intermediates/res/merged/debug/drawable/common_signin_btn_icon_light.xml",
+        "source": "/Users/czar/Android/pause-android/build/intermediates/exploded-aar/com.google.android.gms/play-services/6.5.87/res/drawable/common_signin_btn_icon_light.xml"
+    },
+    {
+        "merged": "/Users/czar/Android/pause-android/build/intermediates/res/merged/debug/drawable/abc_switch_thumb_material.xml",
+        "source": "/Users/czar/Android/pause-android/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.1/res/drawable/abc_switch_thumb_material.xml"
+    },
+    {
+        "merged": "/Users/czar/Android/pause-android/build/intermediates/res/merged/debug/drawable/toast_card_bg_pause_on.xml",
+        "source": "/Users/czar/Android/pause-android/src/main/res/drawable/toast_card_bg_pause_on.xml"
+    },
+    {
+        "merged": "/Users/czar/Android/pause-android/build/intermediates/res/merged/debug/drawable/ab_privacy_on.png",
+        "source": "/Users/czar/Android/pause-android/src/main/res/drawable/ab_privacy_on.png"
+    },
+    {
+        "merged": "/Users/czar/Android/pause-android/build/intermediates/res/merged/debug/drawable/ab_grid_on.png",
+        "source": "/Users/czar/Android/pause-android/src/main/res/drawable/ab_grid_on.png"
+    },
+    {
+        "merged": "/Users/czar/Android/pause-android/build/intermediates/res/merged/debug/drawable/icon.xml",
+        "source": "/Users/czar/Android/pause-android/src/main/res/drawable/icon.xml"
+    },
+    {
+        "merged": "/Users/czar/Android/pause-android/build/intermediates/res/merged/debug/drawable/abc_btn_borderless_material.xml",
+        "source": "/Users/czar/Android/pause-android/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.1/res/drawable/abc_btn_borderless_material.xml"
+    },
+    {
+        "merged": "/Users/czar/Android/pause-android/build/intermediates/res/merged/debug/drawable/shape_undobarselected.xml",
+        "source": "/Users/czar/Android/pause-android/build/intermediates/exploded-aar/com.github.johnpersano/supertoasts/1.3.4/res/drawable/shape_undobarselected.xml"
+    },
+    {
+        "merged": "/Users/czar/Android/pause-android/build/intermediates/res/merged/debug/drawable/warning_sigh.xml",
+        "source": "/Users/czar/Android/pause-android/build/intermediates/exploded-aar/cn.pedant.sweetalert/library/1.3/res/drawable/warning_sigh.xml"
+    },
+    {
+        "merged": "/Users/czar/Android/pause-android/build/intermediates/res/merged/debug/drawable/card_text_bg.xml",
+        "source": "/Users/czar/Android/pause-android/src/main/res/drawable/card_text_bg.xml"
+    },
+    {
+        "merged": "/Users/czar/Android/pause-android/build/intermediates/res/merged/debug/drawable/selector_undobutton.xml",
+        "source": "/Users/czar/Android/pause-android/build/intermediates/exploded-aar/com.github.johnpersano/supertoasts/1.3.4/res/drawable/selector_undobutton.xml"
+    },
+    {
+        "merged": "/Users/czar/Android/pause-android/build/intermediates/res/merged/debug/drawable/shape_undobarfocused.xml",
+        "source": "/Users/czar/Android/pause-android/build/intermediates/exploded-aar/com.github.johnpersano/supertoasts/1.3.4/res/drawable/shape_undobarfocused.xml"
+    },
+    {
+        "merged": "/Users/czar/Android/pause-android/build/intermediates/res/merged/debug/drawable/fab_button.xml",
+        "source": "/Users/czar/Android/pause-android/src/main/res/drawable/fab_button.xml"
+    },
+    {
+        "merged": "/Users/czar/Android/pause-android/build/intermediates/res/merged/debug/drawable/abc_dialog_material_background_dark.xml",
+        "source": "/Users/czar/Android/pause-android/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.1/res/drawable/abc_dialog_material_background_dark.xml"
+    },
+    {
+        "merged": "/Users/czar/Android/pause-android/build/intermediates/res/merged/debug/drawable/background_kitkat_blue.xml",
+        "source": "/Users/czar/Android/pause-android/build/intermediates/exploded-aar/com.github.johnpersano/supertoasts/1.3.4/res/drawable/background_kitkat_blue.xml"
+    },
+    {
+        "merged": "/Users/czar/Android/pause-android/build/intermediates/res/merged/debug/drawable/background_checkbox_check.xml",
+        "source": "/Users/czar/Android/pause-android/build/intermediates/exploded-aar/com.github.navasmdc/MaterialDesign/1.4/res/drawable/background_checkbox_check.xml"
+    },
+    {
+        "merged": "/Users/czar/Android/pause-android/build/intermediates/res/merged/debug/drawable/toast_card_bg_pause_off_summary.xml",
+        "source": "/Users/czar/Android/pause-android/src/main/res/drawable/toast_card_bg_pause_off_summary.xml"
+    },
+    {
+        "merged": "/Users/czar/Android/pause-android/build/intermediates/res/merged/debug/drawable/error_circle.xml",
+        "source": "/Users/czar/Android/pause-android/build/intermediates/exploded-aar/cn.pedant.sweetalert/library/1.3/res/drawable/error_circle.xml"
+    },
+    {
+        "merged": "/Users/czar/Android/pause-android/build/intermediates/res/merged/debug/drawable/ab_settings_on.png",
+        "source": "/Users/czar/Android/pause-android/src/main/res/drawable/ab_settings_on.png"
+    },
+    {
+        "merged": "/Users/czar/Android/pause-android/build/intermediates/res/merged/debug/drawable/red_button_background.xml",
+        "source": "/Users/czar/Android/pause-android/build/intermediates/exploded-aar/cn.pedant.sweetalert/library/1.3/res/drawable/red_button_background.xml"
+    },
+    {
+        "merged": "/Users/czar/Android/pause-android/build/intermediates/res/merged/debug/drawable/common_signin_btn_text_light.xml",
+        "source": "/Users/czar/Android/pause-android/build/intermediates/exploded-aar/com.google.android.gms/play-services/6.5.87/res/drawable/common_signin_btn_text_light.xml"
+    },
+    {
+        "merged": "/Users/czar/Android/pause-android/build/intermediates/res/merged/debug/drawable/abc_item_background_holo_light.xml",
+        "source": "/Users/czar/Android/pause-android/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.1/res/drawable/abc_item_background_holo_light.xml"
+    },
+    {
+        "merged": "/Users/czar/Android/pause-android/build/intermediates/res/merged/debug/drawable/below_shadow.xml",
+        "source": "/Users/czar/Android/pause-android/build/intermediates/exploded-aar/com.sothree.slidinguppanel/library/3.2.1/res/drawable/below_shadow.xml"
+    },
+    {
+        "merged": "/Users/czar/Android/pause-android/build/intermediates/res/merged/debug/drawable/shape_kitkat_undobarselected.xml",
+        "source": "/Users/czar/Android/pause-android/build/intermediates/exploded-aar/com.github.johnpersano/supertoasts/1.3.4/res/drawable/shape_kitkat_undobarselected.xml"
+    },
+    {
+        "merged": "/Users/czar/Android/pause-android/build/intermediates/res/merged/debug/drawable/common_signin_btn_icon_dark.xml",
+        "source": "/Users/czar/Android/pause-android/build/intermediates/exploded-aar/com.google.android.gms/play-services/6.5.87/res/drawable/common_signin_btn_icon_dark.xml"
+    },
+    {
+        "merged": "/Users/czar/Android/pause-android/build/intermediates/res/merged/debug/drawable/ab_grid_off.png",
+        "source": "/Users/czar/Android/pause-android/src/main/res/drawable/ab_grid_off.png"
+    },
+    {
+        "merged": "/Users/czar/Android/pause-android/build/intermediates/res/merged/debug/drawable/ob_female_gender_pressed.xml",
+        "source": "/Users/czar/Android/pause-android/src/main/res/drawable/ob_female_gender_pressed.xml"
+    },
+    {
+        "merged": "/Users/czar/Android/pause-android/build/intermediates/res/merged/debug/drawable/above_shadow.xml",
+        "source": "/Users/czar/Android/pause-android/build/intermediates/exploded-aar/com.sothree.slidinguppanel/library/3.2.1/res/drawable/above_shadow.xml"
+    },
+    {
+        "merged": "/Users/czar/Android/pause-android/build/intermediates/res/merged/debug/drawable/abc_list_selector_background_transition_holo_dark.xml",
+        "source": "/Users/czar/Android/pause-android/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.1/res/drawable/abc_list_selector_background_transition_holo_dark.xml"
+    },
+    {
+        "merged": "/Users/czar/Android/pause-android/build/intermediates/res/merged/debug/drawable/transparent_drawable.xml",
+        "source": "/Users/czar/Android/pause-android/src/main/res/drawable/transparent_drawable.xml"
+    },
+    {
+        "merged": "/Users/czar/Android/pause-android/build/intermediates/res/merged/debug/drawable/ob_letters_no_face.png",
+        "source": "/Users/czar/Android/pause-android/src/main/res/drawable/ob_letters_no_face.png"
+    },
+    {
+        "merged": "/Users/czar/Android/pause-android/build/intermediates/res/merged/debug/drawable/background_standard_white.xml",
+        "source": "/Users/czar/Android/pause-android/build/intermediates/exploded-aar/com.github.johnpersano/supertoasts/1.3.4/res/drawable/background_standard_white.xml"
+    },
+    {
+        "merged": "/Users/czar/Android/pause-android/build/intermediates/res/merged/debug/drawable/privacy_sub_header_selected.xml",
+        "source": "/Users/czar/Android/pause-android/src/main/res/drawable/privacy_sub_header_selected.xml"
+    },
+    {
+        "merged": "/Users/czar/Android/pause-android/build/intermediates/res/merged/debug/drawable/ab_privacy_off.png",
+        "source": "/Users/czar/Android/pause-android/src/main/res/drawable/ab_privacy_off.png"
+    },
+    {
+        "merged": "/Users/czar/Android/pause-android/build/intermediates/res/merged/debug/drawable/gray_button_background.xml",
+        "source": "/Users/czar/Android/pause-android/build/intermediates/exploded-aar/cn.pedant.sweetalert/library/1.3/res/drawable/gray_button_background.xml"
+    },
+    {
+        "merged": "/Users/czar/Android/pause-android/build/intermediates/res/merged/debug/drawable/success_circle.xml",
+        "source": "/Users/czar/Android/pause-android/build/intermediates/exploded-aar/cn.pedant.sweetalert/library/1.3/res/drawable/success_circle.xml"
+    },
+    {
+        "merged": "/Users/czar/Android/pause-android/build/intermediates/res/merged/debug/drawable/card_bg_save_default.xml",
+        "source": "/Users/czar/Android/pause-android/src/main/res/drawable/card_bg_save_default.xml"
+    },
+    {
+        "merged": "/Users/czar/Android/pause-android/build/intermediates/res/merged/debug/drawable/abc_btn_radio_material.xml",
+        "source": "/Users/czar/Android/pause-android/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.1/res/drawable/abc_btn_radio_material.xml"
+    },
+    {
+        "merged": "/Users/czar/Android/pause-android/build/intermediates/res/merged/debug/drawable/background_kitkat_white.xml",
+        "source": "/Users/czar/Android/pause-android/build/intermediates/exploded-aar/com.github.johnpersano/supertoasts/1.3.4/res/drawable/background_kitkat_white.xml"
+    },
+    {
+        "merged": "/Users/czar/Android/pause-android/build/intermediates/res/merged/debug/drawable/background_button_float.xml",
+        "source": "/Users/czar/Android/pause-android/build/intermediates/exploded-aar/com.github.navasmdc/MaterialDesign/1.4/res/drawable/background_button_float.xml"
+    },
+    {
+        "merged": "/Users/czar/Android/pause-android/build/intermediates/res/merged/debug/drawable/abc_edit_text_material.xml",
+        "source": "/Users/czar/Android/pause-android/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.1/res/drawable/abc_edit_text_material.xml"
+    },
+    {
+        "merged": "/Users/czar/Android/pause-android/build/intermediates/res/merged/debug/drawable/privacy_sub_header_bg.xml",
+        "source": "/Users/czar/Android/pause-android/src/main/res/drawable/privacy_sub_header_bg.xml"
+    },
+    {
+        "merged": "/Users/czar/Android/pause-android/build/intermediates/res/merged/debug/drawable/ic_action_help_raft.png",
+        "source": "/Users/czar/Android/pause-android/src/main/res/drawable/ic_action_help_raft.png"
+    },
+    {
+        "merged": "/Users/czar/Android/pause-android/build/intermediates/res/merged/debug/drawable/background_button_rectangle.xml",
+        "source": "/Users/czar/Android/pause-android/build/intermediates/exploded-aar/com.github.navasmdc/MaterialDesign/1.4/res/drawable/background_button_rectangle.xml"
+    },
+    {
+        "merged": "/Users/czar/Android/pause-android/build/intermediates/res/merged/debug/drawable/silencer_selected_on_boarding.png",
+        "source": "/Users/czar/Android/pause-android/src/main/res/drawable/silencer_selected_on_boarding.png"
+    },
+    {
+        "merged": "/Users/czar/Android/pause-android/build/intermediates/res/merged/debug/drawable/male.png",
+        "source": "/Users/czar/Android/pause-android/src/main/res/drawable/male.png"
+    },
+    {
+        "merged": "/Users/czar/Android/pause-android/build/intermediates/res/merged/debug/drawable/abc_item_background_holo_dark.xml",
+        "source": "/Users/czar/Android/pause-android/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.1/res/drawable/abc_item_background_holo_dark.xml"
+    },
+    {
+        "merged": "/Users/czar/Android/pause-android/build/intermediates/res/merged/debug/drawable/upgrade_card_btn_background.xml",
+        "source": "/Users/czar/Android/pause-android/src/main/res/drawable/upgrade_card_btn_background.xml"
+    },
+    {
+        "merged": "/Users/czar/Android/pause-android/build/intermediates/res/merged/debug/drawable/ob_logo_no_letters.png",
+        "source": "/Users/czar/Android/pause-android/src/main/res/drawable/ob_logo_no_letters.png"
+    },
+    {
+        "merged": "/Users/czar/Android/pause-android/build/intermediates/res/merged/debug/drawable/save_card_background.xml",
+        "source": "/Users/czar/Android/pause-android/src/main/res/drawable/save_card_background.xml"
+    },
+    {
+        "merged": "/Users/czar/Android/pause-android/build/intermediates/res/merged/debug/drawable/shadow_down.xml",
+        "source": "/Users/czar/Android/pause-android/build/intermediates/exploded-aar/com.github.navasmdc/MaterialDesign/1.4/res/drawable/shadow_down.xml"
+    },
+    {
+        "merged": "/Users/czar/Android/pause-android/build/intermediates/res/merged/debug/drawable/card_bg.xml",
+        "source": "/Users/czar/Android/pause-android/src/main/res/drawable/card_bg.xml"
+    },
+    {
+        "merged": "/Users/czar/Android/pause-android/build/intermediates/res/merged/debug/drawable/background_progress.xml",
+        "source": "/Users/czar/Android/pause-android/build/intermediates/exploded-aar/com.github.navasmdc/MaterialDesign/1.4/res/drawable/background_progress.xml"
+    },
+    {
+        "merged": "/Users/czar/Android/pause-android/build/intermediates/res/merged/debug/drawable/background_standard_red.xml",
+        "source": "/Users/czar/Android/pause-android/build/intermediates/exploded-aar/com.github.johnpersano/supertoasts/1.3.4/res/drawable/background_standard_red.xml"
+    },
+    {
+        "merged": "/Users/czar/Android/pause-android/build/intermediates/res/merged/debug/drawable/background_standard_green.xml",
+        "source": "/Users/czar/Android/pause-android/build/intermediates/exploded-aar/com.github.johnpersano/supertoasts/1.3.4/res/drawable/background_standard_green.xml"
+    },
+    {
+        "merged": "/Users/czar/Android/pause-android/build/intermediates/res/merged/debug/drawable/abc_cab_background_internal_bg.xml",
+        "source": "/Users/czar/Android/pause-android/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.1/res/drawable/abc_cab_background_internal_bg.xml"
+    },
+    {
+        "merged": "/Users/czar/Android/pause-android/build/intermediates/res/merged/debug/drawable/silencer_unselected_on_boarding.png",
+        "source": "/Users/czar/Android/pause-android/src/main/res/drawable/silencer_unselected_on_boarding.png"
+    },
+    {
+        "merged": "/Users/czar/Android/pause-android/build/intermediates/res/merged/debug/drawable/blue_button_background.xml",
+        "source": "/Users/czar/Android/pause-android/build/intermediates/exploded-aar/cn.pedant.sweetalert/library/1.3/res/drawable/blue_button_background.xml"
+    },
+    {
+        "merged": "/Users/czar/Android/pause-android/build/intermediates/res/merged/debug/drawable/selector_kitkat_undobutton.xml",
+        "source": "/Users/czar/Android/pause-android/build/intermediates/exploded-aar/com.github.johnpersano/supertoasts/1.3.4/res/drawable/selector_kitkat_undobutton.xml"
+    },
+    {
+        "merged": "/Users/czar/Android/pause-android/build/intermediates/res/merged/debug/drawable/abc_cab_background_top_material.xml",
+        "source": "/Users/czar/Android/pause-android/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.1/res/drawable/abc_cab_background_top_material.xml"
+    },
+    {
+        "merged": "/Users/czar/Android/pause-android/build/intermediates/res/merged/debug/drawable/toast_card_bg_pause_off.xml",
+        "source": "/Users/czar/Android/pause-android/src/main/res/drawable/toast_card_bg_pause_off.xml"
+    },
+    {
+        "merged": "/Users/czar/Android/pause-android/build/intermediates/res/merged/debug/drawable/shape_kitkat_undobarfocused.xml",
+        "source": "/Users/czar/Android/pause-android/build/intermediates/exploded-aar/com.github.johnpersano/supertoasts/1.3.4/res/drawable/shape_kitkat_undobarfocused.xml"
+    },
+    {
+        "merged": "/Users/czar/Android/pause-android/build/intermediates/res/merged/debug/drawable/background_button.9.png",
+        "source": "/Users/czar/Android/pause-android/build/intermediates/exploded-aar/com.github.navasmdc/MaterialDesign/1.4/res/drawable/background_button.9.png"
+    },
+    {
+        "merged": "/Users/czar/Android/pause-android/build/intermediates/res/merged/debug/drawable/abc_textfield_search_material.xml",
+        "source": "/Users/czar/Android/pause-android/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.1/res/drawable/abc_textfield_search_material.xml"
+    },
+    {
+        "merged": "/Users/czar/Android/pause-android/build/intermediates/res/merged/debug/drawable/shadow_right.xml",
+        "source": "/Users/czar/Android/pause-android/build/intermediates/exploded-aar/com.github.navasmdc/MaterialDesign/1.4/res/drawable/shadow_right.xml"
+    },
+    {
+        "merged": "/Users/czar/Android/pause-android/build/intermediates/res/merged/debug/drawable/card_bg_layer_selected.xml",
+        "source": "/Users/czar/Android/pause-android/src/main/res/drawable/card_bg_layer_selected.xml"
+    },
+    {
+        "merged": "/Users/czar/Android/pause-android/build/intermediates/res/merged/debug/drawable/ob_male_gender_pressed.xml",
+        "source": "/Users/czar/Android/pause-android/src/main/res/drawable/ob_male_gender_pressed.xml"
+    },
+    {
+        "merged": "/Users/czar/Android/pause-android/build/intermediates/res/merged/debug/drawable/card_bg_layer_unselected.xml",
+        "source": "/Users/czar/Android/pause-android/src/main/res/drawable/card_bg_layer_unselected.xml"
+    },
+    {
+        "merged": "/Users/czar/Android/pause-android/build/intermediates/res/merged/debug/drawable/background_kitkat_gray.xml",
+        "source": "/Users/czar/Android/pause-android/build/intermediates/exploded-aar/com.github.johnpersano/supertoasts/1.3.4/res/drawable/background_kitkat_gray.xml"
+    },
+    {
+        "merged": "/Users/czar/Android/pause-android/build/intermediates/res/merged/debug/drawable/abc_ratingbar_full_material.xml",
+        "source": "/Users/czar/Android/pause-android/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.1/res/drawable/abc_ratingbar_full_material.xml"
+    },
+    {
+        "merged": "/Users/czar/Android/pause-android/build/intermediates/res/merged/debug/drawable/background_kitkat_orange.xml",
+        "source": "/Users/czar/Android/pause-android/build/intermediates/exploded-aar/com.github.johnpersano/supertoasts/1.3.4/res/drawable/background_kitkat_orange.xml"
+    },
+    {
+        "merged": "/Users/czar/Android/pause-android/build/intermediates/res/merged/debug/drawable/abc_spinner_textfield_background_material.xml",
+        "source": "/Users/czar/Android/pause-android/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.1/res/drawable/abc_spinner_textfield_background_material.xml"
+    },
+    {
+        "merged": "/Users/czar/Android/pause-android/build/intermediates/res/merged/debug/drawable/background_kitkat_green.xml",
+        "source": "/Users/czar/Android/pause-android/build/intermediates/exploded-aar/com.github.johnpersano/supertoasts/1.3.4/res/drawable/background_kitkat_green.xml"
+    },
+    {
+        "merged": "/Users/czar/Android/pause-android/build/intermediates/res/merged/debug/drawable/privacy_sub_header_unselected.xml",
+        "source": "/Users/czar/Android/pause-android/src/main/res/drawable/privacy_sub_header_unselected.xml"
+    },
+    {
+        "merged": "/Users/czar/Android/pause-android/build/intermediates/res/merged/debug/drawable/summary_circle_blue.xml",
+        "source": "/Users/czar/Android/pause-android/src/main/res/drawable/summary_circle_blue.xml"
+    },
+    {
+        "merged": "/Users/czar/Android/pause-android/build/intermediates/res/merged/debug/drawable/ab_settings_off.png",
+        "source": "/Users/czar/Android/pause-android/src/main/res/drawable/ab_settings_off.png"
+    },
+    {
+        "merged": "/Users/czar/Android/pause-android/build/intermediates/res/merged/debug/drawable/background_checkbox.xml",
+        "source": "/Users/czar/Android/pause-android/build/intermediates/exploded-aar/com.github.navasmdc/MaterialDesign/1.4/res/drawable/background_checkbox.xml"
+    },
+    {
+        "merged": "/Users/czar/Android/pause-android/build/intermediates/res/merged/debug/drawable/background_standard_gray.xml",
+        "source": "/Users/czar/Android/pause-android/build/intermediates/exploded-aar/com.github.johnpersano/supertoasts/1.3.4/res/drawable/background_standard_gray.xml"
+    },
+    {
+        "merged": "/Users/czar/Android/pause-android/build/intermediates/res/merged/debug/drawable/abc_dialog_material_background_light.xml",
+        "source": "/Users/czar/Android/pause-android/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.1/res/drawable/abc_dialog_material_background_light.xml"
+    },
+    {
+        "merged": "/Users/czar/Android/pause-android/build/intermediates/res/merged/debug/drawable/background_standard_blue.xml",
+        "source": "/Users/czar/Android/pause-android/build/intermediates/exploded-aar/com.github.johnpersano/supertoasts/1.3.4/res/drawable/background_standard_blue.xml"
+    },
+    {
+        "merged": "/Users/czar/Android/pause-android/build/intermediates/res/merged/debug/drawable/shape_kitkat_square_undobarfocused.xml",
+        "source": "/Users/czar/Android/pause-android/build/intermediates/exploded-aar/com.github.johnpersano/supertoasts/1.3.4/res/drawable/shape_kitkat_square_undobarfocused.xml"
+    },
+    {
+        "merged": "/Users/czar/Android/pause-android/build/intermediates/res/merged/debug/drawable/background_switch_ball_uncheck.xml",
+        "source": "/Users/czar/Android/pause-android/build/intermediates/exploded-aar/com.github.navasmdc/MaterialDesign/1.4/res/drawable/background_switch_ball_uncheck.xml"
+    },
+    {
+        "merged": "/Users/czar/Android/pause-android/build/intermediates/res/merged/debug/drawable/error_center_x.xml",
+        "source": "/Users/czar/Android/pause-android/build/intermediates/exploded-aar/cn.pedant.sweetalert/library/1.3/res/drawable/error_center_x.xml"
+    },
+    {
+        "merged": "/Users/czar/Android/pause-android/build/intermediates/res/merged/debug/drawable/cursor.xml",
+        "source": "/Users/czar/Android/pause-android/src/main/res/drawable/cursor.xml"
+    },
+    {
+        "merged": "/Users/czar/Android/pause-android/build/intermediates/res/merged/debug/drawable/warning_circle.xml",
+        "source": "/Users/czar/Android/pause-android/build/intermediates/exploded-aar/cn.pedant.sweetalert/library/1.3/res/drawable/warning_circle.xml"
+    },
+    {
+        "merged": "/Users/czar/Android/pause-android/build/intermediates/res/merged/debug/drawable/ob_full_face.png",
+        "source": "/Users/czar/Android/pause-android/src/main/res/drawable/ob_full_face.png"
+    },
+    {
+        "merged": "/Users/czar/Android/pause-android/build/intermediates/res/merged/debug/drawable/background_standard_orange.xml",
+        "source": "/Users/czar/Android/pause-android/build/intermediates/exploded-aar/com.github.johnpersano/supertoasts/1.3.4/res/drawable/background_standard_orange.xml"
+    },
+    {
+        "merged": "/Users/czar/Android/pause-android/build/intermediates/res/merged/debug/drawable/background_standard_purple.xml",
+        "source": "/Users/czar/Android/pause-android/build/intermediates/exploded-aar/com.github.johnpersano/supertoasts/1.3.4/res/drawable/background_standard_purple.xml"
+    },
+    {
+        "merged": "/Users/czar/Android/pause-android/build/intermediates/res/merged/debug/drawable/ab_custom_off.png",
+        "source": "/Users/czar/Android/pause-android/src/main/res/drawable/ab_custom_off.png"
+    }
+]

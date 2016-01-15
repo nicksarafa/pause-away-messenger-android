@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<com.pauselabs.pause.view.tabs.SearchPrivacyView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <SearchView
+        android:id="@+id/contact_search_field"
+        android:layout_width="fill_parent"
+        android:layout_height="68dp"
+        android:layout_alignParentTop="true"
+        android:iconifiedByDefault="false"
+        android:imeOptions="actionSearch"
+        android:inputType="textPersonName|textCapSentences"
+        android:focusable="true"
+        android:textCursorDrawable="@drawable/cursor"
+        android:hint="@string/privacy_search_bar"/>
+
+        <Button
+            android:id="@+id/privacySelectAll"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:gravity="center"
+            android:text="@string/select_all_button"
+            android:background="@drawable/transparent_drawable"/>
+
+            <ListView
+                android:id="@+id/contact_list"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@id/contact_search_field"
+                android:overScrollMode="never"
+                android:listSelector="@drawable/transparent_drawable"
+                android:cacheColorHint="@color/transparent"
+                android:clipToPadding="false"
+                android:scrollbars="vertical"
+                android:isScrollContainer="false"
+                android:scrollbarStyle="outsideOverlay"
+                android:smoothScrollbar="true"
+                android:verticalScrollbarPosition="right"
+                android:overScrollFooter="@android:color/transparent"
+                android:footerDividersEnabled="false"/>
+
+</com.pauselabs.pause.view.tabs.SearchPrivacyView>
+

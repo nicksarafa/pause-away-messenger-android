@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/privacy_header"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/info_header_height"
+    android:paddingTop="@dimen/info_header_vertical_padding"
+    android:paddingBottom="@dimen/info_header_vertical_padding"
+    android:paddingEnd="@dimen/info_header_horizontal_padding"
+    android:paddingRight="@dimen/info_header_horizontal_padding"
+    android:paddingLeft="@dimen/info_header_horizontal_padding"
+    android:paddingStart="@dimen/info_header_horizontal_padding"
+    android:background="#3cbeb5">
+
+    <!-- Left Parent Image -->
+
+    <ImageView
+        android:id="@+id/privacy_header_left_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_action_ice_full"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="@dimen/privacy_view_horizontal_padding"
+        android:layout_marginStart="@dimen/privacy_view_horizontal_padding"
+        android:layout_marginRight="@dimen/privacy_view_horizontal_padding"
+        android:layout_marginEnd="@dimen/privacy_view_horizontal_padding"
+        />
+
+    <!-- Header Title -->
+
+    <TextView
+        android:id="@+id/privacy_header_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/text_white"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="@dimen/privacy_view_vertical_padding"
+        android:layout_toRightOf="@id/privacy_header_left_image"
+        android:layout_toEndOf="@id/privacy_header_left_image"
+        android:textSize="@dimen/text_medium"
+        android:text="@string/ice_header_title"/>
+
+    <!-- # of people replied to image -->
+
+    <ImageView
+        android:id="@+id/contacts_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_action_wake"
+        android:layout_below="@id/privacy_header_title"
+        android:layout_toEndOf="@id/privacy_header_left_image"
+        android:layout_toRightOf="@id/privacy_header_left_image"
+        android:layout_marginRight="@dimen/privacy_view_horizontal_padding"
+        android:layout_marginEnd="@dimen/privacy_view_horizontal_padding"
+        android:layout_marginTop="@dimen/privacy_view_vertical_padding"
+        android:layout_marginBottom="@dimen/privacy_view_vertical_padding"
+        />
+
+    <!-- # of people replied to string -->
+
+    <TextView
+        android:id="@+id/contacts_count"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/privacy_header_title"
+        android:layout_marginTop="@dimen/info_header_vertical_margin"
+        android:layout_toRightOf="@id/contacts_image"
+        android:layout_toEndOf="@id/contacts_image"
+        android:textSize="@dimen/text_small"
+        android:textColor="@color/text_white"
+        android:text="270"/>
+
+    <!-- # calls Image -->
+
+    <ImageView
+        android:id="@+id/reply_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_action_wake"
+        android:layout_below="@id/privacy_header_title"
+        android:layout_toEndOf="@id/contacts_count"
+        android:layout_toRightOf="@id/contacts_count"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="@dimen/info_header_horizontal_margin"
+        android:layout_marginLeft="@dimen/info_header_horizontal_margin"
+        android:layout_marginRight="@dimen/privacy_view_horizontal_padding"
+        android:layout_marginEnd="@dimen/privacy_view_horizontal_padding"
+        android:layout_marginTop="@dimen/privacy_view_vertical_padding"
+        />
+
+    <!-- # of calls string -->
+
+    <TextView
+        android:id="@+id/reply_count"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_below="@id/privacy_header_title"
+        android:layout_marginTop="@dimen/info_header_vertical_margin"
+        android:textColor="@color/text_white"
+        android:layout_toRightOf="@id/reply_image"
+        android:layout_toEndOf="@id/reply_image"
+        android:textSize="@dimen/text_small"
+        android:text="270"/>
+
+    <!-- SMS image -->
+
+    <ImageView
+        android:id="@+id/sms_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_action_wake"
+        android:layout_alignParentBottom="true"
+        android:layout_below="@id/privacy_header_title"
+        android:layout_toEndOf="@id/reply_count"
+        android:layout_toRightOf="@id/reply_count"
+        android:layout_marginStart="@dimen/info_header_horizontal_margin"
+        android:layout_marginLeft="@dimen/info_header_horizontal_margin"
+        android:layout_marginRight="@dimen/privacy_view_horizontal_padding"
+        android:layout_marginEnd="@dimen/privacy_view_horizontal_padding"
+        android:layout_marginTop="@dimen/privacy_view_vertical_padding"
+        />
+
+    <!-- SMS count -->
+
+    <TextView
+        android:id="@+id/sms_count"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_below="@id/privacy_header_title"
+        android:layout_marginTop="@dimen/info_header_vertical_margin"
+        android:layout_toRightOf="@id/sms_image"
+        android:layout_toEndOf="@id/sms_image"
+        android:textSize="@dimen/text_small"
+        android:textColor="@color/text_white"
+        android:text="270"/>
+
+    <!-- Right Parent Image - More information dialogue on click (Similar to True Call App's header) -->
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@android:drawable/ic_menu_info_details"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="@dimen/privacy_view_horizontal_padding"
+        android:layout_marginStart="@dimen/privacy_view_horizontal_padding"
+        android:layout_marginRight="@dimen/privacy_view_horizontal_padding"
+        android:layout_marginEnd="@dimen/privacy_view_horizontal_padding"
+        />
+
+</RelativeLayout>

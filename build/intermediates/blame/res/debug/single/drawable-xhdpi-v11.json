@@ -1,0 +1,10 @@
+[
+    {
+        "merged": "/Users/czar/Android/pause-android/build/intermediates/res/merged/debug/drawable-xhdpi-v11/ic_stat_pause_icon_pause.png",
+        "source": "/Users/czar/Android/pause-android/src/main/res/drawable-xhdpi-v11/ic_stat_pause_icon_pause.png"
+    },
+    {
+        "merged": "/Users/czar/Android/pause-android/build/intermediates/res/merged/debug/drawable-xhdpi-v11/ic_stat_notificaiton_end.png",
+        "source": "/Users/czar/Android/pause-android/src/main/res/drawable-xhdpi-v11/ic_stat_notificaiton_end.png"
+    }
+]

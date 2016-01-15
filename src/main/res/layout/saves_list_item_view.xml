@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.pauselabs.pause.view.SavesView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+
+    <!-- Custom Pause Message Save List -->
+
+    <IconTextView
+        android:id="@+id/savesTextView"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:textIsSelectable="false"
+        android:textColor="@color/text"
+        android:textSize="@dimen/text_large"
+        android:hapticFeedbackEnabled="true"
+        android:layout_gravity="center_vertical"
+        android:gravity="center_vertical"
+        android:layout_marginTop="4dp"
+        android:layout_marginBottom="4dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:paddingLeft="@dimen/save_horizontal_and_vertical_padding"
+        android:paddingRight="@dimen/save_horizontal_and_vertical_padding"
+        android:paddingTop="6dp"
+        android:paddingBottom="10dp"
+        android:ellipsize="marquee"
+        android:maxLines="100"
+        android:scrollHorizontally="false"
+        android:text="Call you later"
+        android:background="@drawable/card_bg"/>
+
+</com.pauselabs.pause.view.SavesView>

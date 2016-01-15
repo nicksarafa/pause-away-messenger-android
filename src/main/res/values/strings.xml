@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">PAUSE</string>
+
+    <!-- Pause Menu -->
+    <string name="settings_menu_title">Settings</string>
+    <string name="pause_action">Start Pause</string>
+
+    <!-- Create Pause Screen -->
+    <string name="silence_fa_icon">{fa-bell-slash-o)</string>
+    <string name="startPauseSessionBtn">Start Pause Session</string>
+    <string name="stopPauseSessionBtn">Stop Pause Session</string>
+
+    <string name="pauseSessionActive">Pause Session Active</string>
+    <string name="pauseSessionInactive">No Pause Session Active</string>
+
+    <string name="pauseMessageDurationPrefix">Until&#160;</string>
+    <string name="durationSelectorMinutesLabel">&#160;MINUTES</string>
+    <string name="durationSelectorHourLabel">&#160;HOURS</string>
+
+    <string name="messageRequired">Please customize your message ^above^ first!</string>
+    <string name="durationMessageRequired">Please customize your message ^above^ before setting an end time!</string>
+    <string name="cameraMessageRequired">Create an away message before adding a photo to your pause message</string>
+
+    <string name="title_pause">Pause</string>
+    <string name="title_home">Home</string>
+    <string name="navigation_drawer_open">Drawer Open</string>
+    <string name="navigation_drawer_close">Drawer Close</string>
+
+    <!-- Pause Scoreboard Screen -->
+    <string name="scoreboard_title">0 Response Messages Sent</string>
+    <string name="stop_pause_btn">End</string>
+    <string name="edit_pause_btn">Edit</string>
+    <string name="response_count">Response Messages Sent</string>
+    <string name="no_messages_received">No new messages</string>
+
+    <!-- Notification Messages -->
+    <string name="pause_session_running_custom">Custom Mode</string>
+    <string name="pause_session_running_silence">Silence Mode</string>
+    <string name="pause_session_running_drive">Drive Mode</string>
+    <string name="pause_session_running_sleep">Sleep Mode</string>
+    <string name="pause_session_ended">Session has ended</string>
+    <string name="pause_session_change">Expand to change Session Mode.</string>
+
+    <!-- Analytics Categories -->
+    <string name="ui_action">UI Action</string>
+    <string name="data">Data</string>
+
+    <!-- Analytics Actions -->
+    <string name="save_drawer_opened">Save drawer opened</string>
+    <string name="timer_button_clicked">Timer button clicked</string>
+    <string name="camera_button_clicked">Camera button clicked</string>
+    <string name="gallery_button_clicked">Gallery button clicked</string>
+    <string name="start_pause_button_clicked">Start Pause button clicked</string>
+
+    <!-- Crash Analytics Labels -->
+    <string name="timer_button">timer btn</string>
+    <string name="camera_button">camera btn</string>
+    <string name="gallery_button">gallery btn</string>
+    <string name="start_button">start btn</string>
+
+    <!-- Settings Labels -->
+    <string name="me_section_label">ME</string>
+    <string name="privacy_section_label">PRIVACY</string>
+    <string name="feedback_section_label">FEEDBACK</string>
+    <string name="about_section_label">ABOUT</string>
+
+    <!-- Settings Strings -->
+    <string name="name_settings_label">Name</string>
+    <string name="reply_to_strangers">Reply to Unknown Contacts</string>
+    <string name="reply_to_calls_settings_label">Reply to Calls</string>
+    <string name="reply_to_SMS_settings_label">Reply to Texts</string>
+    <string name="blacklist_label">Privacy List</string>
+    <string name="activate_on_silence_settings_label">Activate On Silence</string>
+    <string name="activate_on_vibrate_settings_label">Activate On Vibrate</string>
+    <string name="voice_label">Voice Feedback</string>
+    <string name="toasts_label">Pop Up Alerts</string>
+    <string name="rate_us_settings_label">Show Some Love</string>
+    <string name="contact_us_label">Email Us</string>
+    <string name="default_settings_label">Reset All Settings</string>
+    <string name="support_label">Support</string>
+    <string name="privacy_policy_label">Privacy Policy</string>
+    <string name="terms_label">Terms</string>
+
+    <string name="blacklist_description">Pause will not respond to selected contacts</string>
+
+    <!-- Used for the AlphabetIndexer in ContactsListFragment to provide quick navigation by
+         alphabet using ListView fast scroll. -->
+    <string name="alphabet">ABCDEFGHIJKLMNOPQRSTUVWXYZ</string>
+
+    <!-- When using ContactsContract.Contacts#CONTENT_FILTER_URI to search contacts, a match occurs
+         when using a number of different fields, such as name, e-mail address, address, phone
+         number, etc. When a match occurs that is not the name, there is currently no way to tell
+         which other field was matched. This string is displayed in the secondary display text in
+         ContactsListFragment when a search query match occurs that is not the display name.
+         -->
+
+    <string name="search_match_other">Matches Other Field</string>
+    <string name="menu_search">Search</string>
+    <string name="menu_add_contact">Add Contact</string>
+    <string name="no_contacts">No Contacts Found</string>
+    <string name="search_hint">Search Contacts</string>
+    <string name="meet_onboarding">Meet</string>
+    <string name="gender_settings_label">Gender</string>
+    <string name="help_label">Help</string>
+
+    <string name="saves_section_title">Saves</string>
+    <string name="privacy_section_title">Privacy</string>
+    <string name="upgrade_section_title">Upgrade</string>
+    <string name="settings_section_title">Settings</string>
+
+    <string name="ob_female_btn">{fa-female}\u0020\u0020Girl</string>
+    <string name="ob_male_btn">{fa-male}\u0020\u0020Boy</string>
+    <string name="privacy_ab_title">PRIVACY</string>
+    <string name="privacy_message">Block friends from receiving away messages.</string>
+    <string name="select_all_button">Select All</string>
+    <string name="privacy_search_bar">Search Contacts</string>
+    <string name="privacy_header_title">Privacy Summary</string>
+    <string name="summary_header_title">Pause Summary</string>
+    <string name="ice_header_title">Emergency Contacts</string>
+    <string name="summary_splash_no_new_messages">No Messages</string>
+    <string name="custom_pause_hint">Add new custom message..</string>
+    <string name="on_boarding_name_hint">Please Enter Your First Name</string>
+    <string name="on_boarding_picture_content_description">Welcome to Pause!</string>
+    <string name="born_in_detroit_settings_footer"><![CDATA[ Born in Detroit\n\n♡ \n]]></string>
+    <string name="upgrade_btn_text">{fa-diamond}\u0020\u0020UPGRADE\u0020\u0020{fa-diamond}</string>
+    <string name="ob_start_app_btn">Begin Trial</string>
+    <string name="ob_1_custom_message_intro">Customize your first reply message...</string>
+    <string name="save_fa_button">{fa-save}</string>
+    <string name="sms_character_limit">140</string>
+    <string name="suggestion_btn_text">Have an idea?! Tell us!</string>
+    <string name="summary_respond_receipt1">Respond Receipt Top</string>
+    <string name="summary_respond_receipt2">Read Receipt Bottom</string>
+    <string name="privacy_ab_font_awesome_icon_name">{fa-search-plus}</string>
+    <string name="privacy_tab_emergency_fa_icon">{fa-plus}\u0020\u0020Emergency</string>
+    <string name="privacy_tab_blacklist_fa_icon">{fa-user-secret}\u0020\u0020Blacklist</string>
+
+</resources>

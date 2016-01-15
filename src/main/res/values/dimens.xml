@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Fab (Featured/Floating Action Button) - Universal -->
+    <dimen name="fab_diameter">68dp</dimen>
+    <dimen name="fab_margin">6dp</dimen>
+
+    <!-- Action Bar (ab) & Toolbar (Same thing) - Universal -->
+    <dimen name="ab_toolbar_universal_height">68dp</dimen>
+    <dimen name="ab_icon_universal_width_and_height">68dp</dimen>
+    <dimen name="ab_icon_dimen">28dp</dimen>
+
+    <!-- Real Header & View Below - Universal -->
+    <dimen name="main_header_universal_height">68dp</dimen>
+    <dimen name="main_list_view_universal_margin_top">82dp</dimen>
+
+    <!-- Text - Universal -->
+    <dimen name="text_super_size">28sp</dimen>
+    <dimen name="text_double_extra_large">26sp</dimen>
+    <dimen name="text_extra_large">24sp</dimen>
+    <dimen name="text_large">20sp</dimen>
+    <dimen name="text_medium">20sp</dimen>
+    <dimen name="text_small">16sp</dimen>
+    <dimen name="text_extra_small">14sp</dimen>
+
+    <!-- UNIVERSAL *Privacy* View -->
+    <dimen name="privacy_checkbox_and_text_padding">6dp</dimen>
+
+    <!-- Save View -->
+    <dimen name="save_horizontal_and_vertical_padding">10dp</dimen>
+
+    <!-- Summary View -->
+    <dimen name="privacy_view_horizontal_padding">8dp</dimen>
+    <dimen name="privacy_view_vertical_padding">4dp</dimen>
+
+    <!-- Settings View -->
+    <dimen name="settings_frontnail_height">36dp</dimen>
+    <dimen name="settings_text_horizontal_margin">10dp</dimen>
+    <dimen name="settings_thumbnail_horizontal_and_vertical_margin">4dp</dimen>
+
+    <!-- Summary View -->
+    <dimen name="summary_view_horizontal_padding">16dp</dimen>
+    <dimen name="summary_view_vertical_padding">16dp</dimen>
+
+    <!-- Upgrade View -->
+    <dimen name="upgrade_list_item_height">100dp</dimen>
+    <dimen name="upgrade_list_item_margin">10dp</dimen>
+
+    <!-- Time Bank View -->
+    <dimen name="time_bank_fa_icon">36dp</dimen>
+    <dimen name="purchase_box_height_width">165dp</dimen>
+    <dimen name="purchase_box_full_margin">10dp</dimen>
+    <dimen name="purchase_box_half_margin">5dp</dimen>
+
+    <!-- On Boarding (OB - Tabled) -->
+    <dimen name="ob_word_mark_height">80dp</dimen>
+    <dimen name="ob_btn_height">68dp</dimen>
+    <dimen name="ob_btn_margin">30dp</dimen>
+    <!--<dimen name="ob_word_container_width">300dp</dimen>-->
+    <!--<dimen name="ob_word_container_height">200dp</dimen>-->
+
+    <!-- Headers (Tabled - Keep for reference/future header integration) -->
+    <dimen name="info_header_height">100dp</dimen>
+    <dimen name="info_header_vertical_padding">20dp</dimen>
+    <dimen name="info_header_horizontal_padding">6dp</dimen>
+    <dimen name="info_header_horizontal_margin">16dp</dimen>
+    <dimen name="info_header_vertical_margin">12dp</dimen>
+    <dimen name="summary_view_padding_bottom">68dp</dimen>
+    <dimen name="text_larger">22dp</dimen>
+
+</resources>

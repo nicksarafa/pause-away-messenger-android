@@ -1,0 +1,25 @@
+// Generated code from Butter Knife. Do not modify!
+package com.pauselabs.pause.view;
+
+import android.view.View;
+import butterknife.Views.Finder;
+
+public class SummaryConversationCard$$ViewInjector {
+  public static void inject(Finder finder, com.pauselabs.pause.view.SummaryConversationCard target, Object source) {
+    View view;
+    view = finder.findById(source, 2131689709);
+    target.senderName = (android.widget.TextView) view;
+    view = finder.findById(source, 2131689710);
+    target.messageText = (android.widget.TextView) view;
+    view = finder.findById(source, 2131689704);
+    target.callOrTextIcon = (android.widget.IconTextView) view;
+    view = finder.findById(source, 2131689706);
+    target.respondSlashIgnoredIcon = (android.widget.IconTextView) view;
+    view = finder.findById(source, 2131689707);
+    target.messageTime = (android.widget.TextView) view;
+    view = finder.findById(source, 2131689711);
+    target.messageContainer = (android.widget.LinearLayout) view;
+    view = finder.findById(source, 2131689712);
+    target.convoHolderView = (android.widget.LinearLayout) view;
+  }
+}

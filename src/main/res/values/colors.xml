@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="main">#3EBEB5</color>
+    <color name="main_bg">#FFFFFF</color>
+    <color name="on">#3cbeb5</color>
+    <color name="off">#1fb6ed</color>
+    <color name="text">#949494</color>
+    <color name="text_hint">#E6E6E6</color>
+    <color name="text_white">#FFFFFF</color>
+    <color name="btn_blue">#FF33B5E5</color>
+    <color name="btn_pink">#FB53E1</color>
+    <color name="btn_green">#45BE3C</color>
+    <color name="transparent">#00000000</color>
+    <color name="card_bg_shadow">#c4c4c4c4</color>
+    <color name="gold">#c1a155</color>
+
+    <color name="contact_color_1">#000000</color>
+    <color name="contact_color_2">#000000</color>
+    <color name="contact_color_3">#000000</color>
+    <color name="contact_color_4">#000000</color>
+    <color name="contact_color_5">#000000</color>
+    <color name="contact_color_6">#000000</color>
+    <color name="contact_color_7">#000000</color>
+    <color name="contact_color_8">#000000</color>
+    <color name="contact_color_9">#000000</color>
+    <color name="contact_color_10">#000000</color>
+    <color name="contact_color_11">#000000</color>
+    <color name="contact_color_12">#000000</color>
+    <color name="contact_color_13">#000000</color>
+    <color name="contact_color_14">#000000</color>
+    <color name="contact_color_15">#000000</color>
+    <color name="contact_color_16">#000000</color>
+
+
+
+</resources>

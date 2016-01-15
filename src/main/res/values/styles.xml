@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="AppTheme" parent="AppTheme.Base"/>
+
+    <!-- Main Theme Eliminating Action Bar -->
+    <style name="AppTheme.Base" parent="@style/Theme.AppCompat.Light">
+        <item name="colorPrimary">@color/main</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowActionModeOverlay">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:showDividers">none</item>
+        <item name="searchViewStyle">@style/contactSearchTextHighlight</item>
+    </style>
+
+    <!-- Contact Search Text Highlight -->
+    <style name="contactSearchTextHighlight">
+        <item name="android:textColor">@color/main</item>
+        <item name="android:textStyle">bold</item>
+        <item name="displayOptions">showHome</item>
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:searchButtonText">Search Con</item>
+        <item name="android:displayOptions">showHome|homeAsUp</item>
+        <item name="android:icon">@drawable/icon</item>
+        <item name="android:showAsAction">always|withText|collapseActionView</item>
+    </style>
+
+</resources>

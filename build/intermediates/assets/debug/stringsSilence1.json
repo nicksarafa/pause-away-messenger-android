@@ -1,0 +1,58 @@
+[
+//Greetings
+	[
+		"Hello.",
+		"Hiya.",
+		"Good day!",
+		"Howdy!",
+		"Hey!",
+		"Hey, there!",
+		"Yo!",
+		"Greetings!",
+		"Aloha.",
+		"Hiya.",
+		"What's cookin, good lookin?",
+		"Hola.",
+		//"Bonjour.",
+		"Bon Giorno.",
+		"Greetings.",
+		"What's shakin?",
+		"Whassup?",
+		"How's it going?",
+		"How're you doing today?",
+		"Thanks for reaching out.",
+		"Nice to see you reached out."
+	],
+//Introduce yourself
+	[
+		"I'm Pause.",
+		"My name is Pause.",
+		"They call me Pause.",
+		"Pleasure meeting you. I'm Pause."
+	],
+
+//TODO Inject name from settings via Java (Noah)
+
+    [
+		"%name"
+	],
+	[
+		"isn't here at the moment.",
+		"is away from their phone.",
+		"is paused at the moment.",
+		"is busy at the moment.",
+		"can't answer your message right now.",
+		"doesn't want to be bothered right now.",
+		"won't be back for a little while.",
+		"is taking a break from their phone.",
+		"can't be bothered right now.",
+		"will get back to you later."
+	],
+	[
+	    "Can I take a message?",
+	    "But I'll let %gender know you reached out!",
+	    "Would you like me to take a message?",
+	    "Leave a message here and I'll let %gender know you called.",
+	    "I'll let %gender know you reached out once %gender returns."
+	]
+]
