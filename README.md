@@ -1,7 +1,5 @@
 # [Pause Away Messenger for Android](https://play.google.com/store/apps/details?id=com.pauselabs&hl=en)
 
-Pause for Android 
-
 ## Setup
 
 Clone the repo
