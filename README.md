@@ -1,23 +1,19 @@
-# Pause Android App
-
-Pause for Android was built using Gradle 0.12 and Android Studio 0.81 and above
-
+# [Pause Away Messenger for Android](https://play.google.com/store/apps/details?id=com.pauselabs&hl=en)
 
 ## Setup
 
-To setup the project:
+Clone the repo
 
-1. Clone the repository to a local directory: git clone git@bitbucket.org:pauselabs/pause-android.git
+`git clone https://github.com/nsarafa/pause-away-messenger-android.git`
 
-2. Open Android Studio and import the project by clicking the directory and selecting the build.gradle file
+Open Android Studio and import the project by clicking the directory and selecting the build.gradle file
 
-3. Allow gradle to sync and download required dependencies
+Allow gradle to sync and download required dependencies
 
-4. App should compile. Win.
+App should compile. Win.
 
 ## Dependencies
 
-The project uses several additional libraries including:
 * Otto
 * Dagger
 * Butterknife
@@ -25,5 +21,3 @@ The project uses several additional libraries including:
 * Robolectric
 * Universal Image Loader
 * Google Play Services
-
-## Production Build Instructions
