@@ -4,48 +4,43 @@ import android.content.Context;
 import android.util.AttributeSet;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
-
-import com.pauselabs.R;
-import com.pauselabs.pause.Injector;
-
 import butterknife.InjectView;
 import butterknife.Views;
+import com.pauselabs.R;
 
-/**
- * Created by Passa on 12/26/14.
- */
+/** Created by Passa on 12/26/14. */
 public class SummaryReceivedCard extends LinearLayout {
 
-    @InjectView(R.id.messageText)
-    TextView messageText;
-    @InjectView(R.id.messageType)
-    ImageView messageType;
-    @InjectView(R.id.respondReceipt)
-    ImageView respondReceipt;
+  @InjectView(R.id.messageText)
+  TextView messageText;
 
-    public SummaryReceivedCard(Context context) {
-        super(context);
-    }
+  @InjectView(R.id.messageType)
+  ImageView messageType;
 
-    public SummaryReceivedCard(Context context, AttributeSet attrs) {
-        super(context, attrs);
-    }
+  @InjectView(R.id.respondReceipt)
+  ImageView respondReceipt;
 
-    public SummaryReceivedCard(Context context, AttributeSet attrs, int defStyle) {
-        super(context, attrs, defStyle);
-    }
+  public SummaryReceivedCard(Context context) {
+    super(context);
+  }
 
-    @Override
-    protected void onFinishInflate() {
-        super.onFinishInflate();
+  public SummaryReceivedCard(Context context, AttributeSet attrs) {
+    super(context, attrs);
+  }
 
-        Views.inject(this);
-    }
+  public SummaryReceivedCard(Context context, AttributeSet attrs, int defStyle) {
+    super(context, attrs, defStyle);
+  }
 
-    public void setMessageText(String text) {
-        messageText.setText(text);
-    }
+  @Override
+  protected void onFinishInflate() {
+    super.onFinishInflate();
 
+    Views.inject(this);
+  }
+
+  public void setMessageText(String text) {
+    messageText.setText(text);
+  }
 }

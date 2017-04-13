@@ -14,236 +14,235 @@ import android.view.ViewTreeObserver.OnGlobalLayoutListener;
 import android.widget.LinearLayout;
 
 public class TabBarView extends LinearLayout {
-	public interface IconTabProvider {
-		public int getPageIconResId(int position);
-	}
+  public interface IconTabProvider {
+    public int getPageIconResId(int position);
+  }
 
-	public static final int STRIP_HEIGHT = 4;
+  public static final int STRIP_HEIGHT = 4;
 
-	public final Paint mPaint;
+  public final Paint mPaint;
 
-	public int mStripHeight;
-	private float mOffset = 0f;
-	public static int mSelectedTab = 0;
-	public ViewPager pager;
+  public int mStripHeight;
+  private float mOffset = 0f;
+  public static int mSelectedTab = 0;
+  public ViewPager pager;
 
-	public static int tabCount;
-	private final PageListener pageListener = new PageListener();
-	public OnPageChangeListener delegatePageListener;
+  public static int tabCount;
+  private final PageListener pageListener = new PageListener();
+  public OnPageChangeListener delegatePageListener;
 
-	private View child;
+  private View child;
 
-	private View nextChild;
+  private View nextChild;
 
-	public static int ab;
+  public static int ab;
 
-	public TabBarView(Context context) {
-		this(context, null);
-	}
+  public TabBarView(Context context) {
+    this(context, null);
+  }
 
-	public TabBarView(Context context, AttributeSet attrs) {
-		this(context, attrs, ab);
+  public TabBarView(Context context, AttributeSet attrs) {
+    this(context, attrs, ab);
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            ab = 0;
-        } else{
-            ab = android.R.attr.actionBarTabBarStyle;
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+      ab = 0;
+    } else {
+      ab = android.R.attr.actionBarTabBarStyle;
+    }
+  }
+
+  public TabBarView(Context context, AttributeSet attrs, int defStyle) {
+    super(context, attrs, defStyle);
+
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+      setLayoutParams(
+          new LinearLayout.LayoutParams(
+              LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.MATCH_PARENT));
+    }
+
+    setWillNotDraw(false);
+
+    mPaint = new Paint();
+    mPaint.setColor(Color.WHITE);
+    mPaint.setAntiAlias(true);
+
+    mStripHeight = (int) (STRIP_HEIGHT * getResources().getDisplayMetrics().density + .5f);
+  }
+
+  public void setStripColor(int color) {
+    if (mPaint.getColor() != color) {
+      mPaint.setColor(color);
+      invalidate();
+    }
+  }
+
+  public void setStripHeight(int height) {
+    if (mStripHeight != height) {
+      mStripHeight = height;
+      invalidate();
+    }
+  }
+
+  public void setSelectedTab(int tabIndex) {
+    if (tabIndex < 0) {
+      tabIndex = 0;
+    }
+    final int childCount = getChildCount();
+    if (tabIndex >= childCount) {
+      tabIndex = childCount - 1;
+    }
+    if (mSelectedTab != tabIndex) {
+      mSelectedTab = tabIndex;
+      invalidate();
+    }
+  }
+
+  public void setOffset(int position, float offset) {
+    if (mOffset != offset) {
+      mOffset = offset;
+      invalidate();
+    }
+  }
+
+  @Override
+  protected void onDraw(Canvas canvas) {
+    super.onDraw(canvas);
+    // Draw the strip manually
+    child = getChildAt(mSelectedTab);
+    int height = getHeight();
+    if (child != null) {
+      float left = child.getLeft();
+      float right = child.getRight();
+      if (mOffset > 0f && mSelectedTab < tabCount - 1) {
+        nextChild = getChildAt(mSelectedTab + 1);
+        if (nextChild != null) {
+          final float nextTabLeft = nextChild.getLeft();
+          final float nextTabRight = nextChild.getRight();
+          left = (mOffset * nextTabLeft + (1f - mOffset) * left);
+          right = (mOffset * nextTabRight + (1f - mOffset) * right);
         }
-	}
+      }
+      canvas.drawRect(left, height - mStripHeight, right, height, mPaint);
+    }
+  }
 
-	public TabBarView(Context context, AttributeSet attrs, int defStyle) {
-		super(context, attrs, defStyle);
+  public void setViewPager(ViewPager pager) {
+    this.pager = pager;
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            setLayoutParams(new LinearLayout.LayoutParams(LayoutParams.WRAP_CONTENT,
-                    LinearLayout.LayoutParams.MATCH_PARENT));
+    if (pager.getAdapter() == null) {
+      throw new IllegalStateException("ViewPager does not have adapter instance.");
+    }
 
-        }
+    pager.setOnPageChangeListener(pageListener);
 
-        setWillNotDraw(false);
+    notifyDataSetChanged();
+  }
 
-		mPaint = new Paint();
-		mPaint.setColor(Color.WHITE);
-		mPaint.setAntiAlias(true);
+  private class PageListener implements OnPageChangeListener {
 
-		mStripHeight = (int) (STRIP_HEIGHT * getResources().getDisplayMetrics().density + .5f);
-}
-	
-	public void setStripColor(int color) {
-		if (mPaint.getColor() != color) {
-			mPaint.setColor(color);
-			invalidate();
-		}
-	}
+    @Override
+    public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
 
-	public void setStripHeight(int height) {
-		if (mStripHeight != height) {
-			mStripHeight = height;
-			invalidate();
-		}
-	}
+      mSelectedTab = position;
+      mOffset = positionOffset;
 
-	public void setSelectedTab(int tabIndex) {
-		if (tabIndex < 0) {
-			tabIndex = 0;
-		}
-		final int childCount = getChildCount();
-		if (tabIndex >= childCount) {
-			tabIndex = childCount - 1;
-		}
-		if (mSelectedTab != tabIndex) {
-			mSelectedTab = tabIndex;
-			invalidate();
-		}
-	}
+      invalidate();
 
-	public void setOffset(int position, float offset) {
-		if (mOffset != offset) {
-			mOffset = offset;
-			invalidate();
-		}
-	}
+      if (delegatePageListener != null) {
+        delegatePageListener.onPageScrolled(position, positionOffset, positionOffsetPixels);
+      }
+    }
 
-	@Override
-	protected void onDraw(Canvas canvas) {
-		super.onDraw(canvas);
-		// Draw the strip manually
-		child = getChildAt(mSelectedTab);
-		int height = getHeight();
-		if (child != null) {
-			float left = child.getLeft();
-			float right = child.getRight();
-			if (mOffset >  0f && mSelectedTab < tabCount - 1 ) {
-				nextChild = getChildAt(mSelectedTab + 1);
-				if (nextChild != null) {
-					final float nextTabLeft = nextChild.getLeft();
-					final float nextTabRight = nextChild.getRight();
-					left =  (mOffset * nextTabLeft + (1f - mOffset) * left);
-					right = (mOffset * nextTabRight + (1f - mOffset) * right);
-				}
-			}
-			canvas.drawRect(left, height - mStripHeight, right, height, mPaint);
-		}
-	}
+    @Override
+    public void onPageScrollStateChanged(int state) {
+      if (state == ViewPager.SCROLL_STATE_IDLE) {}
 
-	public void setViewPager(ViewPager pager) {
-		this.pager = pager;
+      if (delegatePageListener != null) {
+        delegatePageListener.onPageScrollStateChanged(state);
+      }
+    }
 
-		if (pager.getAdapter() == null) {
-			throw new IllegalStateException("ViewPager does not have adapter instance.");
-		}
+    @Override
+    public void onPageSelected(int position) {
+      if (delegatePageListener != null) {
+        delegatePageListener.onPageSelected(position);
+      }
+    }
+  }
 
-		pager.setOnPageChangeListener(pageListener);
+  public void notifyDataSetChanged() {
 
-		notifyDataSetChanged();
-	}
-	
-	private class PageListener implements OnPageChangeListener {
+    this.removeAllViews();
 
-		@Override
-		public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+    tabCount = pager.getAdapter().getCount();
 
-			mSelectedTab = position;
-			mOffset = positionOffset;
+    for (int i = 0; i < tabCount; i++) {
 
-			invalidate();
+      if (getResources().getConfiguration().orientation == 1) {
 
-			if (delegatePageListener != null) {
-				delegatePageListener.onPageScrolled(position, positionOffset, positionOffsetPixels);
-			}
-		}
+        addTabViewP(
+            i,
+            pager.getAdapter().getPageTitle(i).toString(),
+            ((IconTabProvider) pager.getAdapter()).getPageIconResId(i));
 
-		@Override
-		public void onPageScrollStateChanged(int state) {
-			if (state == ViewPager.SCROLL_STATE_IDLE) {
+      } else {
 
-			}
+        addTabViewL(
+            i,
+            pager.getAdapter().getPageTitle(i).toString(),
+            ((IconTabProvider) pager.getAdapter()).getPageIconResId(i));
+      }
+    }
 
-			if (delegatePageListener != null) {
-				delegatePageListener.onPageScrollStateChanged(state);
-			}
-		}
+    getViewTreeObserver()
+        .addOnGlobalLayoutListener(
+            new OnGlobalLayoutListener() {
 
-		@Override
-		public void onPageSelected(int position) {
-			if (delegatePageListener != null) {
-				delegatePageListener.onPageSelected(position);
-			}
-		}
+              @SuppressLint("NewApi")
+              @Override
+              public void onGlobalLayout() {
 
-	}
+                //				getViewTreeObserver().removeOnGlobalLayoutListener(this);
 
-	public void notifyDataSetChanged() {
+                mSelectedTab = pager.getCurrentItem();
+              }
+            });
+  }
 
-		this.removeAllViews();
-		
-		tabCount = pager.getAdapter().getCount();
+  private void addTabViewL(final int i, String string, int pageIconResId) {
+    // TODO Auto-generated method stub
+    TabView tab = new TabView(getContext());
+    //		tab.setIcon(pageIconResId);
+    tab.setText(string, pageIconResId);
+    tab.setOnClickListener(
+        new OnClickListener() {
+          @Override
+          public void onClick(View v) {
+            pager.setCurrentItem(i);
+          }
+        });
 
-		for (int i = 0; i < tabCount; i++) {
+    this.addView(tab);
+  }
 
-			if(getResources().getConfiguration().orientation==1){
-				
-			addTabViewP(i, pager.getAdapter().getPageTitle(i).toString(),
-					((IconTabProvider) pager.getAdapter()).getPageIconResId(i));
-			
-			}else{
-				
-				addTabViewL(i, pager.getAdapter().getPageTitle(i).toString(),
-						((IconTabProvider) pager.getAdapter()).getPageIconResId(i));
-				
-			}
-		}
-		
-		getViewTreeObserver().addOnGlobalLayoutListener(new OnGlobalLayoutListener() {
+  private void addTabViewP(final int i, final String string, int pageIconResId) {
+    // TODO Auto-generated method stub
+    final TabView tab = new TabView(getContext());
+    tab.setIcon(pageIconResId);
+    tab.setOnClickListener(
+        new OnClickListener() {
+          @Override
+          public void onClick(View v) {
 
-			@SuppressLint("NewApi")
-			@Override
-			public void onGlobalLayout() {
-				
-//				getViewTreeObserver().removeOnGlobalLayoutListener(this);
+            pager.setCurrentItem(i);
+          }
+        });
+    //		CheatSheet.setup(tab, string);
 
-				mSelectedTab = pager.getCurrentItem();
-				
-			}
-		});
+    this.addView(tab);
+  }
 
-	}
-
-	private void addTabViewL(final int i, String string, int pageIconResId) {
-		// TODO Auto-generated method stub
-		TabView tab = new TabView(getContext());
-//		tab.setIcon(pageIconResId);
-		tab.setText(string, pageIconResId);
-		tab.setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				pager.setCurrentItem(i);
-			}
-		});
-
-		this.addView(tab);
-	}
-
-
-	private void addTabViewP(final int i, final String string, int pageIconResId) {
-		// TODO Auto-generated method stub
-		final TabView tab = new TabView(getContext());
-		tab.setIcon(pageIconResId);
-		tab.setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				
-				pager.setCurrentItem(i);
-			}
-		});
-//		CheatSheet.setup(tab, string);
-
-		this.addView(tab);
-	}
-
-	public void setOnPageChangeListener(OnPageChangeListener listener) {
-		this.delegatePageListener = listener;
-	}
-
-
+  public void setOnPageChangeListener(OnPageChangeListener listener) {
+    this.delegatePageListener = listener;
+  }
 }

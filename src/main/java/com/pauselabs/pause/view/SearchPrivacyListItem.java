@@ -5,41 +5,37 @@ import android.util.AttributeSet;
 import android.widget.CheckBox;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
-import com.pauselabs.R;
-
 import butterknife.InjectView;
 import butterknife.Views;
+import com.pauselabs.R;
 
-/**
- * Created by Passa on 3/12/15.
- */
+/** Created by Passa on 3/12/15. */
 public class SearchPrivacyListItem extends LinearLayout {
 
-    @InjectView(R.id.contact_name_field)
-    public TextView contactNameField;
-    @InjectView(R.id.contact_checkbox)
-    public CheckBox contactCheckbox;
+  @InjectView(R.id.contact_name_field)
+  public TextView contactNameField;
 
-    public String contactId;
+  @InjectView(R.id.contact_checkbox)
+  public CheckBox contactCheckbox;
 
-    public SearchPrivacyListItem(Context context) {
-        super(context);
-    }
+  public String contactId;
 
-    public SearchPrivacyListItem(Context context, AttributeSet attrs) {
-        super(context, attrs);
-    }
+  public SearchPrivacyListItem(Context context) {
+    super(context);
+  }
 
-    public SearchPrivacyListItem(Context context, AttributeSet attrs, int defStyleAttr) {
-        super(context, attrs, defStyleAttr);
-    }
+  public SearchPrivacyListItem(Context context, AttributeSet attrs) {
+    super(context, attrs);
+  }
 
-    @Override
-    protected void onFinishInflate() {
-        super.onFinishInflate();
+  public SearchPrivacyListItem(Context context, AttributeSet attrs, int defStyleAttr) {
+    super(context, attrs, defStyleAttr);
+  }
 
-        Views.inject(this);
-    }
+  @Override
+  protected void onFinishInflate() {
+    super.onFinishInflate();
 
+    Views.inject(this);
+  }
 }

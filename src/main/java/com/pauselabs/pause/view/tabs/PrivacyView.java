@@ -5,42 +5,38 @@ import android.util.AttributeSet;
 import android.widget.IconButton;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
-
-import com.pauselabs.R;
-
 import butterknife.InjectView;
 import butterknife.Views;
+import com.pauselabs.R;
 
-/**
- * Created by Admin on 3/8/15.
- */
+/** Created by Admin on 3/8/15. */
 public class PrivacyView extends RelativeLayout {
 
-    @InjectView(R.id.privacy_contacts_list)
-    public ListView contactsList;
-    @InjectView(R.id.emergency_tab_btn)
-    public IconButton emergencyTabBtn;
-    @InjectView(R.id.blacklist_tab_btn)
-    public IconButton blacklistTabBtn;
+  @InjectView(R.id.privacy_contacts_list)
+  public ListView contactsList;
 
-    public PrivacyView(Context context) {
-        super(context);
-    }
+  @InjectView(R.id.emergency_tab_btn)
+  public IconButton emergencyTabBtn;
 
-    public PrivacyView(Context context, AttributeSet attrs) {
-        super(context, attrs);
-    }
+  @InjectView(R.id.blacklist_tab_btn)
+  public IconButton blacklistTabBtn;
 
-    public PrivacyView(Context context, AttributeSet attrs, int defStyle) {
-        super(context, attrs, defStyle);
+  public PrivacyView(Context context) {
+    super(context);
+  }
 
-    }
+  public PrivacyView(Context context, AttributeSet attrs) {
+    super(context, attrs);
+  }
 
-    @Override
-    protected void onFinishInflate() {
-        super.onFinishInflate();
+  public PrivacyView(Context context, AttributeSet attrs, int defStyle) {
+    super(context, attrs, defStyle);
+  }
 
-        Views.inject(this);
-    }
+  @Override
+  protected void onFinishInflate() {
+    super.onFinishInflate();
 
+    Views.inject(this);
+  }
 }

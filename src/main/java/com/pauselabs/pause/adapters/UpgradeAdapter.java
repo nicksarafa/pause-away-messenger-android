@@ -6,7 +6,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-
 import com.parse.GetCallback;
 import com.parse.ParseException;
 import com.parse.ParseQuery;
@@ -15,62 +14,57 @@ import com.pauselabs.pause.PauseApplication;
 import com.pauselabs.pause.model.Parse.Feature;
 import com.pauselabs.pause.model.Parse.User;
 import com.pauselabs.pause.view.UpgradeListItem;
-
 import javax.inject.Inject;
 
-/**
- * Created by Passa on 3/20/15.
- */
+/** Created by Passa on 3/20/15. */
 public class UpgradeAdapter extends ArrayAdapter<UpgradeListItem> {
 
-    private int resource;
+  private int resource;
 
-    @Inject
-    LayoutInflater inflater;
+  @Inject LayoutInflater inflater;
 
-    public UpgradeAdapter(Context context, int resource) {
-        super(context, resource);
+  public UpgradeAdapter(Context context, int resource) {
+    super(context, resource);
 
-        Injector.inject(this);
+    Injector.inject(this);
 
-        this.resource = resource;
+    this.resource = resource;
 
-        resetList();
-    }
+    resetList();
+  }
 
-    @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
-        final UpgradeListItem item = getItem(position);
-        Feature feature = (Feature)item.getTag();
+  @Override
+  public View getView(int position, View convertView, ViewGroup parent) {
+    final UpgradeListItem item = getItem(position);
+    Feature feature = (Feature) item.getTag();
 
-        item.iconText.setText(feature.getIconText() + " " + feature.getName());
+    item.iconText.setText(feature.getIconText() + " " + feature.getName());
 
-        ParseQuery<User> query = feature.getVotersRelation().getQuery();
-        query.whereEqualTo("username",PauseApplication.parseVars.currentUser.getUsername());
-        query.getFirstInBackground(new GetCallback<User>() {
-            @Override
-            public void done(User user, ParseException e) {
-                boolean isVoter = user != null;
+    ParseQuery<User> query = feature.getVotersRelation().getQuery();
+    query.whereEqualTo("username", PauseApplication.parseVars.currentUser.getUsername());
+    query.getFirstInBackground(
+        new GetCallback<User>() {
+          @Override
+          public void done(User user, ParseException e) {
+            boolean isVoter = user != null;
 
-                if (isVoter)
-                    item.setBackgroundColor(Color.GREEN);
-            }
+            if (isVoter) item.setBackgroundColor(Color.GREEN);
+          }
         });
 
-        return item;
+    return item;
+  }
+
+  public void resetList() {
+    clear();
+
+    for (Feature feature : PauseApplication.parseVars.features) {
+      UpgradeListItem item = (UpgradeListItem) inflater.inflate(resource, null);
+      item.setTag(feature);
+
+      add(item);
     }
 
-    public void resetList() {
-        clear();
-
-        for (Feature feature : PauseApplication.parseVars.features) {
-            UpgradeListItem item = (UpgradeListItem)inflater.inflate(resource, null);
-            item.setTag(feature);
-
-            add(item);
-        }
-
-        notifyDataSetChanged();
-    }
-
+    notifyDataSetChanged();
+  }
 }

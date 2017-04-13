@@ -5,42 +5,37 @@ import android.util.AttributeSet;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
-import com.pauselabs.R;
-
 import butterknife.InjectView;
 import butterknife.Views;
+import com.pauselabs.R;
 
-/**
- * Created by Passa on 3/13/15.
- */
+/** Created by Passa on 3/13/15. */
 public class PrivacyListItemView extends LinearLayout {
 
-    @InjectView(R.id.privacy_list_item)
-    public TextView privacyListItemContactName;
-    @InjectView(R.id.privacy_contact_initials)
-    public ImageView privacyContactInitials;
+  @InjectView(R.id.privacy_list_item)
+  public TextView privacyListItemContactName;
 
-    public String contactId;
+  @InjectView(R.id.privacy_contact_initials)
+  public ImageView privacyContactInitials;
 
-    public PrivacyListItemView(Context context) {
-        super(context);
-    }
+  public String contactId;
 
-    public PrivacyListItemView(Context context, AttributeSet attrs) {
-        super(context, attrs);
-    }
+  public PrivacyListItemView(Context context) {
+    super(context);
+  }
 
-    public PrivacyListItemView(Context context, AttributeSet attrs, int defStyleAttr) {
-        super(context, attrs, defStyleAttr);
-    }
+  public PrivacyListItemView(Context context, AttributeSet attrs) {
+    super(context, attrs);
+  }
 
-    @Override
-    protected void onFinishInflate() {
-        super.onFinishInflate();
+  public PrivacyListItemView(Context context, AttributeSet attrs, int defStyleAttr) {
+    super(context, attrs, defStyleAttr);
+  }
 
-        Views.inject(this);
+  @Override
+  protected void onFinishInflate() {
+    super.onFinishInflate();
 
-    }
-
+    Views.inject(this);
+  }
 }

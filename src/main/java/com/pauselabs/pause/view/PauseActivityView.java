@@ -5,47 +5,43 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
 import android.util.AttributeSet;
 import android.widget.RelativeLayout;
-
-import com.gc.materialdesign.views.Button;
-import com.gc.materialdesign.views.ButtonFlat;
+import butterknife.InjectView;
+import butterknife.Views;
 import com.gc.materialdesign.views.ButtonFloat;
 import com.pauselabs.R;
 import com.sothree.slidinguppanel.SlidingUpPanelLayout;
 
-import butterknife.InjectView;
-import butterknife.Views;
-
-/**
- * Created by Passa on 1/27/15.
- */
+/** Created by Passa on 1/27/15. */
 public class PauseActivityView extends SlidingUpPanelLayout {
 
-    @InjectView(R.id.main_content_container)
-    public RelativeLayout mainContentContainer;
-    @InjectView(R.id.toolbar_pager)
-    public ViewPager viewPager;
-    @InjectView(R.id.toolbar)
-    public Toolbar toolbar;
-    @InjectView(R.id.fab_image_button)
-    public ButtonFloat startPauseButton;
+  @InjectView(R.id.main_content_container)
+  public RelativeLayout mainContentContainer;
 
-    public PauseActivityView(Context context) {
-        super(context);
-    }
+  @InjectView(R.id.toolbar_pager)
+  public ViewPager viewPager;
 
-    public PauseActivityView(Context context, AttributeSet attrs) {
-        super(context, attrs);
-    }
+  @InjectView(R.id.toolbar)
+  public Toolbar toolbar;
 
-    public PauseActivityView(Context context, AttributeSet attrs, int defStyle) {
-        super(context, attrs, defStyle);
-    }
+  @InjectView(R.id.fab_image_button)
+  public ButtonFloat startPauseButton;
 
-    @Override
-    protected void onFinishInflate() {
-        super.onFinishInflate();
+  public PauseActivityView(Context context) {
+    super(context);
+  }
 
-        Views.inject(this);
-    }
+  public PauseActivityView(Context context, AttributeSet attrs) {
+    super(context, attrs);
+  }
 
+  public PauseActivityView(Context context, AttributeSet attrs, int defStyle) {
+    super(context, attrs, defStyle);
+  }
+
+  @Override
+  protected void onFinishInflate() {
+    super.onFinishInflate();
+
+    Views.inject(this);
+  }
 }

@@ -5,40 +5,38 @@ import android.util.AttributeSet;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
-
-import com.pauselabs.R;
-
 import butterknife.InjectView;
 import butterknife.Views;
+import com.pauselabs.R;
 
-/**
- * Created by Passa on 1/28/15.
- */
+/** Created by Passa on 1/28/15. */
 public class GenderView extends RelativeLayout {
 
-    @InjectView(R.id.ob_name)
-    public EditText name;
-    @InjectView(R.id.male)
-    public Button male;
-    @InjectView(R.id.female)
-    public Button female;
+  @InjectView(R.id.ob_name)
+  public EditText name;
 
-    public GenderView(Context context) {
-        super(context);
-    }
+  @InjectView(R.id.male)
+  public Button male;
 
-    public GenderView(Context context, AttributeSet attrs) {
-        super(context, attrs);
-    }
+  @InjectView(R.id.female)
+  public Button female;
 
-    public GenderView(Context context, AttributeSet attrs, int defStyle) {
-        super(context, attrs, defStyle);
-    }
+  public GenderView(Context context) {
+    super(context);
+  }
 
-    @Override
-    protected void onFinishInflate() {
-        super.onFinishInflate();
+  public GenderView(Context context, AttributeSet attrs) {
+    super(context, attrs);
+  }
 
-        Views.inject(this);
-    }
+  public GenderView(Context context, AttributeSet attrs, int defStyle) {
+    super(context, attrs, defStyle);
+  }
+
+  @Override
+  protected void onFinishInflate() {
+    super.onFinishInflate();
+
+    Views.inject(this);
+  }
 }

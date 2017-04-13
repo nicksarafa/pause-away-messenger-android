@@ -1,12 +1,12 @@
 package com.pauselabs.pause;
 
 import com.pauselabs.pause.activity.PauseActivity;
+import com.pauselabs.pause.activity.SearchPrivacyActivity;
 import com.pauselabs.pause.activity.StartActivity;
 import com.pauselabs.pause.adapters.SavesAdapter;
 import com.pauselabs.pause.adapters.UpgradeAdapter;
-import com.pauselabs.pause.controllers.SavesDirectoryViewController;
 import com.pauselabs.pause.controllers.PrivacyViewController;
-import com.pauselabs.pause.activity.SearchPrivacyActivity;
+import com.pauselabs.pause.controllers.SavesDirectoryViewController;
 import com.pauselabs.pause.controllers.SettingsViewController;
 import com.pauselabs.pause.controllers.SummaryViewController;
 import com.pauselabs.pause.controllers.TimeBankViewController;
@@ -27,64 +27,47 @@ import com.pauselabs.pause.view.SummaryConversationCard;
 import com.pauselabs.pause.view.SummaryReceivedCard;
 import com.pauselabs.pause.view.SummarySentCard;
 import com.squareup.otto.Bus;
-
-import javax.inject.Singleton;
-
 import dagger.Module;
 import dagger.Provides;
+import javax.inject.Singleton;
 
-/**
- * Dagger module for setting up provides statements.
- * Register all of your entry points below.
- */
+/** Dagger module for setting up provides statements. Register all of your entry points below. */
 @Module(
-        complete = false,
-
-        injects = {
-                PauseApplication.class,
-
-                PauseApplicationService.class,
-                PauseSessionService.class,
-                PauseSession.class,
-
-                SpeechListener.class,
-                SilenceListener.class,
-                PauseSmsListener.class,
-
-                StartActivity.class,
-                PauseActivity.class,
-
-                GenderViewController.class,
-                OnboardingViewController.class,
-
-                SummaryViewController.class,
-                SummaryConversationCard.class,
-                SummarySentCard.class,
-                SummaryReceivedCard.class,
-
-                SavesDirectoryViewController.class,
-                SavesAdapter.class,
-
-                PrivacyViewController.class,
-                SearchPrivacyActivity.class,
-
-                TimeBankViewController.class,
-
-                UpgradeViewController.class,
-                UpgradeAdapter.class,
-
-                SettingsViewController.class,
-
-                StringRandomizer.class,
-                JsonReader.class,
-                PauseConversation.class,
-        }
+  complete = false,
+  injects = {
+    PauseApplication.class,
+    PauseApplicationService.class,
+    PauseSessionService.class,
+    PauseSession.class,
+    SpeechListener.class,
+    SilenceListener.class,
+    PauseSmsListener.class,
+    StartActivity.class,
+    PauseActivity.class,
+    GenderViewController.class,
+    OnboardingViewController.class,
+    SummaryViewController.class,
+    SummaryConversationCard.class,
+    SummarySentCard.class,
+    SummaryReceivedCard.class,
+    SavesDirectoryViewController.class,
+    SavesAdapter.class,
+    PrivacyViewController.class,
+    SearchPrivacyActivity.class,
+    TimeBankViewController.class,
+    UpgradeViewController.class,
+    UpgradeAdapter.class,
+    SettingsViewController.class,
+    StringRandomizer.class,
+    JsonReader.class,
+    PauseConversation.class,
+  }
 )
 public class PauseModule {
 
-    @Singleton
-    @Provides
-    Bus provideOttoBus() {
-        return new PostFromAnyThreadBus();
-    }
+  @Singleton
+  @Provides
+  Bus provideOttoBus() {
+    return new PostFromAnyThreadBus();
+  }
 }

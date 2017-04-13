@@ -13,66 +13,72 @@ import android.widget.TextView;
 
 public class TabView extends LinearLayout {
 
-    private ImageView mImageView;
-    private TextView mTextView;
+  private ImageView mImageView;
+  private TextView mTextView;
 
-    public TabView(Context context) {
-        this(context, null);
+  public TabView(Context context) {
+    this(context, null);
+  }
+
+  public TabView(Context context, AttributeSet attrs) {
+    this(context, attrs, android.R.attr.actionBarTabStyle);
+  }
+
+  public TabView(Context context, AttributeSet attrs, int defStyle) {
+    super(context, attrs, defStyle);
+
+    TypedValue outValue = new TypedValue();
+    context.getTheme().resolveAttribute(android.R.attr.actionBarTabTextStyle, outValue, true);
+
+    int txtstyle = outValue.data;
+
+    int actionBarHeight = 68;
+
+    int mActionBarHeight =
+        (int) (actionBarHeight * getResources().getDisplayMetrics().density + .5f);
+
+    int pad =
+        (int)
+            TypedValue.applyDimension(
+                TypedValue.COMPLEX_UNIT_DIP, 0, getResources().getDisplayMetrics());
+
+    mImageView = new ImageView(context);
+    mImageView.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, mActionBarHeight));
+    mImageView.setScaleType(ScaleType.FIT_CENTER);
+
+    mTextView = new TextView(context);
+    mTextView.setLayoutParams(
+        new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
+    mTextView.setGravity(Gravity.CENTER);
+    //        mTextView.setCompoundDrawablePadding(pad);
+    mTextView.setTextAppearance(context, txtstyle);
+    ;
+
+    this.addView(mImageView);
+    this.addView(mTextView);
+    this.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
+  }
+
+  public void setIcon(int resId) {
+    setIcon(getContext().getResources().getDrawable(resId));
+  }
+
+  public void setIcon(Drawable icon) {
+    if (icon != null) {
+      mImageView.setVisibility(View.VISIBLE);
+      mImageView.setImageDrawable(icon);
+    } else {
+      mImageView.setVisibility(View.GONE);
     }
+  }
 
-	public TabView(Context context, AttributeSet attrs) {
-        this(context, attrs, android.R.attr.actionBarTabStyle);
-    }
+  public void setText(int resId, int ico) {
+    setText(getContext().getString(resId), ico);
+  }
 
-    public TabView(Context context, AttributeSet attrs, int defStyle) {
-        super(context, attrs, defStyle);
-
-        TypedValue outValue = new TypedValue();
-        context.getTheme().resolveAttribute(android.R.attr.actionBarTabTextStyle, outValue, true);
-
-        int txtstyle = outValue.data;
-
-        int actionBarHeight = 68;
-
-        int mActionBarHeight = (int) (actionBarHeight * getResources().getDisplayMetrics().density + .5f);
-        
-        int pad = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 0, getResources().getDisplayMetrics());
-
-        mImageView = new ImageView(context);
-        mImageView.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, mActionBarHeight));
-        mImageView.setScaleType(ScaleType.FIT_CENTER);
-
-        mTextView = new TextView(context);
-        mTextView.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
-        mTextView.setGravity(Gravity.CENTER);
-//        mTextView.setCompoundDrawablePadding(pad);
-        mTextView.setTextAppearance(context, txtstyle);;
-
-        this.addView(mImageView);
-        this.addView(mTextView);
-        this.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
-    }
-
-	public void setIcon(int resId) {
-        setIcon(getContext().getResources().getDrawable(resId));
-    }
-
-    public void setIcon(Drawable icon) {
-        if (icon != null) {
-            mImageView.setVisibility(View.VISIBLE);
-            mImageView.setImageDrawable(icon);
-        } else {
-            mImageView.setVisibility(View.GONE);
-        }
-    }
-
-    public void setText(int resId, int ico) {
-        setText(getContext().getString(resId), ico);
-    }
-
-    public void setText(CharSequence text, int ico) {
-        mTextView.setText(text);
-		mTextView.setCompoundDrawablesWithIntrinsicBounds(ico, 0, 0, 0);;
-    }
-
+  public void setText(CharSequence text, int ico) {
+    mTextView.setText(text);
+    mTextView.setCompoundDrawablesWithIntrinsicBounds(ico, 0, 0, 0);
+    ;
+  }
 }

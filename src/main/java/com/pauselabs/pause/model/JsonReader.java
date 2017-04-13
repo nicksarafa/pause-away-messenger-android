@@ -2,77 +2,69 @@ package com.pauselabs.pause.model;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-
 import com.pauselabs.pause.Injector;
-
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Random;
-
 import javax.inject.Inject;
+import org.json.JSONException;
+import org.json.JSONObject;
 
-/**
- * Created by Passa on 12/17/14.
- */
+/** Created by Passa on 12/17/14. */
 public class JsonReader {
 
-    @Inject
-    SharedPreferences prefs;
+  @Inject SharedPreferences prefs;
 
-    protected Context context;
-    protected Random randNumGenerator;
-    protected JSONObject object;
+  protected Context context;
+  protected Random randNumGenerator;
+  protected JSONObject object;
 
-    public JsonReader(Context c, String filename) {
-        context = c;
-        randNumGenerator = new Random();
+  public JsonReader(Context c, String filename) {
+    context = c;
+    randNumGenerator = new Random();
 
-        Injector.inject(this);
+    Injector.inject(this);
 
-        try {
-            parseFile(filename);
-        } catch (JSONException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    try {
+      parseFile(filename);
+    } catch (JSONException e) {
+      e.printStackTrace();
+    } catch (IOException e) {
+      e.printStackTrace();
     }
+  }
 
-    public JSONObject getObject() {
-        return object;
+  public JSONObject getObject() {
+    return object;
+  }
+
+  /**
+   * Set the JSON file to be used for generating Strings
+   *
+   * @param filename
+   */
+  public void setFile(String filename) {
+    try {
+      parseFile(filename);
+    } catch (JSONException e) {
+      e.printStackTrace();
+    } catch (IOException e) {
+      e.printStackTrace();
     }
+  }
 
-    /**
-     * Set the JSON file to be used for generating Strings
-     *
-     * @param filename
-     */
-    public void setFile(String filename) {
-        try {
-            parseFile(filename);
-        } catch (JSONException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
+  protected void parseFile(String filename) throws JSONException, IOException {
+    if (filename == null) return;
 
-    protected void parseFile(String filename) throws JSONException, IOException {
-        if (filename == null)
-            return;
+    InputStream is = context.getAssets().open(filename);
+    int size = is.available();
 
-        InputStream is = context.getAssets().open(filename);
-        int size = is.available();
+    byte[] buffer = new byte[size];
 
-        byte[] buffer = new byte[size];
+    is.read(buffer);
 
-        is.read(buffer);
+    is.close();
 
-        is.close();
-
-        object = new JSONObject(new String(buffer, "UTF-8"));
-    }
+    object = new JSONObject(new String(buffer, "UTF-8"));
+  }
 }
