@@ -119,17 +119,6 @@ public class Constants {
 
     /** Edit Pause message extra */
     public static final String EDIT_PAUSE_MESSAGE_ID_EXTRA = "EDIT_PAUSE_MESSAGE_ID_EXTRA";
-
-    public static class Parse {
-
-      private Parse() {}
-
-      /** Parse.com Application ID */
-      public static final String APP_ID = "tGpawxnYXibX3nbLy6UOlxTlq9pC3KhtT7CFlyqN";
-
-      /** Parse.com Application ID */
-      public static final String CLIENT_KEY = "Vxot4c4QvAenxDd4BYBIsyTE4kNZL7vZJksgfPzR";
-    }
   }
 
   public static class Notification {
