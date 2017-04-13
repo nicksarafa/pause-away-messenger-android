@@ -8,6 +8,7 @@ import android.support.v13.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -53,6 +54,8 @@ public class PauseActivity extends ActionBarActivity {
 //    public TimeBankViewController timeBankViewController;
 //    public UpgradeViewController upgradeViewController;
 
+    private SlidingUpPanelLayout mLayout;
+
     @Inject
     LayoutInflater inflater;
 
@@ -88,6 +91,7 @@ public class PauseActivity extends ActionBarActivity {
         privacyViewController.privacyBtns.setVisibility(View.GONE);
 
         tabBarView.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
                 pageIndex = position;
@@ -133,48 +137,57 @@ public class PauseActivity extends ActionBarActivity {
         pauseActivityView.startPauseButton.setBackgroundColor(getResources().getColor(R.color.on));
         pauseActivityView.setPanelHeight(0);
         pauseActivityView.setAnchorPoint(0.8894308943f);
-        pauseActivityView.setPanelSlideListener(new SlidingUpPanelLayout.PanelSlideListener() {
+
+        /**
+         * Initialize sothree sliding panel
+         */
+        pauseActivityView.addPanelSlideListener(new SlidingUpPanelLayout.PanelSlideListener() {
+
             @Override
             public void onPanelSlide(View view, float ratio) {
                 actionBar.getCustomView().setY(-((ratio + (ratio * 0.121875f)) * actionBar.getHeight()));
-
                 moveButton();
             }
 
             @Override
-            public void onPanelAnchored(View view) {
-                PauseApplication.startPauseService(Constants.Session.Creator.VOLUME);
-
-//                getSupportActionBar().setBackgroundDrawable(getResources().getDrawable(R.color.on));
-
-                pauseActivityView.startPauseButton.setDrawableIcon(getResources().getDrawable(R.drawable.ic_action_pause_on));
-                pauseActivityView.startPauseButton.setBackgroundColor(getResources().getColor(R.color.off));
-
-                moveButton();
+            public void onPanelStateChanged(View panel, SlidingUpPanelLayout.PanelState previousState, SlidingUpPanelLayout.PanelState newState) {
+                Log.i(TAG, "onPanelStateChanged " + newState);
             }
-
-            @Override
-            public void onPanelCollapsed(View view) {
-                PauseApplication.stopPauseService(PauseApplication.getCurrentSession().getCreator());
-
-//                getSupportActionBar().setBackgroundDrawable(getResources().getDrawable(R.color.off));
-
-                pauseActivityView.startPauseButton.setDrawableIcon(getResources().getDrawable(R.drawable.ic_action_pause_off));
-                pauseActivityView.startPauseButton.setBackgroundColor(getResources().getColor(R.color.on));
-
-                moveButton();
-            }
-
-            @Override
-            public void onPanelExpanded(View view) {
-
-            }
-
-
-            @Override
-            public void onPanelHidden(View view) {
-
-            }
+//
+//            @Override
+//            public void onPanelAnchored(View view) {
+//                PauseApplication.startPauseService(Constants.Session.Creator.VOLUME);
+//
+////                getSupportActionBar().setBackgroundDrawable(getResources().getDrawable(R.color.on));
+//
+//                pauseActivityView.startPauseButton.setDrawableIcon(getResources().getDrawable(R.drawable.ic_action_pause_on));
+//                pauseActivityView.startPauseButton.setBackgroundColor(getResources().getColor(R.color.off));
+//
+//                moveButton();
+//            }
+//
+//            @Override
+//            public void onPanelCollapsed(View view) {
+//                PauseApplication.stopPauseService(PauseApplication.getCurrentSession().getCreator());
+//
+////                getSupportActionBar().setBackgroundDrawable(getResources().getDrawable(R.color.off));
+//
+//                pauseActivityView.startPauseButton.setDrawableIcon(getResources().getDrawable(R.drawable.ic_action_pause_off));
+//                pauseActivityView.startPauseButton.setBackgroundColor(getResources().getColor(R.color.on));
+//
+//                moveButton();
+//            }
+//
+//            @Override
+//            public void onPanelExpanded(View view) {
+//
+//            }
+//
+//
+//            @Override
+//            public void onPanelHidden(View view) {
+//
+//            }
 
         });
     }
