@@ -6,13 +6,13 @@ package com.pauselabs.pause.events;
  */
 public class SavedPauseMessageSelectedEvent {
 
-    private long savedMessageId;
+  private long savedMessageId;
 
-    public SavedPauseMessageSelectedEvent(long savedMessageId) {
-        this.savedMessageId = savedMessageId;
-    }
+  public SavedPauseMessageSelectedEvent(long savedMessageId) {
+    this.savedMessageId = savedMessageId;
+  }
 
-    public long getSavedMessageId() {
-        return savedMessageId;
-    }
+  public long getSavedMessageId() {
+    return savedMessageId;
+  }
 }

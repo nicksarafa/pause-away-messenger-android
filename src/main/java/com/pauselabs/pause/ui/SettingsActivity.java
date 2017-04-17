@@ -2,30 +2,25 @@ package com.pauselabs.pause.ui;
 
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
-
-import com.pauselabs.R;
-
 import butterknife.Views;
-
+import com.pauselabs.R;
 
 public class SettingsActivity extends PauseFragmentActivity {
 
-    @Override
-    protected void onCreate(final Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+  @Override
+  protected void onCreate(final Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.settings_activity);
+    setContentView(R.layout.settings_activity);
 
-        // View injection with Butterknife
-        Views.inject(this);
+    // View injection with Butterknife
+    Views.inject(this);
 
-        ActionBar ab = getSupportActionBar();
-        ab.setDisplayHomeAsUpEnabled(true);
-        ab.setDisplayShowHomeEnabled(false);
-        ab.setDisplayShowTitleEnabled(true);
-        ab.setTitle("Settings");
-        ab.setDisplayUseLogoEnabled(false);
-
-    }
-
+    ActionBar ab = getSupportActionBar();
+    ab.setDisplayHomeAsUpEnabled(true);
+    ab.setDisplayShowHomeEnabled(false);
+    ab.setDisplayShowTitleEnabled(true);
+    ab.setTitle("Settings");
+    ab.setDisplayUseLogoEnabled(false);
+  }
 }

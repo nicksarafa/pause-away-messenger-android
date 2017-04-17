@@ -21,47 +21,41 @@ import com.pauselabs.pause.ui.SettingsFragment;
 import com.pauselabs.pause.ui.SplashFragment;
 import com.pauselabs.robolectric.DeckardActivity;
 import com.squareup.otto.Bus;
-
-import javax.inject.Singleton;
-
 import dagger.Module;
 import dagger.Provides;
+import javax.inject.Singleton;
 
-/**
- * Dagger module for setting up provides statements.
- * Register all of your entry points below.
- */
+/** Dagger module for setting up provides statements. Register all of your entry points below. */
 @Module(
-        complete = false,
-
-        injects = {
-                PauseApplication.class,
-                MainActivity.class,
-                SettingsActivity.class,
-                DeckardActivity.class,
-                PauseFragmentActivity.class,
-                SplashFragment.class,
-                CreatePauseFragment.class,
-                SettingsFragment.class,
-                ScoreboardFragment.class,
-                NavigationDrawerFragment.class,
-                PauseMessageReceivedService.class,
-                PauseSessionService.class,
-                CameraFragment.class,
-                CameraActivity.class,
-                PreviewActivity.class,
-                PreviewFragment.class,
-                ScoreboardActivity.class,
-                BlacklistActivity.class,
-                BlacklistFragment.class,
-                PauseSession.class
-        }
+  complete = false,
+  injects = {
+    PauseApplication.class,
+    MainActivity.class,
+    SettingsActivity.class,
+    DeckardActivity.class,
+    PauseFragmentActivity.class,
+    SplashFragment.class,
+    CreatePauseFragment.class,
+    SettingsFragment.class,
+    ScoreboardFragment.class,
+    NavigationDrawerFragment.class,
+    PauseMessageReceivedService.class,
+    PauseSessionService.class,
+    CameraFragment.class,
+    CameraActivity.class,
+    PreviewActivity.class,
+    PreviewFragment.class,
+    ScoreboardActivity.class,
+    BlacklistActivity.class,
+    BlacklistFragment.class,
+    PauseSession.class
+  }
 )
 public class PauseModule {
 
-    @Singleton
-    @Provides
-    Bus provideOttoBus() {
-        return new PostFromAnyThreadBus();
-    }
+  @Singleton
+  @Provides
+  Bus provideOttoBus() {
+    return new PostFromAnyThreadBus();
+  }
 }
