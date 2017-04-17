@@ -10,8 +10,8 @@ public class ScoreboardActivity extends PauseFragmentActivity {
   protected void onCreate(final Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
 
-    getActionBar().setDisplayHomeAsUpEnabled(false);
-    getActionBar().setDisplayShowTitleEnabled(false);
+    getSupportActionBar().setDisplayHomeAsUpEnabled(false);
+    getSupportActionBar().setDisplayShowTitleEnabled(false);
     setContentView(R.layout.scoreboard_activity);
   }
 
