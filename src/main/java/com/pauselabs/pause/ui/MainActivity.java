@@ -76,7 +76,7 @@ public class MainActivity extends PauseFragmentActivity {
             };
 
             // Set the drawer toggle as the DrawerListener
-            drawerLayout.setDrawerListener(drawerToggle);
+            drawerLayout.addDrawerListener(drawerToggle);
 
             navigationDrawerFragment = (NavigationDrawerFragment)
                     getSupportFragmentManager().findFragmentById(R.id.navigation_drawer);
@@ -111,7 +111,7 @@ public class MainActivity extends PauseFragmentActivity {
         // show default screen
         showFragment(CREATE_PAUSE, false);
 
-        getActionBar().setDisplayShowTitleEnabled(false);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
     }
 
     private boolean isTablet() {
