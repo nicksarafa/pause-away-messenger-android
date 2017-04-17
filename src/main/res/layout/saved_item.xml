@@ -2,8 +2,8 @@
 
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/saveThumbnailContainer"
-    android:layout_width="@dimen/saved_image_thumb_size"
-    android:layout_height="@dimen/saved_image_thumb_size"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:background="@drawable/save_thumbnail_background">
 
     <TextView
